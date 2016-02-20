@@ -29,7 +29,7 @@ body {
 
 
 .logo {
-  width: 100%;
+  width: 70%;
   position: relative;
   margin: 5% auto;
   text-align: center;
@@ -42,7 +42,7 @@ body {
   .tagline {
     margin-top: 0;
     text-transform: uppercase;
-    font-size: 1.2em;
+    font-size: 1em;
     color: #f1592a;
   }
 }
@@ -56,6 +56,15 @@ body {
   margin: 40px 0;
   display: inline-block;
   overflow: hidden;
+}
+
+.display-tagline {
+  font-size: 2em;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
 }
 
 .texts {
@@ -89,5 +98,6 @@ body {
   position: absolute;
   right: 20px;
   top: 10px;
+  font-size: 0.8em;
   color: white;
 }

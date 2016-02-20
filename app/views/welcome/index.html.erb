@@ -14,9 +14,14 @@
 			  </ol>
 			<div class="carousel-inner" role="listbox">
 			    <div class="carousel-item active">
-			      <%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid") %>
+			      <picture>
+		      		<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-small.jpg") %>">
+	      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-medium.jpg") %>">
+      				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-full.jpg") %>">
+			      	<%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid") %>
+			      </picture>
 				  <div class="carousel-caption">
-				    <h3 class="secondary-font display-4"><%= t('first-caption') %></h3>
+				    <h3 class="secondary-font display-tagline"><%= t('first-caption') %></h3>
 				    <p class="lead emblem-font"><%= t('first-description') %></p>
 				  </div>
 				  <div class="top-note">
@@ -24,17 +29,28 @@
 				  </div>
 			    </div>
 			    <div class="carousel-item">
-			      <%= image_tag("image-intro-2.jpg", :alt => "Truppie", :class => "img-fluid") %>
+			      <picture>
+				      <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid") %>
+				      <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-2-small.jpg") %>">
+	      			  <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-2-medium.jpg") %>">
+      				  <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
+				  </picture>
 				  <div class="carousel-caption">
 				    <h3 class="secondary-font display-4"><%= t('second-caption') %></h3>
 				    <p class="lead emblem-font"><%= t('second-description') %></p>
 				  </div>
+
 				  <div class="top-note">
 				  	<p>Vale do Pati, Chapada Diamantina - BA</p>
 				  </div>
 			    </div>
 			    <div class="carousel-item">
-			      <%= image_tag("image-intro-3.jpg", :alt => "Truppie", :class => "img-fluid") %>
+			      <picture>
+			      	<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-3-small.jpg") %>">
+	      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-3-medium.jpg") %>">
+      				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-3-full.jpg") %>">
+      					<%= image_tag("image-intro-3-default.jpg", :alt => "Truppie", :class => "img-fluid") %>
+			      </picture>	
 			      
 				  <div class="carousel-caption">
 				    <h3 class="secondary-font display-4"><%= t('third-caption') %></h3>
@@ -46,8 +62,7 @@
 				  </div>
 				  </div>
 			    </div>
-		  </div>
-		</div>
+			</div> 
 	</div>
 	<div class="container spaced-default intro-text">
 		<div classs="row">
@@ -69,37 +84,19 @@
 			</div>
 			<div class="card card-block text-xs-center">
 			  <h4 class="card-title">
-			  	<%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-			  	<p class="tagline emblem-font"><%= t('balloom-heading') %>
+			  	<picture>
+			  		<%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+			  	</picture
+			  	<p class="tagline emblem-font"><%= t('hands-heading') %>
 		  	  </h4>
-			  <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
+			  <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
 			</div>
 			<div class="card card-block text-xs-center">
 			  <h4 class="card-title">
 			  	<%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-			  	<p class="tagline emblem-font"><%= t('balloom-heading') %>
+			  	<p class="tagline emblem-font"><%= t('shoes-heading') %>
 		  	  </h4>
-			  <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
-			</div>
-		</div>
-		<div classs="row">
-			<div class="col-xs-12">
-				<div class="text-idea">
-					<h3>Title</h3>
-					<p class="tagline emblem-font"><%= t('text-intro') %></p>
-				</div>
-			</div>
-			<div class="col-xs-12">
-				<h3>Title</h3>
-				<div class="text-idea">
-					<p class="tagline emblem-font"><%= t('text-intro') %></p>
-				</div>
-			</div>
-			<div class="col-xs-12">
-				<h3>Title</h3>
-				<div class="text-idea">
-					<p class="tagline emblem-font"><%= t('text-intro') %></p>
-				</div>
+			  <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
 			</div>
 		</div>
 	</div>
