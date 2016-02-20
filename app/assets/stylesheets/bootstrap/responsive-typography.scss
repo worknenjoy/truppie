@@ -4,13 +4,13 @@ html {
 
 @include media-breakpoint-up(sm) {
   html {
-    font-size: 21px;
+    font-size: 18px;
   }
 }
 
 @include media-breakpoint-up(md) {
   html {
-    font-size: 26px;
+    font-size: 21px;
   }
 }
 
