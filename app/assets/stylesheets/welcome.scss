@@ -20,7 +20,11 @@
 @font-face {
   font-family: 'Nevis';
   font-weight: normal;
-  src: font-url("Nevis.otf");
+  src: font-url("nevis.otf");
+}
+
+body {
+  font-family: 'Arial',sans-serif;
 }
 
 
