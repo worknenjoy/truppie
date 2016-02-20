@@ -4,23 +4,23 @@
 
 @font-face {
   font-family: 'Sunshine';
-  src: url("fonts/HelloSunshine_ornaments.otf");
+  src: font-url('HelloSunshine_ornaments.otf');
 }
 
 @font-face {
   font-family: 'HelloSunshine';
-  src: url("fonts/HelloSunshine.otf");
+  src: font-url("HelloSunshine.otf");
 }
 
 @font-face {
   font-family: 'HelloSunshineMarker';
-  src: url("fonts/HelloSunshineMarker.otf");
+  src: font-url("HelloSunshineMarker.otf");
 }
 
 @font-face {
   font-family: 'Nevis';
   font-weight: normal;
-  src: url("fonts/nevis.ttf");
+  src: font-url("Nevis.otf");
 }
 
 
