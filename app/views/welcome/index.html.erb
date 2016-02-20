@@ -1,5 +1,107 @@
-<div class="logo">
-	<%= image_tag("logo-flat.png", :alt => "Truppie") %>
-	<p class="tagline emblem-font"><%= t('tagline') %></p>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="logo">
+			<%= image_tag("logo-flat.png", :alt => "Truppie") %>
+			<p class="tagline emblem-font"><%= t('tagline') %></p>
+		</div>
+	</div>
+	<div class="col-xs-12 image-intro">
+		<div id="carousel-intro" class="carousel slide" data-ride="carousel">
+			  <ol class="carousel-indicators">
+			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			  </ol>
+			<div class="carousel-inner" role="listbox">
+			    <div class="carousel-item active">
+			      <%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid") %>
+				  <div class="carousel-caption">
+				    <h3 class="secondary-font display-4"><%= t('first-caption') %></h3>
+				    <p class="lead emblem-font"><%= t('first-description') %></p>
+				  </div>
+				  <div class="top-note">
+				  	<p>Morro dois irmãos, Rio de Janeiro - Rj</p>
+				  </div>
+			    </div>
+			    <div class="carousel-item">
+			      <%= image_tag("image-intro-2.jpg", :alt => "Truppie", :class => "img-fluid") %>
+				  <div class="carousel-caption">
+				    <h3 class="secondary-font display-4"><%= t('second-caption') %></h3>
+				    <p class="lead emblem-font"><%= t('second-description') %></p>
+				  </div>
+				  <div class="top-note">
+				  	<p>Vale do Pati, Chapada Diamantina - BA</p>
+				  </div>
+			    </div>
+			    <div class="carousel-item">
+			      <%= image_tag("image-intro-3.jpg", :alt => "Truppie", :class => "img-fluid") %>
+			      
+				  <div class="carousel-caption">
+				    <h3 class="secondary-font display-4"><%= t('third-caption') %></h3>
+				    <p class="lead emblem-font"><%= t('third-description') %></p>
+				    </div>
+				    <div class="top-note">
+				  		<p>Pico do Papagaio, Aiuroca - MG</p>
+				  	</div>
+				  </div>
+				  </div>
+			    </div>
+		  </div>
+		</div>
+	</div>
+	<div class="container spaced-default intro-text">
+		<div classs="row">
+			<div class="col-xs-12">
+				<div class="text-intro">
+					<p class="tagline emblem-font"><%= t('text-intro') %></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container intro-idea">
+		<div class="container">
+			<div class="card card-block text-xs-center">
+			  <h4 class="card-title">
+			  	<%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+			  	<p class="tagline emblem-font"><%= t('balloom-heading') %>
+		  	  </h4>
+			  <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
+			</div>
+			<div class="card card-block text-xs-center">
+			  <h4 class="card-title">
+			  	<%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+			  	<p class="tagline emblem-font"><%= t('balloom-heading') %>
+		  	  </h4>
+			  <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
+			</div>
+			<div class="card card-block text-xs-center">
+			  <h4 class="card-title">
+			  	<%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+			  	<p class="tagline emblem-font"><%= t('balloom-heading') %>
+		  	  </h4>
+			  <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
+			</div>
+		</div>
+		<div classs="row">
+			<div class="col-xs-12">
+				<div class="text-idea">
+					<h3>Title</h3>
+					<p class="tagline emblem-font"><%= t('text-intro') %></p>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<h3>Title</h3>
+				<div class="text-idea">
+					<p class="tagline emblem-font"><%= t('text-intro') %></p>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<h3>Title</h3>
+				<div class="text-idea">
+					<p class="tagline emblem-font"><%= t('text-intro') %></p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
