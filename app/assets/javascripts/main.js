@@ -3,13 +3,12 @@ $(function(){
 	
 	$('#carousel-intro').carousel({interval: false});
 	
-	$(document).ready(function(){
-	 	$('#carousel-intro').on('swiperight', function(){
-	 		$(this).carousel('prev');
-	 	}).on('carousel-intro', function(){
-	 		$(this).carousel('next');
-	 	});
-	});
+ 	$('#carousel-intro').on('swiperight', function(e){
+ 		console.info(e.target);
+		$('#carousel-intro').carousel('prev');
+ 	}).on('swipeleft', function(){
+		$('#carousel-intro').carousel('next');
+ 	});
 	
 	
 });

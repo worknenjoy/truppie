@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require jquery.event.move
+//= require jquery.event.swipe
+//= require util
+//= require carousel
+//= require main
