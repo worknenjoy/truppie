@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="row">
 	<div class="col-xs-12">
 		<div class="logo">
@@ -5,7 +6,6 @@
 			<p class="tagline emblem-font"><%= t('tagline') %></p>
 		</div>
 	</div>
-	<div class="col-xs-12 image-intro">
 		<div id="carousel-intro" class="carousel slide" data-ride="carousel">
 			  <ol class="carousel-indicators">
 			    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -36,10 +36,9 @@
       				  <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
 				  </picture>
 				  <div class="carousel-caption">
-				    <h3 class="secondary-font display-4"><%= t('second-caption') %></h3>
+				    <h3 class="secondary-font display-tagline"><%= t('second-caption') %></h3>
 				    <p class="lead emblem-font"><%= t('second-description') %></p>
 				  </div>
-
 				  <div class="top-note">
 				  	<p>Vale do Pati, Chapada Diamantina - BA</p>
 				  </div>
@@ -53,52 +52,61 @@
 			      </picture>	
 			      
 				  <div class="carousel-caption">
-				    <h3 class="secondary-font display-4"><%= t('third-caption') %></h3>
+				    <h3 class="secondary-font display-tagline"><%= t('third-caption') %></h3>
 				    <p class="lead emblem-font"><%= t('third-description') %></p>
 				    </div>
 				    <div class="top-note">
 				  		<p>Pico do Papagaio, Aiuroca - MG</p>
-				  	</div>
-				  </div>
-				  </div>
+			  	  </div>
 			    </div>
-			</div> 
+		  </div>
+ 	   </div> 
 	</div>
-	<div class="container spaced-default intro-text">
-		<div classs="row">
-			<div class="col-xs-12">
-				<div class="text-intro">
-					<p class="tagline emblem-font"><%= t('text-intro') %></p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container intro-idea">
-		<div class="container">
-			<div class="card card-block text-xs-center">
-			  <h4 class="card-title">
-			  	<%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-			  	<p class="tagline emblem-font"><%= t('balloom-heading') %>
-		  	  </h4>
-			  <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
-			</div>
-			<div class="card card-block text-xs-center">
-			  <h4 class="card-title">
-			  	<picture>
-			  		<%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-			  	</picture
-			  	<p class="tagline emblem-font"><%= t('hands-heading') %>
-		  	  </h4>
-			  <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
-			</div>
-			<div class="card card-block text-xs-center">
-			  <h4 class="card-title">
-			  	<%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-			  	<p class="tagline emblem-font"><%= t('shoes-heading') %>
-		  	  </h4>
-			  <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
+</div>
+</div>
+<div class="container spaced-default intro-text">
+	<div classs="row">
+		<div class="col-xs-12">
+			<div class="text-intro">
+				<p class="tagline emblem-font"><%= t('text-intro') %></p>
 			</div>
 		</div>
 	</div>
 </div>
+<div class="container intro-idea">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="card card-block text-xs-center">
+				  <h4 class="card-title">
+				  	<%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+				  	<p class="tagline emblem-font"><%= t('balloom-heading') %>
+			  	  </h4>
+				  <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="card card-block text-xs-center">
+				  <h4 class="card-title">
+				  	<picture>
+				  		<%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+				  	</picture>
+				  	<p class="tagline emblem-font"><%= t('hands-heading') %>
+			  	  </h4>
+				  <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="card card-block text-xs-center">
+				  <h4 class="card-title">
+				  	<%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+				  	<p class="tagline emblem-font"><%= t('shoes-heading') %>
+			  	  </h4>
+				  <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 
