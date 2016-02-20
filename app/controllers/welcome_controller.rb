@@ -4,4 +4,8 @@ class WelcomeController < ApplicationController
     #I18n.locale = 'pt-BR'
   end
   
+  def logos
+    
+  end
+  
 end
