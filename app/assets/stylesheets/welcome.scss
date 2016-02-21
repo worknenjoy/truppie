@@ -105,3 +105,21 @@ body {
   color: white;
   color: #f8f8f8;
 }
+
+.carousel-navigation {
+  a {
+    position: absolute;
+    top: 65%;
+    opacity: 0.8;
+    color: #fdeccf;
+    z-index: 9999;
+    height: 100%;
+    
+    &.carousel-right {
+      right: 20px;
+    }
+    &.carousel-left {
+      left: 20px;
+    }
+  }
+}
