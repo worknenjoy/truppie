@@ -1,0 +1,104 @@
+$color-brand-twitter-main: #4099FF;
+$color-reply: $color-brand-twitter-main;
+$color-star: #ffac33;
+$color-retweet: #5c913b;
+
+$avatar-size: 36px; // I wouldn't bother changing ;)
+$avatar-padding: $avatar-size + 10;
+
+$body-link-color: #2b7bb9;
+$body-link-hover-color: #3b94d9;
+
+.card-tweet {
+
+  .profile {
+    display: block;
+    float: left;
+    padding-left: $avatar-padding;
+    position: relative;
+
+    &:hover {
+      text-decoration: none;
+
+      .username {
+        color: $color-brand-twitter-main;
+      }
+    }
+
+    .username {
+      color: black;
+      display: block;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    .avatar {
+      height: $avatar-size;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: $avatar-size;
+    }
+  }
+
+  .body {
+    clear: both;
+    margin-bottom: 0;
+    padding-top: 5px; // Might be able to use bs4's utilities for this
+
+    a {
+      color: $body-link-color;
+
+      &:hover {
+        color: $body-link-hover-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .date {
+    font-size: 0.9rem;
+    display: block;
+    padding: 4px 0 8px; // Might be able to use bs4's utilities for this
+
+    &:hover {
+      color: $color-brand-twitter-main;
+      text-decoration: none;
+    }
+  }
+
+  .actions {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+
+    .reply {
+      &:hover {
+        color: $color-reply;
+      }
+    }
+
+    .retweet {
+      &:hover {
+        color: $color-retweet;
+      }
+    }
+
+    .star {
+      &:hover {
+        color: $color-star;
+      }
+    }
+  }
+
+  .btn-follow { // Should be able to use bs's make-button() mixin for this
+    border-color: $color-brand-twitter-main; 
+    color: $color-brand-twitter-main;
+
+    &:hover {
+      background: $color-brand-twitter-main;
+      border-color: $color-brand-twitter-main;
+      color: white;
+    }
+  } 
+}

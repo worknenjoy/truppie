@@ -27,6 +27,10 @@ body {
   font-family: 'Arial',sans-serif;
 }
 
+.sec-color-font {
+  color: #31bcb0;
+}
+
 
 .logo {
   width: 70%;
@@ -56,6 +60,14 @@ body {
   margin: 40px 0;
   display: inline-block;
   overflow: hidden;
+}
+
+.main-color-font {
+  
+}
+
+.spaced-down {
+  margin-bottom: 20px;
 }
 
 .display-tagline {
@@ -104,6 +116,10 @@ body {
   top: 10px;
   color: white;
   color: #f8f8f8;
+}
+
+.main-color-font {
+  color: #f05829;
 }
 
 .carousel-navigation {
