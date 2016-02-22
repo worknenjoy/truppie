@@ -1,16 +1,14 @@
 class SubscribersController < ApplicationController
   def create
+    @subscriber = Subscriber.new(params.require(:subscriber).permit(:email))
     
-    #puts '------'
-    #puts params[:subscriber]['email']
-    #puts '------'
-    
-    if params[:subscriber]['email'] == ''
-      flash[:error] = "You should fill with your email"
+    if !@subscriber.valid?
+      flash[:error] = @subscriber.errors.messages[:email][0]
+      redirect_to root_path
     else
-       @subscriber = Subscriber.new(email: params[:subscriber]['email'])
        if @subscriber.save
-          flash[:notice] = "Subscriber was recorded"
+          flash[:success] = "Subscriber was recorded"
+          redirect_to root_path
        end 
     end
   end

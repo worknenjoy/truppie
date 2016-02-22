@@ -25,10 +25,6 @@ $(function(){
  		return false;
  	});
  	
- 	$('input[type=submit]').on('submit', function(){
- 		$(this).attr('disabled', 'disabled');
- 	});
- 	
  	if(is_touch_device()) {
  		$('.carousel-navigation').hide();
  	}

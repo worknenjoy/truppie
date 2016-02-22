@@ -13,7 +13,8 @@
  *= require font-awesome
  *= require bootstrap-profile-card 
  *= require bootstrap-outline-bt 
- *= require image-card 
+ *= require image-card
+ *= require bootstrap-notice 
  *= require welcome
  */
 

@@ -8,10 +8,7 @@ end
 class Subscriber < ActiveRecord::Base
   
   include ActiveModel::Validations
-  attr_accessor :email
   
-  
-  validates :email, presence: true, email: true
-  validates :email, uniqueness: true
+  validates :email, presence: true, email: true, uniqueness: true
   
 end

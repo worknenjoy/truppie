@@ -243,13 +243,23 @@
 	    		<div class="thumbnail center well well-small text-center spaced-down">
 	                <h4 class="main-color-font emblem-font">Newsletter</h4>
 	                
-	                <p class="small">Subscribe to our weekly Newsletter and stay tuned.</p>
+	                <% if !flash.empty? %>
+	                <div class="error-notice fade in">
+	                	<% flash.each do |k| %> 
+					        <div class="oaerror danger <%= k[0] %>">
+			            		<strong><%= k[0] %></strong> - <%= k[1] %>
+			          		</div> 
+					    <% end %>
+			        <% end %>
+	                </div>
+	                <p class="lead">Subscribe to our weekly Newsletter and stay tuned.</p>
 	                
 	  				<fieldset class="form-group">
-							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-							<small class="text-muted">We'll never share your email with anyone else.</small>
+	  						<%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
+	  							<%= email_field(:subscriber, :email, :class => 'form-control spaced-down', :placeholder => 'Enter email') %>
+								<input type="submit" value="Subscribe Now!" class="btn btn-large btn btn-outlined btn-theme btn-lg" />
+							<% end %>
 					  </fieldset>
-	                    <input type="submit" value="Subscribe Now!" class="btn btn-large btn btn-outlined btn-theme btn-lg" />
 	              </form>
 	            </div>    
 	        </div>
