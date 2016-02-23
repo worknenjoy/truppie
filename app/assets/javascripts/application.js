@@ -16,6 +16,7 @@
 //= require wow
 //= require jquery.event.move
 //= require jquery.event.swipe
+//= require picturefill
 //= require util
 //= require carousel
 //= require main

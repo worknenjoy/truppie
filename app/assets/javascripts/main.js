@@ -37,8 +37,8 @@ $(function(){
 		      (e.distX < e.distY && e.distX > -e.distY)) {
 		    e.preventDefault();
 		  }
-		});
- 	
+	});
+	
  	new WOW().init();
 	
 	
