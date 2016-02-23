@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require wow
 //= require jquery.event.move
 //= require jquery.event.swipe
 //= require util

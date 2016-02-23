@@ -28,6 +28,8 @@ $(function(){
  	if(is_touch_device()) {
  		$('.carousel-navigation').hide();
  	}
+ 	
+ 	new WOW().init();
 	
 	
 });
