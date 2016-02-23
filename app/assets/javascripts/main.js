@@ -29,6 +29,16 @@ $(function(){
  		$('.carousel-navigation').hide();
  	}
  	
+ 	$('#carousel-intro')
+		.on('movestart', function(e) {
+		  // If the movestart is heading off in an upwards or downwards
+		  // direction, prevent it so that the browser scrolls normally.
+		  if ((e.distX > e.distY && e.distX < -e.distY) ||
+		      (e.distX < e.distY && e.distX > -e.distY)) {
+		    e.preventDefault();
+		  }
+		});
+ 	
  	new WOW().init();
 	
 	
