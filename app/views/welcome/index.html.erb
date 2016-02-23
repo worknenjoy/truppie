@@ -231,7 +231,7 @@
 		                            meetings
 		                            <div class="lib-header-seperator"></div>
 		                        </div>
-		                        <div class="lib-row lib-desc">
+		                        <div class="lib-row lib-desc spaced-down">
 		                            Our meetings happen in this beatiful office
 		                        </div>
 		                    </div>
@@ -239,12 +239,13 @@
 		            </div>
 		        </div>
 			</div>
+			<a name="warning"></a>
 	        <div class="col-xs-12 col-sm-6 spaced-default">
 	    		<div class="thumbnail center well well-small text-center spaced-down">
 	                <h4 class="main-color-font emblem-font">Newsletter</h4>
 	                
 	                <% if !flash.empty? %>
-	                <div class="error-notice fade in">
+	                <div class="error-notice animated flipInY">
 	                	<% flash.each do |k| %> 
 					        <div class="oaerror danger <%= k[0] %>">
 			            		<strong><%= k[0] %></strong> - <%= k[1] %>
