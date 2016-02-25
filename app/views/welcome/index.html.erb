@@ -117,8 +117,8 @@
 		<div class="col-xs-12">
 			<div>
 				<i class="fa fa-5x fa-map-o main-color-font"></i>
-				<h3 class="spaced emblem-font main-color-font">Truppieee</h3>
-				<p class="lead emblem-font">with truppie bla bal bla bla bla</p>
+				<h3 class="spaced emblem-font main-color-font"><%= t('truppie-title') %></h3>
+				<p class="lead emblem-font"><%= t('truppie-text') %></p>
 			</div>
 			<ul class="list-group">
 			  <li class="list-group-item">
@@ -126,19 +126,19 @@
 					<i class="fa fa-2x fa-ticket"></i>
 				</span>
 			    
-			    Cras justo odio
+			    <%= t('truppie-item') %>
 			  </li>
 			  <li class="list-group-item">
 			    <span class="pull-xs-right">
 					<i class="fa fa-2x fa-street-view"></i>
 				</span>
-			    Dapibus ac facilisis in
+			    <%= t('truppie-second-item') %>
 			  </li>
 			  <li class="list-group-item">
 			    <span class="pull-xs-right">
 			    	<i class="fa fa-2x fa-users"></i>
 			    </span>
-			    Morbi leo risus
+			    <%= t('truppie-third-item') %>
 			  </li>
 			</ul>
 		</div>
@@ -147,7 +147,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 spaced-default">
-					<h4 class="emblem-font main-color-font">Our trupists</h4>
+					<h4 class="emblem-font main-color-font"><%= t('authors-title') %></h4>
 				</div>
 				<div class="row">
 		            <div class="card hovercard col-sm-6">
@@ -161,13 +161,13 @@
 		                    <div class="title">
 		                        <a target="_blank" href="http://scripteden.com/">Laura Sette</a>
 		                    </div>
-		                    <div class="desc">Passionate designer</div>
-		                    <div class="desc">Curious developer</div>
-		                    <div class="desc">Tech geek</div>
+		                    <div class="desc"><%= t('laura-feature') %></div>
+		                    <div class="desc"><%= t('laura-second-feature') %></div>
+		                    <div class="desc"><%= t('laura-third-feature') %></div>
 		                    <div class="desc"><a href="http://www.7cantosdomundo.com.br">7cantosdomundo.com.br</a></div>
 		                </div>
 		                <div class="bottom">
-		                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+		                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/laurasette">
 		                        <i class="fa fa-twitter"></i>
 		                    </a>
 		                    <a class="btn btn-danger btn-sm" rel="publisher"
@@ -192,13 +192,13 @@
 		                    <div class="title">
 		                        <a target="_blank" href="http://scripteden.com/">Alexandre Magno</a>
 		                    </div>
-		                    <div class="desc">Passionate designer</div>
-		                    <div class="desc">Curious developer</div>
+		                    <div class="desc"><%= t('alex-feature') %></div>
+		                    <div class="desc"><%= t('alex-second-feature') %></div>
 		                    <div class="desc">Tech geek</div>
 		                    <div class="desc"><a href="http://www.alexandremagno.net">alexandremagno.net</a></div>
 		                </div>
 		                <div class="bottom">
-		                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+		                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/alexanmtz">
 		                        <i class="fa fa-twitter"></i>
 		                    </a>
 		                    <a class="btn btn-danger btn-sm" rel="publisher"
@@ -228,11 +228,11 @@
 		                    </div>
 		                    <div class="col-xs-12">
 		                        <div class="lib-row lib-header emblem-font">
-		                            meetings
+		                            <%= t('meetings-title') %>
 		                            <div class="lib-header-seperator"></div>
 		                        </div>
 		                        <div class="lib-row lib-desc spaced-down">
-		                            Our meetings happen in this beatiful office
+		                            <%= t('meetings-content') %>
 		                        </div>
 		                    </div>
 		                </div>
@@ -242,7 +242,7 @@
 			<a name="warning"></a>
 	        <div class="col-xs-12 col-sm-6 spaced-default">
 	    		<div class="thumbnail center well well-small text-center spaced-down">
-	                <h4 class="main-color-font emblem-font">Newsletter</h4>
+	                <h4 class="main-color-font emblem-font"><%= t('newsletter-title') %></h4>
 	                
 	                <% if !flash.empty? %>
 	                <div class="error-notice animated flipInY">
@@ -253,7 +253,7 @@
 					    <% end %>
 			        <% end %>
 	                </div>
-	                <p class="lead">Subscribe to our weekly Newsletter and stay tuned.</p>
+	                <p class="lead"><%= t('newsletter-text') %></p>
 	                
 	  				<fieldset class="form-group">
 	  						<%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
