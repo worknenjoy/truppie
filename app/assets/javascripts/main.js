@@ -4,6 +4,10 @@ function is_touch_device() {
       || (navigator.msMaxTouchPoints > 0));
 }
 
+function is_desktop_screen() {
+	return window.innerWidth > 480;
+}
+
 $(function(){
 	
 	
@@ -25,7 +29,7 @@ $(function(){
  		return false;
  	});
  	
- 	if(is_touch_device()) {
+ 	if(is_touch_device() && !is_desktop_screen()) {
  		$('.carousel-navigation').hide();
  	}
  	
