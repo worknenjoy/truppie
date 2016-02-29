@@ -26,7 +26,7 @@
 		      		<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-small.jpg") %>">
 	      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-medium.jpg") %>">
       				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-full.jpg") %>">
-			      	<%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid") %>
+			      	<%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro.jpg")) %>
 			      </picture>
 				  <div class="carousel-caption">
 				    <h3 class="secondary-font display-tagline"><%= t('first-caption') %></h3>
@@ -38,7 +38,7 @@
 			    </div>
 			    <div class="carousel-item">
 			      <picture>
-				      <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid") %>
+				      <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-2-default.jpg")) %>
 				      <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-2-small.jpg") %>">
 	      			  <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-2-medium.jpg") %>">
       				  <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
@@ -56,7 +56,7 @@
 			      	<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-3-small.jpg") %>">
 	      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-3-medium.jpg") %>">
       				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-3-full.jpg") %>">
-      					<%= image_tag("image-intro-3-default.jpg", :alt => "Truppie", :class => "img-fluid") %>
+      					<%= image_tag("image-intro-3-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-3-default.jpg")) %>
 			      </picture>	
 			      
 				  <div class="carousel-caption">
