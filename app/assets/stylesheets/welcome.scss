@@ -51,6 +51,13 @@ body {
   }
 }
 
+.logo-alt-body {
+  text-align: center;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: -40px;
+}
+
 .text-intro {
   font-size: 1em;
   
@@ -138,5 +145,12 @@ body {
     &.carousel-left {
       left: 20px;
     }
+  }
+}
+
+.cards {
+  font-size: 0.8em;
+  h4 {
+    font-size: 1.8em;
   }
 }

@@ -11,6 +11,12 @@ html {
 @include media-breakpoint-up(md) {
   html {
     font-size: 21px;
+    .cards {
+      font-size: 0.6em;
+      h4 {
+        font-size: 1.8em;
+      }
+    }
   }
 }
 
