@@ -1,7 +1,9 @@
 class WelcomeController < ApplicationController
   
   def index
-    #I18n.locale = 'pt-BR'
+    #if request.query_parameters['lang'] == 'pt-BR' 
+      #I18n.locale = 'pt-BR'
+    #end
   end
   
   def logos

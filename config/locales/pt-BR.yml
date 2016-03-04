@@ -20,43 +20,48 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 pt-BR:
-  tagline: "viva coisas boas"
-  text-intro: "Truppie is a platform designed for your to organize your next trips and experiences, either for a day or for your vacation, in your city or around the country"
+  tagline: "living adventures"
+  text-intro: "Truppie é uma plataforma desenhada para facilitar as suas próximas viagens e aventuras, seja para um dia ou para suas férias, em sua cidade ou ao redor do país. Truppie é um estilo de vida; uma nova maneira de aproveitar seu tempo e enriquecer sua existência. Encontre a sua próxima truppie em três simples passos:"
   
-  first-caption: "OPEN YOUR MIND"
-  first-description: "Explore new places and adventures. Give it a try!"
-  second-caption: "SPEND MORE OFFLINE TIME"
-  second-description: "Experiences are much enriching than material things, don't you think?"
-  third-caption: "CONNECT WITH YOUR TROUPE"
-  third-description: "Culture? Nature? Family? All is here!"
+  first-caption: "ABRA SUA MENTE"
+  first-description: "Saia da vida normal por um momento"
+  second-caption: "FIQUE OFFLINE"
+  second-description: "Conecte-se à natureza, a culturas e a si mesmo"
+  third-caption: "AGREGUE VALOR À SUA VIDA"
+  third-description: "Aprenda com experiências e evolua como ser humano"
   
-  balloom-heading: "Explore adventures"
-  balloom-text: "What are you up to? Truppie has many options"
+  balloom-heading: "Explore"
+  balloom-text: "Do que você está a fim? Tudo está aqui! Veja as truppies disponíveis"
   
-  hands-heading: "Find your Trupe"
-  hands-text: "Find people and trupist with same vibes"
+  hands-heading: "Escolha"
+  hands-text: "Verifique os detalhes e confirme sua presença com apenas um clique"
   
-  shoes-heading: "Just worry to be prepared"
-  shoes-text: "Trupies well organized by our hosts. We find the best for you"
+  shoes-heading: "Prepare-se"
+  shoes-text: "Não há com o que se preocupar - apenas prepare-se e aproveite o passeio!"
   
   trupppie-title: "Sample title"
-  truppie-text: "Normal life is already too complicated, right? Truppie wants to make things easy for you!"
+  truppie-text: "Por que explorar por aí com a Truppie?"
   
-  truppie-item: "Easy, simple and trustable payment"
-  truppie-second-item: "All the information you need in a single place"
-  truppie-third-item: "Get ready and enjoy the ride"
+  truppie-item: "Excelentes guias, preços justos"
+  truppie-second-item: "Toda informação de que você precisa em um único lugar"
+  truppie-third-item: "Pagamento fácil e confiável"
   
-  authors-title: "Trupists"
-  laura-feature: "Blogger"
-  laura-second-feature: "Biologist"
-  laura-third-feature: "Writter"
+  authors-title: "Os Truppistas"
+  laura-feature: "Bióloga"
+  laura-second-feature: "Travel Blogger"
+  laura-third-feature: "Nerd em tempo integral e leitora compulsiva"
   
-  alex-feature: "Web developer"
-  alex-second-feature: "Internet of things"
-  alex-third-feature: "Design interaction"
+  alex-feature: "Desenvolvedor web"
+  alex-second-feature: "Internet das coisas"
+  alex-third-feature: "Tech Geek"
   
-  meetings-title: "Our meetings"
-  meetings-content: "Our meetings happen in offices like this - ok, only sometimes!"
+  meetings-title: "O escritório"
+  meetings-content: "Nossas reuniões acontecem em escritórios como este - ok, só de vez em quando!"
   
-  newsletter-title: "Newsletter"
-  newsletter-text: "Subscribe to our Newsletter and stay tuned!"
+  newsletter-title: "Fique ligado!"
+  newsletter-text: "Deixe seu e-mail para ser avisado da primeira truppie:"
+  
+  
+  
+  
+  

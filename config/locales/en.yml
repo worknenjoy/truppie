@@ -21,35 +21,35 @@
 
 en:
   tagline: "living adventures"
-  text-intro: "Truppie is a platform designed for you to organize your next adventures, either for a day or for a vacation period, in your city or around the country"
+  text-intro: "Truppie is a platform designed to facilitate your next trips and adventures, either for a day or for your vacation period, in your city or around the country. Truppie is a lifestyle; a new way to enjoy your time and enrich your existence. Find your next truppie in three simple steps:"
   
   first-caption: "OPEN YOUR MIND"
-  first-description: "Get off normal life for a while. Explore new places and adventures. Give it a try!"
-  second-caption: "SPEND MORE TIME OFFLINE"
-  second-description: "Connect with nature, cultures and yourself - the real self - instead"
+  first-description: "Get off normal life for a while"
+  second-caption: "BE OFFLINE"
+  second-description: "Connect with nature, cultures and yourself"
   third-caption: "ADD VALUE TO YOUR LIFE"
-  third-description: "Learn with enriching experiences and evolve as a human being"
+  third-description: "Learn with experiences and evolve as a human being"
   
   balloom-heading: "Explore"
-  balloom-text: "What are you up to? Culture? Nature? Family? All is here! Check out the available truppies"
+  balloom-text: "What are you up to? All is here! Check out the available truppies"
   
-  hands-heading: "Confirm"
-  hands-text: "Check the details and confirm your presence with one click!"
+  hands-heading: "Choose"
+  hands-text: "Check the details and confirm your presence with one click"
   
   shoes-heading: "Get ready"
   shoes-text: "There's nothing to worry about - just get ready and enjoy the ride!"
   
   trupppie-title: "Sample title"
-  truppie-text: "Why exploring around with Trouppie?"
+  truppie-text: "Why exploring around with Truppie?"
   
   truppie-item: "Great local guides, fair prices"
   truppie-second-item: "All the information you need in a single place"
-  truppie-third-item: "Easy, simple and trustable payment"
+  truppie-third-item: "Easy and trustable payment"
   
-  authors-title: "The Trupists"
+  authors-title: "The Truppists"
   laura-feature: "Biologist"
   laura-second-feature: "Travel Blogger"
-  laura-third-feature: "Adventure Lover"
+  laura-third-feature: "Full time nerd and compulsive reader"
   
   alex-feature: "Web developer"
   alex-second-feature: "Internet of things"
@@ -59,7 +59,7 @@ en:
   meetings-content: "Our meetings happen in offices like this - ok, only sometimes!"
   
   newsletter-title: "Stay tuned!"
-  newsletter-text: "Subscribe to our Newsletter to receive the news"
+  newsletter-text: "Leave your e-mail to be notified about the first truppie:"
   
   
   

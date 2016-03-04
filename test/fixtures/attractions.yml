@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  lat: MyString
+  long: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  category_id: 
+  tags_id: 
+  language_id: 
+  currency: MyString
+  quotes_id: 
+  bestseason: MyString
+
+two:
+  name: MyString
+  lat: MyString
+  long: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  category_id: 
+  tags_id: 
+  language_id: 
+  currency: MyString
+  quotes_id: 
+  bestseason: MyString
