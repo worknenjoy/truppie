@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tours
   devise_for :users
   post 'subscribers/create'
 
