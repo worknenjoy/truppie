@@ -1,0 +1,9 @@
+<% if !flash.empty? %>
+<div class="error-notice animated flipInY">
+	<% flash.each do |k| %> 
+        <div class="oaerror danger <%= k[0] %>">
+    		<strong><%= k[0] %></strong> - <%= k[1] %>
+  		</div> 
+    <% end %>
+</div>
+<% end %>
