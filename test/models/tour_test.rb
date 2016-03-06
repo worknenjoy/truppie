@@ -41,4 +41,14 @@ class TourTest < ActiveSupport::TestCase
      assert_equal 2, Tour.last.reviews.size
    end
    
+   test "friendly duration" do
+      assert_equal "3 minutes", Tour.last.duration
+   end
+   
+   test "a friendly duration more accurated test" do
+     Tour.last.update_attribute(:start, '2016-03-01 23:56:31')
+     Tour.last.update_attribute(:end, '2018-03-01 23:56:31')
+     assert_equal "about 2 years", Tour.last.duration
+   end
+   
 end
