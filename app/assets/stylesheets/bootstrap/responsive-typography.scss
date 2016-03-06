@@ -1,27 +1,21 @@
-html {
-  font-size: 18px;
+ html {
+   
 }
 
 @include media-breakpoint-up(sm) {
   html {
-    font-size: 18px;
+    
   }
 }
 
 @include media-breakpoint-up(md) {
   html {
-    font-size: 16px;
-    .cards {
-      font-size: 0.6em;
-      h4 {
-        font-size: 1.8em;
-      }
-    }
+    
   }
 }
 
 @include media-breakpoint-up(lg) {
   html {
-    font-size: 28px;
+    
   }
 }

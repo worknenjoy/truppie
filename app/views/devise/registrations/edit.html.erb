@@ -19,73 +19,75 @@
       <h3>Personal info</h3>
   	  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal', role: 'form' }) do |f| %>
         <%= devise_error_messages! %>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">First name:</label>
+        <div class="form-group row">
+          <label class="col-lg-3 form-control-label">First name:</label>
           <div class="col-lg-8">
             <input class="form-control" value="Jane" type="text">
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Last name:</label>
+        <div class="form-group row">
+          <label class="col-lg-3 form-control-label">Last name:</label>
           <div class="col-lg-8">
             <input class="form-control" value="Bishop" type="text">
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Company:</label>
+        <div class="form-group row">
+          <label class="col-lg-3 form-control-label">Company:</label>
           <div class="col-lg-8">
             <input class="form-control" value="" type="text">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
+          <%= f.label :email, class: "col-lg-3 form-control-label" %>	
           <div class="col-lg-8">
-            <%= f.label :email, class: "col-lg-3 control-label" %><br />
     		<%= f.email_field :email, autofocus: true, class: "form-control" %>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label">Username:</label>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label">Username:</label>
           <div class="col-md-8">
             <input class="form-control" value="janeuser" type="text">
           </div>
         </div>
-        <div class="form-group">
-          <%= f.label :password, class:"col-md-3 control-label" %> <br />
+        <div class="form-group row">
+          <%= f.label :password, class:"col-md-3 form-control-label" %> 
           <div class="col-md-8">
     		<%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-    		<br/><i>(leave blank if you don't want to change it)</i>
+    		<small>(leave blank if you don't want to change it)</small>
           </div>
         </div>
-        <div class="form-group">
-          <%= f.label :password_confirmation, class: 'col-md-3 control-label' %><br />
+        <div class="form-group row">
+          <%= f.label :password_confirmation, class: 'col-md-3 form-control-label' %>
           <div class="col-md-8">
     		<%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
           </div>
         </div>
-        <div class="form-group">
-          <%= f.label :current_password, class: 'col-md-3 control-label' %> <br />
+        <div class="form-group row">
+          <%= f.label :current_password, class: 'col-md-3 form-control-label' %>
           <div class="col-md-8">
     		<%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
-    		<br /> <i>(we need your current password to confirm your changes)</i>
+    		<small>(we need your current password to confirm your changes)</small>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
+        <div class="form-group row">
+          <label class="col-md-3 form-control-label"></label>
           <div class="col-md-8">
              <%= f.submit "Save Changes", class: 'btn btn-primary' %>
             <span></span>
             <%= link_to "Cancel", :back, class: 'btn btn-default' %>
           </div>
         </div>
-        <div class="card">
-		  <div class="card-header">
-		    Cancel my account
-		  </div>
-		  <div class="card-block">
-		    <p class="card-text">Unhappy? You can cancel your account with truppie</p>
-		    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: 'btn btn-primary', method: :delete %>
-		  </div>
-		</div>
+        <div class="form-group">
+        	<div class="card">
+			  <div class="card-header">
+			    Cancel my account
+			  </div>
+			  <div class="card-block">
+			    <p class="card-text">Unhappy? You can cancel your account with truppie</p>
+			    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: 'btn btn-primary', method: :delete %>
+			  </div>
+			</div>
+        </div>
       <% end %>
     </div>
   </div>
