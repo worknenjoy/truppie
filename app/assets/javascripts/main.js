@@ -44,6 +44,4 @@ $(function(){
 	});
 	
  	new WOW().init();
-	
-	
 });
