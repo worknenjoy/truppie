@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 placeone:
-  name: MyString
+  name: Rio
   lat: MyString
   long: MyString
-  city: MyString
-  state: MyString
-  country: MyString
+  city: Rio de Janeiro
+  state: Rio de Janeiro
+  country: Brasil
 
 # two:
   # name: MyString

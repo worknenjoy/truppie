@@ -164,6 +164,9 @@ ActiveRecord::Schema.define(version: 20160306043346) do
     t.integer "tour_id",   null: false
   end
 
+  add_index "reviews_tours", ["review_id", "tour_id"], name: "index_reviews_tours_on_review_id_and_tour_id", using: :btree
+  add_index "reviews_tours", ["tour_id", "review_id"], name: "index_reviews_tours_on_tour_id_and_review_id", using: :btree
+
   create_table "services", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -284,7 +287,6 @@ ActiveRecord::Schema.define(version: 20160306043346) do
   add_foreign_key "tours", "confirmeds"
   add_foreign_key "tours", "languages"
   add_foreign_key "tours", "organizers"
-  add_foreign_key "tours", "reviews"
   add_foreign_key "tours", "tags"
   add_foreign_key "tours", "users"
   add_foreign_key "tours", "wheres"

@@ -20,13 +20,13 @@ morro:
   included:
   nonincluded: 
   category: trekking
-  tags: 
-  attractions: 
+  tags: family, geek, outdoor
+  attractions: santatereza, corcovado
   privacy: MyString
   meetingpoint: MyString
-  confirmeds: 
-  languages: 
-  reviews: 
+  confirmeds: lau, alex
+  languages: english, portuguese 
+  reviews: boring, cool
   verified:
   status:
 

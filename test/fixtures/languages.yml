@@ -1,9 +1,9 @@
-# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-# 
-# one:
-  # name: MyString
-  # country: MyString
-# 
-# two:
-  # name: MyString
-  # country: MyString
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+english:
+  name: english
+  country: EUA
+
+portuguese:
+  name: portuguese
+  country: Brasil

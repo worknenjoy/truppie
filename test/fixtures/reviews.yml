@@ -1,11 +1,13 @@
-# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-# 
-# one:
-  # user_id: 
-  # rating: 
-  # content: MyString
-# 
-# two:
-  # user_id: 
-  # rating: 
-  # content: MyString
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+boring:
+  user: alexandre 
+  rating: 
+  content: MyString
+  tour: morro 
+
+cool:
+  user: laura 
+  rating: 
+  content: MyString
+  tour: morro

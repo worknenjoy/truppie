@@ -8,7 +8,6 @@ class CreateReferencesForTours < ActiveRecord::Migration
     add_foreign_key :tours, :attractions
     add_foreign_key :tours, :confirmeds
     add_foreign_key :tours, :languages
-    add_foreign_key :tours, :reviews
     
     add_foreign_key :organizers, :members
     add_foreign_key :organizers, :users

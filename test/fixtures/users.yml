@@ -10,11 +10,11 @@ laura:
   sign_in_count: 10
 
 alexandre:
-  email: barry@email.com
+  email: alexandre@email.com
   encrypted_password: 4567554354
   sign_in_count: 10
 
 joana:
-  email: roel@email.com
+  email: joana@email.com
   encrypted_password: 4567554354
   sign_in_count: 10
