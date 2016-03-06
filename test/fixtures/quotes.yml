@@ -1,13 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  content: MyString
-  url: MyString
-  author: MyString
-  sitename: MyString
-
-two:
-  content: MyString
-  url: MyString
-  author: MyString
-  sitename: MyString
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 
+# one:
+  # content: MyString
+  # url: MyString
+  # author: MyString
+  # sitename: MyString
+# 
+# two:
+  # content: MyString
+  # url: MyString
+  # author: MyString
+  # sitename: MyString

@@ -3,34 +3,34 @@ class CreateTours < ActiveRecord::Migration
     create_table :tours do |t|
       t.string :title
       t.string :description
-      t.number :rating
-      t.number :value
+      t.integer :rating
+      t.integer :value
       t.string :currency
-      t.references :organizer, index: true, foreign_key: true
+      t.references :organizer, index: true, null: false
       t.datetime :start
       t.datetime :end
       t.string :picture
-      t.number :availability
-      t.number :minimum
-      t.number :maximum
-      t.references :pictures, index: true, foreign_key: true
-      t.number :difficulty
-      t.references :where, index: true, foreign_key: true
+      t.integer :availability
+      t.integer :minimum
+      t.integer :maximum
+      t.references :picture, index: true, null:false
+      t.integer :difficulty
+      t.references :where, index: true, null:false
       t.string :address
-      t.references :user, index: true, foreign_key: true
-      t.references :included, index: true, foreign_key: true
-      t.references :nonincluded, index: true, foreign_key: true
-      t.references :category, index: true, foreign_key: true
-      t.references :tags, index: true, foreign_key: true
-      t.references :attractions, index: true, foreign_key: true
+      t.references :user, index: true, null:false
+      t.references :service, index: true, null:false
+      t.references :included, index: true, null:false
+      t.references :nonincluded, index: true, null:false
+      t.references :category, index: true, null: false
+      t.references :tag, index: true
+      t.references :attraction, index: true
       t.string :privacy
       t.string :meetingpoint
-      t.references :confirmed, index: true, foreign_key: true
-      t.references :languages, index: true, foreign_key: true
-      t.references :reviews, index: true, foreign_key: true
+      t.references :confirmed, index: true
+      t.references :language, index: true
+      t.references :review, index: true
       t.string :verified
       t.string :status
-
       t.timestamps null: false
     end
   end

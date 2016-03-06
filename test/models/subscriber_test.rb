@@ -10,18 +10,4 @@ class SubscriberTest < ActiveSupport::TestCase
     subscriber = Subscriber.new(email: 'bla')
     assert_not subscriber.save
   end
-  
-  test "validate a empty email" do
-    
-  end
-  
-  test "validate a invalid email" do
-    
-  end
-  
-  test "validate two users" do
-    
-  end
-  
-  
 end

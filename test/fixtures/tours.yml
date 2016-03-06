@@ -1,63 +1,63 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  title: MyString
-  description: MyString
-  rating: 
-  value:
-  currency: 
-  organizer_id: 
-  start: 2016-03-01 23:56:31
-  end: 2016-03-01 23:56:31
-  picture: MyString
-  availability: 
-  minimum: 
-  maximum: 
-  pictures_id: 
-  difficulty: 
-  where_id: 
-  address: MyString
-  user_id: 
-  included_id: 
-  category_id: 
-  tags_id: 
-  attractions_id: 
-  privacy: MyString
-  meetingpoint: MyString
-  confirmed_id: 
-  languages_id: 
-  reviews_id: 
-  verified:
-  nonincluded:
-  status:
-
-two:
-  title: MyString
-  description: MyString
-  rating: 
-  value:
-  currency: 
-  organizer_id: 
-  start: 2016-03-01 23:56:31
-  end: 2016-03-01 23:56:31
-  picture: MyString
-  availability: 
-  minimum: 
-  maximum: 
-  pictures_id: 
-  difficulty: 
-  where_id: 
-  address: MyString
-  user_id: 
-  included_id: 
-  category_id: 
-  tags_id: 
-  attractions_id: 
-  privacy: MyString
-  meetingpoint: MyString
-  confirmed_id: 
-  languages_id: 
-  reviews_id:
-  verified:
-  nonincluded: 
-  status:   
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 
+# one:
+  # title: MyString
+  # description: MyString
+  # rating: 
+  # value:
+  # currency: 
+  # organizer_id: 
+  # start: 2016-03-01 23:56:31
+  # end: 2016-03-01 23:56:31
+  # picture: MyString
+  # availability: 
+  # minimum: 
+  # maximum: 
+  # pictures_id: 
+  # difficulty: 
+  # where_id: 
+  # address: MyString
+  # user_id: 
+  # included_id: 
+  # category_id: 
+  # tags_id: 
+  # attractions_id: 
+  # privacy: MyString
+  # meetingpoint: MyString
+  # confirmed_id: 
+  # languages_id: 
+  # reviews_id: 
+  # verified:
+  # nonincluded:
+  # status:
+# 
+# two:
+  # title: MyString
+  # description: MyString
+  # rating: 
+  # value:
+  # currency: 
+  # organizer_id: 
+  # start: 2016-03-01 23:56:31
+  # end: 2016-03-01 23:56:31
+  # picture: MyString
+  # availability: 
+  # minimum: 
+  # maximum: 
+  # pictures_id: 
+  # difficulty: 
+  # where_id: 
+  # address: MyString
+  # user_id: 
+  # included_id: 
+  # category_id: 
+  # tags_id: 
+  # attractions_id: 
+  # privacy: MyString
+  # meetingpoint: MyString
+  # confirmed_id: 
+  # languages_id: 
+  # reviews_id:
+  # verified:
+  # nonincluded: 
+  # status:   

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   post 'subscribers/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   
   get 'logos' => 'welcome#logos'
-
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

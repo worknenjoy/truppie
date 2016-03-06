@@ -1,6 +1,5 @@
 class Attraction < ActiveRecord::Base
-  belongs_to :category
-  belongs_to :tags
-  belongs_to :language
-  belongs_to :quotes
+  has_and_belongs_to_many :tours
+  belongs_to :languages
+  has_one :quotes
 end

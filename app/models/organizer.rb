@@ -1,6 +1,7 @@
 class Organizer < ActiveRecord::Base
-  belongs_to :members
+  has_many :tours  
+  has_many :members
+  
   belongs_to :user
   belongs_to :where
-  belongs_to :tags
 end

@@ -1,17 +1,17 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: MyString
-  url: MyString
-  caption: MyString
-  category_id: 
-  tags_id: 
-  where_id: 
-
-two:
-  name: MyString
-  url: MyString
-  caption: MyString
-  category_id: 
-  tags_id: 
-  where_id: 
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# 
+# one:
+  # name: MyString
+  # url: MyString
+  # caption: MyString
+  # category_id: 
+  # tags_id: 
+  # where_id: 
+# 
+# two:
+  # name: MyString
+  # url: MyString
+  # caption: MyString
+  # category_id: 
+  # tags_id: 
+  # where_id: 
