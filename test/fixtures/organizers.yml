@@ -1,17 +1,17 @@
-# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-# 
-# one:
-  # name: MyString
-  # description: MyString
-  # member: one
-  # rating: 
-  # user: joana 
-  # where: one 
-  # email: MyString
-  # website: MyString
-  # facebook: MyString
-  # twitter: MyString
-# 
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+utopicos:
+  name: Utopicos Mundo Afora
+  description: Oferecendo passeios e outdoor lifestyle
+  members: alex
+  rating: 3
+  user: joana 
+  where: placeone 
+  email: MyString
+  website: MyString
+  facebook: MyString
+  twitter: MyString
+
 # two:
   # name: MyString
   # description: MyString

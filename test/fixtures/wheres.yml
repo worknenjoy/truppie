@@ -1,13 +1,13 @@
-# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-# 
-# one:
-  # name: MyString
-  # lat: MyString
-  # long: MyString
-  # city: MyString
-  # state: MyString
-  # country: MyString
-# 
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+placeone:
+  name: MyString
+  lat: MyString
+  long: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+
 # two:
   # name: MyString
   # lat: MyString

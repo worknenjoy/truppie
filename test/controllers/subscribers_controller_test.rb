@@ -4,7 +4,7 @@ class SubscribersControllerTest < ActionController::TestCase
   test "should get send" do
     post :create, :subscriber => {email: 'foo@example.com'}
     assert_equal Subscriber.last.email, 'foo@example.com'
-    assert_redirected_to root_path
+    assert_redirected_to root_path + '#warning'
   end
   
   test "should get send with any valid email" do

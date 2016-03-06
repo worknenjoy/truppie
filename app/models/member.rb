@@ -1,4 +1,4 @@
 class Member < ActiveRecord::Base
   belongs_to :user
-  belongs_to :organizer
+  has_and_belongs_to_many :organizers
 end

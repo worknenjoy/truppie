@@ -9,19 +9,17 @@ class CreateTours < ActiveRecord::Migration
       t.references :organizer, index: true, null: false
       t.datetime :start
       t.datetime :end
-      t.string :picture
+      t.string :photo
       t.integer :availability
       t.integer :minimum
       t.integer :maximum
-      t.references :picture, index: true, null:false
       t.integer :difficulty
       t.references :where, index: true, null:false
       t.string :address
       t.references :user, index: true, null:false
-      t.references :service, index: true, null:false
-      t.references :included, index: true, null:false
-      t.references :nonincluded, index: true, null:false
-      t.references :category, index: true, null: false
+      t.string :included
+      t.string :nonincluded
+      t.references :category, index: true
       t.references :tag, index: true
       t.references :attraction, index: true
       t.string :privacy

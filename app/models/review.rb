@@ -1,4 +1,4 @@
 class Review < ActiveRecord::Base
   belongs_to :user
-  belongs_to :tour
+  has_and_belongs_to_many :tours
 end

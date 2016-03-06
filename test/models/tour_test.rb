@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class TourTest < ActiveSupport::TestCase
-  test "two fixtures" do
-     assert_equal 2, WebSite.count
+  test "one tour created" do
+     assert_equal 1, Tour.count
    end
 end

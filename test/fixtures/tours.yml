@@ -1,36 +1,35 @@
-# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-# 
-# one:
-  # title: MyString
-  # description: MyString
-  # rating: 
-  # value:
-  # currency: 
-  # organizer_id: 
-  # start: 2016-03-01 23:56:31
-  # end: 2016-03-01 23:56:31
-  # picture: MyString
-  # availability: 
-  # minimum: 
-  # maximum: 
-  # pictures_id: 
-  # difficulty: 
-  # where_id: 
-  # address: MyString
-  # user_id: 
-  # included_id: 
-  # category_id: 
-  # tags_id: 
-  # attractions_id: 
-  # privacy: MyString
-  # meetingpoint: MyString
-  # confirmed_id: 
-  # languages_id: 
-  # reviews_id: 
-  # verified:
-  # nonincluded:
-  # status:
-# 
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+morro:
+  title: Morro dois irmaos
+  description: subida ao morro dois irmaos
+  rating: 3
+  value: 40
+  currency: BRL 
+  organizer: utopicos
+  start: 2016-03-01 23:56:31
+  end: 2016-03-01 23:59:31
+  photo:
+  availability: 
+  minimum: 
+  maximum: 
+  difficulty: 
+  where: placeone
+  address: MyString
+  user: joana 
+  included:
+  nonincluded: 
+  category: trekking
+  tags: 
+  attractions: 
+  privacy: MyString
+  meetingpoint: MyString
+  confirmeds: 
+  languages: 
+  reviews: 
+  verified:
+  status:
+
 # two:
   # title: MyString
   # description: MyString
@@ -48,7 +47,7 @@
   # difficulty: 
   # where_id: 
   # address: MyString
-  # user_id: 
+  # user: joana 
   # included_id: 
   # category_id: 
   # tags_id: 

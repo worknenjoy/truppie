@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305235831) do
+ActiveRecord::Schema.define(version: 20160306043346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20160305235831) do
   add_index "attractions_tours", ["attraction_id", "tour_id"], name: "index_attractions_tours_on_attraction_id_and_tour_id", using: :btree
   add_index "attractions_tours", ["tour_id", "attraction_id"], name: "index_attractions_tours_on_tour_id_and_attraction_id", using: :btree
 
+  create_table "attractions_wheres", id: false, force: :cascade do |t|
+    t.integer "where_id",      null: false
+    t.integer "attraction_id", null: false
+  end
+
+  add_index "attractions_wheres", ["attraction_id", "where_id"], name: "index_attractions_wheres_on_attraction_id_and_where_id", using: :btree
+  add_index "attractions_wheres", ["where_id", "attraction_id"], name: "index_attractions_wheres_on_where_id_and_attraction_id", using: :btree
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -56,13 +64,13 @@ ActiveRecord::Schema.define(version: 20160305235831) do
 
   add_index "confirmeds", ["user_id"], name: "index_confirmeds_on_user_id", using: :btree
 
-  create_table "includeds", force: :cascade do |t|
-    t.integer  "service_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "confirmeds_tours", id: false, force: :cascade do |t|
+    t.integer "confirmed_id", null: false
+    t.integer "tour_id",      null: false
   end
 
-  add_index "includeds", ["service_id"], name: "index_includeds_on_service_id", using: :btree
+  add_index "confirmeds_tours", ["confirmed_id", "tour_id"], name: "index_confirmeds_tours_on_confirmed_id_and_tour_id", using: :btree
+  add_index "confirmeds_tours", ["tour_id", "confirmed_id"], name: "index_confirmeds_tours_on_tour_id_and_confirmed_id", using: :btree
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -71,23 +79,29 @@ ActiveRecord::Schema.define(version: 20160305235831) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "members", force: :cascade do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "organizer_id", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "languages_tours", id: false, force: :cascade do |t|
+    t.integer "language_id", null: false
+    t.integer "tour_id",     null: false
   end
 
-  add_index "members", ["organizer_id"], name: "index_members_on_organizer_id", using: :btree
-  add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
+  add_index "languages_tours", ["language_id", "tour_id"], name: "index_languages_tours_on_language_id_and_tour_id", using: :btree
+  add_index "languages_tours", ["tour_id", "language_id"], name: "index_languages_tours_on_tour_id_and_language_id", using: :btree
 
-  create_table "nonincludeds", force: :cascade do |t|
-    t.integer  "service_id", null: false
+  create_table "members", force: :cascade do |t|
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "nonincludeds", ["service_id"], name: "index_nonincludeds_on_service_id", using: :btree
+  add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
+
+  create_table "members_organizers", id: false, force: :cascade do |t|
+    t.integer "organizer_id", null: false
+    t.integer "member_id",    null: false
+  end
+
+  add_index "members_organizers", ["member_id", "organizer_id"], name: "index_members_organizers_on_member_id_and_organizer_id", using: :btree
+  add_index "members_organizers", ["organizer_id", "member_id"], name: "index_members_organizers_on_organizer_id_and_member_id", using: :btree
 
   create_table "organizers", force: :cascade do |t|
     t.string   "name"
@@ -107,6 +121,14 @@ ActiveRecord::Schema.define(version: 20160305235831) do
   add_index "organizers", ["member_id"], name: "index_organizers_on_member_id", using: :btree
   add_index "organizers", ["user_id"], name: "index_organizers_on_user_id", using: :btree
   add_index "organizers", ["where_id"], name: "index_organizers_on_where_id", using: :btree
+
+  create_table "organizers_wheres", id: false, force: :cascade do |t|
+    t.integer "organizer_id", null: false
+    t.integer "where_id",     null: false
+  end
+
+  add_index "organizers_wheres", ["organizer_id", "where_id"], name: "index_organizers_wheres_on_organizer_id_and_where_id", using: :btree
+  add_index "organizers_wheres", ["where_id", "organizer_id"], name: "index_organizers_wheres_on_where_id_and_organizer_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "name"
@@ -136,6 +158,11 @@ ActiveRecord::Schema.define(version: 20160305235831) do
 
   add_index "reviews", ["tour_id"], name: "index_reviews_on_tour_id", using: :btree
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
+  create_table "reviews_tours", id: false, force: :cascade do |t|
+    t.integer "review_id", null: false
+    t.integer "tour_id",   null: false
+  end
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
@@ -169,22 +196,20 @@ ActiveRecord::Schema.define(version: 20160305235831) do
     t.integer  "rating"
     t.integer  "value"
     t.string   "currency"
-    t.integer  "organizer_id",   null: false
+    t.integer  "organizer_id",  null: false
     t.datetime "start"
     t.datetime "end"
-    t.string   "picture"
+    t.string   "photo"
     t.integer  "availability"
     t.integer  "minimum"
     t.integer  "maximum"
-    t.integer  "picture_id",     null: false
     t.integer  "difficulty"
-    t.integer  "where_id",       null: false
+    t.integer  "where_id",      null: false
     t.string   "address"
-    t.integer  "user_id",        null: false
-    t.integer  "service_id",     null: false
-    t.integer  "included_id",    null: false
-    t.integer  "nonincluded_id", null: false
-    t.integer  "category_id",    null: false
+    t.integer  "user_id",       null: false
+    t.string   "included"
+    t.string   "nonincluded"
+    t.integer  "category_id"
     t.integer  "tag_id"
     t.integer  "attraction_id"
     t.string   "privacy"
@@ -194,23 +219,27 @@ ActiveRecord::Schema.define(version: 20160305235831) do
     t.integer  "review_id"
     t.string   "verified"
     t.string   "status"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "tours", ["attraction_id"], name: "index_tours_on_attraction_id", using: :btree
   add_index "tours", ["category_id"], name: "index_tours_on_category_id", using: :btree
   add_index "tours", ["confirmed_id"], name: "index_tours_on_confirmed_id", using: :btree
-  add_index "tours", ["included_id"], name: "index_tours_on_included_id", using: :btree
   add_index "tours", ["language_id"], name: "index_tours_on_language_id", using: :btree
-  add_index "tours", ["nonincluded_id"], name: "index_tours_on_nonincluded_id", using: :btree
   add_index "tours", ["organizer_id"], name: "index_tours_on_organizer_id", using: :btree
-  add_index "tours", ["picture_id"], name: "index_tours_on_picture_id", using: :btree
   add_index "tours", ["review_id"], name: "index_tours_on_review_id", using: :btree
-  add_index "tours", ["service_id"], name: "index_tours_on_service_id", using: :btree
   add_index "tours", ["tag_id"], name: "index_tours_on_tag_id", using: :btree
   add_index "tours", ["user_id"], name: "index_tours_on_user_id", using: :btree
   add_index "tours", ["where_id"], name: "index_tours_on_where_id", using: :btree
+
+  create_table "tours_wheres", id: false, force: :cascade do |t|
+    t.integer "tour_id",  null: false
+    t.integer "where_id", null: false
+  end
+
+  add_index "tours_wheres", ["tour_id", "where_id"], name: "index_tours_wheres_on_tour_id_and_where_id", using: :btree
+  add_index "tours_wheres", ["where_id", "tour_id"], name: "index_tours_wheres_on_where_id_and_tour_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -244,21 +273,17 @@ ActiveRecord::Schema.define(version: 20160305235831) do
   add_foreign_key "attractions", "languages"
   add_foreign_key "attractions", "quotes"
   add_foreign_key "confirmeds", "users"
-  add_foreign_key "includeds", "services"
   add_foreign_key "members", "users"
-  add_foreign_key "nonincludeds", "services"
   add_foreign_key "organizers", "members"
   add_foreign_key "organizers", "users"
   add_foreign_key "organizers", "wheres"
   add_foreign_key "reviews", "tours"
   add_foreign_key "reviews", "users"
   add_foreign_key "tours", "attractions"
+  add_foreign_key "tours", "categories"
   add_foreign_key "tours", "confirmeds"
-  add_foreign_key "tours", "includeds"
   add_foreign_key "tours", "languages"
-  add_foreign_key "tours", "nonincludeds"
   add_foreign_key "tours", "organizers"
-  add_foreign_key "tours", "pictures"
   add_foreign_key "tours", "reviews"
   add_foreign_key "tours", "tags"
   add_foreign_key "tours", "users"
