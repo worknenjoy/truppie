@@ -1,21 +1,44 @@
-<p id="notice"><%= notice %></p>
+<!--  <p id="notice"><%= notice %></p> -->
 
 <div class="cover">
-	<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
+	<div class="img-holder">
+		<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
+        <div class="ribbon base"><span><%= raw @tour.price %></span></div>
+	</div>
 	<div class="container">
-		<div class="row">
+		<div class="row divider-default">
 			<div class="col-xs-12">
-				<h4 class="spaced-smallest"><strong><%= @tour.title %></strong></h4>
+				<div class="pull-left date-body text-xs-center spaced-smallest">
+		          <label for="" class="date-title">
+		          	<%= @tour.start.strftime("%B") %>/<%= @tour.start.strftime("%Y") %>
+	          	  </label>
+		          <div class="date-content">
+		            <p class="dia"><%= @tour.start.strftime("%d") %></p>
+		            <hr class="nomargin"/>
+		            <p class="nomargin"><strong>quinta-feira</strong></p>
+		            <p class="date-body-when nomargin"><strong>daqui há <%= time_ago_in_words(@tour.start) %></strong></p>
+		          </div>
+		        </div>
+				<h4 class="tour-title spaced-smallest pull-xs-right"><strong><%= @tour.title %></strong></h4>
 				<small class="pull-xs-right">em <%= @tour.category.name %></small> 
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-6">
-				<h5 class="spaced-smallest">Vagas:</h5>
-				<p><%= @tour.availability %></p>
+				<h1 class="rating-num">
+                    4.0
+                </h1>
+                <div class="rating">
+                    <span class="fa fa-star"></span><span class="fa fa-star">
+                    </span><span class="fa fa-star"></span><span class="fa fa-star">
+                    </span><span class="fa fa-star-empty"></span>
+                </div>
+                <div>
+                    <span class="fa fa-user"></span> 10 avaliacoes
+                </div>
 			</div>
 			<div class="col-xs-6">
-				<h5 class="spaced-smallest">Organizado por</h5>
+				<h6 class="spaced-smallest"><i class="fa fa-child"></i> guia:</h6>
 				<p><%= @tour.organizer.name %></p>
 			</div>
 		</div>
@@ -23,6 +46,7 @@
 			<div class="col-xs-12">
 				<div class="card card-block">
 		            <ul class="list-unstyled">
+		            	<li><i class="fa fa-ticket"></i> <%= @tour.availability %> tickets disponíveis</li>
 		                <li><i class="fa fa-map-marker"></i> <%= @tour.where.name %></li>
 		                <li>
 		                	<i class="fa fa-globe"></i>
@@ -49,6 +73,39 @@
 				<h4 class="spaced-smallest"><strong>Sobre</strong></h4>
 				<p><%= @tour.description %></p>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>Included:</strong></h4>
+				<p><%= @tour.included %></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>Not included:</strong></h4>
+				<p><%= @tour.nonincluded %></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>Attractions</strong></h4>				
+			</div>
+		</div>
+		<div class="row">
+		  <% @tour.attractions.each do |attraction| %>	
+		  <div class="col-sm-6">
+		    <div class="card">
+			  <div class="card-block">
+			    <h4 class="card-title"><%= attraction.name %></h4>
+			  </div>
+			  <img src="<%= attraction.photo %>" alt="Card image" class="img-fluid">
+			  <div class="card-block">
+			    <p class="card-text"><%= attraction.text %></p>
+			    <a href="#" class="card-link">More truppies for this attraction</a>
+			  </div>
+			</div>
+		  </div>
+		  <% end %>
 		</div>
 	</div>
 </div>

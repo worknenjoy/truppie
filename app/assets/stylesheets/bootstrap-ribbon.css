@@ -1,0 +1,107 @@
+.ribbon {
+    position: absolute;
+    top: 20px;
+    right: -5px;
+    padding: 15px;
+}
+.ribbon-content{
+    position: relative; 
+    width: 100%; 
+    height: 100px; 
+    background: #f1f1f1; 
+    border: 1px solid #DDD;    
+}
+.ribbon.base {
+    background: #3498db;
+    color: #fff;
+    border-right: 5px solid #8bc4ea;
+}
+.ribbon.light {
+    background: #ecf0f1;
+    color: #2c3e50;
+    border-right: 5px solid #dde4e6;
+}
+.ribbon.dark {
+    background: #131313;
+    color: #fff;
+    border-right: 5px solid #464646;
+}
+.ribbon.base-alt {
+    background: #9cd70e;
+    color: #fff;
+    border-right: 5px solid #c6f457;
+}
+.ribbon.red {
+    background: #e91b23;
+    color: #fff;
+    border-right: 5px solid #f2787d;
+}
+.ribbon.orange {
+    background: #ff8a3c;
+    color: #fff;
+    border-right: 5px solid #ffc7a2;
+}
+.ribbon.yellow {
+    background: #ffd800;
+    color: #fff;
+    border-right: 5px solid #ffe866;
+}
+.ribbon:before, .ribbon:after {
+    content: '';
+    position: absolute;
+    left: -9px;
+    border-left: 10px solid transparent;
+}
+.ribbon:before {
+    top: 0;
+}
+.ribbon:after {
+    bottom: 0;
+}
+.ribbon.base:before {
+    border-top: 27px solid #3498db;
+}
+.ribbon.base:after {
+    border-bottom: 27px solid #3498db;
+}
+.ribbon.light:before {
+    border-top: 27px solid #ecf0f1;
+}
+.ribbon.light:after {
+    border-bottom: 27px solid #ecf0f1;
+}
+.ribbon.dark:before {
+    border-top: 27px solid #131313;
+}
+.ribbon.dark:after {
+    border-bottom: 27px solid #131313;
+}
+.ribbon.base-alt:before {
+    border-top: 27px solid #9cd70e;
+}
+.ribbon.base-alt:after {
+    border-bottom: 27px solid #9cd70e;
+}
+.ribbon.red:before {
+    border-top: 27px solid #e91b23;
+}
+.ribbon.red:after {
+    border-bottom: 27px solid #e91b23;
+}
+.ribbon.orange:before {
+    border-top: 27px solid #ff8a3c;
+}
+.ribbon.orange:after {
+    border-bottom: 27px solid #ff8a3c;
+}
+.ribbon.yellow:before {
+    border-top: 27px solid #ffd800;
+}
+.ribbon.yellow:after {
+    border-bottom: 27px solid #ffd800;
+}
+.ribbon span {
+    display: block;
+    font-size: 21px;
+    font-weight: 600;
+}

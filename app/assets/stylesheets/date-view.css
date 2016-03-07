@@ -1,0 +1,24 @@
+.date-body{
+  background-color: #0072bc;padding-bottom: 5px;
+  width: 100px;
+  border-radius: 6px;
+}
+.date-body .date-title{
+  color: white;
+  font-size: 12px;
+}
+
+.date-body-when {
+  font-size: 10px;
+}
+
+.date-body .date-content{
+  background-color: white;margin-left: 5px;margin-right: 5px;
+  font-size: 14px;
+}
+.date-body .date-content p.dia{
+  margin: 0; font-size: 21px; font-weight: bold;
+}
+.nomargin{
+  margin: 0;
+}

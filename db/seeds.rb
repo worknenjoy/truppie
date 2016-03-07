@@ -47,11 +47,15 @@
 )
 
 @attraction_one = Attraction.create(
-  name: 'Praias Selvagens'
+  name: 'Praias Selvagens',
+  text: "As praias selvagens e um refugio no rio para quem quer sair das praias badaladas da zona sul",
+  photo: "http://www.trilhaape.com.br/images/programacao/Praias%20selvagens_1.JPG"
 )
 
 @attraction_two = Attraction.create(
-  name: 'Pedra do Telegrafo'
+  name: 'Pedra do Telegrafo',
+  text: "A pedra do telegrafo e famosa pela foto das pessoas parecerem que estao penduradas",
+  photo: "https://media-cdn.tripadvisor.com/media/photo-s/07/59/12/ba/adrenalina-pura.jpg"
 )
 
 @language = Language.create(

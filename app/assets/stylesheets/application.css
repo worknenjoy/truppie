@@ -17,6 +17,9 @@
  *= require image-card
  *= require bootstrap-notice 
  *= require form-login 
+ *= require date-view 
+ *= require bootstrap-ribbon 
  *= require welcome
+ *= require tours 
  */
 

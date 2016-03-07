@@ -33,4 +33,17 @@ class Tour < ActiveRecord::Base
     end
   end
   
+  def price
+    case self.currency
+    when 'BRL'
+      "<small>R$</small> " + self.value.to_s
+    when 'US'
+      "<small>$</small> " + self.value.to_s
+    when 'EURO'
+      "<small>€</small> " + self.value.to_s
+    else
+      self.value
+    end
+  end
+  
 end

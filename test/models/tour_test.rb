@@ -53,9 +53,12 @@ class TourTest < ActiveSupport::TestCase
    
    test "a tour friendly difficult measure" do
      easytour = Tour.last.level
-     
      assert_equal "easy", easytour
-     
+   end
+   
+   test "a price in real" do
+     price = Tour.last.price
+     assert_equal "<small>R$</small> 40", price
    end
    
 end

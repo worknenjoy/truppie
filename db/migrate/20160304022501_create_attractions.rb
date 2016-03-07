@@ -2,7 +2,8 @@ class CreateAttractions < ActiveRecord::Migration
   def change
     create_table :attractions do |t|
       t.string :name
-      t.text :name
+      t.string :text
+      t.string :photo
       t.string :lat
       t.string :long
       t.string :city

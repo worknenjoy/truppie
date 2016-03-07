@@ -17,7 +17,9 @@ ActiveRecord::Schema.define(version: 20160306043346) do
   enable_extension "plpgsql"
 
   create_table "attractions", force: :cascade do |t|
-    t.text     "name"
+    t.string   "name"
+    t.string   "text"
+    t.string   "photo"
     t.string   "lat"
     t.string   "long"
     t.string   "city"
