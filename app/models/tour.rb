@@ -16,4 +16,21 @@ class Tour < ActiveRecord::Base
     distance_of_time_in_words(self.end - self.start)
   end
   
+  def level
+    case self.difficulty
+    when 1
+      "very easy"
+    when 2
+      "easy"
+    when 3
+      "moderate"
+    when 4
+      "hard"
+    when 5
+      "very hard"
+    else
+      "not defined"
+    end
+  end
+  
 end

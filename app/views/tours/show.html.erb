@@ -1,4 +1,54 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_tour_path(@tour) %> |
-<%= link_to 'Back', tours_path %>
+<div class="cover">
+	<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong><%= @tour.title %></strong></h4>
+				<small class="pull-xs-right">em <%= @tour.category.name %></small> 
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<h5 class="spaced-smallest">Vagas:</h5>
+				<p><%= @tour.availability %></p>
+			</div>
+			<div class="col-xs-6">
+				<h5 class="spaced-smallest">Organizado por</h5>
+				<p><%= @tour.organizer.name %></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="card card-block">
+		            <ul class="list-unstyled">
+		                <li><i class="fa fa-map-marker"></i> <%= @tour.where.name %></li>
+		                <li>
+		                	<i class="fa fa-globe"></i>
+		                	<% @tour.languages.each do |lang| %>
+								 <%= lang.name %>
+							<% end %>
+	                	 </li>
+		                <li><i class="fa fa-calendar"></i>  <%= @tour.duration %> of duration</li>
+		                <li><i class="fa fa-heartbeat"></i> <%= @tour.level %></li>
+		            </ul>
+		        </div>
+	       </div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<small>tags:</small> 
+				<% @tour.tags.each do |tag| %>
+					 <span class="label label-info"><%= tag.name %></span>
+				<% end %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>Sobre</strong></h4>
+				<p><%= @tour.description %></p>
+			</div>
+		</div>
+	</div>
+</div>

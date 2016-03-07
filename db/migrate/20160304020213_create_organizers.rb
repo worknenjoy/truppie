@@ -2,6 +2,8 @@ class CreateOrganizers < ActiveRecord::Migration
   def change
     create_table :organizers do |t|
       t.string :name
+      t.string :logo
+      t.string :cover
       t.string :description
       t.references :member, index: true
       t.integer :rating

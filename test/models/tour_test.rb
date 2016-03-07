@@ -51,4 +51,11 @@ class TourTest < ActiveSupport::TestCase
      assert_equal "about 2 years", Tour.last.duration
    end
    
+   test "a tour friendly difficult measure" do
+     easytour = Tour.last.level
+     
+     assert_equal "easy", easytour
+     
+   end
+   
 end

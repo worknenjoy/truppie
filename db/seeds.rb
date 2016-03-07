@@ -5,3 +5,82 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+@user = User.create(
+    email: "joanautopicos@gmail.com",
+    password: "12345678"
+)
+
+@user_member = User.create(
+    email: "paola@gmail.com",
+    password: "12345678"
+)
+
+@member = Member.create(
+    user: @user_member
+)
+
+@organizer = Organizer.create(
+    name: "Utopicos Mundo afora",
+    description: "Não há ferramenta melhor para planejar uma viagem do que blog de mochileiro. Nele encontramos todas as informações importantes acerca de preços, meios de transporte, segurança e programas imperdíveis para além daqueles roteiros já manjados.",
+    members: [@member],
+    user: @user
+)
+
+@where = Where.create(
+  name: "Barra da Tijuca",
+  city: "Rio de Janeiro",
+  state: "Rio de Janeiro",
+  country: "Rio de Janeiro"
+)
+
+@cat = Category.create(
+  name: 'Trilha'
+)
+
+@tagone = Tag.create(
+  name: 'montanha'
+)
+
+@tagtwo = Tag.create(
+  name: 'praia'
+)
+
+@attraction_one = Attraction.create(
+  name: 'Praias Selvagens'
+)
+
+@attraction_two = Attraction.create(
+  name: 'Pedra do Telegrafo'
+)
+
+@language = Language.create(
+  name: 'Portugues'
+)
+
+@tour = Tour.create(
+
+  title: 'Subida a Pedra do Telegrafo',
+  description: 'A pedidos, vamos subir a pedra do telegrafo',
+  value: 45,
+  currency: 'BRL',
+  organizer: @organizer,
+  start: '2016-03-12 06:00:00',
+  end: '2016-03-12 12:00:00',
+  photo: 'http://tudosobreorio.com.br/wp-content/uploads/2015/07/pedra-do-tel%C3%A9grafo-2.jpg',
+  availability: 7,
+  minimum: 2,
+  maximum: 7,
+  difficulty: 2,
+  where: @where,
+  address: 'praia de grumari, s/n',
+  user: @user,
+  included: 'carona solidaria',
+  nonincluded: 'comida',
+  category: @cat,
+  tags: [@tagone, @tagtwo],
+  attractions: [@attraction_one, @attraction_two],
+  languages: [@language]
+)
+
+

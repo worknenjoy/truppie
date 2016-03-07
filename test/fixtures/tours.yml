@@ -13,7 +13,7 @@ morro:
   availability: 
   minimum: 
   maximum: 
-  difficulty: 
+  difficulty: 2
   where: placeone
   address: MyString
   user: laura 

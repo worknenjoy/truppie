@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20160306043346) do
   add_index "languages_tours", ["tour_id", "language_id"], name: "index_languages_tours_on_tour_id_and_language_id", using: :btree
 
   create_table "members", force: :cascade do |t|
-    t.integer  "user_id",    null: false
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 20160306043346) do
 
   create_table "organizers", force: :cascade do |t|
     t.string   "name"
+    t.string   "logo"
+    t.string   "cover"
     t.string   "description"
     t.integer  "member_id"
     t.integer  "rating"
