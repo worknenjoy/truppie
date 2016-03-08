@@ -1,8 +1,9 @@
 .ribbon {
     position: absolute;
-    top: 20px;
-    right: -5px;
+    top: 35%;
+    right: 0;
     padding: 15px;
+    opacity: 0.8;
 }
 .ribbon-content{
     position: relative; 
@@ -14,7 +15,6 @@
 .ribbon.base {
     background: #3498db;
     color: #fff;
-    border-right: 5px solid #8bc4ea;
 }
 .ribbon.light {
     background: #ecf0f1;

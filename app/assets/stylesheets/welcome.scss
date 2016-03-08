@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,700italic);
+
 @font-face {
   font-family: 'Sunshine';
   src: font-url('HelloSunshine_ornaments.otf');
@@ -24,7 +26,7 @@
 }
 
 body {
-  font-family: 'Arial',sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .sec-color-font {

@@ -1,5 +1,5 @@
-<!--  <p id="notice"><%= notice %></p> -->
-
+<%= notice %>
+<%= render 'layouts/navbar' %>
 <div class="cover">
 	<div class="img-holder">
 		<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
@@ -20,7 +20,7 @@
 		          </div>
 		        </div>
 				<h4 class="tour-title spaced-smallest pull-xs-right"><strong><%= @tour.title %></strong></h4>
-				<small class="pull-xs-right">em <%= @tour.category.name %></small> 
+				<small class="pull-xs-right">na categoria <%= @tour.category.name %></small> 
 			</div>
 		</div>
 		<div class="row">
@@ -57,6 +57,7 @@
 		                <li><i class="fa fa-calendar"></i>  <%= @tour.duration %> of duration</li>
 		                <li><i class="fa fa-heartbeat"></i> <%= @tour.level %></li>
 		            </ul>
+		            <input type="submit" class="btn btn-primary btn-block" value="Reservar agora" />
 		        </div>
 	       </div>
 		</div>
