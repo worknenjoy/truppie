@@ -20,24 +20,17 @@
 		          </div>
 		        </div>
 				<h4 class="tour-title spaced-smallest pull-xs-right"><strong><%= @tour.title %></strong></h4>
-				<small class="pull-xs-right">na categoria <%= @tour.category.name %></small> 
+				<small class="pull-xs-right">na categoria <%= @tour.category.name %></small>
+				<div class="pull-xs-right">
+					<small>tags:</small> 
+					<% @tour.tags.each do |tag| %>
+						 <span class="label label-info"><%= tag.name %></span>
+					<% end %>
+				</div> 
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-6">
-				<h1 class="rating-num">
-                    4.0
-                </h1>
-                <div class="rating">
-                    <span class="fa fa-star"></span><span class="fa fa-star">
-                    </span><span class="fa fa-star"></span><span class="fa fa-star">
-                    </span><span class="fa fa-star-empty"></span>
-                </div>
-                <div>
-                    <span class="fa fa-user"></span> 10 avaliacoes
-                </div>
-			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-12">
 				<h6 class="spaced-smallest"><i class="fa fa-child"></i> guia:</h6>
 				<p><%= @tour.organizer.name %></p>
 			</div>
@@ -63,10 +56,17 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<small>tags:</small> 
-				<% @tour.tags.each do |tag| %>
-					 <span class="label label-info"><%= tag.name %></span>
-				<% end %>
+				<h6>
+                    Confirmados
+                </h6>
+                <div class="confirmed">
+                    <% if @tour.confirmeds.length > 0 %>
+                    	
+                    <% else %>
+                    	<p class="small">Ninguem confirmou ainda. <a  href="#">Confirmar reserva</a></p>
+                    	
+                    <% end %>
+                </div>
 			</div>
 		</div>
 		<div class="row">
@@ -87,6 +87,14 @@
 				<p><%= @tour.nonincluded %></p>
 			</div>
 		</div>
+		<% if @tour.meetingpoint %>		
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>Meeting Point:</strong></h4>
+				<p><%= @tour.meetingpoint %></p>
+			</div>
+		</div>
+		<% end %>
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>Attractions</strong></h4>				
