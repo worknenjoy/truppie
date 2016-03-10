@@ -8,6 +8,11 @@
 	            	<%= link_to root_path do %>
 	                	<%= image_tag("logos-05.svg", :alt => "Truppie", :class => 'img-fluid center-block') %>
 	                <% end %>
+	                <div class="text-xs-center">
+	                <%= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-social btn-twitter' do %>
+					    <span class="fa fa-facebook"></span> Sign in with Facebook
+	                <% end %>
+	                </div>
 	                <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form-signin"}) do |f| %>
 	                	<%= f.email_field :email, autofocus: true, required: true, placeholder: 'Email', class: 'form-control' %>
 	                	<%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control' %>

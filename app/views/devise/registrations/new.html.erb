@@ -10,6 +10,7 @@
 	                	<%= image_tag("logos-05.svg", :alt => "Truppie", :class => 'img-fluid center-block') %>
 	                <% end %>
 	                <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "form-signin"}) do |f| %>
+	                	<%= f.text_field :name, autofocus: true, required: true, placeholder: 'Name', class: 'form-control' %>
 	                	<%= f.email_field :email, autofocus: true, required: true, placeholder: 'Email', class: 'form-control' %>
 	                	<%= f.password_field :password, autocomplete: "off", placeholder: 'Password', class: 'form-control' %>
     					<%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm password', class: 'form-control' %>

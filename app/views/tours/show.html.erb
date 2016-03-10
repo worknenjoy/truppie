@@ -34,7 +34,13 @@
 				<h6 class="spaced-smallest"><i class="fa fa-child"></i> guia:</h6>
 				<div class="text-xs-center">
 					<%= image_tag("logo_utopicos.png", :alt => "Truppie", :width => '60') %>
-					<p><%= @tour.organizer.name %></p>
+					<p>
+						<%= @tour.organizer.name %> <br />
+						<% if @tour.organizer.website %>
+						<%= link_to @tour.organizer.website, @tour.organizer.website %>
+						<% end %>
+					</p>
+					
 				</div>
 			</div>
 		</div>

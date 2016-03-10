@@ -19,7 +19,8 @@
  *= require form-login 
  *= require date-view 
  *= require bootstrap-ribbon
- *= require navbar   
+ *= require navbar
+ *= require bootstrap-social    
  *= require welcome
  *= require tours 
  */

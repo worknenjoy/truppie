@@ -24,7 +24,8 @@
     name: "Utopicos Mundo afora",
     description: "Não há ferramenta melhor para planejar uma viagem do que blog de mochileiro. Nele encontramos todas as informações importantes acerca de preços, meios de transporte, segurança e programas imperdíveis para além daqueles roteiros já manjados.",
     members: [@member],
-    user: @user
+    user: @user,
+    website: 'http://utopicos.com.br'
 )
 
 @where = Where.create(

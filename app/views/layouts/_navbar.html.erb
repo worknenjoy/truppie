@@ -8,13 +8,14 @@
   <div class="user-actions">
   	<div class="dropdown pull-xs-right">
 	  <button class="btn btn-secondary dropdown-toggle" type="button" id="openuser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    <img src="http://lorempixel.com/30/30" alt="user" class="img-circle" width="30" />
+	    <% if current_user.image %>
+	    <img src="<%= current_user.image %>" alt="user" class="img-circle" width="30" />
+	    <% end %>
 	    <%= current_user.email.split('@')[0] %>
 	  </button>
 	  <div class="dropdown-menu" aria-labelledby="openuser">
 	  	<%= link_to 'reservas', '#', class: 'dropdown-item' %>
 	    <%= link_to 'editar usuario', edit_user_registration_path, class: 'dropdown-item' %>
-	    <%= link_to 'trocar senha', edit_user_password_path, class: 'dropdown-item' %>
 	    <div class="dropdown-divider"></div>
 	    <%= link_to 'sair', destroy_user_session_path, class: 'dropdown-item', method: 'delete' %>
 	  </div>
