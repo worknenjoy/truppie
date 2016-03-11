@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   resources :organizers
-  resources :tours
+  
+  resources :tours do
+    member do
+      get 'confirm'
+      post 'confirm_presence'
+    end
+  end
+  
+  
   post 'subscribers/create'
   
   devise_for :users, :controllers => { 

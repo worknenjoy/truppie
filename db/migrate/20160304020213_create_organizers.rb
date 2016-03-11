@@ -13,6 +13,8 @@ class CreateOrganizers < ActiveRecord::Migration
       t.string :website
       t.string :facebook
       t.string :twitter
+      t.string :instagram
+      t.string :phone
 
       t.timestamps null: false
     end

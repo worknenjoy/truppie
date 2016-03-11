@@ -5,7 +5,7 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12 text-xs-center">
       <% if current_user.image %>
-      <div class="text-center">
+      <div class="text-center spaced-down">
         <img src="<%= current_user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
         <!-- <h6>Upload a different photo...</h6>
         <input type="file" class="text-center center-block well well-sm">
@@ -16,7 +16,8 @@
     <!-- edit form column -->
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
       <%= devise_error_messages! %>
-      <h3>Personal info</h3>
+      <%= render 'layouts/flash' %>
+      <h4>Personal info</h4>
   	  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal'}) do |f| %>
         <div class="form-group row">
            <%= f.label :name, class: "col-lg-3 form-control-label" %>

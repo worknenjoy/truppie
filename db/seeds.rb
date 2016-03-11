@@ -85,7 +85,8 @@
   category: @cat,
   tags: [@tagone, @tagtwo],
   attractions: [@attraction_one, @attraction_two],
-  languages: [@language]
+  languages: [@language],
+  meetingpoint: 'Praia da Barra'
 )
 
 

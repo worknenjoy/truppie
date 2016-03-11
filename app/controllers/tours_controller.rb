@@ -1,6 +1,23 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy]
 
+
+  def confirm
+    @tour = Tour.find(params[:id])
+  end
+  
+  def confirm_presence
+    @tour = Tour.find(params[:id])
+    
+    @tour.confirmeds.create(:user  => current_user)
+    
+    if @tour.save()
+      flash[:success] = "Presence Confirmed!"
+      redirect_to @tour      
+    end
+    
+  end
+
   # GET /tours
   # GET /tours.json
   def index

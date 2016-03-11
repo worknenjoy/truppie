@@ -15,12 +15,12 @@
 		          <div class="date-content">
 		            <p class="dia"><%= @tour.start.strftime("%d") %></p>
 		            <hr class="nomargin"/>
-		            <p class="nomargin"><strong>quinta-feira</strong></p>
+		            <p class="nomargin"><strong><%= @tour.start.strftime("%A") %></strong></p>
 		            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tour.start) %></strong></p>
 		          </div>
 		        </div>
 				<h4 class="tour-title spaced-smallest pull-xs-right"><strong><%= @tour.title %></strong></h4>
-				<small class="pull-xs-right">na categoria <%= @tour.category.name %></small>
+				<small class="pull-xs-right">na categoria <strong class="text-danger"><%= @tour.category.name %></strong></small>
 				<div class="pull-xs-right">
 					<small>tags:</small> 
 					<% @tour.tags.each do |tag| %>
@@ -59,7 +59,7 @@
 		                <li><i class="fa fa-calendar"></i>  <%= @tour.duration %> of duration</li>
 		                <li><i class="fa fa-heartbeat"></i> <%= @tour.level %></li>
 		            </ul>
-		            <input type="submit" class="btn btn-primary btn-block" value="Reservar agora" />
+		            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-block' %>
 		        </div>
 	       </div>
 		</div>
@@ -70,10 +70,12 @@
                 </h6>
                 <div class="confirmed">
                     <% if @tour.confirmeds.length > 0 %>
-                    	
+                    	<% @tour.confirmeds.each do |c| %>
+                    		<img src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
+                    		<p class="small"><%= c.user.name %></p>
+                		<% end %>
                     <% else %>
                     	<p class="small">Ninguem confirmou ainda. <a  href="#">Confirmar reserva</a></p>
-                    	
                     <% end %>
                 </div>
 			</div>
@@ -119,7 +121,6 @@
 			  <img src="<%= attraction.photo %>" alt="Card image" class="img-fluid">
 			  <div class="card-block">
 			    <p class="card-text"><%= attraction.text %></p>
-			    <a href="#" class="card-link">More truppies for this attraction</a>
 			  </div>
 			</div>
 		  </div>
