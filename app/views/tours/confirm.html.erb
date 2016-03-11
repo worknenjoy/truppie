@@ -1,0 +1,31 @@
+<%= notice %>
+<%= render 'layouts/navbar' %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 spaced-default">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center">
+                        <%= @tour.title %>
+                    </h4>
+                </div>
+                <div class="card-text text-xs-center">
+                    <h2 class="spaced-smallest"><%= raw @tour.price %></h2>
+                </div>
+                <ul class="list-group list-group-flush text-xs-center">
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><%= @tour.start.strftime("%A") %> <br/> <%= @tour.start.strftime("%d") %> de <%= @tour.start.strftime("%B") %> de <%= @tour.start.strftime("%Y") %> as <%= @tour.start.strftime("%Hh%M") %> </li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Organizado por:</strong> <br/><%= @tour.organizer.name %></li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Local:</strong><br /><%= @tour.where.name %></li>
+                    <% if @tour.meetingpoint %>
+                    	<li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Local:</strong><br /><%= @tour.meetingpoint %></li>
+                    <% end %>
+                </ul>
+                <%= form_for @tour, :method => 'post', :url => confirm_presence_tour_path do |f| %>
+                <div class="card-footer">
+                    <%= f.submit "Confirmar Reserva", class: 'btn btn-lg btn-block btn-danger' %>
+                </div>
+                <% end %>
+            </div>
+        </div>
+	</div>
+</div>
