@@ -30,7 +30,31 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "confirmed" do
-     assert_equal 2, Tour.last.confirmeds.size
+     assert_equal 0, Tour.last.confirmeds.size
+   end
+   
+   test "confirmed availability soldout for infinite availability" do
+     assert_equal 0, Tour.last.confirmeds.size
+     assert_equal false, Tour.last.soldout?
+   end
+   
+   test "confirmed availability number" do
+     Tour.last.confirmeds.create(user: User.last)
+     assert_equal 2, Tour.last.available
+   end
+   
+   test "confirmed availability soldout still possible" do
+     Tour.last.confirmeds.create(user: users(:laura))
+     Tour.last.confirmeds.create(user: users(:alexandre))
+     assert_equal false, Tour.last.soldout?
+   end
+   
+   test "confirmed availability soldout not possible" do
+     Tour.last.confirmeds.create(user: users(:laura))
+     Tour.last.confirmeds.create(user: users(:alexandre))
+     Tour.last.confirmeds.create(user: users(:fulano))
+     Tour.last.confirmeds.create(user: users(:ciclano))
+     assert_equal true, Tour.last.soldout?
    end
    
    test "languages" do

@@ -1,6 +1,6 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, :except => [:show, :index]
 
   def confirm
     @tour = Tour.find(params[:id])
@@ -8,14 +8,35 @@ class ToursController < ApplicationController
   
   def confirm_presence
     @tour = Tour.find(params[:id])
-    
-    @tour.confirmeds.create(:user  => current_user)
-    
-    if @tour.save()
-      flash[:success] = "Presence Confirmed!"
-      redirect_to @tour      
+    if @tour.confirmeds.exists?(user: current_user)
+      flash[:error] = "Hey, you already confirmed this event!!"
+      redirect_to @tour          
+    else
+      if !@tour.soldout?
+        @tour.confirmeds.create(:user  => current_user)
+        if @tour.save()
+          flash[:success] = "Presence Confirmed!"
+          redirect_to @tour
+        else
+          flash[:error] = "It now was possible confirm this user"
+          redirect_to @tour
+        end
+      else
+        flash[:error] = "this event is soldout"
+        redirect_to @tour
+      end
+      
     end
-    
+  end
+  
+  def unconfirm_presence
+    @tour = Tour.find(params[:id])
+    if @tour.confirmeds.where(user: current_user).delete_all
+      flash[:success] = "you were successfully unconfirmed to this tour"
+    else
+      flash[:error] = "it was not possible unconfirm"
+    end
+    redirect_to @tour
   end
 
   # GET /tours
@@ -80,13 +101,13 @@ class ToursController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tour
-      @tour = Tour.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tour
+    @tour = Tour.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tour_params
-      params.fetch(:tour, {})
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def tour_params
+    params.fetch(:tour, {})
+  end
 end

@@ -72,7 +72,7 @@
   organizer: @organizer,
   start: '2016-03-12 06:00:00',
   end: '2016-03-12 12:00:00',
-  photo: 'http://tudosobreorio.com.br/wp-content/uploads/2015/07/pedra-do-tel%C3%A9grafo-2.jpg',
+  photo: 'http://1.bp.blogspot.com/-RRVQXEOr2Fg/VZtDRtAOo_I/AAAAAAAAFOo/6bCSAYsqeL4/s640/DSC00279.JPG',
   availability: 7,
   minimum: 2,
   maximum: 7,

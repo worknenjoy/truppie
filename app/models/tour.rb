@@ -9,7 +9,7 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :attractions
   has_and_belongs_to_many :confirmeds
   has_and_belongs_to_many :languages
-  has_and_belongs_to_many :reviews
+  has_and_belongs_to_many :reviews, dependent: :destroy
   
   def to_param
     "#{id} #{title}".parameterize
@@ -47,6 +47,14 @@ class Tour < ActiveRecord::Base
     else
       self.value
     end
+  end
+  
+  def available
+    self.availability - self.confirmeds.count
+  end
+  
+  def soldout?
+    self.available <= 0
   end
   
 end

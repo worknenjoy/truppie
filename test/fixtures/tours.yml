@@ -10,7 +10,7 @@ morro:
   start: 2016-03-01 23:56:31
   end: 2016-03-01 23:59:31
   photo:
-  availability: 
+  availability: 3 
   minimum: 
   maximum: 
   difficulty: 2
@@ -24,7 +24,7 @@ morro:
   attractions: santatereza, corcovado
   privacy: MyString
   meetingpoint: MyString
-  confirmeds: lau, alex
+  confirmeds:
   languages: english, portuguese 
   reviews: boring, cool
   verified:

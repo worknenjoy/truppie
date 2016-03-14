@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 20160310015033) do
     t.string   "website"
     t.string   "facebook"
     t.string   "twitter"
+    t.string   "instagram"
+    t.string   "phone"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

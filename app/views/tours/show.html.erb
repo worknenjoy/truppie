@@ -1,5 +1,5 @@
-<%= notice %>
 <%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
 <div class="cover">
 	<div class="img-holder">
 		<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
@@ -48,7 +48,14 @@
 			<div class="col-xs-12">
 				<div class="card card-block">
 		            <ul class="list-unstyled">
-		            	<li><i class="fa fa-ticket"></i> <%= @tour.availability %> tickets disponíveis</li>
+		            	<li>
+		            		<i class="fa fa-ticket"></i>
+		            		<% if not @tour.soldout? %> 
+		            		<%= @tour.available %> tickets disponíveis
+		            		<% else %>
+		            			Não ha mais ticket disponiveis
+		            		<% end %>
+	            		</li>
 		                <li><i class="fa fa-map-marker"></i> <%= @tour.where.name %></li>
 		                <li>
 		                	<i class="fa fa-globe"></i>
@@ -72,7 +79,15 @@
                     <% if @tour.confirmeds.length > 0 %>
                     	<% @tour.confirmeds.each do |c| %>
                     		<img src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
-                    		<p class="small"><%= c.user.name %></p>
+                    		<p class="small">
+                    			<% if c.user.name == current_user.name %>
+                    				<strong>Você</strong><br/>
+                    				<%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-link' %>
+                    			<% else %>
+                					<strong><%= c.user.name %></strong>
+                    			<% end %>
+                    			
+                			</p>
                 		<% end %>
                     <% else %>
                     	<p class="small">Ninguem confirmou ainda. <a  href="#">Confirmar reserva</a></p>

@@ -13,6 +13,16 @@ alexandre:
   email: alexandre@email.com
   encrypted_password: 4567554354
   sign_in_count: 10
+  
+fulano:
+  email: fulano@fuleco.com
+  encrypted_password: 4567554354
+  sign_in_count: 10
+  
+ciclano:
+  email: ciclano@fuleco.com
+  encrypted_password: 4567554354
+  sign_in_count: 10
 
 joana:
   email: joana@email.com

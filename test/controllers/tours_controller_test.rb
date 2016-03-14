@@ -2,10 +2,16 @@ include Devise::TestHelpers
 require 'test_helper'
 
 class ToursControllerTest < ActionController::TestCase
+  self.use_transactional_fixtures = true
+  
   setup do
-    sign_in User.first
+    sign_in users(:alexandre)
     @tour = tours(:morro)
   end
+  
+  #teardown do
+    #DatabaseCleaner.clean
+  #end
 
   test "should get index" do
     get :index
@@ -56,10 +62,29 @@ class ToursControllerTest < ActionController::TestCase
   
   test "should not confirm again" do
     post :confirm_presence, id: @tour
+    post :confirm_presence, id: @tour
     assert_equal 'Hey, you already confirmed this event!!', flash[:error]
     assert_redirected_to tour_path(assigns(:tour))
   end
-
+  
+  test "should not confirm if soldout" do
+    @tour.confirmeds.create(user: users(:laura))
+    @tour.confirmeds.create(user: users(:fulano))
+    @tour.confirmeds.create(user: users(:ciclano))
+    post :confirm_presence, id: @tour
+    assert_equal 'this event is soldout', flash[:error]
+    assert_redirected_to tour_path(assigns(:tour))
+  end
+  
+  test "should unconfirm" do
+    @tour.confirmeds.create(user: users(:alexandre))
+    assert_equal @tour.available, 2
+    post :unconfirm_presence, id: @tour
+    assert_equal 'you were successfully unconfirmed to this tour', flash[:success]
+    assert_equal @tour.available, 3
+    assert_redirected_to tour_path(assigns(:tour))
+  end
+  
   # test "should destroy tour" do
     # assert_difference('Tour.count', -1) do
       # delete :destroy, id: @tour

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  
   resources :organizers
   
   resources :tours do
     member do
       get 'confirm'
       post 'confirm_presence'
+      post 'unconfirm_presence'
     end
   end
   
