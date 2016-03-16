@@ -8,7 +8,20 @@ class ToursController < ApplicationController
   
   def confirm_presence
     @tour = Tour.find(params[:id])
-    @payment_data = params[:payment]
+    @payment_data = {
+      method: params[:method],
+      expiration_month: params[:expiration_month],
+      expiration_year: params[:expiration_year],
+      number: params[:number],
+      cvc: params[:cvc],
+      fullname: params[:fullname],
+      birthdate: params[:birthdate],
+      cpf_number: params[:cpf_number],
+      country_code: params[:country_code],
+      area_code: params[:area_code],
+      phone_number: params[:phone_number]
+      
+    }
     
     if @tour.confirmeds.exists?(user: current_user)
       flash[:error] = "Hey, you already confirmed this event!!"
@@ -35,42 +48,57 @@ class ToursController < ApplicationController
             email: current_user.email
           } 
         })
-        if not @payment_data.nil?
+        if not @payment_data[:fullname].nil?
           payment = api.payment.create(order.id,
               {
                   installment_count: 1,
                   funding_instrument: {
-                      method: "CREDIT_CARD",
+                      method: @payment_data[:method],
                       credit_card: {
-                          expiration_month: 04,
-                          expiration_year: 18,
-                          number: "4012001038443335",
-                          cvc: "123",
+                          expiration_month: @payment_data[:expiration_month],
+                          expiration_year: @payment_data[:expiration_year],
+                          number: @payment_data[:number],
+                          cvc: @payment_data[:cvc],
                           holder: {
-                              fullname: current_user.name,
-                              birthdate: "1988-10-10",
+                              fullname: @payment_data[:fullname],
+                              birthdate: @payment_data[:birthdate],
                               tax_document: {
                                   type: "CPF",
-                                  number: "22222222222"
+                                  number: @payment_data[:cpf_number]
                           },
                               phone: {
-                                  country_code: "55",
-                                  area_code: "11",
-                                  number: "55667788"
+                                  country_code: @payment_data[:country_code],
+                                  area_code: @payment_data[:area_code],
+                                  number: @payment_data[:phone_number]
                               }
                           }
                       }
                   }
               }
           )
-          @tour.confirmeds.create(:user  => current_user)
-            if @tour.save() and payment.success?
+          @tour.confirmeds.new(:user  => current_user)
+          if payment.success?
+            @order = Order.create(
+              :source_id => order.id,
+              :own_id => "truppie_#{@tour.id}_#{current_user.id}",
+              :user => current_user,
+              :tour => @tour,
+              :status => payment.status,
+              :payment => payment.id,
+              :price => @tour.value.to_i
+            )
+            if @order.save() and @tour.save()
               flash[:success] = "Presence Confirmed!"
+              flash[:order_id] = order.id
               redirect_to @tour
             else
-              flash[:error] = "It now was possible confirm this user"
+              flash[:error] = "Nao foi possivel criar seu pedido de numero #{order.id}"
               redirect_to @tour
             end
+          else
+            flash[:error] = "It now was possible confirm this user"
+            redirect_to @tour
+          end
         else
           flash[:error] = "No payment information supplied"
           redirect_to @tour

@@ -106,10 +106,12 @@ ActiveRecord::Schema.define(version: 20160316001604) do
   add_index "members_organizers", ["organizer_id", "member_id"], name: "index_members_organizers_on_organizer_id_and_member_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
+    t.string   "source_id"
     t.string   "own_id"
     t.integer  "tour_id"
     t.integer  "user_id"
     t.string   "status"
+    t.string   "payment"
     t.integer  "price"
     t.integer  "discount"
     t.datetime "created_at", null: false
