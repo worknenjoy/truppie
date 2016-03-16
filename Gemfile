@@ -29,6 +29,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+gem 'moip2', '~> 0.1.4'
+
 gem 'time_diff'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

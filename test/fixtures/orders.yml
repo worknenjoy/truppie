@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  own_id: 1
+  tour_id: 
+  user_id: 
+  status: MyString
+  price: 1
+  discount: 1
+
+two:
+  own_id: 1
+  tour_id: 
+  user_id: 
+  status: MyString
+  price: 1
+  discount: 1

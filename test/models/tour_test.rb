@@ -85,4 +85,59 @@ class TourTest < ActiveSupport::TestCase
      assert_equal "<small>R$</small> 40", price
    end
    
+   test "simple payment call" do
+     skip("calling moip sandbox several times")
+     auth = Moip2::Auth::Basic.new(Rails.application.secrets[:moip_token], Rails.application.secrets[:moip_key])
+     client = Moip2::Client.new(:sandbox, auth)
+     api = Moip2::Api.new(client)
+     order = api.order.create(
+          {
+              own_id: "ruby_sdk_1",
+              items: [
+                {
+                  product: "Nome do produto",
+                  quantity: 1,
+                  detail: "Mais info...",
+                  price: 1000
+                }
+              ],
+              customer: {
+                own_id: "ruby_sdk_customer_1",
+                fullname: "Jose da Silva",
+                email: "sandbox_v2_1401147277@email.com",
+              }
+          }
+      )
+     payment = api.payment.create(order.id,
+          {
+              installment_count: 1,
+              funding_instrument: {
+                  method: "CREDIT_CARD",
+                  credit_card: {
+                      expiration_month: 04,
+                      expiration_year: 18,
+                      number: "4012001038443335",
+                      cvc: "123",
+                      holder: {
+                          fullname: "Jose Portador da Silva",
+                          birthdate: "1988-10-10",
+                          tax_document: {
+                              type: "CPF",
+                              number: "22222222222"
+                      },
+                          phone: {
+                              country_code: "55",
+                              area_code: "11",
+                              number: "55667788"
+                          }
+                      }
+                  }
+              }
+          }
+      )
+      assert_equal payment[:events][1][:type], "PAYMENT.CREATED"
+      assert_equal payment.success?, true
+   end
+   
+   
 end

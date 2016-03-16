@@ -5,26 +5,31 @@
 # below each fixture, per the syntax in the comments below
 #
 laura:
+  name: Laura Sette
   email: laurinha@email.com
   encrypted_password: 4567554354
   sign_in_count: 10
 
 alexandre:
+  name: Alexandre Magno
   email: alexandre@email.com
   encrypted_password: 4567554354
   sign_in_count: 10
   
 fulano:
+  name: Fulano da Silva
   email: fulano@fuleco.com
   encrypted_password: 4567554354
   sign_in_count: 10
   
 ciclano:
+  name: Ciclano Sauro
   email: ciclano@fuleco.com
   encrypted_password: 4567554354
   sign_in_count: 10
 
 joana:
+  name: Joana Melo
   email: joana@email.com
   encrypted_password: 4567554354
   sign_in_count: 10

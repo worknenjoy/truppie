@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310015033) do
+ActiveRecord::Schema.define(version: 20160316001604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,25 @@ ActiveRecord::Schema.define(version: 20160310015033) do
 
   add_index "members_organizers", ["member_id", "organizer_id"], name: "index_members_organizers_on_member_id_and_organizer_id", using: :btree
   add_index "members_organizers", ["organizer_id", "member_id"], name: "index_members_organizers_on_organizer_id_and_member_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "own_id"
+    t.integer  "tour_id"
+    t.integer  "user_id"
+    t.string   "status"
+    t.integer  "price"
+    t.integer  "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["tour_id"], name: "index_orders_on_tour_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "orders_users", id: false, force: :cascade do |t|
+    t.integer "user_id",  null: false
+    t.integer "order_id", null: false
+  end
 
   create_table "organizers", force: :cascade do |t|
     t.string   "name"
@@ -287,6 +306,7 @@ ActiveRecord::Schema.define(version: 20160310015033) do
   add_foreign_key "attractions", "quotes"
   add_foreign_key "confirmeds", "users"
   add_foreign_key "members", "users"
+  add_foreign_key "orders", "tours"
   add_foreign_key "organizers", "members"
   add_foreign_key "organizers", "users"
   add_foreign_key "organizers", "wheres"

@@ -9,9 +9,13 @@
 	                	<%= image_tag("logos-05.svg", :alt => "Truppie", :class => 'img-fluid center-block') %>
 	                <% end %>
 	                <div class="text-xs-center">
-	                <%= link_to user_omniauth_authorize_path(:facebook), class: 'btn btn-social btn-twitter' do %>
-					    <span class="fa fa-facebook"></span> Sign in with Facebook
-	                <% end %>
+	                <%- if devise_mapping.omniauthable? %>
+					  <%- resource_class.omniauth_providers.each do |provider| %>
+					    <%= link_to omniauth_authorize_path(resource_name, provider), class: 'btn btn-social btn-facebook' do %>
+					    	<span class="fa fa-<%= provider %>"></span> <%= "Sign in with #{OmniAuth::Utils.camelize(provider)}" %>
+					    <% end %>
+					  <% end -%>
+					<% end -%>
 	                </div>
 	                <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form-signin"}) do |f| %>
 	                	<%= f.email_field :email, autofocus: true, required: true, placeholder: 'Email', class: 'form-control' %>

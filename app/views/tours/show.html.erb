@@ -1,5 +1,4 @@
 <%= render 'layouts/navbar' %>
-<%= render 'layouts/flash' %>
 <div class="cover">
 	<div class="img-holder">
 		<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
@@ -8,6 +7,7 @@
 	<div class="container">
 		<div class="row divider-default">
 			<div class="col-xs-12">
+				<%= render 'layouts/flash' %>
 				<div class="pull-left date-body text-xs-center spaced-smallest">
 		          <label for="" class="date-title">
 		          	<%= @tour.start.strftime("%B") %>/<%= @tour.start.strftime("%Y") %>
@@ -75,23 +75,29 @@
 				<h6>
                     Confirmados
                 </h6>
-                <div class="confirmed">
-                    <% if @tour.confirmeds.length > 0 %>
-                    	<% @tour.confirmeds.each do |c| %>
-                    		<img src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
-                    		<p class="small">
-                    			<% if c.user.name == current_user.name %>
-                    				<strong>Você</strong><br/>
-                    				<%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-link' %>
-                    			<% else %>
-                					<strong><%= c.user.name %></strong>
-                    			<% end %>
-                    			
-                			</p>
-                		<% end %>
-                    <% else %>
-                    	<p class="small">Ninguem confirmou ainda. <a  href="#">Confirmar reserva</a></p>
-                    <% end %>
+                <div class="row">
+	                <div class="confirmeds">
+	                    <% if @tour.confirmeds.length > 0 %>
+	                    	<% @tour.confirmeds.each do |c| %>
+	                    		<div class="col-xs-6 text-xs-center">
+		                    		<img src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
+		                    		<p class="small">
+		                    			<% if c.user.name == current_user.name %>
+		                    				<strong>Você</strong>
+		                    				<%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-secondary btn-sm btn-block' %>
+		                    			<% else %>
+		                					<strong><%= c.user.name %></strong>
+		                    			<% end %>
+		                    			
+		                			</p>
+	                			</div>
+	                		<% end %>
+	                    <% else %>
+	                    	<div class="col-xs-12">
+	                    		<p class="small">Ninguem confirmou ainda. <%= link_to 'Confirmar a sua', confirm_tour_path %></p>
+	                    	</div>
+	                    <% end %>
+	                </div>
                 </div>
 			</div>
 		</div>
