@@ -84,7 +84,7 @@
 		                    		<p class="small">
 		                    			<% if c.user.name == current_user.name %>
 		                    				<strong>Você</strong>
-		                    				<%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-secondary btn-sm btn-block' %>
+		                    				<!-- <%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-secondary btn-sm btn-block' %> -->
 		                    			<% else %>
 		                					<strong><%= c.user.name %></strong>
 		                    			<% end %>

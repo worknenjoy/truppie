@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class OrderTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  test "getting the status of a order" do
+    assert true
+  end
 end

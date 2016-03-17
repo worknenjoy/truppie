@@ -116,8 +116,18 @@
             </div>
             <div class="row">
 	            <div class="col-xs-12">
-	            	<%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block' %>
+	            	<%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
 	            </div>
+	            <textarea style="display:none;" id="public_key">-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAonuGqRVzIpKya3PVLj22
+RyBfy67voV7/KBJmB5MhCG3W2BuU2ftrahU0CUekXuTir6m0l0J+mqyoPjZE/GoE
+BX8Glv4R7J77OkQEqMXST6rKGGjZnIaHy77zNGdqvJA347+0MzeNiIb4vDPL6lMg
+fiaaqN8Dat+FuCVOZFsay56CnpBbQca62Xe5B5Oh7SxuZvm0VVbsyXXkiTLYRKQp
+n+8kstWY0XJz84j1GAEubUBGkblNjypXAULyfm1n55oPlhbev4t2B5DjY4GPQa7I
+HJTzkpqUA3bIinu3M3fcDxQY0Mlog1YSpuuspOJdRbtw2nBrEgF36wpEdU32OlEC
+lwIDAQAB
+-----END PUBLIC KEY-----</textarea>
+    <textarea id="encrypted_value" style="display:none"></textarea>
         	</div>
         </div>
         <% end %>

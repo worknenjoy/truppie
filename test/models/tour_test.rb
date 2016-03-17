@@ -137,7 +137,6 @@ class TourTest < ActiveSupport::TestCase
       )
       assert_equal payment[:events][1][:type], "PAYMENT.CREATED"
       assert_equal payment.success?, true
+      puts api.payment.inspect
    end
-   
-   
 end

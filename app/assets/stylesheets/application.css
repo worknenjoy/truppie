@@ -20,7 +20,8 @@
  *= require date-view 
  *= require bootstrap-ribbon
  *= require navbar
- *= require bootstrap-social    
+ *= require bootstrap-social  
+ *= require bootstrap-order-table   
  *= require welcome
  *= require tours 
  */

@@ -54,5 +54,22 @@ $(function(){
 		return false;
 	});
 	
+	$("#confirm-reservation").click(function() {
+	    var cc = new Moip.CreditCard({
+	      number  : $("#number").val(),
+	      cvc     : $("#cvc").val(),
+	      expMonth: $("#expiration_month").val(),
+	      expYear : $("#expiration_year").val(),
+	      pubKey  : $("#public_key").val()
+	    });
+	    if( cc.isValid()){
+	      $("#hash").val(cc.hash());
+	    } else {
+	      $("#hash").val('');
+	      alert('Invalid credit card. Verify parameters: number, cvc, expiration Month, expiration Year');
+	      return false; // Don't submit the form
+	    }
+	  });
+	
  	new WOW().init();
 });

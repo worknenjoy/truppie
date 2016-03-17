@@ -2,34 +2,49 @@
 <%= render 'layouts/navbar' %>
 <div class="container">
 	<div class="row">
-		<% if not @orders.nil? %>
-			<%= @orders.each do |o| %>
-			<div class="col-xs-12 spaced-smallest">
-	            <div class="card">
-	                <div class="card-header">
-	                    <h4 class="text-center">
-	                        <%= o.source_id %><br />
-	                        <%= o.own_id %><br />
-	                    </h4>
-	                </div>
-	                <div class="card-text text-xs-center">
-	                    <h2 class="spaced-smallest"><%= raw o.price %></h2>
-	                    <p><%= o.status %></p>
-	                    <p><%= o.payment %></p>
-	                </div>
-	                <ul class="list-group list-group-flush text-xs-center">
-	                    <li class="list-group-item"><i class="icon-ok text-danger"></i><%= o.tour.start.strftime("%A") %> <br/> <%= o.tour.start.strftime("%d") %> de <%= o.tour.start.strftime("%B") %> de <%= o.tour.start.strftime("%Y") %> as <%= o.tour.start.strftime("%Hh%M") %> </li>
-	                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Organizado por:</strong> <br/><%= o.tour.organizer.name %></li>
-	                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Local:</strong><br /><%= o.tour.where.name %></li>
-	                    <% if o.tour.meetingpoint %>
-	                    	<li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Local:</strong><br /><%= o.tour.meetingpoint %></li>
-	                    <% end %>
-	                </ul>
-	            </div>
-	        </div>
-	        <% end %>
-        <% else %>
-        	<p>There's no orders for you</p>
-        <% end %>
+		<div class="col-xs-12">
+			<% if @orders.nil? %>
+				<p>There's no orders for you</p>
+			<% else %>
+			<div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                <th><span>Truppie</span></th>
+                                <th><span>Data de criação</span></th>
+                                <th class="text-center"><span>Status</span></th>
+                                <th><span>Código do pedido</span></th>
+                                <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+								<% @orders.each do |o| %>
+                                <tr>
+                                    <td>
+                                        <img src="<%= o.tour.photo %>" alt="<%= o.tour.title %>">
+                                        <%= link_to o.tour.title, tour_path(o.tour), class: 'user-link' %>
+                                        <span class="user-subhead"><%= o.tour.organizer.name %></span>
+                                    </td>
+                                    <td><%= o.created_at %></td>
+                                    <td class="text-center">
+                                        <%= raw(o.friendly_status(o.current_status)) %>
+                                    </td>
+                                    <td>
+                                        <%= o.payment %>
+                                    </td>
+                                    <td >
+                                       <h3><%= raw(o.tour.price) %></h3>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+		</div>
 	</div>
 </div>

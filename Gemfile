@@ -30,6 +30,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'moip2', '~> 0.1.4'
+gem 'rest-client'
+gem 'json'
 
 gem 'time_diff'
 # Use ActiveModel has_secure_password
