@@ -1,3 +1,4 @@
+<%= render 'layouts/navbar' %>
 <div class="container">
   <h3 class="page-header spaced-smallest">Edit <%= resource_name.to_s.humanize %></h3>
   <div class="row">
@@ -52,6 +53,7 @@
           </div>
         </div>
       <% end %>
+      <!--
       <div class="card">
 		  <div class="card-header">
 		    Cancel my account
@@ -61,6 +63,7 @@
 		    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: 'btn btn-primary', method: :delete %>
 		  </div>
 	   </div>
+	   -->
     </div>
   </div>
 </div>

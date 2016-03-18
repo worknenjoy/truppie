@@ -10,6 +10,7 @@ function is_desktop_screen() {
 
 $(function(){
 	
+	$('.dropdown-toggle').dropdown();
 	
 	$('#carousel-intro').carousel({interval: false});
 	

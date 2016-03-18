@@ -167,13 +167,11 @@
 .btn-sm{
 	font-size:12px;
 	line-height:16px;
-	border: 2px solid;
 	padding:8px 15px;
 }
 
 .btn-lg{
 	font-size:18px;
 	line-height:22px;
-	border: 4px solid;
 	padding:13px 40px;
 }

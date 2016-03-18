@@ -35,22 +35,22 @@
 				    <p class="lead emblem-font"><%= t('first-description') %></p>
 				  </div>
 				  <div class="top-note">
-				  	<small>Morro dois irmãos, Rio de Janeiro - Rj</small>
+				  	<small>Vale do Pati - BA</small>
 				  </div>
 			    </div>
 			    <div class="carousel-item">
 			      <picture>
-				      <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-2-default.jpg")) %>
 				      <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-2-small.jpg") %>">
 	      			  <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-2-medium.jpg") %>">
       				  <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
+      				  <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-2-default.jpg")) %>
 				  </picture>
 				  <div class="carousel-caption">
 				    <h3 class="secondary-font display-tagline"><%= t('second-caption') %></h3>
 				    <p class="lead emblem-font"><%= t('second-description') %></p>
 				  </div>
 				  <div class="top-note">
-				  	<small>Vale do Pati, Chapada Diamantina - BA</small>
+				  	<small>Travessia Petrópolis - Teresópolis - RJ</small>
 				  </div>
 			    </div>
 			    <div class="carousel-item">
@@ -58,7 +58,7 @@
 			      	<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-3-small.jpg") %>">
 	      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-3-medium.jpg") %>">
       				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-3-full.jpg") %>">
-      					<%= image_tag("image-intro-3-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-3-default.jpg")) %>
+  					<%= image_tag("image-intro-3-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-3-default.jpg")) %>
 			      </picture>	
 			      
 				  <div class="carousel-caption">
@@ -131,8 +131,7 @@
 			    <span class="pull-xs-right">
 					<i class="fa fa-2x fa-ticket"></i>
 				</span>
-			    
-			    <%= t('truppie-item') %>
+			    <%= t('truppie-third-item') %>
 			  </li>
 			  <li class="list-group-item">
 			    <span class="pull-xs-right">
@@ -144,7 +143,7 @@
 			    <span class="pull-xs-right">
 			    	<i class="fa fa-2x fa-users"></i>
 			    </span>
-			    <%= t('truppie-third-item') %>
+			    <%= t('truppie-item') %>
 			  </li>
 			</ul>
 		</div>
@@ -237,7 +236,7 @@
 		                            <%= t('meetings-title') %>
 		                            <div class="lib-header-seperator"></div>
 		                        </div>
-		                        <div class="lib-row lib-desc spaced-down">
+		                        <div class="lib-row lib-desc spaced-down lead">
 		                            <%= t('meetings-content') %>
 		                        </div>
 		                    </div>
