@@ -30,6 +30,12 @@ Rails.application.routes.draw do
   root 'welcome#index'
   
   get 'logos' => 'welcome#logos'
+  get 'manifest' => 'welcome#manifest'
+  get 'how_it_works' => 'welcome#how_it_works'
+  get 'privacy' => 'welcome#privacy'
+  get 'defs' => 'welcome#defs'
+  get 'faq' => 'welcome#faq'
+  
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
