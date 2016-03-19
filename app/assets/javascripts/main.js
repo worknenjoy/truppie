@@ -67,7 +67,7 @@ $(function(){
 	      $("#hash").val(cc.hash());
 	    } else {
 	      $("#hash").val('');
-	      alert('Invalid credit card. Verify parameters: number, cvc, expiration Month, expiration Year');
+	      alert('Cartão de crédito inválido. Verifique: número, código de confirmação, mês de expiração, ano de expiração');
 	      return false; // Don't submit the form
 	    }
 	  });
