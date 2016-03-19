@@ -22,17 +22,18 @@
 
 @organizer = Organizer.create(
     name: "Utopicos Mundo afora",
-    description: "Não há ferramenta melhor para planejar uma viagem do que blog de mochileiro. Nele encontramos todas as informações importantes acerca de preços, meios de transporte, segurança e programas imperdíveis para além daqueles roteiros já manjados.",
+    description: "Agência de viagem e bem-estar",
     members: [@member],
     user: @user,
-    website: 'http://utopicos.com.br'
+    email: 'reservas@utopicosmundoafora.com',
+    website: 'http://www.utopicosmundoafora.com/'
 )
 
 @where = Where.create(
-  name: "Barra da Tijuca",
+  name: "Barra de Guaratiba",
   city: "Rio de Janeiro",
-  state: "Rio de Janeiro",
-  country: "Rio de Janeiro"
+  state: "RJ",
+  country: "Brasil"
 )
 
 @cat = Category.create(
@@ -40,7 +41,7 @@
 )
 
 @tagone = Tag.create(
-  name: 'montanha'
+  name: 'trilha'
 )
 
 @tagtwo = Tag.create(
@@ -49,14 +50,14 @@
 
 @attraction_one = Attraction.create(
   name: 'Praias Selvagens',
-  text: "As praias selvagens e um refugio no rio para quem quer sair das praias badaladas da zona sul",
+  text: "As praias selvagens é um refugio no rio para quem quer sair das praias badaladas da zona sul",
   photo: "http://www.trilhaape.com.br/images/programacao/Praias%20selvagens_1.JPG"
 )
 
 @attraction_two = Attraction.create(
-  name: 'Pedra do Telegrafo',
-  text: "A pedra do telegrafo e famosa pela foto das pessoas parecerem que estao penduradas",
-  photo: "https://media-cdn.tripadvisor.com/media/photo-s/07/59/12/ba/adrenalina-pura.jpg"
+  name: 'Barra de Guaratiba',
+  text: "A Barra de Guaratiba, bairro situado na zona oeste do Rio de Janeiro, conta com lindas praias, mangues e morros com muita Mata Atlântica. Há opções de trilhas que levam a mirantes com uma vista exuberante das Praias Selvagens, Pontal do Recreio, Grumari e toda a Restinga da Marambaia.",
+  photo: "http://www.etrilhas.com.br/static/media/display/marapendi03_1.jpg"
 )
 
 @language = Language.create(
@@ -65,28 +66,28 @@
 
 @tour = Tour.create(
 
-  title: 'Subida a Pedra do Telegrafo',
-  description: 'A pedidos, vamos subir a pedra do telegrafo',
+  title: 'Trilha da Pedra do Telégrafo',
+  description: 'A Pedra do Telégrafo ficou famosa pelas fotos criativas e aparentemente perigosas que as pessoas tiram nela. A trilha para chegar até lá tem aproximadamente 3km (ida e volta).<br />Recomendações:<br/> Calçar bota ou tênis de caminhada<br />Levar água, repelente, protetor solar e corta vento<br />Não esquecer documentação (Identidade e carteira de plano de saúde)',
   value: 45,
   currency: 'BRL',
   organizer: @organizer,
-  start: '2016-03-12 06:00:00',
-  end: '2016-03-12 12:00:00',
-  photo: 'http://1.bp.blogspot.com/-RRVQXEOr2Fg/VZtDRtAOo_I/AAAAAAAAFOo/6bCSAYsqeL4/s640/DSC00279.JPG',
-  availability: 7,
-  minimum: 2,
-  maximum: 7,
-  difficulty: 2,
+  start: '2016-03-27 07:00:00',
+  end: '2016-03-27 12:00:00',
+  photo: 'http://mochilando.com.br/wp-content/uploads/2015/05/pedra-do-telegrafo-rj-dicas.jpg',
+  availability: 20,
+  minimum: 5,
+  maximum: 20,
+  difficulty: 3,
   where: @where,
-  address: 'praia de grumari, s/n',
+  address: 'Barra de Guaratiba - Rio de Janeiro - RJ',
   user: @user,
   included: 'carona solidaria',
-  nonincluded: 'comida',
+  nonincluded: 'Alimentação, Transporte',
   category: @cat,
   tags: [@tagone, @tagtwo],
   attractions: [@attraction_one, @attraction_two],
   languages: [@language],
-  meetingpoint: 'Praia da Barra'
+  meetingpoint: 'Informado após a confirmação'
 )
 
 

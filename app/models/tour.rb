@@ -22,17 +22,17 @@ class Tour < ActiveRecord::Base
   def level
     case self.difficulty
     when 1
-      "very easy"
+      "muito fácil"
     when 2
-      "easy"
+      "fácil"
     when 3
-      "moderate"
+      "moderada"
     when 4
-      "hard"
+      "difícil"
     when 5
-      "very hard"
+      "muito difícil"
     else
-      "not defined"
+      "não definida"
     end
   end
   

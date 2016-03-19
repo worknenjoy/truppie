@@ -46,9 +46,13 @@
 				<div class="text-xs-center">
 					<%= image_tag("logo_utopicos.png", :alt => "Truppie", :width => '60') %>
 					<p>
-						<%= @tour.organizer.name %> <br />
+						<strong><%= @tour.organizer.name %> </strong><br />
+						<%= @tour.organizer.description %> <br />
 						<% if @tour.organizer.website %>
-						<%= link_to @tour.organizer.website, @tour.organizer.website %>
+						<%= link_to @tour.organizer.website, @tour.organizer.website %><br />
+						<% end %>
+						<% if @tour.organizer.email %>
+						<a href="mailto:<%= @tour.organizer.email %>">entre em contato por email</a> <br />
 						<% end %>
 					</p>
 					
@@ -60,12 +64,12 @@
 		            	<li>
 		            		<i class="fa fa-ticket"></i>
 		            		<% if not @tour.soldout? %> 
-		            		<%= @tour.available %> tickets disponíveis
+		            		<%= @tour.available %> vagas disponíveis
 		            		<% else %>
 		            			Não ha mais ticket disponiveis
 		            		<% end %>
 	            		</li>
-		                <li><i class="fa fa-map-marker"></i> <%= @tour.where.name %></li>
+		                <li><i class="fa fa-map-marker"></i> <%= @tour.where.name %> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
 		                <li>
 		                	<i class="fa fa-globe"></i>
 		                	<% @tour.languages.each do |lang| %>
@@ -117,7 +121,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>Sobre</strong></h4>
-				<p><%= @tour.description %></p>
+				<p><%= raw @tour.description %></p>
 			</div>
 		</div>
 		<div class="row">

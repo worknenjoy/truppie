@@ -15,9 +15,9 @@
                     <h2 class="spaced-smallest"><%= raw @tour.price %></h2>
                 </div>
                 <ul class="list-group list-group-flush text-xs-center">
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i><%= @tour.start.strftime("%A") %> <br/> <%= @tour.start.strftime("%d") %> de <%= @tour.start.strftime("%B") %> de <%= @tour.start.strftime("%Y") %> as <%= @tour.start.strftime("%Hh%M") %> </li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><%= l(@tour.start, format: '%A') %> <br/> <%= l(@tour.start, format: '%d de %B de %Y as %Hh%M') %></li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Organizado por:</strong> <br/><%= @tour.organizer.name %></li>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Local:</strong><br /><%= @tour.where.name %></li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Local:</strong><br /><%= @tour.where.name %> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
                     <% if @tour.meetingpoint %>
                     	<li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Ponto de encontro:</strong><br /><%= @tour.meetingpoint %></li>
                     <% end %>

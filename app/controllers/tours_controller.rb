@@ -38,8 +38,8 @@ class ToursController < ApplicationController
             {
               product: @tour.title,
               quantity: 1,
-              detail: @tour.description,
-              price: @tour.value.to_i
+              detail: @tour.description.first(250),
+              price: @tour.value.to_i * 100
             }
           ],
           customer: {
@@ -85,10 +85,10 @@ class ToursController < ApplicationController
               :tour => @tour,
               :status => payment.status,
               :payment => payment.id,
-              :price => @tour.value.to_i
+              :price => @tour.value.to_i * 100
             )
             if @order.save() and @tour.save()
-              flash[:success] = "Presence Confirmed!"
+              flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas Reservas"
               flash[:order_id] = order.id
               redirect_to @tour
             else
@@ -96,15 +96,15 @@ class ToursController < ApplicationController
               redirect_to @tour
             end
           else
-            flash[:error] = "It now was possible confirm this user"
+            flash[:error] = "Não foi possível confirmar este usuário"
             redirect_to @tour
           end
         else
-          flash[:error] = "No payment information supplied"
+          flash[:error] = "Não foi informado informações sobre o pagamento"
           redirect_to @tour
         end
       else
-        flash[:error] = "this event is soldout"
+        flash[:error] = "Este evento está esgotado"
         redirect_to @tour
       end 
     end
