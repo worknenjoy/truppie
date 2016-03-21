@@ -7,7 +7,7 @@ class SubscribersController < ApplicationController
       redirect_to root_path + '#warning'
     else
        if @subscriber.save
-          flash[:success] = "Subscriber was recorded"
+          flash[:success] = "Você foi inscrito com sucesso, aguarde as novidades"
           redirect_to root_path + '#warning'
        end 
     end

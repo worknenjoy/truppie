@@ -1,10 +1,10 @@
-<%= notice %>
 <%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 spaced-smallest">
 			<h4 class="spaced-down">Confirmação de passeio</h4>
-			<p>Pronto, sua truppie está quase reservada. Oba! Dá mais uma olhada aí nos detalhes para ter certeza de que está tudo certinho.</p>
+			<p>Sua truppie está quase reservada. Oba! Dá mais uma olhada aí nos detalhes para ter certeza de que está tudo certinho.</p>
             <div class="card">
                 <div class="card-header">
                     <h5 class="text-center">
@@ -23,6 +23,15 @@
                     <% end %>
                 </ul>
             </div>
+            <p class="spaced-smallest">Em caso de dúvidas ou desistência, entre em contato com a gente em <a href="mailto:ola@truppie.com">ola@truppie.com</a></p>
+	        <p>Seus dados serão protegidos e nunca fornecidos a terceiros</p>
+	        <h4>Reembolso</h4>
+	        <ul>
+	        <li><p>O reembolso será feito integralmente antes das 48 Horas</p></li>
+	        <li><p>Seu cartão poderá ser pré-aprovado se confirmado 5 dias antes</p></li>
+	        <li><p>Você pode receber o dinheiro de volta integralmente caso o evento não ocorra</p></li>
+	        <li><p>Este evento pode depender de condções climáticas</p></li>
+	        </ul>
         </div>
         <%= form_tag confirm_presence_tour_path, :method => 'post' do %>
         <div class="col-xs-12 col-md-8">
@@ -36,52 +45,36 @@
                             <div class="form-group">
                             	<%= hidden_field_tag :id, @tour %>
                             	<%= hidden_field_tag :method, "CREDIT_CARD" %>
-					            <%= text_field_tag :fullname, nil, placeholder: "Nome completo", required: true, class: "form-control" %>
+                            	<label for="fullname">Nome Completo</label>
+					            <%= text_field_tag :fullname, nil, placeholder: "Mesmo do cartão de crédito", required: true, class: "form-control" %>
                             </div>
                         </div>
                         <div class="col-xs-12">
                             <div class="form-group">
-					            <%= text_field_tag :birthdate, nil, placeholder: "Data de nascimento", required: true, class: "form-control" %>
+                            	<label for="fullname">Data de nascimento</label>
+					            <%= text_field_tag :birthdate, nil, placeholder: "dd/mm/aaaa", required: true, class: "form-control" %>
                             </div>
                         </div>
                         <div class="col-xs-12">
                             <div class="form-group">
-					            <%= text_field_tag :cpf_number, nil, placeholder: "Número do CPF", required: true, class: "form-control" %>
+                            	<label for="cpf_number">Número do CPF</label>
+					            <%= text_field_tag :cpf_number, nil, placeholder: "Sem pontos ou traços", required: true, class: "form-control" %>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-7 col-md-6">
-                        	<label for="expMonth">Código do país e área</label>
-                            <div class="form-group">
-                                <div class="pull-left col-xs-6 col-md-3 pl-ziro">
-                                    <%= text_field_tag :country_code, nil, placeholder: "xx", required: true, class: "form-control" %>
-                                </div>
-                                <div class="col-xs-6 col-md-3 pl-ziro">
-                                    <%= text_field_tag :area_code, nil, placeholder: "xx", required: true, class: "form-control" %>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-5 col-md-5 pull-right">
-                            <div class="form-group">
-                                <label for="cvCode">Telefone:</label>
-                                <%= text_field_tag :phone_number, nil, placeholder: "xxxxxxxx", required: true, class: "form-control" %>
-                            </div>
-                        </div>
-                    </div>
-                </div>    
+                </div> 
             </div>
         </div>
         <div class="col-xs-12 col-md-4">
             <div class="card font-card-small">
                 <div class="card-header">
-                    <h4>Payment Details</h4>
+                    <h4>Dados para pagamento</h4>
                     <img src="http://i76.imgup.net/accepted_c22e0.png">
                 </div>
                 <div class="card-block">
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="form-group">
+                            <div class="form-group form-card-number">
                                 <label for="cardNumber">Número do cartão</label>
                                 <div class="input-group">
                                     <%= text_field_tag :number, nil, placeholder: "Número do cartão válido", required: true, class: "form-control" %>
@@ -119,6 +112,9 @@
             <div class="row">
 	            <div class="col-xs-12">
 	            	<%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
+	            	<div class="text-xs-center">
+	            		<%= image_tag("selo_moip_with_debit.png", :alt => "Truppie", :class => "img-fluid spaced-default") %>
+	            	</div>
 	            </div>
 	            <textarea style="display:none;" id="public_key">-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAonuGqRVzIpKya3PVLj22
@@ -134,5 +130,4 @@ lwIDAQAB
         </div>
         <% end %>
 	</div>
-	<p class="spaced-default">Em caso de dúvidas ou desistência, entre em contato com a gente em <a href="mailto:ola@truppie.com">ola@truppie.com</a></p>
 </div>

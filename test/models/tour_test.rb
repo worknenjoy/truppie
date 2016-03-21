@@ -66,18 +66,18 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "friendly duration" do
-      assert_equal "3 minutes", Tour.last.duration
+      assert_equal "3 minutos", Tour.last.duration
    end
    
    test "a friendly duration more accurated test" do
      Tour.last.update_attribute(:start, '2016-03-01 23:56:31')
      Tour.last.update_attribute(:end, '2018-03-01 23:56:31')
-     assert_equal "about 2 years", Tour.last.duration
+     assert_equal "aproximadamente 2 anos", Tour.last.duration
    end
    
    test "a tour friendly difficult measure" do
      easytour = Tour.last.level
-     assert_equal "easy", easytour
+     assert_equal "fácil", easytour
    end
    
    test "a price in real" do

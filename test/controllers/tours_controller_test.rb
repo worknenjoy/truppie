@@ -17,7 +17,7 @@ class ToursControllerTest < ActionController::TestCase
       number: "4012001038443335",
       cvc: "123",
       fullname: "Alexandre Magno Teles Zimerer",
-      birthdate: "1988-10-10",
+      birthdate: "10/10/1988",
       cpf_number: "22222222222",
       country_code: "55",
       area_code: "11",
@@ -74,13 +74,13 @@ class ToursControllerTest < ActionController::TestCase
   
   test "should confirm presence" do
     post :confirm_presence, @payment_data
-    assert_equal 'Presence Confirmed!', flash[:success]
+    assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas Reservas", flash[:success]
     assert_redirected_to tour_path(assigns(:tour))
   end
   
   test "should not confirm presence with no payment" do
     post :confirm_presence, {id: @tour}
-    assert_equal 'No payment information supplied', flash[:error]
+    assert_equal 'Não foi informado informações sobre o pagamento', flash[:error]
     assert_redirected_to tour_path(assigns(:tour))
   end
   
@@ -96,7 +96,7 @@ class ToursControllerTest < ActionController::TestCase
     @tour.confirmeds.create(user: users(:fulano))
     @tour.confirmeds.create(user: users(:ciclano))
     post :confirm_presence, @payment_data
-    assert_equal 'this event is soldout', flash[:error]
+    assert_equal 'Este evento está esgotado', flash[:error]
     assert_redirected_to tour_path(assigns(:tour))
   end
   
@@ -111,7 +111,7 @@ class ToursControllerTest < ActionController::TestCase
   
   test "should create a order with the given id" do
     post :confirm_presence, @payment_data
-    assert_equal 'Presence Confirmed!', flash[:success]
+    assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas Reservas", flash[:success]
     assert_redirected_to tour_path(assigns(:tour))
     assert_equal Order.last.source_id, flash[:order_id]
     assert_equal Order.last.status, "IN_ANALYSIS"
@@ -129,6 +129,20 @@ class ToursControllerTest < ActionController::TestCase
     response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{payment_id}", headers
     json_data = JSON.parse(response)
     assert_equal payment_id, json_data["id"]
+  end
+  
+  test "should pass a valid birthdate" do
+    post :confirm_presence, @payment_data
+    payment_id = Order.last.payment
+    
+    headers = {
+      :content_type => 'application/json',
+      :authorization => Rails.application.secrets[:moip_auth]
+    }
+    
+    response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{payment_id}", headers
+    json_data = JSON.parse(response)
+    assert_equal '1988-10-10', json_data["fundingInstrument"]["creditCard"]["holder"]["birthdate"]
   end
   
   # test "should destroy tour" do

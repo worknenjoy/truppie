@@ -8,6 +8,20 @@ function is_desktop_screen() {
 	return window.innerWidth > 480;
 }
 
+var timeoutID;
+
+function delayedAlert() {
+  timeoutID = window.setTimeout(slowAlert, 4000);
+}
+
+function slowAlert() {
+  $('.overall-alert').removeClass('slideInDown').addClass('fadeOutUp');
+}
+
+function clearAlert() {
+  window.clearTimeout(timeoutID);
+}
+
 $(function(){
 	
 	$('.dropdown-toggle').dropdown();
@@ -67,10 +81,20 @@ $(function(){
 	      $("#hash").val(cc.hash());
 	    } else {
 	      $("#hash").val('');
-	      alert('Cartão de crédito inválido. Verifique: número, código de confirmação, mês de expiração, ano de expiração');
+	      $('.form-card-number .alert').remove();
+	      $('.form-card-number').prepend('<div class="alert alert-danger animated bounceIn"><strong>Cartão de crédito inválido</strong><br />Verifique: número, código de confirmação, mês de expiração, ano de expiração</div>');
 	      return false; // Don't submit the form
 	    }
 	  });
-	
+	  
+  	
+	  
+  	if($('.overall-alert').length) {
+  		delayedAlert();
+  		$('.close').on('click', function () {
+  			$('.overall-alert').removeClass('slideInDown').addClass('fadeOutUp');
+		});
+  	}
+  	
  	new WOW().init();
 });

@@ -61,17 +61,13 @@ class ToursController < ApplicationController
                           cvc: @payment_data[:cvc],
                           holder: {
                               fullname: @payment_data[:fullname],
-                              birthdate: @payment_data[:birthdate],
+                              birthdate: @payment_data[:birthdate].to_date.strftime('%Y-%m-%d'),
                               tax_document: {
                                   type: "CPF",
                                   number: @payment_data[:cpf_number]
                           },
-                              phone: {
-                                  country_code: @payment_data[:country_code],
-                                  area_code: @payment_data[:area_code],
-                                  number: @payment_data[:phone_number]
-                              }
-                          }
+                              
+                        }
                       }
                   }
               }
@@ -96,7 +92,7 @@ class ToursController < ApplicationController
               redirect_to @tour
             end
           else
-            flash[:error] = "Não foi possível confirmar este usuário"
+            flash[:danger] = payment.errors[0].description
             redirect_to @tour
           end
         else

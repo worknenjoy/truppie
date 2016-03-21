@@ -1,7 +1,10 @@
 <% if !flash.empty? %>
-<div class="error-notice animated flipInY">
+<div class="overall-alert animated slideInDown text-xs-center">
 	<% flash.each do |k| %> 
-        <div class="oaerror info <%= k[0] %>">
+        <div class="alert alert-success alert-<%= k[0] %>" role="alert">
+        	<button type="button" class="close" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
     		<strong><%= k[0] %></strong> - <%= k[1] %>
   		</div> 
     <% end %>

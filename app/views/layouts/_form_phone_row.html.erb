@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-xs-7 col-md-6">
+    	<label for="expMonth">Código do país e área</label>
+        <div class="form-group">
+            <div class="pull-left col-xs-6 col-md-3 pl-ziro">
+                <%= text_field_tag :country_code, nil, placeholder: "xx", required: true, class: "form-control" %>
+            </div>
+            <div class="col-xs-6 col-md-3 pl-ziro">
+                <%= text_field_tag :area_code, nil, placeholder: "xx", required: true, class: "form-control" %>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-5 col-md-5 pull-right">
+        <div class="form-group">
+            <label for="cvCode">Telefone:</label>
+            <%= text_field_tag :phone_number, nil, placeholder: "xxxxxxxx", required: true, class: "form-control" %>
+        </div>
+    </div>
+</div>

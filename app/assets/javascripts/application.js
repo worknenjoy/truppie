@@ -20,5 +20,6 @@
 //= require util
 //= require carousel
 //= require dropdown
+//= require alert
 //= require moip
 //= require main
