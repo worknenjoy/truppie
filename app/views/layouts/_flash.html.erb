@@ -1,11 +1,11 @@
 <% if !flash.empty? %>
 <div class="overall-alert animated slideInDown text-xs-center">
 	<% flash.each do |k| %> 
-        <div class="alert alert-success alert-<%= k[0] %>" role="alert">
+        <div class="alert alert-success alert-<%= flash_status(k[0])[:className] %>" role="alert">
         	<button type="button" class="close" aria-label="Close">
 		      <span aria-hidden="true">&times;</span>
 		    </button>
-    		<strong><%= k[0] %></strong> - <%= k[1] %>
+    		<strong><%= flash_status(k[0])[:label] %></strong> - <%= k[1] %>
   		</div> 
     <% end %>
 </div>

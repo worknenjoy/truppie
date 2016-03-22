@@ -92,7 +92,7 @@ class ToursController < ApplicationController
               redirect_to @tour
             end
           else
-            flash[:danger] = payment.errors[0].description
+            flash[:error] = payment.errors[0].description
             redirect_to @tour
           end
         else
