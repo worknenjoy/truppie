@@ -42,44 +42,57 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
-				<h5 class="spaced-smallest"><i class="fa fa-child"></i> <strong>Guia:</strong></h5>
-				<div class="text-xs-center">
-					<%= image_tag("logo_utopicos.png", :alt => "Truppie", :width => '60') %>
-					<p>
-						<strong><%= @tour.organizer.name %> </strong><br />
-						<%= @tour.organizer.description %> <br />
-						<% if @tour.organizer.website %>
-						<%= link_to @tour.organizer.website, @tour.organizer.website %><br />
-						<% end %>
-						<% if @tour.organizer.email %>
-						<a href="mailto:<%= @tour.organizer.email %>">entre em contato por email</a> <br />
-						<% end %>
-					</p>
-					
+				<div class="card">
+					<div class="card-header">
+						<h5 class="spaced-smallest"><i class="fa fa-child"></i> <strong>Guia:</strong></h5>
+					</div>
+					<div class="card-block">
+						<div class="text-xs-center">
+							<h4 class="card-title">
+								<%= image_tag("logo_utopicos.png", :alt => "Truppie", :width => '120', class: 'spaced-smallest') %><br />
+								<strong><%= @tour.organizer.name %> </strong>
+							</h4>
+						    <p class="card-text"><%= @tour.organizer.description %></p>
+						    <% if @tour.organizer.website %>
+								<%= link_to @tour.organizer.website, class: 'btn btn-primary-outline btn-sm' do %>
+									<i class="fa fa-external-link"></i> <%= @tour.organizer.website %>
+								<% end %>
+							<% end %>
+							<% if @tour.organizer.email %>
+							<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @tour.organizer.email %>"><i class="fa fa-envelope"></i> entre em contato por email</a> <br />
+							<% end %>
+							
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-6">
-				<div class="card card-block">
-		            <ul class="list-unstyled tour-info">
-		            	<li>
-		            		<i class="fa fa-ticket"></i>
-		            		<% if not @tour.soldout? %> 
-		            			<strong><%= @tour.available %></strong> vagas disponíveis
-		            		<% else %>
-		            			Não ha mais ticket disponiveis
-		            		<% end %>
-	            		</li>
-	            		<li><i class="fa fa-calendar"></i>  <strong><%= @tour.duration %></strong> de duração</li>
-		                <li><i class="fa fa-heartbeat"></i> <strong><%= @tour.level %></strong></li>
-		                <li><i class="fa fa-map-marker"></i> <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
-		                <li>
-		                	<i class="fa fa-globe"></i>
-		                	<% @tour.languages.each do |lang| %>
-								 <%= lang.name %>
-							<% end %>
-	                	 </li>
-		            </ul>
-		            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
+				<div class="card">
+					<div class="card-header">
+						<h5 class="spaced-smallest"><i class="fa fa-info-circle"></i> <strong>Informações:</strong></h5>
+					</div>
+					<div class="card-block">
+			            <ul class="list-unstyled tour-info">
+			            	<li>
+			            		<i class="fa fa-ticket"></i>
+			            		<% if not @tour.soldout? %> 
+			            			<strong><%= @tour.available %></strong> vagas disponíveis
+			            		<% else %>
+			            			Não ha mais ticket disponiveis
+			            		<% end %>
+		            		</li>
+		            		<li><i class="fa fa-calendar"></i>  <strong><%= @tour.duration %></strong> de duração</li>
+			                <li><i class="fa fa-heartbeat"></i> <strong><%= @tour.level %></strong></li>
+			                <li><i class="fa fa-map-marker"></i> <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
+			                <li>
+			                	<i class="fa fa-globe"></i>
+			                	<% @tour.languages.each do |lang| %>
+									 <%= lang.name %>
+								<% end %>
+		                	 </li>
+			            </ul>
+			            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
+			        </div>
 		        </div>
 	       </div>
 		</div>
