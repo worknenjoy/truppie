@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  get 'contacts/index'  
+  post 'contacts/send_form'
+
   resources :orders
   resources :organizers
   

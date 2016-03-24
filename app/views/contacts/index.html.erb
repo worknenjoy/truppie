@@ -1,0 +1,30 @@
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2 class="spaced-smallest">Entre em contato com a Truppie</h2>
+			<p>Se preferir, você pode enviar um e-mail para <a href="mailto:ola@truppie.com" title="enviar um e-mail para a truppie diretamente">ola@truppie.com</a>
+			<%= form_tag contacts_send_form_path, :method => 'post' do %>
+			  <fieldset class="form-group">
+			    <label for="exampleInputEmail1">Nome</label>
+			    <%= text_field_tag :name, nil, placeholder: "Seu nome", class: "form-control" %>
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="exampleInputEmail1">E-mail</label>
+			    <%= text_field_tag :email, nil, placeholder: "Seu e-mail é", class: "form-control" %>
+			    <small class="text-muted">Fique tranquilo, não compartilharemos seu e-mail com ninguém</small>
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="exampleSelect1">Assunto</label>
+			    <%= select_tag(:subject, options_for_select([['Dúvida', 'duvida'], ['Crítica', 'critica'], ['Sugestão', 'sugestao']]), class: 'form-control') %>
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="exampleTextarea">Mensagem:</label>
+			    <%= text_area_tag(:body, nil, class: "form-control", rows: "5", placeholder: 'Sua mensagem') %>
+			  </fieldset>
+			  <%= submit_tag "Enviar", class: 'btn btn-success btn-lg pull-xs-right' %>
+			<% end %>
+		</div>
+	</div>
+</div>
