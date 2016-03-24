@@ -8,16 +8,16 @@
 			<%= form_tag contacts_send_form_path, :method => 'post' do %>
 			  <fieldset class="form-group">
 			    <label for="exampleInputEmail1">Nome</label>
-			    <%= text_field_tag :name, nil, placeholder: "Seu nome", class: "form-control" %>
+			    <%= text_field_tag :name, current_user.try(:name), placeholder: "Seu nome", class: "form-control" %>
 			  </fieldset>
 			  <fieldset class="form-group">
 			    <label for="exampleInputEmail1">E-mail</label>
-			    <%= text_field_tag :email, nil, placeholder: "Seu e-mail é", class: "form-control" %>
+			    <%= text_field_tag :email, current_user.try(:email), placeholder: "Seu e-mail é", class: "form-control" %>
 			    <small class="text-muted">Fique tranquilo, não compartilharemos seu e-mail com ninguém</small>
 			  </fieldset>
 			  <fieldset class="form-group">
 			    <label for="exampleSelect1">Assunto</label>
-			    <%= select_tag(:subject, options_for_select([['Dúvida', 'duvida'], ['Crítica', 'critica'], ['Sugestão', 'sugestao']]), class: 'form-control') %>
+			    <%= select_tag(:subject, options_for_select([['Dúvida', 'Dúvida'], ['Crítica', 'Crítica'], ['Sugestão', 'Sugestão'], ['Elogio', 'Elogio']]), class: 'form-control') %>
 			  </fieldset>
 			  <fieldset class="form-group">
 			    <label for="exampleTextarea">Mensagem:</label>

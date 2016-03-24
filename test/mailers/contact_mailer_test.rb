@@ -10,7 +10,7 @@ class ContactMailerTest < ActionMailer::TestCase
      assert_not ActionMailer::Base.deliveries.empty?
      assert_equal ['alexanmtz@gmail.com'], mail.from
      assert_equal ['ola@truppie.com'], mail.to
-     assert_equal "#{params[:name]} sent \n #{params[:body]}", mail.body.raw_source
+     assert_equal "#{params[:name]} enviou \n #{params[:body]}", mail.body.raw_source
      
    end
 end

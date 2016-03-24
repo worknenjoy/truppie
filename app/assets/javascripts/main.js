@@ -26,6 +26,10 @@ $(function(){
 	
 	$('.dropdown-toggle').dropdown();
 	
+	$('form').on('submit', function(){
+		$(this).find('input[type=submit]').attr('disabled', '');
+	});
+	
 	$('#carousel-intro').carousel({interval: false});
 	
  	$('#carousel-intro').on('swiperight', function(e){

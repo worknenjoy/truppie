@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
   
   def send_form
     if params[:email].empty? or params[:body].empty? 
-      flash[:error] = 'Por favor, preencha seu email e a mensagem'
+      flash[:error] = 'Faltou preencher o email e/ou a mensagem'
     else
       if ContactMailer.send_form(params).deliver_now
         flash[:success] = 'Sua mensagem foi enviada com sucesso, entraremos em contato em breve'
