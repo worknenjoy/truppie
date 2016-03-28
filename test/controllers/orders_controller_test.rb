@@ -47,4 +47,92 @@ class OrdersControllerTest < ActionController::TestCase
 
     assert_redirected_to orders_path
   end
+  
+  test "should not create a webhook without default parameter" do
+    get :new_webhook
+    assert_equal 'voce precisa definir o tipo de webhook que voce ira enviar', flash[:error]
+  end
+  
+  test "should create a default webhook" do
+    get :new_webhook, {:webhook_type => 'default'}
+    
+    assert_equal 'webhook padrao criado com sucesso', flash[:success]
+    assert_not_nil assigns(:webhook_id)
+  end
+  
+  test "should receive a post with error if no parameter is given" do
+    post :webhook, {}
+    assert_response :error
+  end
+  
+  test "should receive a post with successfull parameters from moip and send a email" do
+    post :webhook, {
+      event: "PAYMENT.IN_ANALYSIS",
+      resource: {
+        payment: {
+          id: "PAY-32LJ77AT4JNN",
+          status: "IN_ANALYSIS",
+          installmentCount: 1,
+          amount: {
+            total: 2000,
+            liquid: 1813,
+            refunds: 0,
+            fees: 187,
+            currency: "BRL"
+          },
+          fundingInstrument: {
+            method: "CREDIT_CARD",
+            creditCard: {
+              id: "CRC-BXXOA5RLGQR8",
+              holder: {
+                taxDocument: {
+                  number: "33333333333",
+                  type: "CPF"
+                },
+                birthdate: "30/12/1988",
+                fullname: "Jose Portador da Silva"
+              },
+              brand: "MASTERCARD",
+              first6: "555566",
+              last4: "8884"
+            }
+          },
+          events: [
+            {
+              createdAt: "2015-03-16T18:11:19-0300",
+              type: "PAYMENT.IN_ANALYSIS"
+            },
+            {
+              createdAt: "2015-03-16T18:11:16-0300",
+              type: "PAYMENT.CREATED"
+            }
+          ],
+          fees: [
+            {
+              amount: 187,
+              type: "TRANSACTION"
+            }
+          ],
+          createdAt: "2015-03-16T18:11:16-0300",
+          updatedAt: "2015-03-16T18:11:19-0300",
+          _links: {
+            order: {
+              title: "ORD-SDZARE29MWVY",
+              href: "https://sandbox.moip.com.br/v2/orders/ORD-SDZARE29MWVY"
+            },
+            self: {
+              href: "https://sandbox.moip.com.br/v2/payments/PAY-32LJ77AT4JNN"
+            }
+          }
+        }
+      }
+    }
+    assert_not_nil assigns(:payment_id)
+    assert_not_nil assigns(:event)
+    assert_response :success
+    assert_not ActionMailer::Base.deliveries.empty?
+    
+  end
+  
+  
 end

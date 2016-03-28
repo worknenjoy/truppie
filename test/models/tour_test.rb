@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'json'
 
 class TourTest < ActiveSupport::TestCase
   test "one tour created" do
@@ -137,6 +138,65 @@ class TourTest < ActiveSupport::TestCase
       )
       assert_equal payment[:events][1][:type], "PAYMENT.CREATED"
       assert_equal payment.success?, true
-      puts api.payment.inspect
    end
+   
+   test "create a webhook to moip" do
+      headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      receive_url = "http://localhost:3000/webhook"
+      
+      post_params = {
+        events: [
+          "ORDER.*",
+          "PAYMENT.AUTHORIZED",
+          "PAYMENT.CANCELLED",
+          "PAYMENT.IN_ANALYSIS"
+        ],
+        target: Rails.application.routes.url_helpers.webhook_url,
+        media: "WEBHOOK"
+      }
+      
+      response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      json_data = JSON.parse(response)
+      puts json_data.inspect
+      assert_equal json_data["events"].length, 4
+      assert_equal json_data["target"], receive_url
+      assert_not_nil json_data["token"]
+   end
+   
+   test "Consulting a notification created before" do
+      headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      post_params = {
+        events: [
+          "ORDER.*",
+          "PAYMENT.AUTHORIZED",
+          "PAYMENT.CANCELLED"
+        ],
+        target: "http://localhost:3000/webhook",
+        media: "WEBHOOK"
+      }
+      
+      #response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params, headers
+      response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      json_data = JSON.parse(response)
+      hook_id = json_data["id"]
+      
+      headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      response = RestClient.get "https://sandbox.moip.com.br/v2/preferences/notifications/#{hook_id}", headers
+      json_get_data = JSON.parse(response)
+      assert_equal hook_id, json_get_data["id"]
+      
+   end
+   
 end

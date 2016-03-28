@@ -55,13 +55,32 @@
 						    <p class="card-text"><%= @tour.organizer.description %></p>
 						    <% if @tour.organizer.website %>
 								<%= link_to @tour.organizer.website, class: 'btn btn-primary-outline btn-sm' do %>
-									<i class="fa fa-external-link"></i> <%= @tour.organizer.website %>
+									<i class="fa fa-external-link"></i> entrar no site
 								<% end %>
 							<% end %>
 							<% if @tour.organizer.email %>
-							<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @tour.organizer.email %>"><i class="fa fa-envelope"></i> entre em contato por email</a> <br />
+							<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @tour.organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
 							<% end %>
-							
+							<div class="hovercard">
+								<div class="bottom">
+									<% if @tour.organizer.instagram %>
+				                    <a class="btn btn-info btn-sm" href="<%= @tour.organizer.instagram %>">
+				                        <i class="fa fa-instagram"></i>
+				                    </a>
+				                    <% end %>
+				                    <% if @tour.organizer.facebook %>
+				                    <a class="btn btn-primary btn-sm" rel="publisher"
+				                       href="<%= @tour.organizer.facebook %>">
+				                        <i class="fa fa-facebook"></i>
+				                    </a>
+				                    <% end %>
+				                    <% if @tour.organizer.twitter %>
+				                    <a class="btn btn-primary btn-twitter btn-sm" href="<%= @tour.organizer.twitter %>">
+				                        <i class="fa fa-twitter"></i>
+				                    </a>
+				                    <% end %>
+				                </div>
+							</div>
 						</div>
 					</div>
 				</div>

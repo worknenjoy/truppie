@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   post 'contacts/send_form'
 
   resources :orders
+  
+  post 'webhook', to: 'orders#webhook'
+  get 'new_webhook', to: 'orders#new_webhook'
+  
   resources :organizers
   
   resources :tours do
@@ -13,7 +17,6 @@ Rails.application.routes.draw do
       post 'unconfirm_presence'
     end
   end
-  
   
   post 'subscribers/create'
   

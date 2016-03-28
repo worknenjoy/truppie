@@ -1,6 +1,64 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  
+  def new_webhook
+    if params[:webhook_type] == 'default'
+      
+      webhook_url = Rails.application.routes.url_helpers.webhook_url
+      
+      headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      post_params = {
+        events: [
+          "ORDER.*",
+          "PAYMENT.AUTHORIZED",
+          "PAYMENT.CANCELLED"
+        ],
+        target: webhook_url,
+        media: "WEBHOOK"
+      }
+      
+      response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      json_data = JSON.parse(response)
+      hook_id = json_data["id"]
+      
+      headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      response = RestClient.get "https://sandbox.moip.com.br/v2/preferences/notifications/#{hook_id}", headers
+      json_get_data = JSON.parse(response)
+      if json_get_data["id"]
+        flash[:success] = 'webhook padrao criado com sucesso'
+        @webhook_id = json_get_data["id"]
+        @webhook_return_url = webhook_url
+      else
+        flash[:error] = 'Nao foi possivel criar webhook'      
+      end
+    else
+      flash[:error] = 'voce precisa definir o tipo de webhook que voce ira enviar'
+    end
+  end
+    
+  def webhook 
+    if params[:resource].nil?
+      render :status => 500
+    else
+      if !params[:resource][:payment].nil?
+        @payment_id = params[:resource][:payment][:id]
+        @event = params[:event]
+        CreditCardStatusMailer.status_change(@payment_id).deliver_now
+        
+      else
+        render :status => 500
+      end
+    end
+  end
+  
   # GET /orders
   # GET /orders.json
   def index

@@ -5,6 +5,7 @@ class CreateOrganizers < ActiveRecord::Migration
       t.string :logo
       t.string :cover
       t.string :description
+      t.string :fulldesc
       t.references :member, index: true
       t.integer :rating
       t.references :user, index: true, null: false

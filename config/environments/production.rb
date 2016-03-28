@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  self.routes.default_url_options[:host] = 'truppie.com'
+
   config.action_mailer.default_url_options = { :host => 'truppie.com' }
   
   config.action_mailer.delivery_method = :smtp
