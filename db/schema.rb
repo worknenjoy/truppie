@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20160316001604) do
     t.string   "logo"
     t.string   "cover"
     t.string   "description"
+    t.string   "fulldesc"
     t.integer  "member_id"
     t.integer  "rating"
     t.integer  "user_id",     null: false
@@ -226,7 +227,7 @@ ActiveRecord::Schema.define(version: 20160316001604) do
     t.integer  "rating"
     t.integer  "value"
     t.string   "currency"
-    t.integer  "organizer_id",  null: false
+    t.integer  "organizer_id",               null: false
     t.datetime "start"
     t.datetime "end"
     t.string   "photo"
@@ -234,11 +235,13 @@ ActiveRecord::Schema.define(version: 20160316001604) do
     t.integer  "minimum"
     t.integer  "maximum"
     t.integer  "difficulty"
-    t.integer  "where_id",      null: false
+    t.integer  "where_id",                   null: false
     t.string   "address"
-    t.integer  "user_id",       null: false
-    t.string   "included"
-    t.string   "nonincluded"
+    t.integer  "user_id",                    null: false
+    t.text     "included",      default: [],              array: true
+    t.text     "nonincluded",   default: [],              array: true
+    t.text     "take",          default: [],              array: true
+    t.text     "goodtoknow",    default: [],              array: true
     t.integer  "category_id"
     t.integer  "tag_id"
     t.integer  "attraction_id"
@@ -249,8 +252,8 @@ ActiveRecord::Schema.define(version: 20160316001604) do
     t.integer  "review_id"
     t.string   "verified"
     t.string   "status"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "tours", ["attraction_id"], name: "index_tours_on_attraction_id", using: :btree

@@ -44,7 +44,7 @@
 			<div class="col-xs-12 col-md-6">
 				<div class="card">
 					<div class="card-header">
-						<h5 class="spaced-smallest"><i class="fa fa-child"></i> <strong>Guia:</strong></h5>
+						<h5 class="spaced-smallest"><i class="fa fa-map-o"></i> <strong>Guia:</strong></h5>
 					</div>
 					<div class="card-block card-organizer">
 						<div class="text-xs-center">
@@ -100,14 +100,13 @@
 			            			Não ha mais ticket disponiveis
 			            		<% end %>
 		            		</li>
+		            		<li><i class="fa fa-child"></i>  <strong><%= @tour.minimum %></strong> pessoas no mínimo</li>
 		            		<li><i class="fa fa-calendar"></i>  <strong><%= @tour.duration %></strong> de duração</li>
 			                <li><i class="fa fa-heartbeat"></i> <strong><%= @tour.level %></strong></li>
 			                <li><i class="fa fa-map-marker"></i> <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
 			                <li>
 			                	<i class="fa fa-globe"></i>
-			                	<% @tour.languages.each do |lang| %>
-									 <%= lang.name %>
-								<% end %>
+			                	<%= @tour.languages.map { |m| m.name }.join(', ') %>
 		                	 </li>
 			            </ul>
 			            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
@@ -156,18 +155,46 @@
 				<p><%= raw @tour.description %></p>
 			</div>
 		</div>
+		<% if !@tour.take.empty? %>	
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>O que levar:</strong></h4>
+				<ul>
+					<% @tour.take.each do |t| %>
+					<li><%= t %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<% end %>
+		<% if !@tour.goodtoknow.empty? %>	
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>Bom saber:</strong></h4>
+				<ul>
+					<% @tour.goodtoknow.each do |t| %>
+					<li><%= t %></li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+		<% end %>
+		<% if !@tour.included.empty? %>	
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>O que inclui:</strong></h4>
 				<p><%= @tour.included %></p>
 			</div>
 		</div>
+		<% end %>
+		<% if !@tour.nonincluded.empty? %>	
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>O que não inclui:</strong></h4>
 				<p><%= @tour.nonincluded %></p>
 			</div>
 		</div>
+		<% end %>
 		<% if @tour.meetingpoint %>		
 		<div class="row">
 			<div class="col-xs-12">
@@ -178,11 +205,25 @@
 		<% end %>
 		<div class="row">
 			<div class="col-xs-12">
-				<h4 class="spaced-smallest"><strong>Atrações:</strong></h4>				
+				<h4 class="spaced-smallest"><strong>O que preciso para reservar:</strong></h4>
+				<ul>
+					<li>Disposição para estar em contato com a natureza, com pessoas do bem, e para ver paisagens incríveis :)</li>
+					<li>Ter um cartão de crédito ativo</li>
+				</ul>
 			</div>
 		</div>
 		<div class="row">
-		  <% @tour.attractions.each do |attraction| %>	
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>Importante:</strong></h4>
+				<p>Antes de qualquer atividade física, é de extrema importância passar por uma avaliação médica, hein? Sem vacilos com a saúde! ;)</p>
+			</div>
+		</div>
+		  <% @tour.attractions.each do |attraction| %>
+		  <div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest"><strong>Atrações:</strong></h4>				
+			</div>
+		  </div>	
 		  <div class="col-sm-6">
 		    <div class="card">
 			  <div class="card-block">
@@ -195,6 +236,5 @@
 			</div>
 		  </div>
 		  <% end %>
-		</div>
 	</div>
 </div>

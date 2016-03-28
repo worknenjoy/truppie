@@ -23,19 +23,11 @@ class OrdersController < ApplicationController
       
       response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
-      hook_id = json_data["id"]
       
-      headers = {
-        :content_type => 'application/json',
-        :authorization => Rails.application.secrets[:moip_auth]
-      }
-      
-      response = RestClient.get "https://sandbox.moip.com.br/v2/preferences/notifications/#{hook_id}", headers
-      json_get_data = JSON.parse(response)
-      if json_get_data["id"]
+      if json_data["id"]
         flash[:success] = 'webhook padrao criado com sucesso'
-        @webhook_id = json_get_data["id"]
-        @webhook_return_url = json_get_data["target"]
+        @webhook_id = json_data["id"]
+        @webhook_return_url = json_data["target"]
       else
         flash[:error] = 'Nao foi possivel criar webhook'      
       end

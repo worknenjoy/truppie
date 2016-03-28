@@ -17,8 +17,10 @@ class CreateTours < ActiveRecord::Migration
       t.references :where, index: true, null:false
       t.string :address
       t.references :user, index: true, null:false
-      t.string :included
-      t.string :nonincluded
+      t.text :included, array: true, default: []
+      t.text :nonincluded, array: true, default: []
+      t.text :take, array: true, default: []
+      t.text :goodtoknow, array: true, default: []
       t.references :category, index: true
       t.references :tag, index: true
       t.references :attraction, index: true

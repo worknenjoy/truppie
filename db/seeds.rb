@@ -7,37 +7,37 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 @user = User.create(
-    email: "joanautopicos@gmail.com",
+    email: "joana.vmello@gmail.com",
     password: "12345678"
 )
 
-@user_member = User.create(
-    email: "paola@gmail.com",
-    password: "12345678"
-)
-
-@member = Member.create(
-    user: @user_member
-)
-
-@organizer = Organizer.create(
-    name: "Utopicos Mundo afora",
-    description: "Agência de viagem e bem-estar",
-    members: [@member],
-    user: @user,
-    email: 'reservas@utopicosmundoafora.com',
-    website: 'http://www.utopicosmundoafora.com/'
-)
-
-@where = Where.create(
-  name: "Barra de Guaratiba",
+@rio_city = Where.create(
+  name: "Rio de Janeiro",
   city: "Rio de Janeiro",
   state: "RJ",
   country: "Brasil"
 )
 
+@rio_vidigal = Where.create(
+  name: "Bairro do Vidigal",
+  city: "Rio de Janeiro",
+  state: "RJ",
+  country: "Brasil"
+)
+
+@organizer = Organizer.create(
+    name: "Utópicos Mundo Afora",
+    description: "Agência de viagem e bem-estar",
+    user: @user,
+    email: 'reservas@utopicosmundoafora.com',
+    website: 'http://www.utopicosmundoafora.com/',
+    instagram: 'https://www.instagram.com/utopicosmundoafora/',
+    facebook: 'https://www.facebook.com/utopicosmundoafora/',
+    where: @rio_city
+)
+
 @cat = Category.create(
-  name: 'Trilha'
+  name: 'Trilhas & Travessias'
 )
 
 @tagone = Tag.create(
@@ -48,46 +48,47 @@
   name: 'praia'
 )
 
-@attraction_one = Attraction.create(
-  name: 'Praias Selvagens',
-  text: "As praias selvagens é um refugio no rio para quem quer sair das praias badaladas da zona sul",
-  photo: "http://www.trilhaape.com.br/images/programacao/Praias%20selvagens_1.JPG"
+@tagtree = Tag.create(
+  name: 'Rio de Janeiro'
 )
 
-@attraction_two = Attraction.create(
-  name: 'Barra de Guaratiba',
-  text: "A Barra de Guaratiba, bairro situado na zona oeste do Rio de Janeiro, conta com lindas praias, mangues e morros com muita Mata Atlântica. Há opções de trilhas que levam a mirantes com uma vista exuberante das Praias Selvagens, Pontal do Recreio, Grumari e toda a Restinga da Marambaia.",
-  photo: "http://www.etrilhas.com.br/static/media/display/marapendi03_1.jpg"
+#@attraction_one = Attraction.create(
+#  name: 'Morro dois irmãos',
+#  text: "As praias selvagens é um refugio no rio para quem quer sair das praias badaladas da zona sul",
+#  photo: "http://www.trilhaape.com.br/images/programacao/Praias%20selvagens_1.JPG"
+#)
+
+@language_default = Language.create(
+  name: 'Português'
 )
 
-@language = Language.create(
-  name: 'Portugues'
+@language_alt = Language.create(
+  name: 'English'
 )
 
 @tour = Tour.create(
 
-  title: 'Trilha da Pedra do Telégrafo',
-  description: 'A Pedra do Telégrafo ficou famosa pelas fotos criativas e aparentemente perigosas que as pessoas tiram nela. A trilha para chegar até lá tem aproximadamente 3km (ida e volta).<br />Recomendações:<br/> Calçar bota ou tênis de caminhada<br />Levar água, repelente, protetor solar e corta vento<br />Não esquecer documentação (Identidade e carteira de plano de saúde)',
-  value: 45,
+  title: 'Trilha do Morro Dois Irmãos',
+  description: 'O Morro Dois Irmãos - localizado no bairro do Vidigal - proporciona uma linda vista da Zona Sul da cidade (bairros Leblon, Ipanema, Lagoa, Cristo), da Floresta da Tijuca, da Rocinha, das Ilhas Cagarras e de Niterói. Com seus 533 metros de altura, ele é mais alto que o Pão de Açúcar. A trilha é um excelente “esforço-benefício”, já que não é uma caminhada muito longa nem puxada, e o prêmio lá em cima é totalmente recompensador!',
+  value: 38,
   currency: 'BRL',
   organizer: @organizer,
-  start: '2016-03-27 07:00:00',
-  end: '2016-03-27 12:00:00',
-  photo: 'http://mochilando.com.br/wp-content/uploads/2015/05/pedra-do-telegrafo-rj-dicas.jpg',
-  availability: 20,
-  minimum: 5,
-  maximum: 20,
+  start: '2016-04-10 07:30:00',
+  end: '2016-04-10 10:30:00',
+  photo: ActionController::Base.helpers.image_url("trilhas/morro_dois_irmaos.jpg"),
+  availability: 18,
+  minimum: 4,
+  maximum: 18,
   difficulty: 3,
-  where: @where,
-  address: 'Barra de Guaratiba - Rio de Janeiro - RJ',
+  where: @rio_vidigal,
+  address: 'Bairro do Vidigal - Rio de Janeiro - RJ',
   user: @user,
-  included: 'carona solidaria',
-  nonincluded: 'Alimentação, Transporte',
+  take: ['Tênis ou bota para caminhada', 'Roupas leves', 'Água', 'Lanche para trilha (sugestões: barra de cereal, frutas, biscoitos, sanduiche)','Óculos escuros, chapéu ou boné','Kit de Primeiros Socorros','Repelente e protetor solar', 'Saco de lixo', ],
+  goodtoknow: ['O transporte até o ponto de encontro fica por sua conta, ok? Mas nós gostamos de promover a carona solidária (mais detalhes após a reserva)', 'Do ponto de encontrato até o ponto de início da trilha, é preciso pegar uma  van (serviço local), que custa aproximadamente R$6,00 (ida e volta) e não está incluído no valor do evento - leve dinheiro em espécie', 'Em caso de chuva, o evento será remarcado. Mas fique tranquilo que ficaremos de olho na previsão do tempo e te avisaremos em tempo hábil!', 'Para dúvidas específicas sobre esta truppie, entre em contato com o guia pelo e-mail informado acima'],
   category: @cat,
-  tags: [@tagone, @tagtwo],
-  attractions: [@attraction_one, @attraction_two],
-  languages: [@language],
-  meetingpoint: 'Informado após a confirmação'
+  tags: [@tagone, @tagtwo, @tagtree],
+  languages: [@language_default, @language_alt],
+  meetingpoint: 'Informado após confirmação da reserva'
 )
 
 

@@ -141,6 +141,7 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "create a webhook to moip" do
+      skip("a webhook to moip avoided")
       headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]
@@ -161,7 +162,6 @@ class TourTest < ActiveSupport::TestCase
       
       response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
-      puts json_data.inspect
       assert_equal json_data["events"].length, 4
       assert_equal json_data["target"], receive_url
       assert_not_nil json_data["token"]
@@ -183,7 +183,6 @@ class TourTest < ActiveSupport::TestCase
         media: "WEBHOOK"
       }
       
-      #response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params, headers
       response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
       hook_id = json_data["id"]
