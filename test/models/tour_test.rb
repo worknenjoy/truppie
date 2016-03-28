@@ -168,6 +168,7 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "Consulting a notification created before" do
+      skip('for a while')
       headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]
@@ -195,6 +196,25 @@ class TourTest < ActiveSupport::TestCase
       response = RestClient.get "https://sandbox.moip.com.br/v2/preferences/notifications/#{hook_id}", headers
       json_get_data = JSON.parse(response)
       assert_equal hook_id, json_get_data["id"]
+      
+   end
+   
+   test "resending webhook" do
+     skip('just testing')
+      headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      post_params = {
+        resourceId: 'NPR-HL8OYQ9SUM7N'
+      }
+      
+      response = RestClient.post "https://sandbox.moip.com.br/v2/webhooks/", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      json_data = JSON.parse(response)
+      
+      puts json_data.inspect
+      assert_equal true, true
       
    end
    
