@@ -222,4 +222,36 @@ class TourTest < ActiveSupport::TestCase
       
    end
    
+   test "list existent webhooks and delete it" do
+     skip("delete webhooks")
+     headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      response = RestClient.get "https://sandbox.moip.com.br/v2/preferences/notifications", headers
+      
+      json_data = JSON.parse(response)
+      
+      json_data.each do |n|
+        RestClient.delete "https://sandbox.moip.com.br/v2/preferences/notifications/#{n['id']}", headers
+      end
+      assert_equal true, true
+   end
+   test "list existent webhooks after deleted" do
+     #skip("list webhooks")
+     headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      response = RestClient.get "https://sandbox.moip.com.br/v2/preferences/notifications", headers
+      
+      json_data = JSON.parse(response)
+      
+      puts json_data.inspect
+        
+      assert_equal true, true
+   end
+   
 end
