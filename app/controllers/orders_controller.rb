@@ -14,8 +14,7 @@ class OrdersController < ApplicationController
           "ORDER.*",
           "PAYMENT.AUTHORIZED",
           "PAYMENT.CANCELLED",
-          "PAYMENT.IN_ANALYSIS",
-          "PAYMENT.CREATED"
+          "PAYMENT.IN_ANALYSIS"
         ],
         target: 'http://truppie.com/webhook',
         media: "WEBHOOK"
