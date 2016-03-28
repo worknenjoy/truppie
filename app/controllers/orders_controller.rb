@@ -4,8 +4,6 @@ class OrdersController < ApplicationController
   def new_webhook
     if params[:webhook_type] == 'default'
       
-      webhook_url = Rails.application.routes.url_helpers.webhook_url
-      
       headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]
@@ -15,7 +13,9 @@ class OrdersController < ApplicationController
         events: [
           "ORDER.*",
           "PAYMENT.AUTHORIZED",
-          "PAYMENT.CANCELLED"
+          "PAYMENT.CANCELLED",
+          "PAYMENT.IN_ANALYSIS",
+          "PAYMENT.CREATED"
         ],
         target: 'http://truppie.com/webhook',
         media: "WEBHOOK"
@@ -23,13 +23,10 @@ class OrdersController < ApplicationController
       
       response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
-      puts json_data.inspect 
       if json_data["id"]
         flash[:success] = 'webhook padrao criado com sucesso'
         @webhook_id = json_data["id"]
         @webhook_return_url = json_data["target"]
-        puts @webhook_id.inspect
-        puts @webhook_return_url.inspect
       else
         flash[:error] = 'Nao foi possivel criar webhook'      
       end
