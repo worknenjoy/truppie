@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
       if json_get_data["id"]
         flash[:success] = 'webhook padrao criado com sucesso'
         @webhook_id = json_get_data["id"]
-        @webhook_return_url = webhook_url
+        @webhook_return_url = json_get_data["target"]
       else
         flash[:error] = 'Nao foi possivel criar webhook'      
       end
