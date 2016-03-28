@@ -17,8 +17,8 @@ morro:
   where: placeone
   address: MyString
   user: laura 
-  included:
-  nonincluded: 
+  included: []
+  nonincluded: [] 
   category: trekking
   tags: family, geek, outdoor
   attractions: santatereza, corcovado

@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
           "PAYMENT.AUTHORIZED",
           "PAYMENT.CANCELLED"
         ],
-        target: webhook_url,
+        target: 'http://truppie.com/webhook',
         media: "WEBHOOK"
       }
       
@@ -28,6 +28,8 @@ class OrdersController < ApplicationController
         flash[:success] = 'webhook padrao criado com sucesso'
         @webhook_id = json_data["id"]
         @webhook_return_url = json_data["target"]
+        puts @webhook_id.inspect
+        puts @webhook_return_url.inspect
       else
         flash[:error] = 'Nao foi possivel criar webhook'      
       end

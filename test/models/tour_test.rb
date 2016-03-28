@@ -156,14 +156,16 @@ class TourTest < ActiveSupport::TestCase
           "PAYMENT.CANCELLED",
           "PAYMENT.IN_ANALYSIS"
         ],
-        target: Rails.application.routes.url_helpers.webhook_url,
+        target: 'http://truppie.com/webhook',
         media: "WEBHOOK"
       }
       
       response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
+      
+      
       assert_equal json_data["events"].length, 4
-      assert_equal json_data["target"], receive_url
+      assert_equal json_data["target"], 'http://truppie.com/webhook'
       assert_not_nil json_data["token"]
    end
    
@@ -180,7 +182,7 @@ class TourTest < ActiveSupport::TestCase
           "PAYMENT.AUTHORIZED",
           "PAYMENT.CANCELLED"
         ],
-        target: "http://localhost:3000/webhook",
+        target: "http://truppie.com/webhook",
         media: "WEBHOOK"
       }
       
@@ -207,10 +209,12 @@ class TourTest < ActiveSupport::TestCase
       }
       
       post_params = {
-        resourceId: 'NPR-HL8OYQ9SUM7N'
+        resourceId: 'EVE-DRPG123L7C06'
       }
       
-      response = RestClient.post "https://sandbox.moip.com.br/v2/webhooks/", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      response = RestClient.get "https://sandbox.moip.com.br/v2/preferences/notifications/#{post_params[:resourceId]}", headers
+      
+      #response = RestClient.post "https://sandbox.moip.com.br/v2/webhooks/", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
       
       puts json_data.inspect
