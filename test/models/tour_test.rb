@@ -239,7 +239,7 @@ class TourTest < ActiveSupport::TestCase
       assert_equal true, true
    end
    test "list existent webhooks after deleted" do
-     #skip("list webhooks")
+     skip("list webhooks")
      headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]
@@ -253,5 +253,31 @@ class TourTest < ActiveSupport::TestCase
         
       assert_equal true, true
    end
+   test "make a post to webhook" do
+     headers = {
+        :content_type => 'application/json',
+        :authorization => Rails.application.secrets[:moip_auth]
+      }
+      
+      receive_url = "http://localhost:3000/webhook"
+      
+      post_params = {
+        events: [
+          "ORDER.*",
+          "PAYMENT.AUTHORIZED",
+          "PAYMENT.CANCELLED",
+          "PAYMENT.IN_ANALYSIS"
+        ],
+        target: 'http://truppie.com/webhook',
+        media: "WEBHOOK"
+      }
+      
+      response = RestClient.post "http://www.truppie.com/webhook", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      json_data = JSON.parse(response)
+      puts json_data.inspect
+      assert_equal true, true
+   end
+  
+   
    
 end
