@@ -21,8 +21,7 @@ class OrdersController < ApplicationController
       }
       
       response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
-      json_data = JSON.parse(response.raw)
-      puts json_data.inspect
+      json_data = JSON.parse(response)
       if json_data["id"]
         flash[:success] = 'webhook padrao criado com sucesso'
         @webhook_id = json_data["id"]
@@ -37,18 +36,18 @@ class OrdersController < ApplicationController
     
   def webhook
     puts 'someone post to webhook' 
-    if params[:resource].nil?
-      render :status => 500
-    else
-      if !params[:resource][:payment].nil?
-        @payment_id = params[:resource][:payment][:id]
-        @event = params[:event]
-        CreditCardStatusMailer.status_change(@payment_id).deliver_now
-        puts 'the moip post to webhook'
-      else
-        render :status => 500
-      end
-    end
+    #if params[:resource].nil?
+    #  render :status => 500
+    #else
+    #  if !params[:resource][:payment].nil?
+    #    @payment_id = params[:resource][:payment][:id]
+    #    @event = params[:event]
+        CreditCardStatusMailer.status_change('bla').deliver_now
+    #    puts 'the moip post to webhook'
+    #  else
+    #    render :status => 500
+    #  end
+    #end
   end
   
   # GET /orders
