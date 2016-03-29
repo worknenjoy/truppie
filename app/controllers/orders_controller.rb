@@ -37,18 +37,13 @@ class OrdersController < ApplicationController
     
   def webhook
     puts 'someone post to webhook' 
-    #if params[:resource].nil?
-    #  render :status => 500
-    #else
-    #  if !params[:resource][:payment].nil?
-    #    @payment_id = params[:resource][:payment][:id]
-    #    @event = params[:event]
-        CreditCardStatusMailer.status_change('bla').deliver_now
-    #    puts 'the moip post to webhook'
-    #  else
-    #    render :status => 500
-    #  end
-    #end
+    if request.headers["Authorization"]  == "35f7d772003745fa8dd8e18d651469d6"
+      @payment_id = params[:resource][:payment][:id]
+      @event = params[:event]
+      CreditCardStatusMailer.status_change(@event).deliver_now
+    else
+      render :status => 500        
+    end
     render nothing: true
   end
   
