@@ -16,12 +16,13 @@ class OrdersController < ApplicationController
           "PAYMENT.CANCELLED",
           "PAYMENT.IN_ANALYSIS"
         ],
-        target: 'http://requestb.in/10q2iwh1',
+        target: 'http://www.truppie.com/webhook',
         media: "WEBHOOK"
       }
       
       response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
-      json_data = JSON.parse(response)
+      json_data = JSON.parse(response.raw)
+      puts json_data.inspect
       if json_data["id"]
         flash[:success] = 'webhook padrao criado com sucesso'
         @webhook_id = json_data["id"]
