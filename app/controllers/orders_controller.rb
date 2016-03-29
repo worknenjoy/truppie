@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
           "PAYMENT.CANCELLED",
           "PAYMENT.IN_ANALYSIS"
         ],
-        target: 'http://www.truppie.com/webhook',
+        target: 'http://truppie.com/webhook',
         media: "WEBHOOK"
       }
       
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
     #  if !params[:resource][:payment].nil?
     #    @payment_id = params[:resource][:payment][:id]
     #    @event = params[:event]
-        #ßCreditCardStatusMailer.status_change('bla').deliver_now
+        #CreditCardStatusMailer.status_change('bla').deliver_now
     #    puts 'the moip post to webhook'
     #  else
     #    render :status => 500
