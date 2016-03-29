@@ -223,7 +223,7 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "list existent webhooks and delete it" do
-     skip("delete webhooks")
+     #skip("delete webhooks")
      headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]
@@ -254,6 +254,7 @@ class TourTest < ActiveSupport::TestCase
       assert_equal true, true
    end
    test "make a post to webhook" do
+     skip("make a post to the webhook")
      headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]
