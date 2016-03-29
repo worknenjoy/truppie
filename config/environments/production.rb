@@ -5,8 +5,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'truppie.com' }
   
-  config.action_dispatch.default_headers.merge!('X-Frame-Options' => 'uri 208.74.31.2')
-  
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false

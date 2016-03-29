@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
     #  if !params[:resource][:payment].nil?
     #    @payment_id = params[:resource][:payment][:id]
     #    @event = params[:event]
-        #CreditCardStatusMailer.status_change('bla').deliver_now
+        CreditCardStatusMailer.status_change('bla').deliver_now
     #    puts 'the moip post to webhook'
     #  else
     #    render :status => 500
