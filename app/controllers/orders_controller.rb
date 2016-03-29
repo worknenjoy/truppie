@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
     #    render :status => 500
     #  end
     #end
-    #render :status => :success
+    render nothing: true
   end
   
   # GET /orders

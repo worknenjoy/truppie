@@ -272,7 +272,7 @@ class TourTest < ActiveSupport::TestCase
         media: "WEBHOOK"
       }
       
-      response = RestClient.post "http://www.truppie.com/webhook", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      response = RestClient.post "http://www.truppie.com/webhook/", {}, :content_type => :json, :accept => :json
       json_data = JSON.parse(response)
       puts json_data.inspect
       assert_equal true, true
