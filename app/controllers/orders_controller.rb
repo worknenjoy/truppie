@@ -37,12 +37,13 @@ class OrdersController < ApplicationController
     
   def webhook
     puts 'someone post to webhook' 
-    if request.headers["Authorization"]  == "35f7d772003745fa8dd8e18d651469d6"
-      @payment_id = params[:resource][:payment][:id]
-      @event = params[:event]
-      CreditCardStatusMailer.status_change(@event).deliver_now
+    if !request.raw_post().empty?
+      #@payment_id = params[:resource][:payment][:id]
+      #@event = params[:event]
+      puts request.raw_post().inspect
+      CreditCardStatusMailer.status_change(request.raw_post()).deliver_now
     else
-      render :status => 500        
+      CreditCardStatusMailer.status_change('alguem postou no webhook e nao tem o hash de autorizacao').deliver_now       
     end
     render nothing: true
   end
