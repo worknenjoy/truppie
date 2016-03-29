@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
           "PAYMENT.CANCELLED",
           "PAYMENT.IN_ANALYSIS"
         ],
-        target: 'http://truppie.com/webhook',
+        target: 'http://www.truppie.com/webhook',
         media: "WEBHOOK"
       }
       
