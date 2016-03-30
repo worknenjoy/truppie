@@ -125,9 +125,9 @@
 	                    	<% @tour.confirmeds.each do |c| %>
 	                    		<div class="col-xs-6 text-xs-center">
 	                    			<% if c.user.image %>
-		                    			<img src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
+		                    			<img width="120" src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
 	                    			<% else %>
-	                    				<img src="https://avatars.io/facebook/username" class="avatar img-circle img-thumbnail" alt="avatar">
+	                    				<img width="120" src="https://avatars.io/facebook/username" class="avatar img-circle img-thumbnail" alt="avatar">
 		                    		<% end %>
 		                    		<p class="small">
 		                    			<% if current_user %>

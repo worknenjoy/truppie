@@ -66,6 +66,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
   
   test "should receive a post with successfull parameters from moip and try to find succesfull this order" do
+    skip("successfull post")
     payment = "PAY-32LJ77AT4JNN"
     
     orders = Order.create(:status => 'IN_ANALYSIS', :payment => payment, :user => User.last, :tour => Tour.last)
@@ -143,7 +144,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
   
   test "should make a post from live website" do
-    skip("a post to webhook live")
+    #skip("a post to webhook live")
     response = RestClient.post "http://www.truppie.com/webhook/", {}
     puts response.inspect
     puts '-----------'
