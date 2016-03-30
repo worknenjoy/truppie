@@ -4,9 +4,10 @@ one:
   own_id: 1
   tour_id: 
   user_id: 
-  status: MyString
+  status: IN_ANALYSIS
   price: 1
   discount: 1
+  payment: PAY-32LJ77AT4JNN
 
 two:
   own_id: 1

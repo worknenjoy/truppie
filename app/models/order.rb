@@ -20,6 +20,31 @@ class Order < ActiveRecord::Base
     
   end
   
+  def full_desc_status(status)
+    case status
+    when 'CREATED'
+      'O seu pagamento foi processado'
+    when 'WAITING'
+      'Recebemos o seu pagamento e estamos aguardando o contato da operadora do cartão com uma resposta'
+    when 'IN_ANALYSIS'
+      'O seu pagamento se encontra em análise pela operadora do cartão'
+    when 'PRE_AUTHORIZED'
+      'O seu pagaemento foi pré-autorizado'
+    when 'AUTHORIZED'
+      'O seu pagamento foi autorizado'
+    when 'CANCELLED'
+      'O seu pagamento foi cancelado pela operadora do cartão'
+    when 'REVERSED'
+      'O seu pagamento foi revertido'
+    when 'REFUNDED'
+      'Você irá ser reembolsado'
+    when 'SETTLED'
+      'O seu pagamento se encontra em negociação'
+    else
+      'Estamos ainda definindo o status do seu pagamento'
+    end
+  end
+  
   def friendly_status(status)
     case status
     when 'CREATED'

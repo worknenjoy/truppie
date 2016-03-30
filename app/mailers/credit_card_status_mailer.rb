@@ -1,7 +1,29 @@
 class CreditCardStatusMailer < ApplicationMailer
   
-  def status_change(payment)
-    mail(from: 'ola@truppie.com', subject: 'cartao de credito', body: payment, to: 'alexanmtz@gmail.com')
+  def status_change(status, user, tour, organizer)
+    
+    @status = status
+    @user = user
+    @tour = tour
+    @organizer = organizer
+    
+    mailers = "ola@truppie.com, laurinha.sette@gmail.com, #{user.email}, #{organizer.user.email}"
+    
+    mail(
+      from: 'no-reply@truppie.com',
+      subject: status[:subject],
+      to: mailers,
+      template_name: 'status_change' 
+     )
+  end
+  
+  def status_message(message)
+    mail(
+      from: 'no-reply@truppie.com',
+      subject: status[:subject],
+      to: 'ola@truppie.com',
+      body: message 
+     )
   end
   
 end

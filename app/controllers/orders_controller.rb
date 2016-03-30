@@ -37,13 +37,54 @@ class OrdersController < ApplicationController
     
   def webhook
     puts 'someone post to webhook' 
-    if !request.raw_post().empty?
-      #@payment_id = params[:resource][:payment][:id]
-      #@event = params[:event]
-      puts request.raw_post().inspect
-      CreditCardStatusMailer.status_change(request.raw_post()).deliver_now
+    #puts request.raw_post().inspect
+    request_raw = request.raw_post()
+    if !request_raw.empty?
+      #@payment_id = request_raw[:event]
+      @event = request_raw[:event]
+        if !@event.empty?
+          @payment_id = @friendly_status = request_raw[:resource][:payment][:id]
+          @friendly_status = request_raw[:resource][:payment][:status]
+          case @friendly_status
+          when 'CREATED'
+            @status = 'O seu pagamento foi processado'
+          when 'WAITING'
+            @status = 'Recebemos o seu pagamento e estamos aguardando o contato da operadora do cartão com uma resposta'
+          when 'IN_ANALYSIS'
+            @status = 'O seu pagamento se encontra em análise pela operadora do cartão'
+            @subject = "Solicitação de reserva de uma truppie! :)"
+          when 'PRE_AUTHORIZED'
+            @status = 'O seu pagaemento foi pré-autorizado'
+          when 'AUTHORIZED'
+            @status = 'O seu pagamento foi autorizado'
+          when 'CANCELLED'
+            @status = 'O seu pagamento foi cancelado pela operadora do cartão'
+          when 'REVERSED'
+            @status = 'O seu pagamento foi revertido'
+          when 'REFUNDED'
+            @status = 'Você irá ser reembolsado'
+          when 'SETTLED'
+            @status = 'O seu pagamento se encontra em negociação'
+          else
+            'Estamos ainda definindo o status do seu pagamento'
+          end 
+          order = Order.where(payment: @payment_id).joins(:user).take
+          order_tour = Order.where(payment: @payment_id).joins(:tour).take
+          user = order.user
+          tour = order_tour.tour
+          organizer = tour.organizer
+          
+          @status_data = {
+            subject: @subject,
+            content: @status
+          }
+           
+          CreditCardStatusMailer.status_change(@status_data, user, tour, organizer).deliver_now
+        else
+          CreditCardStatusMailer.status_message('erro ao tentar processar o request').deliver_now
+        end
     else
-      CreditCardStatusMailer.status_change('alguem postou no webhook e nao tem o hash de autorizacao').deliver_now       
+      CreditCardStatusMailer.status_message('alguem postou no webhook sem os dados do Moip').deliver_now       
     end
     render nothing: true
   end

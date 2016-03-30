@@ -65,77 +65,86 @@ class OrdersControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  test "should receive a post with successfull parameters from moip and send a email" do
+  test "should receive a post with successfull parameters from moip and try to find succesfull this order" do
+    payment = "PAY-32LJ77AT4JNN"
+    
+    orders = Order.create(:status => 'IN_ANALYSIS', :payment => payment, :user => User.last, :tour => Tour.last)
+    
+    puts orders.inspect 
+    
     post_params = {
-      event: "PAYMENT.IN_ANALYSIS",
-      resource: {
-        payment: {
-          id: "PAY-32LJ77AT4JNN",
-          status: "IN_ANALYSIS",
-          installmentCount: 1,
-          amount: {
-            total: 2000,
-            liquid: 1813,
-            refunds: 0,
-            fees: 187,
-            currency: "BRL"
+      "event": "PAYMENT.IN_ANALYSIS",
+      "resource": {
+        "payment": {
+          "id": payment,
+          "status": "IN_ANALYSIS",
+          "installmentCount": 1,
+          "amount": {
+            "total": 2000,
+            "liquid": 1813,
+            "refunds": 0,
+            "fees": 187,
+            "currency": "BRL"
           },
-          fundingInstrument: {
-            method: "CREDIT_CARD",
-            creditCard: {
-              id: "CRC-BXXOA5RLGQR8",
-              holder: {
-                taxDocument: {
-                  number: "33333333333",
-                  type: "CPF"
+          "fundingInstrument": {
+            "method": "CREDIT_CARD",
+            "creditCard": {
+              "id": "CRC-BXXOA5RLGQR8",
+              "holder": {
+                "taxDocument": {
+                  "number": "33333333333",
+                  "type": "CPF"
                 },
-                birthdate: "30/12/1988",
-                fullname: "Jose Portador da Silva"
+                "birthdate": "30/12/1988",
+                "fullname": "Jose Portador da Silva"
               },
-              brand: "MASTERCARD",
-              first6: "555566",
-              last4: "8884"
+              "brand": "MASTERCARD",
+              "first6": "555566",
+              "last4": "8884"
             }
           },
-          events: [
+          "events": [
             {
-              createdAt: "2015-03-16T18:11:19-0300",
-              type: "PAYMENT.IN_ANALYSIS"
+              "createdAt": "2015-03-16T18:11:19-0300",
+              "type": "PAYMENT.IN_ANALYSIS"
             },
             {
-              createdAt: "2015-03-16T18:11:16-0300",
-              type: "PAYMENT.CREATED"
+              "createdAt": "2015-03-16T18:11:16-0300",
+              "type": "PAYMENT.CREATED"
             }
           ],
-          fees: [
+          "fees": [
             {
-              amount: 187,
-              type: "TRANSACTION"
+              "amount": 187,
+              "type": "TRANSACTION"
             }
           ],
-          createdAt: "2015-03-16T18:11:16-0300",
-          updatedAt: "2015-03-16T18:11:19-0300",
-          _links: {
-            order: {
-              title: "ORD-SDZARE29MWVY",
-              href: "https://sandbox.moip.com.br/v2/orders/ORD-SDZARE29MWVY"
+          "createdAt": "2015-03-16T18:11:16-0300",
+          "updatedAt": "2015-03-16T18:11:19-0300",
+          "_links": {
+            "order": {
+              "title": "ORD-SDZARE29MWVY",
+              "href": "https://sandbox.moip.com.br/v2/orders/ORD-SDZARE29MWVY"
             },
-            self: {
-              href: "https://sandbox.moip.com.br/v2/payments/PAY-32LJ77AT4JNN"
+            "self": {
+              "href": "https://sandbox.moip.com.br/v2/payments/PAY-32LJ77AT4JNN"
             }
           }
         }
       }
     }
+    @request.env['RAW_POST_DATA'] = post_params
     post :webhook, {}
-    #assert_not_nil assigns(:payment_id)
-    #assert_not_nil assigns(:event)
+    assert_not_nil assigns(:status)
+    assert_not_nil assigns(:event)
     assert_response :success
-    #assert_not ActionMailer::Base.deliveries.empty?
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal ActionMailer::Base.deliveries.length, 1
     
   end
   
   test "should make a post from live website" do
+    skip("a post to webhook live")
     response = RestClient.post "http://www.truppie.com/webhook/", {}
     puts response.inspect
     puts '-----------'
