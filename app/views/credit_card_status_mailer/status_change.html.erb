@@ -6,8 +6,6 @@
 
 <h4>Temos aqui um resumo do seu pedido:</h4>
 
-<h4 class="spaced-smallest">Minhas truppies</h4>
-<p>Acompanhe aqui os status desta truppie: data, reserva, pagamento.</p>
 <% if !@order %>
 	<p class="lead">
 		<span class="label label-pill label-warning">
@@ -15,35 +13,7 @@
 		</span>
 	</p>
 <% else %>
-<table cellpadding="0" cellspacing="0" border="0" align="center">
-    <thead>
-        <tr>
-        <th><span>Truppie</span></th>
-        <th><span>Reservada em</span></th>
-        <th class="text-center"><span>Pagamento</span></th>
-        <th><span>Código do pedido</span></th>
-        <th>Valor</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <%= link_to @order.tour.title, tour_url(@order.tour), class: 'user-link' %>
-                <span class="user-subhead"><%= @order.tour.organizer.name %></span>
-            </td>
-            <td><%= l(@order.created_at, format: '%d de %B as %I:%M %p')  %></td>
-            <td class="text-center">
-                <%= @status[:content] %>
-            </td>
-            <td>
-                <%= @order.payment %>
-            </td>
-            <td >
-               <h3><%= raw(@order.tour.price) %></h3>
-            </td>
-        </tr>
-    </tbody>
-</table>
+	<%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
 <% end %>
 
 <p>Para conferir o andamento do status a qualquer hora, acesse: <a href="http://www.truppie.com/orders">http://www.truppie.com/orders</a></p>
@@ -54,9 +24,4 @@
 
 <p>Um abraço,</p>
 
-<p><small>Equipe Tuppie</small><br />
-<small>ola@truppie.com</small><br /></p>
-<a href="http://www.truppie.com"></a><br />
-<%= image_tag attachments['logo-flat.png'].url, :width => '100', :alt => 'Truppie' %>
-<%= image_tag attachments['logo_utopicos.png'].url, :width => '100', :alt => @organizer.name %><br/>
-<a href="<%= @organizer.website %>"><%= @organizer.name %></a>
+<%= render partial: 'credit_card_status_mailer/footer', locals: {organizer: @organizer } %>

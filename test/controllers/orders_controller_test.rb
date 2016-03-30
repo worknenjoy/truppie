@@ -161,9 +161,7 @@ class OrdersControllerTest < ActionController::TestCase
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
     
-    #puts ActionMailer::Base.deliveries[0].body
-    
-    assert_equal ActionMailer::Base.deliveries[0].body, "O webhook do moip tentou enviar uma notificação repetida"
+    assert ActionMailer::Base.deliveries.empty?
   end
   
   test "should make a post from live website" do

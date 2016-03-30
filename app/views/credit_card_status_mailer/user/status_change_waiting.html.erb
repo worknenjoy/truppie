@@ -1,8 +1,7 @@
-<h2>Olá, explorador(a)!</h2>
+<h2>Olá, <%= @organizer.name %></h2>
 
-<p><%= raw(@status[:mail_first_line]) %></p>
+<p>O explorador <%= @user.name %> acaba de solicitar a reserva de sua truppie <%= @tour.title %> :D</p>
 
-<p><%= raw(@status[:mail_second_line]) %></p>
 
 <h4>Temos aqui um resumo do seu pedido:</h4>
 
@@ -15,35 +14,7 @@
 		</span>
 	</p>
 <% else %>
-<table cellpadding="0" cellspacing="0" border="0" align="center">
-    <thead>
-        <tr>
-        <th><span>Truppie</span></th>
-        <th><span>Reservada em</span></th>
-        <th class="text-center"><span>Pagamento</span></th>
-        <th><span>Código do pedido</span></th>
-        <th>Valor</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <%= link_to @order.tour.title, tour_url(@order.tour), class: 'user-link' %>
-                <span class="user-subhead"><%= @order.tour.organizer.name %></span>
-            </td>
-            <td><%= l(@order.created_at, format: '%d de %B as %I:%M %p')  %></td>
-            <td class="text-center">
-                <%= @status[:content] %>
-            </td>
-            <td>
-                <%= @order.payment %>
-            </td>
-            <td >
-               <h3><%= raw(@order.tour.price) %></h3>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<%= render 'credit_card_status_mailer/order_table', locals: {order: @order} %>
 <% end %>
 
 <p>Para conferir o andamento do status a qualquer hora, acesse: <a href="http://www.truppie.com/orders">http://www.truppie.com/orders</a></p>
