@@ -21,15 +21,29 @@ class CreditCardStatusMailer < ApplicationMailer
       template_name: 'status_change',
       template_path: 'credit_card_status_mailer' 
      )
-     
-     mail(
+  end
+  
+  def guide_mail(status, order, user, tour, organizer)
+    
+    @order = order
+    @status = status
+    @user = user
+    @tour = tour
+    @organizer = organizer
+    
+    mailers = 'alexanmtz@gmail.com'
+    organizer_mailers = 'alexanmtz@gmail.com'
+    
+    attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
+    attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    
+    mail(
       from: 'no-reply@truppie.com',
-      subject: "Notificação enviada ao usuário da sua truppie - {@status[:subject]}",
+      subject: "Notificação enviada ao usuário da sua truppie - #{@status[:subject]}",
       to: organizer_mailers,
       template_name: @status[:guide],
       template_path: 'credit_card_status_mailer/guide'
      )
-     
   end
   
   def status_message(message)

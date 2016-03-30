@@ -151,6 +151,10 @@ class OrdersControllerTest < ActionController::TestCase
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
     
+    puts ActionMailer::Base.deliveries[0].html_part
+    
+    puts ActionMailer::Base.deliveries[1].html_part
+    
     assert_equal ["PAYMENT.IN_ANALYSIS"], Order.find(@order.id).status_history 
   end
   

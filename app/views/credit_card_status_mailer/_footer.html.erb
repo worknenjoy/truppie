@@ -1,10 +1,13 @@
-<div style="float: left;">
-	<small>Equipe Tuppie</small><br />
-	<small>ola@truppie.com</small><br />
-	<a href="http://www.truppie.com"></a><br />
-	<%= image_tag attachments['logo-flat.png'].url, :width => '100', :alt => 'Truppie' %>
+<div>
+	<div style="float: left;">
+		<small>Equipe Tuppie</small><br />
+		<small>ola@truppie.com</small><br />
+		<a href="http://www.truppie.com"></a><br />
+		<%= image_tag attachments['logo-flat.png'].url, :width => '100', :alt => 'Truppie' %>
+	</div>
+	<div style="float:left">
+	<%= image_tag attachments['logo_utopicos.png'].url, :width => '100', :alt => organizer.name %><br/>
+	<a href="<%= organizer.website %>"><%= organizer.name %></a>
+	</div>
 </div>
-<div style="float:right">
-<%= image_tag attachments['logo_utopicos.png'].url, :width => '100', :alt => organizer.name %><br/>
-<a href="<%= organizer.website %>"><%= organizer.name %></a>
-</div>
+<div style="clear: both;"></div>
