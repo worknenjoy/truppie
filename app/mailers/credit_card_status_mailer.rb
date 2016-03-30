@@ -9,7 +9,6 @@ class CreditCardStatusMailer < ApplicationMailer
     
     #mailers = "ola@truppie.com, laurinha.sette@gmail.com, #{user.email}, #{organizer.user.email}"
     mailers = 'alexanmtz@gmail.com'
-    
     mail(
       from: 'no-reply@truppie.com',
       subject: @status[:subject],

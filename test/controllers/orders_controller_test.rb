@@ -3,6 +3,7 @@ require 'test_helper'
 class OrdersControllerTest < ActionController::TestCase
   setup do
     @order = orders(:one)
+    ActionMailer::Base.deliveries.clear
   end
 
   test "should get index" do
@@ -138,6 +139,9 @@ class OrdersControllerTest < ActionController::TestCase
     post :webhook, {}
     assert_not_nil assigns(:status_data)
     assert_response :success
+    
+    puts ActionMailer::Base.deliveries[0].body
+    
     assert_not ActionMailer::Base.deliveries.empty?
     
   end

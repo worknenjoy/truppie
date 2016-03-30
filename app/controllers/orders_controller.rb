@@ -47,42 +47,44 @@ class OrdersController < ApplicationController
       @event = request_raw_json["event"]
         if !@event.empty?
           @payment_id = request_raw_json["resource"]["payment"]["id"]
-          @status = request_raw_json["resource"]["payment"]["status"]
+          @payment_status = request_raw_json["resource"]["payment"]["status"]
+          @status = request_raw_json["event"]
           puts '------------- paymentid -------'
           puts @payment_id.inspect
           puts '------------- status -------'
           puts @status
           puts '--------------------'
           case @status
-          when 'ORDER.CREATED'
-            @friendly_st = 'O seu pedido de reserva foi criado'
-            @subject = "Solicitação de reserva de uma truppie! :)"  
-          when 'PAYMENT.WAITING'
-            @friendly_st = 'Recebemos o seu pagamento e estamos aguardando o contato da operadora do cartão com uma resposta'
-            @subject = "Solicitação de reserva de uma truppie! :)"
-          when 'PAYMENT.IN_ANALYSIS'
-            @friendly_st = 'O seu pagamento se encontra em análise pela operadora do cartão'
-            @subject = "Solicitação de reserva de uma truppie! :)"
-          when 'PAYMENT.PRE_AUTHORIZED'
-            @friendly_st = 'O seu pagamento foi pré-autorizado'
-            @subject = "Solicitação de reserva de uma truppie! :)"
-          when 'PAYMENT.AUTHORIZED'
-            @friendly_st = 'O seu pagamento foi autorizado'
-            @subject = "Solicitação de reserva de uma truppie! :)"
+          when "ORDER.CREATED"
+              @friendly_st = 'O seu pedido de reserva foi criado'
+              @subject = "Solicitação de reserva de uma truppie! :)"  
+          when "PAYMENT.WAITING" 
+              @friendly_st = 'Recebemos o seu pagamento e estamos aguardando o contato da operadora do cartão com uma resposta'
+              @subject = "Solicitação de reserva de uma truppie! :)"
+          when "PAYMENT.IN_ANALYSIS" 
+              @friendly_st = 'O seu pagamento se encontra em análise pela operadora do cartão'
+              @subject = "Solicitação de reserva de uma truppie! :)"
+          when "PAYMENT.PRE_AUTHORIZED"
+              @friendly_st = 'O seu pagamento foi pré-autorizado'
+              @subject = "Solicitação de reserva de uma truppie! :)"
+          when "PAYMENT.AUTHORIZED"
+              @friendly_st = 'O seu pagamento foi autorizado'
+              @subject = "Solicitação de reserva de uma truppie! :)"
           when 'PAYMENT.CANCELLED'
-            @friendly_st = 'O seu pagamento foi cancelado pela operadora do cartão'
-            @subject = "Solicitação de cancelamento de uma truppie!"
-          when 'PAYMENT.REVERSED'
-            @friendly_st = 'O seu pagamento foi revertido'
-            @subject = "Reembolso de uma truppie"
-          when 'PAYMENT.REFUNDED'
-            @friendly_st = 'Você irá ser reembolsado'
-            @subject = "Você foi reembolsado de uma truppie"
-          when 'PAYMENT.SETTLED'
-            @friendly_st = 'O seu pagamento se encontra em negociação'
-            @subject = "Você solicitou um estorno do seu cartão"
+              @friendly_st = 'O seu pagamento foi cancelado pela operadora do cartão'
+              @subject = "Solicitação de cancelamento de uma truppie!"
+          when "PAYMENT.REVERSED"
+              @friendly_st = 'O seu pagamento foi revertido'
+              @subject = "Reembolso de uma truppie"
+          when "PAYMENT.REFUNDED"
+              @friendly_st = 'Você irá ser reembolsado'
+              @subject = "Você foi reembolsado de uma truppie"
+          when "PAYMENT.SETTLED"
+              @friendly_st = 'O seu pagamento se encontra em negociação'
+              @subject = "Você solicitou um estorno do seu cartão"
           else
-            'Estamos ainda definindo o status do seu pagamento'
+            @friendly_st = 'Estamos ainda definindo o status do seu pagamento'
+            @subject = "Você fez alguma solicitação com seu cartão"
           end 
           order = Order.where(payment: @payment_id).joins(:user).take
           order_tour = Order.where(payment: @payment_id).joins(:tour).take
@@ -90,8 +92,10 @@ class OrdersController < ApplicationController
           tour = order_tour.tour
           organizer = tour.organizer
           
+          puts '------------- subject and message ------'
           puts @subject
           puts @friendly_st
+          puts '------------- subject and message ------'
           
           puts order.inspect
           puts tour.inspect
