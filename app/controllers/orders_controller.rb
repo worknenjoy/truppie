@@ -1,3 +1,5 @@
+require 'json'
+
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
@@ -12,13 +14,10 @@ class OrdersController < ApplicationController
       
       post_params = {
         events: [
-          #"ORDER.*",
+          "ORDER.CREATED",
           "PAYMENT.AUTHORIZED",
           "PAYMENT.CANCELLED",
-          "PAYMENT.IN_ANALYSIS",
-          "PAYMENT.REFUNDED",
-          "PAYMENT.REVERSED",
-          "PAYMENT.SETTLED"
+          "PAYMENT.IN_ANALYSIS"
         ],
         target: 'http://www.truppie.com/webhook',
         media: "WEBHOOK"
@@ -40,13 +39,18 @@ class OrdersController < ApplicationController
     
   def webhook
     puts 'someone post to webhook' 
-    puts request.raw_post().inspect
     request_raw = request.raw_post()
     if !request_raw.empty?
-      @event = request_raw[:event]
+      if request_raw.is_a? Hash
+        request_raw_json = JSON.parse(request_raw.to_json)
+      else
+        request_raw_json = JSON.parse(request.raw_post())
+      end
+      puts request_raw_json.inspect
+      @event = request_raw_json["event"]
         if !@event.empty?
-          @payment_id = @friendly_status = request_raw[:resource][:payment][:id]
-          @friendly_status = request_raw[:resource][:payment][:status]
+          @payment_id = request_raw_json["resource"]["payment"]["id"]
+          @friendly_status = request_raw_json["resource"]["payment"]["status"]
           case @friendly_status
           when 'CREATED'
             @status = 'O seu pagamento foi processado'
@@ -58,7 +62,7 @@ class OrdersController < ApplicationController
             @status = 'O seu pagamento se encontra em análise pela operadora do cartão'
             @subject = "Solicitação de reserva de uma truppie! :)"
           when 'PRE_AUTHORIZED'
-            @status = 'O seu pagaemento foi pré-autorizado'
+            @status = 'O seu pagamento foi pré-autorizado'
             @subject = "Solicitação de reserva de uma truppie! :)"
           when 'AUTHORIZED'
             @status = 'O seu pagamento foi autorizado'
