@@ -37,10 +37,9 @@ class OrdersController < ApplicationController
     
   def webhook
     puts 'someone post to webhook' 
-    #puts request.raw_post().inspect
+    puts request.raw_post().inspect
     request_raw = request.raw_post()
     if !request_raw.empty?
-      #@payment_id = request_raw[:event]
       @event = request_raw[:event]
         if !@event.empty?
           @payment_id = @friendly_status = request_raw[:resource][:payment][:id]
