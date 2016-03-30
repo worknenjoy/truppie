@@ -74,7 +74,7 @@ class ToursControllerTest < ActionController::TestCase
   
   test "should confirm presence" do
     post :confirm_presence, @payment_data
-    assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas Reservas", flash[:success]
+    assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies", flash[:success]
     assert_redirected_to tour_path(assigns(:tour))
   end
   
@@ -111,7 +111,7 @@ class ToursControllerTest < ActionController::TestCase
   
   test "should create a order with the given id" do
     post :confirm_presence, @payment_data
-    assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas Reservas", flash[:success]
+    assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies", flash[:success]
     assert_redirected_to tour_path(assigns(:tour))
     assert_equal Order.last.source_id, flash[:order_id]
     assert_equal Order.last.status, "IN_ANALYSIS"
