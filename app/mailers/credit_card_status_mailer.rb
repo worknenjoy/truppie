@@ -7,9 +7,7 @@ class CreditCardStatusMailer < ApplicationMailer
     @tour = tour
     @organizer = organizer
     
-    #mailers = "ola@truppie.com, laurinha.sette@gmail.com, #{user.email}, #{organizer.user.email}"
-    mailers = 'alexanmtz@gmail.com, laurinha.sette@gmail.com'
-    organizer_mailers = 'alexanmtz@gmail.com, laurinha.sette@gmail.com'
+    mailers = "ola@truppie.com, #{user.email}, #{organizer.user.email}"
     
     attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
@@ -31,8 +29,7 @@ class CreditCardStatusMailer < ApplicationMailer
     @tour = tour
     @organizer = organizer
     
-    mailers = 'alexanmtz@gmail.com'
-    organizer_mailers = 'alexanmtz@gmail.com'
+    organizer_mailers = "ola@truppie.com, #{organizer.user.email}"
     
     attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
