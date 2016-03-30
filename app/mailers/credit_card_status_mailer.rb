@@ -1,7 +1,7 @@
 class CreditCardStatusMailer < ApplicationMailer
   
-  def status_change(status, user, tour, organizer)
-    
+  def status_change(status, order, user, tour, organizer)
+    @order = order
     @status = status
     @user = user
     @tour = tour
@@ -9,6 +9,10 @@ class CreditCardStatusMailer < ApplicationMailer
     
     #mailers = "ola@truppie.com, laurinha.sette@gmail.com, #{user.email}, #{organizer.user.email}"
     mailers = 'alexanmtz@gmail.com'
+    
+    attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
+    attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    
     mail(
       from: 'no-reply@truppie.com',
       subject: @status[:subject],

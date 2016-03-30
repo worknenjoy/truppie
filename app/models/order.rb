@@ -16,6 +16,7 @@ class Order < ActiveRecord::Base
     
     response = ::RestClient.get "https://sandbox.moip.com.br/v2/payments/#{payment_id}", headers
     json_data = JSON.parse(response)
+    self.update_attributes({:status => json_data["status"]})
     json_data["status"]
     
   end

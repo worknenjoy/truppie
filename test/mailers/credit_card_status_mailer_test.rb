@@ -7,9 +7,9 @@ class CreditCardStatusMailerTest < ActionMailer::TestCase
         content: "em análise"
      }
      
-     mail = CreditCardStatusMailer.status_change(@status, User.take, Tour.last, Organizer.last)
+     mail = CreditCardStatusMailer.status_change(@status, Order.last, User.take, Tour.last, Organizer.last)
      
-     CreditCardStatusMailer.status_change(@status, User.first, Tour.last, Organizer.last).deliver_now
+     CreditCardStatusMailer.status_change(@status, Order.last, User.first, Tour.last, Organizer.last).deliver_now
      
      assert_not ActionMailer::Base.deliveries.empty?
      assert_equal ['no-reply@truppie.com'], mail.from

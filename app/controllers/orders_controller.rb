@@ -106,7 +106,7 @@ class OrdersController < ApplicationController
             content: @friendly_st
           }
            
-          CreditCardStatusMailer.status_change(@status_data, user, tour, organizer).deliver_now
+          CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
         else
           CreditCardStatusMailer.status_message('erro ao tentar processar o request').deliver_now
         end
