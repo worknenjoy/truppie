@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-xs-12 spaced-smallest">
 			<h4 class="spaced-down">Confirmação da truppie</h4>
-			<p>Confira aqui os detalhes para ter certeza de que está tudo certinho.</p>
+			<p>Confira aqui os detalhes para ter certeza de que está tudo certinho</p>
             <div class="card">
                 <div class="card-header">
                     <h5 class="text-center">
@@ -15,7 +15,7 @@
                     <h2 class="spaced-smallest"><%= raw @tour.price %></h2>
                 </div>
                 <ul class="list-group list-group-flush text-xs-center">
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i><%= l(@tour.start, format: '%A') %> <br/> <%= l(@tour.start, format: '%d de %B de %Y as %Hh%M') %><br/ ><strong>daqui a <%= time_ago_in_words(@tour.start) %></strong></li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><%= l(@tour.start, format: '%A') %> <br/> <%= l(@tour.start, format: '%d de %B de %Y às %Hh%M') %><br/ ><strong>daqui a <%= time_ago_in_words(@tour.start) %></strong></li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Organizado por:</strong> <br/><%= @tour.organizer.name %></li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Local:</strong><br /><%= @tour.where.name %> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
                     <% if @tour.meetingpoint %>
@@ -31,7 +31,7 @@
         <div class="col-xs-12 col-md-8">
             <div class="card font-card-small">
                 <div class="card-header">
-                    <h4 class="panel-title">Dados do usuario</h4>
+                    <h4 class="panel-title">Dados do usuário</h4>
                 </div>
                 <div class="card-block">
                     <div class="row">
@@ -121,17 +121,17 @@ lwIDAQAB
 			            	<p class="spaced-smallest">Tudo certo? Então só falta ler as condições e realizar o pagamento. Em caso de dúvidas, <%= link_to 'entre em contato com a gente', contacts_index_path %> em ola@truppie.com</p>
 					        <h4 class="spaced-smallest">Condições</h4>
 					        <ul>
-					        <li>A reserva é efetivada após a confirmação da operadora do cartão de crédito;</li>
-					        <li>Caso você desista de ir, informe a gente assim que possível em ola@truppie.com;</li>
-					        <li>Se faltarem menos de 48 horas até o início do evento, o reembolso poderá ser de 50%;</li>
-					        <li>Se o evento for cancelado pelo guia por qualquer motivo em qualquer momento, o reembolso é integral.</li>
-					        <li>Em quaiser destas situações, você pode optar por deixar o valor pago como crédito para uma truppie futura com este guia - mas não esqueça de avisar, ok?</li>
+						        <li>A reserva é efetivada após a confirmação da operadora do cartão de crédito;</li>
+						        <li>Caso você desista de ir, informe a gente assim que possível em ola@truppie.com;</li>
+						        <li>Se faltarem menos de 48 horas até o início do evento, o reembolso poderá ser de 50%;</li>
+						        <li>Se o evento for cancelado pelo guia por qualquer motivo em qualquer momento, o reembolso é integral;</li>
+						        <li>Em quaisquer destas situações, você pode optar por deixar o valor pago como crédito para uma truppie futura com este guia - mas não esqueça de avisar, ok?</li>
 					        </ul>
 					        <h4 class="spaced-smallest">Importante</h4>
 					        <ul>
-					        <li>Seu cartão será usado em ambiente seguro. Seus dados serão protegidos e nunca fornecidos a terceiros. Fique traquilo!</li>
-					        <li>Este evento depende de condições climáticas para ocorrer</li>
-					        <li>A taxa de serviço do cartão de crédito não é reembolsável</li>
+						        <li>Seu cartão será usado em ambiente seguro. Seus dados serão protegidos e nunca fornecidos a terceiros. Fique traquilo!</li>
+						        <li>Este evento depende de condições climáticas para ocorrer</li>
+						        <li>A taxa de serviço do cartão de crédito não é reembolsável</li>
 					        </ul>
 			            </div>
 	        		</div>
