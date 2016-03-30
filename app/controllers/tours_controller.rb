@@ -84,7 +84,7 @@ class ToursController < ApplicationController
               :price => @tour.value.to_i * 100
             )
             if @order.save() and @tour.save()
-              flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas Reservas"
+              flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas truppies"
               flash[:order_id] = order.id
               redirect_to @tour
             else

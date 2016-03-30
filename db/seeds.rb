@@ -84,7 +84,7 @@
   address: 'Bairro do Vidigal - Rio de Janeiro - RJ',
   user: @user,
   take: ['Tênis ou bota para caminhada', 'Roupas leves', 'Água', 'Lanche para trilha (sugestões: barra de cereal, frutas, biscoitos, sanduiche)','Óculos escuros, chapéu ou boné','Kit de Primeiros Socorros','Repelente e protetor solar', 'Saco de lixo', ],
-  goodtoknow: ['O transporte até o ponto de encontro fica por sua conta, ok? Mas nós gostamos de promover a carona solidária (mais detalhes após a reserva)', 'Do ponto de encontrato até o ponto de início da trilha, é preciso pegar uma  van (serviço local), que custa aproximadamente R$6,00 (ida e volta) e não está incluído no valor do evento - leve dinheiro em espécie', 'Em caso de chuva, o evento será remarcado. Mas fique tranquilo que ficaremos de olho na previsão do tempo e te avisaremos em tempo hábil!', 'Para dúvidas específicas sobre esta truppie, entre em contato com o guia pelo e-mail informado acima'],
+  goodtoknow: ['O transporte até o ponto de encontro fica por sua conta, ok? Mas nós gostamos de promover a carona solidária (mais detalhes após a reserva)', 'Do ponto de encontro até o ponto de início da trilha, é preciso pegar uma  van (serviço local), que custa R$ 7,00 (ida e volta) e não está incluído no valor do evento - leve dinheiro em espécie;', 'Em caso de chuva, o evento será remarcado. Mas fique tranquilo que ficaremos de olho na previsão do tempo e te avisaremos em tempo hábil!', 'Para dúvidas específicas sobre esta truppie, entre em contato com o guia pelo e-mail informado acima'],
   category: @cat,
   tags: [@tagone, @tagtwo, @tagtree],
   languages: [@language_default, @language_alt],

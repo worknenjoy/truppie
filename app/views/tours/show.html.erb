@@ -23,6 +23,11 @@
 		            		<%= l(@tour.start, format: '%A') %>
 	            		</strong>
             		</p>
+            		<p class="nomargin">
+		            	<strong>
+		            	às <%= l(@tour.start, format: '%Hh%M') %>
+	            		</strong>
+            		</p>
 		            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tour.start) %></strong></p>
 		          </div>
 		        </div>
@@ -223,7 +228,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>Importante:</strong></h4>
-				<p>Antes de qualquer atividade física, é de extrema importância passar por uma avaliação médica, hein? Sem vacilos com a saúde! ;)</p>
+				<p>Antes de qualquer atividade física, é de extrema importância passar por uma avaliação médica. Sem vacilos com a saúde, hein?! ;)</p>
 			</div>
 		</div>
 		  <% @tour.attractions.each do |attraction| %>
