@@ -48,6 +48,11 @@ class OrdersController < ApplicationController
         if !@event.empty?
           @payment_id = request_raw_json["resource"]["payment"]["id"]
           @status = request_raw_json["resource"]["payment"]["status"]
+          puts '------------- paymentid -------'
+          puts @payment_id.inspect
+          puts '------------- status -------'
+          puts @status
+          puts '--------------------'
           case @status
           when 'ORDER.CREATED'
             @friendly_st = 'O seu pedido de reserva foi criado'
@@ -84,6 +89,13 @@ class OrdersController < ApplicationController
           user = order.user
           tour = order_tour.tour
           organizer = tour.organizer
+          
+          puts @subject
+          puts @friendly_st
+          
+          puts order.inspect
+          puts tour.inspect
+          puts organizer.inspect
           
           @status_data = {
             subject: @subject,
