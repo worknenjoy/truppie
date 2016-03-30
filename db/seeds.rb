@@ -70,7 +70,7 @@
 
   title: 'Trilha do Morro Dois Irmãos',
   description: 'O Morro Dois Irmãos - localizado no bairro do Vidigal - proporciona uma linda vista da Zona Sul da cidade (bairros Leblon, Ipanema, Lagoa, Cristo), da Floresta da Tijuca, da Rocinha, das Ilhas Cagarras e de Niterói. Com seus 533 metros de altura, ele é mais alto que o Pão de Açúcar. A trilha é um excelente “esforço-benefício”, já que não é uma caminhada muito longa nem puxada, e o prêmio lá em cima é totalmente recompensador!',
-  value: 38,
+  value: 35,
   currency: 'BRL',
   organizer: @organizer,
   start: '2016-04-10 07:30:00',

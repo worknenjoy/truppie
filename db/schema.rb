@@ -111,11 +111,12 @@ ActiveRecord::Schema.define(version: 20160316001604) do
     t.integer  "tour_id"
     t.integer  "user_id"
     t.string   "status"
+    t.text     "status_history", default: [],              array: true
     t.string   "payment"
     t.integer  "price"
     t.integer  "discount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "orders", ["tour_id"], name: "index_orders_on_tour_id", using: :btree

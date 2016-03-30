@@ -6,6 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       t.references :tour, index: true
       t.references :user, index: true
       t.string :status
+      t.text :status_history, array: true, default: []
       t.string :payment
       t.integer :price
       t.integer :discount
