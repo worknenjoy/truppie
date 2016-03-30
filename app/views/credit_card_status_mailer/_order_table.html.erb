@@ -1,0 +1,25 @@
+<table cellpadding="0" cellspacing="0" border="1" align="center">
+    <thead>
+        <tr>
+        <th><span>Truppie</span></th>
+        <th><span>Reservada em</span></th>
+        <th><span>Código do pedido</span></th>
+        <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td width="30%">
+                <%= link_to order.tour.title, tour_url(order.tour), class: 'user-link' %>
+                <span class="user-subhead"><%= order.tour.organizer.name %></span>
+            </td>
+            <td><%= l(order.created_at, format: '%d de %B as %I:%M %p')  %></td>
+            <td class="text-center">
+                <%= order.payment %>
+            </td>
+            <td width="10%">
+               <h3><%= raw(order.tour.price) %></h3>
+            </td>
+        </tr>
+    </tbody>
+</table>
