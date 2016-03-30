@@ -7,13 +7,15 @@ class CreditCardStatusMailer < ApplicationMailer
     @tour = tour
     @organizer = organizer
     
-    mailers = "ola@truppie.com, laurinha.sette@gmail.com, #{user.email}, #{organizer.user.email}"
+    #mailers = "ola@truppie.com, laurinha.sette@gmail.com, #{user.email}, #{organizer.user.email}"
+    mailers = 'alexanmtz@gmail.com'
     
     mail(
       from: 'no-reply@truppie.com',
-      subject: status[:subject],
+      subject: @status[:subject],
       to: mailers,
-      template_name: 'status_change' 
+      template_name: 'status_change',
+      template_path: 'credit_card_status_mailer' 
      )
   end
   

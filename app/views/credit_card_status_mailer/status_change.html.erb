@@ -2,9 +2,11 @@
 
 <h2>Olá, explorador(a)!</h2>
 
-<p>Oba, que legal que você quer fazer uma truppie! :D com o <a href="<%= @organizer.website %>"><%= @organizer.name %></a></p>
+<%= @status.inspect %>
 
-<p>O seu cartão de crédito encontra-se <strong><%= @status[:content] %></strong> e, assim que for aprovado, vamos te avisar, ok?</p>
+<p>Oba, que legal que você quer fazer uma truppie com o <a href="<%= @organizer.website %>"><%= @organizer.name %></a>! :D</p>
+
+<p>O seu cartão de crédito encontra-se <strong><%= @status[:content] %></strong> e, assim que o status for atualizado, vamos te avisar, ok?</p>
 
 <p>Para conferir o andamento do status a qualquer hora, acesse: <a href="http://www.truppie.com/orders">http://www.truppie.com/orders</a></p>
 
