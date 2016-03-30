@@ -239,7 +239,7 @@ class TourTest < ActiveSupport::TestCase
       assert_equal true, true
    end
    test "list existent webhooks after deleted" do
-     skip("list webhooks")
+     #skip("list webhooks")
      headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]

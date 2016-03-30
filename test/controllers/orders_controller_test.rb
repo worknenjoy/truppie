@@ -144,7 +144,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
   
   test "should make a post from live website" do
-    #skip("a post to webhook live")
+    skip("a post to webhook live")
     response = RestClient.post "http://www.truppie.com/webhook/", {}
     puts response.inspect
     puts '-----------'

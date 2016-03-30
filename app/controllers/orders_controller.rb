@@ -12,10 +12,13 @@ class OrdersController < ApplicationController
       
       post_params = {
         events: [
-          "ORDER.*",
+          #"ORDER.*",
           "PAYMENT.AUTHORIZED",
           "PAYMENT.CANCELLED",
-          "PAYMENT.IN_ANALYSIS"
+          "PAYMENT.IN_ANALYSIS",
+          "PAYMENT.REFUNDED",
+          "PAYMENT.REVERSED",
+          "PAYMENT.SETTLED"
         ],
         target: 'http://www.truppie.com/webhook',
         media: "WEBHOOK"
@@ -47,23 +50,31 @@ class OrdersController < ApplicationController
           case @friendly_status
           when 'CREATED'
             @status = 'O seu pagamento foi processado'
+            @subject = "Solicitação de reserva de uma truppie! :)"
           when 'WAITING'
             @status = 'Recebemos o seu pagamento e estamos aguardando o contato da operadora do cartão com uma resposta'
+            @subject = "Solicitação de reserva de uma truppie! :)"
           when 'IN_ANALYSIS'
             @status = 'O seu pagamento se encontra em análise pela operadora do cartão'
             @subject = "Solicitação de reserva de uma truppie! :)"
           when 'PRE_AUTHORIZED'
             @status = 'O seu pagaemento foi pré-autorizado'
+            @subject = "Solicitação de reserva de uma truppie! :)"
           when 'AUTHORIZED'
             @status = 'O seu pagamento foi autorizado'
+            @subject = "Solicitação de reserva de uma truppie! :)"
           when 'CANCELLED'
             @status = 'O seu pagamento foi cancelado pela operadora do cartão'
+            @subject = "Solicitação de cancelamento de uma truppie!"
           when 'REVERSED'
             @status = 'O seu pagamento foi revertido'
+            @subject = "Reembolso de uma truppie"
           when 'REFUNDED'
             @status = 'Você irá ser reembolsado'
+            @subject = "Você foi reembolsado de uma truppie"
           when 'SETTLED'
             @status = 'O seu pagamento se encontra em negociação'
+            @subject = "Você solicitou um estorno do seu cartão"
           else
             'Estamos ainda definindo o status do seu pagamento'
           end 
