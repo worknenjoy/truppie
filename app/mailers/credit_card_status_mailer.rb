@@ -20,7 +20,7 @@ class CreditCardStatusMailer < ApplicationMailer
   def status_message(message)
     mail(
       from: 'no-reply@truppie.com',
-      subject: status[:subject],
+      subject: 'Foi enviada uma requisição ao acessar o webhook que não pode ser processada',
       to: 'ola@truppie.com',
       body: message 
      )
