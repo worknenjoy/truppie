@@ -223,7 +223,7 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "list existent webhooks and delete it" do
-     skip("delete webhooks")
+     #skip("delete webhooks")
      headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]

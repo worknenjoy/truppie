@@ -14,10 +14,7 @@ class OrdersController < ApplicationController
       
       post_params = {
         events: [
-          "ORDER.CREATED",
-          "PAYMENT.AUTHORIZED",
-          "PAYMENT.CANCELLED",
-          "PAYMENT.IN_ANALYSIS"
+          "PAYMENT.*"
         ],
         target: 'http://www.truppie.com/webhook',
         media: "WEBHOOK"
@@ -50,34 +47,34 @@ class OrdersController < ApplicationController
       @event = request_raw_json["event"]
         if !@event.empty?
           @payment_id = request_raw_json["resource"]["payment"]["id"]
-          @friendly_status = request_raw_json["resource"]["payment"]["status"]
-          case @friendly_status
-          when 'CREATED'
-            @status = 'O seu pagamento foi processado'
+          @status = request_raw_json["resource"]["payment"]["status"]
+          case @status
+          when 'ORDER.CREATED'
+            @friendly_st = 'O seu pedido de reserva foi criado'
+            @subject = "Solicitação de reserva de uma truppie! :)"  
+          when 'PAYMENT.WAITING'
+            @friendly_st = 'Recebemos o seu pagamento e estamos aguardando o contato da operadora do cartão com uma resposta'
             @subject = "Solicitação de reserva de uma truppie! :)"
-          when 'WAITING'
-            @status = 'Recebemos o seu pagamento e estamos aguardando o contato da operadora do cartão com uma resposta'
+          when 'PAYMENT.IN_ANALYSIS'
+            @friendly_st = 'O seu pagamento se encontra em análise pela operadora do cartão'
             @subject = "Solicitação de reserva de uma truppie! :)"
-          when 'IN_ANALYSIS'
-            @status = 'O seu pagamento se encontra em análise pela operadora do cartão'
+          when 'PAYMENT.PRE_AUTHORIZED'
+            @friendly_st = 'O seu pagamento foi pré-autorizado'
             @subject = "Solicitação de reserva de uma truppie! :)"
-          when 'PRE_AUTHORIZED'
-            @status = 'O seu pagamento foi pré-autorizado'
+          when 'PAYMENT.AUTHORIZED'
+            @friendly_st = 'O seu pagamento foi autorizado'
             @subject = "Solicitação de reserva de uma truppie! :)"
-          when 'AUTHORIZED'
-            @status = 'O seu pagamento foi autorizado'
-            @subject = "Solicitação de reserva de uma truppie! :)"
-          when 'CANCELLED'
-            @status = 'O seu pagamento foi cancelado pela operadora do cartão'
+          when 'PAYMENT.CANCELLED'
+            @friendly_st = 'O seu pagamento foi cancelado pela operadora do cartão'
             @subject = "Solicitação de cancelamento de uma truppie!"
-          when 'REVERSED'
-            @status = 'O seu pagamento foi revertido'
+          when 'PAYMENT.REVERSED'
+            @friendly_st = 'O seu pagamento foi revertido'
             @subject = "Reembolso de uma truppie"
-          when 'REFUNDED'
-            @status = 'Você irá ser reembolsado'
+          when 'PAYMENT.REFUNDED'
+            @friendly_st = 'Você irá ser reembolsado'
             @subject = "Você foi reembolsado de uma truppie"
-          when 'SETTLED'
-            @status = 'O seu pagamento se encontra em negociação'
+          when 'PAYMENT.SETTLED'
+            @friendly_st = 'O seu pagamento se encontra em negociação'
             @subject = "Você solicitou um estorno do seu cartão"
           else
             'Estamos ainda definindo o status do seu pagamento'
@@ -90,7 +87,7 @@ class OrdersController < ApplicationController
           
           @status_data = {
             subject: @subject,
-            content: @status
+            content: @friendly_st
           }
            
           CreditCardStatusMailer.status_change(@status_data, user, tour, organizer).deliver_now

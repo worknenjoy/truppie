@@ -136,8 +136,7 @@ class OrdersControllerTest < ActionController::TestCase
     }
     @request.env['RAW_POST_DATA'] = post_params
     post :webhook, {}
-    assert_not_nil assigns(:status)
-    assert_not_nil assigns(:subject)
+    assert_not_nil assigns(:status_data)
     assert_response :success
     assert_not ActionMailer::Base.deliveries.empty?
     
