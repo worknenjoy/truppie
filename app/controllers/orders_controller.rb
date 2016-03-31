@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
         target: 'http://www.truppie.com/webhook',
         media: "WEBHOOK"
       }
-      puts Rails.application.secrets[:moip_domain].inspect
       response = RestClient.post "#{Rails.application.secrets[:moip_domain]}/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
       if json_data["id"]
