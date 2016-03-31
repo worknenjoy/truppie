@@ -18,7 +18,7 @@ class CreditCardStatusMailer < ApplicationMailer
       from: 'no-reply@truppie.com',
       subject: @status[:subject],
       to: mailers,
-      cc: copy_mailers,
+      bcc: copy_mailers,
       template_name: 'status_change',
       template_path: 'credit_card_status_mailer' 
      )
@@ -40,10 +40,10 @@ class CreditCardStatusMailer < ApplicationMailer
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
     
     mail(
-      from: 'no-reply@truppie.com',
+      from: 'ola@truppie.com',
       subject: "Notificação enviada ao usuário da sua truppie - #{@status[:subject]}",
       to: organizer_mailers,
-      cc: copy_mailers,
+      bcc: copy_mailers,
       template_name: @status[:guide],
       template_path: 'credit_card_status_mailer/guide'
      )
@@ -51,7 +51,7 @@ class CreditCardStatusMailer < ApplicationMailer
   
   def status_message(message)
     mail(
-      from: 'no-reply@truppie.com',
+      from: 'ola@truppie.com',
       subject: 'Foi enviada uma requisição ao acessar o webhook que não pode ser processada',
       to: 'ola@truppie.com',
       body: message 
