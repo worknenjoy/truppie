@@ -7,7 +7,9 @@ class CreditCardStatusMailer < ApplicationMailer
     @tour = tour
     @organizer = organizer
     
-    mailers = "ola@truppie.com, #{user.email}, #{organizer.user.email}"
+    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
+    
+    mailers = "#{user.email}"
     
     attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
@@ -16,6 +18,7 @@ class CreditCardStatusMailer < ApplicationMailer
       from: 'no-reply@truppie.com',
       subject: @status[:subject],
       to: mailers,
+      cc: copy_mailers,
       template_name: 'status_change',
       template_path: 'credit_card_status_mailer' 
      )
@@ -29,7 +32,9 @@ class CreditCardStatusMailer < ApplicationMailer
     @tour = tour
     @organizer = organizer
     
-    organizer_mailers = "ola@truppie.com, #{organizer.user.email}"
+    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com"
+    
+    organizer_mailers = "#{organizer.user.email}"
     
     attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
@@ -38,6 +43,7 @@ class CreditCardStatusMailer < ApplicationMailer
       from: 'no-reply@truppie.com',
       subject: "Notificação enviada ao usuário da sua truppie - #{@status[:subject]}",
       to: organizer_mailers,
+      cc: copy_mailers,
       template_name: @status[:guide],
       template_path: 'credit_card_status_mailer/guide'
      )

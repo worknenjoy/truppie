@@ -1,15 +1,17 @@
 <div>
-	<div style="float: left; margin-right: 20px;">
-		<p>
-			Equipe Tuppie<br />
-			ola@truppie.com<br />
-		</p>
-		<a href="http://www.truppie.com">http://www.truppie.com</a><br />
-		<%= image_tag attachments['logo-flat.png'].url, :width => '150', :alt => 'Truppie' %>
+	<p>
+		Equipe Tuppie<br />
+		ola@truppie.com<br />
+	</p>
+</div>
+<div>
+	<div style="float: left; margin-right: 20px; text-align: center;">
+		<%= image_tag attachments['logo-flat.png'].url, :width => '150', :alt => 'Truppie' %><br />
+		<a href="http://www.truppie.com">http://www.truppie.com</a>
 	</div>
 	<div style="float:left; text-align: center;">
-	<%= image_tag attachments['logo_utopicos.png'].url, :width => '100', :alt => organizer.name %><br/>
-	<a href="<%= organizer.website %>"><%= organizer.name %></a>
+		<%= image_tag attachments['logo_utopicos.png'].url, :width => '100', :alt => organizer.name %><br/>
+		<a href="<%= organizer.website %>"><%= organizer.name %></a>
 	</div>
 </div>
 <div style="clear: both;"></div>

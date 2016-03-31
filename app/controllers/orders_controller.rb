@@ -2,6 +2,7 @@ require 'json'
 
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:new_webhook, :webhook]
   skip_before_action :verify_authenticity_token
   
   def new_webhook
