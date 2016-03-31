@@ -1,9 +1,11 @@
 <nav class="navbar navbar-dark bg-inverse navbar-full">
   <div class="container">
   	<div class="row">
+  		<% if !current_page?(root_url) %>
 		  <%= link_to root_path, class: 'navbar-brand pull-left' do %>
 		  	<%= image_tag("logos-02.svg", :alt => "Truppie", :class => 'img-fluid', :width => 100) %>
 		  <% end %>
+	  	<% end %>
 		  <% if not user_signed_in? %>
 		  <%= link_to 'entrar / logar', new_user_session_path, class: 'btn btn-secondary btn-sm pull-xs-right' %>
 		  <% else %>

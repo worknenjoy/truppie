@@ -2,7 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,700italic);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,latin-ext");
+
 
 @font-face {
   font-family: 'Sunshine';
@@ -21,8 +22,22 @@
 
 @font-face {
   font-family: 'Nevis';
-  font-weight: normal;
   src: font-url("nevis.otf");
+}
+
+@font-face {
+  font-family: 'Nevis-Bold';
+  src: font-url("nevis-alt.otf");
+}
+
+@font-face {
+  font-family: 'Quicksand Bold';
+  font-family: font-url('QuicksandBold.otf');
+}
+
+@font-face {
+  font-family: 'league';
+  font-family: font-url('leaguegothic-condensed-regular-webfont.ttf');
 }
 
 body {
@@ -127,6 +142,7 @@ h5 {
 
 .emblem-font {
   font-family: 'Nevis';
+  font-weight: bold;
 }
 
 .symbol-big {
