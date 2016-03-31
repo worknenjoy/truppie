@@ -20,8 +20,19 @@ class OrdersController < ApplicationController
         target: 'http://www.truppie.com/webhook',
         media: "WEBHOOK"
       }
-      response = RestClient.post "#{Rails.application.secrets[:moip_domain]}/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      base_url = Rails.application.secrets[:moip_domain]
+      
+      puts '----- base_url -----'
+      puts base_url.inspect
+      puts '----- end of base_url -----'
+      
+      response = RestClient.post "#{base_url}/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
+      
+      puts '----- response -----'
+      puts json_data.inspect
+      puts '----- end of response -----'
+      
       if json_data["id"]
         flash[:success] = 'webhook padrao criado com sucesso'
         @webhook_id = json_data["id"]
