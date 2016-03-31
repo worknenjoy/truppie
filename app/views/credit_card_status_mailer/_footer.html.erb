@@ -1,11 +1,13 @@
 <div>
 	<div style="float: left; margin-right: 20px;">
-		<small>Equipe Tuppie</small><br />
-		<small>ola@truppie.com</small><br />
+		<p>
+			Equipe Tuppie<br />
+			ola@truppie.com<br />
+		</p>
 		<a href="http://www.truppie.com">http://www.truppie.com</a><br />
-		<%= image_tag attachments['logo-flat.png'].url, :width => '100', :alt => 'Truppie' %>
+		<%= image_tag attachments['logo-flat.png'].url, :width => '150', :alt => 'Truppie' %>
 	</div>
-	<div style="float:left">
+	<div style="float:left; text-align: center;">
 	<%= image_tag attachments['logo_utopicos.png'].url, :width => '100', :alt => organizer.name %><br/>
 	<a href="<%= organizer.website %>"><%= organizer.name %></a>
 	</div>

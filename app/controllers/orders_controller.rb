@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
         media: "WEBHOOK"
       }
       
-      response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
+      response = RestClient.post "#{Rails.application.secrets[:moip_domain]}/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
       if json_data["id"]
         flash[:success] = 'webhook padrao criado com sucesso'

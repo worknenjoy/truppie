@@ -29,7 +29,7 @@ class ToursController < ApplicationController
     else
       if !@tour.soldout?
         auth = Moip2::Auth::Basic.new(Rails.application.secrets[:moip_token], Rails.application.secrets[:moip_key])
-        client = Moip2::Client.new(:sandbox, auth)
+        client = Moip2::Client.new(Rails.application.secrets[:moip_env], auth)
         api = Moip2::Api.new(client)
         
         order = api.order.create({
