@@ -15,7 +15,7 @@ class CreditCardStatusMailer < ApplicationMailer
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
     
     mail(
-      from: 'no-reply@truppie.com',
+      from: 'ola@truppie.com',
       subject: @status[:subject],
       to: mailers,
       bcc: copy_mailers,
