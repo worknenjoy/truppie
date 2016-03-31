@@ -2,6 +2,7 @@ require 'test_helper'
 
 class OrdersControllerTest < ActionController::TestCase
   setup do
+    sign_in users(:alexandre)
     @order = orders(:one)
     @payment = "PAY-32LJ77AT4JNN"
     @post_params = {

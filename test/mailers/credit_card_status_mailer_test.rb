@@ -13,7 +13,7 @@ class CreditCardStatusMailerTest < ActionMailer::TestCase
      
      assert_not ActionMailer::Base.deliveries.empty?
      assert_equal ['no-reply@truppie.com'], mail.from
-     assert_equal ["ola@truppie.com", "laurinha@email.com", "joana@email.com"], mail.to
+     assert_equal ["laurinha@email.com"], mail.to
      assert_equal "O seu pagamento se encontra em análise pela operadora do cartão", mail.subject
   end
 end
