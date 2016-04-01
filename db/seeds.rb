@@ -8,6 +8,7 @@
 
 @user = User.create(
     email: "joana.vmello@gmail.com",
+    name: "Joana Mello",
     password: "12345678"
 )
 

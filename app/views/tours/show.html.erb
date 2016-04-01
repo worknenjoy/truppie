@@ -3,6 +3,7 @@
 	<div class="img-holder">
 		<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
         <div class="ribbon base"><span><%= raw @tour.price %></span></div>
+        <div class="ribbon base ribbon-value" style="margin-top: 10%;"><span><%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %></span></div>
 	</div>
 	<div class="container">
 		<div class="row divider-default">
@@ -88,12 +89,26 @@
 							</div>
 						</div>
 					</div>
+					<div class="card-footer text-muted" style="text-align: right;">
+    					<small><span class="label label-default spaced-smallest">Membros</span><br /></small>
+    					<% if @tour.organizer.user.image %>
+                			<img width="50" src="<%= @tour.organizer.user.image %>?type=normal" class=" pull-right avatar img-circle img-thumbnail" alt="avatar"><br/>
+                			<%= @tour.organizer.user.name %>
+            			<% else %>
+            				<small>
+            					<img width="50" src="https://avatars.io/instagram/username" class="avatar img-circle img-thumbnail" alt="avatar"><br/>
+            					<%= @tour.organizer.user.name %>
+            				</small>
+            				
+                		<% end %>
+  					</div>
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-6">
 				<div class="card">
 					<div class="card-header">
 						<h5 class="spaced-smallest"><i class="fa fa-info-circle"></i> <strong>Informações:</strong></h5>
+						
 					</div>
 					<div class="card-block">
 			            <ul class="list-unstyled tour-info">
@@ -117,6 +132,12 @@
 			            </ul>
 			            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
 			        </div>
+			        <div class="card-footer text-muted text-xs-center">
+			        	<br/>
+    					<small><span class="label label-default">Promoção</span><br /> Reservando aqui pela truppie você ainda concorre outro passeio do <br/> <%= @tour.organizer.name %>!</small>
+    					<br />
+    					<br />
+  					</div>
 		        </div>
 	       </div>
 		</div>
