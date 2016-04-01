@@ -31,7 +31,7 @@
 		            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tour.start) %></strong></p>
 		          </div>
 		        </div>
-		        <div class="pull-xs-right" style="width: 65%">
+		        <div class="pull-xs-right tour-container">
 					<h4 class="tour-title spaced-smallest pull-xs-right"><strong><%= @tour.title %></strong></h4>
 					<div class="pull-xs-right" style="clear:both">
 						<small  style="display:block; text-align: right">na categoria <strong class="text-danger"><%= @tour.category.name %></strong></small>
@@ -108,7 +108,7 @@
 		            		<li><i class="fa fa-child"></i>  <strong><%= @tour.minimum %></strong> pessoas no mínimo</li>
 		            		<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li>
 			                <li><i class="fa fa-heartbeat"></i> Nível <strong><%= @tour.level %></strong> </li>
-			                <li><i class="fa fa-map-marker"></i> Acontecerá no <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
+			                <li><i class="fa fa-map-marker"></i> Sairá do <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
 			                <li>
 			                	<i class="fa fa-globe"></i>
 			                	Os guias falam 
