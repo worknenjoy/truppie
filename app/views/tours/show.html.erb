@@ -106,12 +106,13 @@
 			            		<% end %>
 		            		</li>
 		            		<li><i class="fa fa-child"></i>  <strong><%= @tour.minimum %></strong> pessoas no mínimo</li>
-		            		<li><i class="fa fa-calendar"></i>  <strong><%= @tour.duration %></strong> de duração</li>
-			                <li><i class="fa fa-heartbeat"></i> <strong><%= @tour.level %></strong></li>
-			                <li><i class="fa fa-map-marker"></i> <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
+		            		<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li>
+			                <li><i class="fa fa-heartbeat"></i> Nível <strong><%= @tour.level %></strong> </li>
+			                <li><i class="fa fa-map-marker"></i> Acontecerá no <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
 			                <li>
 			                	<i class="fa fa-globe"></i>
-			                	<%= @tour.languages.map { |m| m.name }.join(', ') %>
+			                	Os guias falam 
+			                	<strong><%= @tour.languages.map { |m| m.name }.join(', ') %></strong>
 		                	 </li>
 			            </ul>
 			            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
