@@ -24,7 +24,7 @@ class ToursController < ApplicationController
     }
     
     if @tour.confirmeds.exists?(user: current_user)
-      flash[:error] = "Hey, you already confirmed this event!!"
+      flash[:error] = "Hey, você já está confirmado neste evento!!"
       redirect_to @tour          
     else
       if !@tour.soldout?
@@ -84,8 +84,8 @@ class ToursController < ApplicationController
               :price => @tour.value.to_i * 100
             )
             if @order.save() and @tour.save()
-              flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas truppies"
-              flash[:order_id] = order.id
+              flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+              #flash[:order_id] = order.id
               redirect_to @tour
             else
               flash[:error] = "Nao foi possivel criar seu pedido de numero #{order.id}"
