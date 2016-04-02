@@ -54,11 +54,11 @@
 					</div>
 					<div class="card-block card-organizer">
 						<div class="text-xs-center">
-							<h4 class="card-title">
+							<h4 class="card-title spaced-down">
 								<%= image_tag("logo_utopicos.png", :alt => "Truppie", :width => '120', class: 'spaced-smallest') %><br />
 								<strong><%= @tour.organizer.name %> </strong>
 							</h4>
-						    <p class="card-text"><%= @tour.organizer.description %></p>
+						    <p class="card-text spaced-down"><%= @tour.organizer.description %></p>
 						    <% if @tour.organizer.website %>
 								<%= link_to @tour.organizer.website, class: 'btn btn-primary-outline btn-sm' do %>
 									<i class="fa fa-external-link"></i> entrar no site
@@ -67,7 +67,7 @@
 							<% if @tour.organizer.email %>
 							<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @tour.organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
 							<% end %>
-							<div class="hovercard">
+							<div class="hovercard spaced-default">
 								<div class="bottom">
 									<% if @tour.organizer.instagram %>
 				                    <a class="btn btn-info btn-sm" href="<%= @tour.organizer.instagram %>">
@@ -89,6 +89,7 @@
 							</div>
 						</div>
 					</div>
+					<!-- 
 					<div class="card-footer text-muted" style="text-align: right;">
     					<small><span class="label label-default spaced-smallest">Membros</span><br /></small>
     					<% if @tour.organizer.user.image %>
@@ -101,7 +102,7 @@
             				</small>
             				
                 		<% end %>
-  					</div>
+					 </div> -->
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-6">
@@ -122,6 +123,7 @@
 		            		</li>
 		            		<li><i class="fa fa-child"></i>  <strong><%= @tour.minimum %></strong> pessoas no mínimo</li>
 		            		<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li>
+		            		<li><i class="fa fa-clock-o"></i>  <%= l(@tour.start, format: '%d de %B / %Y') %> às <%= l(@tour.start, format: '%Hh%M') %> </li>
 			                <li><i class="fa fa-heartbeat"></i> Nível <strong><%= @tour.level %></strong> </li>
 			                <li><i class="fa fa-map-marker"></i> Sairá do <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
 			                <li>
@@ -130,14 +132,11 @@
 			                	<strong><%= @tour.languages.map { |m| m.name }.join(', ') %></strong>
 		                	 </li>
 			            </ul>
+			            <div class="text-xs-center">
+			            <p><small><span class="label label-default" style="background-color: #BBB;"> reserve agora e concorra a outro passeio do <%= @tour.organizer.name %>!</span></small></p>
+			            </div>
 			            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
 			        </div>
-			        <div class="card-footer text-muted text-xs-center">
-			        	<br/>
-    					<small><span class="label label-default">Promoção</span><br /> Reservando aqui pela truppie você ainda concorre outro passeio do <br/> <%= @tour.organizer.name %>!</small>
-    					<br />
-    					<br />
-  					</div>
 		        </div>
 	       </div>
 		</div>
