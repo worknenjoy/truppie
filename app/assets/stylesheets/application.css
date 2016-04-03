@@ -23,7 +23,8 @@
  *= require bootstrap-social  
  *= require bootstrap-order-table
  *= require bootsnipp-twitter-card
- *= require bootsnipp-breadcrumb    
+ *= require bootsnipp-breadcrumb
+ *= require bootsnipp-trip     
  *= require welcome
  *= require tours 
  */
