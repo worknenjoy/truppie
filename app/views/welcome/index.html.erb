@@ -46,7 +46,7 @@
 				        </div>
 				    </div>
 				    <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
-				    	<strong><%= link_to(@tours.last.title, tour_path(@tours.last.title)) %></strong>
+				    	<strong><%= link_to(@tours.last.title, tour_path(@tours.last)) %></strong>
 				    	<small>com</small> <%= @tours.last.organizer.name %><br />
 				    	<small>no <strong><%= @tours.last.where.city %></strong></small>
 			    	</div>
