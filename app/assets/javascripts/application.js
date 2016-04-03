@@ -21,5 +21,6 @@
 //= require carousel
 //= require dropdown
 //= require alert
+//= require tab
 //= require moip
 //= require main

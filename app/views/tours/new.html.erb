@@ -3,53 +3,74 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+        	<!-- Nav tabs -->
             <div class="card card-block">
-                <div class="card-body">
-                    <h3 class="text-center">
+                <div class="card-body" style="overflow:hidden;">
+                    <h3 class="text-center spaced-down">
                         Adicionar truppie</h3>
                 	<%= form_for @tour, url: tours_path, class: "form form-signup", role: "form" do |f| %>
-	                    <div class="form-group">
-	                        <div class="input-group">
-	                            <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
-	                            </span>
-	                            <%= f.text_field :title, placeholder: "Título da truppie", class: "form-control" %>
-	                        </div>
-	                    </div>
-	                    
-	                    <div class="form-group">
-	                
-	                        <div class="input-group">
-	                            <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-	                            <input type="Text" class="form-control" placeholder="Destination" />
-	                        </div>
-	                    </div>
-	                    <div class="form-group">
-	                        <div class="input-group">
-	                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-	                            <input type="Text" class="form-control" placeholder="numberOfSeats" />
-	                        </div>
-	                    </div>
-	                    
-	                    <div class="form-group">
-	                        <div class="input-group">
-	                            <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-	                            <input type="Text" class="form-control" placeholder="Starting Time" />
-	                        </div>
-	                    </div>
-	                    
-	                    <div class="form-group">
-	                        <div class="input-group">
-	                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-	                            <input type="date" class="form-control" placeholder="Date" />
-	                        </div>
-	                    </div>
-	                    
-	                    <div class="form-group">
-	                        <div class="input-group">
-	                            <span class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
-	                            <input type="password" class="form-control" placeholder="Prce" />
-	                        </div>
-	                    </div>
+	                    <ul class="nav nav-tabs spaced-down" role="tablist">
+						  <li class="nav-item">
+						    <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informações básicas</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" data-toggle="tab" href="#desc" role="tab">Descrições</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Foto</a>
+						  </li>
+						  <li class="nav-item">
+						    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Mais informações</a>
+						  </li>
+						</ul>
+						<div class="tab-content spaced-down">
+							<div class="tab-pane active" id="home" role="tabpanel">
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
+			                            </span>
+			                            <%= f.text_field :title, placeholder: "Título da truppie", class: "form-control" %>
+			                        </div>
+			                    </div>
+			                    
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+			                            <%= f.text_field :where, placeholder: "Onde?", class: "form-control" %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-male"></span></span>
+			                            <%= f.text_field :availability, placeholder: "Vagas", class: "form-control" %>
+			                        </div>
+			                    </div>
+			                    
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+			                            <%= f.text_field :start, placeholder: "Quando começa", class: "form-control" %>
+			                        </div>
+			                    </div>
+			                    
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+			                            <%= f.text_field :start, placeholder: "Quando termina", class: "form-control" %>
+			                        </div>
+			                    </div>
+			                    
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-ticket"></span></span>
+			                            <%= f.text_field :start, placeholder: "Preço", class: "form-control" %>
+			                        </div>
+			                    </div>
+		                    </div>
+		                    <div class="tab-pane" id="desc" role="tabpanel">
+		                		outro form
+		                	</div>
+	                	</div>
 	                    <div class="form-group">
 		               		<div class="checkbox">
 							  <label>
@@ -58,9 +79,14 @@
 							  </label>
 							</div>
 	                    </div>
-	                    
-	                <a href="http://www.jquery2dotnet.com" class="btn btn-sm btn-primary btn-block" role="button">
-	                    SUBMIT</a>
+		                <div class="pull-right">  
+		                	<a href="http://www.jquery2dotnet.com" class="btn btn-lg btn-default" role="button">
+		                    	Cancelar
+		                    </a>  
+		                	<a href="http://www.jquery2dotnet.com" class="btn btn-lg btn-primary" role="button">
+		                    	Criar truppie
+		                    </a>
+	                    </div>
 				  <% end %>
 				  </div>
 	            </div>
