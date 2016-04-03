@@ -6,7 +6,6 @@
 			<hr class="hr-primary" />
 	        <ol class="breadcrumb bread-primary ">
 	        	<li>
-	        		
 	        		<%= link_to root_url do %>
 	        			<i class="fa fa-home"></i> Início
 	        		<% end %>
@@ -41,7 +40,7 @@
         	<h4 class="spaced-down">Seus dados e pagamento</h4>
         </div>
         <%= form_tag confirm_presence_tour_path, :method => 'post' do %>
-        <div class="col-xs-12 col-md-8">
+        <div class="col-md-8">
             <div class="card font-card-small">
                 <div class="card-header">
                     <h4 class="panel-title">Dados do usuário</h4>
@@ -72,7 +71,7 @@
                 </div> 
             </div>
         </div>
-        <div class="col-xs-12 col-md-4">
+        <div class="col-md-4">
             <div class="card font-card-small">
                 <div class="card-header">
                     <h4>Dados para pagamento</h4>
@@ -154,7 +153,7 @@ lwIDAQAB
 		            	</div>
 	        		</div>
 	        	</div>
-	        	</div>
+        	</div>
         <% end %>
 	</div>
 </div>
