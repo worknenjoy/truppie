@@ -63,8 +63,13 @@
       .date-body {
         width: 40%;
       }
+      .floating-schedule {
+        .date-body {
+          width: 100%;
+        }
+      }
       .ribbon-value {
-        top: 35%;
+        top: 37%;
       }
     }
   }
