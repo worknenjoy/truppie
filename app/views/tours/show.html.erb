@@ -3,7 +3,7 @@
 	<div class="img-holder">
 		<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
         <div class="ribbon base"><span><%= raw @tour.price %></span></div>
-        <div class="ribbon base ribbon-value" style="margin-top: 10%;"><span><%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %></span></div>
+        <div class="ribbon base ribbon-value"><span><%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %></span></div>
 	</div>
 	<div class="container">
 		<div class="row divider-default">
@@ -36,7 +36,7 @@
 					<h4 class="tour-title spaced-smallest pull-xs-right"><strong><%= @tour.title %></strong></h4>
 					<div class="pull-xs-right" style="clear:both">
 						<small  style="display:block; text-align: right">na categoria <strong class="text-danger"><%= @tour.category.name %></strong></small>
-						<div class="spaced-smallest pull-xs-right">
+						<div class="spaced-smallest pull-xs-right" style="display:block; text-align: right">
 							<small>tags:</small> 
 							<% @tour.tags.each do |tag| %>
 								 <span class="label label-info"><%= tag.name %></span>
@@ -71,13 +71,13 @@
 								<div class="bottom">
 									<% if @tour.organizer.instagram %>
 				                    <a class="btn btn-info btn-sm" href="<%= @tour.organizer.instagram %>">
-				                        <i class="fa fa-instagram"></i>
+				                        <i class="fa fa-instagram"></i> instagram
 				                    </a>
 				                    <% end %>
 				                    <% if @tour.organizer.facebook %>
 				                    <a class="btn btn-primary btn-sm" rel="publisher"
 				                       href="<%= @tour.organizer.facebook %>">
-				                        <i class="fa fa-facebook"></i>
+				                        <i class="fa fa-facebook"></i> facebook
 				                    </a>
 				                    <% end %>
 				                    <% if @tour.organizer.twitter %>
@@ -132,11 +132,17 @@
 			                	<strong><%= @tour.languages.map { |m| m.name }.join(', ') %></strong>
 		                	 </li>
 			            </ul>
-			            <div class="text-xs-center">
-			            <p><small><span class="label label-default" style="background-color: #BBB;"> reserve agora e concorra a outro passeio do <%= @tour.organizer.name %>!</span></small></p>
+			        </div>
+			        <div class="card-footer">
+			            <div class="row">
+			            	<div class="col-xs-12">
+					            <div class="text-xs-center">
+					            	<p><small><span class="label label-default" style="background-color: #BBB;"> reserve agora e concorra a outro passeio do <%= @tour.organizer.name %>!</span></small></p>
+					            </div>
+				            </div>
 			            </div>
 			            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
-			        </div>
+		            </div>
 		        </div>
 	       </div>
 		</div>

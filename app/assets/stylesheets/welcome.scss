@@ -52,12 +52,18 @@ h5 {
   color: #31bcb0;
 }
 
+.label {
+  line-height: 18px;
+  white-space: normal;
+}
+
 
 .logo {
   width: 80%;
   position: relative;
   margin: 2% auto;
   text-align: center;
+  z-index: 1;
   
   img {
     max-width: 100%;
@@ -65,7 +71,7 @@ h5 {
     text-align: center;
   }
   .tagline {
-    margin-top: 0;
+    margin-top: -15px;
     text-transform: uppercase;
     font-size: 0.5em;
     color: #f1592a;
@@ -219,4 +225,17 @@ h5 {
 
 .tour-container {
   width: 70%;
+}
+
+.card-floating {
+  position: absolute;
+  top: 25%;
+  right: 10%;
+  width: 320px;
+  z-index: 9999;
+}
+
+.floating-schedule {
+  padding: 20px;
+  
 }

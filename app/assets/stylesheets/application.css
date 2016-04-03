@@ -21,7 +21,9 @@
  *= require bootstrap-ribbon
  *= require navbar
  *= require bootstrap-social  
- *= require bootstrap-order-table   
+ *= require bootstrap-order-table
+ *= require bootsnipp-twitter-card
+ *= require bootsnipp-breadcrumb    
  *= require welcome
  *= require tours 
  */

@@ -25,13 +25,50 @@
         width: 100%;
         height: 200px;
       }
+      .carousel-navigation a {
+        top: 80%;        
+      }
       .font-card-small {
         label {
           font-size: 13px;
         }
       }
+      .twPc-button {
+        top: -48px;
+        right: -12px;
+      }
+      .twPc-ArrangeSizeFit {
+        display: block;
+        width: 100%;
+        margin-bottom: 12px;
+      }
+      .card-floating {
+        position: static;
+        width: 100%;
+      }
+      .twPc-bg {
+        background-size: cover;
+      }
+      .twPc-divUser {
+        span {
+          margin-left: 15px;
+        }
+      }
+      .tour-container {
+        width: 100%;
+        .tour-title {
+          width: 100%;
+        }
+      }
     }
   }
+}
+
+@include media-breakpoint-down(md) {
+  .card-floating {
+        position: static;
+        width: 100%;
+      }
 }
 
 @include media-breakpoint-up(md) {
@@ -73,6 +110,19 @@
     .ribbon {
       span {
         font-size: 34px !important;          
+      }
+    }
+    .date-body {
+      width: 10%;
+    }
+    .floating-schedule {
+      .date-body {
+        width: 100%;
+      }
+    }
+    .img-holder {
+      .ribbon-value {
+        margin-top: 10%;
       }
     }
   }

@@ -1,0 +1,31 @@
+hr {
+  height: 4px;
+  margin-bottom:-3px;
+}
+.hr-warning{
+  background-image: -webkit-linear-gradient(left, rgba(210,105,30,.8), rgba(210,105,30,.6), rgba(0,0,0,0));
+}
+.hr-success{
+  background-image: -webkit-linear-gradient(left, rgba(15,157,88,.8), rgba(15, 157, 88,.6), rgba(0,0,0,0));
+}
+.hr-primary{
+  background-image: -webkit-linear-gradient(left, rgba(197,225,245,.8), rgba(197,225,245,.6), rgba(0,0,0,0));
+}
+.hr-danger{
+  background-image: -webkit-linear-gradient(left, rgba(244,67,54,.8), rgba(244,67,54,.6), rgba(0,0,0,0));
+}
+
+.breadcrumb {
+  background: rgba(245, 245, 245, 0); 
+  border: 0px solid rgba(245, 245, 245, 1); 
+  border-radius: 25px; 
+  display: block;
+  padding-left: 2px;
+}
+
+.btn-bread{
+    margin-top:10px;
+    font-size: 12px;
+    
+    border-radius: 3px;
+}

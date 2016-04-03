@@ -3,6 +3,16 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
+			<hr class="hr-primary" />
+	        <ol class="breadcrumb bread-primary ">
+	        	<li>
+	        		<%= link_to root_url do %>
+	        			<i class="fa fa-home"></i> Início
+	        		<% end %>
+	        	</li>
+	        	<li><%= link_to('Usuário', edit_user_registration_path) %></li>
+	            <li class="active">Minhas truppies</li>
+	        </ol>
 			<h4 class="spaced-smallest">Minhas truppies</h4>
 			<p>Acompanhe aqui o status das suas truppies.</p>
 			<% if !@orders.exists? %>
