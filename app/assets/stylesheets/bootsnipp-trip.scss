@@ -10,12 +10,21 @@
     border-color: rgb(40, 94, 142);
     color: rgb(255, 255, 255);
 }
-.form-control:focus
-{
-    background-color: rgb(50, 118, 177);
-    border-color: rgb(40, 94, 142);
-    color: rgb(255, 255, 255);
+/*.form-control:focus {
+    background-color: rgba(50, 118, 177, 0.5);
+    border-color: rgba(40, 94, 142, 0.5);
+    color: white;
 }
+
+input.form-control:focus::-webkit-input-placeholder
+{
+    color: white;
+} */
+
+.form-control:focus {
+    background: white;
+}
+
 .form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
 .fullscreen_bg {
     position: fixed;
