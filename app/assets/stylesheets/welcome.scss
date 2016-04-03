@@ -250,3 +250,8 @@ h5 {
   position: relative;
   z-index: 3;
 }
+
+#editor {
+  overflow:scroll;
+  max-height:300px
+}

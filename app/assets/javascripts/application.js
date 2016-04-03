@@ -17,10 +17,9 @@
 //= require jquery.event.move
 //= require jquery.event.swipe
 //= require picturefill
-//= require util
-//= require carousel
-//= require dropdown
-//= require alert
-//= require tab
+//= require tether
+//= require bootstrap
+//= require typeahead
+//= require bootstrap-tagsinput
 //= require moip
 //= require main

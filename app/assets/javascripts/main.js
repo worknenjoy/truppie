@@ -29,6 +29,29 @@ $(function(){
 	$('form').on('submit', function(){
 		$(this).find('input[type=submit]').attr('disabled', '');
 	});
+	localStorage.clear();
+	var tags = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  prefetch: {
+	    url: '/tags/index.json',
+	    filter: function(list) {
+	      return $.map(list, function(tag) {
+	        return tag; 
+    	  });
+	    }
+	  }
+	});
+	tags.initialize();
+	
+	$('#tour_tags').tagsinput({
+	  typeaheadjs: {
+	    name: 'tags',
+	    displayKey: 'name',
+	    valueKey: 'name',
+	    source: tags.ttAdapter()
+	  }
+	});
 	
 	$('#carousel-intro').carousel({interval: false});
 	

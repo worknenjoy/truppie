@@ -24,7 +24,9 @@
  *= require bootstrap-order-table
  *= require bootsnipp-twitter-card
  *= require bootsnipp-breadcrumb
- *= require bootsnipp-trip     
+ *= require bootsnipp-trip 
+ *= require bootstrap-tagsinput
+ *= require bootstrap-typeahead      
  *= require welcome
  *= require tours 
  */

@@ -20,11 +20,11 @@
 						    <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Foto</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Mais informações</a>
+						    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Guia</a>
 						  </li>
 						</ul>
 						<div class="tab-content spaced-down">
-							<div class="tab-pane active" id="home" role="tabpanel">
+							<div class="tab-pane" id="home" role="tabpanel">
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
@@ -67,8 +67,52 @@
 			                        </div>
 			                    </div>
 		                    </div>
-		                    <div class="tab-pane" id="desc" role="tabpanel">
-		                		outro form
+		                    <div class="tab-pane active" id="desc" role="tabpanel">
+		                		<div class="form-group">
+		                            <%= f.text_area :description, placeholder: "Descrição completa", class: "form-control" %>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-thumbs-up"></span></span>
+			                            <%= f.text_field :included, value: '', placeholder: "O que inclui?", class: "form-control", "data-role": "tagsinput" %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-thumbs-down"></span></span>
+			                            <%= f.text_field :nonincluded, placeholder: "O que não inclui?", class: "form-control", "data-role": "tagsinput" %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-book"></span></span>
+			                            <%= f.text_field :take, placeholder: "O que levar?", class: "form-control", "data-role": "tagsinput" %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+			                            <%= f.text_field :meetingpoint, placeholder: "Qual o ponto de encontro?", class: "form-control" %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-bookmark"></span></span>
+			                            <%= f.text_field :category, placeholder: "Qual a categoria?", class: "form-control" %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-tags"></span></span>
+			                            <%= f.text_field :tags, value: '', placeholder: "Quais são as tags?", class: "form-control" %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-globe"></span></span>
+			                            <%= f.text_field :included, placeholder: "Idiomas falados?", class: "form-control", "data-role": "tagsinput" %>
+			                        </div>
+			                    </div>
 		                	</div>
 	                	</div>
 	                    <div class="form-group">

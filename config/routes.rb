@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'tags/index'
+
   get 'contacts/index'  
   post 'contacts/send_form'
 
