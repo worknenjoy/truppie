@@ -141,16 +141,19 @@ class ToursController < ApplicationController
   # POST /tours.json
   def create
     @tour = Tour.new(tour_params)
+    
+    puts tour_params.inspect
 
-    respond_to do |format|
-      if @tour.save
-        format.html { redirect_to @tour, notice: 'Tour was successfully created.' }
-        format.json { render :show, status: :created, location: @tour }
-      else
-        format.html { render :new }
-        format.json { render json: @tour.errors, status: :unprocessable_entity }
-      end
-    end
+    #respond_to do |format|
+    #  if @tour.save
+    #    format.html { redirect_to @tour, notice: 'Tour was successfully created.' }
+    #    format.json { render :show, status: :created, location: @tour }
+    #  else
+    #    format.html { render :new }
+    #    format.json { render json: @tour.errors, status: :unprocessable_entity }
+    #  end
+    #end
+    redirect_to tours_path
   end
 
   # PATCH/PUT /tours/1

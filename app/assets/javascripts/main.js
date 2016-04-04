@@ -29,6 +29,7 @@ $(function(){
 	$('form').on('submit', function(){
 		$(this).find('input[type=submit]').attr('disabled', '');
 	});
+	
 	localStorage.clear();
 	var tags = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -52,6 +53,35 @@ $(function(){
 	    source: tags.ttAdapter()
 	  }
 	});
+	
+	var languages = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  prefetch: {
+	    url: '/languages/index.json',
+	    filter: function(list) {
+	      return $.map(list, function(languages) {
+	        return languages; 
+    	  });
+	    }
+	  }
+	});
+	languages.initialize();
+	
+	$('#tour_languages').tagsinput({
+	  typeaheadjs: {
+	    name: 'languages',
+	    displayKey: 'name',
+	    valueKey: 'name',
+	    source: languages.ttAdapter()
+	  }
+	});
+	
+	$(".criar-truppie").on('submit', function(){
+		$('#new_tour').trigger('submit');
+		return false;
+	});
+	
 	
 	$('#carousel-intro').carousel({interval: false});
 	

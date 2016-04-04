@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'tags/index'
+  get 'languages/index'
 
   get 'contacts/index'  
   post 'contacts/send_form'

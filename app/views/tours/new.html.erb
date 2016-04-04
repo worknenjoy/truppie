@@ -1,5 +1,5 @@
 <%= render 'layouts/navbar' %>
-<form class="form-signin">
+<div class="form-signin">
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -24,7 +24,7 @@
 						  </li>
 						</ul>
 						<div class="tab-content spaced-down">
-							<div class="tab-pane" id="home" role="tabpanel">
+							<div class="tab-pane active" id="home" role="tabpanel">
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
@@ -36,38 +36,38 @@
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-			                            <%= f.text_field :where, placeholder: "Onde?", class: "form-control" %>
+			                            <%= f.text_field :address, placeholder: "Onde?", class: "form-control" %>
 			                        </div>
 			                    </div>
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-male"></span></span>
-			                            <%= f.text_field :availability, placeholder: "Vagas", class: "form-control" %>
+			                            <%= f.number_field :availability, placeholder: "Vagas", class: "form-control" %>
 			                        </div>
 			                    </div>
 			                    
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-			                            <%= f.text_field :start, placeholder: "Quando começa", class: "form-control" %>
+			                            <%= f.datetime_local_field :start, placeholder: "Quando começa", class: "form-control" %>
 			                        </div>
 			                    </div>
 			                    
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-			                            <%= f.text_field :start, placeholder: "Quando termina", class: "form-control" %>
+			                            <%= f.datetime_local_field :end, placeholder: "Quando termina", class: "form-control" %>
 			                        </div>
 			                    </div>
 			                    
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-ticket"></span></span>
-			                            <%= f.text_field :start, placeholder: "Preço", class: "form-control" %>
+			                            <%= f.number_field :end, placeholder: "Preço (ex: 30 para R$ 30,00)", class: "form-control" %>
 			                        </div>
 			                    </div>
 		                    </div>
-		                    <div class="tab-pane active" id="desc" role="tabpanel">
+		                    <div class="tab-pane" id="desc" role="tabpanel">
 		                		<div class="form-group">
 		                            <%= f.text_area :description, placeholder: "Descrição completa", class: "form-control" %>
 			                    </div>
@@ -98,7 +98,7 @@
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-bookmark"></span></span>
-			                            <%= f.text_field :category, placeholder: "Qual a categoria?", class: "form-control" %>
+			                            <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {class: "form-control", include_blank: "Escolha uma categoria"} %>
 			                        </div>
 			                    </div>
 			                    <div class="form-group">
@@ -110,7 +110,7 @@
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-globe"></span></span>
-			                            <%= f.text_field :included, placeholder: "Idiomas falados?", class: "form-control", "data-role": "tagsinput" %>
+			                            <%= f.text_field :languages, value: '', placeholder: "Idiomas falados?", class: "form-control" %>
 			                        </div>
 			                    </div>
 		                	</div>
@@ -124,12 +124,10 @@
 							</div>
 	                    </div>
 		                <div class="pull-right">  
-		                	<a href="http://www.jquery2dotnet.com" class="btn btn-lg btn-default" role="button">
+		                	<a href="<%= new_tour_path %> class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">
 		                    	Cancelar
 		                    </a>  
-		                	<a href="http://www.jquery2dotnet.com" class="btn btn-lg btn-primary" role="button">
-		                    	Criar truppie
-		                    </a>
+		                    <%= link_to("Criar truppie", "#", class: "btn btn-lg btn-primary criar-truppie") %>
 	                    </div>
 				  <% end %>
 				  </div>
@@ -137,6 +135,6 @@
 	        </div>
 	    </div>
 	</div>
-</form>
+</div>
 <div id="fullscreen_bg" class="fullscreen_bg"/>
 </div>
