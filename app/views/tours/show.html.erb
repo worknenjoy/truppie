@@ -39,7 +39,7 @@
 						<div class="spaced-smallest pull-xs-right" style="display:block; text-align: right">
 							<small>tags:</small> 
 							<% @tour.tags.each do |tag| %>
-								 <span class="label label-info"><%= tag.name %></span>
+								 <span class="tags label label-info"><%= tag.name %></span>
 							<% end %>
 						</div>
 					</div>
@@ -70,18 +70,18 @@
 							<div class="hovercard spaced-default">
 								<div class="bottom">
 									<% if @tour.organizer.instagram %>
-				                    <a class="btn btn-info btn-sm" href="<%= @tour.organizer.instagram %>">
+				                    <a class="btn btn-info btn-instagram btn-sm" href="<%= @tour.organizer.instagram %>">
 				                        <i class="fa fa-instagram"></i> instagram
 				                    </a>
 				                    <% end %>
 				                    <% if @tour.organizer.facebook %>
-				                    <a class="btn btn-primary btn-sm" rel="publisher"
+				                    <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
 				                       href="<%= @tour.organizer.facebook %>">
 				                        <i class="fa fa-facebook"></i> facebook
 				                    </a>
 				                    <% end %>
 				                    <% if @tour.organizer.twitter %>
-				                    <a class="btn btn-primary btn-twitter btn-sm" href="<%= @tour.organizer.twitter %>">
+				                    <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @tour.organizer.twitter %>">
 				                        <i class="fa fa-twitter"></i>
 				                    </a>
 				                    <% end %>

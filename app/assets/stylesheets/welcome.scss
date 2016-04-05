@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'bootstrap/variables';
+
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,latin-ext");
 
 
@@ -28,6 +30,11 @@
 @font-face {
   font-family: 'Nevis-Bold';
   src: font-url("nevis-alt.otf");
+}
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: font-url("MuseoSans_500.otf");
 }
 
 @font-face {
@@ -147,7 +154,7 @@ h5 {
 }
 
 .emblem-font {
-  font-family: 'Nevis';
+  font-family: 'MuseoSans';
   font-weight: bold;
 }
 
@@ -175,9 +182,10 @@ h5 {
     position: absolute;
     top: 45%;
     opacity: 0.8;
-    color: #fdeccf;
+    color: $brand-primary;
     z-index: 9999;
     height: 100%;
+    opacity: 0.4;
     
     &.carousel-right {
       right: 20px;
@@ -236,6 +244,11 @@ h5 {
   opacity: 0.85;
 }
 
+.card-inverse {
+  background-color: black;
+  color: white;
+}
+
 .floating-schedule {
   padding: 20px;
   
@@ -259,4 +272,19 @@ h5 {
 #tour_category_id {
   width: 100%;
   height: 41px;
+}
+
+.bg-gray {
+  background: $gray-lightest;
+  width: 100%;
+  padding: 20px;
+}
+
+.light-heading {
+  background: rgba(0, 0, 0, 0.025);
+  color: $gray;
+}
+
+.tags {
+  background: $brand-primary-lighter;
 }

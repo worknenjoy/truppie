@@ -1,3 +1,5 @@
+@import 'bootstrap/variables';
+
 .ribbon {
     position: absolute;
     top: 25%;
@@ -5,46 +7,52 @@
     padding: 15px;
     opacity: 0.8;
 }
+
+.ribbon .btn-primary {
+	background: darken($brand-primary, 15%);
+	border-color: darken($brand-primary, 15%);
+}
+
 .ribbon-content{
     position: relative; 
     width: 100%; 
     height: 100px; 
-    background: #f1f1f1; 
+    background: $brand-primary; 
     border: 1px solid #DDD;    
 }
 .ribbon.base {
-    background: #3498db;
+    background: $brand-primary; 
     color: #fff;
 }
 .ribbon.light {
-    background: #ecf0f1;
-    color: #2c3e50;
-    border-right: 5px solid #dde4e6;
+    background: $brand-primary;
+    color: $brand-primary;
+    border-right: 5px solid $brand-primary;
 }
 .ribbon.dark {
     background: #131313;
     color: #fff;
-    border-right: 5px solid #464646;
+    border-right: 5px solid $brand-primary;
 }
 .ribbon.base-alt {
     background: #9cd70e;
     color: #fff;
-    border-right: 5px solid #c6f457;
+    border-right: 5px solid $brand-primary;
 }
 .ribbon.red {
     background: #e91b23;
     color: #fff;
-    border-right: 5px solid #f2787d;
+    border-right: 5px solid $brand-primary;
 }
 .ribbon.orange {
     background: #ff8a3c;
     color: #fff;
-    border-right: 5px solid #ffc7a2;
+    border-right: 5px solid $brand-primary;
 }
 .ribbon.yellow {
     background: #ffd800;
     color: #fff;
-    border-right: 5px solid #ffe866;
+    border-right: 5px solid $brand-primary;
 }
 .ribbon:before, .ribbon:after {
     content: '';
@@ -59,28 +67,28 @@
     bottom: 0;
 }
 .ribbon.base:before {
-    border-top: 27px solid #3498db;
+    border-top: 27px solid $brand-primary;
 }
 .ribbon.base:after {
-    border-bottom: 27px solid #3498db;
+    border-bottom: 27px solid $brand-primary;
 }
 .ribbon.light:before {
-    border-top: 27px solid #ecf0f1;
+    border-top: 27px solid $brand-primary;
 }
 .ribbon.light:after {
-    border-bottom: 27px solid #ecf0f1;
+    border-bottom: 27px solid $brand-primary;
 }
 .ribbon.dark:before {
-    border-top: 27px solid #131313;
+    border-top: 27px solid $brand-primary;
 }
 .ribbon.dark:after {
-    border-bottom: 27px solid #131313;
+    border-bottom: 27px solid $brand-primary;
 }
 .ribbon.base-alt:before {
-    border-top: 27px solid #9cd70e;
+    border-top: 27px solid $brand-primary;
 }
 .ribbon.base-alt:after {
-    border-bottom: 27px solid #9cd70e;
+    border-bottom: 27px solid $brand-primary;
 }
 .ribbon.red:before {
     border-top: 27px solid #e91b23;

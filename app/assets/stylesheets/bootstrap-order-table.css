@@ -28,8 +28,7 @@
     padding-top: 3px;
     margin-left: 60px;
 }
-a {
-    color: #3498db;
+a, a:hover {
     outline: none!important;
 }
 .user-list tbody td>img {

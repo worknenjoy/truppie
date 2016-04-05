@@ -194,7 +194,7 @@
 }
 
 .card.hovercard .cardheader {
-    background: url("https://lh3.googleusercontent.com/proxy/K_rfLU6A3mSEXEiQI4W0JnoEhJUXS2ovSGT7_jQ4aFBoLhf8VQjAOzWtAf6LjSQXeH0WcM3iyPW4b5Hb2J49KK2An8i0ZUL_yD4itHrOJdgTw7AbZf1ueUM=w426-h284");
+    background: image-url("laura-bg.jpg");
     background-size: cover;
     height: 135px;
 }
@@ -245,4 +245,16 @@
 .card.hovercard .bottom {
     padding: 0 20px;
     margin-bottom: 17px;
+}
+
+.card.hovercard .btn-facebook {
+	background: #3b5998;
+}
+
+.card.hovercard .btn-instagram {
+	background: #9b6954;
+}
+
+.card-hovercard .btn-twitter {
+	background: #0084b4;
 }

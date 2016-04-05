@@ -77,7 +77,31 @@ $(function(){
 	  }
 	});
 	
-	$(".criar-truppie").on('submit', function(){
+	var organizers = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  prefetch: {
+	    url: '/organizers.json',
+	    filter: function(list) {
+	      return $.map(list, function(organizers) {
+	        return organizers; 
+    	  });
+	    }
+	  }
+	});
+	organizers.initialize();
+	
+	$('#tour_organizer').tagsinput({
+	  typeaheadjs: {
+	    name: 'organizers',
+	    displayKey: 'name',
+	    valueKey: 'name',
+	    source: organizers.ttAdapter()
+	  },
+	  maxTags: 1
+	});
+	
+	$(".criar-truppie").on('click', function(){
 		$('#new_tour').trigger('submit');
 		return false;
 	});

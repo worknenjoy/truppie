@@ -42,13 +42,12 @@ class ToursControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  # test "should create tour" do
-    # assert_difference('Tour.count') do
-      # post :create, tour: {}
-    # end
-# 
-    # assert_redirected_to tour_path(assigns(:tour))
-  # end
+  test "should create tour" do
+     assert_difference('Tour.count') do
+       post :create, tour: {}
+     end
+     assert_redirected_to tour_path(assigns(:tour))
+   end
 
   test "should show tour" do
     get :show, id: @tour

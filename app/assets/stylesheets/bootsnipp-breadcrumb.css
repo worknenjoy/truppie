@@ -9,7 +9,7 @@ hr {
   background-image: -webkit-linear-gradient(left, rgba(15,157,88,.8), rgba(15, 157, 88,.6), rgba(0,0,0,0));
 }
 .hr-primary{
-  background-image: -webkit-linear-gradient(left, rgba(197,225,245,.8), rgba(197,225,245,.6), rgba(0,0,0,0));
+  background-image: -webkit-linear-gradient(left, rgba(241,90,41,.8), rgba(252,176,64,.6), rgba(0,0,0,0));
 }
 .hr-danger{
   background-image: -webkit-linear-gradient(left, rgba(244,67,54,.8), rgba(244,67,54,.6), rgba(0,0,0,0));

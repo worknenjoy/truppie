@@ -17,10 +17,10 @@
 						    <a class="nav-link" data-toggle="tab" href="#desc" role="tab">Descrições</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#messages" role="tab">Foto</a>
+						    <a class="nav-link" data-toggle="tab" href="#foto" role="tab">Foto</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Guia</a>
+						    <a class="nav-link" data-toggle="tab" href="#guia" role="tab">Guia</a>
 						  </li>
 						</ul>
 						<div class="tab-content spaced-down">
@@ -30,6 +30,7 @@
 			                            <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
 			                            </span>
 			                            <%= f.text_field :title, placeholder: "Título da truppie", class: "form-control" %>
+			                            <%= f.hidden_field :user, value: current_user, placeholder: "Onde?", class: "form-control" %>
 			                        </div>
 			                    </div>
 			                    
@@ -111,6 +112,15 @@
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-globe"></span></span>
 			                            <%= f.text_field :languages, value: '', placeholder: "Idiomas falados?", class: "form-control" %>
+			                        </div>
+			                    </div>
+		                	</div>
+		                	<div class="tab-pane" id="guia" role="tabpanel">
+			                    <p>Para associar um organizador a esta truppie, você precis ser membro desta organização</p>
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-map-o"></span></span>
+			                            <%= f.text_field :organizer, value: '', placeholder: "Organizador", class: "form-control" %>
 			                        </div>
 			                    </div>
 		                	</div>
