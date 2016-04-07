@@ -50,27 +50,27 @@
   name: 'Trilhas & Travessias'
 }
 
-@cat = Category.find_by_name('Trilhas & Travessias') if Category.find_by_name('Trilhas & Travessias').update(@cat_data) || Category.create(@cat_data)
+@cat = Category.find_by_name('Trilhas & Travessias') || Category.create(@cat_data)
 
 
 @tagone_data = {
   name: 'trilha'
 }
 
-@tagone = Tag.find_by_name('trilha') if Tag.find_by_name('trilha').update(@tagone_data) || Tag.create(@tagone_data)
+@tagone = Tag.find_by_name('trilha') || Tag.create(@tagone_data)
 
 @tagtwo_data = {
   name: 'praia'
 }
 
-@tagtwo = Tag.find_by_name('praia') if Tag.find_by_name('praia').update(@tagtwo_data) || Tag.create(@tagtwo_data)
+@tagtwo = Tag.find_by_name('praia') || Tag.create(@tagtwo_data)
 
 
 @tagtree_data = {
   name: 'Rio de Janeiro'
 }
 
-@tagtree = Tag.find_by_name('Rio de Janeiro') if Tag.find_by_name('Rio de Janeiro').update(@tagtree_data) || Tag.create(@tagtree_data)
+@tagtree = Tag.find_by_name('Rio de Janeiro') || Tag.create(@tagtree_data)
 
 #@attraction_one = Attraction.create(
 #  name: 'Morro dois irmãos',
@@ -82,13 +82,13 @@
   name: 'Português'
 }
 
-@language_default = Language.find_by_name('Português') if Language.find_by_name('Português').update(@language_default_data) || Language.create(@language_default_data)
+@language_default = Language.find_by_name('Português') || Language.create(@language_default_data)
 
 @language_alt_data = {
   name: 'English'
 }
 
-@language_alt = Language.find_by_name('English') if Language.find_by_name('English').update(@language_alt_data) || Language.create(@language_alt_data)
+@language_alt = Language.find_by_name('English') || Language.create(@language_alt_data)
 
 @tour_data = {
   title: 'Trilha do Morro Dois Irmãos',
@@ -124,7 +124,7 @@
   name: 'Relax'
 }
 
-@cat_relax = Category.find_by_name('Relax') if Category.find_by_name('Relax').update(@cat_relax_data) || Category.create(@cat_relax_data)
+@cat_relax = Category.find_by_name('Relax') || Category.create(@cat_relax_data)
 
 @rio_aldeia_data = {
   name: "Aldeia Velha",
@@ -139,7 +139,7 @@
   name: 'cachoeira'
 }
 
-@tagwaterfall = Tag.find_by_name('cachoeira') if Tag.find_by_name('cachoeira').update(@tagwaterfall_data) || Tag.create(@tagwaterfall_data)
+@tagwaterfall = Tag.find_by_name('cachoeira') || Tag.create(@tagwaterfall_data)
 
 @tour_aldeia_velha_data = {
 
