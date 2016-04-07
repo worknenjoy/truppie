@@ -23,27 +23,27 @@
 			    	<div class="floating-schedule">
 				    	<div class="pull-left date-body text-xs-center">
 				          <label for="" class="date-title">
-				          	<%= l(@tours.first.start, format: '%B') %>
+				          	<%= l(@tours.last.start, format: '%B') %>
 			          	  </label>
 				          <div class="date-content">
 				            <p class="dia">
-				            	<%= l(@tours.first.start, format: '%d') %>
+				            	<%= l(@tours.last.start, format: '%d') %>
 				            </p>
 				            <hr class="nomargin"/>
 				            <p class="nomargin">
 				            	<strong>
-				            		<%= l(@tours.first.start, format: '%A') %>
+				            		<%= l(@tours.last.start, format: '%A') %>
 			            		</strong>
 		            		</p>
-				            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tours.first.start) %></strong></p>
+				            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tours.last.start) %></strong></p>
 				          </div>
 			         	</div>
 			        </div>
 			    </div>
 			    <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
-			    	<strong><%= link_to(@tours.first.title, tour_path(@tours.first)) %></strong>
-			    	<small>com</small> <%= @tours.first.organizer.name %><br />
-			    	<small>em <strong><%= @tours.first.where.name %>, <%= @tours.first.where.state %></strong></small>
+			    	<strong><%= link_to(@tours.last.title, tour_path(@tours.last)) %></strong>
+			    	<small>com</small> <%= @tours.last.organizer.name %><br />
+			    	<small>em <strong><%= @tours.last.where.name %>, <%= @tours.last.where.state %></strong></small>
 		    	</div>
 			  </div>
 		  </div>
@@ -51,7 +51,7 @@
 			  <div class="row">
 			  	<div class="col-xs-12">
 				  	<div class="spaced-down">
-				  		<a href="<%= tour_path(@tours.first) %>" class="btn btn-block btn-primary btn-sm">Reservar</a>
+				  		<a href="<%= tour_path(@tours.last) %>" class="btn btn-block btn-primary btn-sm">Reservar</a>
 				  	</div>
 			  	</div>
 			  </div>
