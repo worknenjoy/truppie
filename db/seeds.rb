@@ -12,7 +12,7 @@
     password: "12345678"
 }
 
-@user = User.find_by_email("joana.vmello@gmail.com") if User.find_by_email("joana.vmello@gmail.com").update(@user_data) || User.create(@user_data)
+@user = User.find_by_email("joana.vmello@gmail.com") if User.find_by_email("joana.vmello@gmail.com").try(:update,@user_data) || User.create(@user_data)
 
 @rio_city_data = {
   name: "Rio de Janeiro",
@@ -21,7 +21,7 @@
   country: "Brasil"
 }
 
-@rio_city =  Where.find_by_name("Rio de Janeiro") if Where.find_by_name("Rio de Janeiro").update(@rio_city_data) || Where.create(@rio_city_data)
+@rio_city =  Where.find_by_name("Rio de Janeiro") if Where.find_by_name("Rio de Janeiro").try(:update, @rio_city_data) || Where.create(@rio_city_data)
 
 @rio_vidigal_data = {
   name: "Bairro do Vidigal",
@@ -30,7 +30,7 @@
   country: "Brasil"
 }
 
-@rio_vidigal = Where.find_by_name("Bairro do Vidigal") if Where.find_by_name("Bairro do Vidigal").update(@rio_vidigal_data) || Where.create(@rio_vidigal_data)
+@rio_vidigal = Where.find_by_name("Bairro do Vidigal") if Where.find_by_name("Bairro do Vidigal").try(:update,@rio_vidigal_data) || Where.create(@rio_vidigal_data)
 
 
 @organizer_data = {
@@ -44,7 +44,7 @@
     where: @rio_city
 }
 
-@organizer = Organizer.find_by_name("Utópicos Mundo Afora") if Organizer.find_by_name("Utópicos Mundo Afora").update(@organizer_data) || Organizer.create(@organizer_data)
+@organizer = Organizer.find_by_name("Utópicos Mundo Afora") if Organizer.find_by_name("Utópicos Mundo Afora").try(:update,@organizer_data) || Organizer.create(@organizer_data)
 
 @cat_data = {
   name: 'Trilhas & Travessias'
@@ -114,7 +114,7 @@
   meetingpoint: 'Informado após confirmação da reserva'
 }
 
-@tour = Tour.find_by_title('Trilha do Morro Dois Irmãos') if Tour.find_by_title('Trilha do Morro Dois Irmãos').update(@tour_data) || Tour.create(@tour_data)
+@tour = Tour.find_by_title('Trilha do Morro Dois Irmãos') if Tour.find_by_title('Trilha do Morro Dois Irmãos').try(:update,@tour_data) || Tour.create(@tour_data)
 
 #
 # Another truppie
@@ -133,7 +133,7 @@
   country: "Brasil"
 }
 
-@rio_aldeia = Where.find_by_name("Aldeia Velha") if Where.find_by_name("Aldeia Velha").update(@rio_aldeia_data) || Where.create(@rio_aldeia_data)
+@rio_aldeia = Where.find_by_name("Aldeia Velha") || Where.create(@rio_aldeia_data)
 
 @tagwaterfall_data = {
   name: 'cachoeira'
@@ -165,6 +165,6 @@
   meetingpoint: 'Informado após confirmação da reserva'
 }
 
-@tour_aldeia_velha = Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha') if Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha').update(@tour_aldeia_velha_data) || Tour.create(@tour_aldeia_velha_data)
+@tour_aldeia_velha = Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha') if Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha').try(:update,@tour_aldeia_velha_data) || Tour.create(@tour_aldeia_velha_data)
 
 
