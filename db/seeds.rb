@@ -143,7 +143,7 @@
 
 @tour_aldeia_velha_data = {
 
-  title: 'Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha',
+  title: 'Banho de Cachoeira, Meditação e Autoconhecimento',
   description: '<p class="spaced-down">Que tal sair da rotina e curtir um dia diferente, meditando e relaxando imerso da natureza, com muito banho de cachoeira para lavar a alma? Este encontro proporcionará um momento de profunda conexão consigo mesmo. </p><h5>Sobre o roteiro:</h5> <p class="spaced-down">Sairemos às 7h30 em uma van rumo à Cachoeira das Sete Quedas, em Aldeia Velha. Depois de um delicioso almoço e um tempo para relaxar, faremos uma meditação, para auxiliar no processo de contato com o mundo interno e equilíbrio através da respiração e fortalecimento da presença. Em seguida, faremos a Rodada do Beija-Flor - uma Leitura de Aura Coletiva - em que cada pessoa recebe uma mensagem sobre o seu momento atual. Por ser um trabalho coletivo, as mensagens de uns vão enriquecendo as mensagens dos outros, formando um grande campo que permite mais clareza, abertura de percepção e insights. Finalizaremos a vivência com partilha, música e mais banho de cachoeira. Retorno previsto para as 17h00.<h5>Sobre a facilitadora:</h5> Mariana Rattes é Terapeuta Holística. Trabalha com Leitura de Aura, Gestalt Terapia e Grupos de Autoconhecimento. Atualmente, se dedica a unir trabalhos terapêuticos e de autoconhecimento individuais e em grupo com arte, poesia, expressividade e o feminino.</p>',
   value: 150,
   currency: 'BRL',
@@ -165,6 +165,6 @@
   meetingpoint: 'Informado após confirmação da reserva'
 }
 
-@tour_aldeia_velha = Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha') if Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha').try(:update,@tour_aldeia_velha_data) || Tour.create(@tour_aldeia_velha_data)
+@tour_aldeia_velha = Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento') if Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha').try(:update,@tour_aldeia_velha_data) || Tour.create(@tour_aldeia_velha_data)
 
 

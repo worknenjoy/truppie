@@ -126,8 +126,10 @@
 		            		<% end %>
 		            		<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li>
 		            		<li><i class="fa fa-clock-o"></i>  <%= l(@tour.start, format: '%d de %B / %Y') %> às <%= l(@tour.start, format: '%Hh%M') %> </li>
+			                <% if @tour.try(:difficulty) %>
 			                <li><i class="fa fa-heartbeat"></i> Nível <strong><%= @tour.level %></strong> </li>
-			                <li><i class="fa fa-map-marker"></i> Sairá do <strong><%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
+			                <% end %>
+			                <li><i class="fa fa-map-marker"></i><strong> <%= @tour.where.name %></strong> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
 			                <li>
 			                	<i class="fa fa-globe"></i>
 			                	Os guias falam 
@@ -257,7 +259,10 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>Importante:</strong></h4>
-				<p>Antes de qualquer atividade física, é de extrema importância passar por uma avaliação médica. Sem vacilos com a saúde, hein?! ;)</p>
+				<ul>
+				 <li>Antes de qualquer atividade física, é de extrema importância passar por uma avaliação médica. Sem vacilos com a saúde, hein?! ;)</li>
+				 <li>As taxas do cartão estão inclusas</li>
+				</div>
 			</div>
 		</div>
 		  <% @tour.attractions.each do |attraction| %>
