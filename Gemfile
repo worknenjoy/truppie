@@ -31,9 +31,10 @@ gem 'omniauth-facebook'
 
 gem 'moip2', '~> 0.1.4'
 gem 'rest-client'
-gem 'json'
+gem 'json', '1.8.2'
 
 gem 'time_diff'
+gem 'timecop' 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

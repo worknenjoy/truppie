@@ -11,12 +11,19 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :languages
   has_and_belongs_to_many :reviews, dependent: :destroy
   
+  scope :nexts, lambda { where("start > ?", Date.today) }
+  
+  
   def to_param
     "#{id} #{title}".parameterize
   end
   
   def duration
     distance_of_time_in_words(self.end - self.start)
+  end
+  
+  def days_left
+     Time.diff(self.start, Time.now)[:day]
   end
   
   def level

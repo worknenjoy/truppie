@@ -6,27 +6,27 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-@user = User.create(
+@user = User.find_by_email("joana.vmello@gmail.com") || User.create(
     email: "joana.vmello@gmail.com",
     name: "Joana Mello",
     password: "12345678"
 )
 
-@rio_city = Where.create(
+@rio_city =  Where.find_by_name("Rio de Janeiro") || Where.create(
   name: "Rio de Janeiro",
   city: "Rio de Janeiro",
   state: "RJ",
   country: "Brasil"
 )
 
-@rio_vidigal = Where.create(
+@rio_vidigal = Where.find_by_name("Bairro do Vidigal") || Where.create(
   name: "Bairro do Vidigal",
   city: "Rio de Janeiro",
   state: "RJ",
   country: "Brasil"
 )
 
-@organizer = Organizer.create(
+@organizer = Organizer.find_by_name("Utópicos Mundo Afora") || Organizer.create(
     name: "Utópicos Mundo Afora",
     description: "Agência de viagem e bem-estar",
     user: @user,
@@ -37,19 +37,19 @@
     where: @rio_city
 )
 
-@cat = Category.create(
+@cat = Category.find_by_name('Trilhas & Travessias') || Category.create(
   name: 'Trilhas & Travessias'
 )
 
-@tagone = Tag.create(
+@tagone = Tag.find_by_name('trilha') || Tag.create(
   name: 'trilha'
 )
 
-@tagtwo = Tag.create(
+@tagtwo = Tag.find_by_name('praia') || Tag.create(
   name: 'praia'
 )
 
-@tagtree = Tag.create(
+@tagtree = Tag.find_by_name('Rio de Janeiro') || Tag.create(
   name: 'Rio de Janeiro'
 )
 
@@ -59,16 +59,15 @@
 #  photo: "http://www.trilhaape.com.br/images/programacao/Praias%20selvagens_1.JPG"
 #)
 
-@language_default = Language.create(
+@language_default = Language.find_by_name('Português') || Language.create(
   name: 'Português'
 )
 
-@language_alt = Language.create(
+@language_alt = Language.find_by_name('English') || Language.create(
   name: 'English'
 )
 
-@tour = Tour.create(
-
+@tour_data = {
   title: 'Trilha do Morro Dois Irmãos',
   description: 'O Morro Dois Irmãos - localizado no bairro do Vidigal - proporciona uma linda vista da Zona Sul da cidade (bairros Leblon, Ipanema, Lagoa, Cristo), da Floresta da Tijuca, da Rocinha, das Ilhas Cagarras e de Niterói. Com seus 533 metros de altura, ele é mais alto que o Pão de Açúcar. A trilha é um excelente “esforço-benefício”, já que não é uma caminhada muito longa nem puxada, e o prêmio lá em cima é totalmente recompensador!',
   value: 35,
@@ -90,6 +89,55 @@
   tags: [@tagone, @tagtwo, @tagtree],
   languages: [@language_default, @language_alt],
   meetingpoint: 'Informado após confirmação da reserva'
+}
+
+@tour = Tour.find_by_title('Trilha do Morro Dois Irmãos') if Tour.find_by_title('Trilha do Morro Dois Irmãos').update(@tour_data) || Tour.create(@tour_data)
+
+#
+# Another truppie
+#
+
+@cat_relax_data = {
+  name: 'Relax'
+}
+
+@cat_relax = Category.find_by_name('Relax') if Category.find_by_name('Relax').update(@cat_relax_data) || Category.create(@cat_relax_data)
+
+@rio_aldeia = Where.find_by_name("Aldeia Velha") || Where.create(
+  name: "Aldeia Velha",
+  city: "Silva Jardim",
+  state: "RJ",
+  country: "Brasil"
 )
+
+@tagwaterfall = Tag.find_by_name('cachoeira') || Tag.create(
+  name: 'cachoeira'
+)
+
+@tour_aldeia_velha_data = {
+
+  title: 'Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha',
+  description: '<p class="spaced-down">Que tal sair da rotina e curtir um dia diferente, meditando e relaxando imerso da natureza, com muito banho de cachoeira para lavar a alma? Este encontro proporcionará um momento de profunda conexão consigo mesmo. </p><h5>Sobre o roteiro:</h5> <p class="spaced-down">Sairemos às 7h30 em uma van rumo à Cachoeira das Sete Quedas, em Aldeia Velha. Depois de um delicioso almoço e um tempo para relaxar, faremos uma meditação, para auxiliar no processo de contato com o mundo interno e equilíbrio através da respiração e fortalecimento da presença. Em seguida, faremos a Rodada do Beija-Flor - uma Leitura de Aura Coletiva - em que cada pessoa recebe uma mensagem sobre o seu momento atual. Por ser um trabalho coletivo, as mensagens de uns vão enriquecendo as mensagens dos outros, formando um grande campo que permite mais clareza, abertura de percepção e insights. Finalizaremos a vivência com partilha, música e mais banho de cachoeira. Retorno previsto para as 17h00.<h5>Sobre a facilitadora:</h5> Mariana Rattes é Terapeuta Holística. Trabalha com Leitura de Aura, Gestalt Terapia e Grupos de Autoconhecimento. Atualmente, se dedica a unir trabalhos terapêuticos e de autoconhecimento individuais e em grupo com arte, poesia, expressividade e o feminino.</p>',
+  value: 150,
+  currency: 'BRL',
+  organizer: @organizer,
+  start: '2016-04-17 07:30:00',
+  end: '2016-04-17 17:00:00',
+  photo: ActionController::Base.helpers.image_url("trilhas/aldeia_velha.jpg"),
+  availability: 14,
+  maximum: 14,
+  where: @rio_aldeia,
+  address: 'Cachoeira das 7 quedas, Aldeia Velha, Silva Jardim - Rio de Janeiro - RJ',
+  user: @user,
+  included: ['Transporte (van) ida e volta a partir de alguns pontos de referência no Rio de Janeiro', 'Entrada na Cachoeira Sete Quedas em Aldeia Velha', 'Almoço', 'Meditação', 'Rodada de Beija-Flor (leitura de aura coletiva)'],
+  take: ['Roupa de banho', 'Canga ou toalha', 'Muda de roupa para a volta', 'Repelente e protetor solar','Garrafa de água própria','Saco de lixo'],
+  goodtoknow: ['Em caso de chuva, o evento acontecerá normalmente (salvo em caso de tempestade ou alguma situação que prejudique a segurança do evento).', 'Para dúvidas específicas sobre esta truppie, entre em contato com o guia pelo e-mail informado acima.'],
+  category: @cat_relax,
+  tags: [@tagwaterfall],
+  languages: [@language_default, @language_alt],
+  meetingpoint: 'Informado após confirmação da reserva'
+}
+
+@tour_aldeia_velha = Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha') if Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha').update(@tour_aldeia_velha_data) || Tour.create(@tour_aldeia_velha_data)
 
 

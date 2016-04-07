@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   
   def index
-    @tours = Tour.all
+    @tours = Tour.nexts
   end
   
   def logos

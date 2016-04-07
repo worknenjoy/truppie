@@ -2,8 +2,14 @@ require 'test_helper'
 require 'json'
 
 class TourTest < ActiveSupport::TestCase
+  
+  setup do
+    @tour = tours(:morro)
+    @tour_alt = tours(:gavea)
+  end
+  
   test "one tour created" do
-     assert_equal 1, Tour.count
+     assert_equal 2, Tour.count
    end
    
    test "a user that create the tour" do
@@ -67,7 +73,7 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "friendly duration" do
-      assert_equal "3 minutos", Tour.last.duration
+      assert_equal "3 minutos", Tour.first.duration
    end
    
    test "a friendly duration more accurated test" do
@@ -86,6 +92,36 @@ class TourTest < ActiveSupport::TestCase
      assert_equal "<small>R$</small> 40", price
    end
    
+   test "the next tour between two dates, from now to others" do
+     
+      actualtime = Time.new(2015, 8, 1, 14, 35, 0)
+     
+      Timecop.freeze(actualtime) do
+        
+        time_before = Time.new(2015, 8, 1, 14, 35, 0).change(day: 4)
+        
+        @tour.start = time_before
+        
+        @tour.save()
+        
+        #puts @tour.start
+        
+        assert_equal 3, @tour.days_left
+      end
+    end
+    test "the current next should be in the list" do
+         @first_start = @tour.start
+         @other_start = @tour_alt.start
+         @nexts = Tour.nexts
+         
+         format = "%m/%d/%Y"
+         
+         # date today april 6, 2016
+         
+         assert_equal @other_start.strftime(format), @nexts.last.start.strftime(format)
+           
+    end
+     
    test "simple payment call" do
      skip("calling moip sandbox several times")
      auth = Moip2::Auth::Basic.new(Rails.application.secrets[:moip_token], Rails.application.secrets[:moip_key])
@@ -279,6 +315,5 @@ class TourTest < ActiveSupport::TestCase
       assert_equal true, true
    end
   
-   
-   
+     
 end

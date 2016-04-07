@@ -35,7 +35,7 @@
 		        <div class="pull-xs-right tour-container">
 					<h4 class="tour-title spaced-smallest pull-xs-right"><strong><%= @tour.title %></strong></h4>
 					<div class="pull-xs-right" style="clear:both">
-						<small  style="display:block; text-align: right">na categoria <strong class="text-danger"><%= @tour.category.name %></strong></small>
+						<small  style="display:block; text-align: right">na categoria <strong class="text-danger"><%= @tour.try(:category).try(:name) || "Sem categoria" %></strong></small>
 						<div class="spaced-smallest pull-xs-right" style="display:block; text-align: right">
 							<small>tags:</small> 
 							<% @tour.tags.each do |tag| %>

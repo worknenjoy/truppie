@@ -23,27 +23,27 @@
 			    	<div class="floating-schedule">
 				    	<div class="pull-left date-body text-xs-center">
 				          <label for="" class="date-title">
-				          	<%= l(@tours.last.start, format: '%B') %>
+				          	<%= l(@tours.first.start, format: '%B') %>
 			          	  </label>
 				          <div class="date-content">
 				            <p class="dia">
-				            	<%= l(@tours.last.start, format: '%d') %>
+				            	<%= l(@tours.first.start, format: '%d') %>
 				            </p>
 				            <hr class="nomargin"/>
 				            <p class="nomargin">
 				            	<strong>
-				            		<%= l(@tours.last.start, format: '%A') %>
+				            		<%= l(@tours.first.start, format: '%A') %>
 			            		</strong>
 		            		</p>
-				            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tours.last.start) %></strong></p>
+				            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tours.first.start) %></strong></p>
 				          </div>
 			         	</div>
 			        </div>
 			    </div>
 			    <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
-			    	<strong><%= link_to(@tours.last.title, tour_path(@tours.last)) %></strong>
-			    	<small>com</small> <%= @tours.last.organizer.name %><br />
-			    	<small>no <strong><%= @tours.last.where.city %></strong></small>
+			    	<strong><%= link_to(@tours.first.title, tour_path(@tours.first)) %></strong>
+			    	<small>com</small> <%= @tours.first.organizer.name %><br />
+			    	<small>em <strong><%= @tours.first.where.name %>, <%= @tours.first.where.state %></strong></small>
 		    	</div>
 			  </div>
 		  </div>
@@ -51,7 +51,7 @@
 			  <div class="row">
 			  	<div class="col-xs-12">
 				  	<div class="spaced-down">
-				  		<a href="<%= tour_path(@tours.last) %>" class="btn btn-block btn-primary btn-sm">Reservar</a>
+				  		<a href="<%= tour_path(@tours.first) %>" class="btn btn-block btn-primary btn-sm">Reservar</a>
 				  	</div>
 			  	</div>
 			  </div>
@@ -168,38 +168,39 @@
 				<h3 class="light-heading" style="padding: 4px;">Próximas truppies</h3>
 			</div>
 		</div>
+		<% @tours.each do |t| %>
 		<style>
 			.twPc-div {
 				overflow: hidden;
 			}
-			.twPc-bg {
-				background-image: url('<%= @tours.last.photo %>');
+			<%="#twPc-bg-#{t.id}" %> {
+				background-image: url('<%= t.photo %>');
 			}
 		</style>
-		<div class="twPc-div">
-		    <%= link_to(tour_path(@tours.last), :class => 'twPc-bg twPc-block') do %>
-		    	<div class="ribbon base"><span><%= raw @tours.last.price %></span></div>
+		<div class="twPc-div spaced-down">
+		    <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+		    	<div class="ribbon base"><span><%= raw t.price %></span></div>
 		    <% end %>
 			<div>
 				<div class="twPc-button">
 		            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
 					
-		            <%= link_to(tour_path(@tours.last), :class => 'twitter-follow-button btn btn-primary') do %>
+		            <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
 		            	<i class="fa fa-ticket"></i> Reservar agora
 		            <% end %>
 		            <!-- Twitter Button -->   
 				</div>
 		
-				<%= link_to(@tours.last.organizer.website, :class => 'twPc-avatarLink') do %>
+				<%= link_to(t.organizer.website, :class => 'twPc-avatarLink') do %>
 					<%= image_tag("logo_utopicos.png", :alt => "Utópicos Mundo Afora", class: 'twPc-avatarImg') %><br />
 				<% end %>
 		
 				<div class="twPc-divUser spaced-down">
 					<div class="twPc-divName">
-						<%= link_to(@tours.last.title, tour_path(@tours.last)) %>
+						<%= link_to(t.title, tour_path(t)) %>
 					</div>
 					<span>
-						<small>pela </small><strong><%= @tours.last.organizer.name %></strong>
+						<small>pela </small><strong><%= t.organizer.name %></strong>
 					</span>
 				</div>
 		
@@ -208,21 +209,21 @@
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">Quando?</span>
 							<span class="twPc-StatValue">
-								<%= l(@tours.last.start, format: '%d de %B / %Y') %>
+								<%= l(t.start, format: '%d de %B / %Y') %>
 							</span>
 							<span class="twPc-StatValue">
-								<small>daqui a <%= time_ago_in_words(@tours.last.start) %></small>
+								<small>daqui a <%= time_ago_in_words(t.start) %></small>
 							</span>
 						</li>
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">Que horas?</span>
-							<span class="twPc-StatValue"><%= l(@tours.last.start, format: '%Hh%M') %></span>
+							<span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
 						</li>
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">vagas</span>
 							<span class="twPc-StatValue">
-								<% if not @tours.last.soldout? %> 
-			            			<strong><%= @tours.last.available %></strong> vagas disponíveis
+								<% if not t.soldout? %> 
+			            			<strong><%= t.available %></strong> vagas disponíveis
 			            		<% else %>
 			            			Não ha mais ticket disponiveis
 			            		<% end %>
@@ -231,17 +232,18 @@
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">Duração total</span>
 							<span class="twPc-StatValue">
-								<%= @tours.last.duration %>
+								<%= t.duration %>
 							</span>
 						</li>
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">Dificuldade</span>
-							<span class="twPc-StatValue"><%= @tours.last.level %></span>
+							<span class="twPc-StatValue"><%= t.level %></span>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
+		<% end %>
 	</div>
 </div>
 <div class="container">
