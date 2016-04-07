@@ -6,27 +6,34 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-@user = User.find_by_email("joana.vmello@gmail.com") || User.create(
+@user_data = {
     email: "joana.vmello@gmail.com",
     name: "Joana Mello",
     password: "12345678"
-)
+}
 
-@rio_city =  Where.find_by_name("Rio de Janeiro") || Where.create(
+@user = User.find_by_email("joana.vmello@gmail.com") if User.find_by_email("joana.vmello@gmail.com").update(@user_data) || User.create(@user_data)
+
+@rio_city_data = {
   name: "Rio de Janeiro",
   city: "Rio de Janeiro",
   state: "RJ",
   country: "Brasil"
-)
+}
 
-@rio_vidigal = Where.find_by_name("Bairro do Vidigal") || Where.create(
+@rio_city =  Where.find_by_name("Rio de Janeiro") if Where.find_by_name("Rio de Janeiro").update(@rio_city_data) || Where.create(@rio_city_data)
+
+@rio_vidigal_data = {
   name: "Bairro do Vidigal",
   city: "Rio de Janeiro",
   state: "RJ",
   country: "Brasil"
-)
+}
 
-@organizer = Organizer.find_by_name("Utópicos Mundo Afora") || Organizer.create(
+@rio_vidigal = Where.find_by_name("Bairro do Vidigal") if Where.find_by_name("Bairro do Vidigal").update(@rio_vidigal_data) || Where.create(@rio_vidigal_data)
+
+
+@organizer_data = {
     name: "Utópicos Mundo Afora",
     description: "Agência de viagem e bem-estar",
     user: @user,
@@ -35,23 +42,35 @@
     instagram: 'https://www.instagram.com/utopicosmundoafora/',
     facebook: 'https://www.facebook.com/utopicosmundoafora/',
     where: @rio_city
-)
+}
 
-@cat = Category.find_by_name('Trilhas & Travessias') || Category.create(
+@organizer = Organizer.find_by_name("Utópicos Mundo Afora") if Organizer.find_by_name("Utópicos Mundo Afora").update(@organizer_data) || Organizer.create(@organizer_data)
+
+@cat_data = {
   name: 'Trilhas & Travessias'
-)
+}
 
-@tagone = Tag.find_by_name('trilha') || Tag.create(
+@cat = Category.find_by_name('Trilhas & Travessias') if Category.find_by_name('Trilhas & Travessias').update(@cat_data) || Category.create(@cat_data)
+
+
+@tagone_data = {
   name: 'trilha'
-)
+}
 
-@tagtwo = Tag.find_by_name('praia') || Tag.create(
+@tagone = Tag.find_by_name('trilha') if Tag.find_by_name('trilha').update(@tagone_data) || Tag.create(@tagone_data)
+
+@tagtwo_data = {
   name: 'praia'
-)
+}
 
-@tagtree = Tag.find_by_name('Rio de Janeiro') || Tag.create(
+@tagtwo = Tag.find_by_name('praia') if Tag.find_by_name('praia').update(@tagtwo_data) || Tag.create(@tagtwo_data)
+
+
+@tagtree_data = {
   name: 'Rio de Janeiro'
-)
+}
+
+@tagtree = Tag.find_by_name('Rio de Janeiro') if Tag.find_by_name('Rio de Janeiro').update(@tagtree_data) || Tag.create(@tagtree_data)
 
 #@attraction_one = Attraction.create(
 #  name: 'Morro dois irmãos',
@@ -59,13 +78,17 @@
 #  photo: "http://www.trilhaape.com.br/images/programacao/Praias%20selvagens_1.JPG"
 #)
 
-@language_default = Language.find_by_name('Português') || Language.create(
+@language_default_data = {
   name: 'Português'
-)
+}
 
-@language_alt = Language.find_by_name('English') || Language.create(
+@language_default = Language.find_by_name('Português') if Language.find_by_name('Português').update(@language_default_data) || Language.create(@language_default_data)
+
+@language_alt_data = {
   name: 'English'
-)
+}
+
+@language_alt = Language.find_by_name('English') if Language.find_by_name('English').update(@language_alt_data) || Language.create(@language_alt_data)
 
 @tour_data = {
   title: 'Trilha do Morro Dois Irmãos',
@@ -103,16 +126,20 @@
 
 @cat_relax = Category.find_by_name('Relax') if Category.find_by_name('Relax').update(@cat_relax_data) || Category.create(@cat_relax_data)
 
-@rio_aldeia = Where.find_by_name("Aldeia Velha") || Where.create(
+@rio_aldeia_data = {
   name: "Aldeia Velha",
   city: "Silva Jardim",
   state: "RJ",
   country: "Brasil"
-)
+}
 
-@tagwaterfall = Tag.find_by_name('cachoeira') || Tag.create(
+@rio_aldeia = Where.find_by_name("Aldeia Velha") if Where.find_by_name("Aldeia Velha").update(@rio_aldeia_data) || Where.create(@rio_aldeia_data)
+
+@tagwaterfall_data = {
   name: 'cachoeira'
-)
+}
+
+@tagwaterfall = Tag.find_by_name('cachoeira') if Tag.find_by_name('cachoeira').update(@tagwaterfall_data) || Tag.create(@tagwaterfall_data)
 
 @tour_aldeia_velha_data = {
 
