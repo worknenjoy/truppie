@@ -24,6 +24,16 @@
     background: $brand-primary; 
     color: #fff;
 }
+
+.ribbon.packages {
+    background: $brand-primary; 
+    color: #fff;
+    top: 15%;
+    right: 0;
+    padding: 15px;
+    opacity: 0.8;
+}
+
 .ribbon.light {
     background: $brand-primary;
     color: $brand-primary;

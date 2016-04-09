@@ -237,7 +237,7 @@
 @language_esp = Language.find_by_name('Espanhol') || Language.create(@language_esp_data)
 
 @basico_data = {
-  name: 'Básico',
+  name: "Básico",
   value: 228,
   included: ["Dois guias capacitados;", "Comunicador/Rastreador Satelital de Segurança SPOT GEN3;", "Jantar na montanha*;", "Utensílios coletivos de cozinha: panelas, fogareiro, combustível, etc.;"]
 }
@@ -245,7 +245,7 @@
 @basico = Package.find_by_name('Básico') || Package.create(@basico_data)
 
 @completo_data = {
-  name: 'Completo',
+  name: "Completo",
   value: 348,
   included: ["Um pernoite em quarto compartilhado em Cachoeira Paulista - SP (com café da manhã);", "Transporte in/out em veículo 4X4 a partir de Cachoeira Paulista;", "Dois guias capacitados;", "Comunicador/Rastreador Satelital de Segurança SPOT GEN3;", "Jantar na montanha*;", "Utensílios coletivos de cozinha: panelas, fogareiro, combustível, etc.;", "Estacionamento fechado em Cachoeira Paulista;", "Banho quente no final da trip;"]
 }

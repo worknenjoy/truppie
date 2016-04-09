@@ -2,8 +2,22 @@
 <div class="cover">
 	<div class="img-holder">
 		<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
-        <div class="ribbon base"><span><%= raw @tour.price %></span></div>
-        <div class="ribbon base ribbon-value"><span><%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %></span></div>
+        <% if @tour.try(:value) %>
+        <div class="ribbon base" style="text-align: right">
+        	<span><%= raw @tour.price %></span>
+        	<%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+    	</div>
+        <% else %>
+        	<% if @tour.try(:packages) %>
+        	<div class="ribbon base packages">
+				<% @tour.packages.each do |t| %>
+					<small><%= t.name %></small>
+					<span><%= raw t.price %></span><br />
+				<% end %>
+				<%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+			</div>
+        	<% end %>
+        <% end %>
 	</div>
 	<div class="container">
 		<div class="row divider-default">

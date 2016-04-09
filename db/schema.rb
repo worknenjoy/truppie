@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 20160408020351) do
   add_index "organizers_wheres", ["where_id", "organizer_id"], name: "index_organizers_wheres_on_where_id_and_organizer_id", using: :btree
 
   create_table "packages", force: :cascade do |t|
-    t.integer  "name"
+    t.text     "name"
     t.integer  "value"
     t.text     "included",   default: [],              array: true
     t.datetime "created_at",              null: false
