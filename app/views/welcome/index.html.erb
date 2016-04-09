@@ -15,7 +15,7 @@
 	<div id="carousel-intro" class="carousel slide" data-ride="carousel">
 		<div class="card card-floating wow bounceIn">
 		  <div class="card-header">
-		    <i class="fa fa-calendar"></i> Próximas saídas
+		    <i class="fa fa-calendar"></i> Próxima saída
 		  </div>
 		  <div class="spaced-down">
 			  <div class="row">
@@ -69,21 +69,6 @@
 		<div class="carousel-inner" role="listbox">
 		    <div class="carousel-item active">
 		      <picture>
-	      		<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-small.jpg") %>">
-      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-medium.jpg") %>">
-  				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-full.jpg") %>">
-		      	<%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro.jpg")) %>
-		      </picture>
-			  <div class="carousel-caption">
-			    <h3 class="secondary-font display-tagline"><%= t('first-caption') %></h3>
-			    <p class="lead emblem-font"><%= t('first-description') %></p>
-			  </div>
-			  <div class="top-note">
-			  	<small>Vale do Pati - BA</small>
-			  </div>
-		    </div>
-		    <div class="carousel-item">
-		      <picture>
 			      <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-2-small.jpg") %>">
       			  <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-2-medium.jpg") %>">
   				  <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
@@ -95,6 +80,21 @@
 			  </div>
 			  <div class="top-note">
 			  	<small>Travessia Petrópolis - Teresópolis - RJ</small>
+			  </div>
+		    </div>
+		    <div class="carousel-item">
+		      <picture>
+	      		<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-small.jpg") %>">
+      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-medium.jpg") %>">
+  				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-full.jpg") %>">
+		      	<%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro.jpg")) %>
+		      </picture>
+			  <div class="carousel-caption">
+			    <h3 class="secondary-font display-tagline"><%= t('first-caption') %></h3>
+			    <p class="lead emblem-font"><%= t('first-description') %></p>
+			  </div>
+			  <div class="top-note">
+			  	<small>Vale do Pati - BA</small>
 			  </div>
 		    </div>
 		    <div class="carousel-item">

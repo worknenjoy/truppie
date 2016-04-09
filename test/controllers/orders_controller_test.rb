@@ -142,7 +142,7 @@ class OrdersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:status_data)
     assert_response :success
     
-    puts ActionMailer::Base.deliveries[0].html_part
+    # ActionMailer::Base.deliveries[0].html_part
     
     assert_not ActionMailer::Base.deliveries.empty?
     
@@ -152,9 +152,9 @@ class OrdersControllerTest < ActionController::TestCase
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
     
-    puts ActionMailer::Base.deliveries[0].html_part
+    #puts ActionMailer::Base.deliveries[0].html_part
     
-    puts ActionMailer::Base.deliveries[1].html_part
+    #puts ActionMailer::Base.deliveries[1].html_part
     
     assert_equal ["PAYMENT.IN_ANALYSIS"], Order.find(@order.id).status_history 
   end
@@ -172,10 +172,10 @@ class OrdersControllerTest < ActionController::TestCase
   test "should make a post from live website" do
     skip("a post to webhook live")
     response = RestClient.post "http://www.truppie.com/webhook/", {}
-    puts response.inspect
-    puts '-----------'
-    puts response.code
-    puts '-----------'
+    #puts response.inspect
+    #puts '-----------'
+    #puts response.code
+    #puts '-----------'
     assert_response :success
   end
   

@@ -59,6 +59,33 @@ gavea:
   reviews: boring, cool
   verified:
   status:
+    
+picomarins:
+  title: Pico marins
+  description: subindo do pico marins na mantiqueira
+  rating: 3
+  currency: BRL 
+  organizer: mantiex
+  start: 2016-06-06 23:56:31
+  end: 2016-06-08 02:59:31
+  photo: 
+  availability: 3 
+  minimum: 
+  maximum: 
+  difficulty: 2
+  where: placeone
+  address: MyString
+  user: laura 
+  included: []
+  nonincluded: [] 
+  category: trekking
+  tags: family, geek, outdoor
+  privacy: MyString
+  meetingpoint: MyString
+  confirmeds:
+  languages: english, portuguese 
+  reviews: boring, cool
+  packages: basico, completo 
 
 # two:
   # title: MyString

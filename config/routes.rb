@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :packages
   get 'tags/index'
   get 'languages/index'
 

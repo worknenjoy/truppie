@@ -10,6 +10,7 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :confirmeds
   has_and_belongs_to_many :languages
   has_and_belongs_to_many :reviews, dependent: :destroy
+  has_and_belongs_to_many :packages
   
   scope :nexts, lambda { where("start > ?", Date.today) }
   

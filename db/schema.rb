@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316001604) do
+ActiveRecord::Schema.define(version: 20160408020351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,22 @@ ActiveRecord::Schema.define(version: 20160316001604) do
 
   add_index "organizers_wheres", ["organizer_id", "where_id"], name: "index_organizers_wheres_on_organizer_id_and_where_id", using: :btree
   add_index "organizers_wheres", ["where_id", "organizer_id"], name: "index_organizers_wheres_on_where_id_and_organizer_id", using: :btree
+
+  create_table "packages", force: :cascade do |t|
+    t.integer  "name"
+    t.integer  "value"
+    t.text     "included",   default: [],              array: true
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "packages_tours", id: false, force: :cascade do |t|
+    t.integer "tour_id",    null: false
+    t.integer "package_id", null: false
+  end
+
+  add_index "packages_tours", ["package_id", "tour_id"], name: "index_packages_tours_on_package_id_and_tour_id", using: :btree
+  add_index "packages_tours", ["tour_id", "package_id"], name: "index_packages_tours_on_tour_id_and_package_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "name"

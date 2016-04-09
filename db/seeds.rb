@@ -168,3 +168,115 @@
 @tour_aldeia_velha = Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento') if Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha').try(:update,@tour_aldeia_velha_data) || Tour.create(@tour_aldeia_velha_data)
 
 
+#
+# Marins, the last one seeding. Case of packages
+#
+
+@user_moura_data = {
+    email: "contato@mantiex.com.br",
+    name: "Carlos Moura",
+    password: "12345678"
+}
+
+@user_moura = User.find_by_email("contato@mantiex.com.br") if User.find_by_email("contato@mantiex.com.br").try(:update,@user_moura_data) || User.create(@user_moura_data)
+
+@local_piquete_data = {
+  name: "Piquete",
+  city: "Piquete",
+  state: "SP",
+  country: "Brasil"
+}
+
+@local_piquete = Where.find_by_name("Piquete") || Where.create(@local_piquete_data)
+
+@cachoeira_paulista_city_data = {
+  name: "Cachoeira Paulista",
+  city: "Cachoeira Paulista",
+  state: "SP",
+  country: "Brasil"
+}
+
+@cachoeira_paulista_city = Where.find_by_name("Cachoeira Paulista") || Where.create(@cachoeira_paulista_city_data)
+
+@organizer_mantiex_data = {
+    name: "Mantiqueira Expedições",
+    description: "Agência especializada na Serra da Mantiqueira",
+    user: @user_moura,
+    phone: '(12) 3103-4521 e (12) 98109-3292',
+    email: 'contato@mantiex.com.br',
+    website: 'http://www.utopicosmundoafora.com/',
+    twitter: '@mantiex',
+    facebook: 'https://www.facebook.com/gomantiex',
+    where: @cachoeira_paulista_city
+}
+
+@organizer_mantiex = Organizer.find_by_name("Mantiqueira Expedições") if Organizer.find_by_name("Mantiqueira Expedições").try(:update,@organizer_mantiex_data) || Organizer.create(@organizer_mantiex_data)
+
+@tag_mantiqueira_data = {
+  name: 'mantiqueira'
+}
+
+@tag_mantiqueira = Tag.find_by_name('mantiqueira') || Tag.create(@tag_mantiqueira_data)
+
+@tag_montanhismo_data = {
+  name: 'montanhismo'
+}
+
+@tag_montanhismo = Tag.find_by_name('montanhismo') || Tag.create(@tag_montanhismo_data)
+
+@tag_acampamento_data = {
+  name: 'acampamento'
+}
+
+@tag_acampamento = Tag.find_by_name('acampamento') || Tag.create(@tag_acampamento_data)
+
+@language_esp_data = {
+  name: 'Espanhol'
+}
+
+@language_esp = Language.find_by_name('Espanhol') || Language.create(@language_esp_data)
+
+@basico_data = {
+  name: 'Básico',
+  value: 228,
+  included: ["Dois guias capacitados;", "Comunicador/Rastreador Satelital de Segurança SPOT GEN3;", "Jantar na montanha*;", "Utensílios coletivos de cozinha: panelas, fogareiro, combustível, etc.;"]
+}
+
+@basico = Package.find_by_name('Básico') || Package.create(@basico_data)
+
+@completo_data = {
+  name: 'Completo',
+  value: 348,
+  included: ["Um pernoite em quarto compartilhado em Cachoeira Paulista - SP (com café da manhã);", "Transporte in/out em veículo 4X4 a partir de Cachoeira Paulista;", "Dois guias capacitados;", "Comunicador/Rastreador Satelital de Segurança SPOT GEN3;", "Jantar na montanha*;", "Utensílios coletivos de cozinha: panelas, fogareiro, combustível, etc.;", "Estacionamento fechado em Cachoeira Paulista;", "Banho quente no final da trip;"]
+}
+
+@completo = Package.find_by_name('Completo') || Package.create(@completo_data)
+
+@tour_marins_data = {
+
+  title: 'Trekking e acampamento no Pico dos Marins',
+  description: '<p class="spaced-down">Com exatos 2420,7 metros acima do nível do mar, o Pico dos Marins está entre as dez maiores montanhas do estado de São Paulo. Ficou nacionalmente conhecida em 1982, com o desaparecimento de um escoteiro nas proximidades do Morro do Careca (laje de pedra na base do Marins) e desde então vem sendo procurada por mais e mais pessoas. O impressionante visual de 360° do seu cume - com vista para a Serra Fina, o Vale do Paraíba, a Serra da Bocaina e as montanhas do sul de Minas Gerais, além dos espetaculares pôr e nascer do sol - faz do Pico dos Marins o desejo de muitos montanhistas. Embora bastante acessado, o trekking ao Pico dos Marins não pode ser considerado fácil, uma vez que exige bastante esforço físico do trekker, além de conter rampas íngremes de pedra e lances de escalaminhada.</p><h5>DISTÂNCIA, ALTIMETRIA E TEMPO DE PERCURSO:</h5><ul><li>Distância: 6,5 km (desde a Base Marins até o Pico dos Marins)</li><li>Altitude Base Marins: 1542 m</li><li>Altitude Pico dos Marins: 2421m</li><li>Ganho de Elevação: 879m</li><li>Tempo de Percurso: 7 horas</li></ul><h5>Programação detalhada</h5><ul><li>SEXTA-FEIRA – 17/06: Após as 18h00 – Pousada em Cachoeira Paulista.</li><li>SÁBADO – 18/06 – Cachoeira Paulista x Pico dos Marins:</li><li><p>05h00 – Café da manhã na pousada;</p><p>06h00 – Saída da Pousada em Cachoeira Paulista e saída em direção à Base</p><p>Marins (onde ficará o carro/início da trilha);</p><p>08h00 – Chegada Base Marins, alongamento;</p><p>08h30 – Início do trekking;</p><p>14h30 – Chegada no Pico dos Marins;</p><p>18h00 – Início da preparação da janta.</p></li><li>DOMINGO – 19/06 – Pico dos Marins x Cachoeira Paulista:</li><li><p>0h30 – Despertar;</p><p>06h30 – Café da manhã;</p><p>08h00 – Desmontar acampamento;</p><p>09h00 – Início da descida</p><p>09h00 – Início da descida</p><p>15h00 – Chegada Base Marins;</p><p></p>16h00 – Retorno Cachoeira Paulista;</li><li>17h30 – Chegada Pousada Clara Luz Cachoeira Paulista e final da operação.</li></ul>',
+  currency: 'BRL',
+  organizer: @organizer_mantiex,
+  start: '2016-06-18 17:30:00',
+  end: '2016-06-19 17:30:00',
+  photo: ActionController::Base.helpers.image_url("trilhas/marins.jpg"),
+  availability: 10,
+  minimum: 7,
+  maximum: 10,
+  where: @local_piquete,
+  difficulty: 4,
+  address: 'Cachoeira Paulista - SP',
+  user: @user_moura,
+  included: ['Um pernoite em quarto compartilhado em Cachoeira Paulista - SP (com café da manhã);', 'Transporte in/out em veículo 4X4 a partir de Cachoeira Paulista;', 'Dois guias capacitados;', "Comunicador/Rastreador Satelital de Segurança SPOT GEN3;", "Jantar na montanha;", "Utensílios coletivos de cozinha: panelas, fogareiro, combustível, etc.;", "Estacionamento fechado em Cachoeira Paulista;", "Banho quente no final da trip."],
+  nonincluded: ['Lanche de trilha e café da manhã na montanha;', 'Seguro contra acidentes pessoais.'],
+  take: ["Mochila cargueira - de 50 a 60L;", "Barraca;", "Saco de dormir - conforto mínimo 5°C, preferência 0°C;", "Isolante térmico com espessura mínima de 1cm - prefira inflável;","Lanterna - prefira headlamp (lanterna de cabeça) pela praticidade;", "Um par de bastões de caminhada - equilíbrio, estabilidade, reduz impacto nas articulações e o sobrepeso dos membros inferiores - uma unidade já ajuda.", "Duas camisetas de secagem rápida", "Uma calça de poliamida, tactel ou semelhante, que são transpiráveis.", "Água:  recipiente suficiente para 3L;", "Sanduíche natural - enrole no papel alumínio e proteja para não amassar;", "Bisnaguinha;"],
+  goodtoknow: ['Evite qualquer roupa de ALGODÃO para a caminhada. O algodão retém muita água e demora em secar. Sobre o sistema de camadas: http://www.mochileiros.com/como-vestir-se-em-locais-frios-sistema-de-camadas-anorak-fleece-underwear-t32962.html', "O peso da comida será dividido entre todos os participantes;", "Os horários poderão sofrer variações de acordo com o ritmo de caminhada do grupo e fatores externos, como variação do tempo (meteorológico) e outros; "],
+  category: @cat,
+  tags: [@tag_mantiqueira, @tag_montanhismo, @tag_acampamento],
+  languages: [@language_default, @language_esp],
+  meetingpoint: 'Cachoeira Paulista - SP',
+  packages: [@basico, @completo]
+}
+
+@tour_marins = Tour.find_by_title('Trekking e acampamento no Pico dos Marins') if Tour.find_by_title('Trekking e acampamento no Pico dos Marins').try(:update,@tour_marins_data) || Tour.create(@tour_marins_data)
