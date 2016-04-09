@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+basico:
+  value: 250
+  included: ['banho frio', 'quentinha']
+
+completo:
+  value: 320
+  included: ['banho quente', 'janta']
