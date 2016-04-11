@@ -41,7 +41,8 @@
     website: 'http://www.utopicosmundoafora.com/',
     instagram: 'https://www.instagram.com/utopicosmundoafora/',
     facebook: 'https://www.facebook.com/utopicosmundoafora/',
-    where: @rio_city
+    where: @rio_city,
+    logo: ActionController::Base.helpers.image_url("logo_utopicos.png")
 }
 
 @organizer = Organizer.find_by_name("Utópicos Mundo Afora") if Organizer.find_by_name("Utópicos Mundo Afora").try(:update,@organizer_data) || Organizer.create(@organizer_data)
@@ -204,8 +205,9 @@
     user: @user_moura,
     phone: '(12) 3103-4521 e (12) 98109-3292',
     email: 'contato@mantiex.com.br',
-    website: 'http://www.utopicosmundoafora.com/',
+    website: 'http://mantiex.com.br',
     twitter: '@mantiex',
+    logo: ActionController::Base.helpers.image_url("logos/mantiex.png"),
     facebook: 'https://www.facebook.com/gomantiex',
     where: @cachoeira_paulista_city
 }

@@ -5,7 +5,7 @@
         <% if @tour.try(:value) %>
         <div class="ribbon base" style="text-align: right">
         	<span><%= raw @tour.price %></span>
-        	<%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+        	<%= link_to 'Reservar', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
     	</div>
         <% else %>
         	<% if @tour.try(:packages) %>
@@ -14,7 +14,7 @@
 					<small><%= t.name %></small>
 					<span><%= raw t.price %></span><br />
 				<% end %>
-				<%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+				<%= link_to 'Reservar', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
 			</div>
         	<% end %>
         <% end %>
@@ -69,7 +69,7 @@
 					<div class="card-block card-organizer">
 						<div class="text-xs-center">
 							<h4 class="card-title spaced-down">
-								<%= image_tag("logo_utopicos.png", :alt => "Truppie", :width => '120', class: 'spaced-smallest') %><br />
+								<%= image_tag(@tour.organizer.logo, :alt => @tour.organizer.name, :width => '120', class: 'spaced-smallest') %><br />
 								<strong><%= @tour.organizer.name %> </strong>
 							</h4>
 						    <p class="card-text spaced-down"><%= @tour.organizer.description %></p>
@@ -166,42 +166,34 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<h4 class="spaced-smallest">
-                    Confirmados
-                </h4>
-                <div class="row">
-	                <div class="confirmeds">
-	                    <% if @tour.confirmeds.length > 0 %>
-	                    	<% @tour.confirmeds.each do |c| %>
-	                    		<div class="col-xs-6 text-xs-center">
-	                    			<% if c.user.image %>
-		                    			<img width="120" src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
-	                    			<% else %>
-	                    				<img width="120" src="https://avatars.io/instagram/username" class="avatar img-circle img-thumbnail" alt="avatar">
-		                    		<% end %>
-		                    		<p class="small">
-		                    			<% if current_user %>
-			                    			<% if c.user.name == current_user.name %>
-			                    				<strong>Você</strong>
-			                    				<!-- <%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-secondary btn-sm btn-block' %> -->
-			                    			<% else %>
-			                					<strong><%= c.user.name %></strong>
-			                    			<% end %>
-			                    		<% else %>
-			                    			<strong><%= c.user.name %></strong>
-		                    			<% end %>
-		                    			
-		                			</p>
-	                			</div>
-	                		<% end %>
-	                    <% else %>
-	                    	<div class="col-xs-12">
-	                    		<p class="small">Ninguem confirmou ainda. <%= link_to 'Confirmar a sua', confirm_tour_path %></p>
-	                    	</div>
-	                    <% end %>
-	                </div>
-                </div>
+				<h3 class="spaced-default">Opções de pacotes</h3>
 			</div>
+		</div>
+		<div class="row text-xs-center">
+			<% @tour.packages.each do |p| %>
+			<!-- item -->
+            <div class="col-md-6">
+                <div class="card panel-pricing">
+                    <div class="card-header card-info" style="color: white;">
+                        <h3><%= p.name %></h3>
+                    </div>
+                    <div>
+                    <div class="panel-body text-xs-center">
+                        <p><strong><%= raw p.price %></strong></p>
+                    </div>
+                    <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
+                    	<% p.included.each do |i| %>
+                        <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
+                        <% end %>
+                    </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-lg btn-block btn-primary" href="#">Eu quero o <%= p.name %></a>
+                    </div>
+                </div>
+            </div>
+            <!-- /item -->
+			<% end %>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
@@ -249,7 +241,11 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>O que não inclui:</strong></h4>
-				<p><%= @tour.nonincluded %></p>
+				<ul>
+					<% @tour.nonincluded.each do |t| %>
+					<li><%= t %></li>
+					<% end %>
+				</ul>
 			</div>
 		</div>
 		<% end %>
@@ -261,6 +257,45 @@
 			</div>
 		</div>
 		<% end %>
+		<div class="row">
+			<div class="col-xs-12">
+				<h4 class="spaced-smallest">
+                    Confirmados
+                </h4>
+                <div class="row">
+	                <div class="confirmeds">
+	                    <% if @tour.confirmeds.length > 0 %>
+	                    	<% @tour.confirmeds.each do |c| %>
+	                    		<div class="col-xs-6 text-xs-center">
+	                    			<% if c.user.image %>
+		                    			<img width="120" src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
+	                    			<% else %>
+	                    				<img width="120" src="https://avatars.io/instagram/username" class="avatar img-circle img-thumbnail" alt="avatar">
+		                    		<% end %>
+		                    		<p class="small">
+		                    			<% if current_user %>
+			                    			<% if c.user.name == current_user.name %>
+			                    				<strong>Você</strong>
+			                    				<!-- <%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-secondary btn-sm btn-block' %> -->
+			                    			<% else %>
+			                					<strong><%= c.user.name %></strong>
+			                    			<% end %>
+			                    		<% else %>
+			                    			<strong><%= c.user.name %></strong>
+		                    			<% end %>
+		                    			
+		                			</p>
+	                			</div>
+	                		<% end %>
+	                    <% else %>
+	                    	<div class="col-xs-12">
+	                    		<p class="small">Ninguem confirmou ainda. <%= link_to 'Confirmar a sua', confirm_tour_path %></p>
+	                    	</div>
+	                    <% end %>
+	                </div>
+                </div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>O que preciso para reservar:</strong></h4>
@@ -276,26 +311,26 @@
 				<ul>
 				 <li>Antes de qualquer atividade física, é de extrema importância passar por uma avaliação médica. Sem vacilos com a saúde, hein?! ;)</li>
 				 <li>As taxas do cartão estão inclusas</li>
-				</div>
 			</div>
 		</div>
-		  <% @tour.attractions.each do |attraction| %>
-		  <div class="row">
-			<div class="col-xs-12">
-				<h4 class="spaced-smallest"><strong>Atrações:</strong></h4>				
-			</div>
-		  </div>	
-		  <div class="col-sm-6">
-		    <div class="card">
-			  <div class="card-block">
-			    <h4 class="card-title"><%= attraction.name %></h4>
-			  </div>
-			  <img src="<%= attraction.photo %>" alt="Card image" class="img-fluid">
-			  <div class="card-block">
-			    <p class="card-text"><%= attraction.text %></p>
-			  </div>
-			</div>
+	</div><!-- end container -->
+	  <% @tour.attractions.each do |attraction| %>
+	  <div class="row">
+		<div class="col-xs-12">
+			<h4 class="spaced-smallest"><strong>Atrações:</strong></h4>				
+		</div>
+	  </div>	
+	  <div class="col-sm-6">
+	    <div class="card">
+		  <div class="card-block">
+		    <h4 class="card-title"><%= attraction.name %></h4>
 		  </div>
-		  <% end %>
+		  <img src="<%= attraction.photo %>" alt="Card image" class="img-fluid">
+		  <div class="card-block">
+		    <p class="card-text"><%= attraction.text %></p>
+		  </div>
+		</div>
+	  </div>
+	  <% end %>
 	</div>
 </div>
