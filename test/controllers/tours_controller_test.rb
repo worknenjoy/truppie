@@ -8,6 +8,7 @@ class ToursControllerTest < ActionController::TestCase
   setup do
     sign_in users(:alexandre)
     @tour = tours(:morro)
+    @tour_marins = tours(:picomarins)
     
     @payment_data = {
       id: @tour,
@@ -21,7 +22,8 @@ class ToursControllerTest < ActionController::TestCase
       cpf_number: "22222222222",
       country_code: "55",
       area_code: "11",
-      phone_number: "55667788"
+      phone_number: "55667788",
+      value: @tour.value
       
     }
     
@@ -72,6 +74,20 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal @tour_confirmed_before + 1, @tour_confirmed_after
   end
   
+  test "should go to confirm presence with confirming price default" do
+    get :confirm, {id: @tour}
+    assert(assigns(:final_price))
+    
+    assert_equal(assigns(:final_price), 40)
+    
+  end
+  
+  test "should go to confirm presence with confirming package" do
+    get :confirm, {id: @tour_marins, packagename: @tour_marins.packages.first.name}
+    assert(assigns(:final_price))
+    assert_equal(assigns(:final_price), 320)
+  end
+    
   test "should confirm presence" do
     post :confirm_presence, @payment_data
     assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento.", flash[:success]
@@ -129,6 +145,7 @@ class ToursControllerTest < ActionController::TestCase
     response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{payment_id}", headers
     json_data = JSON.parse(response)
     assert_equal payment_id, json_data["id"]
+    assert_equal 4000, json_data["amount"]["total"]
   end
   
   test "should pass a valid birthdate" do

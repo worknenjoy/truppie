@@ -4,6 +4,17 @@ class ToursController < ApplicationController
 
   def confirm
     @tour = Tour.find(params[:id])
+    @packagename = params[:packagename]
+    
+    if @tour.value
+      @final_price = @tour.value
+    else
+      if @packagename
+        @final_price = @tour.packages.find_by_name(@packagename).value
+      else
+        @final_price = false
+      end      
+    end
   end
   
   def confirm_presence
@@ -39,7 +50,7 @@ class ToursController < ApplicationController
               product: @tour.title,
               quantity: 1,
               detail: @tour.description.first(250),
-              price: @tour.value.to_i * 100
+              price: params[:value].to_i * 100
             }
           ],
           customer: {
@@ -81,7 +92,7 @@ class ToursController < ApplicationController
               :tour => @tour,
               :status => payment.status,
               :payment => payment.id,
-              :price => @tour.value.to_i * 100
+              :price => params[:value].to_i
             )
             if @order.save() and @tour.save()
               flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."

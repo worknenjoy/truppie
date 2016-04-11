@@ -17,8 +17,15 @@
             <td class="text-center">
                 <%= order.payment %>
             </td>
-            <td width="10%">
-               <h3><%= raw(order.tour.price) %></h3>
+            <td width="20%">
+               <h3><%= raw(order.tour.final_price(order.price)) %></h3>
+               <% if order.tour.try(:packages) %>
+               		<% order.tour.packages.each do |p| %>
+						<% if p.value == order.price %>
+							Pacote <%= p.name %>
+						<% end %>						                                       		
+               		<% end %>
+               <% end %>
             </td>
         </tr>
     </tbody>

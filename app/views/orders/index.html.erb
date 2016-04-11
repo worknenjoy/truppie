@@ -51,7 +51,14 @@
                                         <%= o.payment %>
                                     </td>
                                     <td >
-                                       <h3><%= raw(o.tour.price) %></h3>
+                                       <h3><%= raw(o.tour.final_price(o.price)) %></h3>
+                                       <% if o.tour.try(:packages) %>
+                                       		<% o.tour.packages.each do |p| %>
+												<% if p.value == o.price %>
+													Pacote <%= p.name %>
+												<% end %>						                                       		
+                                       		<% end %>
+                                       <% end %>
                                     </td>
                                 </tr>
                                 <% end %>

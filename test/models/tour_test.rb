@@ -93,6 +93,11 @@ class TourTest < ActiveSupport::TestCase
      assert_equal "<small>R$</small> 40", price
    end
    
+   test "a price with packages" do
+     price = @marins.price
+     assert_equal "A partir de <small>R$</small> 250", price
+   end
+   
    test "the next tour between two dates, from now to others" do
      
       actualtime = Time.new(2015, 8, 1, 14, 35, 0)

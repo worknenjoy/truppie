@@ -152,13 +152,13 @@
 			            </ul>
 			        </div>
 			        <div class="card-footer">
-			            <div class="row">
+			            <!-- <div class="row">
 			            	<div class="col-xs-12">
 					            <div class="text-xs-center">
 					            	<p><small><span class="label label-default" style="background-color: #BBB;"> reserve agora e concorra a outro passeio do <%= @tour.organizer.name %>!</span></small></p>
 					            </div>
 				            </div>
-			            </div>
+			            </div> -->
 			            <%= link_to 'Reservar agora', confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
 		            </div>
 		        </div>
@@ -188,7 +188,7 @@
                     </ul>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-lg btn-block btn-primary" href="#">Eu quero o <%= p.name %></a>
+                    	<%= link_to "Eu quero o #{p.name}", confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
                     </div>
                 </div>
             </div>

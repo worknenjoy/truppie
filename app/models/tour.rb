@@ -14,6 +14,18 @@ class Tour < ActiveRecord::Base
   
   scope :nexts, lambda { where("start > ?", Date.today) }
   
+  def final_price(p)
+    case self.currency
+      when 'BRL'
+        "<small>R$</small> " + p.to_s
+      when 'US'
+        "<small>$</small> " + p.to_s
+      when 'EURO'
+        "<small>€</small> " + p.to_s
+      else
+        p
+    end
+  end
   
   def to_param
     "#{id} #{title}".parameterize
@@ -45,15 +57,25 @@ class Tour < ActiveRecord::Base
   end
   
   def price
-    case self.currency
-    when 'BRL'
-      "<small>R$</small> " + self.value.to_s
-    when 'US'
-      "<small>$</small> " + self.value.to_s
-    when 'EURO'
-      "<small>€</small> " + self.value.to_s
+    if !self.try(:value)
+      minor = 999999999
+      if self.try(:packages)
+        self.packages.each do |p|
+          minor = p.value if p.value < minor 
+        end
+      end
+      return "<small>A partir de R$</small> #{minor}"
     else
+      case self.currency
+      when 'BRL'
+        "<small>R$</small> " + self.value.to_s
+      when 'US'
+        "<small>$</small> " + self.value.to_s
+      when 'EURO'
+        "<small>€</small> " + self.value.to_s
+      else
       self.value
+    end
     end
   end
   
