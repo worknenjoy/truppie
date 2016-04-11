@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PackagesControllerTest < ActionController::TestCase
   setup do
-    @package = packages(:one)
+    @package = packages(:basico)
   end
 
   test "should get index" do

@@ -14,6 +14,8 @@ class Tour < ActiveRecord::Base
   
   scope :nexts, lambda { where("start > ?", Date.today) }
   
+  scope :publisheds, -> { where(status: 'P') }
+  
   def final_price(p)
     case self.currency
       when 'BRL'

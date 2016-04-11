@@ -95,7 +95,7 @@ class TourTest < ActiveSupport::TestCase
    
    test "a price with packages" do
      price = @marins.price
-     assert_equal "A partir de <small>R$</small> 250", price
+     assert_equal "<small>A partir de R$</small> 250", price
    end
    
    test "the next tour between two dates, from now to others" do
@@ -128,6 +128,23 @@ class TourTest < ActiveSupport::TestCase
          assert_equal @other_start.strftime(format), @nexts.last.start.strftime(format)
            
     end
+    
+   test "just show published truppies" do
+     
+     @tour.status = 'P'
+     @tour.save()
+     
+     is_inside = false
+     
+     Tour.publisheds.each do |t|
+       if t.title == @tour.title
+         is_inside = true
+       end
+     end
+     
+     assert is_inside, "is inside!"
+     
+   end
      
    test "simple payment call" do
      skip("calling moip sandbox several times")

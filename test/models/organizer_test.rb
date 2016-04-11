@@ -2,7 +2,7 @@ require 'test_helper'
 
 class OrganizerTest < ActiveSupport::TestCase
    test "one Organizer" do
-     assert_equal 1, Organizer.count
+     assert_equal 2, Organizer.count
    end
    
    test "organizer has two members" do
