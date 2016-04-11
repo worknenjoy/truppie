@@ -30,7 +30,7 @@
                 		<h2 class="spaced-smallest"><%= raw @tour.final_price(@final_price) %></h2>
                 		<%= hidden_field_tag :value, @final_price %>
                 	<% else %>
-                    	<% if @tour.try(:packages) %>
+                    	<% if @tour.packages.any? %>
 	                    	<% @tour.packages.each do |p| %>
                     		<label class="radio package-item-confirm">
 							  <%= radio_button_tag :value, p.value %>
