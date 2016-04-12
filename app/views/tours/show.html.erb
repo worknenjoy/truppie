@@ -164,6 +164,7 @@
 		        </div>
 	       </div>
 		</div>
+		<% if @tour.packages.any? %>
 		<div class="row">
 			<div class="col-xs-12">
 				<h3 class="spaced-default">Opções de pacotes</h3>
@@ -195,6 +196,7 @@
             <!-- /item -->
 			<% end %>
 		</div>
+		<% end %>
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>Sobre</strong></h4>
