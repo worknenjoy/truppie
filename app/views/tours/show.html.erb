@@ -29,8 +29,7 @@
 	          	  </label>
 		          <div class="date-content">
 		            <p class="dia">
-		            	<%= l(@tour.start, format: '%d') %>
-		            	
+		            	<%= @tour.days %>
 		            </p>
 		            <hr class="nomargin"/>
 		            <p class="nomargin">
@@ -139,12 +138,12 @@
 		            		<li><i class="fa fa-child"></i>  <strong><%= @tour.minimum %></strong> pessoas no mínimo</li>
 		            		<% end %>
 		            		<!--<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li> -->
-		            		<li><i class="fa fa-calendar"></i>  de <strong><%= l(@tour.start, format: '%d de %B') %></strong> a <strong><%= l(@tour.end, format: '%d de %B') %></strong></li>
-		            		<li><i class="fa fa-clock-o"></i>  <%= l(@tour.start, format: '%d de %B / %Y') %> às <%= l(@tour.start, format: '%Hh%M') %> </li>
+		            		<li><i class="fa fa-calendar"></i> <%= @tour.how_long %> </li>
+		            		<li><i class="fa fa-clock-o"></i> começa <%= l(@tour.start, format: '%d de %B / %Y') %> às <%= l(@tour.start, format: '%Hh%M') %> </li>
 			                <% if @tour.try(:difficulty) %>
 			                <li><i class="fa fa-heartbeat"></i> Nível <strong><%= @tour.level %></strong> </li>
 			                <% end %>
-			                <li><i class="fa fa-map-marker"></i><strong> <%= @tour.where.name %></strong> - <%= @tour.where.state %></li>
+			                <li><i class="fa fa-map-marker"></i>  <strong> <%= @tour.where.name %></strong> - <%= @tour.where.state %></li>
 			                <li>
 			                	<i class="fa fa-globe"></i>
 			                	Os guias falam 

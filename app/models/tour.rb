@@ -16,6 +16,26 @@ class Tour < ActiveRecord::Base
   
   scope :publisheds, -> { where(status: 'P') }
   
+  
+  def how_long
+    distance_words = distance_of_time_in_words(self.end - self.start)
+    time_diff_components = Time.diff(self.end, self.start)
+    if time_diff_components[:day] >= 1
+      "de <strong>#{I18n.l(self.start, format: '%d de %B')} </strong> a <strong>#{I18n.l(self.end, format: '%d de %B')}</strong>".html_safe
+    else
+      "Duração total de <strong>#{distance_words}</strong>".html_safe
+    end
+  end
+  
+  def days
+    time_diff_components = Time.diff(self.end, self.start)
+    if time_diff_components[:day].to_i == 0
+      I18n.l(self.start, format: '%d')
+    else
+      "#{I18n.l(self.start, format: '%d')} e #{I18n.l(self.end, format: '%d')}"
+    end
+  end
+  
   def final_price(p)
     case self.currency
       when 'BRL'

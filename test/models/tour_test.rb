@@ -145,6 +145,35 @@ class TourTest < ActiveSupport::TestCase
      assert is_inside, "is inside!"
      
    end
+   
+   test "event more than one day" do
+     
+     day = @marins.how_long
+     
+     assert_equal day, 'de <strong>06 de Junho </strong> a <strong>08 de Junho</strong>'
+     
+   end
+   
+   test "event same day" do
+     
+     day = @tour.how_long
+     
+     assert_equal day, 'Duração total de <strong>3 minutos</strong>'
+     
+   end
+   
+   test "day counter" do
+     day = @marins.days
+     
+     assert_equal '06 e 08', day
+   end
+   
+   test "day counter same day" do
+     day = @tour.days
+     
+     assert_equal '01', day
+   end
+   
      
    test "simple payment call" do
      skip("calling moip sandbox several times")

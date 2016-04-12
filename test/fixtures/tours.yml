@@ -28,7 +28,7 @@ morro:
   languages: english, portuguese 
   reviews: boring, cool
   verified:
-  status:
+  status: 'P'
     
 gavea:
   title: Subida a pedra da gavea
@@ -58,7 +58,7 @@ gavea:
   languages: english, portuguese 
   reviews: boring, cool
   verified:
-  status:
+  status: 'P'
     
 picomarins:
   title: Pico marins
@@ -86,6 +86,7 @@ picomarins:
   languages: english, portuguese 
   reviews: boring, cool
   packages: basico, completo 
+  status: 'P'
 
 # two:
   # title: MyString

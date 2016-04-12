@@ -212,7 +212,7 @@
 								<%= l(t.start, format: '%d de %B / %Y') %>
 							</span>
 							<span class="twPc-StatValue">
-								<small>daqui a <%= time_ago_in_words(t.start) %></small>
+								<span class="label label-info">daqui a <%= time_ago_in_words(t.start) %></span>
 							</span>
 						</li>
 						<li class="twPc-ArrangeSizeFit">
@@ -238,7 +238,7 @@
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">Duração total</span>
 							<span class="twPc-StatValue">
-								<%= t.duration %>
+								<%= t.how_long %>
 							</span>
 						</li>
 						<li class="twPc-ArrangeSizeFit">
