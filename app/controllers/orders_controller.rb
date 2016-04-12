@@ -93,6 +93,7 @@ class OrdersController < ApplicationController
               @guide_template = "status_change_guide_cancelled"
               @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, por algum motivo, a operadora do cartão de crédito recusou o pagamento e sua truppie não pode ser reservada ainda."
               @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
+              tour.confirmeds.where(:user => user).delete_all
           when "PAYMENT.REVERSED"
               @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
               @guide_template = "status_change_guide_cancelled"
