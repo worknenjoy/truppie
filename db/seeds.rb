@@ -112,7 +112,8 @@
   category: @cat,
   tags: [@tagone, @tagtwo, @tagtree],
   languages: [@language_default, @language_alt],
-  meetingpoint: 'Informado após confirmação da reserva'
+  meetingpoint: 'Informado após confirmação da reserva',
+  status: 'P'
 }
 
 @tour = Tour.find_by_title('Trilha do Morro Dois Irmãos') if Tour.find_by_title('Trilha do Morro Dois Irmãos').try(:update,@tour_data) || Tour.create(@tour_data)
@@ -163,7 +164,8 @@
   category: @cat_relax,
   tags: [@tagwaterfall],
   languages: [@language_default, @language_alt],
-  meetingpoint: 'Informado após confirmação da reserva'
+  meetingpoint: 'Informado após confirmação da reserva',
+  status: 'P'
 }
 
 @tour_aldeia_velha = Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento') if Tour.find_by_title('Banho de Cachoeira, Meditação e Autoconhecimento em Aldeia Velha').try(:update,@tour_aldeia_velha_data) || Tour.create(@tour_aldeia_velha_data)
@@ -262,7 +264,7 @@
   organizer: @organizer_mantiex,
   start: '2016-06-18 17:30:00',
   end: '2016-06-19 17:30:00',
-  photo: ActionController::Base.helpers.image_url("trilhas/marins.jpg"),
+  photo: ActionController::Base.helpers.image_url("trilhas/marins.png"),
   availability: 10,
   minimum: 7,
   maximum: 10,
@@ -278,7 +280,8 @@
   tags: [@tag_mantiqueira, @tag_montanhismo, @tag_acampamento],
   languages: [@language_default, @language_esp],
   meetingpoint: 'Cachoeira Paulista - SP',
-  packages: [@basico, @completo]
+  packages: [@basico, @completo],
+  status: 'P'
 }
 
 @tour_marins = Tour.find_by_title('Trekking e acampamento no Pico dos Marins') if Tour.find_by_title('Trekking e acampamento no Pico dos Marins').try(:update,@tour_marins_data) || Tour.create(@tour_marins_data)
