@@ -349,8 +349,6 @@ class TourTest < ActiveSupport::TestCase
         :authorization => Rails.application.secrets[:moip_auth]
       }
       
-      receive_url = "http://localhost:3000/webhook"
-      
       post_params = {
         events: [
           "ORDER.*",
