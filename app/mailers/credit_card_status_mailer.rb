@@ -14,6 +14,8 @@ class CreditCardStatusMailer < ApplicationMailer
     @logo = File.basename(@organizer.logo)
     attachments[@logo] = File.read(Rails.root.join(@organizer.logo))
     
+    puts "the mail organizer logo: #{@logo.inspect}"
+    
     #attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
     
