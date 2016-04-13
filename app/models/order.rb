@@ -40,7 +40,7 @@ class Order < ActiveRecord::Base
     when 'REFUNDED'
       'Você irá ser reembolsado'
     when 'SETTLED'
-      'O seu pagamento se encontra em negociação'
+      'O seu pagamento foi finalizado'
     else
       'Estamos ainda definindo o status do seu pagamento'
     end
@@ -65,7 +65,7 @@ class Order < ActiveRecord::Base
     when 'REFUNDED'
       '<span class="label label-warning">REEMBOLSADO</span>'
     when 'SETTLED'
-      '<span class="label label-warning">EM NEGOCIACAO</span>'
+      '<span class="label label-warning">FINALIZADO</span>'
     else
       '<span class="label label-default">NAO DEFINIDO</span>'
     end
