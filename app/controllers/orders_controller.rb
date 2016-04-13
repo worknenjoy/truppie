@@ -140,10 +140,10 @@ class OrdersController < ApplicationController
             guide: @guide_template
           }
           mail = CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
+          #CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
           puts '----- debugging mail ------'
           puts "mail result: #{mail.inspect}"
           puts '------ end ------'
-          #CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
         else
           puts 'O webhook do moip tentou enviar uma notificação repetida'
         end

@@ -252,7 +252,6 @@ class TourTest < ActiveSupport::TestCase
       response = RestClient.post "https://sandbox.moip.com.br/v2/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
       
-      
       assert_equal json_data["events"].length, 4
       assert_equal json_data["target"], 'http://truppie.com/webhook'
       assert_not_nil json_data["token"]

@@ -11,6 +11,7 @@ utopicos:
   website: MyString
   facebook: MyString
   twitter: MyString
+  logo: app/assets/images/logo_utopicos.png
   
 mantiex:
   name: Mantiqueira expedicoes

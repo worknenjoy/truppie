@@ -11,7 +11,10 @@ class CreditCardStatusMailer < ApplicationMailer
     
     mailers = "#{user.email}"
     
-    attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
+    @logo = File.basename(@organizer.logo)
+    attachments[@logo] = File.read(Rails.root.join(@organizer.logo))
+    
+    #attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
     
     mail(
