@@ -71,6 +71,12 @@ class OrdersController < ApplicationController
         tour = order_tour.tour
         organizer = tour.organizer
         
+        puts order
+        puts order_tour
+        puts user
+        puts tour
+        puts organizer
+        
         case @status
         when "PAYMENT.WAITING" 
             @subject = "Solicitação de reserva de uma truppie! :)"
@@ -139,11 +145,18 @@ class OrdersController < ApplicationController
             mail_second_line: @mail_second_line,
             guide: @guide_template
           }
+          puts 'passou do status_data'
           mail = CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
+          puts 'passou do mail'
+          if mail
+            puts '----- debugging mail ------'
+            puts "mail result: #{mail.inspect}"
+            puts '------ end ------'
+          else
+            CreditCardStatusMailer.status_message('não foi possível enviar os e-mails aos usuários e guias').deliver_now
+          end
           #CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
-          puts '----- debugging mail ------'
-          puts "mail result: #{mail.inspect}"
-          puts '------ end ------'
+          
         else
           puts 'O webhook do moip tentou enviar uma notificação repetida'
         end
