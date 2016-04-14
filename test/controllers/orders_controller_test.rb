@@ -169,7 +169,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
   
   test "should receive a post with successfull parameters using the live website(production testing)" do
-    skip("successfull post to production")
+    #skip("successfull post to production")
     
     #orders = Order.create(:status => 'IN_ANALYSIS', :payment => @payment, :user => User.last, :tour => Tour.last)
     
