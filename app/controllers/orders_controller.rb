@@ -2,7 +2,7 @@ require 'json'
 
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!, :except => [:new_webhook, :webhook]
+  before_action :authenticate_user!, :except => [:new_webhook, :webhook]
   skip_before_action :verify_authenticity_token
   
   def new_webhook
@@ -136,12 +136,11 @@ class OrdersController < ApplicationController
           }
           puts 'chegou na funcao mail para enviar o e-mail aos usuarios'
           mail = CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
+          guide_mail = CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
           #puts "a funcao mail retornou #{mail}"
           if !mail
             CreditCardStatusMailer.status_message('não foi possível enviar os e-mails aos usuários e guias').deliver_now
           end
-          #CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
-          
         else
           puts 'O webhook do moip tentou enviar uma notificação repetida'
         end
