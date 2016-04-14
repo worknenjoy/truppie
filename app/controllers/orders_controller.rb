@@ -136,7 +136,7 @@ class OrdersController < ApplicationController
           }
           puts 'chegou na funcao mail para enviar o e-mail aos usuarios'
           mail = CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
-          puts "a funcao mail retornou #{mail}"
+          #puts "a funcao mail retornou #{mail}"
           if !mail
             CreditCardStatusMailer.status_message('não foi possível enviar os e-mails aos usuários e guias').deliver_now
           end

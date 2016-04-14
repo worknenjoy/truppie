@@ -11,15 +11,15 @@ class CreditCardStatusMailer < ApplicationMailer
     
     mailers = "#{user.email}"
     
-    @logo = File.basename(@organizer.logo)
-    attachments[@logo] = File.read(Rails.root.join(@organizer.logo))
+    #@logo = File.basename(@organizer.logo)
+    #attachments[@logo] = File.read("app/#{@organizer.logo}")
     
     puts "it reaches the email function"
     
-    attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
-    attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    #attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
+    #attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
     
-    m = mail(
+    mail(
       from: 'ola@truppie.com',
       subject: @status[:subject],
       to: mailers,
@@ -27,8 +27,6 @@ class CreditCardStatusMailer < ApplicationMailer
       template_name: 'status_change',
       template_path: 'credit_card_status_mailer' 
      )
-    puts 'the email sent, it sents? I dont believe so'
-    puts "if the email was sent this is the object #{m.inspect}" 
   end
   
   def guide_mail(status, order, user, tour, organizer)
@@ -43,9 +41,9 @@ class CreditCardStatusMailer < ApplicationMailer
     
     organizer_mailers = "#{organizer.user.email}"
     
-    @logo = File.basename(@organizer.logo)
-    attachments[@logo] = File.read(Rails.root.join(@organizer.logo))
-    attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    #@logo = File.basename(@organizer.logo)
+    #attachments[@logo] = File.read(Rails.root.join(@organizer.logo))
+    #attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
     
     mail(
       from: 'ola@truppie.com',
