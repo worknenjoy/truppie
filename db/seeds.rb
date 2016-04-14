@@ -285,3 +285,46 @@
 }
 
 @tour_marins = Tour.find_by_title('Trekking e acampamento no Pico dos Marins') if Tour.find_by_title('Trekking e acampamento no Pico dos Marins').try(:update,@tour_marins_data) || Tour.create(@tour_marins_data)
+
+
+#
+#
+# Mais do utopicos
+#
+#
+
+@barra_data = {
+  name: "Barra da Tijuca",
+  city: "Rio de Janeiro",
+  state: "RJ",
+  country: "Brasil"
+}
+
+@barra_da_tijuca =  Where.find_by_name("Barra da Tijuca") if Where.find_by_name("Barra da Tijuca").try(:update, @barra_data) || Where.create(@barra_data)
+
+@tour_gavea_data = {
+  title: 'Trilha da Pedra da Gávea',
+  description: 'A trilha da Pedra da Gávea é, sem dúvida, a mais desafiante da cidade! São aproximadamente 3 horas de subida, mas chegar ao topo com certeza é muito gratificante. A vista de cima dos 847m de altura da Pedra dá uma visão de toda a orla do Rio de Janeiro, entre a Zona Sul e Zona Oeste. Além disso, é possível ver as montanhas que descem da Floresta da Tijuca. É indescritível! A trilha é longa e de nível de dificuldade alto, e ainda conta com a famosa “carrasqueira” - um paredão de pedra, quase reto, que é transposto com auxilio de pés e mãos. Basta permanecer calmo, a subida é mais simples do que parece e para minimizar os riscos, iremos levar equipamentos e monitorar o uso.',
+  value: 90,
+  currency: 'BRL',
+  organizer: @organizer,
+  start: '2016-04-30 07:30:00',
+  end: '2016-04-30 12:30:00',
+  photo: ActionController::Base.helpers.image_url("trilhas/pedra_da_gavea.jpg"),
+  availability: 10,
+  minimum: 4,
+  maximum: 10,
+  difficulty: 5,
+  where: @barra_da_tijuca,
+  address: 'Barra da Tijuca - Rio de Janeiro - RJ',
+  user: @user,
+  take: ['Tênis ou bota para caminhada', 'Roupas leves', 'Água (pelo menos 2 litros)', 'Lanche para trilha (sugestões: barra de cereal, frutas, biscoitos, sanduíche)', 'Óculos escuros, chapéu ou boné', 'Kit de Primeiros Socorros', 'Repelente e protetor solar', 'Saco de lixo'],
+  goodtoknow: ['Em caso de chuva, o evento será remarcado. Mas fique tranquilo que ficaremos de olho na previsão do tempo e te avisaremos em tempo hábil!', 'Para dúvidas específicas sobre esta truppie, entre em contato com o guia pelo e-mail informado acima.'],
+  category: @cat,
+  tags: [@tagone, @tagtwo, @tagtree],
+  languages: [@language_default, @language_alt],
+  meetingpoint: 'Informado após confirmação da reserva',
+  status: 'P'
+}
+
+@tour_gavea = Tour.find_by_title('Trilha da Pedra da Gávea') if Tour.find_by_title('Trilha da Pedra da Gávea').try(:update,@tour_gavea_data) || Tour.create(@tour_gavea_data)
