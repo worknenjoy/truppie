@@ -2,7 +2,7 @@ require 'json'
 
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:new_webhook, :webhook]
+  #before_action :authenticate_user!, :except => [:new_webhook, :webhook]
   skip_before_action :verify_authenticity_token
   
   def new_webhook
@@ -143,7 +143,7 @@ class OrdersController < ApplicationController
           #CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
           
         else
-          #puts 'O webhook do moip tentou enviar uma notificação repetida'
+          puts 'O webhook do moip tentou enviar uma notificação repetida'
         end
       else
         CreditCardStatusMailer.status_message('erro ao tentar processar o request').deliver_now
