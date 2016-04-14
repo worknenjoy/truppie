@@ -22,16 +22,8 @@ class OrdersController < ApplicationController
       }
       base_url = Rails.application.secrets[:moip_domain]
       
-      puts '----- base_url -----'
-      puts base_url.inspect
-      puts '----- end of base_url -----'
-      
       response = RestClient.post "#{base_url}/preferences/notifications", post_params.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_auth] 
       json_data = JSON.parse(response)
-      
-      puts '----- response -----'
-      puts json_data.inspect
-      puts '----- end of response -----'
       
       if json_data["id"]
         flash[:success] = 'webhook padrao criado com sucesso'
@@ -46,10 +38,8 @@ class OrdersController < ApplicationController
   end
     
   def webhook
-    puts 'someone post to webhook' 
     request_raw = request.raw_post()
-    puts 'it passes the request_raw'
-    puts "it passes the request_raw: #{request_raw}"
+
     if !request_raw.empty?
       if request_raw.is_a? Hash
         request_raw_json = JSON.parse(request_raw.to_json)
@@ -58,7 +48,6 @@ class OrdersController < ApplicationController
       end
       
       @event = request_raw_json["event"]
-      puts "an event apart coming: #{@event}"
       
       if !@event.empty?
         @payment_id = request_raw_json["resource"]["payment"]["id"]
@@ -71,11 +60,11 @@ class OrdersController < ApplicationController
         tour = order_tour.tour
         organizer = tour.organizer
         
-        puts order
-        puts order_tour
-        puts user
-        puts tour
-        puts organizer
+        #puts order
+        #puts order_tour
+        #puts user
+        #puts tour
+        #puts organizer
         
         case @status
         when "PAYMENT.WAITING" 
@@ -132,10 +121,10 @@ class OrdersController < ApplicationController
           order.status_history <<  @status
           
           if order.save()
-            puts "Pedido de pagamento #{order.payment} atualizado com sucesso"
+            #puts "Pedido de pagamento #{order.payment} atualizado com sucesso"
             if @status == 'PAYMENT.CANCELLED'
               t = tour.confirmeds.where(:user => user).delete_all
-              puts "Usuario #{t} desconfirmado com sucesso"
+              #puts "Usuario #{t} desconfirmado com sucesso"
             end
           end
           
@@ -145,20 +134,16 @@ class OrdersController < ApplicationController
             mail_second_line: @mail_second_line,
             guide: @guide_template
           }
-          puts 'passou do status_data'
+          puts 'chegou na funcao mail para enviar o e-mail aos usuarios'
           mail = CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
-          puts 'passou do mail'
-          if mail
-            puts '----- debugging mail ------'
-            puts "mail result: #{mail.inspect}"
-            puts '------ end ------'
-          else
+          puts "a funcao mail retornou #{mail}"
+          if !mail
             CreditCardStatusMailer.status_message('não foi possível enviar os e-mails aos usuários e guias').deliver_now
           end
           #CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
           
         else
-          puts 'O webhook do moip tentou enviar uma notificação repetida'
+          #puts 'O webhook do moip tentou enviar uma notificação repetida'
         end
       else
         CreditCardStatusMailer.status_message('erro ao tentar processar o request').deliver_now

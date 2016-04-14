@@ -348,17 +348,6 @@ class TourTest < ActiveSupport::TestCase
         :authorization => Rails.application.secrets[:moip_auth]
       }
       
-      post_params = {
-        events: [
-          "ORDER.*",
-          "PAYMENT.AUTHORIZED",
-          "PAYMENT.CANCELLED",
-          "PAYMENT.IN_ANALYSIS"
-        ],
-        target: 'http://truppie.com/webhook',
-        media: "WEBHOOK"
-      }
-      
       response = RestClient.post "http://www.truppie.com/webhook/", {}, :content_type => :json, :accept => :json
       json_data = JSON.parse(response)
       puts json_data.inspect
