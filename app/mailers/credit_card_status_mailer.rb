@@ -17,7 +17,7 @@ class CreditCardStatusMailer < ApplicationMailer
     puts "it reaches the email function"
     
     #attachments['logo_utopicos.png'] = File.read(Rails.root.join('app/assets/images/logo_utopicos.png'))
-    #attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
     
     mail(
       from: 'ola@truppie.com',
