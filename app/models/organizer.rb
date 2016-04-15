@@ -7,7 +7,7 @@ class Organizer < ActiveRecord::Base
   
   
   def to_param
-    "#{id} #{name}".parameterize
+    "#{name}".parameterize
   end
   
 end
