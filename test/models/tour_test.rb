@@ -129,6 +129,17 @@ class TourTest < ActiveSupport::TestCase
            
     end
     
+    test "the next truppies in order" do
+     
+      actualtime = Time.new(2015, 4, 14, 14, 35, 0)
+     
+      Timecop.freeze(actualtime) do
+        assert_equal @tour, Tour.nexts.first
+        assert_equal @marins, Tour.nexts.last
+        assert_equal @tour_alt, Tour.nexts[1]
+      end
+    end
+    
    test "just show published truppies" do
      
      @tour.status = 'P'
@@ -150,7 +161,7 @@ class TourTest < ActiveSupport::TestCase
      
      day = @marins.how_long
      
-     assert_equal day, 'de <strong>06 de Junho </strong> a <strong>08 de Junho</strong>'
+     assert_equal day, 'de <strong>18 de Junho </strong> a <strong>19 de Junho</strong>'
      
    end
    
@@ -165,13 +176,13 @@ class TourTest < ActiveSupport::TestCase
    test "day counter" do
      day = @marins.days
      
-     assert_equal '06 e 08', day
+     assert_equal '18 e 19', day
    end
    
    test "day counter same day" do
      day = @tour.days
      
-     assert_equal '01', day
+     assert_equal '17', day
    end
    
      

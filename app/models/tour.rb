@@ -12,7 +12,7 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :reviews, dependent: :destroy
   has_and_belongs_to_many :packages
   
-  scope :nexts, lambda { where("start > ?", Date.today) }
+  scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
   
   scope :publisheds, -> { where(status: 'P') }
   
