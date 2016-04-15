@@ -31,6 +31,7 @@
                 		<%= hidden_field_tag :value, @final_price %>
                 	<% else %>
                     	<% if @tour.packages.any? %>
+                    		<span class="label label-warning spaced-smallest">Escolha uma opção de pagamento:</span>
 	                    	<% @tour.packages.each do |p| %>
                     		<label class="radio package-item-confirm">
 							  <%= radio_button_tag :value, p.value %>
