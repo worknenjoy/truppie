@@ -4,4 +4,10 @@ class Organizer < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :where
+  
+  
+  def to_param
+    "#{id} #{name}".parameterize
+  end
+  
 end
