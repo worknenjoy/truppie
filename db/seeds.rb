@@ -147,7 +147,7 @@
 
   title: 'Banho de Cachoeira, Meditação e Autoconhecimento',
   description: '<p class="spaced-down">Que tal sair da rotina e curtir um dia diferente, meditando e relaxando imerso da natureza, com muito banho de cachoeira para lavar a alma? Este encontro proporcionará um momento de profunda conexão consigo mesmo. </p><h5>Sobre o roteiro:</h5> <p class="spaced-down">Sairemos às 7h30 em uma van rumo à Cachoeira das Sete Quedas, em Aldeia Velha. Depois de um delicioso almoço e um tempo para relaxar, faremos uma meditação, para auxiliar no processo de contato com o mundo interno e equilíbrio através da respiração e fortalecimento da presença. Em seguida, faremos a Rodada do Beija-Flor - uma Leitura de Aura Coletiva - em que cada pessoa recebe uma mensagem sobre o seu momento atual. Por ser um trabalho coletivo, as mensagens de uns vão enriquecendo as mensagens dos outros, formando um grande campo que permite mais clareza, abertura de percepção e insights. Finalizaremos a vivência com partilha, música e mais banho de cachoeira. Retorno previsto para as 17h00.<h5>Sobre a facilitadora:</h5> Mariana Rattes é Terapeuta Holística. Trabalha com Leitura de Aura, Gestalt Terapia e Grupos de Autoconhecimento. Atualmente, se dedica a unir trabalhos terapêuticos e de autoconhecimento individuais e em grupo com arte, poesia, expressividade e o feminino.</p>',
-  value: 150,
+  value: 159,
   currency: 'BRL',
   organizer: @organizer,
   start: '2016-04-17 07:30:00',
@@ -328,3 +328,63 @@
 }
 
 @tour_gavea = Tour.find_by_title('Trilha da Pedra da Gávea') if Tour.find_by_title('Trilha da Pedra da Gávea').try(:update,@tour_gavea_data) || Tour.create(@tour_gavea_data)
+
+#
+# Tour Beija Flor
+#
+#
+
+@tag_meditacao_data = {
+  name: 'meditação'
+}
+
+@tag_meditacao = Tag.find_by_name('meditação') || Tag.create(@tag_meditacao_data)
+
+@minimo_data = {
+  name: "Mínimo",
+  value: 35,
+}
+
+@minimo = Package.find_by_name('Mínimo') || Package.create(@minimo_data)
+
+@ideal_data = {
+  name: "Ideal",
+  value: 50,
+}
+
+@ideal = Package.find_by_name('Ideal') || Package.create(@ideal_data)
+
+@parque_lage_data = {
+  name: "Parque Lage",
+  city: "Rio de Janeiro",
+  state: "RJ",
+  country: "Brasil"
+}
+
+@parque_lage =  Where.find_by_name("Parque Lage") if Where.find_by_name("Parque Lage").try(:update, @parque_lage_data) || Where.create(@parque_lage_data)
+
+
+@tour_beijaflor_data = {
+  title: 'Música, Meditação e Beija-Flor',
+  description: '<p>Que tal curtir uma tarde agradável, com música, relaxamento e meditação? Este encontro proporcionará um momento de conexão consigo mesmo. Iniciaremos nossa vivência ao som do violão com músicas de conexão para abrir o coração. Na sequência, acontecerá uma meditação guiada, para auxiliar no processo de contato com o mundo interno e equilíbrio através da respiração e fortalecimento da presença. Após a meditação, seguiremos com a Rodada do Beija- Flor, uma rodada de Leitura de Aura Coletiva, em que cada pessoa recebe uma mensagem sobre o seu momento atual. Por ser um trabalho coletivo, as mensagens de uns vão enriquecendo as mensagens dos outros, formando um grande campo que permite mais clareza, abertura de percepção e insight. Finalizaremos a vivência com partilha e mais música. </p><strong>Mariana Rattes</strong> é Terapeuta Holística. Trabalha com Leitura de Aura, Gestalt Terapia e Grupos de Autoconhecimento. Atualmente, se dedica a unir trabalhos terapêuticos e de autoconhecimento individuais e em grupo com arte, poesia, expressividade e o feminino.</p> <p><strong>Tamara Steiman<strong> é Leitora de Aura, cantora e educadora. Idealizadora do Projeto Ilumina Rio e Co-criadora do projeto Sonsciência – O despertar através do Som. Atualmente, se dedica e desenvolve diversos projetos e vivências que tem como objetivo o despertar de nossa consciência, nossa consciência amorosa.</p>',
+  currency: 'BRL',
+  organizer: @organizer,
+  start: '2016-04-24 15:00:00',
+  end: '2016-04-24 17:00:00',
+  photo: ActionController::Base.helpers.image_url("trilhas/beijaflor_parquelage.jpg"),
+  availability: 27,
+  maximum: 27,
+  where: @parque_lage,
+  address: 'Parque Lage - Jardim Botânico, Rio de Janeiro - RJ',
+  user: @user,
+  take: ['Canga ou toalha para sentar', 'Uma almofada, se possível'],
+  goodtoknow: ['Em caso de chuva, o evento será remarcado. Mas fique tranquilo que ficaremos de olho na previsão do tempo e te avisaremos em tempo hábil!', 'Para dúvidas específicas sobre esta truppie, entre em contato com o guia pelo e-mail informado acima.'],
+  category: @relax,
+  tags: [@tagwaterfall, @tag_meditacao],
+  languages: [@language_default, @language_alt],
+  meetingpoint: 'Informado após confirmação da reserva',
+  packages: [@minimo, @ideal],
+  status: 'P'
+}
+
+@tour_beijaflor = Tour.find_by_title('Música, Meditação e Beija-Flor') if Tour.find_by_title('Música, Meditação e Beija-Flor').try(:update,@tour_beijaflor_data) || Tour.create(@tour_beijaflor_data)

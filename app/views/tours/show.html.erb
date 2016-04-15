@@ -182,11 +182,13 @@
                     <div class="panel-body text-xs-center">
                         <p><strong><%= raw p.price %></strong></p>
                     </div>
+                    <% if p.included.any? %>
                     <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
                     	<% p.included.each do |i| %>
                         <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
                         <% end %>
                     </ul>
+                    <% end %>
                     </div>
                     <div class="card-footer">
                     	<%= link_to "Eu quero o #{p.name}", confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
