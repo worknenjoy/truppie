@@ -35,6 +35,7 @@ gem 'json', '1.8.2'
 
 gem 'time_diff'
 gem 'timecop' 
+gem 'redis'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
