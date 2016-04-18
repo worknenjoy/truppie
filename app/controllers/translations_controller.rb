@@ -1,6 +1,10 @@
 class TranslationsController < ApplicationController
   def index
-    @translations = I18n.backend.store
+    @translations = TRANSLATION_STORE
+    
+    @translate_yaml_br = config = YAML.load_file('config/locales/pt-BR.yml')
+    @translate_yaml_en = config = YAML.load_file('config/locales/en.yml')
+    
   end
   
   def create
