@@ -2,7 +2,9 @@ class TranslationsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @translations = TRANSLATION_STORE
+    #@translations = TRANSLATION_STORE
+    
+    @translations = {} 
     
     @translate_yaml_br = YAML.load_file('config/locales/pt-BR.yml')
     @translate_yaml_en = YAML.load_file('config/locales/en.yml')
