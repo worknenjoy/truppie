@@ -151,20 +151,22 @@ class ToursController < ApplicationController
   # POST /tours
   # POST /tours.json
   def create
-    puts tour_params[:tour].inspect
-    @tour = Tour.new(tour_params[:tour])
     
+    @tour = Tour.new(tour_params)
+    
+    #@tour.organizer = Organizer.last
 
     respond_to do |format|
       if @tour.save
-        format.html { redirect_to @tour, notice: 'Tour was successfully created.' }
+        format.html { redirect_to @tour, notice: 'Truppie criada com sucesso' }
         format.json { render :show, status: :created, location: @tour }
       else
-        format.html { render :new }
+        puts @tour.errors.messages
+        format.html { redirect_to tours_path, notice: "o campo #{@tour.errors.first[0]} #{@tour.errors.first[1]}" }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
-    redirect_to tours_path
+    #redirect_to tours_path
   end
 
   # PATCH/PUT /tours/1
@@ -199,6 +201,6 @@ class ToursController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tour_params
-    params.fetch(:tour, {})
+    params.fetch(:tour, {}).permit(:title)
   end
 end

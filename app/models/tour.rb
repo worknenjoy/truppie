@@ -1,6 +1,7 @@
 include ActionView::Helpers::DateHelper
 
 class Tour < ActiveRecord::Base
+  
   belongs_to :organizer
   belongs_to :where
   belongs_to :user
@@ -11,6 +12,10 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :languages
   has_and_belongs_to_many :reviews, dependent: :destroy
   has_and_belongs_to_many :packages
+  
+  validates_presence_of :title, :organizer
+  
+  validates_associated :organizer
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
   
