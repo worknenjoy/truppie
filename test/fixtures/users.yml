@@ -6,13 +6,13 @@
 #
 laura:
   name: Laura Sette
-  email: laurinha@email.com
+  email: laurinha.sette@gmail.com
   encrypted_password: 4567554354
   sign_in_count: 10
 
 alexandre:
   name: Alexandre Magno
-  email: alexandre@email.com
+  email: alexanmtz@gmail.com
   encrypted_password: 4567554354
   sign_in_count: 10
   

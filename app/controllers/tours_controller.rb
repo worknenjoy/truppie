@@ -1,6 +1,17 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:show, :index]
+  before_action :authenticate_user!, :except => [:show]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update]
+  
+  def check_if_admin
+    
+    allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+    
+    unless allowed_emails.include? current_user.email
+      flash[:notice] = "Você não está autorizado a entrar nesta página"
+      redirect_to root_url
+    end 
+  end
 
   def confirm
     @tour = Tour.find(params[:id])
