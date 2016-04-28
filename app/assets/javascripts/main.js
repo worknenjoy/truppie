@@ -31,6 +31,31 @@ $(function(){
 	});
 	
 	localStorage.clear();
+	
+	var where = new Bloodhound({
+	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+	  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	  prefetch: {
+	    url: '/wheres/index.json',
+	    filter: function(list) {
+	      return $.map(list, function(where) {
+	        return where; 
+    	  });
+	    }
+	  }
+	});
+	where.initialize();
+	
+	$('#tour_where').tagsinput({
+	  typeaheadjs: {
+	    name: 'where',
+	    displayKey: 'name',
+	    valueKey: 'name',
+	    source: where.ttAdapter()
+	  },
+	  maxTags: 1
+	});
+	
 	var tags = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,

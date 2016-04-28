@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   
   resources :translations
-
+  
   resources :packages
+  
   get 'tags/index'
   get 'languages/index'
+  get 'wheres/index'
 
   get 'contacts/index'  
   post 'contacts/send_form'

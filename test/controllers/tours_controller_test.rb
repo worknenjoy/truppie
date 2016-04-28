@@ -27,6 +27,43 @@ class ToursControllerTest < ActionController::TestCase
       
     }
     
+    @basic_tour = {
+      title: "A basic truppie",
+      organizer: Organizer.first.name,
+      where: Where.last.name
+    }
+    
+    @basic_empty_tour_with_empty = {
+      title: "Another basic truppie",
+      organizer: Organizer.first.name,
+      where: Where.last.name,
+      description: "",
+      rating: "",
+      value: "",
+      currency: "",
+      start: "",
+      end: "",
+      photo: "",
+      availability: "",
+      minimum: "",
+      maximum: "",
+      difficulty: "",
+      address: "",
+      included: "",
+      nonincluded: "",
+      take: "",
+      goodtoknow: "",
+      category: Category.last.id,
+      tags: "",
+      attractions: "",
+      privacy: "",
+      meetingpoint: "",
+      #confirmed: "",
+      languages: "",
+      verified: "",
+      status: ""
+    }
+    
   end
   
   #teardown do
@@ -65,13 +102,31 @@ class ToursControllerTest < ActionController::TestCase
      #assert_redirected_to tour_path(assigns(:tour))
   end
   
+  test "should create tour with success flash" do
+     #skip("creating tour with organizer")
+     #puts @basic_tour.inspect
+     post :create, tour: @basic_tour
+     assert_equal 'Truppie criada com sucesso', flash[:notice]
+   end
+  
   test "should create tour with basic data" do
-     skip("creating tour with organizer")
+     #skip("creating tour with organizer")
      assert_difference('Tour.count') do
-       post :create, tour: {title: 'foo truppie', organizer: Organizer.last}
+       post :create, tour: @basic_tour
      end
-     
-     #assert_redirected_to tour_path(assigns(:tour))
+     assert_redirected_to tour_path(assigns(:tour))
+   end
+   
+  test "should create tour with basic data with form empty sets" do
+     #skip("creating tour with organizer")
+     assert_difference('Tour.count') do
+       post :create, tour: @basic_empty_tour_with_empty
+     end
+     assert_redirected_to tour_path(assigns(:tour))
+   end
+   
+   test "should associate tags" do
+     skip("creating tour with tags")
    end
 
   test "should show tour" do
@@ -85,6 +140,7 @@ class ToursControllerTest < ActionController::TestCase
   end
 
   test "should update tour" do
+    skip("update tour")
     patch :update, id: @tour, tour: {  }
     assert_redirected_to tour_path(assigns(:tour))
   end

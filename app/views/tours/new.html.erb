@@ -30,14 +30,18 @@
 			                            <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
 			                            </span>
 			                            <%= f.text_field :title, placeholder: "Título da truppie", class: "form-control" %>
-			                            <%= f.hidden_field :user, value: current_user, placeholder: "Onde?", class: "form-control" %>
 			                        </div>
 			                    </div>
-			                    
+			                    <div class="form-group">
+			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
+			                            <%= f.text_field :where, placeholder: "Onde?", class: "form-control" %>
+			                        </div>
+			                    </div>
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-			                            <%= f.text_field :address, placeholder: "Onde?", class: "form-control" %>
+			                            <%= f.text_field :address, placeholder: "Endereço", class: "form-control" %>
 			                        </div>
 			                    </div>
 			                    <div class="form-group">

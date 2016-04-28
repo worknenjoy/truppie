@@ -13,9 +13,7 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :reviews, dependent: :destroy
   has_and_belongs_to_many :packages
   
-  validates_presence_of :title, :organizer
-  
-  validates_associated :organizer
+  validates_presence_of :title, :organizer, :where
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
   
@@ -107,7 +105,11 @@ class Tour < ActiveRecord::Base
   end
   
   def available
-    self.availability - self.confirmeds.count
+    if self.availability
+     self.availability - self.confirmeds.count
+    else
+      0
+    end
   end
   
   def soldout?

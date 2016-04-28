@@ -12,6 +12,7 @@
   <tbody>
     <% @tours.each do |tour| %>
       <tr>
+      	<td><%= tour.title %></td>
         <td><%= link_to 'Show', tour %></td>
         <td><%= link_to 'Edit', edit_tour_path(tour) %></td>
         <td><%= link_to 'Destroy', tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
