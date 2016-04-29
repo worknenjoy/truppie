@@ -126,7 +126,22 @@ class ToursControllerTest < ActionController::TestCase
    end
    
    test "should associate tags" do
-     skip("creating tour with tags")
+     #skip("creating tour with tags")
+     @basic_empty_tour_with_empty["tags"] = "#{Tag.last.name},anothertag"
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.tags[0].name, "family"
+     assert_equal Tour.last.tags[1].name, "anothertag"
+     assert_equal Tag.last.name, "anothertag"
+   end
+   
+   test "should associate languages" do
+     #skip("creating tour with tags")
+     @basic_empty_tour_with_empty["languages"] = "#{languages(:english).name},#{languages(:portuguese).name}"
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.languages[0].name, "english"
+     assert_equal Tour.last.languages[1].name, "portuguese"
    end
 
   test "should show tour" do

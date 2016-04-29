@@ -223,13 +223,33 @@ class ToursController < ApplicationController
     params[:tour][:organizer] = new_organizer
     params[:tour][:where] = new_where
     
-    params[:tour][:tags] = []
+    if params[:tour][:tags] == "" or params[:tour][:tags].nil?
+      params[:tour][:tags] = []
+    else
+      tags_to_array = params[:tour][:tags].split(",")
+      tags = []
+      tags_to_array.each do |t|
+        tags.push Tag.find_or_create_by(name: t)
+      end
+      params[:tour][:tags] = tags
+    end
+    
+    if params[:tour][:languages] == "" or params[:tour][:languages].nil?
+      params[:tour][:languages] = []
+    else
+      langs_to_array = params[:tour][:languages].split(",")
+      langs = []
+      langs_to_array.each do |l|
+        langs.push Language.find_by_name(l)
+      end
+      params[:tour][:languages] = langs
+    end  
+    
     params[:tour][:included] = []
     params[:tour][:nonincluded] = []
     params[:tour][:attractions] = []
     params[:tour][:take] = []
     params[:tour][:goodtoknow] = []
-    params[:tour][:languages] = []
     params[:tour][:start] = Time.now
     params[:tour][:end] = Time.now
     

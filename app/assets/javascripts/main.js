@@ -99,7 +99,8 @@ $(function(){
 	    displayKey: 'name',
 	    valueKey: 'name',
 	    source: languages.ttAdapter()
-	  }
+	  },
+	  freeInput: false
 	});
 	
 	var organizers = new Bloodhound({
