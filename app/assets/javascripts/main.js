@@ -127,7 +127,19 @@ $(function(){
 	  maxTags: 1
 	});
 	
+	$('#reveal-new-cat').on('click', function(){
+  		$('#new-cat').show();
+  		return false;
+  	});
+	
 	$(".criar-truppie").on('click', function(){
+		
+		if($('#new-cat').find('input').val().length) {
+			var option = new Option($('#new-cat').find('input').val(), $('#new-cat').find('input').val());
+			$('#tour_category_id').append($(option).attr('selected', 'selected'));
+			$('#tour_category_id').trigger('change');
+		}
+		
 		$('#new_tour').trigger('submit');
 		return false;
 	});
@@ -193,8 +205,6 @@ $(function(){
 	      return false; // Don't submit the form
 	    }
 	  });
-	  
-  	
 	  
   	if($('.overall-alert').length) {
   		delayedAlert();

@@ -7,8 +7,8 @@ class OrganizerTest < ActiveSupport::TestCase
    
    test "organizer has two members" do
      assert_equal 2, Organizer.last.members.size
-     assert_equal 'laurinha@email.com', Organizer.last.members.first.user.email
-     assert_equal 'alexandre@email.com', Organizer.last.members.last.user.email
+     assert_equal 'laurinha.sette@gmail.com', Organizer.last.members.first.user.email
+     assert_equal 'alexanmtz@gmail.com', Organizer.last.members.last.user.email
    end
    
 end

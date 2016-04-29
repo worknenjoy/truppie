@@ -99,7 +99,7 @@ class Tour < ActiveRecord::Base
       when 'EURO'
         "<small>€</small> " + self.value.to_s
       else
-      self.value
+      "<small>R$</small> " + self.value.to_s
     end
     end
   end

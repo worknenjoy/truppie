@@ -245,19 +245,71 @@ class ToursController < ApplicationController
       params[:tour][:languages] = langs
     end  
     
-    params[:tour][:included] = []
-    params[:tour][:nonincluded] = []
-    params[:tour][:attractions] = []
-    params[:tour][:take] = []
-    params[:tour][:goodtoknow] = []
-    params[:tour][:start] = Time.now
-    params[:tour][:end] = Time.now
-    
-    cat = params[:tour][:category]
-    
-    unless cat.nil?
-      params[:tour][:category] = Category.find(cat)
+    if params[:tour][:included] == "" or params[:tour][:included].nil?
+      params[:tour][:included] = []
+    else
+      included_to_array = params[:tour][:included].split(",")
+      included = []
+      included_to_array.each do |i|
+        included.push i
+      end
+      params[:tour][:included] = included
     end
+    
+    if params[:tour][:nonincluded] == "" or params[:tour][:nonincluded].nil?
+      params[:tour][:nonincluded] = []
+    else
+      nonincluded_to_array = params[:tour][:nonincluded].split(",")
+      nonincluded = []
+      nonincluded_to_array.each do |i|
+        nonincluded.push i
+      end
+      params[:tour][:nonincluded] = nonincluded
+    end
+
+    if params[:tour][:take] == "" or params[:tour][:take].nil?
+      params[:tour][:take] = []
+    else
+      take_to_array = params[:tour][:take].split(",")
+      take = []
+      take_to_array.each do |t|
+        take.push t
+      end
+      params[:tour][:take] = take
+    end
+    
+    if params[:tour][:goodtoknow] == "" or params[:tour][:goodtoknow].nil?
+      params[:tour][:goodtoknow] = []
+    else
+      goodtoknow_to_array = params[:tour][:goodtoknow].split(",")
+      goodtoknow = []
+      goodtoknow_to_array.each do |g|
+        goodtoknow.push g
+      end
+      params[:tour][:goodtoknow] = goodtoknow
+    end
+    
+    if params[:tour][:start] == "" or params[:tour][:start].nil?
+      params[:tour][:start] = Time.now
+    end
+    
+    if params[:tour][:end] == "" or params[:tour][:end].nil?
+      params[:tour][:end] = 4.hours.from_now
+    end
+    
+    current_cat = params[:tour][:category]
+    
+    begin
+      if current_cat
+        cat = Category.find(current_cat)
+        params[:tour][:category] = cat
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      params[:tour][:category] = Category.create(name:current_cat)      
+    end
+    
+    params[:tour][:attractions] = []
+    params[:tour][:currency] = "BRL"
     
     params.fetch(:tour, {}).permit(:title, :organizer, :where, :user).merge(params[:tour])
   end

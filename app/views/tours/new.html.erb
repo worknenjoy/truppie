@@ -68,7 +68,7 @@
 			                    <div class="form-group">
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-ticket"></span></span>
-			                            <%= f.number_field :end, placeholder: "Preço (ex: 30 para R$ 30,00)", class: "form-control" %>
+			                            <%= f.number_field :value, placeholder: "Preço (ex: 30 para R$ 30,00)", class: "form-control" %>
 			                        </div>
 			                    </div>
 		                    </div>
@@ -96,6 +96,12 @@
 			                    </div>
 			                    <div class="form-group">
 			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-info-circle"></span></span>
+			                            <%= f.text_field :goodtoknow, placeholder: "Bom saber", class: "form-control", "data-role": "tagsinput" %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
 			                            <%= f.text_field :meetingpoint, placeholder: "Qual o ponto de encontro?", class: "form-control" %>
 			                        </div>
@@ -104,6 +110,11 @@
 			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-bookmark"></span></span>
 			                            <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}), {class: "form-control", include_blank: "Escolha uma categoria"} %>
+			                        </div>
+			                        <p><a href="#" id="reveal-new-cat">Adicionar categoria</a></p>
+			                        <div class="input-group" id="new-cat" style="display:none">
+			                            <span class="input-group-addon">Nova Categoria:</span>
+			                            <input type="text" placeholder="nome da categoria" />
 			                        </div>
 			                    </div>
 			                    <div class="form-group">

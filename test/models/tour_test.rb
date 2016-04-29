@@ -14,7 +14,7 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "a user that create the tour" do
-     assert_equal 'laurinha@email.com', Tour.last.user.email
+     assert_equal 'laurinha.sette@gmail.com', Tour.last.user.email
    end
    
    test "a organizer for the tour" do

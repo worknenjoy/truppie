@@ -143,6 +143,69 @@ class ToursControllerTest < ActionController::TestCase
      assert_equal Tour.last.languages[0].name, "english"
      assert_equal Tour.last.languages[1].name, "portuguese"
    end
+   
+   test "should create includeds" do
+     #skip("creating tour with tags")
+     @basic_empty_tour_with_empty["included"] = "almoco,jantar,cafe"
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.included[0], "almoco"
+     assert_equal Tour.last.included[1], "jantar"
+     assert_equal Tour.last.included[2], "cafe"
+   end
+   
+   test "should create nonincludeds" do
+     #skip("creating tour with tags")
+     @basic_empty_tour_with_empty["nonincluded"] = "almoco,jantar,cafe"
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.nonincluded[0], "almoco"
+     assert_equal Tour.last.nonincluded[1], "jantar"
+     assert_equal Tour.last.nonincluded[2], "cafe"
+   end
+   
+   test "should create itens to take" do
+     #skip("creating tour with tags")
+     @basic_empty_tour_with_empty["take"] = "almoco,jantar,cafe"
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.take[0], "almoco"
+     assert_equal Tour.last.take[1], "jantar"
+     assert_equal Tour.last.take[2], "cafe"
+   end
+   
+   test "should create itens good to know" do
+     #skip("creating tour with tags")
+     @basic_empty_tour_with_empty["goodtoknow"] = "almoco,jantar,cafe"
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.goodtoknow[0], "almoco"
+     assert_equal Tour.last.goodtoknow[1], "jantar"
+     assert_equal Tour.last.goodtoknow[2], "cafe"
+   end
+   
+   test "should create with category" do
+     #skip("creating tour with tags")
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.category.name, "Trekking"
+   end
+   
+   test "should create with new category" do
+     #skip("creating tour with cat")
+     @basic_empty_tour_with_empty["category"] = "Nova"
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.category.name, "Nova"
+   end
+   
+   test "should create truppie with a given start" do
+     #skip("creating tour with tags")
+     @basic_empty_tour_with_empty["start"] = "2016-02-02T11:00"
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.start, "Tue, 02 Feb 2016 11:00:00 UTC +00:00"
+   end
 
   test "should show tour" do
     get :show, id: @tour
