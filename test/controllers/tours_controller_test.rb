@@ -206,6 +206,12 @@ class ToursControllerTest < ActionController::TestCase
      
      assert_equal Tour.last.start, "Tue, 02 Feb 2016 11:00:00 UTC +00:00"
    end
+   
+   test "should create withe the current status non published for default" do
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.status, ""
+   end
 
   test "should show tour" do
     get :show, id: @tour

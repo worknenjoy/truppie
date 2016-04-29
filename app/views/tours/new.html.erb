@@ -119,6 +119,12 @@
 			                    </div>
 			                    <div class="form-group">
 			                        <div class="input-group">
+			                            <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+			                            <%= f.select :status, options_for_select([['Não Publicado', 'N'],['Publicado', 'P']]), {class: "form-control", include_blank: "Escolha um status"} %>
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <div class="input-group">
 			                            <span class="input-group-addon"><span class="fa fa-tags"></span></span>
 			                            <%= f.text_field :tags, value: '', placeholder: "Quais são as tags?", class: "form-control" %>
 			                        </div>
