@@ -1,4 +1,4 @@
-<%= form_for @tour, class: "form form-signup", role: "form" do |f| %>
+<%= form_for @tour, class: "form form-signup", multipart: true, role: "form" do |f| %>
     <ul class="nav nav-tabs spaced-down" role="tablist">
 	  <li class="nav-item">
 	    <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informações básicas</a>
@@ -124,6 +124,21 @@
                     <span class="input-group-addon"><span class="fa fa-globe"></span></span>
                     <%= f.text_field :languages, value: (@tour.languages.map{ |l| l.name}.join(',') if @tour.languages.present?), placeholder: "Idiomas falados?", class: "form-control" %>
                 </div>
+            </div>
+    	</div>
+    	<div class="tab-pane" id="foto" role="tabpanel">
+    		<div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-photo"></span></span>
+                    <%= f.file_field :picture, class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+            <% unless @tour.nil? %>
+                <% if @tour.picture.present? %>
+                	<%= image_tag @tour.picture.url(:thumbnail) %>
+                <% end %>
+            <% end %>
             </div>
     	</div>
     	<div class="tab-pane" id="guia" role="tabpanel">

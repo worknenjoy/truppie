@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408020351) do
+ActiveRecord::Schema.define(version: 20160430201158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(version: 20160408020351) do
     t.integer  "rating"
     t.integer  "value"
     t.string   "currency"
-    t.integer  "organizer_id",               null: false
+    t.integer  "organizer_id",                      null: false
     t.datetime "start"
     t.datetime "end"
     t.string   "photo"
@@ -252,13 +252,13 @@ ActiveRecord::Schema.define(version: 20160408020351) do
     t.integer  "minimum"
     t.integer  "maximum"
     t.integer  "difficulty"
-    t.integer  "where_id",                   null: false
+    t.integer  "where_id",                          null: false
     t.string   "address"
-    t.integer  "user_id",                    null: false
-    t.text     "included",      default: [],              array: true
-    t.text     "nonincluded",   default: [],              array: true
-    t.text     "take",          default: [],              array: true
-    t.text     "goodtoknow",    default: [],              array: true
+    t.integer  "user_id",                           null: false
+    t.text     "included",             default: [],              array: true
+    t.text     "nonincluded",          default: [],              array: true
+    t.text     "take",                 default: [],              array: true
+    t.text     "goodtoknow",           default: [],              array: true
     t.integer  "category_id"
     t.integer  "tag_id"
     t.integer  "attraction_id"
@@ -269,8 +269,12 @@ ActiveRecord::Schema.define(version: 20160408020351) do
     t.integer  "review_id"
     t.string   "verified"
     t.string   "status"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   add_index "tours", ["attraction_id"], name: "index_tours_on_attraction_id", using: :btree

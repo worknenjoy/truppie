@@ -311,6 +311,6 @@ class ToursController < ApplicationController
     params[:tour][:attractions] = []
     params[:tour][:currency] = "BRL"
     
-    params.fetch(:tour, {}).permit(:title, :organizer, :where, :user).merge(params[:tour])
+    params.fetch(:tour, {}).permit(:title, :organizer, :where, :user, :picture).merge(params[:tour])
   end
 end

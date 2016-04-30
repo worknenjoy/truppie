@@ -19,6 +19,18 @@ class Tour < ActiveRecord::Base
   
   scope :publisheds, -> { where(status: 'P') }
   
+  # This method associates the attribute ":picture" with a file attachment
+  has_attached_file :picture, styles: {
+    thumbnail: '300x300>',
+    square: '400x400#',
+    cover: '600x800>',
+    medium: '500x500>',
+    large: '800x800>',
+  }
+
+  # Validate the attached image is image/jpg, image/png, etc
+  validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+  
   
   def how_long
     distance_words = distance_of_time_in_words(self.end - self.start)
