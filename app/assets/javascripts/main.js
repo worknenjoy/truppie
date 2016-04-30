@@ -140,7 +140,7 @@ $(function(){
 			$('#tour_category_id').trigger('change');
 		}
 		
-		$('#new_tour').trigger('submit');
+		$('#new_tour, .edit_tour').trigger('submit');
 		return false;
 	});
 	

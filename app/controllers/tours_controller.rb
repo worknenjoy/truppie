@@ -182,10 +182,10 @@ class ToursController < ApplicationController
   def update
     respond_to do |format|
       if @tour.update(tour_params)
-        format.html { redirect_to @tour, notice: 'Tour was successfully updated.' }
+        format.html { redirect_to @tour, notice: 'Truppie atualizada com sucesso' }
         format.json { render :show, status: :ok, location: @tour }
       else
-        format.html { render :edit }
+        format.html { redirect_to tours_path, notice: "o campo #{@tour.errors.first[0]} #{@tour.errors.first[1]}" }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
