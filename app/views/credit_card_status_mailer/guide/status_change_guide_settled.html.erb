@@ -1,0 +1,25 @@
+<h2>Olá, <%= @organizer.name %>!</h2>
+
+<p>Referente à sua truppie <%= @tour.name %>, informamos que o pagamento do explorador <%= @user.name %> (<%= @user.email %>) foi devidamente processado pelo Moip, e o valor já está disponível na conta do Moip para transferência para sua conta bancária.
+
+<p><strong>Importante:</strong></p> Para facilitar a vida de todos, temos como procedimento padrão esperar o pagamento do último explorador ser processado para fazermos uma única transferência ao final, do valor integral. Porém, caso deseje receber os valores parciais individualmente, entre em contato conosco: ola@truppie.com.</p>
+
+<h4>Temos aqui um resumo do pedido do seu cliente:</h4>
+
+<% if !@order %>
+	<p class="lead">
+		<span class="label label-pill label-warning">
+			Não há reservas para você neste momento
+		</span>
+	</p>
+<% else %>
+	<%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
+<% end %>
+
+<p>Não se esqueça que se tiver alguma dúvida, escreva pra gente: ola@truppie.com.</p> 
+
+<p>Até mais!</p>
+
+<p>Um abraço,</p>
+
+<%= render partial: 'credit_card_status_mailer/footer', locals: {organizer: @organizer } %>
