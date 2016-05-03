@@ -69,25 +69,25 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-thumbs-up"></span></span>
-                    <%= f.text_field :included, value: (@tour.included.join(',') if @tour.included.present?), placeholder: "O que inclui?", class: "form-control", "data-role": "tagsinput" %>
+                    <%= f.text_field :included, value: (@tour.included.join(';') if @tour.included.present?), placeholder: "O que inclui?", class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-thumbs-down"></span></span>
-                    <%= f.text_field :nonincluded, value: (@tour.nonincluded.join(',') if @tour.nonincluded.present?), placeholder: "O que não inclui?", class: "form-control", "data-role": "tagsinput" %>
+                    <%= f.text_field :nonincluded, value: (@tour.nonincluded.join(';') if @tour.nonincluded.present?), placeholder: "O que não inclui?", class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-book"></span></span>
-                    <%= f.text_field :take, placeholder: "O que levar?", value: (@tour.take.join(',') if @tour.take.present?), class: "form-control", "data-role": "tagsinput" %>
+                    <%= f.text_field :take, placeholder: "O que levar?", value: (@tour.take.join(';') if @tour.take.present?), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-info-circle"></span></span>
-                    <%= f.text_field :goodtoknow, value: (@tour.goodtoknow.join(',') if @tour.goodtoknow.present?), placeholder: "Bom saber", class: "form-control", "data-role": "tagsinput" %>
+                    <%= f.text_field :goodtoknow, value: (@tour.goodtoknow.join(';') if @tour.goodtoknow.present?), placeholder: "Bom saber", class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
@@ -116,13 +116,13 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-tags"></span></span>
-                    <%= f.text_field :tags, value: (@tour.tags.map{ |t| t.name}.join(',') if @tour.tags.present?), placeholder: "Quais são as tags?", class: "form-control" %>
+                    <%= f.text_field :tags, value: (@tour.tags.map{ |t| t.name}.join(';') if @tour.tags.present?), placeholder: "Quais são as tags?", class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-globe"></span></span>
-                    <%= f.text_field :languages, value: (@tour.languages.map{ |l| l.name}.join(',') if @tour.languages.present?), placeholder: "Idiomas falados?", class: "form-control" %>
+                    <%= f.text_field :languages, value: (@tour.languages.map{ |l| l.name}.join(';') if @tour.languages.present?), placeholder: "Idiomas falados?", class: "form-control" %>
                 </div>
             </div>
     	</div>

@@ -127,7 +127,7 @@ class ToursControllerTest < ActionController::TestCase
    
    test "should associate tags" do
      #skip("creating tour with tags")
-     @basic_empty_tour_with_empty["tags"] = "#{Tag.last.name},anothertag"
+     @basic_empty_tour_with_empty["tags"] = "#{Tag.last.name};anothertag"
      post :create, tour: @basic_empty_tour_with_empty
      
      assert_equal Tour.last.tags[0].name, "family"
@@ -137,7 +137,7 @@ class ToursControllerTest < ActionController::TestCase
    
    test "should associate languages" do
      #skip("creating tour with tags")
-     @basic_empty_tour_with_empty["languages"] = "#{languages(:english).name},#{languages(:portuguese).name}"
+     @basic_empty_tour_with_empty["languages"] = "#{languages(:english).name};#{languages(:portuguese).name}"
      post :create, tour: @basic_empty_tour_with_empty
      
      assert_equal Tour.last.languages[0].name, "english"
@@ -146,7 +146,7 @@ class ToursControllerTest < ActionController::TestCase
    
    test "should create includeds" do
      #skip("creating tour with tags")
-     @basic_empty_tour_with_empty["included"] = "almoco,jantar,cafe"
+     @basic_empty_tour_with_empty["included"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
      
      assert_equal Tour.last.included[0], "almoco"
@@ -156,7 +156,7 @@ class ToursControllerTest < ActionController::TestCase
    
    test "should create nonincludeds" do
      #skip("creating tour with tags")
-     @basic_empty_tour_with_empty["nonincluded"] = "almoco,jantar,cafe"
+     @basic_empty_tour_with_empty["nonincluded"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
      
      assert_equal Tour.last.nonincluded[0], "almoco"
@@ -166,7 +166,7 @@ class ToursControllerTest < ActionController::TestCase
    
    test "should create itens to take" do
      #skip("creating tour with tags")
-     @basic_empty_tour_with_empty["take"] = "almoco,jantar,cafe"
+     @basic_empty_tour_with_empty["take"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
      
      assert_equal Tour.last.take[0], "almoco"
@@ -176,7 +176,7 @@ class ToursControllerTest < ActionController::TestCase
    
    test "should create itens good to know" do
      #skip("creating tour with tags")
-     @basic_empty_tour_with_empty["goodtoknow"] = "almoco,jantar,cafe"
+     @basic_empty_tour_with_empty["goodtoknow"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
      
      assert_equal Tour.last.goodtoknow[0], "almoco"

@@ -250,8 +250,8 @@
           val = $.map(self.items(), function(item) {
             return self.options.itemValue(item).toString();
           });
-
-      self.$element.val(val, true).trigger('change');
+      var delimiter = self.options.delimiter;
+      self.$element.val(val.join(delimiter), true).trigger('change');
     },
 
     /**

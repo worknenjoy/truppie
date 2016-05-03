@@ -32,6 +32,10 @@ $(function(){
 	
 	localStorage.clear();
 	
+	$('#tour_included, #tour_nonincluded, #tour_take, #tour_goodtoknow').tagsinput({
+		delimiterRegex: /;/
+	});
+	
 	var where = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -53,6 +57,7 @@ $(function(){
 	    valueKey: 'name',
 	    source: where.ttAdapter()
 	  },
+	  delimiter: ';',
 	  maxTags: 1
 	});
 	
@@ -76,7 +81,8 @@ $(function(){
 	    displayKey: 'name',
 	    valueKey: 'name',
 	    source: tags.ttAdapter()
-	  }
+	  },
+	  delimiter: ';'
 	});
 	
 	var languages = new Bloodhound({
@@ -100,7 +106,7 @@ $(function(){
 	    valueKey: 'name',
 	    source: languages.ttAdapter()
 	  },
-	  freeInput: false
+	  delimiter: ';'
 	});
 	
 	var organizers = new Bloodhound({
@@ -124,6 +130,7 @@ $(function(){
 	    valueKey: 'name',
 	    source: organizers.ttAdapter()
 	  },
+	  delimiter: ';',
 	  maxTags: 1
 	});
 	
