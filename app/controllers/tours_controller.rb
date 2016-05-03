@@ -180,7 +180,6 @@ class ToursController < ApplicationController
   # PATCH/PUT /tours/1
   # PATCH/PUT /tours/1.json
   def update
-    puts tour_params[:picture].inspect
     respond_to do |format|
       if @tour.update(tour_params)
         format.html { redirect_to @tour, notice: 'Truppie atualizada com sucesso' }
@@ -245,6 +244,7 @@ class ToursController < ApplicationController
       langs_to_array.each do |l|
         langs.push Language.find_by_name(l)
       end
+      puts langs.inspect
       params[:tour][:languages] = langs
     end  
     
