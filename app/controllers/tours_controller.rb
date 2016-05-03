@@ -180,7 +180,7 @@ class ToursController < ApplicationController
   # PATCH/PUT /tours/1
   # PATCH/PUT /tours/1.json
   def update
-    puts tour_params.inspect
+    puts tour_params[:picture].inspect
     respond_to do |format|
       if @tour.update(tour_params)
         format.html { redirect_to @tour, notice: 'Truppie atualizada com sucesso' }
