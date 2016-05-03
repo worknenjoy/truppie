@@ -214,16 +214,12 @@ class ToursController < ApplicationController
     organizer = params[:tour][:organizer]
     new_organizer = Organizer.find_by_name(organizer)
     
-    where = params[:tour][:where]
-    new_where = Where.find_by_name(where)
-    
     unless new_organizer.nil?
       new_user = new_organizer.user
       params[:tour][:user] = new_user
     end
     
     params[:tour][:organizer] = new_organizer
-    params[:tour][:where] = new_where
     
     if params[:tour][:tags] == "" or params[:tour][:tags].nil?
       params[:tour][:tags] = []
@@ -244,7 +240,6 @@ class ToursController < ApplicationController
       langs_to_array.each do |l|
         langs.push Language.find_by_name(l)
       end
-      puts langs.inspect
       params[:tour][:languages] = langs
     end  
     
@@ -311,9 +306,23 @@ class ToursController < ApplicationController
       params[:tour][:category] = Category.create(name:current_cat)      
     end
     
+    current_where = params[:tour][:where]
+    
+    begin
+      where = Where.find(name:current_where)
+      puts 'caiu no begin'
+    rescue ActiveRecord::RecordNotFound => e
+      where = Where.create(name:current_where)
+      puts 'caiu no rescue'      
+    end
+    
+    puts where.inspect
+    
+    params[:tour][:where] = where
+    
     params[:tour][:attractions] = []
     params[:tour][:currency] = "BRL"
     
-    params.fetch(:tour, {}).permit(:title, :organizer, :where, :user, :picture).merge(params[:tour])
+    params.fetch(:tour, {}).permit(:title, :organizer, :where, :user, :picture, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, :included, :nonincluded, :take, :goodtoknow, :meetingpoint, :category_id, :status, :tags, :languages, :organizer, :user, :attractions, :currency).merge(params[:tour])
   end
 end

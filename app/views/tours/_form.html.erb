@@ -40,6 +40,24 @@
                     <%= f.number_field :availability, placeholder: "Vagas", class: "form-control" %>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-sort-down"></span></span>
+                    <%= f.number_field :minimum, placeholder: "Mínimo", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-sort-up"></span></span>
+                    <%= f.number_field :maximum, placeholder: "Máximo", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-trophy"></span></span>
+                    <%= f.number_field :difficulty, placeholder: "Dificuldade", class: "form-control" %>
+                </div>
+            </div>
             
             <div class="form-group">
                 <div class="input-group">
