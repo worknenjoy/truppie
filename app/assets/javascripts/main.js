@@ -33,7 +33,7 @@ $(function(){
 	localStorage.clear();
 	
 	$('#tour_included, #tour_nonincluded, #tour_take, #tour_goodtoknow').tagsinput({
-		delimiterRegex: /;/
+		delimiter: ";"
 	});
 	
 	var where = new Bloodhound({
