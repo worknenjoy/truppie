@@ -173,9 +173,19 @@
 			.twPc-div {
 				overflow: hidden;
 			}
+			<% if t.picture.present? %>
+			<%="#twPc-bg-#{t.id}" %> {
+				background-image: url('<%= t.picture.url(:large) %>');
+			}
+			<% elsif t.try(:photo) %>
 			<%="#twPc-bg-#{t.id}" %> {
 				background-image: url('<%= t.photo %>');
 			}
+			<% else %>
+			<%="#twPc-bg-#{t.id}" %> {
+				background-color: #F15A29;
+			}					
+			<% end %>
 		</style>
 		<div class="twPc-div spaced-down">
 		    <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
