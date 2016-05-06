@@ -105,7 +105,7 @@ class OrdersController < ApplicationController
         when "PAYMENT.SETTLED"
             @subject = "Seu pagamento foi concluído"
             @guide_template = "status_change_guide_settled"
-            @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, informamos que o pagamento foi devidamente faturado pelo Moip, e este é o nome que aparecerá em sua fatura do cartão de crédito."
+            @mail_first_line = "Referente à truppie #{tour.title} com o guia #{organizer.name}, informamos que o pagamento foi devidamente faturado pelo Moip, e este é o nome que aparecerá em sua fatura do cartão de crédito."
             @mail_second_line = "O Moip é um sistema de pagamento que usamos na Truppie para garantir o pagamento seguro."
         else
             @subject = "Não conseguimos obter o status junto a operadora"
