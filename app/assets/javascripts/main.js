@@ -32,8 +32,13 @@ $(function(){
 	
 	localStorage.clear();
 	
-	$('#tour_included, #tour_nonincluded, #tour_take, #tour_goodtoknow').tagsinput({
+	$('#tour_included, #tour_nonincluded, #tour_take, #tour_goodtoknow, .package-value').tagsinput({
 		delimiter: ";"
+	});
+	
+	$('#add-packages').on('click', function(){
+		$('.packages-set').clone().insertBefore(this);
+		return false;
 	});
 	
 	var where = new Bloodhound({

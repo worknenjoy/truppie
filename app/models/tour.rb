@@ -13,6 +13,8 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :reviews, dependent: :destroy
   has_and_belongs_to_many :packages
   
+  accepts_nested_attributes_for :packages
+  
   validates_presence_of :title, :organizer, :where
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
@@ -30,6 +32,12 @@ class Tour < ActiveRecord::Base
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+  
+  def packages_attributes=(attributes)
+    # Process the attributes hash
+    #puts '------- attributes hash ----------'
+    #puts attributes.inspect
+  end
   
   
   def how_long

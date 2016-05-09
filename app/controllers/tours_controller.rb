@@ -241,7 +241,18 @@ class ToursController < ApplicationController
         langs.push Language.find_by_name(l)
       end
       params[:tour][:languages] = langs
-    end  
+    end
+    
+    pkg_attr = params[:tour][:packages_attributes]
+    
+    if !pkg_attr.nil?
+      post_data = [] 
+      pkg_attr.each do |p|
+        included_array = p[1]["included"].split(split_val)
+        post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], included: included_array)
+      end
+      params[:tour][:packages] = post_data        
+    end
     
     if params[:tour][:included] == "" or params[:tour][:included].nil?
       params[:tour][:included] = []
@@ -310,13 +321,9 @@ class ToursController < ApplicationController
     
     begin
       where = Where.find(name:current_where)
-      puts 'caiu no begin'
     rescue ActiveRecord::RecordNotFound => e
       where = Where.create(name:current_where)
-      puts 'caiu no rescue'      
     end
-    
-    puts where.inspect
     
     params[:tour][:where] = where
     

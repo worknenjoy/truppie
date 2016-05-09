@@ -199,6 +199,14 @@ class ToursControllerTest < ActionController::TestCase
      assert_equal Tour.last.category.name, "Nova"
    end
    
+   test "should create with packages" do
+     @basic_empty_tour_with_empty["packages_attributes"] = {"0"=>{"name"=>"Barato", "value"=>"10", "included"=>"barato;caro"}}
+     post :create, tour: @basic_empty_tour_with_empty
+     
+     assert_equal Tour.last.packages.first.name, "Barato"
+     assert_equal Tour.last.packages.first.included, ["barato", "caro"]
+   end
+   
    test "should create truppie with a given start" do
      #skip("creating tour with tags")
      @basic_empty_tour_with_empty["start"] = "2016-02-02T11:00"

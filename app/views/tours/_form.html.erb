@@ -12,6 +12,9 @@
 	  <li class="nav-item">
 	    <a class="nav-link" data-toggle="tab" href="#guia" role="tab">Guia</a>
 	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#packages" role="tab">Pacotes</a>
+	  </li>
 	</ul>
 	<div class="tab-content spaced-down">
 		<div class="tab-pane active" id="home" role="tabpanel">
@@ -77,6 +80,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-ticket"></span></span>
                     <%= f.number_field :value, placeholder: "Preço (ex: 30 para R$ 30,00)", class: "form-control" %>
+                	<small>Para pacotes diferentes de preços, vá na aba "Pacotes"</small>
                 </div>
             </div>
         </div>
@@ -167,6 +171,31 @@
                     <%= f.text_field :organizer, value: (@tour.organizer.name if @tour.organizer.present?), placeholder: "Organizador", class: "form-control" %>
                 </div>
             </div>
+    	</div>
+    	<div class="tab-pane" id="packages" role="tabpanel">
+            <p>Você pode adicionar pacotes com valores diferentes (lembre-se que o campo de preço da truppie deve ficar em branco)</p>
+            <%= f.fields_for :packages, ([@tour.packages.build, @tour.packages.build] if @tour.packages.empty?)  do |ff| %>
+            <fieldset class="form-group packages-set">
+	            <div class="form-group">
+	                <div class="input-group">
+	                    <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+	                    <%= ff.text_field :name, placeholder: "Nome do pacote", class: "form-control" %>
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <div class="input-group">
+	                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+	                    <%= ff.number_field :value, placeholder: "Valor do pacote", class: "form-control" %>
+	                </div>
+	            </div>
+	            <div class="form-group">
+	                <div class="input-group">
+	                    <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
+	                    <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: "O que inclui no pacote", class: "form-control  package-value" %>
+	                </div>
+	            </div>
+            </fieldset>
+            <% end %>
     	</div>
 	</div>
 	<!--
