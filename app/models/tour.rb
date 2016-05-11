@@ -104,7 +104,7 @@ class Tour < ActiveRecord::Base
   def price
     if !self.try(:value)
       minor = 999999999
-      if self.try(:packages)
+      if self.try(:packages) and !self.value
         self.packages.each do |p|
           minor = p.value if p.value < minor 
         end
