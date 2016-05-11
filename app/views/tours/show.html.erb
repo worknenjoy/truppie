@@ -170,7 +170,7 @@
 		        </div>
 	       </div>
 		</div>
-		<% if @tour.packages.any? %>
+		<% if @tour.packages.any? and !@tour.value %>
 		<div class="row">
 			<div class="col-xs-12">
 				<h3 class="spaced-default">Opções de pacotes</h3>
