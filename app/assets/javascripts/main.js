@@ -159,7 +159,7 @@ $(function(){
 	});
 	
 	
-	$('#carousel-intro').carousel({interval: false});
+	$('#carousel-intro').carousel();
 	
  	$('#carousel-intro').on('swiperight', function(e){
 		$('#carousel-intro').carousel('prev');

@@ -192,9 +192,6 @@
 		    <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
 		    	<div class="ribbon base"><span><%= raw t.price %></span></div>
 		    <% end %>
-		    <div class="sized-3x">
-		    	<%= render partial: "tours/confirmeds", locals: {tour: t} %>
-		    </div>
 			<div>
 				<div class="twPc-button">
 		            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
@@ -239,6 +236,9 @@
 							<span class="twPc-StatLabel twPc-block">Que horas?</span>
 							<span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
 						</li>
+						<div class="sized-3x">
+					    	<%= render partial: "tours/confirmeds", locals: {tour: t} %>
+					    </div>
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">vagas</span>
 							<span class="twPc-StatValue">
