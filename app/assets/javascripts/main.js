@@ -41,6 +41,8 @@ $(function(){
 		return false;
 	});
 	
+	$('.activate-tooltip').tooltip();
+	
 	var where = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,

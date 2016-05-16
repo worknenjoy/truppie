@@ -172,6 +172,7 @@
 		<style>
 			.twPc-div {
 				overflow: hidden;
+				position: relative;
 			}
 			<% if t.picture.present? %>
 			<%="#twPc-bg-#{t.id}" %> {
@@ -191,6 +192,9 @@
 		    <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
 		    	<div class="ribbon base"><span><%= raw t.price %></span></div>
 		    <% end %>
+		    <div class="sized-3x">
+		    	<%= render partial: "tours/confirmeds", locals: {tour: t} %>
+		    </div>
 			<div>
 				<div class="twPc-button">
 		            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
@@ -228,7 +232,7 @@
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">Onde?</span>
 							<span class="twPc-StatValue">
-								<%= t.where.state %> 
+								<%= t.where.name %> 
 							</span>
 						</li>
 						<li class="twPc-ArrangeSizeFit">

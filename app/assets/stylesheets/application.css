@@ -27,7 +27,8 @@
  *= require bootsnipp-trip 
  *= require bootstrap-tagsinput
  *= require bootstrap-typeahead 
- *= require bootsnipp-offer      
+ *= require bootsnipp-offer
+ *= require confirmeds-pane       
  *= require welcome
  *= require tours 
  */
