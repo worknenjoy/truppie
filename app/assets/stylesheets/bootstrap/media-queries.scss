@@ -76,15 +76,28 @@
         text-align: left;
         width: auto;
       }
+      .sized-3x {
+        .confirmeds-pane {
+          position: absolute;
+          bottom: 22%;
+        }
+      }
     }
   }
 }
 
 @include media-breakpoint-down(md) {
-  .card-floating {
+  html body {
+      .card-floating {
         position: static;
         width: 100%;
       }
+      .sized-3x {
+        .confirmeds-pane {
+          bottom: 22%;
+        }
+      }
+  }
 }
 
 @include media-breakpoint-up(md) {

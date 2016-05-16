@@ -1,5 +1,12 @@
 @import 'bootstrap/variables';
 
+.sized-3x {
+  .confirmeds-pane {
+    right: 0;
+    bottom: 28%;
+  }
+}
+
 .confirmeds-pane {
   position: absolute;
   right: 20%;
