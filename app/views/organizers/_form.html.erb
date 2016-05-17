@@ -1,17 +1,92 @@
-<%= form_for(@organizer) do |f| %>
-  <% if @organizer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@organizer.errors.count, "error") %> prohibited this organizer from being saved:</h2>
-
-      <ul>
-      <% @organizer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @organizer, class: "form form-signup", multipart: true, role: "form" do |f| %>
+    <ul class="nav nav-tabs spaced-down" role="tablist">
+	  <li class="nav-item">
+	    <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informações básicas</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#foto" role="tab">Foto</a>
+	  </li>
+	</ul>
+	<div class="tab-content spaced-down">
+		<div class="tab-pane active" id="home" role="tabpanel">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
+                    </span>
+                    <%= f.text_field :name, placeholder: "Nome do guia", class: "form-control" %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                </div>
+            </div>
+            <div class="form-group">
+                <%= f.text_area :description, placeholder: "Descrição completa", class: "form-control" %>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                    <%= f.text_field :website, placeholder: "Endereço do site do guia", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                    <%= f.text_field :facebook, placeholder: "facebook", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                    <%= f.text_field :twitter, placeholder: "twitter", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                    <%= f.text_field :instagram, placeholder: "instagram", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                    <%= f.text_field :phone, placeholder: "phone", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
+                    <%= f.text_field :members, value: (@organizer.members.name if @organizer.members.present?), placeholder: "Membros", class: "form-control" %>
+                </div>
+            </div>
+    	</div>
+    	<div class="tab-pane" id="foto" role="tabpanel">
+    		<div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-photo"></span></span>
+                    <%= f.file_field :picture, class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+            <% unless @organizer.nil? %>
+                <% if @organizer.picture.present? %>
+                	<%= image_tag @organizer.picture.url(:thumbnail) %>
+                <% end %>
+            <% end %>
+            </div>
+    	</div>
+	</div>
+	<!--
+    <div class="form-group">
+   		<div class="checkbox">
+		  <label>
+		    <input type="checkbox" value="">
+		    Criar evento também no facebook
+		  </label>
+		</div>
+    </div>
+   -->
+    <div class="pull-right">  
+    	<a href="<%= new_tour_path %> class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">
+        	Cancelar
+        </a>  
+        <%= link_to("Salvar truppie", "#", class: "btn btn-lg btn-primary criar-guia") %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

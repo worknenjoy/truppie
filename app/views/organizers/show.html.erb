@@ -1,5 +1,178 @@
-<p id="notice"><%= notice %></p>
-
-
-
-<%= link_to 'Edit', edit_organizer_path(@organizer) %>
+<%= render 'layouts/navbar' %>
+<div class="row">
+	<div class="col-xs-12 col-md-12">
+		<div class="card">
+			<div class="card-header">
+				<h5 class="spaced-smallest"><i class="fa fa-map-o"></i> <strong>Guia:</strong></h5>
+			</div>
+			<div class="card-block card-organizer">
+				<div class="text-xs-center">
+					<h4 class="card-title spaced-down">
+						<% if @organizer.picture.present? %>
+						<div>
+							<%= image_tag @organizer.picture.url(:thumbnail), width: 120, class: 'spaced-smallest' %>
+						</div>
+						<% elsif @organizer.try(:logo) %>
+							<div>
+							<%= image_tag @organizer.try(:logo), width: 120, class: 'spaced-smallest' %>
+							</div>	
+						<% else %>
+							<div>
+							<img width="120" src="https://avatars.io/instagram/username" class="spaced-smallest img-circle img-thumbnail" alt="avatar">
+							</div>
+						<% end %>
+						<strong><%= @organizer.name %> </strong>
+					</h4>
+				    <p class="card-text spaced-down"><%= @organizer.description %></p>
+				    <% if @organizer.website %>
+						<%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm' do %>
+							<i class="fa fa-external-link"></i> entrar no site
+						<% end %>
+					<% end %>
+					<% if @organizer.email %>
+					<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
+					<% end %>
+					<div class="hovercard spaced-default">
+						<div class="bottom">
+							<% if @organizer.instagram %>
+		                    <a class="btn btn-info btn-instagram btn-sm" href="<%= @organizer.instagram %>">
+		                        <i class="fa fa-instagram"></i> instagram
+		                    </a>
+		                    <% end %>
+		                    <% if @organizer.facebook %>
+		                    <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
+		                       href="<%= @organizer.facebook %>">
+		                        <i class="fa fa-facebook"></i> facebook
+		                    </a>
+		                    <% end %>
+		                    <% if @organizer.twitter %>
+		                    <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @organizer.twitter %>">
+		                        <i class="fa fa-twitter"></i>
+		                    </a>
+		                    <% end %>
+		                </div>
+					</div>
+				</div>
+			</div>
+			<!-- 
+			<div class="card-footer text-muted" style="text-align: right;">
+				<small><span class="label label-default spaced-smallest">Membros</span><br /></small>
+				<% if @organizer.user.image %>
+        			<img width="50" src="<%= @organizer.user.image %>?type=normal" class=" pull-right avatar img-circle img-thumbnail" alt="avatar"><br/>
+        			<%= @organizer.user.name %>
+    			<% else %>
+    				<small>
+    					<img width="50" src="https://avatars.io/instagram/username" class="avatar img-circle img-thumbnail" alt="avatar"><br/>
+    					<%= @organizer.user.name %>
+    				</small>
+    				
+        		<% end %>
+			 </div> -->
+		</div>
+	</div>
+</div>
+<div class="intro-idea spaced-down bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="light-heading" style="padding: 4px;">Próximas truppies</h3>
+			</div>
+		</div>
+		<% @organizer.tours.each do |t| %>
+		<style>
+			.twPc-div {
+				overflow: hidden;
+				position: relative;
+			}
+			<% if t.picture.present? %>
+			<%="#twPc-bg-#{t.id}" %> {
+				background-image: url('<%= t.picture.url(:large) %>');
+			}
+			<% elsif t.try(:photo) %>
+			<%="#twPc-bg-#{t.id}" %> {
+				background-image: url('<%= t.photo %>');
+			}
+			<% else %>
+			<%="#twPc-bg-#{t.id}" %> {
+				background-color: #F15A29;
+			}					
+			<% end %>
+		</style>
+		<div class="twPc-div spaced-down">
+		    <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+		    	<div class="ribbon base"><span><%= raw t.price %></span></div>
+		    <% end %>
+			<div>
+				<div class="twPc-button">
+		            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+					
+		            <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
+		            	<i class="fa fa-ticket"></i> Saber mais
+		            <% end %>
+		            <!-- Twitter Button -->   
+				</div>
+		
+				<%= link_to(t.organizer.website, :class => 'twPc-avatarLink') do %>
+					<%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+				<% end %>
+		
+				<div class="twPc-divUser spaced-down">
+					<div class="twPc-divName">
+						<%= link_to(t.title, tour_path(t)) %>
+					</div>
+					<span>
+						<small>pela </small><strong><%= t.organizer.name %></strong>
+					</span>
+				</div>
+		
+				<div class="twPc-divStats">
+					<ul class="twPc-Arrange">
+						<li class="twPc-ArrangeSizeFit">
+							<span class="twPc-StatLabel twPc-block">Quando?</span>
+							<span class="twPc-StatValue">
+								<%= l(t.start, format: '%d de %B / %Y') %>
+							</span>
+							<span class="twPc-StatValue">
+								<span class="label label-info">daqui a <%= time_ago_in_words(t.start) %></span>
+							</span>
+						</li>
+						<li class="twPc-ArrangeSizeFit">
+							<span class="twPc-StatLabel twPc-block">Onde?</span>
+							<span class="twPc-StatValue">
+								<%= t.where.name %> 
+							</span>
+						</li>
+						<li class="twPc-ArrangeSizeFit">
+							<span class="twPc-StatLabel twPc-block">Que horas?</span>
+							<span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
+						</li>
+						<div class="sized-1x">
+					    	<%= render partial: "tours/confirmeds", locals: {tour: t} %>
+					    </div>
+						<li class="twPc-ArrangeSizeFit">
+							<span class="twPc-StatLabel twPc-block">vagas</span>
+							<span class="twPc-StatValue">
+								<% if not t.soldout? %> 
+			            			<strong><%= t.available %></strong> vagas disponíveis
+			            		<% else %>
+			            			Não ha mais ticket disponiveis
+			            		<% end %>
+							</span>
+						</li>
+						<li class="twPc-ArrangeSizeFit">
+							<span class="twPc-StatLabel twPc-block">Duração total</span>
+							<span class="twPc-StatValue">
+								<%= t.how_long %>
+							</span>
+						</li>
+						<li class="twPc-ArrangeSizeFit">
+							<span class="twPc-StatLabel twPc-block">Dificuldade</span>
+							<span class="twPc-StatValue"><%= t.level %></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

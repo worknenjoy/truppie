@@ -158,6 +158,12 @@ $(function(){
 		return false;
 	});
 	
+	$(".criar-guia").on('click', function(){
+		console.log(' bla');
+		$('#new_organizer, .edit_organizer').trigger('submit');
+		return false;
+	});
+	
 	
 	$('#carousel-intro').carousel();
 	

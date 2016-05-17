@@ -10,6 +10,7 @@ class OrganizersController < ApplicationController
   # GET /organizers/1
   # GET /organizers/1.json
   def show
+
   end
 
   # GET /organizers/new
@@ -69,6 +70,9 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      params.fetch(:organizer, {})
+      
+      
+      
+      params.fetch(:organizer, {}).permit(:name, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone)
     end
 end

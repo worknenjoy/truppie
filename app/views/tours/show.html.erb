@@ -77,7 +77,13 @@
 					<div class="card-block card-organizer">
 						<div class="text-xs-center">
 							<h4 class="card-title spaced-down">
-								<%= image_tag(@tour.organizer.logo, :alt => @tour.organizer.name, :width => '120', class: 'spaced-smallest') %><br />
+								<% if @tour.organizer.try(:logo) %>
+									<%= image_tag(@tour.organizer.logo, :alt => @tour.organizer.name, :width => '120', class: 'spaced-smallest') %><br />
+								<% else %>
+									<div>
+									<img width="120" src="https://avatars.io/instagram/username" class="spaced-smallest img-circle img-thumbnail" alt="avatar">
+									</div>
+								<% end %>
 								<strong><%= @tour.organizer.name %> </strong>
 							</h4>
 						    <p class="card-text spaced-down"><%= @tour.organizer.description %></p>
