@@ -23,6 +23,12 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                    <%= f.text_field :email, placeholder: "Endereço de email do guia", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
                     <%= f.text_field :website, placeholder: "Endereço do site do guia", class: "form-control" %>
                 </div>
             </div>
@@ -87,6 +93,6 @@
     	<a href="<%= new_tour_path %> class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">
         	Cancelar
         </a>  
-        <%= link_to("Salvar truppie", "#", class: "btn btn-lg btn-primary criar-guia") %>
+        <%= link_to("Salvar guia", "#", class: "btn btn-lg btn-primary criar-guia") %>
     </div>
   <% end %>
