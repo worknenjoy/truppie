@@ -16,10 +16,12 @@ class CreditCardStatusMailer < ApplicationMailer
     
     @logo_file = "#{@organizer.to_param}.png"
     
+    #debugger
+    
     if @organizer.picture.present?
-      attachments[@logo_file] = File.read(Rails.root.join(@organizer.picture.url(:thumbnail)))
+      attachments[@logo_file] = @organizer.picture.url(:thumbnail)
     else
-      attachments[@logo_file] = File.read(Rails.root.join(@organizer.logo))
+      attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
     end
     
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
@@ -49,9 +51,9 @@ class CreditCardStatusMailer < ApplicationMailer
     @logo_file = "#{@organizer.to_param}.png"
     
     if @organizer.picture.present?
-      attachments[@logo_file] = File.read(Rails.root.join(@organizer.picture.url(:thumbnail)))
+      attachments[@logo_file] = @organizer.picture.url(:thumbnail)
     else
-      attachments[@logo_file] = File.read(Rails.root.join(@organizer.logo))
+      attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
     end
     
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
