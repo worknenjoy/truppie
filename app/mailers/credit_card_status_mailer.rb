@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class CreditCardStatusMailer < ApplicationMailer
   
   def status_change(status, order, user, tour, organizer)
@@ -16,10 +18,12 @@ class CreditCardStatusMailer < ApplicationMailer
     
     @logo_file = "#{@organizer.to_param}.png"
     
-    #debugger
-    
     if @organizer.picture.present?
-      attachments[@logo_file] = File.read(@organizer.picture.url(:thumbnail))
+      if Rails.env.development?
+        attachments[@logo_file] = @organizer.picture.url(:thumbnail)
+      else
+        attachments[@logo_file] = open(@organizer.picture.url(:thumbnail)).read
+      end
     else
       attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
     end
@@ -51,7 +55,11 @@ class CreditCardStatusMailer < ApplicationMailer
     @logo_file = "#{@organizer.to_param}.png"
     
     if @organizer.picture.present?
-      attachments[@logo_file] = @organizer.picture.url(:thumbnail)
+      if Rails.env.development?
+        attachments[@logo_file] = @organizer.picture.url(:thumbnail)
+      else
+        attachments[@logo_file] = open(@organizer.picture.url(:thumbnail)).read
+      end
     else
       attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
     end
