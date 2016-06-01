@@ -39,7 +39,7 @@
 								<% @orders.each do |o| %>
                                 <tr>
                                     <td>
-                                    	<% if o.tour.picture.present? %>
+                                    	<% unless o.tour.picture.present? %>
                                         	<img src="<%= o.tour.photo %>" alt="<%= o.tour.title %>">
                                         <% else %>
                                         	<img src="<%= o.tour.picture.url(:thumbnail) %>" alt="<%= o.tour.title %>">
