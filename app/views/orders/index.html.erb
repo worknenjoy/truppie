@@ -39,7 +39,11 @@
 								<% @orders.each do |o| %>
                                 <tr>
                                     <td>
-                                        <img src="<%= o.tour.photo %>" alt="<%= o.tour.title %>">
+                                    	<% if o.tour.picture.present? %>
+                                        	<img src="<%= o.tour.photo %>" alt="<%= o.tour.title %>">
+                                        <% else %>
+                                        	<img src="<%= o.tour.picture.url(:thumbnail) %>" alt="<%= o.tour.title %>">
+                                        <% end %>
                                         <%= link_to o.tour.title, tour_path(o.tour), class: 'user-link' %>
                                         <span class="user-subhead"><%= o.tour.organizer.name %></span>
                                     </td>
