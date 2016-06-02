@@ -203,7 +203,11 @@
 				</div>
 		
 				<%= link_to(t.organizer.website, :class => 'twPc-avatarLink') do %>
-					<%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+					<% if t.organizer.picture.present? %>
+						<%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+					<% else %>
+						<%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+					<% end %>
 				<% end %>
 		
 				<div class="twPc-divUser spaced-down">
