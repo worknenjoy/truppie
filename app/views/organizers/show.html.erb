@@ -113,11 +113,14 @@
 		            <!-- Twitter Button -->   
 				</div>
 		
-				<% if t.organizer.picture.present? %>
+				<%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
+					<% if t.organizer.picture.present? %>
 						<%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
 					<% else %>
 						<%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
-					<% end %>
+					<% end %>					
+				<% end %>
+				
 		
 				<div class="twPc-divUser spaced-down">
 					<div class="twPc-divName">
