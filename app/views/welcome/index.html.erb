@@ -202,7 +202,7 @@
 		            <!-- Twitter Button -->   
 				</div>
 		
-				<%= link_to(t.organizer.website, :class => 'twPc-avatarLink') do %>
+				<%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
 					<% if t.organizer.picture.present? %>
 						<%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
 					<% else %>
@@ -215,7 +215,9 @@
 						<%= link_to(t.title, tour_path(t)) %>
 					</div>
 					<span>
+						<%= link_to organizer_path(t.organizer) do %>
 						<small>pela </small><strong><%= t.organizer.name %></strong>
+						<% end %>
 					</span>
 				</div>
 		
