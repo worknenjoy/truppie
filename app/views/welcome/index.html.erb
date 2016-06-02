@@ -212,7 +212,9 @@
 		
 				<div class="twPc-divUser spaced-down">
 					<div class="twPc-divName">
-						<%= link_to(t.title, tour_path(t)) %>
+						<%= link_to tour_path(t) do %>
+							<%= t.title %>
+						<% end %>
 					</div>
 					<span>
 						<%= link_to organizer_path(t.organizer) do %>
