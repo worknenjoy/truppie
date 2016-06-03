@@ -41,7 +41,8 @@ class ToursController < ApplicationController
       cpf_number: params[:cpf_number],
       country_code: params[:country_code],
       area_code: params[:area_code],
-      phone_number: params[:phone_number]
+      phone_number: params[:phone_number],
+      installment_count: params[:installment_count]
       
     }
     
@@ -73,7 +74,7 @@ class ToursController < ApplicationController
         if not @payment_data[:fullname].nil?
           payment = api.payment.create(order.id,
               {
-                  installment_count: 1,
+                  installment_count: @payment_data[:installment_count] || 1,
                   funding_instrument: {
                       method: @payment_data[:method],
                       credit_card: {
