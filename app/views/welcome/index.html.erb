@@ -13,6 +13,7 @@
 		</div>
 	</div>
 	<div id="carousel-intro" class="carousel slide" data-ride="carousel">
+		<% if @tours.any? %>
 		<div class="card card-floating wow bounceIn">
 		  <div class="card-header">
 		    <i class="fa fa-calendar"></i> Próxima saída
@@ -57,6 +58,7 @@
 			  </div>
 		  </div>
 		</div>
+		<% end %>
 		  <ol class="carousel-indicators">
 		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
@@ -161,6 +163,7 @@
 	</div>
 </div>
 </div>
+<% if @tours.any? %>
 <div class="intro-idea spaced-down bg-gray">
 	<div class="container">
 		<div class="row">
@@ -274,6 +277,7 @@
 		<% end %>
 	</div>
 </div>
+<% end %>
 <div class="container">
 	<div class="row">
 		<div class="col-md-7">
