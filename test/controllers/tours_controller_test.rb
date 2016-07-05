@@ -82,35 +82,35 @@ class ToursControllerTest < ActionController::TestCase
   end
 
   test "should not create tour with empty data" do
-     #skip("creating tour with empty data")
+     skip("creating tour with empty data")
      post :create, tour: {}
      assert_equal 'o campo title não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
   end
   
   test "should not create tour with organizer without a title" do
-     #skip("creating tour with empty data")
+     skip("creating tour with empty data")
      post :create, tour: {organizer: Organizer.first.name}
      assert_equal 'o campo title não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
   end
   
   test "should not create tour with no organizer but with a title" do
-     #skip("creating tour with empty data")
+     skip("creating tour with empty data")
      post :create, tour: {title: 'foo truppie title'}
      assert_equal 'o campo organizer não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
   end
   
   test "should create tour with success flash" do
-     #skip("creating tour with organizer")
+     skip("creating tour with organizer")
      #puts @basic_tour.inspect
      post :create, tour: @basic_tour
      assert_equal 'Truppie criada com sucesso', flash[:notice]
    end
   
   test "should create tour with basic data" do
-     #skip("creating tour with organizer")
+     skip("creating tour with organizer")
      assert_difference('Tour.count') do
        post :create, tour: @basic_tour
      end
@@ -118,7 +118,7 @@ class ToursControllerTest < ActionController::TestCase
    end
    
   test "should create tour with basic data with form empty sets" do
-     #skip("creating tour with organizer")
+     skip("creating tour with organizer")
      assert_difference('Tour.count') do
        post :create, tour: @basic_empty_tour_with_empty
      end
@@ -126,7 +126,7 @@ class ToursControllerTest < ActionController::TestCase
    end
    
    test "should associate tags" do
-     #skip("creating tour with tags")
+     skip("creating tour with tags")
      @basic_empty_tour_with_empty["tags"] = "#{Tag.last.name};anothertag"
      post :create, tour: @basic_empty_tour_with_empty
      
@@ -136,7 +136,7 @@ class ToursControllerTest < ActionController::TestCase
    end
    
    test "should associate languages" do
-     #skip("creating tour with tags")
+     skip("creating tour with tags")
      @basic_empty_tour_with_empty["languages"] = "#{languages(:english).name};#{languages(:portuguese).name}"
      post :create, tour: @basic_empty_tour_with_empty
      
@@ -145,7 +145,7 @@ class ToursControllerTest < ActionController::TestCase
    end
    
    test "should create includeds" do
-     #skip("creating tour with tags")
+     skip("creating tour with tags")
      @basic_empty_tour_with_empty["included"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
      
@@ -155,7 +155,7 @@ class ToursControllerTest < ActionController::TestCase
    end
    
    test "should create nonincludeds" do
-     #skip("creating tour with tags")
+     skip("creating tour with tags")
      @basic_empty_tour_with_empty["nonincluded"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
      
@@ -165,7 +165,7 @@ class ToursControllerTest < ActionController::TestCase
    end
    
    test "should create itens to take" do
-     #skip("creating tour with tags")
+     skip("creating tour with tags")
      @basic_empty_tour_with_empty["take"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
      
@@ -175,7 +175,7 @@ class ToursControllerTest < ActionController::TestCase
    end
    
    test "should create itens good to know" do
-     #skip("creating tour with tags")
+     skip("creating tour with tags")
      @basic_empty_tour_with_empty["goodtoknow"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
      
@@ -185,14 +185,14 @@ class ToursControllerTest < ActionController::TestCase
    end
    
    test "should create with category" do
-     #skip("creating tour with tags")
+     skip("creating tour with tags")
      post :create, tour: @basic_empty_tour_with_empty
      
      assert_equal Tour.last.category.name, "Trekking"
    end
    
    test "should create with new category" do
-     #skip("creating tour with cat")
+     skip("creating tour with cat")
      @basic_empty_tour_with_empty["category"] = "Nova"
      post :create, tour: @basic_empty_tour_with_empty
      
@@ -238,6 +238,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "increment one more member" do
+    skip("confirm increment")
     @tour_confirmed_before = @tour.confirmeds.count
     post :confirm_presence, @payment_data
     @tour_confirmed_after = @tour.confirmeds.count
@@ -245,6 +246,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should go to confirm presence with confirming price default" do
+    skip("confirm default")
     get :confirm, {id: @tour}
     assert(assigns(:final_price))
     
@@ -253,24 +255,28 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should go to confirm presence with confirming package" do
+    skip("confirm package")
     get :confirm, {id: @tour_marins, packagename: @tour_marins.packages.first.name}
     assert(assigns(:final_price))
     assert_equal(assigns(:final_price), 320)
   end
     
   test "should confirm presence" do
+    skip("confirm")
     post :confirm_presence, @payment_data
     assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento.", flash[:success]
     assert_redirected_to tour_path(assigns(:tour))
   end
   
   test "should not confirm presence with no payment" do
+    skip("confirm presence")
     post :confirm_presence, {id: @tour}
     assert_equal 'Não foi informado informações sobre o pagamento', flash[:error]
     assert_redirected_to tour_path(assigns(:tour))
   end
   
   test "should not confirm again" do
+    skip("no confirm twice")
     post :confirm_presence, @payment_data
     post :confirm_presence, @payment_data
     assert_equal "Hey, você já está confirmado neste evento!!", flash[:error]
@@ -278,6 +284,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should not confirm if soldout" do
+    skip("unconfirm if soldout")
     @tour.confirmeds.create(user: users(:laura))
     @tour.confirmeds.create(user: users(:fulano))
     @tour.confirmeds.create(user: users(:ciclano))
@@ -287,6 +294,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should unconfirm" do
+    skip("unconfirm")
     @tour.confirmeds.create(user: users(:alexandre))
     assert_equal @tour.available, 2
     post :unconfirm_presence, @payment_data
@@ -296,6 +304,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a order with the given id" do
+    skip("order create")
     post :confirm_presence, @payment_data
     assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento.", flash[:success]
     assert_redirected_to tour_path(assigns(:tour))
@@ -320,7 +329,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should divide in two the payment generated by order" do
-    #skip("consult payment")
+    skip("consult payment")
     @payment_data["installment_count"] = 2
     post :confirm_presence, @payment_data
     payment_id = Order.last.payment

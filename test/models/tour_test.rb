@@ -7,6 +7,50 @@ class TourTest < ActiveSupport::TestCase
     @tour = tours(:morro)
     @tour_alt = tours(:gavea)
     @marins = tours(:picomarins)
+    
+    
+    @moip_account = {
+          "email" => {
+              "address" => "DOBXERG0a9@labs.moip.com.br"
+          },
+          "person" => {
+              "name" => "Runscope",
+              "lastName" => "Random 9323",
+              "taxDocument" => {
+                  "type" => "CPF",
+                  "number"=> "227.356.808-86"
+              },
+              "identityDocument"=> {
+                  "type"=> "RG",
+                  "number"=> "204256333",
+                  "issuer"=> "ssp",
+                  "issueDate"=> "1990-01-01"
+              },
+              "birthDate" => "1990-01-01",
+              "phone" => {
+                  "countryCode" => "55",
+                  "areaCode"=> "11",
+                  "number" => "965213244"
+              },
+              "address" => {
+                  "street" => "Av. Brigadeiro Faria Lima",
+                  "streetNumber" => "2927",
+                  "complement"=> "8 andar",
+                  "district" => "Itaim",
+                  "zipcode" => "01234-000",
+                  "city" => "São Paulo",
+                  "state" => "SP",
+                  "country" => "BRA"
+              }
+          },
+          "businessSegment" => {
+              "id" => "5"
+          },
+          "site" => "http://www.truppie.com",
+          "type" => "MERCHANT",
+          "transparentAccount" => "true"
+      }
+    
   end
   
   test "one tour created" do
@@ -301,7 +345,7 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "resending webhook" do
-     skip('just testing')
+      skip('just testing')
       headers = {
         :content_type => 'application/json',
         :authorization => Rails.application.secrets[:moip_auth]
@@ -379,4 +423,101 @@ class TourTest < ActiveSupport::TestCase
      assert_equal pkgs.first.value, 320
    end
    
+  #
+  # MOIP Marketplace
+  #
+  #
+  
+  test "registering user to marketplace with existent taxDocument" do
+     skip("make a post to new order at marketplace")
+     response = JSON.load `curl -H 'Content-Type:application/json' -H 'Accept:application/json' -H 'Authorization:OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2' -X POST 'https://sandbox.moip.com.br/v2/accounts' -d '#{@moip_account.to_json}'`
+      
+      puts response.inspect
+      
+      assert_equal "REG-002", response["errors"][0]["code"] 
+   end
+   
+   test "registering user to marketplace with new taxDocument" do
+     skip("make a post to new order at marketplace")
+     
+     #@moip_account["person"]["taxDocument"]["number"] = "389.914.202-06"
+     
+     #@moip_account["person"]["name"] = "Alexandre Magno Teles Zimerer"
+     
+     #@moip_account["email"] = {
+     #     "address" => "alexandrezimerer@hotmail.com"
+     # }
+      
+     #puts @moip_account.inspect
+     
+     response = JSON.load `curl -H 'Content-Type:application/json' -H 'Accept:application/json' -H 'Authorization:OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2' -X POST 'https://sandbox.moip.com.br/v2/accounts' -d '#{@moip_account.to_json}'`
+      
+     puts response.inspect
+      
+     assert_equal response["errors"][0]["code"], "REG-002" 
+   end
+   
+   test "accessing a account of Moip created" do
+     #skip("make a post to new order at marketplace")
+     
+     headers = {
+        :content_type => 'application/json',
+        :authorization => 'OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2'
+      }
+     
+     response = RestClient.get "https://sandbox.moip.com.br/v2/accounts/MPA-900EB1CA8E2B", headers
+      
+     response_json = JSON.load response
+     
+     puts response_json.inspect
+      
+     assert_equal "MPA-900EB1CA8E2B", response_json["id"] 
+   end
+   
+   
+   
 end
+
+=begin
+curl -v https://sandbox.moip.com.br/v2/accounts \
+-H 'Content-Type: application/json'  \
+-H 'Authorization: OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2' \
+-d '{
+  "email": {
+    "address": "DOBXERG0a8@labs.moip.com.br"
+  },
+  "person": {
+    "name": "Runscope",
+    "lastName": "Random 9123",
+    "taxDocument": {
+      "type": "CPF",
+      "number": "742.520.863-61"
+    },
+    "identityDocument": {
+      "type": "RG",
+      "number": "434322344",
+      "issuer": "SSP",
+      "issueDate": "2000-12-12"
+    },
+    "birthDate": "1990-01-01",
+    "phone": {
+      "countryCode": "55",
+      "areaCode": "11",
+      "number": "965213244"
+    },
+    "address": {
+      "street": "Av. Brigadeiro Faria Lima",
+      "streetNumber": "2927",
+      "district": "Itaim",
+      "zipCode": "01234-000",
+      "city": "São Paulo",
+      "state": "SP",
+      "country": "BRA"
+    }
+  },
+  "type": "MERCHANT",
+  "transparentAccount": "true"
+}'
+=end
+
+
