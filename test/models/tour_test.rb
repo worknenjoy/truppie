@@ -521,9 +521,184 @@ class TourTest < ActiveSupport::TestCase
      
    end
    
+   test "consult multiple bank account" do
+     skip("consult bank account")
+     headers = {
+        :content_type => 'application/json',
+        :authorization => 'OAuth hi32tsxf8fziydoaov4miaj6z4kblxb'
+      }
+     
+     response = RestClient.get "https://sandbox.moip.com.br/v2/accounts/MPA-1D32AA9363BA/bankaccounts/", headers
+      
+     response_json = JSON.load response
+     
+     puts response_json.inspect
+     
+     assert_equal true, true
+     
+   end
    
+   test "consult a balance for a Moip account" do
+     skip("balance")
+     headers = {
+        :content_type => 'application/json',
+        :authorization => 'OAuth hi32tsxf8fziydoaov4miaj6z4kblxb'
+      }
+     
+     response = RestClient.get "https://sandbox.moip.com.br/v2/balances/", headers
+      
+     response_json = JSON.load response
+     
+     puts response_json.inspect
+     
+     assert_equal response_json[0]["current"], 0
+   end
    
+   test "consult a balance for truppie Moip account" do
+     skip("balance")
+     headers = {
+        :content_type => 'application/json',
+        :authorization => 'OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2'
+      }
+     
+     response = RestClient.get "https://sandbox.moip.com.br/v2/balances/", headers
+      
+     response_json = JSON.load response
+     
+     puts response_json.inspect
+     
+     assert_equal response_json[0]["current"], 864176
+   end
    
+   test "create a split order" do
+     skip("create order")
+     @order = {
+        "ownId" => "id_proprio",
+        "amount" => {
+          "currency" => "BRL"
+        },
+        "items" => [
+          {
+            "product" => "Bicicleta Specialized Tarmac 26 Shimano Alivio",
+            "quantity" => 1,
+            "detail" => "uma linda bicicleta",
+            "price" => 10000
+          },
+        ],
+        "customer" => {
+          "ownId" => "meu_id_de_cliente",
+          "fullname" => "Jose Silva",
+          "email" => "josedasilva@email.com",
+          "birthDate" => "1988-12-30",
+          "taxDocument" => {
+            "type" => "CPF",
+            "number" => "22222222222"
+          },
+          "phone" => {
+            "countryCode" => "55",
+            "areaCode" => "11",
+            "number" => "66778899"
+          },
+          "shippingAddress" => 
+            {
+              "street" => "Avenida Faria Lima",
+              "streetNumber" => 2927,
+              "complement" => 8,
+              "district" => "Itaim",
+              "city" => "Sao Paulo",
+              "state" => "SP",
+              "country" => "BRA",
+              "zipCode" => "01234000"
+            }
+        },
+        "receivers" => [
+          {
+              "moipAccount" => {
+                  "id" => "MPA-1D32AA9363BA"
+              },
+              "type" => "SECONDARY",
+              "amount" => {
+                  "percentual"=> 98
+              }
+          }
+        ]
+      }
+     
+     response = JSON.load `curl -H 'Content-Type:application/json' -H 'Accept:application/json' -H 'Authorization:OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2' -X POST 'https://sandbox.moip.com.br/v2/orders' -d '#{@order.to_json}'`
+     
+     puts response.inspect
+      
+     assert_equal "10000", response["amount"]["total"] 
+     
+   end
+   
+   test "consult a marketplace order created" do
+     skip("balance order")
+     headers = {
+        :content_type => 'application/json',
+        :authorization => 'OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2'
+      }
+     
+     response = RestClient.get "https://sandbox.moip.com.br/v2/orders/ORD-W4OM4Z662MVW", headers
+      
+     response_json = JSON.load response
+     
+     puts response_json.inspect
+     
+     assert_equal response_json["id"], "ORD-W4OM4Z662MVW"
+     
+   end
+   
+   test "consult a payment with the order created" do
+     skip("payment")
+     headers = {
+        :content_type => 'application/json',
+        :authorization => 'OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2'
+      }
+     
+     response = RestClient.get "https://sandbox.moip.com.br/v2/orders/ORD-W4OM4Z662MVW/payments", headers
+     
+     response_json = JSON.load response
+     
+     puts response_json.inspect
+     
+     assert_equal response_json["id"], "ORD-W4OM4Z662MVW"
+   end
+   
+   test "create a new payment" do
+     #skip("create order")
+     @payment = {
+        "installmentCount" => 1,
+        "fundingInstrument" => {
+          "method"=> "CREDIT_CARD",
+          "creditCard" => {
+            "brand" => "MASTERCARD",
+            "expirationMonth" => "05",
+            "expirationYear" => "2018",
+            "first6" => "555566",
+            "last4" => "8884",
+            "cvc" => "123",
+            "holder" => {
+              "fullname" => "Jose Portador da Silva",
+              "birthdate" => "1988-12-30",
+              "taxDocument" => {
+                "type" => "CPF",
+                "number" => "33333333333"
+              },
+              "phone" => {
+                "countryCode" => "55",
+                "areaCode" => "11",
+                "number" => "66778899"
+              }
+            }
+          }
+        }
+      }
+    
+     response = JSON.load `curl -H 'Content-Type:application/json' -H 'Accept:application/json' -H 'Authorization:OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2' -X POST 'https://sandbox.moip.com.br/v2/orders/ORD-W4OM4Z662MVW/payments' -d '#{@payment.to_json}'`
+     puts response.inspect
+     assert_equal "10000", response["amount"]["total"]
+   end
 end
 
 =begin
