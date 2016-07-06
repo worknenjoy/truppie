@@ -11,14 +11,14 @@ class TourTest < ActiveSupport::TestCase
     
     @moip_account = {
           "email" => {
-              "address" => "DOBXERG0a9@labs.moip.com.br"
+              "address" => "joaocabral@truppie.com"
           },
           "person" => {
-              "name" => "Runscope",
-              "lastName" => "Random 9323",
+              "name" => "Joao Cabral",
+              "lastName" => "Amado Pedro",
               "taxDocument" => {
                   "type" => "CPF",
-                  "number"=> "227.356.808-86"
+                  "number"=> "887.215.373-56"
               },
               "identityDocument"=> {
                   "type"=> "RG",
@@ -458,25 +458,78 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "accessing a account of Moip created" do
-     #skip("make a post to new order at marketplace")
+     skip("make a post to consult order at marketplace")
      
      headers = {
         :content_type => 'application/json',
         :authorization => 'OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2'
       }
      
-     response = RestClient.get "https://sandbox.moip.com.br/v2/accounts/MPA-900EB1CA8E2B", headers
+     response = RestClient.get "https://sandbox.moip.com.br/v2/accounts/MPA-1D32AA9363BA", headers
       
      response_json = JSON.load response
      
      puts response_json.inspect
       
-     assert_equal "MPA-900EB1CA8E2B", response_json["id"] 
+     assert_equal "MPA-1D32AA9363BA", response_json["id"] 
+   end
+   
+   test "create a bank account to the user" do
+     skip("create bank account")
+     @bank_account = {
+          "bankNumber" => "237",
+          "agencyNumber" => "12345",
+          "agencyCheckNumber" => "0",
+          "accountNumber"=> "12345678",
+          "accountCheckNumber" => "7",
+          "type" => "CHECKING",
+          "holder" => {
+              "taxDocument" => {
+                  "type" => "CPF",
+                  "number" => "22222222222"
+              },
+              "fullname" => "Teste Moip"
+          }
+      }
+     
+     response = JSON.load `curl -H 'Content-Type:application/json' -H 'Accept:application/json' -H 'Authorization:OAuth hi32tsxf8fziydoaov4miaj6z4kblxb' -X POST 'https://sandbox.moip.com.br/v2/accounts/MPA-1D32AA9363BA/bankaccounts' -d '#{@bank_account.to_json}'`
+     
+     puts response.inspect
+      
+     assert_equal "BKA-QVP61327FBJ6", response["id"] 
+     
+   end
+   
+   test "consult bank account" do
+     skip("consult bank account")
+     headers = {
+        :content_type => 'application/json',
+        :authorization => 'OAuth hi32tsxf8fziydoaov4miaj6z4kblxb'
+      }
+     
+     response = RestClient.get "https://sandbox.moip.com.br/v2/bankaccounts/BKA-QVP61327FBJ6", headers
+      
+     response_json = JSON.load response
+     
+=begin
+     bank = {"id"=>"BKA-QVP61327FBJ6", "agencyNumber"=>"12345", "holder"=>{"taxDocument"=>{"number"=>"065.472.569-10", "type"=>"CPF"}, "fullname"=>"Runscope Random 9123543"}, "accountNumber"=>"12345678", "status"=>"NOT_VERIFIED", "createdAt"=>"2016-07-06T13:16:48.000-03:00", "accountCheckNumber"=>"7", "_links"=>{"self"=>{"href"=>"https://sandbox.moip.com.br//accounts/BKA-QVP61327FBJ6/bankaccounts"}}
+=end
+     
+     puts response_json.inspect
+     
+     assert_equal true, true
+     
    end
    
    
    
+   
 end
+
+=begin
+  token = "hi32tsxf8fziydoaov4miaj6z4kblxb" 
+  response = {"id"=>"MPA-1D32AA9363BA", "person"=>{"lastName"=>"Random 9123543", "phone"=>{"areaCode"=>"11", "countryCode"=>"55", "number"=>"965213244"}, "address"=>{"zipcode"=>"01234-000", "zipCode"=>"01234-000", "street"=>"Av. Brigadeiro Faria Lima", "state"=>"SP", "streetNumber"=>"2927", "district"=>"Itaim", "country"=>"BRA", "city"=>"São Paulo"}, "taxDocument"=>{"number"=>"065.472.569-10", "type"=>"CPF"}, "name"=>"Runscope", "birthDate"=>"1990-01-01"}, "transparentAccount"=>true, "email"=>{"confirmed"=>false, "address"=>"dobxerg0a87653@labs.moip.com.br"}, "createdAt"=>"2016-07-05T14:51:45.000-03:00", "_links"=>{"self"=>{"href"=>"https://sandbox.moip.com.br/accounts/MPA-1D32AA9363BA"}}, "login"=>"MPA-1D32AA9363BA", "type"=>"MERCHANT"} 
+=end
 
 =begin
 curl -v https://sandbox.moip.com.br/v2/accounts \
@@ -484,14 +537,14 @@ curl -v https://sandbox.moip.com.br/v2/accounts \
 -H 'Authorization: OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2' \
 -d '{
   "email": {
-    "address": "DOBXERG0a8@labs.moip.com.br"
+    "address": "DOBXERG0afaad322@labs.moip.com.br"
   },
   "person": {
-    "name": "Runscope",
-    "lastName": "Random 9123",
+    "name": "Runscope aadfex5434faaa",
+    "lastName": "Random ff9123543",
     "taxDocument": {
       "type": "CPF",
-      "number": "742.520.863-61"
+      "number": "193.870.661-77"
     },
     "identityDocument": {
       "type": "RG",
