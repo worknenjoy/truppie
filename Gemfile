@@ -40,6 +40,8 @@ gem 'redis'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip-aws'
+
+gem 'phone'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -63,6 +63,50 @@ class OrganizersController < ApplicationController
       end
     end
   end
+  
+  def account_activate
+    @organizer = Organizer.find(params[:id])
+    
+    if @organizer.valid_account
+        
+        account_bank_data = @organizer.bank_data
+        
+        if @organizer.account_id
+          #consult
+          flash[:notice] = "Voce ja tem uma conta associada com o ID #{@organizer.account_id}" 
+        else
+          response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", @organizer.bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
+          
+          response_json = JSON.load response
+          puts response_json.inspect
+          
+          if !response_json["id"].nil? 
+            @organizer.update_attribute("account_id",  response_json["id"])            
+          end
+          
+          if !response_json["accessToken"].nil?
+            @organizer.update_attribute("token",  response_json["accessToken"])            
+          end
+          
+          if response_json["email"]["address"] == @organizer.email && @organizer.id && @organizer.token
+            flash[:notice] = "Conta ativada"
+            @organizer.update_attribute("active",  true)
+          end
+          
+          #id MPA-8498C89C7F06
+          #token 593ca56aefbd462898f954e4c13fc415_v2
+          #mkid APP-FAW8Z1CC1JNB
+        end
+
+        redirect_to @organizer
+    else
+        @organizer.update_attribute("active",  false)
+        puts @organizer.inspect
+        flash[:notice] = "É necessário preencher todos os dados do titular da conta"
+        redirect_to @organizer
+    end
+    
+  end
 
   # DELETE /organizers/1
   # DELETE /organizers/1.json
@@ -85,6 +129,6 @@ class OrganizersController < ApplicationController
       
       
       
-      params.fetch(:organizer, {}).permit(:name, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone)
+      params.fetch(:organizer, {}).permit(:name, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone, :logo)
     end
 end

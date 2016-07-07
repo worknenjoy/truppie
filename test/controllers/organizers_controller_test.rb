@@ -6,6 +6,7 @@
    setup do
      sign_in users(:alexandre)
      @organizer_ready = organizers(:utopicos)
+     @organizer_with_account = organizers(:utopicos_marketplace)
      
      @organizer = {
        name: "Utópicos mundo afora",
@@ -54,5 +55,52 @@
      patch :update, id: @organizer_ready.id, organizer: @organizer 
      assert_redirected_to organizer_path(assigns(:organizer))
    end
+   
+   test "should update with account bank info active" do
+     
+     patch :update, id: @organizer_with_account.id, organizer: @organizer_with_account.attributes
+     
+     #puts @organizer_with_account.inspect
+     
+     assert_equal @organizer_with_account.active, false
+       
+     assert_redirected_to organizer_path(assigns(:organizer))
+   end
+   
+   test "should create new account with name" do
+     patch :update, id: @organizer_with_account.id, organizer: @organizer_with_account.attributes
+     
+     #puts @organizer_with_account.inspect
+     
+     assert_equal @organizer_with_account.person_name, "Joao Cabral"
+     assert_redirected_to @organizer_with_account
+     
+   end
+   
+   test "activating a organizer as a account bank with no data filled" do
+     post :account_activate, id: @organizer_ready.id, organizer: @organizer_ready.attributes
+     
+     #puts @organizer_ready.inspect
+     
+     assert_equal Organizer.find(@organizer_ready.id).active, false
+     assert_redirected_to @organizer_ready
+     assert_equal "É necessário preencher todos os dados do titular da conta", flash[:notice]      
+   end
+   
+   test "activating a organizer as a account bank with full data filled" do
+     post :account_activate, id: @organizer_with_account.id, organizer: @organizer_with_account.attributes
+     
+     #puts @organizer_ready.inspect
+     
+     #assert_equal Organizer.find(@organizer_with_account.id).active, true
+     
+     assert_redirected_to @organizer_with_account
+     assert_not_nil Organizer.find(@organizer_with_account.id).token
+     assert_not_nil Organizer.find(@organizer_with_account.id).account_id
+     assert_equal Organizer.find(@organizer_with_account.id).active, true
+     assert_equal "Conta ativada", flash[:notice]
+   end
+   
+   
 # 
  end

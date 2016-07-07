@@ -13,6 +13,38 @@ utopicos:
   twitter: MyString
   logo: logo_utopicos.png
   
+utopicos_marketplace:
+  name: Utopicos Mundo Afora Marketplace
+  description: Oferecendo passeios e outdoor lifestyle
+  members: alex_member, laura_member
+  rating: 3
+  user: joana 
+  where: placeone 
+  email: organizer@mail.com
+  website: MyString
+  facebook: MyString
+  twitter: MyString
+  logo: logo_utopicos.png
+  active: false
+  person_name: "Joao Cabral"
+  person_lastname: "Amado Pedro"
+  document_type: "CPF"
+  document_number: "887.215.373-56"
+  id_type: "RG"
+  id_number: "204256333"
+  id_issuer: "ssp"
+  id_issuerdate: "1990-01-01"
+  birthDate: "1990-01-01"
+  street: "Av. Brigadeiro Faria Lima"
+  street_number: "2927"
+  complement: "8 andar"
+  district: "Itaim"
+  zipcode: "01234-000"
+  city: "São Paulo"
+  state: "SP"
+  country: "BRA"
+  phone: "+55 (11) 965213244"
+  
 mantiex:
   name: Mantiqueira expedicoes
   description: Oferecendo passeios e outdoor lifestyle

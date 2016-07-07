@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517231128) do
+ActiveRecord::Schema.define(version: 20160707004344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,26 @@ ActiveRecord::Schema.define(version: 20160517231128) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.boolean  "active"
+    t.string   "person_name"
+    t.string   "person_lastname"
+    t.string   "document_type"
+    t.string   "document_number"
+    t.string   "id_type"
+    t.string   "id_number"
+    t.string   "id_issuer"
+    t.string   "id_issuerdate"
+    t.string   "birthDate"
+    t.string   "street"
+    t.string   "street_number"
+    t.string   "complement"
+    t.string   "district"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "token"
+    t.string   "account_id"
   end
 
   add_index "organizers", ["member_id"], name: "index_organizers_on_member_id", using: :btree

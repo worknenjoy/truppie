@@ -44,7 +44,7 @@ class TourTest < ActiveSupport::TestCase
               }
           },
           "businessSegment" => {
-              "id" => "5"
+              "id" => "37"
           },
           "site" => "http://www.truppie.com",
           "type" => "MERCHANT",
@@ -429,7 +429,7 @@ class TourTest < ActiveSupport::TestCase
   #
   
   test "registering user to marketplace with existent taxDocument" do
-     skip("make a post to new order at marketplace")
+     #skip("make a post to new order at marketplace")
      response = JSON.load `curl -H 'Content-Type:application/json' -H 'Accept:application/json' -H 'Authorization:OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2' -X POST 'https://sandbox.moip.com.br/v2/accounts' -d '#{@moip_account.to_json}'`
       
       puts response.inspect
@@ -666,7 +666,7 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "create a new payment" do
-     #skip("create order")
+     skip("create order")
      @payment = {
         "installmentCount" => 1,
         "fundingInstrument" => {

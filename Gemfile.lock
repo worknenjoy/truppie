@@ -134,6 +134,7 @@ GEM
       aws-sdk (>= 1.2.0)
       paperclip (>= 2.5.0)
     pg (0.18.4)
+    phone (1.2.3)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -233,6 +234,7 @@ DEPENDENCIES
   paperclip
   paperclip-aws
   pg (~> 0.15)
+  phone
   rails (= 4.2.5.1)
   redis
   rest-client
