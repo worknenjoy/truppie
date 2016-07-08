@@ -58,7 +58,7 @@ class OrganizersController < ApplicationController
         format.html { redirect_to @organizer, notice: 'Organizer was successfully updated.' }
         format.json { render :show, status: :ok, location: @organizer }
       else
-        format.html { render :edit }
+        format.html { render :edit, error: 'Não foi possível atualizar' }
         format.json { render json: @organizer.errors, status: :unprocessable_entity }
       end
     end
@@ -69,41 +69,44 @@ class OrganizersController < ApplicationController
     
     if @organizer.valid_account
         
-        account_bank_data = @organizer.bank_data
-        
-        if @organizer.account_id
-          #consult
-          flash[:notice] = "Voce ja tem uma conta associada com o ID #{@organizer.account_id}" 
-        else
-          response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", @organizer.bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
+          account_bank_data = @organizer.bank_data
           
-          response_json = JSON.load response
-          puts response_json.inspect
-          
-          if !response_json["id"].nil? 
-            @organizer.update_attribute("account_id",  response_json["id"])            
+          if @organizer.account_id
+            #consult
+            flash[:notice] = "Voce ja tem uma conta associada com o ID #{@organizer.account_id}"
+          else
+            @response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
+            
+            response_json = JSON.load @response
+            
+            if !response_json["errors"].nil? 
+              flash[:notice] = response_json["error"][0]["description"]
+            else
+            
+              if !response_json["id"].nil? 
+                @organizer.update_attribute("account_id",  response_json["id"])            
+              end
+              
+              if !response_json["accessToken"].nil?
+                @organizer.update_attribute("token",  response_json["accessToken"])            
+              end
+              
+              if response_json["email"]["address"] == @organizer.email && @organizer.id && @organizer.token
+                flash[:notice] = "Conta ativada"
+                @organizer.update_attribute("active",  true)
+              else
+                flash[:notice] = "Por algum motivo a conta não foi ativada"
+              end
+            end
+            
+            #id MPA-8498C89C7F06
+            #token 593ca56aefbd462898f954e4c13fc415_v2
+            #mkid APP-FAW8Z1CC1JNB
           end
-          
-          if !response_json["accessToken"].nil?
-            @organizer.update_attribute("token",  response_json["accessToken"])            
-          end
-          
-          if response_json["email"]["address"] == @organizer.email && @organizer.id && @organizer.token
-            flash[:notice] = "Conta ativada"
-            @organizer.update_attribute("active",  true)
-          end
-          
-          #id MPA-8498C89C7F06
-          #token 593ca56aefbd462898f954e4c13fc415_v2
-          #mkid APP-FAW8Z1CC1JNB
-        end
-
-        redirect_to @organizer
     else
         @organizer.update_attribute("active",  false)
         puts @organizer.inspect
         flash[:notice] = "É necessário preencher todos os dados do titular da conta"
-        redirect_to @organizer
     end
     
   end
@@ -127,8 +130,10 @@ class OrganizersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
       
-      
-      
-      params.fetch(:organizer, {}).permit(:name, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone, :logo)
+      if params[:organizer][:members] == "" or params[:organizer][:members].nil?
+        params[:organizer][:members] = []
+      end
+        
+      params.fetch(:organizer, {}).permit(:name, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone, :logo, :person_name, :person_lastname, :document_type, :document_number, :id_type, :id_number, :id_issuer, :id_issuerdate, :birthDate, :street, :street_number, :complement, :district, :zipcode, :city, :state, :country, :token, :account_id, :members)
     end
 end

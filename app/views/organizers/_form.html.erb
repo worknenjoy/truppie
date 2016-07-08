@@ -6,6 +6,9 @@
 	  <li class="nav-item">
 	    <a class="nav-link" data-toggle="tab" href="#foto" role="tab">Foto</a>
 	  </li>
+	  <li class="nav-item">
+	  	<a class="nav-link" data-toggle="tab" href="#account" role="tab">Dados para recebimento</a>
+  	  </li>
 	</ul>
 	<div class="tab-content spaced-down">
 		<div class="tab-pane active" id="home" role="tabpanel">
@@ -53,7 +56,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :phone, placeholder: "phone", class: "form-control" %>
+                    <%= f.text_field :phone, placeholder: "Telefone no formato xx (xx) xxxxxx", class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
@@ -76,6 +79,119 @@
                 	<%= image_tag @organizer.picture.url(:thumbnail) %>
                 <% end %>
             <% end %>
+            </div>
+    	</div>
+    	<div class="tab-pane" id="account" role="tabpanel">
+    		<% if @organizer.persisted? %>
+    		<h3>Recebimento dos valores em conta</h3>
+	    		<% if @organizer.active && @organizer.account_id && @organizer.token %>
+					<p><%= @organizer.account_id %></p>
+					<p><%= @organizer.token %></p>
+				<% else %>
+					<div class="spaced-down">
+						<p>
+						<small>Você pode receber diretamente na sua conta através da Truppie.<br/>
+							Preencha todos os dados do titular para ativar um titular e assim obter uma conta para recebimento</small>
+						</p>
+						<% if !@organizer.active %>
+							<%= link_to 'Ativar titular', organizers_account_activate_path(@organizer), class: "btn btn-primary" %>
+						<% else %>
+							<button class="btn btn-primary" disabled="disabled">Ativar titular</button>
+						<% end %>
+	    			</div>
+	    		<% end %>
+    		<% end %>
+    		<div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :person_name, placeholder: "Nome do titular", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :person_lastname, placeholder: "Nome do titular", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.hidden_field :document_type, value: "CPF" %>
+                    <%= f.text_field :document_number, placeholder: "Número do CPF", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.hidden_field :id_type, value: "RG" %>
+                    <%= f.text_field :id_number, placeholder: "Número do RG", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :id_issuer, placeholder: "Órgão expeditor", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :id_issuerdate, placeholder: "Data de expedição", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :birthDate, placeholder: "Data de nascimento", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :street, placeholder: "Endereço", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :street_number, placeholder: "Número", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :complement, placeholder: "Complemento", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :district, placeholder: "Bairro", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :zipcode, placeholder: "CEP", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :city, placeholder: "Cidade", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :state, placeholder: "Estado", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= f.text_field :country, placeholder: "País", class: "form-control" %>
+                </div>
             </div>
     	</div>
 	</div>

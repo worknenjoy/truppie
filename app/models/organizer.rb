@@ -70,7 +70,7 @@ class Organizer < ActiveRecord::Base
   end
   
   def phone_object
-    if self.phone 
+    if !self.phone.empty?
       pn = self.phone.split(' ')
       
       area = pn[1].slice(1..-1)
@@ -92,7 +92,7 @@ class Organizer < ActiveRecord::Base
   end
   
   def valid_account
-    !self.bank_data["person"]["name"].nil? && !self.bank_data["person"]["taxDocument"]["number"].nil? && !self.bank_data["person"]["birthDate"].nil?
+    !self.bank_data["person"]["name"].empty? && !self.bank_data["person"]["taxDocument"]["number"].empty? && !self.bank_data["person"]["birthDate"].empty?
   end
   
 end

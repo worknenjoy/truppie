@@ -1,0 +1,37 @@
+<%= render 'layouts/navbar' %>
+<div class="form-signin">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+        	<!-- Nav tabs -->
+            <div class="card card-block">
+                <div class="card-body" style="overflow:hidden;">
+                    <h3 class="text-center spaced-down">
+                        Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
+                    </h3>
+                    <p>Retorno da api:</p>
+                    <pre>
+                    	<%= @response.inspect %>
+                	</pre>
+                	<% if @organizer.persisted? %>
+		    		<h3>Recebimento dos valores em conta</h3>
+			    		<% if @organizer.active && @organizer.account_id && @organizer.token %>
+							<p><%= @organizer.account_id %></p>
+							<p><%= @organizer.token %></p>
+						<% else %>
+							<div class="spaced-down">
+								<p>
+								<small>Você pode receber diretamente na sua conta através da Truppie.<br/>
+									Preencha todos os dados do titular para ativar um titular e assim obter uma conta para recebimento</small>
+								</p>
+			    			</div>
+			    		<% end %>
+		    		<% end %>
+				  </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div id="fullscreen_bg" class="fullscreen_bg"/>
+</div>
