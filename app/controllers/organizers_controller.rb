@@ -74,6 +74,13 @@ class OrganizersController < ApplicationController
           if @organizer.account_id
             #consult
             flash[:notice] = "Voce ja tem uma conta associada com o ID #{@organizer.account_id}"
+            @bank_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/", :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
+            @current_account = JSON.load @bank_account
+            
+            @money_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
+            
+            @money_account_json = JSON.load @money_account
+            
           else
             @response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
             

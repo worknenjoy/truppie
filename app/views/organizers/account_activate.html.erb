@@ -9,15 +9,32 @@
                     <h3 class="text-center spaced-down">
                         Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
                     </h3>
-                    <p>Retorno da api:</p>
-                    <pre>
-                    	<%= @response.inspect %>
-                	</pre>
+                    <p>Dados do titular:</p>
+                    <div class="list-view-container">
+                    	<div class="list-view-data">
+	                    	<small>Nome:</small>
+	                    	<%= @current_account["person"]["name"] %>
+	                    	</p>
+                    	</div>
+                    	<div class="list-view-data">
+	                    	<small>Sobrenome:</small>
+	                    	<%= @current_account["person"]["lastName"] %>
+	                    	</p>
+                    	</div>
+                    	<div class="list-view-data">
+	                    	<small>Telefone:</small>
+	                    	+<%= @current_account["person"]["phone"]["countryCode"] %> (<%= @current_account["person"]["phone"]["areaCode"] %>) <%= @current_account["person"]["phone"]["number"] %>
+	                    	</p>
+                    	</div>
+                	</div>
                 	<% if @organizer.persisted? %>
-		    		<h3>Recebimento dos valores em conta</h3>
+		    		<h3>Contas</h3>
 			    		<% if @organizer.active && @organizer.account_id && @organizer.token %>
-							<p><%= @organizer.account_id %></p>
-							<p><%= @organizer.token %></p>
+							<p>Você tem <%= @money_account_json.length %> contas</p>
+							
+							<a href="criar conta">Criar conta</a>
+							
+							
 						<% else %>
 							<div class="spaced-down">
 								<p>

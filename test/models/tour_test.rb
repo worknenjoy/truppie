@@ -748,4 +748,6 @@ curl -v https://sandbox.moip.com.br/v2/accounts \
 }'
 =end
 
+{"site"=>"http://www.truppie.com", "id"=>"MPA-DFA0B327F85C", "person"=>{"lastName"=>"Teles Zimerer", "phone"=>{"areaCode"=>"11", "countryCode"=>"55", "number"=>"965213244"}, "address"=>{"complement"=>"8 andar", "zipcode"=>"01234-000", "zipCode"=>"01234-000", "street"=>"Av. Brigadeiro Faria Lima", "state"=>"SP", "streetNumber"=>"2927", "district"=>"Itaim", "country"=>"BRA", "city"=>"São Paulo"}, "taxDocument"=>{"number"=>"058.244.936-77", "type"=>"CPF"}, "name"=>"Alexandre", "birthDate"=>"1990-01-01"}, "transparentAccount"=>true, "email"=>{"confirmed"=>false, "address"=>"reservas@utopicosmundoafora.com"}, "createdAt"=>"2016-07-08T12:13:25.000-03:00", "_links"=>{"self"=>{"href"=>"https://sandbox.moip.com.br/accounts/MPA-DFA0B327F85C"}}, "login"=>"MPA-DFA0B327F85C", "type"=>"MERCHANT"}
+
 
