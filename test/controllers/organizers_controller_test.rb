@@ -102,12 +102,16 @@
      assert_equal "Conta ativada", flash[:notice]
    end
    
-   test "transfer funds to organizer account" do
+   test "transfer funds to organizer account no money" do
      #skip("transfer funds")
      post :account_activate, id: @organizer_with_account.id, organizer: @organizer_with_account.attributes
      post :transfer_funds, id: @organizer_with_account, amount: 2000
      assert assigns(:amount) == "2000", "the amount is passed #{assigns(:amount)}"
      assert assigns(:organizer) == @organizer_with_account, "the organizer is #{@organizer_with_account.name}"
+     assert assigns(:bank_account)["accountNumber"] == "12345678", "response transfer is #{assigns(:bank_account).inspect}"
+     #assert assigns(:response_transfer)["amount"] == 2000, "response transfer is #{assigns(:response_transfer)}"
+     #assert assigns(:response_transfer)["status"] == "REQUESTED", "response transfer is #{assigns(:response_transfer)}"
+     assert_equal "Não foi possível realizar a transferência", flash[:notice]
    end
    
    
