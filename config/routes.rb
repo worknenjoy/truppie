@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   resources :organizers
   get 'organizers/account_activate/:id', to: 'organizers#account_activate', as:  'organizers_account_activate'
+  get 'transfer_funds', to: 'organizers#transfer_funds', as:  'organizers_transfer_funds'
   
   resources :tours do
     member do

@@ -80,6 +80,9 @@ class OrganizersController < ApplicationController
             @money_balance = RestClient.get "https://sandbox.moip.com.br/v2/balances", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
             @money_balance_json = JSON.load @money_balance
             
+            @transfers = RestClient.get "https://sandbox.moip.com.br/v2/transfers", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
+            @transfers_json = JSON.load @transfers
+            
             @money_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
             @money_account_json = JSON.load @money_account
             
@@ -117,6 +120,12 @@ class OrganizersController < ApplicationController
         puts @organizer.inspect
         flash[:notice] = "É necessário preencher todos os dados do titular da conta"
     end
+    
+  end
+  
+  def transfer_funds
+    @organizer = Organizer.find(params[:id])
+    @amount = params[:amount]
     
   end
 
