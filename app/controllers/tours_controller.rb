@@ -69,7 +69,18 @@ class ToursController < ApplicationController
             own_id: "#{current_user.id.to_s}_#{current_user.name.parameterize}",
             fullname: current_user.name,
             email: current_user.email
-          } 
+          },
+          receivers: [
+          {
+              moipAccount:  {
+                  id: @tour.organizer.account_id
+              },
+              type: "SECONDARY",
+              amount: {
+                  percentual: 98
+              }
+          }
+          ] 
         })
         if not @payment_data[:fullname].nil?
           payment = api.payment.create(order.id,

@@ -26,6 +26,7 @@
 	                    	+<%= @current_account["person"]["phone"]["countryCode"] %> (<%= @current_account["person"]["phone"]["areaCode"] %>) <%= @current_account["person"]["phone"]["number"] %>
 	                    	</p>
                     	</div>
+                    	<%= @money_balance_json.inspect %>
                 	</div>
                 	<% if @organizer.persisted? %>
 		    		<h3>Contas</h3>

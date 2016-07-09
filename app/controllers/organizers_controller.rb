@@ -77,8 +77,10 @@ class OrganizersController < ApplicationController
             @bank_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/", :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
             @current_account = JSON.load @bank_account
             
-            @money_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
+            @money_balance = RestClient.get "https://sandbox.moip.com.br/v2/balances", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
+            @money_balance_json = JSON.load @money_balance
             
+            @money_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
             @money_account_json = JSON.load @money_account
             
           else
