@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bankNumber: 237
+  agencyNumber: 12345
+  agencyCheckNumber: 0
+  accountNumber: 12345678
+  accountCheckNumber: 7
+  bankType: CHECKING
+  doc_type: CPF
+  doc_number: 22222222222
+  fullname: Teste Moip
+  organizer: utopicos_marketplace 
+
+two:
+  bankNumber: MyString
+  agencyNumber: MyString
+  agencyCheckNumber: MyString
+  accountNumber: MyString
+  accountCheckNumber: MyString
+  bankType: CHECKING
+  doc_type: MyString
+  doc_number: MyString
+  fullname: MyString
+  organizer_id: 

@@ -1,0 +1,48 @@
+<%= render 'layouts/navbar' %>
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Bank Accounts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Banknumber</th>
+      <th>Agencynumber</th>
+      <th>Agencychecknumber</th>
+      <th>Accountnumber</th>
+      <th>Accountchecknumber</th>
+      <th>Type</th>
+      <th>Doc type</th>
+      <th>Doc number</th>
+      <th>Fullname</th>
+      <th>Organizer</th>
+      <th>Uid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bank_accounts.each do |bank_account| %>
+      <tr>
+        <td><%= bank_account.bankNumber %></td>
+        <td><%= bank_account.agencyNumber %></td>
+        <td><%= bank_account.agencyCheckNumber %></td>
+        <td><%= bank_account.accountNumber %></td>
+        <td><%= bank_account.accountCheckNumber %></td>
+        <td><%= bank_account.bankType %></td>
+        <td><%= bank_account.doc_type %></td>
+        <td><%= bank_account.doc_number %></td>
+        <td><%= bank_account.fullname %></td>
+        <td><%= bank_account.organizer %></td>
+        <td><%= bank_account.uid %></td>
+        <td><%= link_to 'Show', bank_account %></td>
+        <td><%= link_to 'Edit', edit_bank_account_path(bank_account) %></td>
+        <td><%= link_to 'Destroy', bank_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bank account', new_bank_account_path %>

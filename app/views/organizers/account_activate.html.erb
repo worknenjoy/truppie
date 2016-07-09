@@ -32,8 +32,7 @@
 			    		<% if @organizer.active && @organizer.account_id && @organizer.token %>
 							<p>Você tem <%= @money_account_json.length %> contas</p>
 							
-							<a href="criar conta">Criar conta</a>
-							
+							<%= @money_account_json.inspect %>
 							
 						<% else %>
 							<div class="spaced-down">

@@ -1,0 +1,1 @@
+json.extract! @bank_account, :id, :bankNumber, :agencyNumber, :agencyCheckNumber, :accountNumber, :accountCheckNumber, :type, :doc_type, :doc_number, :fullname, :organizer_id, :uid, :created_at, :updated_at

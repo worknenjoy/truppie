@@ -1,0 +1,57 @@
+<%= form_for(@bank_account) do |f| %>
+  <% if @bank_account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bank_account.errors.count, "error") %> prohibited this bank_account from being saved:</h2>
+
+      <ul>
+      <% @bank_account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bankNumber %><br>
+    <%= f.text_field :bankNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :agencyNumber %><br>
+    <%= f.text_field :agencyNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :agencyCheckNumber %><br>
+    <%= f.text_field :agencyCheckNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :accountNumber %><br>
+    <%= f.text_field :accountNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :accountCheckNumber %><br>
+    <%= f.text_field :accountCheckNumber %>
+  </div>
+  <div class="field">
+    <%= f.label :bankType %><br>
+    <%= f.text_field :bankType %>
+  </div>
+  <div class="field">
+    <%= f.label :doc_type %><br>
+    <%= f.text_field :doc_type %>
+  </div>
+  <div class="field">
+    <%= f.label :doc_number %><br>
+    <%= f.text_field :doc_number %>
+  </div>
+  <div class="field">
+    <%= f.label :fullname %><br>
+    <%= f.text_field :fullname %>
+  </div>
+  <div class="field">
+    <%= f.label :organizer_id %><br>
+    <%= f.select :organizer_id, options_for_select(Organizer.all.map{|s|[s.name, s.id]}, (@bank_account.organizer_id if @bank_account.organizer_id.present?)), {class: "form-control", include_blank: "Escolha um organizador"} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,60 @@
+<%= render 'layouts/navbar' %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Banknumber:</strong>
+  <%= @bank_account.bankNumber %>
+</p>
+
+<p>
+  <strong>Agencynumber:</strong>
+  <%= @bank_account.agencyNumber %>
+</p>
+
+<p>
+  <strong>Agencychecknumber:</strong>
+  <%= @bank_account.agencyCheckNumber %>
+</p>
+
+<p>
+  <strong>Accountnumber:</strong>
+  <%= @bank_account.accountNumber %>
+</p>
+
+<p>
+  <strong>Accountchecknumber:</strong>
+  <%= @bank_account.accountCheckNumber %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @bank_account.bankType %>
+</p>
+
+<p>
+  <strong>Doc type:</strong>
+  <%= @bank_account.doc_type %>
+</p>
+
+<p>
+  <strong>Doc number:</strong>
+  <%= @bank_account.doc_number %>
+</p>
+
+<p>
+  <strong>Fullname:</strong>
+  <%= @bank_account.fullname %>
+</p>
+
+<p>
+  <strong>Organizer:</strong>
+  <%= @bank_account.organizer %>
+</p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @bank_account.uid %>
+</p>
+
+<%= link_to 'Edit', edit_bank_account_path(@bank_account) %> |
+<%= link_to 'Back', bank_accounts_path %>
