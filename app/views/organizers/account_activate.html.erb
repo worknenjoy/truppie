@@ -38,6 +38,13 @@
                 	<% else %>
                 		<p>Nenhuma transferência realizada</p>
                 	<% end %>
+                	<h3>Transferir para a conta</h3>
+                	<%= form_tag('/organizers/transfer_funds', method: :post) do -%>
+					  	<%= text_field_tag :amount %>
+					  	<%= hidden_field_tag :id, @organizer.id %>
+					  	<div><%= submit_tag 'Transferir' %></div>
+					<% end -%>
+					                	
                 	<% if @organizer.persisted? %>
                 	<% if !@money_account_json.nil? %>
 		    		<h3>Contas</h3>

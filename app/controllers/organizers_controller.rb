@@ -73,7 +73,7 @@ class OrganizersController < ApplicationController
           
           if @organizer.account_id
             #consult
-            flash[:notice] = "Voce ja tem uma conta associada com o ID #{@organizer.account_id}"
+            #flash.now[:notice] = "Voce ja tem uma conta associada com o ID #{@organizer.account_id}"
             @bank_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/", :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
             @current_account = JSON.load @bank_account
             
@@ -127,13 +127,13 @@ class OrganizersController < ApplicationController
     @organizer = Organizer.find(params[:id])
     @amount = params[:amount]
     @bank_account = BankAccount.where(:organizer => @organizer)[0]
-    
+    puts @bank_account.inspect
     bank_transfer_data = {
         "amount" => @amount,
         "transferInstrument" => {
             "method" => "BANK_ACCOUNT",
             "bankAccount" => {
-                "type" => @bank_account.bankType,
+                "type" => "CHECKING",
                 "bankNumber" => @bank_account.bankNumber,
                 "agencyNumber" => @bank_account.agencyNumber,
                 "agencyCheckNumber" => @bank_account.agencyCheckNumber,
@@ -150,13 +150,17 @@ class OrganizersController < ApplicationController
         }
     }
     
+    puts bank_transfer_data.inspect
+    
     begin
       @response_transfer = RestClient.post "https://sandbox.moip.com.br/v2/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
       response_transfer_json = @response_transfer
+      msg_err = ''
     rescue => e
       puts e.inspect
       @response_transfer = {}
       response_transfer_json = {}
+      msg_err = e.inspect
     end
       
     puts @response_transfer.inspect
@@ -164,7 +168,7 @@ class OrganizersController < ApplicationController
     if response_transfer_json["status"] == "REQUESTED"
       flash[:notice] = "Transferência solicitada com sucesso"
     else
-      flash[:notice] = "Não foi possível realizar a transferência"
+      flash[:notice] = "Não foi possível realizar a transferência #{msg_err}"
     end
     
     redirect_to organizers_account_activate_path(@organizer.id)
