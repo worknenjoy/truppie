@@ -34,7 +34,7 @@ class BankAccountsController < ApplicationController
         
         puts @account_json.inspect
         
-        if !@account_json["id"]
+        if @account_json["id"]
           @bank_account.update_attribute('uid', @account_json["id"])
           format.html { 
             redirect_to @bank_account,
@@ -76,9 +76,21 @@ class BankAccountsController < ApplicationController
   # DELETE /bank_accounts/1
   # DELETE /bank_accounts/1.json
   def destroy
+    puts @bank_account.inspect
     @bank_account.destroy
     respond_to do |format|
-      format.html { redirect_to bank_accounts_url, notice: 'Bank account was successfully destroyed.' }
+      format.html { 
+        if @bank_account.destroyed? && @bank_account.uid.present?
+          @account = RestClient.delete "https://sandbox.moip.com.br/v2/bankaccounts/#{@bank_account.uid}", :authorization => "OAuth #{@bank_account.organizer.token}"
+          if @account.code == 200
+            redirect_to bank_accounts_url, notice: 'A conta foi removida remotamente'
+          else
+            redirect_to bank_accounts_url, notice: 'Não foi possível apagar a conta remota'
+          end
+        else
+          redirect_to bank_accounts_url, notice: 'Bank account was successfully destroyed'
+        end
+      }
       format.json { head :no_content }
     end
   end
