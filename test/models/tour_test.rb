@@ -746,6 +746,10 @@ curl -v https://sandbox.moip.com.br/v2/accounts \
   "type": "MERCHANT",
   "transparentAccount": "true"
 }'
+
+
+curl -H 'Authorization:OAuth 65a0331eba0e4f11b8f738a313d6369e_v2' -X DELETE 'https://sandbox.moip.com.br/v2/bankaccounts/{id}'
+
 =end
 
 

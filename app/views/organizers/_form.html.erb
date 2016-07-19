@@ -85,8 +85,9 @@
     		<% if @organizer.persisted? %>
     		<h3>Recebimento dos valores em conta</h3>
 	    		<% if @organizer.active && @organizer.account_id && @organizer.token %>
-					<p><%= @organizer.account_id %></p>
-					<p><%= @organizer.token %></p>
+					<p class="spaced-default">
+					<%= link_to 'Gerenciar conta', organizers_account_activate_path(@organizer), class: "btn btn-primary" %>
+					</p>
 				<% else %>
 					<div class="spaced-down">
 						<p>

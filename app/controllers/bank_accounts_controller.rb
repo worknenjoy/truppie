@@ -76,7 +76,6 @@ class BankAccountsController < ApplicationController
   # DELETE /bank_accounts/1
   # DELETE /bank_accounts/1.json
   def destroy
-    puts @bank_account.inspect
     @bank_account.destroy
     respond_to do |format|
       format.html { 

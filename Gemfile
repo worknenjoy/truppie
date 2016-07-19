@@ -13,6 +13,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem "activeresource", require: "active_resource"
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 

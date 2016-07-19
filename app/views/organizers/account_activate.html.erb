@@ -3,32 +3,33 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-        	<!-- Nav tabs -->
             <div class="card card-block">
                 <div class="card-body" style="overflow:hidden;">
                     <h3 class="text-center spaced-down">
                         Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
                     </h3>
                     <% if !@current_account.nil? %>
-                    <p>Dados do titular:</p>
-                    <div class="list-view-container">
-                    	<div class="list-view-data">
-	                    	<small>Nome:</small>
-	                    	<%= @current_account["person"]["name"] %>
-	                    	</p>
-                    	</div>
-                    	<div class="list-view-data">
-	                    	<small>Sobrenome:</small>
-	                    	<%= @current_account["person"]["lastName"] %>
-	                    	</p>
-                    	</div>
-                    	<div class="list-view-data">
-	                    	<small>Telefone:</small>
-	                    	+<%= @current_account["person"]["phone"]["countryCode"] %> (<%= @current_account["person"]["phone"]["areaCode"] %>) <%= @current_account["person"]["phone"]["number"] %>
-	                    	</p>
-                    	</div>
-                    	<%= @money_balance_json.inspect %>
-                	</div>
+                	<div class="card" style="overflow: hidden">
+						<div class="card-block">
+							<h4 class="card-title">Dados do titular:</h4>
+							<div class="card-subtitle">
+							<p>
+								<small>nome:</small><br/>
+								<%= @current_account["person"]["name"] %>
+							</p>
+							<p>
+								<small>sobrenome:</small><br/>
+								<%= @current_account["person"]["lastName"] %>
+							</p>
+							</div>
+						</div>
+						<div class="card-footer" style="overflow: hidden">
+							<span class="pull-right">
+								<small>em conta:</small> <span class="label label-success increase-font"><%= number_to_currency(@money_balance_json[0]["current"]/100, unit: "R$") %></span>
+								<small>a liberar:</small> <span class="label label-warning increase-font"><%= number_to_currency(@money_balance_json[0]["future"]/100, unit: "R$") %></span>
+							</span>
+						</div>
+					</div>
                 	<% end %>
                 	<% if !@transfers_json.nil? %>
                 	<h3>Transferencias</h3>
@@ -38,13 +39,18 @@
                 	<% else %>
                 		<p>Nenhuma transferência realizada</p>
                 	<% end %>
+                	<% if @money_account_json.length != 0 %>
                 	<h3>Transferir para a conta</h3>
                 	<%= form_tag('/organizers/transfer_funds', method: :post) do -%>
 					  	<%= text_field_tag :amount %>
 					  	<%= hidden_field_tag :id, @organizer.id %>
 					  	<div><%= submit_tag 'Transferir' %></div>
-					<% end -%>
-					                	
+					<% end %>
+					<% else %>
+					<p>Você não tem nenhuma conta cadastrada.<br />
+					<%= link_to "cadastrar nova conta", new_bank_account_path, class: "btn btn-primary" %>
+					</p>
+					<% end %>
                 	<% if @organizer.persisted? %>
                 	<% if !@money_account_json.nil? %>
 		    		<h3>Contas</h3>
@@ -64,7 +70,6 @@
 		    		<% end %>
 		    		<% end %>
 				  </div>
-				  <p><%= link_to 'Criar nova conta', new_bank_account_path, class: "btn btn-primary" %></p>
 	            </div>
 	        </div>
 	    </div>

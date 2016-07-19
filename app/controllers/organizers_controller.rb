@@ -127,7 +127,17 @@ class OrganizersController < ApplicationController
     @organizer = Organizer.find(params[:id])
     @amount = params[:amount]
     @bank_account = BankAccount.where(:organizer => @organizer)[0]
-    puts @bank_account.inspect
+    if @bank_account.uid
+      bank_transfer_data = {
+          "amount" => @amount,
+          "transferInstrument" => {
+              "method" => "BANK_ACCOUNT",
+              "bankAccount" => {
+                  "id" => @bank_account.uid,
+              }
+          }
+      }
+    else
     bank_transfer_data = {
         "amount" => @amount,
         "transferInstrument" => {
@@ -149,13 +159,12 @@ class OrganizersController < ApplicationController
             }
         }
     }
-    
-    puts bank_transfer_data.inspect
+    end
     
     begin
       @response_transfer = RestClient.post "https://sandbox.moip.com.br/v2/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
-      response_transfer_json = @response_transfer
-      msg_err = ''
+      response_transfer_json = JSON.load @response_transfer
+      msg_err = 'Transferência realizada com sucesso'
     rescue => e
       puts e.inspect
       @response_transfer = {}
@@ -163,12 +172,10 @@ class OrganizersController < ApplicationController
       msg_err = e.inspect
     end
       
-    puts @response_transfer.inspect
-            
     if response_transfer_json["status"] == "REQUESTED"
       flash[:notice] = "Transferência solicitada com sucesso"
     else
-      flash[:notice] = "Não foi possível realizar a transferência #{msg_err}"
+      flash[:notice] = "#{msg_err}"
     end
     
     redirect_to organizers_account_activate_path(@organizer.id)

@@ -57,7 +57,7 @@
    end
    
    test "should update with account bank info active" do
-     
+     skip("update account")
      patch :update, id: @organizer_with_account.id, organizer: @organizer_with_account.attributes
      
      #puts @organizer_with_account.inspect
@@ -68,6 +68,7 @@
    end
    
    test "should create new account with name" do
+     skip("new account with name")
      patch :update, id: @organizer_with_account.id, organizer: @organizer_with_account.attributes
      
      #puts @organizer_with_account.inspect
@@ -89,6 +90,7 @@
    end
    
    test "activating a organizer as a account bank with full data filled" do
+     skip("activate organizer full data filled")
      post :account_activate, id: @organizer_with_account.id, organizer: @organizer_with_account.attributes
      
      #puts @organizer_ready.inspect
@@ -103,7 +105,7 @@
    end
    
    test "transfer funds to organizer account no money" do
-     #skip("transfer funds")
+     skip("transfer funds")
      post :account_activate, id: @organizer_with_account.id, organizer: @organizer_with_account.attributes
      post :transfer_funds, id: @organizer_with_account, amount: 2000
      assert assigns(:amount) == "2000", "the amount is passed #{assigns(:amount)}"
@@ -112,6 +114,24 @@
      #assert assigns(:response_transfer)["amount"] == 2000, "response transfer is #{assigns(:response_transfer)}"
      #assert assigns(:response_transfer)["status"] == "REQUESTED", "response transfer is #{assigns(:response_transfer)}"
      assert_equal "Não foi possível realizar a transferência", flash[:notice]
+   end
+   
+   test "deleting all acounts" do
+     headers = {
+        :content_type => 'application/json',
+        :authorization => 'OAuth 65a0331eba0e4f11b8f738a313d6369e_v2'
+      }
+     
+     response = RestClient.get "https://sandbox.moip.com.br/v2/accounts/MPA-DFA0B327F85C/bankaccounts", headers
+     
+     response_json = JSON.load response
+     
+     #puts response_json.inspect
+     
+     response_json.each do |b|
+       RestClient.delete "https://sandbox.moip.com.br/v2/bankaccounts/#{b["id"]}", headers
+     end
+     
    end
    
    

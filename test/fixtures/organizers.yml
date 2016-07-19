@@ -49,6 +49,7 @@ utopicos_active:
   name: Utopicos Mundo Afora Marketplace
   description: Oferecendo passeios e outdoor lifestyle
   members: alex_member, laura_member
+  active: true
   rating: 3
   user: joana 
   where: placeone 
@@ -57,7 +58,6 @@ utopicos_active:
   facebook: MyString
   twitter: MyString
   logo: logo_utopicos.png
-  active: false
   person_name: "Joao Cabral"
   person_lastname: "Amado Pedro"
   document_type: "CPF"
