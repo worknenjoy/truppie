@@ -24,6 +24,19 @@
 							</div>
 						</div>
 						<div class="card-footer" style="overflow: hidden">
+							<span class="pull-left">
+								<% if @money_account_json.length != 0 %>
+								<small>Transferir para conta:</small> 
+									<%= form_tag('/organizers/transfer_funds', method: :post) do -%>
+									  	<%= text_field_tag :amount %>
+									  	<%= hidden_field_tag :id, @organizer.id %>
+									  	<div><%= submit_tag 'Transferir' %></div>
+									<% end %>
+								<% else %>
+									<small>Você não tem nenhuma conta cadastrada</small>
+									<%= link_to "cadastrar nova conta", new_bank_account_path, class: "btn btn-small btn-primary" %>
+								<% end %>
+							</span>
 							<span class="pull-right">
 								<small>em conta:</small> <span class="label label-success increase-font"><%= number_to_currency(@money_balance_json[0]["current"]/100, unit: "R$") %></span>
 								<small>a liberar:</small> <span class="label label-warning increase-font"><%= number_to_currency(@money_balance_json[0]["future"]/100, unit: "R$") %></span>
@@ -31,49 +44,36 @@
 						</div>
 					</div>
                 	<% end %>
-                	<% if !@transfers_json.nil? %>
-                	<h3>Transferencias</h3>
-                	<div>
-                		<%= @transfers_json.inspect %>
-                	</div>
-                	<% else %>
-                		<p>Nenhuma transferência realizada</p>
-                	<% end %>
-                	<% if @money_account_json.length != 0 %>
-                	<h3>Transferir para a conta</h3>
-                	<%= form_tag('/organizers/transfer_funds', method: :post) do -%>
-					  	<%= text_field_tag :amount %>
-					  	<%= hidden_field_tag :id, @organizer.id %>
-					  	<div><%= submit_tag 'Transferir' %></div>
-					<% end %>
-					<% else %>
-					<p>Você não tem nenhuma conta cadastrada.<br />
-					<%= link_to "cadastrar nova conta", new_bank_account_path, class: "btn btn-primary" %>
-					</p>
-					<% end %>
-                	<% if @organizer.persisted? %>
-                	<% if !@money_account_json.nil? %>
-		    		<h3>Contas</h3>
-			    		<% if @organizer.active && @organizer.account_id && @organizer.token %>
-							<p>Você tem <%= @money_account_json.length %> contas</p>
-							
-							<%= @money_account_json.inspect %>
-							
-						<% else %>
-							<div class="spaced-down">
-								<p>
-								<small>Você pode receber diretamente na sua conta através da Truppie.<br/>
-									Preencha todos os dados do titular para ativar um titular e assim obter uma conta para recebimento</small>
-								</p>
-			    			</div>
-			    		<% end %>
-		    		<% end %>
-		    		<% end %>
-				  </div>
+		    		<% if !@transfers_json.nil? %>
+		    		<h1>Transferências</h1>
+					<table class="rwd-table">
+					  <tr>
+					    <th>Nome</th>
+					    <th>Status</th>
+					    <th>Data</th>
+					    <th>Banco</th>
+					    <th>Conta</th>
+					    <th>Valor</th>
+					  </tr>
+					  <% @transfers_json["transfers"].each do |t| %>
+					  <tr>
+					    <td data-th="Nome"><%= t["transferInstrument"]["bankAccount"]["holder"]["fullname"] %></td>
+					    <td data-th="Status"><%= t["status"] %></td>
+					    <td data-th="Data"><%= l(t["updatedAt"].to_datetime, format: '%d de %B de %Y as %Hh%M') %></td>
+					    <td data-th="Banco"><%= t["transferInstrument"]["bankAccount"]["bankName"] %></td>
+					    <td data-th="Conta"><%= t["transferInstrument"]["bankAccount"]["accountNumber"] %></td>
+					    <td data-th="Valor"><%= number_to_currency(t["amount"]/100, unit: "R$") %></td>
+					  </tr>
+					  <% end %>
+					</table>
+					<small>Se a transferência que consta na lista não entrou na sua conta, <%= link_to "entre em contato com a gente", contacts_index_path %></small>
+	            	<% else %>
+	            		<p>Nenhuma transferência realizada</p>
+	            	<% end %>
 	            </div>
 	        </div>
 	    </div>
 	</div>
 </div>
-<div id="fullscreen_bg" class="fullscreen_bg"/>
+<div id="fullscreen_bg" class="fullscreen_bg"></div>
 </div>

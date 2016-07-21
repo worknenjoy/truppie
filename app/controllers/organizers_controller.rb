@@ -82,6 +82,7 @@ class OrganizersController < ApplicationController
             
             @transfers = RestClient.get "https://sandbox.moip.com.br/v2/transfers", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
             @transfers_json = JSON.load @transfers
+            puts @transfers_json.inspect
             
             @money_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
             @money_account_json = JSON.load @money_account
