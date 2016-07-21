@@ -29,7 +29,8 @@
  *= require bootstrap-typeahead 
  *= require bootsnipp-offer
  *= require confirmeds-pane
- *= require info-table        
+ *= require info-table
+ *= require bank-card         
  *= require welcome
  *= require tours 
  */

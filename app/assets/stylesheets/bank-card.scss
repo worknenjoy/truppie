@@ -1,0 +1,167 @@
+$defaultBackground: #546e7a;
+$labelColor: darken(#FFF, 25);
+$color: #FFF;
+
+$actionColor: #ffc107;
+$chaseActionColor: #FFE597;
+
+$chaseBackground: #62BAFF;
+$bankOfAmericaBackground: #F1F9FF;
+$bofaLabelColor: fadeout(#0067B1, 65);
+$wellsFargoBackground: #CD1309;
+
+.bank-card{
+  max-width: 600px;
+  margin: auto;
+  border-radius: 2px;
+  margin-top: 3em;
+  color: $color;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  transition: all .3s ease;
+  padding: 0 10px;
+  background-color: $defaultBackground;
+  
+  &.chase, &.bofa, &.wellsFargo{
+    .knownBank{
+      display: inline-block;
+      .logo{
+        height: 25px;
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+    
+    .unknownBank{
+      display: none;
+    }
+  }
+  
+  &.chase {
+    background-color: $chaseBackground;
+    
+    .logo{
+      background-image: url(https://upload.wikimedia.org/wikipedia/en/e/ed/Chase_logo_2007.svg);
+    }
+    
+    .info , .confirm{
+      color: #FFF;
+    }
+    
+    #removeCard{
+       color: $chaseActionColor; 
+      
+      &:hover, &:active {
+        color: lighten($actionColor, 50);
+      }
+    }
+    
+    
+  }
+  
+  &.bofa {
+    background-color: $bankOfAmericaBackground;
+    
+    .logo{
+      background-image: url(https://upload.wikimedia.org/wikipedia/commons/2/20/Bank_of_America_logo.svg);
+    }
+    
+    .info .title{
+      color: $bofaLabelColor;
+    }
+    
+    .info {
+      color: #000;
+    }
+    
+    .footer{
+      border-top-color: $bofaLabelColor;
+    }
+  }
+  
+  &.wellsFargo {
+    background-color: $wellsFargoBackground;
+    
+    .knownBank .logo{
+      height: 75px;
+      background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/b3/Wells_Fargo_Bank.svg);
+    }
+    
+    .info , .confirm{
+      color: #FFF;
+    }
+  }
+
+
+.status{
+  text-align: right;
+  margin-top: -3.5em;
+  text-transform: uppercase;
+    
+  &.pending {    
+    color: #00C3FF;
+  }
+  
+  &.verified {    
+    color: $labelColor;
+  }
+}
+
+.title{
+  text-align: center;
+  padding: 10px 0;
+}
+
+.title i{
+  font-size: 2.5em;
+  line-height: 2em;
+  border-radius: 50%;
+  background-color: #FFF;
+  height: 75px;
+  width: 75px;
+  color: $defaultBackground;
+  margin-top: -6em;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.info{
+  .title{
+    text-align: left;
+    margin: 0;
+    padding: 5px 0;
+    color:  $labelColor;
+  }
+  margin: 10px 0;
+}
+
+.footer{
+  border-top: 1px solid $labelColor;
+  padding: 20px;
+  text-align: right;
+  text-transform: uppercase;
+  position: relative;
+  
+  .action, .confirm{
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+  
+  .confirm{
+    display: none;
+  }
+  
+  .reveal{
+    opacity: 1;
+  }
+  
+  a{
+    transition: color .3s ease;
+    color: $actionColor;
+    margin: 0 5px;
+    
+    &:hover, &:active{
+      color: lighten($actionColor, 30);
+      text-decoration: none;
+    }
+  }
+}
+}

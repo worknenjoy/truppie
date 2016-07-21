@@ -26,11 +26,21 @@
 						<div class="card-footer" style="overflow: hidden">
 							<span class="pull-left">
 								<% if @money_account_json.length != 0 %>
-								<small>Transferir para conta:</small> 
-									<%= form_tag('/organizers/transfer_funds', method: :post) do -%>
-									  	<%= text_field_tag :amount %>
-									  	<%= hidden_field_tag :id, @organizer.id %>
-									  	<div><%= submit_tag 'Transferir' %></div>
+									<%= form_tag('/organizers/transfer_funds', method: :post, class: "form-inline") do -%>
+										<%= hidden_field_tag :id, @organizer.id %>
+										<div class="form-group">
+											<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+											<div class="input-group">
+												<div class="input-group-addon">
+													$
+												</div>
+												<%= text_field_tag :amount, nil, placeholder: "valor",  class: "form-control" %>
+												<div class="input-group-addon">
+													.00
+												</div>
+											</div>
+										</div>
+										<%= submit_tag 'Transferir', class: "btn btn-primary" %>
 									<% end %>
 								<% else %>
 									<small>Você não tem nenhuma conta cadastrada</small>
@@ -44,8 +54,48 @@
 						</div>
 					</div>
                 	<% end %>
+                	<% if @money_account_json.length %>
+                	<h3>Contas</h3>
+                	<% @money_account_json.each do |m| %>
+					  <div class="row bank-card bofa spaced-down">
+					    <div class="title col-sm-12">
+					      <i class="fa fa-credit-card"></i>
+					    </div>
+					    <div class="status verified col-sm-12">
+					      <%= m["status"] %>
+					    </div>
+					    <div class="row content col-sm-12">
+					      <div class="info bofa col-sm-12">
+					        <p class="title">Banco</p>
+					        <p><%= m["bankName"] %></p>
+					      </div>
+					      <div class="info bofa col-sm-12">
+					        <div class="logo"></div>
+					      </div>
+					      <div class="info col-xs-6">
+					        <p class="title">Número da conta</p>
+					        <p><%= m["accountNumber"] %></p>
+					      </div>
+					      <div class="info col-xs-6">
+					        <p class="title">Nome</p>
+					        <p><%= m["holder"]["fullname"] %></p>
+					      </div>
+					    </div>
+					    <div class="footer col-sm-12">
+					      <div class="action reveal">
+					        <a id="removeCard" href="javascript:void(0)">Apagar conta</a>
+					      </div>
+					      <div class="confirm">
+					        <span class="message">Remove bank account?</span>
+					        <a href="#">Yes</a>
+					        <a id="cancelDelete" href="#">No</a>
+					      </div>
+					    </div>
+					  </div>
+					<% end %>  
+				  	<% end %>
 		    		<% if !@transfers_json.nil? %>
-		    		<h1>Transferências</h1>
+		    		<h3>Transferências</h3>
 					<table class="rwd-table">
 					  <tr>
 					    <th>Nome</th>
