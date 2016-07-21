@@ -19,6 +19,8 @@ class BankAccountsController < ApplicationController
 
   # GET /bank_accounts/1/edit
   def edit
+    @bank_account = BankAccount.find(params[:id])
+    @organizer = Organizer.find(params[:organizer_id])
   end
 
   # POST /bank_accounts
@@ -63,8 +65,16 @@ class BankAccountsController < ApplicationController
   # PATCH/PUT /bank_accounts/1.json
   def update
     respond_to do |format|
+      puts "organizer:"
+      puts @bank_account.organizer.inspect
       if @bank_account.update(bank_account_params)
-        format.html { redirect_to @bank_account, notice: 'Bank account was successfully updated.' }
+        format.html {
+          post_data = {
+            "accountCheckNumber" => 8
+          }
+          @account = RestClient.put "https://sandbox.moip.com.br/v2/bankaccounts/#{@bank_account.uid}", post_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@bank_account.organizer.token}"
+          redirect_to organizers_account_activate_path(@bank_account.organizer), notice: 'Bank account was successfully updated.' 
+        }
         format.json { render :show, status: :ok, location: @bank_account }
       else
         format.html { render :edit }

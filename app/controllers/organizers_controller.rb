@@ -85,7 +85,7 @@ class OrganizersController < ApplicationController
             
             @money_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
             @money_account_json = JSON.load @money_account
-            puts @money_account_json.inspect
+            @money_account_local = BankAccount.where("uid" => @money_account_json[0]["id"])[0]
             
           else
             @response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"

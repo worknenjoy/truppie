@@ -34,13 +34,13 @@
 												<div class="input-group-addon">
 													$
 												</div>
-												<%= text_field_tag :amount, nil, placeholder: "valor",  class: "form-control" %>
+												<%= text_field_tag :amount, nil, placeholder: "valor a ser transferido",  class: "form-control col-xs-5" %>
 												<div class="input-group-addon">
 													.00
 												</div>
 											</div>
 										</div>
-										<%= submit_tag 'Transferir', class: "btn btn-primary" %>
+										<%= submit_tag 'Transferir para minha conta', class: "btn btn-primary" %>
 									<% end %>
 								<% else %>
 									<small>Você não tem nenhuma conta cadastrada</small>
@@ -55,7 +55,7 @@
 					</div>
                 	<% end %>
                 	<% if @money_account_json.length %>
-                	<h3>Contas</h3>
+                	<h3>Conta</h3>
                 	<% @money_account_json.each do |m| %>
 					  <div class="row bank-card bofa spaced-down">
 					    <div class="title col-sm-12">
@@ -83,7 +83,8 @@
 					    </div>
 					    <div class="footer col-sm-12">
 					      <div class="action reveal">
-					        <a id="removeCard" href="javascript:void(0)">Apagar conta</a>
+					        <%= link_to 'editar conta', edit_bank_account_path(@money_account_local, :organizer_id => @organizer.id) %>
+					        <%= link_to 'apagar conta', @money_account_local, method: :delete, data: { confirm: 'Tem certeza que quer remover sua conta?' } %>
 					      </div>
 					      <div class="confirm">
 					        <span class="message">Remove bank account?</span>
