@@ -126,7 +126,7 @@ class OrganizersController < ApplicationController
   
   def transfer_funds
     @organizer = Organizer.find(params[:id])
-    @amount = params[:amount]
+    @amount = params[:amount].to_i * 100
     @bank_account = BankAccount.where(:organizer => @organizer)[0]
     if @bank_account.uid
       bank_transfer_data = {
