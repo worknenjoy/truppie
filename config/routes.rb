@@ -17,9 +17,14 @@ Rails.application.routes.draw do
   post 'webhook', to: 'orders#webhook'
   get 'new_webhook', to: 'orders#new_webhook'
   
-  resources :organizers
-  get 'organizers/account_activate/:id', to: 'organizers#account_activate', as: 'organizers_account_activate'
-  post 'organizers/transfer_funds', to: 'organizers#transfer_funds', as: 'organizers_transfer_funds'
+  resources :organizers do
+    member do
+      get 'account_activate', to: 'organizers#account_activate', as: 'account_activate'
+      post 'transfer_funds', to: 'organizers#transfer_funds', as: 'transfer_funds'
+      get 'dashboard', to: 'organizers#dashboard', as: 'dashboard'
+    end
+  end
+  
   
   resources :tours do
     member do

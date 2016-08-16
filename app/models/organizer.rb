@@ -76,7 +76,6 @@ class Organizer < ActiveRecord::Base
       area = pn[1].slice(1..-1)
       areaCode = area.chop
       
-      puts areaCode.inspect
       {
         "countryCode" => pn[0].slice(1..-1),
         "areaCode"=> areaCode,
@@ -92,7 +91,7 @@ class Organizer < ActiveRecord::Base
   end
   
   def valid_account
-    !self.bank_data["person"]["name"].empty? && !self.bank_data["person"]["taxDocument"]["number"].empty? && !self.bank_data["person"]["birthDate"].empty?
+    !self.bank_data["person"]["name"].blank? && !self.bank_data["person"]["taxDocument"]["number"].blank? && !self.bank_data["person"]["birthDate"].blank?
   end
   
 end

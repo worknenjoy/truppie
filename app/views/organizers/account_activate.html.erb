@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="card card-block">
+                <%= render 'layouts/organizer_dashboard_navbar' %>
                 <div class="card-body" style="overflow:hidden;">
                     <h3 class="text-center spaced-down">
                         Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
@@ -44,7 +45,7 @@
 									<% end %>
 								<% else %>
 									<small>Você não tem nenhuma conta cadastrada</small>
-									<%= link_to "cadastrar nova conta", new_bank_account_path, class: "btn btn-small btn-primary" %>
+									<%= link_to "cadastrar nova conta", new_bank_account_path(organizer_id: @organizer.id), class: "btn btn-small btn-primary" %>
 								<% end %>
 							</span>
 							<span class="pull-right">
@@ -95,29 +96,29 @@
 					  </div>
 					<% end %>  
 				  	<% end %>
-		    		<% if !@transfers_json.nil? %>
+		    		<% if @transfers_json.any? %>
 		    		<h3>Transferências</h3>
-					<table class="rwd-table">
-					  <tr>
-					    <th>Nome</th>
-					    <th>Status</th>
-					    <th>Data</th>
-					    <th>Banco</th>
-					    <th>Conta</th>
-					    <th>Valor</th>
-					  </tr>
-					  <% @transfers_json["transfers"].each do |t| %>
-					  <tr>
-					    <td data-th="Nome"><%= t["transferInstrument"]["bankAccount"]["holder"]["fullname"] %></td>
-					    <td data-th="Status"><%= t["status"] %></td>
-					    <td data-th="Data"><%= l(t["updatedAt"].to_datetime, format: '%d de %B de %Y as %Hh%M') %></td>
-					    <td data-th="Banco"><%= t["transferInstrument"]["bankAccount"]["bankName"] %></td>
-					    <td data-th="Conta"><%= t["transferInstrument"]["bankAccount"]["accountNumber"] %></td>
-					    <td data-th="Valor"><%= number_to_currency(t["amount"]/100, unit: "R$") %></td>
-					  </tr>
-					  <% end %>
-					</table>
-					<small>Se a transferência que consta na lista não entrou na sua conta, <%= link_to "entre em contato com a gente", contacts_index_path %></small>
+  					<table class="rwd-table">
+  					  <tr>
+  					    <th>Nome</th>
+  					    <th>Status</th>
+  					    <th>Data</th>
+  					    <th>Banco</th>
+  					    <th>Conta</th>
+  					    <th>Valor</th>
+  					  </tr>
+  					  <% @transfers_json["transfers"].each do |t| %>
+  					  <tr>
+  					    <td data-th="Nome"><%= t["transferInstrument"]["bankAccount"]["holder"]["fullname"] %></td>
+  					    <td data-th="Status"><%= t["status"] %></td>
+  					    <td data-th="Data"><%= l(t["updatedAt"].to_datetime, format: '%d de %B de %Y as %Hh%M') %></td>
+  					    <td data-th="Banco"><%= t["transferInstrument"]["bankAccount"]["bankName"] %></td>
+  					    <td data-th="Conta"><%= t["transferInstrument"]["bankAccount"]["accountNumber"] %></td>
+  					    <td data-th="Valor"><%= number_to_currency(t["amount"]/100, unit: "R$") %></td>
+  					  </tr>
+  					  <% end %>
+  					</table>
+					 <small>Se a transferência que consta na lista não entrou na sua conta, <%= link_to "entre em contato com a gente", contacts_index_path %></small>
 	            	<% else %>
 	            		<p>Nenhuma transferência realizada</p>
 	            	<% end %>

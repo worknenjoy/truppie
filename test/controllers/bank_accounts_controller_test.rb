@@ -15,14 +15,14 @@ class BankAccountsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:bank_accounts)
   end
-
+  
   test "should get new" do
-    get :new
+    get :new, organizer_id: @organizer_active.id
     assert_response :success
   end
   
   test "should create bank_account format to send to new remote account" do
-    skip("create")
+    #skip("create")
     post :create, bank_account: { accountCheckNumber: @bank_account.accountCheckNumber, accountNumber: @bank_account.accountNumber, agencyCheckNumber: @bank_account.agencyCheckNumber, agencyNumber: @bank_account.agencyNumber, bankNumber: @bank_account.bankNumber, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, organizer_id: @organizer_active.id, bankType: @bank_account.bankType }
     assert_equal BankAccount.last.account_info["bankNumber"], "237"
     assert_equal BankAccount.last.account_info["agencyNumber"], "12345"
@@ -43,7 +43,7 @@ class BankAccountsControllerTest < ActionController::TestCase
   end
 
   test "should create bank_account" do
-    skip("create bank account")
+    #skip("create bank account")
     assert_difference('BankAccount.count') do
       post :create, bank_account: { accountCheckNumber: @bank_account.accountCheckNumber, accountNumber: @bank_account.accountNumber, agencyCheckNumber: @bank_account.agencyCheckNumber, agencyNumber: @bank_account.agencyNumber, bankNumber: @bank_account.bankNumber, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, organizer_id: @organizer_active.id, bankType: @bank_account.bankType }
     end
@@ -86,6 +86,7 @@ class BankAccountsControllerTest < ActionController::TestCase
     assert_redirected_to bank_accounts_path
   end
   test "should destroy in remote account when destroy" do
+    skip("destroy in remote account")
     ActiveResource::HttpMock.respond_to do |mock|
       mock.delete '', {}, '', 200
     end

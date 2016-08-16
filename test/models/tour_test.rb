@@ -429,7 +429,7 @@ class TourTest < ActiveSupport::TestCase
   #
   
   test "registering user to marketplace with existent taxDocument" do
-     #skip("make a post to new order at marketplace")
+     skip("make a post to new order at marketplace")
      response = JSON.load `curl -H 'Content-Type:application/json' -H 'Accept:application/json' -H 'Authorization:OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2' -X POST 'https://sandbox.moip.com.br/v2/accounts' -d '#{@moip_account.to_json}'`
       
       puts response.inspect

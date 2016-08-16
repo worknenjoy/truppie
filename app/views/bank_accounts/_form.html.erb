@@ -8,9 +8,25 @@
       <i class="fa fa-credit-card"></i>
     </div>
     <div class="row content col-sm-12">
-      <div class="info bofa col-sm-12">
+      <div class="info bofa col-sm-6">
         <p class="title">Número do banco</p>
-		<%= f.text_field :bankNumber %>
+		    <%= f.text_field :bankNumber %>
+      </div>
+      <div class="info col-xs-6">
+        <p class="title">tipo</p>
+        <%= f.text_field :bankType %>
+      </div>
+      <div class="info col-xs-12">
+        <p class="title">Nome completo</p>
+        <%= f.text_field :fullname %>
+      </div>
+      <div class="info bofa col-xs-6">
+        <p class="title">Número da Agência</p>
+        <%= f.text_field :agencyNumber %>
+      </div>
+      <div class="info bofa col-xs-3">
+        <p class="title">Digito</p>
+        <%= f.text_field :agencyCheckNumber %>
       </div>
       <div class="info bofa col-sm-12">
         <div class="logo"></div>
@@ -20,19 +36,23 @@
         <%= f.text_field :accountNumber %>
       </div>
       <div class="info col-xs-6">
-        <p class="title">Nome</p>
-        <%= f.text_field :fullname %>
+        <p class="title">Dígito</p>
+        <%= f.text_field :accountCheckNumber %>
       </div>
+      <div class="info col-xs-12">
+        <p class="title">Tipo de documento</p>
+        <%= f.text_field :doc_type %>
+      </div>
+      <div class="info col-xs-12">
+        <p class="title">Número do documento</p>
+        <%= f.text_field :doc_number %>
+      </div>
+      
     </div>
     <div class="footer col-sm-12">
       <div class="action reveal">
         <%= link_to 'apagar conta', @bank_account, method: :delete, data: { confirm: 'Tem certeza que quer remover sua conta?' } %>
         <%= f.submit 'salvar', class: "btn btn-primary" %>
-      </div>
-      <div class="confirm">
-        <span class="message">Remove bank account?</span>
-        <a href="#">Yes</a>
-        <a id="cancelDelete" href="#">No</a>
       </div>
     </div>
   </div>

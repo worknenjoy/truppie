@@ -1,16 +1,36 @@
 class OrganizersController < ApplicationController
   before_action :set_organizer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :dashboard]
+  helper_method :is_super_adm?
   
   def check_if_admin
     
+    organizer_id = params[:id]
+    
     allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+    
+    if !organizer_id.blank?
+      @organizer = Organizer.find(organizer_id)
+      allowed_emails.push @organizer.user.email      
+    end
     
     unless allowed_emails.include? current_user.email
       flash[:notice] = "Você não está autorizado a entrar nesta página"
       redirect_to root_url
     end 
+  end
+  
+  def is_super_adm?
+    
+    admin_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+    
+    if admin_emails.include? current_user.email
+      return true
+    else
+      return false
+    end
+    
   end
 
   # GET /organizers
@@ -22,6 +42,10 @@ class OrganizersController < ApplicationController
   # GET /organizers/1
   # GET /organizers/1.json
   def show
+
+  end
+  
+  def dashboard
 
   end
 
@@ -85,7 +109,12 @@ class OrganizersController < ApplicationController
             
             @money_account = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{@organizer.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.token}"
             @money_account_json = JSON.load @money_account
-            @money_account_local = BankAccount.where("uid" => @money_account_json[0]["id"])[0]
+            
+            begin
+              @money_account_local = BankAccount.where("uid" => @money_account_json[0]["id"])[0]
+            rescue => e
+              @money_account_local = {}
+            end
             
           else
             @response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"

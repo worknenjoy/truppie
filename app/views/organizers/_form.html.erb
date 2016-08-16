@@ -17,9 +17,20 @@
                     <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
                     </span>
                     <%= f.text_field :name, placeholder: "Nome do guia", class: "form-control" %>
-                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <% unless is_super_adm? %>
+                      <%= f.hidden_field :user_id, value: current_user.id %>
+                    <% end %>
                 </div>
             </div>
+            <% if is_super_adm? %>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
+                    </span>
+                    <%= f.select :user_id, User.all.collect {|u| [ u.name, u.id ] } %>
+                </div>
+            </div>
+            <% end %>
             <div class="form-group">
                 <%= f.text_area :description, placeholder: "Descrição completa", class: "form-control" %>
             </div>
@@ -86,7 +97,7 @@
     		<h3>Recebimento dos valores em conta</h3>
 	    		<% if @organizer.active && @organizer.account_id && @organizer.token %>
 					<p class="spaced-default">
-					<%= link_to 'Gerenciar conta', organizers_account_activate_path(@organizer), class: "btn btn-primary" %>
+					<%= link_to 'Gerenciar conta', account_activate_organizer_path(@organizer), class: "btn btn-primary" %>
 					</p>
 				<% else %>
 					<div class="spaced-down">
@@ -95,7 +106,7 @@
 							Preencha todos os dados do titular para ativar um titular e assim obter uma conta para recebimento</small>
 						</p>
 						<% if !@organizer.active %>
-							<%= link_to 'Ativar titular', organizers_account_activate_path(@organizer), class: "btn btn-primary" %>
+							<%= link_to 'Ativar titular', account_activate_organizer_path(@organizer), class: "btn btn-primary" %>
 						<% else %>
 							<button class="btn btn-primary" disabled="disabled">Ativar titular</button>
 						<% end %>

@@ -15,6 +15,7 @@ class BankAccountsController < ApplicationController
   # GET /bank_accounts/new
   def new
     @bank_account = BankAccount.new
+    @organizer = Organizer.find(params[:organizer_id])
   end
 
   # GET /bank_accounts/1/edit
@@ -86,11 +87,12 @@ class BankAccountsController < ApplicationController
   # DELETE /bank_accounts/1
   # DELETE /bank_accounts/1.json
   def destroy
+    uid = @bank_account.uid 
     @bank_account.destroy
     respond_to do |format|
       format.html { 
-        if @bank_account.destroyed? && @bank_account.uid.present?
-          @account = RestClient.delete "https://sandbox.moip.com.br/v2/bankaccounts/#{@bank_account.uid}", :authorization => "OAuth #{@bank_account.organizer.token}"
+        if @bank_account.destroyed? && uid.present?
+          @account = RestClient.delete "https://sandbox.moip.com.br/v2/bankaccounts/#{uid}", :authorization => "OAuth #{@bank_account.organizer.token}"
           if @account.code == 200
             redirect_to bank_accounts_url, notice: 'A conta foi removida remotamente'
           else

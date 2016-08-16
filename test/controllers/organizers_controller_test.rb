@@ -21,6 +21,27 @@
      }
      
    end
+   
+   test "should test signin success by admin" do
+    @controller.send(:check_if_admin)
+     
+    assert_response :success 
+   end
+   
+   test "should test signin error" do
+    sign_in users(:ciclano)
+   
+    get :index
+    assert_redirected_to root_url 
+   end
+   
+   test "should test signin of organizer owner" do
+    
+    sign_in users(:joana)
+    
+    get :dashboard, id: @organizer_ready.id
+    assert_response :success
+   end
 # 
    test "should get index" do
      get :index
