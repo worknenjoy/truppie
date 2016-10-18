@@ -11,6 +11,17 @@ class ContactMailerTest < ActionMailer::TestCase
      assert_equal ['alexanmtz@gmail.com'], mail.from
      assert_equal ['ola@truppie.com'], mail.to
      assert_equal "#{params[:name]} enviou \n #{params[:body]}", mail.body.raw_source
-     
    end
+   
+ test "send notification" do
+   
+     mail = ContactMailer.notify("foo notification")
+     
+     ContactMailer.notify("foo notification").deliver_now
+     
+     assert_not ActionMailer::Base.deliveries.empty?
+     assert_equal ['ola@truppie.com'], mail.to
+     assert_equal "foo notification", mail.body.raw_source
+ end
+   
 end

@@ -112,14 +112,17 @@ class ToursController < ApplicationController
               redirect_to @tour
             else
               flash[:error] = "Nao foi possivel criar seu pedido de numero #{order.id}"
+              ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou não conseguiu criar o pedido #{order.id}").deliver_now
               redirect_to @tour
             end
           else
             flash[:error] = payment.errors[0].description
+            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e o moip retornou #{payment.errors.inspect}").deliver_now
             redirect_to @tour
           end
         else
-          flash[:error] = "Não foi informado informações sobre o pagamento"
+          flash[:error] = "Não foi dada informações sobre o pagamento"
+          ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento sem fornecer as informações").deliver_now
           redirect_to @tour
         end
       else
