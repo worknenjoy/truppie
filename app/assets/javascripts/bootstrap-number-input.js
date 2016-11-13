@@ -27,6 +27,7 @@
             upClass: 'default',
             downClass: 'default',
             resultClass: 'default',
+            inputPrice: 'default',
             center: true
         }, options);
         
@@ -50,17 +51,22 @@
             
             function change_result(op, val) {
               var current_el = $('.' + settings.resultClass);
+              var hidden_field = $('#value'); 
               var current_val = current_el.text();
               
               switch (op) {
                 case "up":
                   if(val < max) {
-                    $(current_el).text(parseInt(current_val) + parseInt(initial_price));
+                    var val = parseInt(current_val) + parseInt(initial_price);
+                    $(current_el).text(val);
+                    hidden_field.val(val);
                   }
                 break;                
                 case "down":
                   if(val > 0) {
-                    $(current_el).text(parseInt(current_val) - parseInt(initial_price));
+                    var val = parseInt(current_val) - parseInt(initial_price);
+                    $(current_el).text(val);
+                    hidden_field.val(val);
                   }
                 break;
                 default:

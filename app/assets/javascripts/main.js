@@ -239,6 +239,7 @@ $(function(){
     upClass: 'plus',
     downClass: 'minus',
     resultClass: 'final-price span',
+    inputPrice: 'the-final-price-field',
     center: true
   });
  	
