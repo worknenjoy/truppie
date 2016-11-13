@@ -234,4 +234,12 @@ $(function(){
   	}
   	
  	new WOW().init();
+ 	
+ 	$('.amount-output').bootstrapNumber({
+    upClass: 'plus',
+    downClass: 'minus',
+    resultClass: 'final-price span',
+    center: true
+  });
+ 	
 });

@@ -21,5 +21,7 @@
 //= require bootstrap
 //= require typeahead
 //= require bootstrap-tagsinput
+//= require bootstrap-number-input
 //= require moip
 //= require main
+

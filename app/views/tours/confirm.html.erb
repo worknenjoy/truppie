@@ -68,6 +68,9 @@
                 <div class="card-block">
                     <div class="row">
                         <div class="col-xs-12">
+                            <div class="spaced-down">
+                              <small>* Os dados do usuário precisam ser os mesmos que do titular do cartão</small>
+                            </div>
                             <div class="form-group">
                             	<%= hidden_field_tag :id, @tour %>
                             	<%= hidden_field_tag :method, "CREDIT_CARD" %>
@@ -135,6 +138,36 @@
                     			<%= select_tag :installment_count, options_for_select((1..12).map{ |u| ["#{u}X", u] }), class: "form-control" %>
                     		</div>
                     	</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="spaced-smallest">
+                          <div class="form-inline">
+                            <div class="form-group">
+                              <label class="sr-only" for="exampleInputAmount">Quantidade</label>
+                                <div class="input-group">
+                                  
+                                  <div class="form-group">
+                                    <input type="number" min="1" max="<%= @tour.availability %>" class="form-control full-width amount-output bfh-number" id="exampleInputAmount" value="1">
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <div class="price mediafix">
+                          <h4>Total:</h4>
+                        </div>
+                      </div>
+                      <div class="col-xs-8">
+                        <div class="price mediafix">
+                          <h3 class="final-price"><%= raw @tour.final_price(@final_price) %></h3>
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>

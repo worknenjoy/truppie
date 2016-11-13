@@ -62,7 +62,7 @@ class Tour < ActiveRecord::Base
   def final_price(p)
     case self.currency
       when 'BRL'
-        "<small>R$</small> " + p.to_s
+        "<small>R$</small> " + "<span>" + p.to_s + "</span>"
       when 'US'
         "<small>$</small> " + p.to_s
       when 'EURO'
