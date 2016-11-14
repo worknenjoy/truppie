@@ -146,11 +146,9 @@
                             <div class="form-group">
                               <label class="sr-only" for="exampleInputAmount">Quantidade</label>
                                 <div class="input-group">
-                                  
                                   <div class="form-group">
-                                    <input type="number" min="1" max="<%= @tour.availability %>" class="form-control full-width amount-output bfh-number" id="exampleInputAmount" value="1">
+                                    <%= number_field_tag :amount, 1, class: 'form-control full-width amount-output bfh-number', min: 1, max: @tour.availability  %>
                                   </div>
-                                  
                                 </div>
                               </div>
                             </div>
@@ -166,6 +164,7 @@
                       <div class="col-xs-8">
                         <div class="price mediafix">
                           <h3 class="final-price"><%= raw @tour.final_price(@final_price) %></h3>
+                          <%= hidden_field_tag :final_price, @final_price %>
                         </div>
                       </div>
                     </div>

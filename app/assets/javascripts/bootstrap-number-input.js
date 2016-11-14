@@ -27,7 +27,7 @@
             upClass: 'default',
             downClass: 'default',
             resultClass: 'default',
-            inputPrice: 'default',
+            inputId: 'default',
             center: true
         }, options);
         
@@ -51,7 +51,7 @@
             
             function change_result(op, val) {
               var current_el = $('.' + settings.resultClass);
-              var hidden_field = $('#value'); 
+              var hidden_field = $('#' + settings.inputId); 
               var current_val = current_el.text();
               
               switch (op) {
