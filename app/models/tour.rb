@@ -126,14 +126,18 @@ class Tour < ActiveRecord::Base
   
   def available
     if self.availability
-     self.availability - self.confirmeds.count
+     self.availability - self.reserved
     else
-      0
+      nil
     end
   end
   
   def soldout?
-    self.available <= 0
+    if self.available
+      self.available <= 0  
+    else
+      false      
+    end
   end
   
 end

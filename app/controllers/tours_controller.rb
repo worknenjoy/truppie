@@ -30,6 +30,10 @@ class ToursController < ApplicationController
   
   def confirm_presence
     @tour = Tour.find(params[:id])
+    @amount = params[:amount].to_i || 1
+    @value = params[:value].to_i
+    @final_price = params[:final_price].to_i
+    
     @payment_data = {
       method: params[:method],
       expiration_month: params[:expiration_month],
@@ -95,8 +99,15 @@ class ToursController < ApplicationController
                   }
               }
           )
-          @tour.confirmeds.new(:user  => current_user)
+          
           if payment.success?
+            
+            @tour.confirmeds.new(:user  => current_user)
+          
+            amount_reserved_now = @tour.reserved
+            @reserved_increment = amount_reserved_now + @amount         
+            @tour.update_attributes(:reserved => @reserved_increment)
+            
             @order = Order.create(
               :source_id => order.id,
               :own_id => "truppie_#{@tour.id}_#{current_user.id}",
@@ -104,7 +115,9 @@ class ToursController < ApplicationController
               :tour => @tour,
               :status => payment.status,
               :payment => payment.id,
-              :price => params[:value].to_i
+              :price => @value,
+              :amount => @amount,
+              :final_price => @final_price
             )
             if @order.save() and @tour.save()
               flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
@@ -112,7 +125,7 @@ class ToursController < ApplicationController
               redirect_to @tour
             else
               flash[:error] = "Nao foi possivel criar seu pedido de numero #{order.id}"
-              ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou não conseguiu criar o pedido #{order.id}").deliver_now
+              ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou fazer uma reserva mas não conseguiu criar o pedido #{order.id}").deliver_now
               redirect_to @tour
             end
           else

@@ -289,6 +289,7 @@ class ToursControllerTest < ActionController::TestCase
   test "should unconfirm" do
     @tour.confirmeds.create(user: users(:alexandre))
     assert_equal @tour.available, 2
+    @payment_data["amount"] = 2
     post :unconfirm_presence, @payment_data
     assert_equal 'you were successfully unconfirmed to this tour', flash[:success]
     assert_equal @tour.available, 3
@@ -332,8 +333,33 @@ class ToursControllerTest < ActionController::TestCase
     
     response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{payment_id}", headers
     json_data = JSON.parse(response)
-    puts json_data.inspect
+    # puts json_data.inspect
     assert_equal 2, json_data["installmentCount"]
+  end
+  
+  test "should process a reservation to more people with unlimited availability" do
+    @tour.update_attributes(:availability => nil)
+    @payment_data["amount"] = 2
+    @payment_data["final_price"] = @tour.value * 2
+    post :confirm_presence, @payment_data
+    assert_equal(assigns(:amount), 2)
+    assert_equal(assigns(:final_price), @tour.value * 2)
+    order = Order.last
+    
+    assert_equal @tour.available, nil
+  end
+  
+  test "should process a reservation to more people with limited availability" do
+    @payment_data["amount"] = 2
+    @payment_data["final_price"] = @tour.value * 2
+    
+    post :confirm_presence, @payment_data
+    assert_equal(assigns(:amount), 2)
+    assert_equal(assigns(:final_price), @tour.value * 2)
+    assert_equal(assigns(:reserved_increment), 2)
+    order = Order.last
+    assert_equal Tour.order("updated_at").last.available, 1
+    
   end
   
   test "should pass a valid birthdate" do
