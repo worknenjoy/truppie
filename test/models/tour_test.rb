@@ -47,22 +47,25 @@ class TourTest < ActiveSupport::TestCase
    end
    
    test "confirmed availability number" do
-     Tour.last.confirmeds.create(user: User.last)
-     assert_equal 2, Tour.last.available
+     @tour.confirmeds.create(user: User.last)
+     @tour.update_attributes(:reserved => 1)
+     assert_equal 2, Tour.find(@tour.id).available
    end
    
    test "confirmed availability soldout still possible" do
-     Tour.last.confirmeds.create(user: users(:laura))
-     Tour.last.confirmeds.create(user: users(:alexandre))
-     assert_equal false, Tour.last.soldout?
+     @tour.confirmeds.create(user: users(:laura))
+     @tour.confirmeds.create(user: users(:alexandre))
+     @tour.update_attributes(:reserved => 2)
+     assert_equal false, Tour.find(@tour.id).soldout?
    end
    
    test "confirmed availability soldout not possible" do
-     Tour.last.confirmeds.create(user: users(:laura))
-     Tour.last.confirmeds.create(user: users(:alexandre))
-     Tour.last.confirmeds.create(user: users(:fulano))
-     Tour.last.confirmeds.create(user: users(:ciclano))
-     assert_equal true, Tour.last.soldout?
+     @tour.confirmeds.create(user: users(:laura))
+     @tour.confirmeds.create(user: users(:alexandre))
+     @tour.confirmeds.create(user: users(:fulano))
+     @tour.confirmeds.create(user: users(:ciclano))
+     @tour.update_attributes(:reserved => 4)
+     assert_equal true, Tour.find(@tour.id).soldout?
    end
    
    test "languages" do

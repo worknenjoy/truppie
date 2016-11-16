@@ -261,7 +261,9 @@ class ToursControllerTest < ActionController::TestCase
   test "should confirm presence" do
     post :confirm_presence, @payment_data
     assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento.", flash[:success]
-    assert_redirected_to tour_path(assigns(:tour))
+    assert_equal assigns(:confirm_status_message), "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+    assert_equal assigns(:status), "success"
+    assert_template "confirm_presence"
   end
   
   test "should not confirm presence with no payment" do
@@ -299,8 +301,9 @@ class ToursControllerTest < ActionController::TestCase
   test "should create a order with the given id" do
     post :confirm_presence, @payment_data
     assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento.", flash[:success]
-    assert_redirected_to tour_path(assigns(:tour))
-    #assert_equal Order.last.source_id, flash[:order_id]
+    assert_equal assigns(:confirm_status_message), "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+    assert_equal assigns(:status), "success"
+    assert_template "confirm_presence"
     assert_equal Order.last.status, "IN_ANALYSIS"
   end
   

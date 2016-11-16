@@ -122,7 +122,8 @@ class ToursController < ApplicationController
             if @order.save() and @tour.save()
               flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
               #flash[:order_id] = order.id
-              redirect_to @tour
+              @confirm_status_message = "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+              @status = "success"
             else
               flash[:error] = "Nao foi possivel criar seu pedido de numero #{order.id}"
               ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou fazer uma reserva mas não conseguiu criar o pedido #{order.id}").deliver_now
