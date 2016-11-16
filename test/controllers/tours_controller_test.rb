@@ -279,8 +279,8 @@ class ToursControllerTest < ActionController::TestCase
   
   test "should not confirm if soldout" do
     @tour.confirmeds.create(user: users(:laura))
-    @tour.confirmeds.create(user: users(:fulano))
     @tour.confirmeds.create(user: users(:ciclano))
+    @tour.update_attributes(:reserved => 3)
     post :confirm_presence, @payment_data
     assert_equal 'Este evento está esgotado', flash[:error]
     assert_redirected_to tour_path(assigns(:tour))
@@ -288,11 +288,11 @@ class ToursControllerTest < ActionController::TestCase
   
   test "should unconfirm" do
     @tour.confirmeds.create(user: users(:alexandre))
-    assert_equal @tour.available, 2
-    @payment_data["amount"] = 2
+    @tour.update_attributes(:reserved => 2)
+    assert_equal @tour.available, 1
     post :unconfirm_presence, @payment_data
     assert_equal 'you were successfully unconfirmed to this tour', flash[:success]
-    assert_equal @tour.available, 3
+    assert_equal Tour.find(@tour.id).available, 3
     assert_redirected_to tour_path(assigns(:tour))
   end
   

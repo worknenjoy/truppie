@@ -147,7 +147,10 @@ class ToursController < ApplicationController
   
   def unconfirm_presence
     @tour = Tour.find(params[:id])
+    @order = current_user.orders.where(:tour => @tour).first
+    reserveds = @tour.reserved
     if @tour.confirmeds.where(user: current_user).delete_all
+      @tour.update_attributes(:reserved => reserveds - @order.amount)
       flash[:success] = "you were successfully unconfirmed to this tour"
     else
       flash[:error] = "it was not possible unconfirm"

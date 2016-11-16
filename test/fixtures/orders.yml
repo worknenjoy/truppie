@@ -6,5 +6,26 @@ one:
   user: joana
   status: IN_ANALYSIS
   price: 1
+  amount: 1
   discount: 1
   payment: PAY-32LJ77AT4JNN
+  
+two_reservation:
+  own_id: 2
+  tour: morro 
+  user: alexandre
+  status: IN_ANALYSIS
+  price: 1
+  amount: 2
+  discount: 1
+  payment: PAY-32LJ77AT4JNL
+
+one_reservation:
+  own_id: 2
+  tour: morro 
+  user: ciclano
+  status: IN_ANALYSIS
+  price: 1
+  amount: 1
+  discount: 1
+  payment: PAY-32LJ77AT4JNL
