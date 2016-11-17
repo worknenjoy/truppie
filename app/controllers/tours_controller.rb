@@ -146,6 +146,16 @@ class ToursController < ApplicationController
     end
   end
   
+  def confirm_presence_alt
+    @confirm_status_message = "Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+    @status = "success"
+    @tour = Tour.last
+    @order = current_user.orders.last
+    @amount = 2
+    @final_price = 80
+    render 'confirm_presence'
+  end
+  
   def unconfirm_presence
     @tour = Tour.find(params[:id])
     @order = current_user.orders.where(:tour => @tour).first

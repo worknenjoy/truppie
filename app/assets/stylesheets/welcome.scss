@@ -103,6 +103,10 @@ h5 {
   overflow: hidden;
 }
 
+.spaced-default-full {
+  width: 100%;
+}
+
 .spaced-small {
   margin: 20px 0;
   display: inline-block;
@@ -113,6 +117,11 @@ h5 {
   margin: 10px 0;
   display: inline-block;
   overflow: hidden;
+}
+
+.card-inverse a {
+  color: $brand-primary-darker;
+  text-decoration: none;
 }
 
 .main-color-font {
@@ -248,11 +257,6 @@ h5 {
   width: 320px;
   z-index: 9999;
   opacity: 0.85;
-}
-
-.card-inverse {
-  background-color: black;
-  color: white;
 }
 
 .floating-schedule {

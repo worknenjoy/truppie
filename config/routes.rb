@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     member do
       get 'confirm/(:packagename)', to: 'tours#confirm', as: 'confirm'
       post 'confirm_presence'
+      get 'confirm_presence_alt'
       post 'unconfirm_presence'
     end
   end
