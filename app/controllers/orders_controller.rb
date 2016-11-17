@@ -154,7 +154,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.order('created_at DESC')
   end
 
   # GET /orders/1

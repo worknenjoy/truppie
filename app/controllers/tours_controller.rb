@@ -66,7 +66,7 @@ class ToursController < ApplicationController
               product: @tour.title,
               quantity: 1,
               detail: @tour.description.first(250),
-              price: params[:value].to_i * 100
+              price: @final_price * 100
             }
           ],
           customer: {
