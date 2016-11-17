@@ -120,34 +120,39 @@ class ToursController < ApplicationController
               :final_price => @final_price
             )
             if @order.save() and @tour.save()
-              flash[:success] = "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
               #flash[:order_id] = order.id
-              @confirm_status_message = "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+              @confirm_headline_message = "Sua presença foi confirmada para a truppie"
+              @confirm_status_message = "Você receberá um e-mail sobre o processamento do seu pagamento"
               @status = "success"
             else
-              flash[:error] = "Nao foi possivel criar seu pedido de numero #{order.id}"
-              ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou fazer uma reserva mas não conseguiu criar o pedido #{order.id}").deliver_now
-              redirect_to @tour
+              @confirm_headline_message = "Não foi possível confirmar sua reserva"
+              @confirm_status_message = "Houve um problema com o seu pagamento"
+              @status = "danger"
             end
           else
-            flash[:error] = payment.errors[0].description
+            @confirm_headline_message = "Não foi possível confirmar sua reserva"
+            @confirm_status_message = payment.errors[0].description
+            @status = "danger"
             ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e o moip retornou #{payment.errors.inspect}").deliver_now
-            redirect_to @tour
           end
         else
-          flash[:error] = "Não foi dada informações sobre o pagamento"
+          @confirm_headline_message = "Não foi possível confirmar sua reserva"
+          @confirm_status_message = "Você não forneceu dados suficientes para o pagamento"
+          @status = "danger"
           ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento sem fornecer as informações").deliver_now
-          redirect_to @tour
         end
       else
-        flash[:error] = "Este evento está esgotado"
+        @confirm_headline_message = "Não foi possível confirmar sua reserva"
+        @confirm_status_message = "Este evento está esgotado"
+        @status = "danger"
         redirect_to @tour
       end 
     end
   end
   
   def confirm_presence_alt
-    @confirm_status_message = "Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+    @confirm_headline_message = "Evento confirmado com sucesso"
+    @confirm_status_message = "Obrigado por se inscrever neste evento"
     @status = "success"
     @tour = Tour.last
     @order = current_user.orders.last
@@ -162,9 +167,9 @@ class ToursController < ApplicationController
     reserveds = @tour.reserved
     if @tour.confirmeds.where(user: current_user).delete_all
       @tour.update_attributes(:reserved => reserveds - @order.amount)
-      flash[:success] = "you were successfully unconfirmed to this tour"
+      flash[:success] = "Você não está mais confirmardo neste evento"
     else
-      flash[:error] = "it was not possible unconfirm"
+      flash[:error] = "Houve um problema com sua confirmação para este evento"
     end
     redirect_to @tour
   end

@@ -6,18 +6,21 @@
         <div class="card card-inverse card-<%= @status %> text-xs-center">
           <div class="card-block">
             <blockquote class="card-blockquote">
-              <h3>
-                <p>Sua presença foi confirmada para a truppie</p> 
-                <p><%= link_to @tour.title, tour_path(@tour) %></p>
-                <p>Você pode acompanhar o status em <%= link_to 'Minhas truppies', orders_path %>. </p>
-              </h3>
+              <h4>
+                <p><%= @confirm_headline_message %></p> 
+                <p><%= link_to @tour.title, tour_path(@tour) %></p>                
+              </h4>
               <footer>
                 <p><%= @confirm_status_message %></p>
+                <% if @status == "success" %>
+                <p>Você pode acompanhar o status em <%= link_to 'minhas truppies', orders_path %>. </p>
+                <% end %>
               </footer>
             </blockquote>
           </div>
         </div>
-        <h3>Segue abaixo as informações do seu pedido</h3>
+        <% if @status == "success" %>
+        <h3 class="spaced-top">Segue abaixo as informações do seu pedido</h3>
         <div class="main-box no-header clearfix">
           <div class="main-box-body clearfix">
             <div class="table-responsive">
@@ -56,6 +59,7 @@
             </div>
           </div>
         </div>
+        <% end %>
       </div>
     </div>
   </div>

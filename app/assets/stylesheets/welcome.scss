@@ -113,16 +113,30 @@ h5 {
   overflow: hidden;
 }
 
+.spaced-top {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  display: inline-block;
+  overflow: hidden;
+}
+
 .spaced-smallest {
   margin: 10px 0;
   display: inline-block;
   overflow: hidden;
 }
 
-.card-inverse a {
+.card-inverse.card-success a {
   color: $brand-primary-darker;
   text-decoration: none;
 }
+
+.card-inverse.card-danger a {
+  color: $brand-primary-lighter;
+  text-decoration: none;
+}
+
 
 .main-color-font {
   

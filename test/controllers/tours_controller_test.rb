@@ -260,15 +260,17 @@ class ToursControllerTest < ActionController::TestCase
     
   test "should confirm presence" do
     post :confirm_presence, @payment_data
-    assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento.", flash[:success]
-    assert_equal assigns(:confirm_status_message), "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+    assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
+    assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
     assert_equal assigns(:status), "success"
     assert_template "confirm_presence"
   end
   
   test "should not confirm presence with no payment" do
     post :confirm_presence, {id: @tour}
-    assert_equal 'Não foi dada informações sobre o pagamento', flash[:error]
+    assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
+    assert_equal assigns(:confirm_status_message), "Você não forneceu dados suficientes para o pagamento"
+    assert_equal assigns(:status), "danger"
     assert_not ActionMailer::Base.deliveries.empty?
   end
   
@@ -284,7 +286,8 @@ class ToursControllerTest < ActionController::TestCase
     @tour.confirmeds.create(user: users(:ciclano))
     @tour.update_attributes(:reserved => 3)
     post :confirm_presence, @payment_data
-    assert_equal 'Este evento está esgotado', flash[:error]
+    assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
+    assert_equal assigns(:confirm_status_message), "Este evento está esgotado"
     assert_redirected_to tour_path(assigns(:tour))
   end
   
@@ -293,15 +296,15 @@ class ToursControllerTest < ActionController::TestCase
     @tour.update_attributes(:reserved => 2)
     assert_equal @tour.available, 1
     post :unconfirm_presence, @payment_data
-    assert_equal 'you were successfully unconfirmed to this tour', flash[:success]
+    assert_equal "Você não está mais confirmardo neste evento", flash[:success]
     assert_equal Tour.find(@tour.id).available, 3
     assert_redirected_to tour_path(assigns(:tour))
   end
   
   test "should create a order with the given id" do
     post :confirm_presence, @payment_data
-    assert_equal "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento.", flash[:success]
-    assert_equal assigns(:confirm_status_message), "Presença confirmada! Você pode acompanhar o status em Minhas truppies. Você irá receber um e-mail com informações sobre o processamento do seu pagamento."
+    assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
+    assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
     assert_equal assigns(:status), "success"
     assert_template "confirm_presence"
     assert_equal Order.last.status, "IN_ANALYSIS"
