@@ -30,9 +30,19 @@ class ToursController < ApplicationController
   
   def confirm_presence
     @tour = Tour.find(params[:id])
-    @amount = params[:amount].to_i || 1
     @value = params[:value].to_i
-    @final_price = params[:final_price].to_i
+    
+    if params[:amount].nil? || params[:amount].empty?
+      @amount = 1
+    else
+      @amount = params[:amount].to_i
+    end
+    
+    if params[:final_price].nil? || params[:final_price].empty?
+      @final_price = @value
+    else
+      @final_price = params[:final_price].to_i      
+    end
     
     @payment_data = {
       method: params[:method],
@@ -64,9 +74,9 @@ class ToursController < ApplicationController
           items: [
             {
               product: @tour.title,
-              quantity: 1,
+              quantity: @amount,
               detail: @tour.description.first(250),
-              price: @final_price * 100
+              price: @value * 100
             }
           ],
           customer: {
