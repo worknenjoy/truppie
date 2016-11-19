@@ -116,6 +116,8 @@ class OrdersController < ApplicationController
         
         is_in_the_history = order.status_history.include?(@status)
         
+        is_status_to_ignore = ["PAYMENT.WAITING", "PAYMENT.IN_ANALYSIS"].include?(@status)
+        
         if !is_in_the_history
           
           order.status_history <<  @status
@@ -127,17 +129,20 @@ class OrdersController < ApplicationController
               #puts "Usuario #{t} desconfirmado com sucesso"
             end
           end
-          
-          @status_data = {
-            subject: @subject,
-            mail_first_line: @mail_first_line,
-            mail_second_line: @mail_second_line,
-            guide: @guide_template
-          }
-          mail = CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
-          guide_mail = CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
-          if !mail
-            CreditCardStatusMailer.status_message('não foi possível enviar os e-mails aos usuários e guias').deliver_now
+          if !is_status_to_ignore
+            @status_data = {
+              subject: @subject,
+              mail_first_line: @mail_first_line,
+              mail_second_line: @mail_second_line,
+              guide: @guide_template
+            }
+            mail = CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
+            guide_mail = CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
+            if !mail
+              CreditCardStatusMailer.status_message('não foi possível enviar os e-mails aos usuários e guias').deliver_now
+            end
+          else
+            CreditCardStatusMailer.status_message("O usuario #{user.name} esta com o status #{@status}").deliver_now
           end
         else
           puts 'O webhook do moip tentou enviar uma notificação repetida'

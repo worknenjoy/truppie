@@ -134,7 +134,7 @@ class OrdersControllerTest < ActionController::TestCase
   test "should receive a post with successfull parameters from moip and try to find succesfull this order" do
     #skip("successfull post")
     
-    orders = Order.create(:status => 'IN_ANALYSIS', :payment => @payment, :user => User.last, :tour => Tour.last)
+    orders = Order.create(:status => 'PAYMENT.AUTHORIZED', :payment => @payment, :user => User.last, :tour => Tour.last)
     
     #puts orders.inspect 
     
