@@ -143,7 +143,7 @@ class OrdersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:status_data)
     assert_response :success
     
-    #ActionMailer::Base.deliveries[0].html_part
+    #puts ActionMailer::Base.deliveries[0].html_part
     
     assert_not ActionMailer::Base.deliveries.empty?
   end
