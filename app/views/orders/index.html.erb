@@ -33,6 +33,8 @@
                                 <th class="text-center"><span>Pagamento</span></th>
                                 <th><span>Código do pedido</span></th>
                                 <th>Valor</th>
+                                <th>Reservas</th>
+                                <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,7 +57,7 @@
                                         <%= o.payment %>
                                     </td>
                                     <td >
-                                       <h3><%= raw(o.tour.final_price(o.price)) %></h3>
+                                       <h5><%= raw(o.tour.final_price(o.price)) %></h5>
                                        <% if o.tour.try(:packages) %>
                                        		<% o.tour.packages.each do |p| %>
 												<% if p.value == o.price %>
@@ -63,6 +65,16 @@
 												<% end %>						                                       		
                                        		<% end %>
                                        <% end %>
+                                    </td>
+                                    <td class="text-center">
+                                      <h3><%= o.amount %></h3>
+                                    </td>
+                                    <td class="text-center">
+                                      <% if o.final_price.nil? %>
+                                      <h4><%= raw(o.tour.final_price(o.price)) %></h4>
+                                      <% else %>
+                                      <h4><%= raw(o.tour.final_price(o.final_price)) %></h4>
+                                      <% end %>
                                     </td>
                                 </tr>
                                 <% end %>

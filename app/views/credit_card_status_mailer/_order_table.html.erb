@@ -5,6 +5,8 @@
         <th><span>Reservada em</span></th>
         <th><span>Código do pedido</span></th>
         <th>Valor</th>
+        <th>Reservas</th>
+        <th>Total</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +28,16 @@
 						<% end %>						                                       		
                		<% end %>
                <% end %>
+            </td>
+            <td class="text-center">
+              <h3><%= order.amount %></h3>
+            </td>
+            <td class="text-center">
+              <% if order.final_price.nil? %>
+              <h4><%= raw(order.tour.final_price(order.price)) %></h4>
+              <% else %>
+              <h4><%= raw(order.tour.final_price(order.final_price)) %></h4>
+              <% end %>
             </td>
         </tr>
     </tbody>
