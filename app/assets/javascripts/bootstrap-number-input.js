@@ -36,6 +36,13 @@
             var self = $(this);
             var clone = self.clone();
             var initial_price = $('.' + settings.resultClass).text();
+            
+            $('.package-options').bind('change', function(e){
+              $('.final-price span').text($(e.target).val());
+              $('#final_price').val($(e.target).val());
+              $('.amount-output').val(1);
+              initial_price = $(e.target).val();
+            });
 
             var min = self.attr('min');
             var max = self.attr('max');
