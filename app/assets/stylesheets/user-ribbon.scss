@@ -1,0 +1,65 @@
+@import 'bootstrap/variables';
+
+.user-ribbon-container {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.user-ribbon {
+  width: 130px;
+  height: 40px;
+  margin: 60px auto -120px;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  background: $brand-primary;
+  font-size: 10px;
+  
+  i {
+    position: absolute;
+  }
+  
+  span {
+    display: inline-block;
+    width: 100%;
+    margin-top: 3px;
+    line-height: 15px;
+  }
+  
+}
+
+.user-ribbon i:first-child, .user-ribbon i:nth-child(2) {
+  position: absolute;
+  left: -20px;
+  bottom: -20px;
+  z-index: -1;
+  border: 60px solid transparent;
+  border-right-color: $brand-primary;
+}
+
+.user-ribbon i:nth-child(2) {
+  left: auto;
+  right: -20px;
+  border-right-color: transparent;
+  border-left-color: $brand-primary;
+}
+
+.user-ribbon i:nth-child(3), .user-ribbon i:last-child {
+  width: 20px;
+  bottom: -5px;
+  left: -30px;
+  z-index: -2;
+  border: 15px solid $brand-primary-darker;
+  border-left-color: transparent;
+}
+
+.user-ribbon i:last-child {
+  bottom: -5px;
+  left: auto;
+  right: -30px;
+  border: 15px solid $brand-primary-darker;
+  border-right-color: transparent;
+}
+
+

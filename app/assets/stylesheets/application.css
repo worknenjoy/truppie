@@ -28,7 +28,8 @@
  *= require bootstrap-tagsinput
  *= require bootstrap-typeahead 
  *= require bootsnipp-offer
- *= require confirmeds-pane       
+ *= require confirmeds-pane 
+ *= require user-ribbon       
  *= require welcome
  *= require tours 
  */

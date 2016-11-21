@@ -1,0 +1,43 @@
+<h4 class="spaced-smallest">
+  Confirmados
+</h4>
+<div class="row">
+  <div class="confirmeds">
+      <% if tour.confirmeds.length > 0 %>
+        <% tour.confirmeds.each do |c| %>
+          <div class="col-xs-6 text-xs-center">
+              <div class="user-ribbon-container">
+                <div class="user-ribbon">
+                  <span>
+                    <% if current_user %>
+                    <% if c.user.name == current_user.name %>
+                      <strong>Você</strong>
+                      <!-- <%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-secondary btn-sm btn-block' %> -->
+                    <% else %>
+                    <strong><%= c.user.name %></strong>
+                    <% end %>
+                    <% else %>
+                      <strong><%= c.user.name %></strong>
+                    <% end %>
+                  </span>
+                  <span><%= c.user.orders.where(:user_id => c.user.id, :tour_id => tour.id).last.amount %> reserva(s)</span>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+                <% if c.user.image %>
+                  <img width="120" src="<%= c.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
+                <% else %>
+                  <img width="120" src="https://avatars.io/instagram/username" class="avatar img-circle img-thumbnail" alt="avatar">
+                <% end %>
+            </div>
+        </div>
+      <% end %>
+      <% else %>
+        <div class="col-xs-12">
+          <p class="small">Ninguem confirmou ainda. <%= link_to 'Confirmar a sua', confirm_tour_path %></p>
+        </div>
+      <% end %>
+  </div>
+</div>
