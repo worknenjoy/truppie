@@ -7,11 +7,11 @@ class OrdersControllerTest < ActionController::TestCase
     @order = orders(:one)
     @payment = "PAY-32LJ77AT4JNN"
     @post_params = {
-      "event": "PAYMENT.IN_ANALYSIS",
+      "event": "PAYMENT.AUTHORIZED",
       "resource": {
         "payment": {
           "id": @payment,
-          "status": "IN_ANALYSIS",
+          "status": "AUTHORIZED",
           "installmentCount": 1,
           "amount": {
             "total": 2000,
@@ -40,7 +40,7 @@ class OrdersControllerTest < ActionController::TestCase
           "events": [
             {
               "createdAt": "2015-03-16T18:11:19-0300",
-              "type": "PAYMENT.IN_ANALYSIS"
+              "type": "PAYMENT.AUTHORIZED"
             },
             {
               "createdAt": "2015-03-16T18:11:16-0300",
@@ -151,11 +151,11 @@ class OrdersControllerTest < ActionController::TestCase
   test "should receive a post with successfull parameters using a real returned object (email not receiving after a webhook from moip)" do
     #skip("successfull post")
     
-    orders = Order.create(:status => 'IN_ANALYSIS', :payment => @payment, :user => User.last, :tour => Tour.last)
+    orders = Order.create(:status => 'PAYMENT.AUTHORIZED', :payment => @payment, :user => User.last, :tour => Tour.last)
     
     #puts orders.inspect 
     
-    @request.env['RAW_POST_DATA'] = {"date":"","env":"","event":"PAYMENT.IN_ANALYSIS","resource":{"payment":{"_links":{"order":{"href":"https://sandbox.moip.com.br/v2/orders/ORD-4WHF2TSP3X4F","title":"ORD-4WHF2TSP3X4F"},"self":{"href":"https://sandbox.moip.com.br/v2/payments/PAY-ARVJHNTP3KQ6"}},"amount":{"currency":"BRL","fees":261,"liquid":3239,"refunds":0,"total":3500},"createdAt":"2016-04-13T00:46:24.000-03","delayCapture":false,"events":[{"createdAt":"2016-04-13T00:46:27.000-03","type":"PAYMENT.IN_ANALYSIS"},{"createdAt":"2016-04-13T00:46:25.000-03","type":"PAYMENT.CREATED"},{"createdAt":"2016-04-13T00:46:08.494-03","type":"PAYMENT.AUTHORIZED"}],"fees":[{"amount":261,"type":"TRANSACTION"}],"fundingInstrument":{"creditCard":{"brand":"MASTERCARD","first6":"555566","holder":{"birthDate":"1982-10-06","birthdate":"1982-10-06","fullname":"Alexandre Magno Teles Zimerer","taxDocument":{"number":"05824493677","type":"CPF"}},"id":"CRC-PWZSLZSIXVC5","last4":"8884"},"method":"CREDIT_CARD"},"id":"PAY-32LJ77AT4JNN","installmentCount":1,"status":"AUTHORIZED","updatedAt":"2016-04-13T00:46:08.494-03"}}}
+    @request.env['RAW_POST_DATA'] = {"date":"","env":"","event":"PAYMENT.AUTHORIZED","resource":{"payment":{"_links":{"order":{"href":"https://sandbox.moip.com.br/v2/orders/ORD-4WHF2TSP3X4F","title":"ORD-4WHF2TSP3X4F"},"self":{"href":"https://sandbox.moip.com.br/v2/payments/PAY-ARVJHNTP3KQ6"}},"amount":{"currency":"BRL","fees":261,"liquid":3239,"refunds":0,"total":3500},"createdAt":"2016-04-13T00:46:24.000-03","delayCapture":false,"events":[{"createdAt":"2016-04-13T00:46:27.000-03","type":"PAYMENT.AUTHORIZED"},{"createdAt":"2016-04-13T00:46:25.000-03","type":"PAYMENT.CREATED"},{"createdAt":"2016-04-13T00:46:08.494-03","type":"PAYMENT.AUTHORIZED"}],"fees":[{"amount":261,"type":"TRANSACTION"}],"fundingInstrument":{"creditCard":{"brand":"MASTERCARD","first6":"555566","holder":{"birthDate":"1982-10-06","birthdate":"1982-10-06","fullname":"Alexandre Magno Teles Zimerer","taxDocument":{"number":"05824493677","type":"CPF"}},"id":"CRC-PWZSLZSIXVC5","last4":"8884"},"method":"CREDIT_CARD"},"id":"PAY-32LJ77AT4JNN","installmentCount":1,"status":"AUTHORIZED","updatedAt":"2016-04-13T00:46:08.494-03"}}}
     post :webhook, {}
     assert_not_nil assigns(:status_data)
     assert_response :success
@@ -175,7 +175,7 @@ class OrdersControllerTest < ActionController::TestCase
     
     #puts orders.inspect 
     
-    @request.env['RAW_POST_DATA'] = {"date":"","env":"","event":"PAYMENT.IN_ANALYSIS","resource":{"payment":{"_links":{"order":{"href":"https://sandbox.moip.com.br/v2/orders/ORD-4WHF2TSP3X4F","title":"ORD-4WHF2TSP3X4F"},"self":{"href":"https://sandbox.moip.com.br/v2/payments/PAY-ARVJHNTP3KQ6"}},"amount":{"currency":"BRL","fees":261,"liquid":3239,"refunds":0,"total":3500},"createdAt":"2016-04-13T00:46:24.000-03","delayCapture":false,"events":[{"createdAt":"2016-04-13T00:46:27.000-03","type":"PAYMENT.IN_ANALYSIS"},{"createdAt":"2016-04-13T00:46:25.000-03","type":"PAYMENT.CREATED"},{"createdAt":"2016-04-13T00:46:08.494-03","type":"PAYMENT.AUTHORIZED"}],"fees":[{"amount":261,"type":"TRANSACTION"}],"fundingInstrument":{"creditCard":{"brand":"MASTERCARD","first6":"555566","holder":{"birthDate":"1982-10-06","birthdate":"1982-10-06","fullname":"Alexandre Magno Teles Zimerer","taxDocument":{"number":"05824493677","type":"CPF"}},"id":"CRC-PWZSLZSIXVC5","last4":"8884"},"method":"CREDIT_CARD"},"id":"PAY-4G6UKLVSNLXF","installmentCount":1,"status":"AUTHORIZED","updatedAt":"2016-04-13T00:46:08.494-03"}}}
+    @request.env['RAW_POST_DATA'] = {"date":"","env":"","event":"PAYMENT.AUTHORIZED","resource":{"payment":{"_links":{"order":{"href":"https://sandbox.moip.com.br/v2/orders/ORD-4WHF2TSP3X4F","title":"ORD-4WHF2TSP3X4F"},"self":{"href":"https://sandbox.moip.com.br/v2/payments/PAY-ARVJHNTP3KQ6"}},"amount":{"currency":"BRL","fees":261,"liquid":3239,"refunds":0,"total":3500},"createdAt":"2016-04-13T00:46:24.000-03","delayCapture":false,"events":[{"createdAt":"2016-04-13T00:46:27.000-03","type":"PAYMENT.AUTHORIZED"},{"createdAt":"2016-04-13T00:46:25.000-03","type":"PAYMENT.CREATED"},{"createdAt":"2016-04-13T00:46:08.494-03","type":"PAYMENT.AUTHORIZED"}],"fees":[{"amount":261,"type":"TRANSACTION"}],"fundingInstrument":{"creditCard":{"brand":"MASTERCARD","first6":"555566","holder":{"birthDate":"1982-10-06","birthdate":"1982-10-06","fullname":"Alexandre Magno Teles Zimerer","taxDocument":{"number":"05824493677","type":"CPF"}},"id":"CRC-PWZSLZSIXVC5","last4":"8884"},"method":"CREDIT_CARD"},"id":"PAY-4G6UKLVSNLXF","installmentCount":1,"status":"AUTHORIZED","updatedAt":"2016-04-13T00:46:08.494-03"}}}
     
     #response = RestClient.post "http://www.truppie.com/webhook", @request 
     #puts '--------------'
@@ -201,12 +201,12 @@ class OrdersControllerTest < ActionController::TestCase
     
     #puts ActionMailer::Base.deliveries[1].html_part
     
-    assert_equal ["PAYMENT.IN_ANALYSIS"], Order.find(@order.id).status_history 
+    assert_equal ["PAYMENT.AUTHORIZED"], Order.find(@order.id).status_history 
   end
   
   test "should not send notification if the current status already exist" do
     #skip('no send notifications if is in current_status')
-    @order.update_attributes(:status_history => ["PAYMENT.IN_ANALYSIS"])
+    @order.update_attributes(:status_history => ["PAYMENT.AUTHORIZED"])
     
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
