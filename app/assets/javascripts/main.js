@@ -235,6 +235,18 @@ $(function(){
   	
  	new WOW().init();
  	
+ 	if($('.package-options').length) {
+ 	  $('.final-price span').text($('.package-options').find(":checked").val());
+ 	  $('#final_price').val($('.package-options').find(":checked").val());
+ 	} 
+ 	
+ 	$('.package-options').bind('change', function(e){
+ 	  $('.final-price span').text($(e.target).val());
+ 	  $('#final_price').val($(e.target).val());
+ 	  $('.amount-output').val(1);
+ 	});
+ 	
+ 	
  	$('.amount-output').bootstrapNumber({
     upClass: 'plus',
     downClass: 'minus',

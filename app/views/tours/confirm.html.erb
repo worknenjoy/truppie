@@ -24,29 +24,6 @@
                         <%= @tour.title %>
                     </h5>
                 </div>
-                <div class="card-text text-xs-center">
-                	<% if @packagename %>
-                		<small>pacote</small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
-                		<h2 class="spaced-smallest"><%= raw @tour.final_price(@final_price) %></h2>
-                		<%= hidden_field_tag :value, @final_price %>
-                	<% else %>
-                    	<% if @tour.packages.any? and !@tour.value %>
-                    		<span class="label label-warning spaced-smallest">Escolha uma opção de pagamento:</span>
-	                    	<% @tour.packages.each do |p| %>
-                    		<label class="radio package-item-confirm">
-							  <%= radio_button_tag :value, p.value %>
-							  <%= p.name %>
-							  <h4><strong><%= raw p.price %></strong></h4>
-							</label>
-	                    	<% end %>
-	                    <% else %>
-	                    	<h2 class="spaced-smallest"><%= raw @tour.price %></h2>
-	                    	<%= hidden_field_tag :value, @tour.value %>
-	                    <% end %>
-                    <% end %>
-                    
-                    
-                </div>
                 <ul class="list-group list-group-flush text-xs-center">
                     <li class="list-group-item"><i class="icon-ok text-danger"></i><%= l(@tour.start, format: '%A') %> <br/> <%= l(@tour.start, format: '%d de %B de %Y às %Hh%M') %><br/ ><strong>daqui a <%= time_ago_in_words(@tour.start) %></strong></li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i><strong>Organizado por:</strong> <br/><%= @tour.organizer.name %></li>
@@ -130,6 +107,34 @@
                                 <%= text_field_tag :cvc, nil, placeholder: "CV", required: true, class: "form-control" %>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <% if @packagename %>
+                          <small>pacote</small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
+                          <h2 class="spaced-smallest"><%= raw @tour.final_price(@final_price) %></h2>
+                          <%= hidden_field_tag :value, @final_price %>
+                        <% else %>
+                            <% if @tour.packages.any? and !@tour.value %>
+                              <span class="label label-warning spaced-smallest">Escolha uma opção de pagamento:</span>
+                              <div class="package-options">
+                              <% @tour.packages.each_with_index do |p, i| %>
+                              <label class="radio package-item-confirm">
+                                <% if i == 0 %>
+                                <%= radio_button_tag :value, p.value, selected: "selected" %>
+                                <% else %>
+                                <%= radio_button_tag :value, p.value %>
+                                <% end %>
+                                <%= p.name %>
+                                <h4><strong><%= raw p.price %></strong></h4>
+                              </label>
+                              <% end %>
+                              </div>
+                            <% else %>
+                              <%= hidden_field_tag :value, @tour.value %>
+                            <% end %>
+                          <% end %>                        
+                      </div>
                     </div>
                     <div class="row">
                     	<div class="col-xs-12">
