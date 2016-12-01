@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115191037) do
+ActiveRecord::Schema.define(version: 20161129201328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,14 +129,15 @@ ActiveRecord::Schema.define(version: 20161115191037) do
     t.integer  "tour_id"
     t.integer  "user_id"
     t.string   "status"
-    t.text     "status_history", default: [],              array: true
+    t.text     "status_history", default: [],                         array: true
     t.string   "payment"
     t.integer  "price"
     t.integer  "discount"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "amount",         default: 1
     t.integer  "final_price"
+    t.string   "payment_method", default: "CREDIT_CARD"
   end
 
   add_index "orders", ["tour_id"], name: "index_orders_on_tour_id", using: :btree

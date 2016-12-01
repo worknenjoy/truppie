@@ -32,6 +32,8 @@ class ToursController < ApplicationController
     @tour = Tour.find(params[:id])
     @value = params[:value].to_i
     
+    @payment_method = params[:method]
+    
     if params[:amount].nil? || params[:amount].empty?
       @amount = 1
     else
@@ -45,7 +47,7 @@ class ToursController < ApplicationController
     end
     
     @payment_data = {
-      method: params[:method],
+      method: @payment_method,
       expiration_month: params[:expiration_month],
       expiration_year: params[:expiration_year],
       number: params[:number],
@@ -57,8 +59,47 @@ class ToursController < ApplicationController
       area_code: params[:area_code],
       phone_number: params[:phone_number],
       installment_count: params[:installment_count]
-      
     }
+    
+    if @payment_method == "BOLETO"
+      payment_object_type = {
+         funding_instrument: {
+           method: @payment_data[:method],
+           boleto: {
+             expirationDate: params[:expirationDate],
+             instructionLines: {
+                first: "Primeira linha se instrução",
+                second: "Segunda linha se instrução",
+                third: "Terceira linha se instrução"
+              }
+            }
+          } 
+        }
+    elsif @payment_method == "CREDIT_CARD" && !@payment_data[:birthdate].nil?
+        payment_object_type = {
+            installment_count: @payment_data[:installment_count] || 1,
+            funding_instrument: {
+                method: @payment_data[:method],
+                credit_card: {
+                    expiration_month: @payment_data[:expiration_month],
+                    expiration_year: @payment_data[:expiration_year],
+                    number: @payment_data[:number],
+                    cvc: @payment_data[:cvc],
+                    holder: {
+                        fullname: @payment_data[:fullname],
+                        birthdate: @payment_data[:birthdate].to_date.strftime('%Y-%m-%d'),
+                        tax_document: {
+                            type: "CPF",
+                            number: @payment_data[:cpf_number]
+                    }
+                        
+                  }
+                }
+              }
+          }
+    else
+      payment_object_type = {}
+    end
     
     if @tour.confirmeds.exists?(user: current_user)
       flash[:error] = "Hey, você já está confirmado neste evento!!"
@@ -85,30 +126,18 @@ class ToursController < ApplicationController
             email: current_user.email
           } 
         })
-        if not @payment_data[:fullname].nil?
-          payment = api.payment.create(order.id,
-              {
-                  installment_count: @payment_data[:installment_count] || 1,
-                  funding_instrument: {
-                      method: @payment_data[:method],
-                      credit_card: {
-                          expiration_month: @payment_data[:expiration_month],
-                          expiration_year: @payment_data[:expiration_year],
-                          number: @payment_data[:number],
-                          cvc: @payment_data[:cvc],
-                          holder: {
-                              fullname: @payment_data[:fullname],
-                              birthdate: @payment_data[:birthdate].to_date.strftime('%Y-%m-%d'),
-                              tax_document: {
-                                  type: "CPF",
-                                  number: @payment_data[:cpf_number]
-                          },
-                              
-                        }
-                      }
-                  }
-              }
-          )
+        if not @payment_data[:method].nil?
+          payment = api.payment.create(order.id, payment_object_type)
+          
+          if payment.try(:errors)
+            @payment_api_error = payment["errors"][0]["path"]
+          else
+            if @payment_method == "BOLETO"
+              @payment_api_success = payment
+              @payment_api_success_url = @payment_api_success[:_links][:pay_boleto][:redirect_href]
+            end
+            
+          end
           
           if payment.success?
             
@@ -127,7 +156,8 @@ class ToursController < ApplicationController
               :payment => payment.id,
               :price => @value,
               :amount => @amount,
-              :final_price => @final_price
+              :final_price => @final_price,
+              :payment_method => @payment_method
             )
             if @order.save() and @tour.save()
               #flash[:order_id] = order.id
