@@ -165,6 +165,9 @@ class ToursController < ApplicationController
               @confirm_headline_message = "Sua presença foi confirmada para a truppie"
               @confirm_status_message = "Você receberá um e-mail sobre o processamento do seu pagamento"
               @status = "success"
+              if @payment_method == "BOLETO"
+                @payment_link = @payment_api_success_url
+              end
             else
               @confirm_headline_message = "Não foi possível confirmar sua reserva"
               @confirm_status_message = "Houve um problema com o seu pagamento"
@@ -199,6 +202,8 @@ class ToursController < ApplicationController
     @order = current_user.orders.last
     @amount = 2
     @final_price = 80
+    @payment_method = "BOLETO"
+    @payment_link = "https://checkout-sandbox.moip.com.br/boleto/#{@order.payment}"
     render 'confirm_presence'
   end
   
