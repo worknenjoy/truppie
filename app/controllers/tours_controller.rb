@@ -68,9 +68,9 @@ class ToursController < ApplicationController
            boleto: {
              expirationDate: params[:expirationDate],
              instructionLines: {
-                first: "Primeira linha se instrução",
-                second: "Segunda linha se instrução",
-                third: "Terceira linha se instrução"
+                first: @tour.title,
+                second: @tour.organizer.name,
+                third: "Reservado por #{current_user.name}"
               }
             }
           } 
@@ -134,6 +134,7 @@ class ToursController < ApplicationController
           else
             if @payment_method == "BOLETO"
               @payment_api_success = payment
+              puts @payment_api_success[:funding_instrument].inspect
               @payment_api_success_url = @payment_api_success[:_links][:pay_boleto][:redirect_href]
             end
             

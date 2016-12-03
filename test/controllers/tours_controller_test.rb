@@ -393,6 +393,9 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal assigns(:payment_method), "BOLETO"
     assert_equal assigns(:payment_api_success)[:_links][:self][:href], "https://sandbox.moip.com.br/v2/payments/#{order.payment}"
     assert_equal assigns(:payment_api_success_url), "https://checkout-sandbox.moip.com.br/boleto/#{order.payment}"
+    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:first], @tour.title
+    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:second], @tour.organizer.name
+    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:third], "Reservado por #{order.user.name}"
     assert_equal order.payment_method, "BOLETO"
   end  
   #
