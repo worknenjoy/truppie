@@ -10,6 +10,17 @@ one:
   discount: 1
   payment: PAY-32LJ77AT4JNN
   
+bol:
+  own_id: 1
+  tour: morro 
+  user: joana
+  status: IN_ANALYSIS
+  price: 1
+  amount: 1
+  discount: 1
+  payment: PAY-55LJ77AT4JTN
+  payment_method: BOLETO
+  
 two_reservation:
   own_id: 2
   tour: morro 

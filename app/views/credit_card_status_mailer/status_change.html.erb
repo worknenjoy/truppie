@@ -4,6 +4,13 @@
 
 <p><%= raw(@status[:mail_second_line]) %></p>
 
+<%= @order.inspect %>
+
+<% if @order.payment_method == "BOLETO" %>
+  <p>Para realizar o pagamento via boleto, <a href="https://sandbox.moip.com.br/v2/payments/<%= @order.payment %>">clique aqui para gerá-lo</a> e realizar o pagamento para confirmar sua reserva</p>
+<% end %>
+
+
 <h4>Temos aqui um resumo do seu pedido:</h4>
 
 <% if !@order %>

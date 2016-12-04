@@ -5,7 +5,9 @@ class OrdersControllerTest < ActionController::TestCase
   setup do
     sign_in users(:alexandre)
     @order = orders(:one)
+    @order_boleto = orders(:bol)
     @payment = "PAY-32LJ77AT4JNN"
+    @payment_boleto = "PAY-55LJ77AT4JTN"
     @post_params = {
       "event": "PAYMENT.AUTHORIZED",
       "resource": {
@@ -35,6 +37,62 @@ class OrdersControllerTest < ActionController::TestCase
               "brand": "MASTERCARD",
               "first6": "555566",
               "last4": "8884"
+            }
+          },
+          "events": [
+            {
+              "createdAt": "2015-03-16T18:11:19-0300",
+              "type": "PAYMENT.AUTHORIZED"
+            },
+            {
+              "createdAt": "2015-03-16T18:11:16-0300",
+              "type": "PAYMENT.CREATED"
+            }
+          ],
+          "fees": [
+            {
+              "amount": 187,
+              "type": "TRANSACTION"
+            }
+          ],
+          "createdAt": "2015-03-16T18:11:16-0300",
+          "updatedAt": "2015-03-16T18:11:19-0300",
+          "_links": {
+            "order": {
+              "title": "ORD-SDZARE29MWVY",
+              "href": "https://sandbox.moip.com.br/v2/orders/ORD-SDZARE29MWVY"
+            },
+            "self": {
+              "href": "https://sandbox.moip.com.br/v2/payments/PAY-32LJ77AT4JNN"
+            }
+          }
+        }
+      }
+    }
+    
+    @post_params_boleto = {
+      "event": "PAYMENT.WAITING",
+      "resource": {
+        "payment": {
+          "id": @payment_boleto,
+          "status": "WAITING",
+          "installmentCount": 1,
+          "amount": {
+            "total": 2000,
+            "liquid": 1813,
+            "refunds": 0,
+            "fees": 187,
+            "currency": "BRL"
+          },
+          "fundingInstrument": {
+            "method": "BOLETO",
+            "BOLETO": {
+              "expirationDate": "2077-09-30",
+              "instructionLines": {
+                "first": "Primeira linha se instrução",
+                "second": "Segunda linha se instrução",
+                "third": "Terceira linha se instrução"
+              },
             }
           },
           "events": [
@@ -146,6 +204,25 @@ class OrdersControllerTest < ActionController::TestCase
     #puts ActionMailer::Base.deliveries[0].html_part
     
     assert_not ActionMailer::Base.deliveries.empty?
+  end
+  
+  test "should receive a post with successfull parameters from moip when is boleto" do
+    #skip("successfull post")
+    
+    order = Order.create(:status => 'PAYMENT.WAITING', :payment => @payment_boleto, :user => User.last, :tour => Tour.last, :payment_method => "BOLETO")
+    
+    #puts orders.inspect 
+    
+    @request.env['RAW_POST_DATA'] = @post_params_boleto
+    post :webhook, {}
+    assert_not_nil assigns(:status_data)
+    assert_response :success
+    
+    #puts ActionMailer::Base.deliveries[0].html_part
+    order_link = "https://sandbox.moip.com.br/v2/payments/#{order.payment}"
+    
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert ActionMailer::Base.deliveries[0].html_part.to_s.index("payments/PAY-55LJ77AT4JTN"), "should have payment link"
   end
   
   test "should receive a post with successfull parameters using a real returned object (email not receiving after a webhook from moip)" do
