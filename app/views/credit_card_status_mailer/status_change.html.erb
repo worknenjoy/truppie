@@ -5,7 +5,7 @@
 <p><%= raw(@status[:mail_second_line]) %></p>
 
 <% if @order.payment_method == "BOLETO" %>
-  <p><a href="https://checkout.moip.com.br/boleto/<%= @order.payment %>">clique aqui para gerar o boleto</a> e realizar o pagamento para confirmar sua reserva</p>
+  <p><a href="https://checkout.moip.com.br/boleto/<%= @order.payment %>">Clique aqui para gerar o boleto</a></p>
 <% end %>
 
 

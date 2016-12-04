@@ -1,13 +1,12 @@
 <h2>Olá, <%= @organizer.name %>!</h2>
 
-<p>O explorador <%= @user.name %>(<%= @user.email %>) acaba de solicitar a reserva de sua truppie <%= @tour.title %> :D</p>
-
-<p>O pagamento encontra-se em análise, e a efetivação da reserva é feita após a aprovação. Assim que isso ocorrer, vamos te avisar, ok?</p>
+<p>O explorador <%= @user.name %> (<%= @user.email %>) acaba de solicitar a reserva de sua truppie <%= @tour.title %>! :D</p>
 
 <% if @order.payment_method == "BOLETO" %>
-  <p>O pagamento dele foi feito por boleto bancário, então avisaremos quando for realizado</p>
+  <p>O pagamento dele será feito via boleto bancário; te avisaremos quando ele for realizado.</p>
 <% else %>
-  <p>O pagamento dele foi feito por cartão de crédito e estamos aguardando a aprovação junto a operadora</p>
+  <p>O pagamento foi feito via cartão de crédito e se enconta em análise junto à operadora.</p>
+  <p>Quando aprovado, vamos te avisar, ok?</p>
 <% end %>
 
 <h4>Temos aqui um resumo do seu pedido:</h4>

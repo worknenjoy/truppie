@@ -75,7 +75,7 @@ class OrdersController < ApplicationController
             
             if order.payment_method == "BOLETO"
               @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
-              @mail_second_line = "Estamos aguardando o pagamento do boleto para confirmação de sua reserva"
+              @mail_second_line = "Estamos aguardando o pagamento do boleto para poder confirmar sua reserva."
             end
             
         when "PAYMENT.IN_ANALYSIS" 
