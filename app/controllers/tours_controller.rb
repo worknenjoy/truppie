@@ -171,6 +171,10 @@ class ToursController < ApplicationController
             else
               @confirm_headline_message = "Não foi possível confirmar sua reserva"
               @confirm_status_message = "Houve um problema com o seu pagamento"
+              if @payment_api_error
+                @confirm_status_message = "Houve um problema com o seu pagamento: #{@payment_api_error}"
+              end
+              
               @status = "danger"
             end
           else
