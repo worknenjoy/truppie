@@ -140,7 +140,7 @@ class ToursController < ApplicationController
             
           end
           
-          if payment.success?
+          if payment.success? && !@payment_method.nil?
             
             @tour.confirmeds.new(:user  => current_user)
           
