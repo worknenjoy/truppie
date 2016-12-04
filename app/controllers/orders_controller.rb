@@ -72,6 +72,12 @@ class OrdersController < ApplicationController
             @guide_template = "status_change_guide_waiting"
             @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
             @mail_second_line = "Estamos aguardando o pagamento do seu cartão junto a operadora e, assim que for aprovado, vamos te avisar, ok?"
+            
+            if order.payment_method == "BOLETO"
+              @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
+              @mail_second_line = "Estamos aguardando o pagamento do boleto para confirmação de sua reserva"
+            end
+            
         when "PAYMENT.IN_ANALYSIS" 
             @subject = "Solicitação de reserva de uma truppie! :)"
             @guide_template = "status_change_guide_waiting"
@@ -85,8 +91,13 @@ class OrdersController < ApplicationController
         when "PAYMENT.AUTHORIZED"
             @subject = "A reserva de sua truppie está confirmada! :D"
             @guide_template = "status_change_guide_authorized"
-            @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, boas novas: o pagamento foi autorizado pela operadora de seu cartão e sua truppie está oficialmente reservada! Uhuul \o/"
+            @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, boas novas: o pagamento foi autorizado pela operadora de seu cartão e sua truppie está oficialmente reservada! Uhuul \o/ "
             @mail_second_line = "Agora basta aguardar o início do evento. Você pode acompanhá-lo em <a href='#{tour_url(tour)}'>#{tour_url(tour)}</a>"
+            
+            if order.payment_method == "BOLETO"
+              @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, boas novas: acusamos o pagamento do boleto e sua truppie está oficialmente reservada! Uhuul \o/ "
+            end
+            
         when 'PAYMENT.CANCELLED'
             @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
             @guide_template = "status_change_guide_cancelled"

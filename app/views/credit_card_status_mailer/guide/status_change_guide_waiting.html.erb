@@ -2,7 +2,13 @@
 
 <p>O explorador <%= @user.name %>(<%= @user.email %>) acaba de solicitar a reserva de sua truppie <%= @tour.title %> :D</p>
 
-<p>O cartão de crédito do seu cliente se encontra em análise junto à operadora, e a efetivação da reserva é feita após a aprovação. Assim que isso ocorrer, vamos te avisar, ok?</p>
+<p>O pagamento encontra-se em análise, e a efetivação da reserva é feita após a aprovação. Assim que isso ocorrer, vamos te avisar, ok?</p>
+
+<% if @order.payment_type == "BOLETO" %>
+  <p>O pagamento dele foi feito por boleto bancário, então avisaremos quando for realizado</p>
+<% else %>
+  <p>O pagamento dele foi feito por cartão de crédito e estamos aguardando a aprovação junto a operadora</p>
+<% end %>
 
 <h4>Temos aqui um resumo do seu pedido:</h4>
 
