@@ -4,7 +4,7 @@
 
 <p>O pagamento encontra-se em análise, e a efetivação da reserva é feita após a aprovação. Assim que isso ocorrer, vamos te avisar, ok?</p>
 
-<% if @order.payment_type == "BOLETO" %>
+<% if @order.payment_method == "BOLETO" %>
   <p>O pagamento dele foi feito por boleto bancário, então avisaremos quando for realizado</p>
 <% else %>
   <p>O pagamento dele foi feito por cartão de crédito e estamos aguardando a aprovação junto a operadora</p>
