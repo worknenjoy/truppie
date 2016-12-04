@@ -222,7 +222,7 @@ class OrdersControllerTest < ActionController::TestCase
     order_link = "https://sandbox.moip.com.br/v2/payments/#{order.payment}"
     
     assert_not ActionMailer::Base.deliveries.empty?
-    assert ActionMailer::Base.deliveries[0].html_part.to_s.index("payments/PAY-55LJ77AT4JTN"), "should have payment link"
+    assert ActionMailer::Base.deliveries[0].html_part.to_s.index("boleto/PAY-55LJ77AT4JTN"), "should have payment link"
   end
   
   test "should receive a post with successfull parameters using a real returned object (email not receiving after a webhook from moip)" do

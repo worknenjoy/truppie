@@ -7,7 +7,7 @@
 <%= @order.inspect %>
 
 <% if @order.payment_method == "BOLETO" %>
-  <p>Para realizar o pagamento via boleto, <a href="https://sandbox.moip.com.br/v2/payments/<%= @order.payment %>">clique aqui para gerá-lo</a> e realizar o pagamento para confirmar sua reserva</p>
+  <p>Para realizar o pagamento via boleto, <a href="https://checkout.moip.com.br/boleto/<%= @order.payment %>">clique aqui para gerá-lo</a> e realizar o pagamento para confirmar sua reserva</p>
 <% end %>
 
 
