@@ -11,7 +11,7 @@ function is_desktop_screen() {
 var timeoutID;
 
 function delayedAlert() {
-  timeoutID = window.setTimeout(slowAlert, 4000);
+  timeoutID = window.setTimeout(slowAlert, 12000);
 }
 
 function slowAlert() {
@@ -235,17 +235,41 @@ $(function(){
   	
  	new WOW().init();
  	
- 	if($('.package-options').length) {
- 	  $('.final-price span').text($('.package-options').find(":checked").val());
- 	  $('#final_price').val($('.package-options').find(":checked").val());
- 	} 
+ 	if($('.cc-package-options').length) {
+ 	  $('.cc-final-price span').text($('.cc-package-options').find(":checked").val());
+ 	  $('#cc-final-price').val($('.cc-package-options').find(":checked").val());
+ 	}
  	
- 	$('.amount-output').bootstrapNumber({
-    upClass: 'plus',
-    downClass: 'minus',
-    resultClass: 'final-price span',
-    inputId: 'final_price',
+ 	if($('.b-package-options').length) {
+    $('.b-final-price span').text($('.b-package-options').find(":checked").val());
+    $('#b-final-price').val($('.b-package-options').find(":checked").val());
+  }  
+ 	
+ 	$('.cc-amount-output').bootstrapNumber({
+    upClass: 'cc-plus',
+    downClass: 'cc-minus',
+    resultClass: 'cc-final-price span',
+    inputId: 'cc-final-price',
+    changeEl: 'cc-package-options',
     center: true
+  });
+  
+  $('.b-amount-output').bootstrapNumber({
+    upClass: 'b-plus',
+    downClass: 'b-minus',
+    resultClass: 'b-final-price span',
+    inputId: 'b-final-price',
+    changeEl: 'b-package-options',
+    center: true
+  });
+  
+  $('.payments .button').bind('click', function(){
+    $('.payments .button').removeClass('active');
+    $(this).addClass('active');
+    var tgt = $(this).attr('data-target');
+    var tohide = $(".payment-tab").hide();
+    $(tgt).show();
+    return false;
   });
  	 	
 });

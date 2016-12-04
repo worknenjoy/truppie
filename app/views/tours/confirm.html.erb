@@ -1,7 +1,6 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
 <div class="container">
-	<%= form_tag confirm_presence_tour_path, :method => 'post' do %>
 	<div class="row">
 		<div class="col-xs-12 spaced-smallest">
 			<hr class="hr-primary" />
@@ -34,163 +33,250 @@
                 </ul>
             </div>
         </div>
-        <div class="container">
-        	<h4 class="spaced-down">Seus dados e pagamento</h4>
+        <%= form_tag confirm_presence_tour_path, :method => 'post' do %>
+        <div class="row">
+          <%= render 'layouts/payment_type' %>          
         </div>
-        <div class="col-md-8">
-            <div class="card font-card-small">
-                <div class="card-header">
-                    <h4 class="panel-title">Dados do usuário</h4>
-                </div>
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="spaced-down">
-                              <small>* Os dados do usuário precisam ser os mesmos que do titular do cartão</small>
-                            </div>
-                            <div class="form-group">
-                            	<%= hidden_field_tag :id, @tour %>
-                            	<%= hidden_field_tag :method, "CREDIT_CARD" %>
-                            	<label for="fullname">Nome Completo</label>
-					            <%= text_field_tag :fullname, nil, placeholder: "Mesmo do cartão de crédito", required: true, class: "form-control" %>
-                            </div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                            	<label for="fullname">Data de nascimento</label>
-					            <%= text_field_tag :birthdate, nil, placeholder: "dd/mm/aaaa", required: true, class: "form-control" %>
-                            </div>
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                            	<label for="cpf_number">Número do CPF</label>
-					            <%= text_field_tag :cpf_number, nil, placeholder: "Sem pontos ou traços", required: true, class: "form-control" %>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card font-card-small">
-                <div class="card-header">
-                    <h4>Dados para pagamento</h4>
-                    <img src="http://i76.imgup.net/accepted_c22e0.png">
-                </div>
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="form-group form-card-number">
-                                <label for="cardNumber">Número do cartão</label>
-                                <div class="input-group">
-                                    <%= text_field_tag :number, nil, placeholder: "Número do cartão válido", required: true, class: "form-control" %>
-                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-7 col-md-7">
-                            <div class="form-group">
-                                <label for="expMonth">Data de expiração</label>
-                                <div class="pull-left col-xs-6 pl-ziro">
-                                    <%= text_field_tag :expiration_month, nil, placeholder: "MM", required: true, class: "form-control" %>
-                                </div>
-                                <div class="col-xs-6 pl-ziro">
-                                    <%= text_field_tag :expiration_year, nil, placeholder: "AA", required: true, class: "form-control" %>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-5 col-md-5 pull-right">
-                            <div class="form-group">
-                                <label for="cvCode">Código</label>
-                                <%= text_field_tag :cvc, nil, placeholder: "CV", required: true, class: "form-control" %>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <% if @packagename %>
-                          <small>pacote</small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
-                          <h2 class="spaced-smallest"><%= raw @tour.final_price(@final_price) %></h2>
-                          <%= hidden_field_tag :value, @final_price %>
-                        <% else %>
-                            <% if @tour.packages.any? and !@tour.value %>
-                              <span class="label label-warning spaced-smallest">Escolha uma opção de pagamento:</span>
-                              <div class="package-options">
-                              <% @tour.packages.each_with_index do |p, i| %>
-                              <label class="radio package-item-confirm">
-                                <% if i == 0 %>
-                                <%= radio_button_tag :value, p.value, selected: "selected" %>
-                                <% else %>
-                                <%= radio_button_tag :value, p.value %>
-                                <% end %>
-                                <%= p.name %>
-                                <h4><strong><%= raw p.price %></strong></h4>
-                              </label>
-                              <% end %>
+        <div class="payment-tab" id="payment-creditcard">
+          <div class="container">
+          	<h4 class="spaced-down">Seus dados e pagamento</h4>
+          </div>
+          <div class="col-md-4">
+              <div class="card font-card-small">
+                  <div class="card-header">
+                      <h4 class="panel-title">Dados do usuário</h4>
+                  </div>
+                  <div class="card-block">
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <div class="spaced-down">
+                                <small>* Os dados do usuário precisam ser os mesmos que do titular do cartão</small>
                               </div>
-                            <% else %>
-                              <%= hidden_field_tag :value, @tour.value %>
-                            <% end %>
-                          <% end %>                        
+                              <div class="form-group">
+                              	<%= hidden_field_tag :id, @tour %>
+                              	<%= hidden_field_tag :method, "CREDIT_CARD" %>
+                              	<label for="fullname">Nome Completo</label>
+  					            <%= text_field_tag :fullname, nil, placeholder: "Mesmo do cartão de crédito", required: true, class: "form-control" %>
+                              </div>
+                          </div>
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                              	<label for="fullname">Data de nascimento</label>
+  					            <%= text_field_tag :birthdate, nil, placeholder: "dd/mm/aaaa", required: true, class: "form-control" %>
+                              </div>
+                          </div>
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                              	<label for="cpf_number">Número do CPF</label>
+  					            <%= text_field_tag :cpf_number, nil, placeholder: "Sem pontos ou traços", required: true, class: "form-control" %>
+                              </div>
+                          </div>
                       </div>
-                    </div>
-                    <div class="row">
-                    	<div class="col-xs-12">
-                    		<div style="width: 100%">
-                    			<label for="installment_count">Parcelas</label>
-                    			<%= select_tag :installment_count, options_for_select((1..12).map{ |u| ["#{u}X", u] }), class: "form-control" %>
-                    		</div>
-                    	</div>
-                    </div>
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <div class="spaced-smallest">
-                          <div class="form-inline">
-                            <div class="form-group">
-                              <label>Quantidade</label>
-                                <div class="input-group">
-                                  <div class="form-group">
-                                    <%= number_field_tag :amount, 1, class: 'form-control full-width amount-output bfh-number', min: 1, max: @tour.availability  %>
+                  </div> 
+              </div>
+          </div>
+          <div class="col-md-8">
+              <div class="card font-card-small">
+                  <div class="card-header">
+                      <h4>Dados para pagamento</h4>
+                      <img src="http://i76.imgup.net/accepted_c22e0.png">
+                  </div>
+                  <div class="card-block">
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <div class="form-group form-card-number">
+                                  <label for="cardNumber">Número do cartão</label>
+                                  <div class="input-group">
+                                      <%= text_field_tag :number, nil, placeholder: "Número do cartão válido", required: true, class: "form-control" %>
+                                      <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                  </div>
+                              </div>                            
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-4 col-md-8">
+                              <label for="expMonth">Data de expiração</label>
+                              <div class="form-group">
+                                  <div class="col-xs-7 pl-ziro">
+                                      <%= text_field_tag :expiration_month, nil, placeholder: "MM", required: true, class: "form-control" %>
+                                  </div>
+                                  <div class="col-xs-5 pl-ziro">
+                                      <%= text_field_tag :expiration_year, nil, placeholder: "AA", required: true, class: "form-control" %>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-xs-8 col-md-4 pull-right">
+                              <div class="form-group">
+                                  <label for="cvCode">Código</label>
+                                  <%= text_field_tag :cvc, nil, placeholder: "CV", required: true, class: "form-control" %>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <% if @packagename %>
+                            <small>pacote</small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
+                            <h2 class="spaced-smallest"><%= raw @tour.final_price(@final_price) %></h2>
+                            <%= hidden_field_tag :value, @final_price %>
+                          <% else %>
+                              <% if @tour.packages.any? and !@tour.value %>
+                                <span class="label label-warning spaced-smallest">Escolha uma opção de pacote:</span>
+                                <div class="cc-package-options">
+                                <% @tour.packages.each_with_index do |p, i| %>
+                                <label class="radio package-item-confirm">
+                                  <% if i == 0 %>
+                                  <%= radio_button_tag :value, p.value, selected: "selected" %>
+                                  <% else %>
+                                  <%= radio_button_tag :value, p.value %>
+                                  <% end %>
+                                  <%= p.name %>
+                                  <h4><strong><%= raw p.price %></strong></h4>
+                                </label>
+                                <% end %>
+                                </div>
+                              <% else %>
+                                <%= hidden_field_tag :value, @tour.value %>
+                              <% end %>
+                            <% end %>                        
+                        </div>
+                      </div>
+                      <div class="row">
+                      	<div class="col-xs-12">
+                      		<div style="width: 100%">
+                      			<label for="installment_count">Parcelas</label>
+                      			<%= select_tag :installment_count, options_for_select((1..12).map{ |u| ["#{u}X", u] }), class: "form-control" %>
+                      		</div>
+                      	</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                          <div class="spaced-smallest">
+                            <div class="form-inline">
+                              <div class="form-group">
+                                <label>Quantidade</label>
+                                  <div class="input-group">
+                                    <div class="form-group">
+                                      <%= number_field_tag :amount, 1, class: 'form-control full-width cc-amount-output bfh-number', min: 1, max: @tour.availability  %>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                          <div class="col-md-6">
+                            <div style="margin-top: 20px;">
+                              <div class="price mediafix">
+                                <h4 style="text-align: right">Total:</h4>
+                              </div>
+                              <div class="price mediafix">
+                                <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw @tour.final_price(@final_price) %></h3>
+                                <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' %>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+  	            <div class="col-md-12">
+  	            	<%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
+  	            </div>
+  	            <textarea style="display:none;" id="public_key">-----BEGIN PUBLIC KEY-----
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAonuGqRVzIpKya3PVLj22
+  RyBfy67voV7/KBJmB5MhCG3W2BuU2ftrahU0CUekXuTir6m0l0J+mqyoPjZE/GoE
+  BX8Glv4R7J77OkQEqMXST6rKGGjZnIaHy77zNGdqvJA347+0MzeNiIb4vDPL6lMg
+  fiaaqN8Dat+FuCVOZFsay56CnpBbQca62Xe5B5Oh7SxuZvm0VVbsyXXkiTLYRKQp
+  n+8kstWY0XJz84j1GAEubUBGkblNjypXAULyfm1n55oPlhbev4t2B5DjY4GPQa7I
+  HJTzkpqUA3bIinu3M3fcDxQY0Mlog1YSpuuspOJdRbtw2nBrEgF36wpEdU32OlEC
+  lwIDAQAB
+  -----END PUBLIC KEY-----</textarea>
+      <textarea id="encrypted_value" style="display:none"></textarea>
+          	</div>
+          </div>
+        </div>
+        <% end %>
+        <%= form_tag confirm_presence_tour_path, :method => 'post' do %>
+          <div class="payment-tab hidden" id="payment-boleto">
+            <%= hidden_field_tag :method, "BOLETO" %>
+            <div class="col-md-12">
+                <div class="card font-card-small">
+                    <div class="card-header">
+                        <h4>Dados para pagamento</h4>
                     </div>
-                    <div class="row">
-                      <div class="col-xs-4">
-                        <div class="price mediafix">
-                          <h4>Total:</h4>
+                    <div class="card-block">
+                        <div class="col-xs-12">
+                          <% if @packagename %>
+                            <small>pacote</small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
+                            <h2 class="spaced-smallest"><%= raw @tour.final_price(@final_price) %></h2>
+                            <%= hidden_field_tag :value, @final_price %>
+                          <% else %>
+                              <% if @tour.packages.any? and !@tour.value %>
+                                <span class="label label-warning spaced-smallest">Escolha uma opção de pacote:</span>
+                                <div class="b-package-options">
+                                <% @tour.packages.each_with_index do |p, i| %>
+                                <label class="radio package-item-confirm">
+                                  <% if i == 0 %>
+                                  <%= radio_button_tag :value, p.value, selected: "selected" %>
+                                  <% else %>
+                                  <%= radio_button_tag :value, p.value %>
+                                  <% end %>
+                                  <%= p.name %>
+                                  <h4><strong><%= raw p.price %></strong></h4>
+                                </label>
+                                <% end %>
+                                </div>
+                              <% else %>
+                                <%= hidden_field_tag :value, @tour.value %>
+                              <% end %>
+                            <% end %>                        
                         </div>
-                      </div>
-                      <div class="col-xs-8">
-                        <div class="price mediafix">
-                          <h3 class="final-price"><%= raw @tour.final_price(@final_price) %></h3>
-                          <%= hidden_field_tag :final_price, @final_price %>
+                        <div class="row">
+                          <div class="col-xs-12 col-md-6">
+                            <div class="spaced-smallest">
+                              <div class="form-inline">
+                                <div class="form-group">
+                                  <label>Quantidade</label>
+                                    <div class="input-group">
+                                      <div class="form-group">
+                                        <%= number_field_tag :amount, 1, class: 'form-control full-width b-amount-output bfh-number', min: 1, max: @tour.availability  %>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div style="margin-top: 20px;">
+                                <div class="price mediafix">
+                                  <h4 style="text-align: right">Total:</h4>
+                                </div>
+                                <div class="price mediafix">
+                                  <h3 class="b-final-price pull-right" style="font-size: 3em;"><%= raw @tour.final_price(@final_price) %></h3>
+                                  <%= hidden_field_tag :final_price, @final_price, id:'b-final-price' %>
+                                </div>
+                              </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
                 </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
+                  </div>
+                  <textarea style="display:none;" id="public_key">-----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAonuGqRVzIpKya3PVLj22
+    RyBfy67voV7/KBJmB5MhCG3W2BuU2ftrahU0CUekXuTir6m0l0J+mqyoPjZE/GoE
+    BX8Glv4R7J77OkQEqMXST6rKGGjZnIaHy77zNGdqvJA347+0MzeNiIb4vDPL6lMg
+    fiaaqN8Dat+FuCVOZFsay56CnpBbQca62Xe5B5Oh7SxuZvm0VVbsyXXkiTLYRKQp
+    n+8kstWY0XJz84j1GAEubUBGkblNjypXAULyfm1n55oPlhbev4t2B5DjY4GPQa7I
+    HJTzkpqUA3bIinu3M3fcDxQY0Mlog1YSpuuspOJdRbtw2nBrEgF36wpEdU32OlEC
+    lwIDAQAB
+    -----END PUBLIC KEY-----</textarea>
+        <textarea id="encrypted_value" style="display:none"></textarea>
+              </div>
             </div>
-            <div class="row">
-	            <div class="col-md-12">
-	            	<%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
-	            </div>
-	            <textarea style="display:none;" id="public_key">-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAonuGqRVzIpKya3PVLj22
-RyBfy67voV7/KBJmB5MhCG3W2BuU2ftrahU0CUekXuTir6m0l0J+mqyoPjZE/GoE
-BX8Glv4R7J77OkQEqMXST6rKGGjZnIaHy77zNGdqvJA347+0MzeNiIb4vDPL6lMg
-fiaaqN8Dat+FuCVOZFsay56CnpBbQca62Xe5B5Oh7SxuZvm0VVbsyXXkiTLYRKQp
-n+8kstWY0XJz84j1GAEubUBGkblNjypXAULyfm1n55oPlhbev4t2B5DjY4GPQa7I
-HJTzkpqUA3bIinu3M3fcDxQY0Mlog1YSpuuspOJdRbtw2nBrEgF36wpEdU32OlEC
-lwIDAQAB
------END PUBLIC KEY-----</textarea>
-    <textarea id="encrypted_value" style="display:none"></textarea>
-        	</div>
         </div>
+        <% end %>
         <div class="container">
 	        <div class="row">
 	        		<div class="col-md-6">
@@ -220,6 +306,5 @@ lwIDAQAB
 	        		</div>
 	        	</div>
         	</div>
-        <% end %>
 	</div>
 </div>

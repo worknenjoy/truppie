@@ -119,7 +119,7 @@ class OrdersController < ApplicationController
         if order.payment_method == "BOLETO"
           is_status_to_ignore = [].include?(@status)
         else
-          is_status_to_ignore = ["PAYMENT.WAITING", "PAYMENT.IN_ANALYSIS"].include?(@status)          
+          is_status_to_ignore = ["PAYMENT.WAITING", "PAYMENT.IN_ANALYSIS"].include?(@status)
         end
         
         if !is_in_the_history

@@ -31,6 +31,7 @@
  *= require confirmeds-pane 
  *= require user-ribbon       
  *= require welcome
+ *= require payment-methods 
  *= require tours 
  */
 

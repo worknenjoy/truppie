@@ -21,6 +21,10 @@ class Order < ActiveRecord::Base
     
   end
   
+  def payment_link
+    "https://checkout.moip.com.br/boleto/#{self.payment}"
+  end
+  
   def full_desc_status(status)
     case status
     when 'CREATED'

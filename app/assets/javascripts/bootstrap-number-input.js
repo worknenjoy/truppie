@@ -28,6 +28,7 @@
             downClass: 'default',
             resultClass: 'default',
             inputId: 'default',
+            changeEl: 'default',
             center: true
         }, options);
         
@@ -36,11 +37,10 @@
             var self = $(this);
             var clone = self.clone();
             var initial_price = $('.' + settings.resultClass).text();
-            
-            $('.package-options').bind('change', function(e){
-              $('.final-price span').text($(e.target).val());
-              $('#final_price').val($(e.target).val());
-              $('.amount-output').val(1);
+            $('.' + settings.changeEl).bind('change', function(e){
+              $('.' + settings.resultClass).text($(e.target).val());
+              $('#' + settings.inputId).val($(e.target).val());
+              clone.val(1);
               initial_price = $(e.target).val();
             });
 

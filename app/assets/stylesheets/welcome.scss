@@ -127,6 +127,10 @@ h5 {
   overflow: hidden;
 }
 
+.hidden {
+  display: none;
+}
+
 .card-inverse.card-success a {
   color: $brand-primary-darker;
   text-decoration: none;
