@@ -14,13 +14,18 @@
                 <p><%= @confirm_status_message %></p>
                 <% if @status == "success" %>
                 <p>Você pode acompanhar o status em <%= link_to 'minhas truppies', orders_path %>. </p>
-                <% end %>
+                
                 <% if @payment_method == "BOLETO" %>
                   <p>Você escolheu pagar por boleto bancário, para finalizar sua confirmação da reserva, é necessário realizar o pagamento</p>
                   <p>
                     <a href="<%= @payment_link %>" target="_blank" class="btn btn-primary-outline">gerar boleto bancário</a>
                   </p>
                   <small>Você receberá o boleto também por e-mail</small>                    
+                <% end %>
+                <% else %>
+                  <p>Não foi possível gerar o pagamento por boleto bancário.</p>
+                  <p><strong>Só é possível fazer a reserva até 3 dias antes do evento</strong></p>
+                  <p>Você pode ao invés disto <%= link_to "voltar para confirmação e pagar com cartão de crédito", confirm_tour_path(@tour) %></p>
                 <% end %>
               </footer>
             </blockquote>

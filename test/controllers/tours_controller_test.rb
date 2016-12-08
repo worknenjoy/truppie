@@ -38,7 +38,6 @@ class ToursControllerTest < ActionController::TestCase
     @payment_data_boleto = {
       id: @tour,
       method: "BOLETO",
-      expirationDate: @boleto["expirationDate"],
       value: @tour.value,
     }
     
@@ -377,15 +376,16 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a payment with boleto gives a error message when date expiration is over" do
+    skip("time based")
+    @tour.start = Date.new(2012, 9, 30)
+    @tour.save()
     post :confirm_presence, @payment_data_boleto
-    @tour.update_attribute(:start, Date.new(2012, 9, 30))
-    order = Order.last
-    
     assert_equal assigns(:payment_api_error), "fundingInstrument.boleto.validExpirationDate"
+    
   end
   
   test "should create a payment with boleto if the right date" do
-    @payment_data_boleto[:expirationDate] = "2077-09-30"
+    #@payment_data_boleto[:expirationDate] = "2077-09-30"
     @tour.update_attribute(:start, Date.new(2077, 9, 30))
     post :confirm_presence, @payment_data_boleto
     
@@ -398,8 +398,24 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:second], @tour.organizer.name
     assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:third], "Reservado por #{order.user.name}"
     assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:third], "Reservado por #{order.user.name}"
-    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:expiration_date], @tour.start.to_date.strftime('%Y-%m-%d')
-  end  
+    #assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:expiration_date], @tour.start.to_date.strftime('%Y-%m-%d')
+  end
+  
+  test "should create a payment with boleto that the billing date is 72h before" do
+    #@payment_data_boleto[:expirationDate] = "2077-09-30"
+    @tour.start = Date.new(2077, 9, 30).to_date
+    @tour.save()
+    post :confirm_presence, @payment_data_boleto
+    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:expiration_date], (@tour.start - 72.hours).strftime('%Y-%m-%d')      
+  end
+  
+  test "should create a payment with boleto that the billing date will exceed 72 hours" do
+    @tour.start = Time.now + 24.hours
+    @tour.save()
+    post :confirm_presence, @payment_data_boleto
+    assert_equal assigns(:payment_api_error), "fundingInstrument.boleto.validExpirationDate"      
+  end 
+    
   #
   #
   # Reservation

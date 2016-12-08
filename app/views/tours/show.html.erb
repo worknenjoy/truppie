@@ -8,9 +8,6 @@
 		<% else %>
 			<div class="placeholder-truppie-image"></div>
 		<% end %>
-		<div class="sized-3x">
-	    	<%= render partial: "layouts/confirmeds", locals: {tour: @tour} %>
-	    </div>
         <% if @tour.try(:value) %>
         <div class="ribbon base" style="text-align: right">
         	<span><%= raw @tour.price %></span>

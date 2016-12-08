@@ -61,12 +61,14 @@ class ToursController < ApplicationController
       installment_count: params[:installment_count]
     }
     
+    
     if @payment_method == "BOLETO"
+      
       payment_object_type = {
          funding_instrument: {
            method: @payment_data[:method],
            boleto: {
-             expirationDate: @tour.start.strftime('%Y-%m-%d'),
+             expirationDate: (@tour.start - 72.hours).strftime('%Y-%m-%d'),
              instructionLines: {
                 first: @tour.title,
                 second: @tour.organizer.name,
@@ -134,7 +136,6 @@ class ToursController < ApplicationController
           else
             if @payment_method == "BOLETO"
               @payment_api_success = payment
-              puts @payment_api_success.inspect
               @payment_api_success_url = @payment_api_success[:_links][:pay_boleto][:redirect_href]
             end
             
