@@ -376,11 +376,15 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a payment with boleto gives a error message when date expiration is over" do
-    skip("time based")
+    #skip("time based")
     @tour.start = Date.new(2012, 9, 30)
     @tour.save()
     post :confirm_presence, @payment_data_boleto
     assert_equal assigns(:payment_api_error), "fundingInstrument.boleto.validExpirationDate"
+    #puts ActionMailer::Base.deliveries[0].inspect
+    #assert_not ActionMailer::Base.deliveries[0].html_part.nil?
+    assert_equal ActionMailer::Base.deliveries.last.to, ['ola@truppie.com', 'organizer@mail.com']
+    assert_equal ActionMailer::Base.deliveries.last.subject, "Algo errado na tentativa de pagamento para a sua truppie - #{@tour.title}"
     
   end
   
@@ -413,7 +417,11 @@ class ToursControllerTest < ActionController::TestCase
     @tour.start = Time.now + 24.hours
     @tour.save()
     post :confirm_presence, @payment_data_boleto
-    assert_equal assigns(:payment_api_error), "fundingInstrument.boleto.validExpirationDate"      
+    assert_equal assigns(:payment_api_error), "fundingInstrument.boleto.validExpirationDate"
+    #puts ActionMailer::Base.deliveries[0].to.inspect
+    #assert_not ActionMailer::Base.deliveries[0].html_part.nil?
+    assert_equal ActionMailer::Base.deliveries.last.to, ['ola@truppie.com', 'organizer@mail.com']
+    assert_equal ActionMailer::Base.deliveries.last.subject, "Algo errado na tentativa de pagamento para a sua truppie - #{@tour.title}"
   end 
     
   #

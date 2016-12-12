@@ -183,6 +183,7 @@ class ToursController < ApplicationController
             @confirm_status_message = payment.errors[0].description
             @status = "danger"
             ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e o moip retornou #{payment.errors.inspect}").deliver_now
+            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento mas não foi possível devido a: #{@payment_api_error}", @tour).deliver_now
           end
         else
           @confirm_headline_message = "Não foi possível confirmar sua reserva"
