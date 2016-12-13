@@ -3,21 +3,27 @@
     <h3 class="light-heading" style="padding: 4px;">Guias</h3>
   </div>
 </div>
-
+<% guides.each_slice(2) do |part_guides| %>
 <div class="row">
-  <% guides.each do |g| %>
+  <% part_guides.each do |g| %>
   <div class="col-xs-12 col-md-6">
       <div class="card">
         <div class="card-block card-organizer">
           <div class="text-xs-center">
             <h4 class="card-title spaced-down">
-              <% if g.try(:logo) %>
-                <%= image_tag(g.logo, :alt => g.name, :width => '120', class: 'spaced-smallest') %><br />
-              <% else %>
-                <div>
-                <img width="120" src="https://avatars.io/instagram/username" class="spaced-smallest img-circle img-thumbnail" alt="avatar">
-                </div>
-              <% end %>
+              <% if g.picture.present? %>
+            <div>
+              <%= image_tag g.picture.url(:medium), width: 120, class: 'spaced-smallest' %>
+            </div>
+            <% elsif g.try(:logo) %>
+              <div>
+              <%= image_tag g.try(:logo), width: 120, class: 'spaced-smallest' %>
+              </div>  
+            <% else %>
+              <div>
+              <img width="120" src="https://avatars.io/instagram/username" class="spaced-smallest img-circle img-thumbnail" alt="avatar">
+              </div>
+            <% end %>
               <%= link_to organizer_path(g) do %>
                   <strong><%= g.name %> </strong>              
               <% end %>
@@ -57,3 +63,4 @@
   </div>
   <% end %>
 </div>
+<% end %>
