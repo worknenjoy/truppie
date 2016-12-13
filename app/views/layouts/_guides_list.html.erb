@@ -13,15 +13,21 @@
             <h4 class="card-title spaced-down">
               <% if g.picture.present? %>
             <div>
-              <%= image_tag g.picture.url(:square), width: 120, height: 120, class: 'spaced-smallest img-circle' %>
+              <%= link_to g.website do %>
+                <%= image_tag g.picture.url(:square), width: 120, height: 120, class: 'spaced-smallest img-circle' %>
+              <% end %>
             </div>
             <% elsif g.try(:logo) %>
               <div>
-              <%= image_tag g.try(:logo), height: 120, class: 'spaced-smallest' %>
+                <%= link_to g.website do %>
+                  <%= image_tag g.try(:logo), height: 120, class: 'spaced-smallest' %>
+                <% end %>
               </div>  
             <% else %>
               <div>
-              <img width="120" src="https://avatars.io/instagram/username" class="spaced-smallest img-circle img-thumbnail" alt="avatar">
+                <%= link_to g.website do %>
+                  <img width="120" src="https://avatars.io/instagram/username" class="spaced-smallest img-circle img-thumbnail" alt="avatar">
+                <% end %>
               </div>
             <% end %>
               <%= link_to organizer_path(g) do %>
