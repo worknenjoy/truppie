@@ -45,9 +45,9 @@
 		                        <i class="fa fa-facebook"></i> facebook
 		                    </a>
 		                    <% end %>
-		                    <% if @organizer.twitter %>
+		                    <% if !@organizer.twitter.empty? %>
 		                    <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @organizer.twitter %>">
-		                        <i class="fa fa-twitter"></i>
+		                        <i class="fa fa-twitter"></i> twitter
 		                    </a>
 		                    <% end %>
 		                </div>
