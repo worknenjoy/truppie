@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h3 class="light-heading" style="padding: 4px;">Guias</h3>
+  </div>
+</div>
+
+<div class="row">
+  <% guides.each do |g| %>
+  <div class="col-xs-12 col-md-6">
+      <div class="card">
+        <div class="card-block card-organizer">
+          <div class="text-xs-center">
+            <h4 class="card-title spaced-down">
+              <% if g.try(:logo) %>
+                <%= image_tag(g.logo, :alt => g.name, :width => '120', class: 'spaced-smallest') %><br />
+              <% else %>
+                <div>
+                <img width="120" src="https://avatars.io/instagram/username" class="spaced-smallest img-circle img-thumbnail" alt="avatar">
+                </div>
+              <% end %>
+              <%= link_to organizer_path(g) do %>
+                  <strong><%= g.name %> </strong>              
+              <% end %>
+            </h4>
+              <p class="card-text spaced-down"><%= g.description %></p>
+              <% if g.website %>
+              <%= link_to g.website, class: 'btn btn-primary-outline btn-sm' do %>
+                <i class="fa fa-external-link"></i> entrar no site
+              <% end %>
+            <% end %>
+            <% if g.email %>
+            <a class="btn btn-primary-outline btn-sm" href="mailto:<%= g.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
+            <% end %>
+            <div class="hovercard spaced-default">
+              <div class="bottom">
+                <% if g.instagram %>
+                          <a class="btn btn-info btn-instagram btn-sm" href="<%= g.instagram %>">
+                              <i class="fa fa-instagram"></i> instagram
+                          </a>
+                          <% end %>
+                          <% if g.facebook %>
+                          <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
+                             href="<%= g.facebook %>">
+                              <i class="fa fa-facebook"></i> facebook
+                          </a>
+                          <% end %>
+                          <% if g.twitter %>
+                          <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= g.twitter %>">
+                              <i class="fa fa-twitter"></i>
+                          </a>
+                          <% end %>
+                      </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <% end %>
+</div>

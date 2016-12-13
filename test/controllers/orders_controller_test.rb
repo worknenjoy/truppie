@@ -225,6 +225,25 @@ class OrdersControllerTest < ActionController::TestCase
     assert ActionMailer::Base.deliveries[0].html_part.to_s.index("boleto/PAY-55LJ77AT4JTN"), "should have payment link"
   end
   
+  test "should not receive payment link when is authorized" do
+    #skip("successfull post")
+    
+    order = Order.create(:status => 'PAYMENT.AUTHORIZED', :payment => @payment_boleto, :user => User.last, :tour => Tour.last, :payment_method => "BOLETO")
+    
+    @post_params_boleto[:event] = "PAYMENT.AUTHORIZED"
+    @post_params_boleto[:resource][:payment][:status] = "AUTHORIZED"
+    @request.env['RAW_POST_DATA'] = @post_params_boleto
+    post :webhook, {}
+    assert_not_nil assigns(:status_data)
+    assert_response :success
+    
+    #puts ActionMailer::Base.deliveries[0].html_part
+    order_link = "https://sandbox.moip.com.br/v2/payments/#{order.payment}"
+    
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_not ActionMailer::Base.deliveries[0].html_part.to_s.index("boleto/PAY-55LJ77AT4JTN"), "should not have payment link"
+  end
+  
   test "should receive a post with successfull parameters using a real returned object (email not receiving after a webhook from moip)" do
     #skip("successfull post")
     

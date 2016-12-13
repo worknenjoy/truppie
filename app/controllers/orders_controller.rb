@@ -39,14 +39,14 @@ class OrdersController < ApplicationController
     
   def webhook
     request_raw = request.raw_post()
-    puts request_raw
+    #puts request_raw
     if !request_raw.empty?
       if request_raw.is_a? Hash
         request_raw_json = JSON.parse(request_raw.to_json)
       else
         request_raw_json = JSON.parse(request.raw_post())
       end
-      puts request_raw_json
+      #puts request_raw_json
       @event = request_raw_json["event"]
       
       if !@event.empty?

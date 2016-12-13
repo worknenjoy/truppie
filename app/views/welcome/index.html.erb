@@ -237,12 +237,14 @@
 								<span class="label label-info">daqui a <%= time_ago_in_words(t.start) %></span>
 							</span>
 						</li>
+						<% if !t.where.name.blank? %>
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">Onde?</span>
 							<span class="twPc-StatValue">
 								<%= t.where.name %> 
 							</span>
 						</li>
+						<% end %>
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block">Que horas?</span>
 							<span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
@@ -260,21 +262,12 @@
 			            		<% end %>
 							</span>
 						</li>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Duração total</span>
-							<span class="twPc-StatValue">
-								<%= t.how_long %>
-							</span>
-						</li>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Dificuldade</span>
-							<span class="twPc-StatValue"><%= t.level %></span>
-						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<% end %>
+		<%= render partial: 'layouts/guides_list', locals: {guides: @organizers} %>
 	</div>
 </div>
 <% end %>

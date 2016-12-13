@@ -4,7 +4,7 @@
 
 <p><%= raw(@status[:mail_second_line]) %></p>
 
-<% if @order.payment_method == "BOLETO" %>
+<% if @order.payment_method == "BOLETO" and !@order.status_history.include?("PAYMENT.AUTHORIZED") %>
   <p><a href="https://checkout.moip.com.br/boleto/<%= @order.payment %>">Clique aqui para gerar o boleto</a></p>
 <% end %>
 
