@@ -13,7 +13,7 @@
             <h4 class="card-title spaced-down">
               <% if g.picture.present? %>
             <div>
-              <%= image_tag g.picture.url(:square), width: 120, height: 120, class: 'spaced-smallest' %>
+              <%= image_tag g.picture.url(:square), width: 120, height: 120, class: 'spaced-smallest img-circle' %>
             </div>
             <% elsif g.try(:logo) %>
               <div>
