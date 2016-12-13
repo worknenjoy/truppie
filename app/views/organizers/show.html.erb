@@ -10,7 +10,7 @@
 					<h4 class="card-title spaced-down">
 						<% if @organizer.picture.present? %>
 						<div>
-							<%= image_tag @organizer.picture.url(:medium), width: 120, class: 'spaced-smallest img-circle' %>
+							<%= image_tag @organizer.picture.url(:square), height: 180, class: 'spaced-smallest img-circle' %>
 						</div>
 						<% elsif @organizer.try(:logo) %>
 							<div>
