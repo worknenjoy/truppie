@@ -163,9 +163,9 @@
 	</div>
 </div>
 </div>
-<% if @tours.any? %>
 <div class="intro-idea spaced-down bg-gray">
 	<div class="container">
+	  <% if @tours.any? %>
 		<div class="row">
 			<div class="col-xs-12">
 				<h3 class="light-heading" style="padding: 4px;">Próximas truppies</h3>
@@ -267,10 +267,10 @@
 			</div>
 		</div>
 		<% end %>
+		<% end %>
 		<%= render partial: 'layouts/guides_list', locals: {guides: @organizers} %>
 	</div>
 </div>
-<% end %>
 <div class="container">
 	<div class="row">
 		<div class="col-md-7">
