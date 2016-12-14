@@ -25,6 +25,26 @@ class Order < ActiveRecord::Base
     "https://checkout.moip.com.br/boleto/#{self.payment}"
   end
   
+  def fees
+    headers = {
+      :content_type => 'application/json',
+      :authorization => Rails.application.secrets[:moip_auth]
+    }
+    response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{self.payment}", headers
+    json_data = JSON.parse(response)
+    
+    puts json_data.inspect
+    
+    if json_data.nil?
+      false  
+    end
+    {
+      fee: json_data["amount"]["fees"],
+      liquid: json_data["amount"]["liquid"],
+      total: json_data["amount"]["total"]
+    }
+  end
+  
   def full_desc_status(status)
     case status
     when 'CREATED'

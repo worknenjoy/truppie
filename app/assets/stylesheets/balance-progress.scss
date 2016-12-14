@@ -1,0 +1,133 @@
+/*Design from Dribbble shot by Cesar Zeppini*/
+/*http://dribbble.com/shots/1201397-Dashboard-Elements*/
+
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*Thanks @shaw
+http://codepen.io/shshaw/pen/gEiDt*/
+
+.Absolute-Center {
+  margin: auto;
+  
+}
+
+.Absolute-Center.is-Fixed {
+  
+}
+
+.balanceBox {
+  background-color: #fff;
+  border-radius: 3px;
+  color: #96adbd;
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  height: 192px;
+  overflow: hidden;
+  position: relative;
+  width: 362px;
+}
+
+.headerBox {
+  background-color: #f9fafc;
+  height: 47px;
+  top: 0;
+  width: 100%;
+}
+
+.balanceHeader {
+  font: inherit;
+  left: 40px;
+  line-height: 47px;
+  position: absolute;
+  text-transform: uppercase;
+}
+
+.headerIcon {
+  font-size: 16px;
+  left: -25px;
+  position: absolute;
+  display: inline-block;
+}
+
+.divider {
+  background-color: #ebf0f4;
+  border: none;
+  height: 1px;
+  position: absolute;
+  top: 47px;
+  width: 100%
+}
+
+.meterContainer {
+  overflow: display;
+  height: 78px;
+  width: 300px;
+  position: absolute;
+  top: 79px;
+  left: 31px;
+}
+
+.meterBackground {
+  background-color: #e9f1f4;
+  border-radius: 32px;
+  height: 32px;
+  width: 300px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.meterBar {
+  background-color: #ea5c50;
+  border-radius: 32px;
+  display: block;
+  height: 100%;
+  width: 75%;
+  position: relative;
+}
+
+meter {
+  display: none;
+}
+
+.progressValue {
+  background-color: #38b3b1;
+  border-radius: 2px;
+  color: #fff;
+  font-family: 'Montsserat', sans-serif;
+  height: 31px;
+  right: -25px;
+  line-height: 31px;
+  position: absolute;
+  text-align: center;
+  top: -46px;
+  width: 50px;
+  z-index: 2;
+}
+
+/*Triangluar tip on numerical indicator*/
+.progressValue:before {
+  background-color: #38b3b1;
+  border-radius: 1px;
+  content: "";
+  height: 10px;
+  left: 20px;
+  position: absolute;
+  transform: rotate(45deg);
+  top: 25px;
+  width: 10px;
+  z-index: 3;
+}

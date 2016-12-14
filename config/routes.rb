@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   post 'webhook', to: 'orders#webhook'
   get 'new_webhook', to: 'orders#new_webhook'
   
-  resources :organizers
+  resources :organizers do
+    member do
+      get 'manage', to: 'organizers#manage', as: 'manage'
+    end
+  end
   
   resources :tours do
     member do

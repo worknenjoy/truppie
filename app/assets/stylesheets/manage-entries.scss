@@ -1,0 +1,209 @@
+@import "bootstrap/variables";
+
+.manage-entries-bg {
+  background-color: $brand-primary-darker;
+  font-family: 'Roboto'
+}
+
+.manage-entries {
+  /* INTRO TEXT */
+  .manage-inspiration {
+    color: rgba(0, 0, 0, .4);
+    font-family: 'Arial';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 2;
+    margin: 32px auto 0;
+    text-align: center;
+    width: 900px;
+  }
+  
+  .manage-inspiration a {
+    color: rgba(0, 0, 0, .4);
+  }
+  
+  .manage-inspiration a:hover {
+    color: rgba(0, 0, 0, .6);
+  }
+  
+  /* CONTAINER */
+  .manage-container {
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, .2);
+    height: 800px;
+    margin: 32px auto;
+    overflow: hidden;
+    width: 900px;
+  }
+  
+  /* MAIN - RIGHT PART */
+  .manage-main {
+    display: inline-block;
+    height: 100%;
+    left: 0;
+    padding: 32px;
+    vertical-align: top;
+    width: auto;
+  }
+  
+  .manage-main h2 {
+    border-bottom: solid 1px #DDD;
+    padding-bottom: 48px;
+  }
+  
+  .manage-item {
+    margin: 48px 0;
+    position: relative;
+  }
+  
+  .manage-item-sign {
+    border-radius: 36px;
+    border: solid 4px #EEE;
+    color: #888;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 900;
+    height: 24px;
+    position: absolute;
+    text-align: center;
+    top: 4px;
+    width: 24px;
+  }
+  
+  .manage-item-name {
+    color: #444750;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 50px;
+  }
+  
+  .manage-item-description {
+    color: #999;
+    font-family: 'Roboto Mono';
+    font-size: 13px;
+    margin-left: 50px;
+  }
+  
+  .manage-item-price {
+    color: #8392C9;
+    font-size: 22px;
+    font-weight: 500;
+    position: absolute;
+    right: 0;
+    top: 6px;
+  }
+  
+  .manage-item-price.green {
+    color: #65CC33;
+  }
+  
+  /* SIDEBAR - LEFT PART */
+  .manage-sidebar {
+    background: #F2F2F2;
+    display: inline-block;
+    height: 100%;
+    left: 0;
+    padding: 32px;
+    width: 40%;
+  }
+  span.manage-plus {
+    background: transparent;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    transform: translate(250px, -64px);
+  }
+  
+  span.manage-plus::before {
+    background: #CCC;
+    border-radius: inherit;
+    content: "";
+    display: inline-block;
+    height: 32px;
+    transform: translate(16px, 2px);
+    width: 5px;
+  }
+  
+  span.manage-plus::after {
+    background: #CCC;
+    border-radius: inherit;
+    content: "";
+    display: inline-block;
+    height: 5px;
+    transform: translate(-2px, -11px);
+    width: 32px;
+  }
+  
+  span.manage-plus:hover::before,
+  span.manage-plus:hover::after {
+    background: #BBB;
+  }
+  
+  span.manage-plus:active::before,
+  span.manage-plus:active::after {
+    background: #AAA;
+  }
+  
+  .manage-card {
+    background: #FFF;
+    border-radius: 3px;
+    border: solid 3px #CCC;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 170px;
+    margin-bottom: 32px;
+    padding: 20px;
+    width: 300px;
+  }
+  
+  .manage-selected,
+  .manage-card:hover {
+    border: solid 4px #8392C9;
+  }
+  
+  .manage-card:active {
+    border: solid 4px #6574AB;
+  }
+  
+  .manage-card-visa,
+  .manage-card-amex,
+  .manage-card-mastercard {
+    border-radius: 0px;
+    height: 44px;
+    overflow: hidden;
+    position: relative;
+    width: 67px;
+  }
+  
+  .manage-card-visa img {
+    position: absolute;
+    transform: translate(-546px, -364px) scale(.5);
+  }
+  
+  .manage-card-amex img {
+    position: absolute;
+    transform: translate(-651px, -218px) scale(.5);
+  }
+  
+  .manage-card-mastercard img {
+    position: absolute;
+    transform: translate(-755px, -364px) scale(.5);
+  }
+  
+  .manage-card-number {
+    color: #666;
+    font-family: 'Roboto Mono';
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 16px;
+  }
+  
+  .manage-card-val {
+    color: #B3B3B3;
+    font-family: 'Roboto Mono';
+    margin-top: 12px;
+  }
+}

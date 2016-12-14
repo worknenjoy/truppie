@@ -54,5 +54,11 @@
      patch :update, id: @organizer_ready.id, organizer: @organizer 
      assert_redirected_to organizer_path(assigns(:organizer))
    end
+   
+   test "should admin organizer" do
+     get :manage, id: @organizer_ready.id
+     assert_response :success
+   end
+   
 # 
  end

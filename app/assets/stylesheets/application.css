@@ -29,10 +29,12 @@
  *= require bootstrap-typeahead 
  *= require bootsnipp-offer
  *= require confirmeds-pane 
- *= require user-ribbon       
+ *= require user-ribbon
+ *= require manage-entries
+ *= require balance-progress        
  *= require welcome
  *= require payment-methods 
- *= require tours 
+ *= require tours  
  */
 
 .full-width {
