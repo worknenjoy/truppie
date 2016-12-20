@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   
   resources :organizers do
     member do
-      get 'manage', to: 'organizers#manage', as: 'manage'
+      get 'manage/(:tour)', to: 'organizers#manage', as: 'manage'
     end
   end
   

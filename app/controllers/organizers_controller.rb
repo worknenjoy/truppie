@@ -73,6 +73,16 @@ class OrganizersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def manage
+    @organizer = Organizer.find(params[:id])
+    @tours = @organizer.tours.order('updated_at DESC')
+    if params[:tour].nil? 
+      @tour = @organizer.tours.first
+    else
+      @tour = Tour.find(params[:tour])  
+    end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

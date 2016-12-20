@@ -10,7 +10,7 @@ class TourTest < ActiveSupport::TestCase
   end
   
   test "one tour created" do
-     assert_equal 3, Tour.count
+     assert_equal 4, Tour.count
    end
    
    test "a user that create the tour" do
@@ -188,7 +188,13 @@ class TourTest < ActiveSupport::TestCase
      assert_equal '17', day
    end
    
-     
+   test "orders by truppie" do
+     tour_with_orders = tours(:with_orders)
+     orders = tour_with_orders.orders
+     assert_equal orders.size, 3
+     assert_equal tour_with_orders.total_earned_until_now, 3
+   end
+   
    test "simple payment call" do
      skip("calling moip sandbox several times")
      auth = Moip2::Auth::Basic.new(Rails.application.secrets[:moip_token], Rails.application.secrets[:moip_key])

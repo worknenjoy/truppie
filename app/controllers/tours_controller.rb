@@ -149,7 +149,7 @@ class ToursController < ApplicationController
             @reserved_increment = amount_reserved_now + @amount         
             @tour.update_attributes(:reserved => @reserved_increment)
             
-            @order = Order.create(
+            @order = @tour.orders.create(
               :source_id => order.id,
               :own_id => "truppie_#{@tour.id}_#{current_user.id}",
               :user => current_user,
@@ -161,7 +161,8 @@ class ToursController < ApplicationController
               :final_price => @final_price,
               :payment_method => @payment_method
             )
-            if @order.save() and @tour.save()
+            
+            if @tour.save()
               #flash[:order_id] = order.id
               @confirm_headline_message = "Sua presença foi confirmada para a truppie"
               @confirm_status_message = "Você receberá um e-mail sobre o processamento do seu pagamento"
@@ -288,7 +289,7 @@ class ToursController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_tour

@@ -2,20 +2,16 @@
 
 .manage-entries-bg {
   background-color: $brand-primary-darker;
-  font-family: 'Roboto'
 }
 
 .manage-entries {
   /* INTRO TEXT */
   .manage-inspiration {
     color: rgba(0, 0, 0, .4);
-    font-family: 'Arial';
     font-size: 18px;
     font-weight: 400;
     line-height: 2;
     margin: 32px auto 0;
-    text-align: center;
-    width: 900px;
   }
   
   .manage-inspiration a {
@@ -31,10 +27,8 @@
     background: #FFF;
     border-radius: 5px;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, .2);
-    height: 800px;
     margin: 32px auto;
     overflow: hidden;
-    width: 900px;
   }
   
   /* MAIN - RIGHT PART */
@@ -44,7 +38,7 @@
     left: 0;
     padding: 32px;
     vertical-align: top;
-    width: auto;
+    width: 58%;
   }
   
   .manage-main h2 {
@@ -76,14 +70,11 @@
     display: inline-block;
     font-size: 18px;
     font-weight: 500;
-    margin-left: 50px;
   }
   
   .manage-item-description {
     color: #999;
-    font-family: 'Roboto Mono';
     font-size: 13px;
-    margin-left: 50px;
   }
   
   .manage-item-price {
@@ -153,10 +144,8 @@
     box-sizing: border-box;
     cursor: pointer;
     display: block;
-    height: 170px;
     margin-bottom: 32px;
     padding: 20px;
-    width: 300px;
   }
   
   .manage-selected,
@@ -172,30 +161,12 @@
   .manage-card-amex,
   .manage-card-mastercard {
     border-radius: 0px;
-    height: 44px;
+    
     overflow: hidden;
-    position: relative;
-    width: 67px;
-  }
-  
-  .manage-card-visa img {
-    position: absolute;
-    transform: translate(-546px, -364px) scale(.5);
-  }
-  
-  .manage-card-amex img {
-    position: absolute;
-    transform: translate(-651px, -218px) scale(.5);
-  }
-  
-  .manage-card-mastercard img {
-    position: absolute;
-    transform: translate(-755px, -364px) scale(.5);
   }
   
   .manage-card-number {
     color: #666;
-    font-family: 'Roboto Mono';
     font-size: 20px;
     font-weight: 400;
     margin-top: 16px;
@@ -203,7 +174,6 @@
   
   .manage-card-val {
     color: #B3B3B3;
-    font-family: 'Roboto Mono';
     margin-top: 12px;
   }
 }

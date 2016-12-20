@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129201328) do
+ActiveRecord::Schema.define(version: 20161219173857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,14 @@ ActiveRecord::Schema.define(version: 20161129201328) do
 
   add_index "orders", ["tour_id"], name: "index_orders_on_tour_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "orders_tours", id: false, force: :cascade do |t|
+    t.integer "tour_id",  null: false
+    t.integer "order_id", null: false
+  end
+
+  add_index "orders_tours", ["order_id", "tour_id"], name: "index_orders_tours_on_order_id_and_tour_id", using: :btree
+  add_index "orders_tours", ["tour_id", "order_id"], name: "index_orders_tours_on_tour_id_and_order_id", using: :btree
 
   create_table "orders_users", id: false, force: :cascade do |t|
     t.integer "user_id",  null: false

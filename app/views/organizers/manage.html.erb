@@ -3,39 +3,51 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="manage-inspiration">
-          
+            Olá <strong><%= link_to @organizer.name, organizer_path(@organizer) %></strong> <br />
+            Aqui você verá o saldo das suas truppies
         </div>
         <div class="manage-container">
           <div class="manage-sidebar">
             <h2 class="spaced-down">Truppies</h2>
-        
+            <% @tours.each do |t| %>
             <div class="manage-card manage-selected">
               <div class="manage-card-visa">
-                <img src="https://d3ui957tjb5bqd.cloudfront.net/images/screenshots/products/3/39/39863/icon_preview_001-o.png" />
+                <% if t.try(:picture) %>
+                  <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name) %>
+                <% end %>
               </div>
-              <div class="manage-card-number">**** **** **** 2562</div>
-              <div class="manage-card-val">Valid Thru: 12/17</div>
-            </div>
-        
-            <div class="manage-card">
-              <div class="manage-card-amex">
-                <img src="https://d3ui957tjb5bqd.cloudfront.net/images/screenshots/products/3/39/39863/icon_preview_001-o.png" />
+              <div class="manage-card-number">
+                <%= link_to t.title, manage_organizer_path(@organizer, t)  %>
               </div>
-              <div class="mange-card-number">**** ****** 21001</div>
-              <div class="manage-card-val">Valid Thru: 07/19</div>
+              <div class="manage-card-val">
+                começa em <%= l(t.start, format: '%d de %B de %Y às %Hh%M') %> <br />
+                <strong>daqui a <%= time_ago_in_words(t.start) %></strong>
+              </div>
+              <div class="manage-card-val">
+                Valor: <%= raw t.final_price(t.value) %> <br />
+              </div>
             </div>
+            <% end %>
+            
           </div>
-        
+          <% if !@tour.nil? %>
           <div class="manage-main">
-            <%= render partial: 'layouts/balance' %>
-            <h2>Current Balance: <b>$ 4,729.<small>00</small></b></h2>
+            <h2><%= @tour.title %></h2>
+            <small>Valor total:</small>
+            <h2><strong><%= raw @tour.final_price(@tour.total_earned_until_now) %></strong></h2>
+            <% @tour.orders.each do |o| %>
             <div class="manage-item">
-              <div class="manage-item-sign">-</div>
-              <div class="manage-item-name">Apple iPhone 6, 64 GB</div>
-              <div class="manage-item-description">Electronics #343223 - 12 July,2015</div>
-              <div class="manage-item-price">$ 650.<small>00</small></div>
+              <%= raw(o.friendly_status(o.current_status)) %>
+              <div class="manage-item-name"><%= o.user.name %> - <small><%= o.amount %> reserva(s)</small></div>
+              <div class="manage-item-description">
+                <%= o.payment %> - <strong><%= o.payment_method %></strong><br />
+                <small>Feita em <%= l(o.created_at, format: '%d de %B de %Y às %Hh%M') %></small> 
+              </div>
+              <div class="manage-item-price"><%= raw @tour.final_price(o.final_price) %></div>
             </div>
+            <% end %>
           </div>
+          <% end %>
         </div>
       </div>
     </div>

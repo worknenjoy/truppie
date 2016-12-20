@@ -281,12 +281,18 @@ class ToursControllerTest < ActionController::TestCase
     assert_template "confirm_presence"
   end
   
+  test "should add order to confirmed presence" do 
+    post :confirm_presence, @payment_data
+    assert_equal Tour.find(@tour.id).orders.any?, true 
+  end
+  
   test "should not confirm presence with no payment" do
     post :confirm_presence, {id: @tour}
     assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
     assert_equal assigns(:confirm_status_message), "Você não forneceu dados suficientes para o pagamento"
     assert_equal assigns(:status), "danger"
     assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal Tour.find(@tour.id).orders.any?, false
   end
   
   test "should not confirm again" do

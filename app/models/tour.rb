@@ -13,6 +13,8 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :reviews, dependent: :destroy
   has_and_belongs_to_many :packages
   
+  has_and_belongs_to_many :orders
+  
   accepts_nested_attributes_for :packages
   
   validates_presence_of :title, :organizer, :where
@@ -122,6 +124,10 @@ class Tour < ActiveRecord::Base
       "<small>R$</small> " + self.value.to_s
     end
     end
+  end
+  
+  def total_earned_until_now
+    self.orders.sum(:final_price)
   end
   
   def available
