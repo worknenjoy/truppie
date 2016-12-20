@@ -130,6 +130,14 @@ class Tour < ActiveRecord::Base
     self.orders.sum(:final_price)
   end
   
+  def total_taxes
+    self.orders.to_a.sum(&:total_fee)
+  end
+  
+  def price_with_taxes
+    self.orders.to_a.sum(&:price_with_fee)
+  end
+  
   def available
     if self.availability
      self.availability - self.reserved

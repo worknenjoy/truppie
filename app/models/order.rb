@@ -45,6 +45,14 @@ class Order < ActiveRecord::Base
     }
   end
   
+  def total_fee
+    self.fees[:fee]
+  end
+  
+  def price_with_fee
+    self.fees[:liquid]
+  end
+  
   def full_desc_status(status)
     case status
     when 'CREATED'

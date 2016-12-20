@@ -33,8 +33,7 @@
           <% if !@tour.nil? %>
           <div class="manage-main">
             <h2><%= @tour.title %></h2>
-            <small>Valor total:</small>
-            <h2><strong><%= raw @tour.final_price(@tour.total_earned_until_now) %></strong></h2>
+            <%= render partial: 'layouts/dash' %>
             <% @tour.orders.each do |o| %>
             <div class="manage-item">
               <%= raw(o.friendly_status(o.current_status)) %>

@@ -5,6 +5,7 @@ one:
   tour: morro 
   user: joana
   status: IN_ANALYSIS
+  final_price: 1
   price: 1
   amount: 1
   discount: 1
@@ -15,6 +16,7 @@ bol:
   tour: morro 
   user: joana
   status: IN_ANALYSIS
+  final_price: 1
   price: 1
   amount: 1
   discount: 1
@@ -26,6 +28,7 @@ two_reservation:
   tour: morro 
   user: alexandre
   status: IN_ANALYSIS
+  final_price: 1
   price: 1
   amount: 2
   discount: 1
@@ -37,6 +40,7 @@ one_reservation:
   user: ciclano
   status: IN_ANALYSIS
   price: 1
+  final_price: 1
   amount: 1
   discount: 1
   payment: PAY-32LJ77AT4JNL

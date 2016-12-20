@@ -1,0 +1,24 @@
+<ul class="dash-list">
+    <li id="dash-item--1" class="dash-item dash-item--published">
+        <div class="dash-item__header">
+            <h3 class="dash-item__title">Balanço desta truppie</h3>
+        </div>
+        <div class="dash-item__content">
+            
+                        <ul class="quiz-results">
+                <li class="quiz-results__item quiz-results__item--views">
+                    <span class="quiz-results__number quiz-results__number--views"><%= raw @tour.final_price(@tour.total_earned_until_now) %></span>
+                    <div class="quiz-results__label">Arrecadado</div>
+                </li>
+                <li class="quiz-results__item quiz-results__item--finishes">
+                    <span class="quiz-results__number quiz-results__number--finishes"><%= raw @tour.final_price(@tour.total_taxes.to_f/100) %></span>
+                    <div class="quiz-results__label">Taxas</div>
+                </li>
+                <li class="quiz-results__item quiz-results__item--average-score">
+                    <span class="quiz-results__number quiz-results__number--average-score"><%= raw @tour.final_price(@tour.price_with_taxes.to_f/100) %></span>
+                    <div class="quiz-results__label">Total</div>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>

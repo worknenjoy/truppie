@@ -262,7 +262,6 @@ class ToursControllerTest < ActionController::TestCase
   test "should go to confirm presence with confirming price default" do
     get :confirm, {id: @tour}
     assert(assigns(:final_price))
-    
     assert_equal(assigns(:final_price), 40)
     
   end

@@ -1,0 +1,242 @@
+$green: darken(#58C88F, 10);
+$blue: darken(#5887C0, 7.5);
+$link: $blue;
+$fastInEaseOut: cubic-bezier(0.000, 0, .3, 1);
+
+.dash-list {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    list-style: none;
+    margin-left: 0;
+}
+
+.dash-item {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-content: flex-end;
+    padding: 1.2rem 1.4rem 1rem;
+    background: #fff;
+    list-style: none;
+    transition: all .5s;
+    margin: 0 0 0.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: all .2s $fastInEaseOut;
+    
+    @media (min-width: 500px) {
+        flex-basis: 100%;
+        margin: 0 2% 0.8rem 0;
+
+        &:nth-child(2n) {
+            margin-right: 0;
+        }
+    }
+
+    @media (min-width: 800px) {
+        flex-basis: 100%;
+        margin-right: 1.25%;
+
+        &:nth-child(2n) {
+            margin-right: 1.25%;
+        }
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+}
+
+.dash-item--published {
+    box-shadow: inset 4px 0 0 $green, 0 1px 0 rgba(0,0,0,.1);
+}
+
+.dash-item--draft {
+    box-shadow: inset 4px 0 0 lighten($green, 25%), 0 1px 0 rgba(0,0,0,.1);
+}
+
+.dash-item__header {
+    position: relative;
+    z-index: 99;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.dash-item__title {
+    font-size: 1rem;
+    padding: 0 24px 0.5rem 0;
+    margin: 0;
+}
+
+.dash-item__content {
+    padding: 1.8rem 0 0.375rem;
+    position: relative;
+    transition: all .2s $fastInEaseOut;
+}
+
+.dash-item__status {
+    font-size: .7rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #888;
+    position: absolute;
+}
+
+.dash-item__nav {
+    position: absolute;
+    right: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dash-item__nav__item {
+    display: inline-block;
+    font-size: 0.85rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-right: 10px;
+
+    &:last-of-type {
+        margin-right: 0;
+    }
+}
+
+.dash-item__nav--collapsible {
+    display: none;
+    position: absolute;
+    background: #fff;
+    bottom: auto;
+    right: auto;
+    top: 100%;
+    margin-top: 0.2rem;
+    transform: translate3d(0,0,0);
+    transition: all .2s $fastInEaseOut;
+    
+    .dash-item__nav__item {
+        padding: 0.4rem 0;
+    }
+    
+    
+}
+
+.dash-item__menu-action {
+    background: none;
+    border: none;
+    color: #444;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+   
+}
+
+.dash-item__menu-action__icon {
+    width: 24px;
+    height: 24px;
+    fill: #444;
+    transition: all .3s $fastInEaseOut;
+}
+
+.dash-item__menu-action__icon--bottom {
+    position: absolute;
+    left: 0;
+}
+
+.dash-list--focus-one {
+    background: #bcd4ce;
+    
+    .dash-item {
+        opacity: 0.675;
+    }
+    
+    .dash-item--menu-active {
+        transform: translate3d(0,-3px,0);
+        box-shadow: inset 4px 0 0 $green, 0 2px 2px rgba(0,0,0,.2);
+        opacity: 1;
+    }
+} 
+
+.dash-item--menu-active {
+    
+    .dash-item__menu-action__icon--bottom {
+        transform:  translateY(-15.5%);
+    }
+    .dash-item__menu-action__icon--top {
+        transform: rotateX(-180deg) translateY(0px);
+    }
+    
+    .dash-item__nav--collapsible {
+        display: block;
+        animation: slideInTop .25s $fastInEaseOut forwards;
+    }
+    
+    .dash-item__content {
+        opacity: 0.4;
+        transform: translate3d(0, 0.675rem, 0);
+    }
+    
+}
+
+
+.quiz-results {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.quiz-results__item {
+
+    margin: 0 2% 0 0;
+    padding: 0;
+    color: #454545;
+
+    @media (max-width:280px) {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 0.6rem;
+    }
+}
+
+.quiz-results__number {
+    font-size: 1.6rem;
+    line-height: 1;
+    position: relative;
+}
+
+.dash-item--draft .quiz-results__number {
+    opacity: 0.5;
+}
+
+.quiz-results__number--average-score {
+    color: darken($green, 8);
+}
+
+.quiz-results__label {
+    text-transform: uppercase;
+    font-size: .7rem;
+    font-weight: 300;
+    color: #888;
+}
+
+
+@keyframes slideInTop {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -20px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.twitter__username-link {
+  position: relative;
+  top: 2rem;
+}

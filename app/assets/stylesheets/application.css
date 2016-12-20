@@ -31,7 +31,8 @@
  *= require confirmeds-pane 
  *= require user-ribbon
  *= require manage-entries
- *= require balance-progress        
+ *= require balance-progress
+ *= require dash         
  *= require welcome
  *= require payment-methods 
  *= require tours  
