@@ -60,5 +60,20 @@
      assert_response :success
    end
    
+   test "should not admin organizer if is not the organizer owner and no admin" do
+     sign_out users(:alexandre)
+     sign_in users(:fulano)
+     get :manage, id: @organizer_ready.id
+     assert_equal flash[:notice], "Você não está autorizado a entrar nesta página"
+     assert_redirected_to root_url
+   end
+   
+   test "should admin organizer if is the organizer owner" do
+     sign_out users(:alexandre)
+     sign_in users(:joana)
+     get :manage, id: @organizer_ready.id
+     assert_response :success
+   end
+   
 # 
  end

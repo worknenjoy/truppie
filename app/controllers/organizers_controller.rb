@@ -1,11 +1,15 @@
 class OrganizersController < ApplicationController
   before_action :set_organizer, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
   
   def check_if_admin
-    
     allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+    
+    if params[:controller] == "organizers" and params[:action] == "manage"
+      organizer_id = params[:id]
+      allowed_emails.push Organizer.find(organizer_id).user.email
+    end
     
     unless allowed_emails.include? current_user.email
       flash[:notice] = "Você não está autorizado a entrar nesta página"
