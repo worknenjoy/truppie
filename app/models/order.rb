@@ -33,7 +33,7 @@ class Order < ActiveRecord::Base
     response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{self.payment}", headers
     json_data = JSON.parse(response)
     
-    puts json_data.inspect
+    logger.debug json_data.inspect
     
     if json_data.nil?
       false  
