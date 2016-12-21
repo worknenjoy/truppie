@@ -30,7 +30,7 @@ class Order < ActiveRecord::Base
       :content_type => 'application/json',
       :authorization => Rails.application.secrets[:moip_auth]
     }
-    response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{self.payment}", headers
+    response = ::RestClient.get "#{Rails.application.secrets[:moip_domain]}/payments/#{self.payment}", headers
     json_data = JSON.parse(response)
     
     logger.debug json_data.inspect
