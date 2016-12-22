@@ -1,0 +1,13 @@
+<% if organizer.picture.present? %>
+<div>
+  <%= image_tag organizer.picture.url(:square), height: 180, class: 'spaced-smallest img-circle' %>
+</div>
+<% elsif organizer.try(:logo) %>
+  <div>
+  <%= image_tag organizer.try(:logo), width: 120, class: 'spaced-smallest' %>
+  </div>  
+<% else %>
+  <div>
+  <img width="120" src="https://avatars.io/instagram/username" class="spaced-smallest img-circle img-thumbnail" alt="avatar">
+  </div>
+<% end %>

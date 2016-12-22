@@ -86,9 +86,6 @@ class OrganizersController < ApplicationController
     else
       @tour = Tour.find(params[:tour])  
     end
-    logger.debug @organizer
-    logger.debug @tours
-    logger.debug @tour 
   end
 
   private
