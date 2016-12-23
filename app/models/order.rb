@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
     
     if json_data.nil?
       false
-    elsif json_data["status"] == "AUTHORIZED"
+    elsif json_data["status"] == "AUTHORIZED" || json_data["status"] == "SETTLED"
       {
         fee: json_data["amount"]["fees"],
         liquid: json_data["amount"]["liquid"],
