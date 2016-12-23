@@ -217,7 +217,7 @@
 				<h4 class="spaced-smallest"><strong>O que levar:</strong></h4>
 				<ul class="list-group spaced-down">
 					<% @tour.take.each do |t| %>
-					<li class="list-group-item"><%= t %></li>
+					<li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t %></li>
 					<% end %>
 				</ul>
 			</div>
@@ -227,7 +227,7 @@
         <h4 class="spaced-smallest"><strong>Bom saber:</strong></h4>
         <ul class="list-group spaced-down">
           <% @tour.goodtoknow.each do |t| %>
-          <li class="list-group-item"><%= t %></li>
+          <li class="list-group-item"><i class="fa fa-thumbs-o-up"></i> <%= t %></li>
           <% end %>
         </ul>
       </div>
@@ -239,7 +239,7 @@
 				<h4 class="spaced-smallest"><strong>O que inclui:</strong></h4>
 				<ul class="list-group spaced-down">
 					<% @tour.included.each do |t| %>
-					<li class="list-group-item"><%= t %></li>
+					<li class="list-group-item"><i class="fa fa-check-circle-o"></i> <%= t %></li>
 					<% end %>
 				</ul>
 			</div>
@@ -249,7 +249,7 @@
         <h4 class="spaced-smallest"><strong>O que não inclui:</strong></h4>
         <ul class="list-group spaced-down">
           <% @tour.nonincluded.each do |t| %>
-          <li class="list-group-item"><%= t %></li>
+          <li class="list-group-item"><i class="fa fa-ban"></i> <%= t %></li>
           <% end %>
         </ul>
       </div>
