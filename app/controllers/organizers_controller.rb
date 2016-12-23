@@ -80,12 +80,13 @@ class OrganizersController < ApplicationController
   
   def manage
     @organizer = Organizer.find(params[:id])
-    @tours = @organizer.tours.order('updated_at DESC')
+    @tours = @organizer.tours.order('created_at DESC')
     if params[:tour].nil? 
-      @tour = @organizer.tours.first
+      @tour = @organizer.tours.order('created_at DESC').first
     else
-      @tour = Tour.find(params[:tour])  
+      @tour = Tour.find(params[:tour])
     end
+    
   end
 
   private

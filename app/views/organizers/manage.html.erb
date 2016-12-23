@@ -10,7 +10,7 @@
           <div class="manage-sidebar">
             <h2 class="spaced-down">Truppies</h2>
             <% @tours.each do |t| %>
-            <div class="manage-card manage-selected">
+            <div class="manage-card <%= 'manage-selected' if t.id == @tour.id %>">
               <div class="manage-card-visa">
                 <% if t.try(:picture) %>
                   <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name) %>
