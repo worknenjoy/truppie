@@ -33,11 +33,18 @@ class Order < ActiveRecord::Base
     response = ::RestClient.get "#{Rails.application.secrets[:moip_domain]}/payments/#{self.payment}", headers
     json_data = JSON.parse(response)
     
-    logger.debug json_data.inspect
-    
     if json_data.nil?
       false  
     end
+    
+    if json_data["status"] != "AUTHORIZED"
+      {
+        fee: 0,
+        liquid: 0,
+        total: 0
+      }
+    end
+    
     {
       fee: json_data["amount"]["fees"],
       liquid: json_data["amount"]["liquid"],

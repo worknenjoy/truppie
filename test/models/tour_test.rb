@@ -255,7 +255,7 @@ class TourTest < ActiveSupport::TestCase
         :user => User.last,
         :tour => Tour.last
       )
-     assert_equal tour_to_order.total_taxes, 0
+     assert_equal tour_to_order.total_taxes, 124
      assert_equal tour_to_order.price_with_taxes, 876
    end
    
