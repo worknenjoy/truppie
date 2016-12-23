@@ -13,7 +13,7 @@ class OrganizersController < ApplicationController
     
     unless allowed_emails.include? current_user.email
       flash[:notice] = "Você não está autorizado a entrar nesta página"
-      redirect_to root_url
+      redirect_to new_user_session_path
     end 
   end
 

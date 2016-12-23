@@ -65,7 +65,7 @@
      sign_in users(:fulano)
      get :manage, id: @organizer_ready.id
      assert_equal flash[:notice], "Você não está autorizado a entrar nesta página"
-     assert_redirected_to root_url
+     assert_redirected_to new_user_session_path
    end
    
    test "should admin organizer if is the organizer owner" do
