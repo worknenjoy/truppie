@@ -192,7 +192,7 @@ class TourTest < ActiveSupport::TestCase
      tour_with_orders = tours(:with_orders)
      orders = tour_with_orders.orders
      assert_equal orders.size, 3
-     assert_equal tour_with_orders.total_earned_until_now, 3
+     assert_equal tour_with_orders.total_earned_until_now, 0
    end
    
    test "truppie with a order with total of taxes" do
