@@ -128,13 +128,13 @@ class Tour < ActiveRecord::Base
   
   def total_earned_until_now
     self.orders.to_a.delete_if {
-      |o| !(o.status_history.include? 'PAYMENT.AUTHORIZED' || o.status == 'PAYMENT.AUTHORIZED')
+      |o| !(o.status_history.include? 'PAYMENT.AUTHORIZED')
     }.sum(&:final_price)
   end
   
   def total_taxes
     self.orders.to_a.delete_if {
-      |o| !(o.status_history.include? 'PAYMENT.AUTHORIZED' || o.status == 'PAYMENT.AUTHORIZED')
+      |o| !(o.status_history.include? 'PAYMENT.AUTHORIZED')
     }.sum(&:total_fee)
   end
   
