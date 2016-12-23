@@ -34,10 +34,14 @@ class Order < ActiveRecord::Base
     json_data = JSON.parse(response)
     
     if json_data.nil?
-      false  
-    end
-    
-    if json_data["status"] != "AUTHORIZED"
+      false
+    elsif json_data["status"] == "AUTHORIZED"
+      {
+        fee: json_data["amount"]["fees"],
+        liquid: json_data["amount"]["liquid"],
+        total: json_data["amount"]["total"]
+      }
+    else
       {
         fee: 0,
         liquid: 0,
@@ -45,11 +49,6 @@ class Order < ActiveRecord::Base
       }
     end
     
-    {
-      fee: json_data["amount"]["fees"],
-      liquid: json_data["amount"]["liquid"],
-      total: json_data["amount"]["total"]
-    }
   end
   
   def total_fee
