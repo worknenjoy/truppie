@@ -7,7 +7,7 @@
             
                         <ul class="quiz-results">
                 <li class="quiz-results__item quiz-results__item--views">
-                    <span class="quiz-results__number quiz-results__number--views"><%= raw @tour.final_price(@tour.total_earned_until_now) %></span>
+                    <span class="quiz-results__number quiz-results__number--views"><%= raw @tour.final_price(@tour.total_earned_until_now.to_f/100) %></span>
                     <div class="quiz-results__label">Arrecadado</div>
                 </li>
                 <li class="quiz-results__item quiz-results__item--finishes">
