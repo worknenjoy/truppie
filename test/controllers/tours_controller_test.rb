@@ -68,7 +68,7 @@ class ToursControllerTest < ActionController::TestCase
       nonincluded: "",
       take: "",
       goodtoknow: "",
-      category: Category.last.id,
+      category_id: Category.last.id,
       tags: "",
       attractions: "",
       privacy: "",
@@ -208,7 +208,7 @@ class ToursControllerTest < ActionController::TestCase
    
    test "should create with new category" do
      #skip("creating tour with cat")
-     @basic_empty_tour_with_empty["category"] = "Nova"
+     @basic_empty_tour_with_empty["category_id"] = "Nova"
      post :create, tour: @basic_empty_tour_with_empty
      
      assert_equal Tour.last.category.name, "Nova"
