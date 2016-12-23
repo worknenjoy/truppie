@@ -127,7 +127,10 @@ class Tour < ActiveRecord::Base
   end
   
   def total_earned_until_now
-    self.orders.to_a.sum(&:final_price)
+    total = self.orders.to_a.delete_if do |o| 
+      (o.status =! "AUTHORIZED")
+    end
+    total.sum(&:final_price)
   end
   
   def total_taxes
