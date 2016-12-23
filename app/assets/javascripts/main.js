@@ -150,6 +150,7 @@ $(function(){
 		
 		if($('#new-cat').find('input').val().length) {
 			var option = new Option($('#new-cat').find('input').val(), $('#new-cat').find('input').val());
+			$('#tour_category_id').find(":selected").removeAttr("selected");
 			$('#tour_category_id').append($(option).attr('selected', 'selected'));
 			$('#tour_category_id').trigger('change');
 		}

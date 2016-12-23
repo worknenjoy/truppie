@@ -395,7 +395,7 @@ class ToursController < ApplicationController
       params[:tour][:end] = 4.hours.from_now
     end
     
-    current_cat = params[:tour][:category]
+    current_cat = params[:tour][:category_id]
     
     begin
       if current_cat
