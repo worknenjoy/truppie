@@ -89,7 +89,7 @@ class OrderTest < ActiveSupport::TestCase
       assert_equal payment[:amount][:fees], 0
       assert_equal payment[:fees][0].to_h, {:type=>"TRANSACTION", :amount=>0}
       fees = order.fees
-      assert_equal fees, {:fee=>124, :liquid=>876, :total=>1000}
+      assert_equal fees, {:fee=>0, :liquid=>1000, :total=>1000}
   end
   
   

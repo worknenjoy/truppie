@@ -135,7 +135,10 @@ class Tour < ActiveRecord::Base
   end
   
   def price_with_taxes
-    self.orders.to_a.sum(&:price_with_fee)
+    puts self.orders.to_a.inspect
+    self.orders.to_a.delete_if {
+      |o| !o.status_history.include? 'PAYMENT.AUTHORIZED'
+    }.sum(&:price_with_fee)
   end
   
   def available
