@@ -13,7 +13,6 @@
                 <%= link_to tour.title, tour_url(tour), class: 'user-link' %>
                 <span class="user-subhead"><%= tour.organizer.name %></span>
             </td>
-            <td></td>
             <td class="text-center">
                 <%= raw @tour.final_price(@tour.available_to_transfer_total.to_f/100) %>
             </td>

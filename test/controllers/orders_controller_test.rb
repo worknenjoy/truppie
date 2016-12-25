@@ -210,9 +210,10 @@ class OrdersControllerTest < ActionController::TestCase
     orders = Order.create(:status => 'PAYMENT.AUTHORIZED', :payment => @payment, :user => User.last, :tour => Tour.last)
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
-    puts ActionMailer::Base.deliveries[1].html_part
+    #puts ActionMailer::Base.deliveries[1].html_part
     assert_not ActionMailer::Base.deliveries.empty?
     assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?("http://localhost:3000/organizers/1041462269"), true
+    assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?(tours(:morro).to_param), true
   end
   
   test "should receive a post with successfull parameters from moip when is boleto" do
