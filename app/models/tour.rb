@@ -138,6 +138,18 @@ class Tour < ActiveRecord::Base
     self.orders.to_a.sum(&:price_with_fee)
   end
   
+  def available_to_transfer_liquid
+    self.orders.to_a.sum(&:available_liquid)
+  end
+  
+  def available_to_transfer_total
+    self.orders.to_a.sum(&:available_total)
+  end
+  
+  def available_to_transfer_taxes
+    self.orders.to_a.sum(&:available_with_taxes)
+  end
+  
   def available
     if self.availability
      self.availability - self.reserved

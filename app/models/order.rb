@@ -51,6 +51,31 @@ class Order < ActiveRecord::Base
     
   end
   
+  def settled
+    headers = {
+      :content_type => 'application/json',
+      :authorization => Rails.application.secrets[:moip_auth]
+    }
+    response = ::RestClient.get "#{Rails.application.secrets[:moip_domain]}/payments/#{self.payment}", headers
+    json_data = JSON.parse(response)
+    
+    if json_data.nil?
+      false
+    elsif json_data["status"] == "SETTLED"
+      {
+        fee: json_data["amount"]["fees"],
+        liquid: json_data["amount"]["liquid"],
+        total: json_data["amount"]["total"]
+      }
+    else
+      {
+        fee: 0,
+        liquid: 0,
+        total: 0
+      }
+    end
+  end
+  
   def total_fee
     self.fees[:fee]
   end
@@ -61,6 +86,18 @@ class Order < ActiveRecord::Base
   
   def price_with_fee
     self.fees[:liquid]
+  end
+  
+  def available_liquid
+    self.settled[:liquid]
+  end
+  
+  def available_total
+    self.settled[:total]
+  end
+  
+  def available_with_taxes
+    self.settled[:fee]
   end
   
   def full_desc_status(status)

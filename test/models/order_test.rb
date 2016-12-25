@@ -90,6 +90,7 @@ class OrderTest < ActiveSupport::TestCase
       assert_equal payment[:fees][0].to_h, {:type=>"TRANSACTION", :amount=>0}
       fees = order.fees
       assert_equal fees, {:fee=>0, :liquid=>0, :total=>0}
+      assert_equal order.settled, {:fee=>0, :liquid=>0, :total=>0}
   end
   
   
