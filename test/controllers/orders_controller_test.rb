@@ -206,9 +206,17 @@ class OrdersControllerTest < ActionController::TestCase
     assert_not ActionMailer::Base.deliveries.empty?
   end
   
+  test "should send the balance in each email confirmation send for the guide" do
+    orders = Order.create(:status => 'PAYMENT.AUTHORIZED', :payment => @payment, :user => User.last, :tour => Tour.last)
+    @request.env['RAW_POST_DATA'] = @post_params
+    post :webhook, {}
+    puts ActionMailer::Base.deliveries[1].html_part
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?("http://localhost:3000/organizers/1041462269"), true
+  end
+  
   test "should receive a post with successfull parameters from moip when is boleto" do
     #skip("successfull post")
-    
     order = Order.create(:status => 'PAYMENT.WAITING', :payment => @payment_boleto, :user => User.last, :tour => Tour.last, :payment_method => "BOLETO")
     
     #puts orders.inspect 

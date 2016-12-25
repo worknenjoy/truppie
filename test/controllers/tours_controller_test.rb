@@ -390,7 +390,6 @@ class ToursControllerTest < ActionController::TestCase
     #assert_not ActionMailer::Base.deliveries[0].html_part.nil?
     assert_equal ActionMailer::Base.deliveries.last.to, ['ola@truppie.com', 'organizer@mail.com']
     assert_equal ActionMailer::Base.deliveries.last.subject, "Algo errado na tentativa de pagamento para a sua truppie - #{@tour.title}"
-    
   end
   
   test "should create a payment with boleto if the right date" do
@@ -460,7 +459,7 @@ class ToursControllerTest < ActionController::TestCase
     
   end
   
-  test "should pass a valid birthdate" do
+  test "should pass a valid birthdate in credit card" do
     #skip("valid birthdate")
     post :confirm_presence, @payment_data
     payment_id = Order.last.payment
@@ -474,6 +473,15 @@ class ToursControllerTest < ActionController::TestCase
     json_data = JSON.parse(response)
     assert_equal '1988-10-10', json_data["fundingInstrument"]["creditCard"]["holder"]["birthdate"]
   end
+  
+  test "after the event send the balance to the guide" do
+    
+  end
+  
+  test "after 14 days after the evento send balance to the guide" do
+    
+  end
+
   
   # test "should destroy tour" do
     # assert_difference('Tour.count', -1) do

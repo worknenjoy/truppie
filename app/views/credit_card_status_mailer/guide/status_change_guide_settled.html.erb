@@ -16,6 +16,13 @@
 	<%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
 <% end %>
 
+<p>
+  Até o momento, este é o balanço das suas reservas:
+</p>
+<%= render partial: 'order_balance_account', locals: {tour: @tour} %>
+
+<p><%= link_to "Você pode ver seus balanços atualizados a qualquer momento clicando aqui",  manage_organizer_url(@organizer) %></p>
+
 <p>Não se esqueça que se tiver alguma dúvida, escreva pra gente: ola@truppie.com.</p> 
 
 <p>Até mais!</p>

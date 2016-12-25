@@ -1,6 +1,6 @@
 <h2>Olá, <%= @organizer.name %>!</h2>
 
-<p>O pagamento do explorador <%= @user.name %>(<%= @user.email %>) foi autorizado e sua reserva está oficialmente confirmada na truppie <%= @tour.title %>!</p>
+<p>O pagamento do explorador <strong><%= @user.name %>(<%= @user.email %>) </strong> foi autorizado e sua reserva está oficialmente confirmada na truppie <strong><%= @tour.title %></strong>!</p>
 
 <h4>Temos aqui um resumo do pedido do seu cliente:</h4>
 
@@ -13,6 +13,14 @@
 <% else %>
 	<%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
 <% end %>
+
+<p>
+  Até o momento, este é o balanço das suas reservas:
+</p>
+<%= render partial: 'order_balance', locals: {tour: @tour} %>
+
+<p><%= link_to "Você pode ver seus balanços atualizados a qualquer momento clicando aqui",  manage_organizer_url(@organizer) %></p>
+
 
 <p>Se tiver alguma dúvida, escreva pra gente: ola@truppie.com.</p> 
 

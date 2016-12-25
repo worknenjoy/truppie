@@ -1,0 +1,28 @@
+<table cellpadding="5" cellspacing="0" border="2" align="center">
+    <thead>
+        <tr>
+        <th><span>Truppie</span></th>
+        <th><span>Arrecadado</span></th>
+        <th><span>Taxas</span></th>
+        <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td width="30%">
+                <%= link_to tour.title, tour_url(tour), class: 'user-link' %>
+                <span class="user-subhead"><%= tour.organizer.name %></span>
+            </td>
+            <td></td>
+            <td class="text-center">
+                <%= raw tour.final_price(tour.total_earned_until_now.to_f/100) %>
+            </td>
+            <td width="20%">
+               <%= raw tour.final_price(tour.total_taxes.to_f/100) %>
+            </td>
+            <td class="text-center">
+              <h3><%= raw tour.final_price(tour.price_with_taxes.to_f/100) %></h3>
+            </td>
+        </tr>
+    </tbody>
+</table>

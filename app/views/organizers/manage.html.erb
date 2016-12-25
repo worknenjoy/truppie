@@ -12,12 +12,14 @@
             <% @tours.each do |t| %>
             <div class="manage-card <%= 'manage-selected' if t.id == @tour.id %>">
               <div class="manage-card-visa">
-                <% if t.try(:picture) %>
-                  <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name) %>
+                <%= link_to manage_organizer_path(@organizer, t) do %>
+                  <% if t.try(:picture) %>
+                    <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name) %>
+                  <% end %>
                 <% end %>
               </div>
               <div class="manage-card-number">
-                <%= link_to t.title, manage_organizer_path(@organizer, t)  %>
+                <%= link_to t.title, manage_organizer_path(@organizer, t) %>
               </div>
               <div class="manage-card-val">
                 começa em <%= l(t.start, format: '%d de %B de %Y às %Hh%M') %> <br />
@@ -34,6 +36,7 @@
           <div class="manage-main">
             <h2><%= @tour.title %></h2>
             <%= render partial: 'layouts/dash' %>
+            <h3>Reservas:</h3>
             <% @tour.orders.each do |o| %>
             <div class="manage-item">
               <%= raw(o.friendly_status(o.current_status)) %>
