@@ -36,7 +36,7 @@
           <div class="manage-main">
             <h2><%= @tour.title %></h2>
             <%= render partial: 'layouts/dash' %>
-            <h3>Reservas:</h3>
+            <h3><%= @tour.orders.count %> reserva(s):</h3>
             <% @tour.orders.each do |o| %>
             <div class="manage-item">
               <%= raw(o.friendly_status(o.current_status)) %>
