@@ -68,7 +68,7 @@ class ToursController < ApplicationController
          funding_instrument: {
            method: @payment_data[:method],
            boleto: {
-             expirationDate: (@tour.start - 72.hours).strftime('%Y-%m-%d'),
+             expirationDate: @tour.start.strftime('%Y-%m-%d'),
              instructionLines: {
                 first: @tour.title,
                 second: @tour.organizer.name,
@@ -133,6 +133,7 @@ class ToursController < ApplicationController
           
           if payment.try(:errors)
             @payment_api_error = payment["errors"][0]["path"]
+            @payment_api_error_msg = payment["errors"][0]["description"]
           else
             if @payment_method == "BOLETO"
               @payment_api_success = payment
@@ -184,7 +185,7 @@ class ToursController < ApplicationController
             @confirm_status_message = payment.errors[0].description
             @status = "danger"
             ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e o moip retornou #{payment.errors.inspect}").deliver_now
-            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento mas não foi possível devido a: #{@payment_api_error}", @tour).deliver_now
+            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento mas não foi possível devido a: #{@payment_api_error_msg}", @tour).deliver_now
           end
         else
           @confirm_headline_message = "Não foi possível confirmar sua reserva"
