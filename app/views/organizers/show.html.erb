@@ -59,19 +59,11 @@
         overflow: hidden;
         position: relative;
       }
-      <% if t.picture.present? %>
-      <%="#twPc-bg-#{t.id}" %> {
-        background-image: url('<%= t.picture.url(:large) %>');
-      }
-      <% elsif t.try(:photo) %>
-      <%="#twPc-bg-#{t.id}" %> {
-        background-image: url('<%= t.photo %>');
-      }
-      <% else %>
+      
       <%="#twPc-bg-#{t.id}" %> {
         background-color: #F15A29;
       }         
-      <% end %>
+      
     </style>
     <div class="twPc-div spaced-down">
         <h3 class="text-overlay-organizer">
