@@ -1,8 +1,8 @@
 <h2>Olá, <%= @organizer.name %>!</h2>
 
-<p>O pagamento do explorador <strong><%= @user.name %>(<%= @user.email %>) </strong> foi autorizado e sua reserva está oficialmente confirmada na truppie <strong><%= @tour.title %></strong>!</p>
+<p>O pagamento do explorador <strong><%= @user.name %></strong> (<%= @user.email %>) foi autorizado e sua reserva está oficialmente confirmada na truppie <strong><%= @tour.title %></strong>!</p>
 
-<h4>Temos aqui um resumo do pedido do seu cliente:</h4>
+<p>Temos aqui um resumo do pedido do seu cliente:</p>
 
 <% if !@order %>
 	<p class="lead">
