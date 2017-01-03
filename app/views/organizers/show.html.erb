@@ -75,111 +75,106 @@
 <div class="intro-idea spaced-down bg-gray">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12">
-				<h3 class="light-heading" style="padding: 4px;">Próximas truppies</h3>
-			</div>
-		</div>
-		<% @organizer.tours.nexts.each do |t| %>
-		<style>
-			.twPc-div {
-				overflow: hidden;
-				position: relative;
-			}
-			<% if t.picture.present? %>
-			<%="#twPc-bg-#{t.id}" %> {
-				background-image: url('<%= t.picture.url(:large) %>');
-			}
-			<% elsif t.try(:photo) %>
-			<%="#twPc-bg-#{t.id}" %> {
-				background-image: url('<%= t.photo %>');
-			}
-			<% else %>
-			<%="#twPc-bg-#{t.id}" %> {
-				background-color: #F15A29;
-			}					
-			<% end %>
-		</style>
-		<div class="twPc-div spaced-down">
-		    <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
-		    	<div class="ribbon base"><span><%= raw t.price %></span></div>
-		    <% end %>
-			<div>
-				<div class="twPc-button">
-		            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
-					
-		            <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
-		            	<i class="fa fa-ticket"></i> Saber mais
-		            <% end %>
-		            <!-- Twitter Button -->   
-				</div>
-		
-				<%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
-					<% if t.organizer.picture.present? %>
-						<%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
-					<% else %>
-						<%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
-					<% end %>					
-				<% end %>
-				
-		
-				<div class="twPc-divUser spaced-down">
-					<div class="twPc-divName">
-						<%= link_to(t.title, tour_path(t)) %>
-					</div>
-					<span>
-						<small>pela </small><strong><%= t.organizer.name %></strong>
-					</span>
-				</div>
-		
-				<div class="twPc-divStats">
-					<ul class="twPc-Arrange">
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Quando?</span>
-							<span class="twPc-StatValue">
-								<%= l(t.start, format: '%d de %B / %Y') %>
-							</span>
-							<span class="twPc-StatValue">
-								<span class="label label-info">daqui a <%= time_ago_in_words(t.start) %></span>
-							</span>
-						</li>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Onde?</span>
-							<span class="twPc-StatValue">
-								<%= t.where.name %> 
-							</span>
-						</li>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Que horas?</span>
-							<span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
-						</li>
-						<div class="sized-1x">
-					    	<%= render partial: "layouts/confirmeds", locals: {tour: t} %>
-					    </div>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">vagas</span>
-							<span class="twPc-StatValue">
-								<% if not t.soldout? %> 
-			            			<strong><%= t.available %></strong> vagas disponíveis
-			            		<% else %>
-			            			Não ha mais ticket disponiveis
-			            		<% end %>
-							</span>
-						</li>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Duração total</span>
-							<span class="twPc-StatValue">
-								<%= t.how_long %>
-							</span>
-						</li>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Dificuldade</span>
-							<span class="twPc-StatValue"><%= t.level %></span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<% end %>
+      <div class="col-xs-12">
+        <h3 class="light-heading" style="padding: 4px;">Próximas truppies</h3>
+      </div>
+    </div>
+    <% @organizer.tours.nexts.each do |t| %>
+    <style>
+      .twPc-div {
+        overflow: hidden;
+        position: relative;
+      }
+      <% if t.picture.present? %>
+      <%="#twPc-bg-#{t.id}" %> {
+        background-image: url('<%= t.picture.url(:large) %>');
+      }
+      <% elsif t.try(:photo) %>
+      <%="#twPc-bg-#{t.id}" %> {
+        background-image: url('<%= t.photo %>');
+      }
+      <% else %>
+      <%="#twPc-bg-#{t.id}" %> {
+        background-color: #F15A29;
+      }         
+      <% end %>
+    </style>
+    <div class="twPc-div spaced-down">
+        <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+          <div class="ribbon base"><span><%= raw t.price %></span></div>
+        <% end %>
+      <div>
+        <div class="twPc-button">
+                <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+          
+                <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
+                  <i class="fa fa-ticket"></i> Saber mais
+                <% end %>
+                <!-- Twitter Button -->   
+        </div>
+    
+        <%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
+          <% if t.organizer.picture.present? %>
+            <%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+          <% else %>
+            <%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+          <% end %>
+        <% end %>
+    
+        <div class="twPc-divUser spaced-down">
+          <div class="twPc-divName">
+            <%= link_to tour_path(t) do %>
+              <%= t.title %>
+            <% end %>
+          </div>
+          <span>
+            <%= link_to organizer_path(t.organizer) do %>
+            <small>pela </small><strong><%= t.organizer.name %></strong>
+            <% end %>
+          </span>
+        </div>
+    
+        <div class="twPc-divStats">
+          <ul class="twPc-Arrange">
+            <li class="twPc-ArrangeSizeFit">
+              <span class="twPc-StatLabel twPc-block">Quando?</span>
+              <span class="twPc-StatValue">
+                <%= l(t.start, format: '%d de %B / %Y') %>
+              </span>
+              <span class="twPc-StatValue">
+                <span class="label label-info">daqui a <%= time_ago_in_words(t.start) %></span>
+              </span>
+            </li>
+            <% if !t.where.name.blank? %>
+            <li class="twPc-ArrangeSizeFit">
+              <span class="twPc-StatLabel twPc-block">Onde?</span>
+              <span class="twPc-StatValue">
+                <%= t.where.name %> 
+              </span>
+            </li>
+            <% end %>
+            <li class="twPc-ArrangeSizeFit">
+              <span class="twPc-StatLabel twPc-block">Que horas?</span>
+              <span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
+            </li>
+            <div class="sized-1x">
+                <%= render partial: "layouts/confirmeds", locals: {tour: t} %>
+              </div>
+            <li class="twPc-ArrangeSizeFit">
+              <span class="twPc-StatLabel twPc-block">vagas</span>
+              <span class="twPc-StatValue">
+                <% if not t.soldout? %> 
+                        <strong><%= t.available %></strong> vagas disponíveis
+                      <% else %>
+                        Não ha mais ticket disponiveis
+                      <% end %>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <% end %>
 	</div>
 </div>
 <% end %>
