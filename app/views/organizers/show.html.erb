@@ -12,22 +12,22 @@
 						<strong><%= @organizer.name %> </strong>
 					</h4>
 				    <p class="card-text spaced-down"><%= @organizer.description %></p>
-				    <% if @organizer.website %>
+				    <% if !@organizer.website.empty? %>
 						<%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm' do %>
 							<i class="fa fa-external-link"></i> entrar no site
 						<% end %>
 					<% end %>
-					<% if @organizer.email %>
+					<% if !@organizer.email.empty? %>
 					<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
 					<% end %>
 					<div class="hovercard spaced-default">
 						<div class="bottom">
-							<% if @organizer.instagram %>
+							<% if !@organizer.instagram.empty? %>
 		                    <a class="btn btn-info btn-instagram btn-sm" href="<%= @organizer.instagram %>">
 		                        <i class="fa fa-instagram"></i> instagram
 		                    </a>
 		                    <% end %>
-		                    <% if @organizer.facebook %>
+		                    <% if !@organizer.facebook.empty? %>
 		                    <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
 		                       href="<%= @organizer.facebook %>">
 		                        <i class="fa fa-facebook"></i> facebook
@@ -59,11 +59,19 @@
         overflow: hidden;
         position: relative;
       }
-      
+      <% if t.picture.present? %>
+      <%="#twPc-bg-#{t.id}" %> {
+        background-image: url('<%= t.picture.url(:large) %>');
+      }
+      <% elsif t.try(:photo) %>
+      <%="#twPc-bg-#{t.id}" %> {
+        background-image: url('<%= t.photo %>');
+      }
+      <% else %>
       <%="#twPc-bg-#{t.id}" %> {
         background-color: #F15A29;
       }         
-      
+      <% end %>
     </style>
     <div class="twPc-div spaced-down">
         <h3 class="text-overlay-organizer">
