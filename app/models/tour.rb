@@ -21,6 +21,8 @@ class Tour < ActiveRecord::Base
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
   
+  scope :recents, lambda { where(status: 'P').order(:start).reverse }
+  
   scope :publisheds, -> { where(status: 'P') }
   
   # This method associates the attribute ":picture" with a file attachment
