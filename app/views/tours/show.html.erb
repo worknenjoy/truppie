@@ -48,7 +48,7 @@
 		            	às <%= l(@tour.start, format: '%Hh%M') %>
 	            		</strong>
             		</p>
-		            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tour.start) %></strong></p>
+		            <p class="date-body-when nomargin"><strong><%= friendly_when(@tour.start) %></strong></p>
 		          </div>
 		        </div>
 		        <div class="pull-xs-right tour-container">

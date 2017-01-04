@@ -23,7 +23,7 @@
               </div>
               <div class="manage-card-val">
                 começa em <%= l(t.start, format: '%d de %B de %Y às %Hh%M') %> <br />
-                <strong>daqui a <%= time_ago_in_words(t.start) %></strong>
+                <strong><%= friendly_when(t.start) %></strong>
               </div>
               <div class="manage-card-val">
                 Valor: <%= raw t.final_price(t.price) %> <br />

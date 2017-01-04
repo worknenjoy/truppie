@@ -13,4 +13,12 @@ module ApplicationHelper
     end
   end
   
+  def friendly_when(t)
+    if t > Time.now
+      "daqui a #{time_ago_in_words(t)}"
+    else
+      "#{time_ago_in_words(t)} atrás"
+    end
+  end
+  
 end

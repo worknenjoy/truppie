@@ -36,7 +36,7 @@
 				            		<%= l(@tours.first.start, format: '%A') %>
 			            		</strong>
 		            		</p>
-				            <p class="date-body-when nomargin"><strong>daqui a <%= time_ago_in_words(@tours.first.start) %></strong></p>
+				            <p class="date-body-when nomargin"><strong><%= friendly_when(@tours.first.start) %></strong></p>
 				          </div>
 			         	</div>
 			        </div>
@@ -234,7 +234,7 @@
 								<%= l(t.start, format: '%d de %B / %Y') %>
 							</span>
 							<span class="twPc-StatValue">
-								<span class="label label-info">daqui a <%= time_ago_in_words(t.start) %></span>
+								<span class="label label-info"><%= friendly_when(t.start) %></span>
 							</span>
 						</li>
 						<% if !t.where.name.blank? %>
