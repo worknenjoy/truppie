@@ -12,28 +12,28 @@
 						<strong><%= @organizer.name %> </strong>
 					</h4>
 				    <p class="card-text spaced-down"><%= @organizer.description %></p>
-				    <% if !@organizer.website.empty? %>
+				    <% if !@organizer.website.nil? %>
 						<%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm' do %>
 							<i class="fa fa-external-link"></i> entrar no site
 						<% end %>
 					<% end %>
-					<% if !@organizer.email.empty? %>
+					<% if !@organizer.email.nil? %>
 					<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
 					<% end %>
 					<div class="hovercard spaced-default">
 						<div class="bottom">
-							<% if !@organizer.instagram.empty? %>
+							<% if !@organizer.instagram.nil? %>
 		                    <a class="btn btn-info btn-instagram btn-sm" href="<%= @organizer.instagram %>">
 		                        <i class="fa fa-instagram"></i> instagram
 		                    </a>
 		                    <% end %>
-		                    <% if !@organizer.facebook.empty? %>
+		                    <% if !@organizer.facebook.nil? %>
 		                    <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
 		                       href="<%= @organizer.facebook %>">
 		                        <i class="fa fa-facebook"></i> facebook
 		                    </a>
 		                    <% end %>
-		                    <% if !@organizer.twitter.empty? %>
+		                    <% if !@organizer.twitter.nil? %>
 		                    <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @organizer.twitter %>">
 		                        <i class="fa fa-twitter"></i> twitter
 		                    </a>
