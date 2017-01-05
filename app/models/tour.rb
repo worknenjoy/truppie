@@ -59,7 +59,7 @@ class Tour < ActiveRecord::Base
     if time_diff_components[:day].to_i == 0
       I18n.l(self.start, format: '%d')
     else
-      "de #{I18n.l(self.start, format: '%d')} a #{I18n.l(self.end, format: '%d')}"
+      "<small>de</small> #{I18n.l(self.start, format: '%d')} <small> a </small> #{I18n.l(self.end, format: '%d')}"
     end
   end
   
