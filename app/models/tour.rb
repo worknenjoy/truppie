@@ -59,20 +59,7 @@ class Tour < ActiveRecord::Base
     if time_diff_components[:day].to_i == 0
       I18n.l(self.start, format: '%d')
     else
-      "#{I18n.l(self.start, format: '%d')} e #{I18n.l(self.end, format: '%d')}"
-    end
-  end
-  
-  def final_price(p)
-    case self.currency
-      when 'BRL'
-        "<small>R$</small> " + "<span>" + p.to_s + "</span>"
-      when 'US'
-        "<small>$</small> " + p.to_s
-      when 'EURO'
-        "<small>€</small> " + p.to_s
-      else
-        p
+      "de #{I18n.l(self.start, format: '%d')} a #{I18n.l(self.end, format: '%d')}"
     end
   end
   
@@ -117,14 +104,14 @@ class Tour < ActiveRecord::Base
     else
       case self.currency
       when 'BRL'
-        "<small>R$</small> " + self.value.to_s
+        "<small>R$</small> #{self.value}"
       when 'US'
-        "<small>$</small> " + self.value.to_s
+        self.value
       when 'EURO'
-        "<small>€</small> " + self.value.to_s
+        self.value
       else
-      "<small>R$</small> " + self.value.to_s
-    end
+        self.value
+      end
     end
   end
   

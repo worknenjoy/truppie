@@ -116,7 +116,7 @@
                         <div class="col-xs-12">
                           <% if @packagename %>
                             <small>pacote</small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
-                            <h2 class="spaced-smallest"><%= raw @tour.final_price(@final_price) %></h2>
+                            <h2 class="spaced-smallest"><%= raw final_price(@final_price) %></h2>
                             <%= hidden_field_tag :value, @final_price %>
                           <% else %>
                               <% if @tour.packages.any? and !@tour.value %>
@@ -169,7 +169,7 @@
                                 <h4 style="text-align: right">Total:</h4>
                               </div>
                               <div class="price mediafix">
-                                <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw @tour.final_price(@final_price) %></h3>
+                                <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
                                 <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' %>
                               </div>
                             </div>
@@ -207,7 +207,7 @@
                         <div class="col-xs-12">
                           <% if @packagename %>
                             <small>pacote</small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
-                            <h2 class="spaced-smallest"><%= raw @tour.final_price(@final_price) %></h2>
+                            <h2 class="spaced-smallest"><%= raw final_price(@final_price) %></h2>
                             <%= hidden_field_tag :value, @final_price %>
                           <% else %>
                               <% if @tour.packages.any? and !@tour.value %>
@@ -251,7 +251,7 @@
                                   <h4 style="text-align: right">Total:</h4>
                                 </div>
                                 <div class="price mediafix">
-                                  <h3 class="b-final-price pull-right" style="font-size: 3em;"><%= raw @tour.final_price(@final_price) %></h3>
+                                  <h3 class="b-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
                                   <%= hidden_field_tag :final_price, @final_price, id:'b-final-price' %>
                                 </div>
                               </div>

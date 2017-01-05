@@ -21,4 +21,20 @@ class ApplicationHelperTest < ActionView::TestCase
     time = Time.now + 20.hours
     assert_equal "daqui a aproximadamente 20 horas", friendly_when(time)
   end
+  
+  test "should return the price friendly" do
+    price = 2000
+    assert_equal "R$ 2,00", friendly_price(price)
+  end
+  
+  test "should return the price friendly when 0" do
+    price = 0
+    assert_equal "R$ 0", friendly_price(price)
+  end
+  
+  test "should return the final price formatted" do
+    price = 40
+    assert_equal "<small>R$</small> <span>40</span>", final_price(price)
+  end
+  
 end

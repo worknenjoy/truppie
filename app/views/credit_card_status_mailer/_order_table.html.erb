@@ -20,12 +20,12 @@
                 <%= order.payment %>
             </td>
             <td width="20%">
-               <h3><%= raw(order.tour.final_price(order.price)) %></h3>
+               <h3><%= raw final_price(order.price) %></h3>
                <% if order.tour.try(:packages) %>
                		<% order.tour.packages.each do |p| %>
-						<% if p.value == order.price %>
-							Pacote <%= p.name %>
-						<% end %>						                                       		
+        						<% if p.value == order.price %>
+        							Pacote <%= p.name %>
+        						<% end %>						                                       		
                		<% end %>
                <% end %>
             </td>
@@ -34,9 +34,9 @@
             </td>
             <td class="text-center">
               <% if order.final_price.nil? %>
-              <h4><%= raw(order.tour.final_price(order.price)) %></h4>
+              <h4><%= raw final_price(order.price) %></h4>
               <% else %>
-              <h4><%= raw(order.tour.final_price(order.final_price)) %></h4>
+              <h4><%= raw final_price(order.final_price) %></h4>
               <% end %>
             </td>
         </tr>

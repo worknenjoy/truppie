@@ -14,13 +14,13 @@
                 <span class="user-subhead"><%= tour.organizer.name %></span>
             </td>
             <td class="text-center">
-                <%= raw tour.final_price(tour.total_earned_until_now.to_f/100) %>
+                <%= raw friendly_price(tour.total_earned_until_now) %>
             </td>
             <td width="20%">
-               <%= raw tour.final_price(tour.total_taxes.to_f/100) %>
+               <%= raw friendly_price(tour.total_taxes) %>
             </td>
             <td class="text-center">
-              <h3><%= raw tour.final_price(tour.price_with_taxes.to_f/100) %></h3>
+              <h3><%= raw friendly_price(tour.price_with_taxes) %></h3>
             </td>
         </tr>
     </tbody>

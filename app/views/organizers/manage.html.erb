@@ -26,7 +26,7 @@
                 <strong><%= friendly_when(t.start) %></strong>
               </div>
               <div class="manage-card-val">
-                Valor: <%= raw t.final_price(t.price) %> <br />
+                Valor: <%= raw t.price %> <br />
               </div>
             </div>
             <% end %>
@@ -45,7 +45,7 @@
                 <%= o.payment %> - <strong><%= o.payment_method %></strong><br />
                 <small>Feita em <%= l(o.created_at, format: '%d de %B de %Y às %Hh%M') %></small> 
               </div>
-              <div class="manage-item-price"><%= raw @tour.final_price(o.final_price) %></div>
+              <div class="manage-item-price"><%= raw final_price(o.price) %></div>
             </div>
             <% end %>
           </div>

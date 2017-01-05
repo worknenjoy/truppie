@@ -52,7 +52,7 @@
                     <td> <span class="user-subhead"><%= link_to @order.tour.organizer.name, organizer_path(@order.tour.organizer) %></span></td>
                     <td class="text-center"> <%= raw(@order.friendly_status(@order.current_status)) %> </td>
                     <td> <%= @order.payment %> </td>
-                    <td ><h3><%= raw(@order.tour.final_price(@order.price)) %></h3> <% if @order.tour.try(:packages) %>
+                    <td ><h3><%= raw final_price(@order.price) %></h3> <% if @order.tour.try(:packages) %>
                     <% @order.tour.packages.each do |p| %>
                     <% if p.value == @order.price %>
                     Pacote <%= p.name %>
@@ -63,7 +63,7 @@
                       <h3><%= @amount %></h3>
                     </td>
                     <td class="text-center">
-                      <h3><%= raw(@order.tour.final_price(@final_price)) %></h3>
+                      <h3><%= raw final_price(@final_price) %></h3>
                     </td>
                   </tr>
                 </tbody>

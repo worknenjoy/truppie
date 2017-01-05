@@ -14,13 +14,13 @@
                 <span class="user-subhead"><%= tour.organizer.name %></span>
             </td>
             <td class="text-center">
-                <%= raw @tour.final_price(@tour.available_to_transfer_total.to_f/100) %>
+                <%= raw friendly_price(@tour.available_to_transfer_total) %>
             </td>
             <td width="20%">
-               <%= raw @tour.final_price(@tour.available_to_transfer_taxes.to_f/100) %>
+               <%= raw friendly_price(@tour.available_to_transfer_taxes) %>
             </td>
             <td class="text-center">
-              <h3><%= raw @tour.final_price(@tour.available_to_transfer_liquid.to_f/100) %></h3>
+              <h3><%= raw friendly_price(@tour.available_to_transfer_liquid) %></h3>
             </td>
         </tr>
     </tbody>
