@@ -79,7 +79,7 @@
 							</h4>
 						    <p class="card-text spaced-down"><%= @tour.organizer.description %></p>
 						    <% if @tour.organizer.website %>
-								<%= link_to @tour.organizer.website, class: 'btn btn-primary-outline btn-sm' do %>
+								<%= link_to @tour.organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
 									<i class="fa fa-external-link"></i> entrar no site
 								<% end %>
 							<% end %>
@@ -89,18 +89,18 @@
 							<div class="hovercard spaced-default">
 								<div class="bottom">
 									<% if @tour.organizer.instagram %>
-				                    <a class="btn btn-info btn-instagram btn-sm" href="<%= @tour.organizer.instagram %>">
+				                    <a target="_blank" class="btn btn-info btn-instagram btn-sm" href="<%= @tour.organizer.instagram %>">
 				                        <i class="fa fa-instagram"></i> instagram
 				                    </a>
 				                    <% end %>
 				                    <% if @tour.organizer.facebook %>
-				                    <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
+				                    <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher"
 				                       href="<%= @tour.organizer.facebook %>">
 				                        <i class="fa fa-facebook"></i> facebook
 				                    </a>
 				                    <% end %>
 				                    <% if @tour.organizer.twitter %>
-				                    <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @tour.organizer.twitter %>">
+				                    <a target="_blank" class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @tour.organizer.twitter %>">
 				                        <i class="fa fa-twitter"></i>
 				                    </a>
 				                    <% end %>

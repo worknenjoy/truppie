@@ -13,7 +13,7 @@
 					</h4>
 				    <p class="card-text spaced-down"><%= @organizer.description %></p>
 				    <% if !@organizer.website.nil? %>
-						<%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm' do %>
+						<%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
 							<i class="fa fa-external-link"></i> entrar no site
 						<% end %>
 					<% end %>
@@ -23,18 +23,18 @@
 					<div class="hovercard spaced-default">
 						<div class="bottom">
 							<% if !@organizer.instagram.nil? %>
-		                    <a class="btn btn-info btn-instagram btn-sm" href="<%= @organizer.instagram %>">
+		                    <a target="_blank" class="btn btn-info btn-instagram btn-sm" href="<%= @organizer.instagram %>">
 		                        <i class="fa fa-instagram"></i> instagram
 		                    </a>
 		                    <% end %>
 		                    <% if !@organizer.facebook.nil? %>
-		                    <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
+		                    <a target="_blank" btn btn-primary btn-facebook btn-sm" rel="publisher"
 		                       href="<%= @organizer.facebook %>">
 		                        <i class="fa fa-facebook"></i> facebook
 		                    </a>
 		                    <% end %>
 		                    <% if !@organizer.twitter.nil? %>
-		                    <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @organizer.twitter %>">
+		                    <a target="_blank" class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @organizer.twitter %>">
 		                        <i class="fa fa-twitter"></i> twitter
 		                    </a>
 		                    <% end %>
