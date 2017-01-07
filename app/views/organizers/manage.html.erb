@@ -3,8 +3,9 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="manage-inspiration">
-            Olá <strong><%= link_to @organizer.name, organizer_path(@organizer) %></strong> <br />
-            Aqui você verá o saldo das suas truppies
+            <p>Olá <strong><%= link_to @organizer.name, organizer_path(@organizer) %></strong> <br />
+            Aqui você verá o saldo das suas truppies</p>
+            <p><a href="#" id="js-trigger-overlay" class="btn btn-block btn-primary trigger-overlay"><strong>ver outras</strong></a></p>
         </div>
         <div class="manage-container">
           <div class="manage-sidebar overlay overlay-effect">
@@ -40,9 +41,8 @@
           </div>
           <% if !@tour.nil? %>
           <div class="manage-main">
-            <h2 style="clear: both; overflow: hidden;">
-              <p style="float: left; width: 60%"><%= @tour.title %></p>
-              <p style="float: right; width: 30%"><a href="#" id="js-trigger-overlay" class="btn btn-primary trigger-overlay">ver outras</a></p>
+            <h2>
+              <p><%= @tour.title %></p>
             </h2>
             <%= render partial: 'layouts/dash' %>
             <h3><%= @tour.orders.count %> reserva(s):</h3>

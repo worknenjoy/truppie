@@ -5,9 +5,19 @@
       .manage-entries {
         .manage-main {
           width: 100%;
+          h2 {
+            font-size: 21px;
+          }
         }
         .manage-sidebar {
           width: 100%;
+          padding: 3px;
+        }
+        .quiz-results {
+          display: block;
+          li {
+            margin-bottom: 20px;
+          }            
         }
       }
       .logo {
