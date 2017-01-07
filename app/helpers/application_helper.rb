@@ -23,7 +23,7 @@ module ApplicationHelper
   
   def friendly_price(p)
     if p > 0 
-      number_to_currency(p.to_f/1000, :unit => "R$")
+      number_to_currency(p.to_f/100, :unit => "R$")
     else
       number_to_currency(0, :unit => "R$", precision: 0)
     end
