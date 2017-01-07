@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require modernizr-custom
+//= require classie
+//= require overlay
 //= require wow
 //= require jquery.event.move
 //= require jquery.event.swipe

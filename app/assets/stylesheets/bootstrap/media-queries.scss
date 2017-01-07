@@ -2,6 +2,14 @@
 @include media-breakpoint-down(sm) {
   html {
     body {
+      .manage-entries {
+        .manage-main {
+          width: 100%;
+        }
+        .manage-sidebar {
+          width: 100%;
+        }
+      }
       .logo {
         width: 60%;
         .tagline {
@@ -99,6 +107,17 @@
   html body {
     .col-xs-12.intro-grid {
       height: 0;
+    }
+    .manage-entries {
+      .manage-main {
+        width: 58%;
+      }
+      .manage-sidebar {
+        width: 40%;
+      }
+      .bt-manage-all {
+        display: inline-block;
+      }
     }
     .logo {
       position: relative;

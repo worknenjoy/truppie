@@ -7,34 +7,43 @@
             Aqui você verá o saldo das suas truppies
         </div>
         <div class="manage-container">
-          <div class="manage-sidebar">
-            <h2 class="spaced-down">Truppies</h2>
-            <% @tours.each do |t| %>
-            <div class="manage-card <%= 'manage-selected' if t.id == @tour.id %>">
-              <div class="manage-card-visa">
-                <%= link_to manage_organizer_path(@organizer, t) do %>
-                  <% if t.try(:picture) %>
-                    <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name) %>
-                  <% end %>
+          <div class="manage-sidebar overlay overlay-effect">
+              <button type="button" class="close">Close</button>
+              <h2 class="spaced-down">Truppies</h2>
+              <nav>
+                <ul>
+                <% @tours.each do |t| %>
+                <li>
+                  <div class="manage-card <%= 'manage-selected' if t.id == @tour.id %>">
+                    <div class="manage-card-visa">
+                      <%= link_to manage_organizer_path(@organizer, t) do %>
+                        <% if t.try(:picture) %>
+                          <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name) %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="manage-card-number">
+                      <%= link_to t.title, manage_organizer_path(@organizer, t) %>
+                    </div>
+                    <div class="manage-card-val">
+                      começa em <%= l(t.start, format: '%d de %B de %Y às %Hh%M') %> <br />
+                      <strong><%= friendly_when(t.start) %></strong>
+                    </div>
+                    <div class="manage-card-val">
+                      Valor: <%= raw t.price %> <br />
+                    </div>
+                  </div>
+                </li>
                 <% end %>
-              </div>
-              <div class="manage-card-number">
-                <%= link_to t.title, manage_organizer_path(@organizer, t) %>
-              </div>
-              <div class="manage-card-val">
-                começa em <%= l(t.start, format: '%d de %B de %Y às %Hh%M') %> <br />
-                <strong><%= friendly_when(t.start) %></strong>
-              </div>
-              <div class="manage-card-val">
-                Valor: <%= raw t.price %> <br />
-              </div>
-            </div>
-            <% end %>
-            
+                </ul>
+              </nav>
           </div>
           <% if !@tour.nil? %>
           <div class="manage-main">
-            <h2><%= @tour.title %></h2>
+            <h2 style="clear: both; overflow: hidden;">
+              <p style="float: left; width: 60%"><%= @tour.title %></p>
+              <p style="float: right; width: 30%"><a href="#" id="js-trigger-overlay" class="btn btn-primary trigger-overlay">ver outras</a></p>
+            </h2>
             <%= render partial: 'layouts/dash' %>
             <h3><%= @tour.orders.count %> reserva(s):</h3>
             <% @tour.orders.each do |o| %>

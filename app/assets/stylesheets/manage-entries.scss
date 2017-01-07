@@ -98,7 +98,14 @@
     left: 0;
     padding: 32px;
     width: 40%;
+    .close {
+      display: none;
+    }
   }
+  .trigger-overlay {
+      display: none;
+  }
+      
   span.manage-plus {
     background: transparent;
     border-radius: 3px;

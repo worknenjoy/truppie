@@ -34,7 +34,8 @@
  *= require balance-progress
  *= require dash         
  *= require welcome
- *= require payment-methods 
+ *= require payment-methods
+ *= require overlay
  *= require tours  
  */
 

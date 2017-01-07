@@ -37,6 +37,8 @@ gem 'time_diff'
 gem 'timecop' 
 gem 'redis'
 
+gem 'bourbon'
+
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip-aws'
