@@ -42,7 +42,7 @@
           <% if !@tour.nil? %>
           <div class="manage-main">
             <h2>
-              <p><%= @tour.title %></p>
+              <%= link_to @tour.title, tour_path(@tour) %></p>
             </h2>
             <%= render partial: 'layouts/dash' %>
             <h3><%= @tour.orders.count %> reserva(s):</h3>

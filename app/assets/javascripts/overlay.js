@@ -1,8 +1,7 @@
 (function() {
   var triggerBttn = document.getElementById( 'js-trigger-overlay' ),
-        overlay = document.querySelector( 'div.overlay' ),
-        closeBttn = overlay.querySelector( 'button.close' );
-        transEndEventNames = {
+        overlay = document.querySelector( 'div.overlay' );
+        var transEndEventNames = {
       'WebkitTransition': 'webkitTransitionEnd',
                         'MozTransition': 'transitionend',
                         'OTransition': 'oTransitionEnd',
@@ -11,6 +10,9 @@
     },
     transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
     support = { transitions : Modernizr.csstransitions };
+    if(overlay) {
+      closeBttn = overlay.querySelector( 'button.close' );
+    }
 
   function toggleOverlay() {
       if( classie.has( overlay, 'open' ) ) {
@@ -34,7 +36,8 @@
       classie.add( overlay, 'open' );
     }
   }
-
-  triggerBttn.addEventListener( 'click', toggleOverlay );
-  closeBttn.addEventListener( 'click', toggleOverlay );
+  if(triggerBttn && closeBttn) {
+    triggerBttn.addEventListener( 'click', toggleOverlay );
+    closeBttn.addEventListener( 'click', toggleOverlay );
+  }
 })();

@@ -8,6 +8,14 @@
           h2 {
             font-size: 21px;
           }
+          .manage-item-name {
+            small {
+              display: block;
+            }
+          }
+          .manage-item-price {
+            position: static;
+          }
         }
         .manage-sidebar {
           width: 100%;
