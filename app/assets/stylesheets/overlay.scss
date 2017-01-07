@@ -22,7 +22,8 @@
         left: 0;
         background: rgba(#009ac9, 0.85);
         z-index: 9999;
-        overflow-y: auto;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
         nav{
             position:relative;
             top: 30%;
