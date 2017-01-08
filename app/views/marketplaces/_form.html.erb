@@ -1,0 +1,101 @@
+<%= form_for(@marketplace) do |f| %>
+  <% if @marketplace.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@marketplace.errors.count, "error") %> prohibited this marketplace from being saved:</h2>
+
+      <ul>
+      <% @marketplace.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :organizer_id %><br>
+    <%= f.text_field :organizer_id %>
+  </div>
+  <div class="field">
+    <%= f.label :bank_accounts %><br>
+    <%= f.text_field :bank_accounts %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+  <div class="field">
+    <%= f.label :person_name %><br>
+    <%= f.text_field :person_name %>
+  </div>
+  <div class="field">
+    <%= f.label :person_lastname %><br>
+    <%= f.text_field :person_lastname %>
+  </div>
+  <div class="field">
+    <%= f.label :document_type %><br>
+    <%= f.text_field :document_type %>
+  </div>
+  <div class="field">
+    <%= f.label :id_number %><br>
+    <%= f.text_field :id_number %>
+  </div>
+  <div class="field">
+    <%= f.label :id_type %><br>
+    <%= f.text_field :id_type %>
+  </div>
+  <div class="field">
+    <%= f.label :id_issuer %><br>
+    <%= f.text_field :id_issuer %>
+  </div>
+  <div class="field">
+    <%= f.label :id_issuerdate %><br>
+    <%= f.text_field :id_issuerdate %>
+  </div>
+  <div class="field">
+    <%= f.label :birthDate %><br>
+    <%= f.date_select :birthDate %>
+  </div>
+  <div class="field">
+    <%= f.label :street %><br>
+    <%= f.text_field :street %>
+  </div>
+  <div class="field">
+    <%= f.label :street_number %><br>
+    <%= f.text_field :street_number %>
+  </div>
+  <div class="field">
+    <%= f.label :complement %><br>
+    <%= f.text_field :complement %>
+  </div>
+  <div class="field">
+    <%= f.label :district %><br>
+    <%= f.text_field :district %>
+  </div>
+  <div class="field">
+    <%= f.label :zipcode %><br>
+    <%= f.text_field :zipcode %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br>
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :token %><br>
+    <%= f.text_field :token %>
+  </div>
+  <div class="field">
+    <%= f.label :account_id %><br>
+    <%= f.text_field :account_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

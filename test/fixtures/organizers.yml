@@ -24,6 +24,20 @@ mantiex:
   website: MyString
   facebook: MyString
   twitter: MyString
+  
+mkt:
+  name: Marketplace organizer
+  marketplace: one
+  market_place_active: true
+  description: Oferecendo passeios e outdoor lifestyle
+  members: alex_member, laura_member
+  rating: 3
+  user: joana 
+  where: placeone 
+  email: MyString
+  website: MyString
+  facebook: MyString
+  twitter: MyString
 
 # two:
   # name: MyString

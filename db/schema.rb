@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219173857) do
+ActiveRecord::Schema.define(version: 20170108190058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,22 +53,27 @@ ActiveRecord::Schema.define(version: 20161219173857) do
   add_index "attractions_wheres", ["where_id", "attraction_id"], name: "index_attractions_wheres_on_where_id_and_attraction_id", using: :btree
 
   create_table "bank_accounts", force: :cascade do |t|
-    t.string   "bankNumber"
-    t.string   "agencyNumber"
-    t.string   "agencyCheckNumber"
-    t.string   "accountNumber"
-    t.string   "accountCheckNumber"
-    t.string   "bankType"
+    t.string   "bank_number"
+    t.string   "agency_number"
+    t.string   "agency_check_number"
+    t.string   "account_number"
+    t.string   "account_check_number"
+    t.string   "bank_type"
     t.string   "doc_type"
     t.string   "doc_number"
     t.string   "fullname"
-    t.integer  "organizer_id"
-    t.string   "uid"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.boolean  "active"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "bank_accounts", ["organizer_id"], name: "index_bank_accounts_on_organizer_id", using: :btree
+  create_table "bank_accounts_marketplaces", id: false, force: :cascade do |t|
+    t.integer "marketplace_id",  null: false
+    t.integer "bank_account_id", null: false
+  end
+
+  add_index "bank_accounts_marketplaces", ["bank_account_id", "marketplace_id"], name: "bank_account_id_mktplace", using: :btree
+  add_index "bank_accounts_marketplaces", ["marketplace_id", "bank_account_id"], name: "mktplace_id_bank_account", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -106,6 +111,36 @@ ActiveRecord::Schema.define(version: 20161219173857) do
 
   add_index "languages_tours", ["language_id", "tour_id"], name: "index_languages_tours_on_language_id_and_tour_id", using: :btree
   add_index "languages_tours", ["tour_id", "language_id"], name: "index_languages_tours_on_tour_id_and_language_id", using: :btree
+
+  create_table "marketplaces", force: :cascade do |t|
+    t.integer  "organizer_id"
+    t.integer  "bank_account_id"
+    t.boolean  "active"
+    t.string   "person_name"
+    t.string   "person_lastname"
+    t.string   "document_type"
+    t.string   "document_number"
+    t.string   "id_number"
+    t.string   "id_type"
+    t.string   "id_issuer"
+    t.string   "id_issuerdate"
+    t.date     "birthDate"
+    t.string   "street"
+    t.string   "street_number"
+    t.string   "complement"
+    t.string   "district"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "token"
+    t.string   "account_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "marketplaces", ["bank_account_id"], name: "index_marketplaces_on_bank_account_id", using: :btree
+  add_index "marketplaces", ["organizer_id"], name: "index_marketplaces_on_organizer_id", using: :btree
 
   create_table "members", force: :cascade do |t|
     t.integer  "user_id"
@@ -164,7 +199,7 @@ ActiveRecord::Schema.define(version: 20161219173857) do
     t.string   "fulldesc"
     t.integer  "member_id"
     t.integer  "rating"
-    t.integer  "user_id",              null: false
+    t.integer  "user_id",                              null: false
     t.integer  "where_id"
     t.string   "email"
     t.string   "website"
@@ -172,8 +207,8 @@ ActiveRecord::Schema.define(version: 20161219173857) do
     t.string   "twitter"
     t.string   "instagram"
     t.string   "phone"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
@@ -198,8 +233,11 @@ ActiveRecord::Schema.define(version: 20161219173857) do
     t.string   "country"
     t.string   "token"
     t.string   "account_id"
+    t.boolean  "market_place_active",  default: false
+    t.integer  "marketplace_id"
   end
 
+  add_index "organizers", ["marketplace_id"], name: "index_organizers_on_marketplace_id", using: :btree
   add_index "organizers", ["member_id"], name: "index_organizers_on_member_id", using: :btree
   add_index "organizers", ["user_id"], name: "index_organizers_on_user_id", using: :btree
   add_index "organizers", ["where_id"], name: "index_organizers_on_where_id", using: :btree
@@ -384,10 +422,12 @@ ActiveRecord::Schema.define(version: 20161219173857) do
 
   add_foreign_key "attractions", "languages"
   add_foreign_key "attractions", "quotes"
-  add_foreign_key "bank_accounts", "organizers"
   add_foreign_key "confirmeds", "users"
+  add_foreign_key "marketplaces", "bank_accounts"
+  add_foreign_key "marketplaces", "organizers"
   add_foreign_key "members", "users"
   add_foreign_key "orders", "tours"
+  add_foreign_key "organizers", "marketplaces"
   add_foreign_key "organizers", "members"
   add_foreign_key "organizers", "users"
   add_foreign_key "organizers", "wheres"

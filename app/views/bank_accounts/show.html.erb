@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Marketplace:</strong>
+  <%= @bank_account.marketplace %>
+</p>
+
+<p>
+  <strong>Bank number:</strong>
+  <%= @bank_account.bank_number %>
+</p>
+
+<p>
+  <strong>Agency number:</strong>
+  <%= @bank_account.agency_number %>
+</p>
+
+<p>
+  <strong>Agency check number:</strong>
+  <%= @bank_account.agency_check_number %>
+</p>
+
+<p>
+  <strong>Account number:</strong>
+  <%= @bank_account.account_number %>
+</p>
+
+<p>
+  <strong>Account check number:</strong>
+  <%= @bank_account.account_check_number %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @bank_account.type %>
+</p>
+
+<p>
+  <strong>Doc type:</strong>
+  <%= @bank_account.doc_type %>
+</p>
+
+<p>
+  <strong>Doc number:</strong>
+  <%= @bank_account.doc_number %>
+</p>
+
+<p>
+  <strong>Fullname:</strong>
+  <%= @bank_account.fullname %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @bank_account.active %>
+</p>
+
+<%= link_to 'Edit', edit_bank_account_path(@bank_account) %> |
+<%= link_to 'Back', bank_accounts_path %>

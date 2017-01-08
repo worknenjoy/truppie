@@ -1,0 +1,61 @@
+<%= form_for(@bank_account) do |f| %>
+  <% if @bank_account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bank_account.errors.count, "error") %> prohibited this bank_account from being saved:</h2>
+
+      <ul>
+      <% @bank_account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :marketplace %><br>
+    <%= f.text_field :marketplace %>
+  </div>
+  <div class="field">
+    <%= f.label :bank_number %><br>
+    <%= f.text_field :bank_number %>
+  </div>
+  <div class="field">
+    <%= f.label :agency_number %><br>
+    <%= f.text_field :agency_number %>
+  </div>
+  <div class="field">
+    <%= f.label :agency_check_number %><br>
+    <%= f.text_field :agency_check_number %>
+  </div>
+  <div class="field">
+    <%= f.label :account_number %><br>
+    <%= f.text_field :account_number %>
+  </div>
+  <div class="field">
+    <%= f.label :account_check_number %><br>
+    <%= f.text_field :account_check_number %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :doc_type %><br>
+    <%= f.text_field :doc_type %>
+  </div>
+  <div class="field">
+    <%= f.label :doc_number %><br>
+    <%= f.text_field :doc_number %>
+  </div>
+  <div class="field">
+    <%= f.label :fullname %><br>
+    <%= f.text_field :fullname %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
