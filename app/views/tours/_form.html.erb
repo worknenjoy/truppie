@@ -174,7 +174,7 @@
     	</div>
     	<div class="tab-pane" id="packages" role="tabpanel">
             <p>Você pode adicionar pacotes com valores diferentes (lembre-se que o campo de preço da truppie deve ficar em branco)</p>
-            <%= f.fields_for :packages, ([@tour.packages.build, @tour.packages.build,@tour.packages.build] if @tour.packages.empty?)  do |ff| %>
+            <%= f.fields_for :packages, ([@tour.packages.build, @tour.packages.build, @tour.packages.build] if @tour.packages.empty?)  do |ff| %>
             <fieldset class="form-group packages-set">
 	            <div class="form-group">
 	                <div class="input-group">

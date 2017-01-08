@@ -1,5 +1,16 @@
 class MarketplacesController < ApplicationController
   before_action :set_marketplace, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
+  
+  def check_if_admin
+    allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+    
+    unless allowed_emails.include? current_user.email
+      flash[:notice] = "Você não está autorizado a entrar nesta página"
+      redirect_to root_path
+    end 
+  end
 
   # GET /marketplaces
   # GET /marketplaces.json
@@ -69,6 +80,9 @@ class MarketplacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def marketplace_params
-      params.require(:marketplace).permit(:organizer_id, :bank_accounts_id, :active, :person_name, :person_lastname, :document_type, :id_number, :id_type, :id_issuer, :id_issuerdate, :birthDate, :street, :street_number, :complement, :district, :zipcode, :city, :state, :country, :token, :account_id)
+      
+      
+      
+      params.fetch(:marketplace, {}).permit(:organizer_id, :bank_accounts, :active, :person_name, :person_lastname, :document_type, :id_number, :id_type, :id_issuer, :id_issuerdate, :birthDate, :street, :street_number, :complement, :district, :zipcode, :city, :state, :country, :token, :account_id).merge(params[:marketplace])
     end
 end

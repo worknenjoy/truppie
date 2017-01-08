@@ -1,0 +1,28 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="spaced-smallest">Todos os guias que já recebem pela Truppie</h3>
+      <table class="table user-list spaced-down">
+        <thead>
+          <tr>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @marketplaces.each do |m| %>
+            <tr>
+              <td><%= m.organizer.name %></td>
+              <td><%= m.person_name %></td>
+              <td><%= link_to 'Exibir', m %></td>
+              <td><%= link_to 'Editar', edit_marketplace_path(m) %></td>
+              <td><%= link_to 'Apagar', m, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to 'Criar novo marketplace', new_marketplace_path, class: 'btn btn-primary pull-right' %>
+    </div>
+  </div>
+</div>

@@ -88,6 +88,10 @@ class OrganizersController < ApplicationController
     end
     
   end
+  
+  def marketplace
+    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

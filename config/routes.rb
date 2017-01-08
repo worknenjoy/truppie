@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :organizers do
     member do
       get 'manage/(:tour)', to: 'organizers#manage', as: 'manage'
+      get 'marketplace', to: 'organizers#marketplace', as: 'marketplace'
     end
   end
   

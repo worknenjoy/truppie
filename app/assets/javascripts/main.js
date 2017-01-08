@@ -160,10 +160,14 @@ $(function(){
 	});
 	
 	$(".criar-guia").on('click', function(){
-		console.log(' bla');
 		$('#new_organizer, .edit_organizer').trigger('submit');
 		return false;
 	});
+	
+	$(".create-marketplace").on('click', function(){
+    $('#new_marketplace, .edit_marketplace').trigger('submit');
+    return false;
+  });
 	
 	
 	$('#carousel-intro').carousel();

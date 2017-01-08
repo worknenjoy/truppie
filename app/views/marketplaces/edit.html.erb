@@ -1,6 +1,20 @@
-<h1>Editing Marketplace</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @marketplace %> |
-<%= link_to 'Back', marketplaces_path %>
+<%= render 'layouts/navbar' %>
+<div class="form-signin">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+          <!-- Nav tabs -->
+            <div class="card card-block">
+                <div class="card-body" style="overflow:hidden;">
+                    <h3 class="text-center spaced-down">
+                        Adicionar Marketplace ou <small><%= link_to 'ver todos', marketplace_path %></small>
+                    </h3>
+                  <%= render 'form' %>
+          </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div id="fullscreen_bg" class="fullscreen_bg"/>
+</div>

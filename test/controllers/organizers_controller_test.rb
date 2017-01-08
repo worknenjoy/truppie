@@ -75,5 +75,10 @@
      assert_response :success
    end
    
+   test "should direct organizer to marketplace register" do
+     get :marketplace, id: @organizer_ready.id
+     assert_response :success
+   end
+   
 # 
  end
