@@ -414,11 +414,11 @@ class ToursControllerTest < ActionController::TestCase
     @tour.start = Date.new(2077, 9, 30).to_date
     @tour.save()
     post :confirm_presence, @payment_data_boleto
-    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:expiration_date], (@tour.start - 72.hours).strftime('%Y-%m-%d')      
+    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:expiration_date], (@tour.start).strftime('%Y-%m-%d')      
   end
   
   test "should create a payment with boleto that the billing date will exceed 72 hours" do
-    @tour.start = Time.now + 24.hours
+    @tour.start = @tour.start + 24.hours
     @tour.save()
     post :confirm_presence, @payment_data_boleto
     assert_equal assigns(:payment_api_error), "fundingInstrument.boleto.validExpirationDate"

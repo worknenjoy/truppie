@@ -24,7 +24,7 @@ class ApplicationHelperTest < ActionView::TestCase
   
   test "should return the price friendly" do
     price = 2000
-    assert_equal "R$ 2,00", friendly_price(price)
+    assert_equal "R$ 20,00", friendly_price(price)
   end
   
   test "should return the price friendly when 0" do

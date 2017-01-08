@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :bank_accounts
+  resources :marketplaces
   resources :translations
   
   resources :packages

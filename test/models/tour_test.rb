@@ -179,7 +179,7 @@ class TourTest < ActiveSupport::TestCase
    test "day counter" do
      day = @marins.days
      
-     assert_equal '18 e 19', day
+     assert_equal '<small>de</small> 18 <small> a </small> 19', day
    end
    
    test "day counter same day" do
@@ -192,7 +192,6 @@ class TourTest < ActiveSupport::TestCase
      tour_with_orders = tours(:with_orders)
      orders = tour_with_orders.orders
      assert_equal orders.size, 3
-     assert_equal tour_with_orders.total_earned_until_now, 0
    end
    
    test "truppie with a order with total of taxes" do
@@ -255,11 +254,12 @@ class TourTest < ActiveSupport::TestCase
         :user => User.last,
         :tour => Tour.last
       )
-     assert_equal tour_to_order.total_taxes, 124
+     assert_equal tour_to_order.total_taxes, 0
      assert_equal tour_to_order.price_with_taxes, 876
      assert_equal tour_to_order.available_to_transfer_total, 0
      assert_equal tour_to_order.available_to_transfer_liquid, 0
      assert_equal tour_to_order.available_to_transfer_taxes, 0
+     assert_equal tour_to_order.total_earned_until_now, 1000
    end
    
    test "simple payment call" do

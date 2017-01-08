@@ -11,4 +11,8 @@ class OrganizerTest < ActiveSupport::TestCase
      assert_equal 'alexanmtz@gmail.com', Organizer.last.members.last.user.email
    end
    
+   test "organizer has a account activate" do
+     organizer_with_account_active = organizers(:utopicos)
+     assert_equal organizer_with_account_active.marketplace_active, false
+   end
 end
