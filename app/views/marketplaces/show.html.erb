@@ -1,109 +1,179 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Organizer:</strong>
-  <%= @marketplace.organizer %>
-</p>
-
-<p>
-  <strong>Bank accounts:</strong>
-  <%= @marketplace.bank_accounts %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @marketplace.active %>
-</p>
-
-<p>
-  <strong>Person name:</strong>
-  <%= @marketplace.person_name %>
-</p>
-
-<p>
-  <strong>Person lastname:</strong>
-  <%= @marketplace.person_lastname %>
-</p>
-
-<p>
-  <strong>Document type:</strong>
-  <%= @marketplace.document_type %>
-</p>
-
-<p>
-  <strong>Id number:</strong>
-  <%= @marketplace.id_number %>
-</p>
-
-<p>
-  <strong>Id type:</strong>
-  <%= @marketplace.id_type %>
-</p>
-
-<p>
-  <strong>Id issuer:</strong>
-  <%= @marketplace.id_issuer %>
-</p>
-
-<p>
-  <strong>Id issuerdate:</strong>
-  <%= @marketplace.id_issuerdate %>
-</p>
-
-<p>
-  <strong>Birthdate:</strong>
-  <%= @marketplace.birthDate %>
-</p>
-
-<p>
-  <strong>Street:</strong>
-  <%= @marketplace.street %>
-</p>
-
-<p>
-  <strong>Street number:</strong>
-  <%= @marketplace.street_number %>
-</p>
-
-<p>
-  <strong>Complement:</strong>
-  <%= @marketplace.complement %>
-</p>
-
-<p>
-  <strong>District:</strong>
-  <%= @marketplace.district %>
-</p>
-
-<p>
-  <strong>Zipcode:</strong>
-  <%= @marketplace.zipcode %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @marketplace.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @marketplace.state %>
-</p>
-
-<p>
-  <strong>Country:</strong>
-  <%= @marketplace.country %>
-</p>
-
-<p>
-  <strong>Token:</strong>
-  <%= @marketplace.token %>
-</p>
-
-<p>
-  <strong>Account:</strong>
-  <%= @marketplace.account_id %>
-</p>
-
-<%= link_to 'Edit', edit_marketplace_path(@marketplace) %> |
-<%= link_to 'Back', marketplaces_path %>
+<%= render 'layouts/navbar' %>
+<div class="form-signin">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+          <!-- Nav tabs -->
+            <div class="card card-block">
+                <div class="card-body" style="overflow:hidden;">
+                    <h3 class="text-center spaced-down">
+                        Maketplace<small><%= link_to 'ver todos marketplaces', marketplaces_path %></small>
+                    </h3>
+                    <ul class="nav nav-tabs spaced-down" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informações sobre a conta</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#bank_accounts" role="tab">Conta bancária</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content spaced-down">
+                      <div class="tab-pane active" id="home" role="tabpanel">
+                        <p>
+                          <strong>Organizer:</strong>
+                          <%= @marketplace.organizer.name %>
+                        </p>
+                        
+                        <p>
+                          <strong>Active:</strong>
+                          <%= @marketplace.active %>
+                        </p>
+                        
+                        <p>
+                          <strong>Person name:</strong>
+                          <%= @marketplace.person_name %>
+                        </p>
+                        
+                        <p>
+                          <strong>Person lastname:</strong>
+                          <%= @marketplace.person_lastname %>
+                        </p>
+                        
+                        <p>
+                          <strong>Document type:</strong>
+                          <%= @marketplace.document_type %>
+                        </p>
+                        
+                        <p>
+                          <strong>Id number:</strong>
+                          <%= @marketplace.id_number %>
+                        </p>
+                        
+                        <p>
+                          <strong>Id type:</strong>
+                          <%= @marketplace.id_type %>
+                        </p>
+                        
+                        <p>
+                          <strong>Id issuer:</strong>
+                          <%= @marketplace.id_issuer %>
+                        </p>
+                        
+                        <p>
+                          <strong>Id issuerdate:</strong>
+                          <%= @marketplace.id_issuerdate %>
+                        </p>
+                        
+                        <p>
+                          <strong>Birthdate:</strong>
+                          <%= @marketplace.birthDate %>
+                        </p>
+                        
+                        <p>
+                          <strong>Street:</strong>
+                          <%= @marketplace.street %>
+                        </p>
+                        
+                        <p>
+                          <strong>Street number:</strong>
+                          <%= @marketplace.street_number %>
+                        </p>
+                        
+                        <p>
+                          <strong>Complement:</strong>
+                          <%= @marketplace.complement %>
+                        </p>
+                        
+                        <p>
+                          <strong>District:</strong>
+                          <%= @marketplace.district %>
+                        </p>
+                        
+                        <p>
+                          <strong>Zipcode:</strong>
+                          <%= @marketplace.zipcode %>
+                        </p>
+                        
+                        <p>
+                          <strong>City:</strong>
+                          <%= @marketplace.city %>
+                        </p>
+                        
+                        <p>
+                          <strong>State:</strong>
+                          <%= @marketplace.state %>
+                        </p>
+                        
+                        <p>
+                          <strong>Country:</strong>
+                          <%= @marketplace.country %>
+                        </p>
+                        
+                        <p>
+                          <strong>Token:</strong>
+                          <%= @marketplace.token %>
+                        </p>
+                        
+                        <p>
+                          <strong>Account:</strong>
+                          <%= @marketplace.account_id %>
+                        </p>
+                      </div>
+                      <div class="tab-pane" id="bank_accounts" role="tabpanel">
+                        <p>
+                          <strong>Contas:</strong>
+                          <% @marketplace.bank_accounts.each do |a| %>
+                              <p>
+                                <strong>Número do banco:</strong>
+                                <%= a.bank_number %>
+                              </p>
+                              <p>
+                                <strong>Número da agência:</strong>
+                                <%= a.agency_number %>
+                              </p>
+                              <p>
+                                <strong>Dígito da agência:</strong>
+                                <%= a.agency_check_number %>
+                              </p>
+                              <p>
+                                <strong>Número da conta:</strong>
+                                <%= a.account_number %>
+                              </p>
+                              <p>
+                                <strong>Digito da conta:</strong>
+                                <%= a.account_check_number %>
+                              </p>
+                              <p>
+                                <strong>Tipo da conta:</strong>
+                                <%= a.bank_type %>
+                              </p>
+                              <p>
+                                <strong>Tipo de documento:</strong>
+                                <%= a.doc_type %>
+                              </p>
+                              <p>
+                                <strong>Número documento:</strong>
+                                <%= a.doc_number %>
+                              </p> 
+                              <p>
+                                <strong>Nome completo:</strong>
+                                <%= a.fullname %>
+                              </p>
+                              <p>
+                                <strong>Conta ativa?</strong>
+                                <%= a.active %>
+                              </p>                       
+                          <% end %>
+                        </p>
+                      </div>
+                    </div>
+                    <%= link_to 'Edit', edit_marketplace_path(@marketplace) %> |
+                    <%= link_to 'Back', marketplaces_path %>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div id="fullscreen_bg" class="fullscreen_bg"/>
+</div>

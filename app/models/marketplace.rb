@@ -5,4 +5,78 @@ class Marketplace < ActiveRecord::Base
   
   accepts_nested_attributes_for :bank_accounts, :allow_destroy => true
   
+  
+  def account_info
+    {
+      "email" => {
+          "address" => self.organizer.email
+      },
+      "person" => {
+          "name" => self.person_name,
+          "lastName" => self.person_lastname,
+          "taxDocument" => {
+              "type" => self.document_type,
+              "number"=> self.document_number
+          },
+          "identityDocument"=> {
+              "type"=> self.id_type,
+              "number"=> self.id_number,
+              "issuer"=> self.id_issuer,
+              "issueDate"=> self.id_issuerdate
+          },
+          "birthDate" => self.birthDate.strftime('%Y-%m-%d'),
+          "phone" => self.phone_object,
+          "address" => {
+              "street" => self.street,
+              "streetNumber" => self.street_number,
+              "complement"=> self.complement,
+              "district" => self.district,
+              "zipcode" => self.zipcode,
+              "city" => self.city,
+              "state" => self.state,
+              "country" => self.country
+          }
+      },
+      "businessSegment" => {
+          "id" => "37"
+      },
+      "site" => "http://www.truppie.com",
+      "type" => "MERCHANT",
+      "transparentAccount" => "true"
+    }
+  end
+  
+  def phone_object
+    if !self.organizer.phone.empty?
+      pn = self.organizer.phone.split(' ')
+      
+      area = pn[1].slice(1..-1)
+      areaCode = area.chop
+      
+      {
+        "countryCode" => pn[0].slice(1..-1),
+        "areaCode"=> areaCode,
+        "number" => pn[2]
+      }
+    else
+      {
+        "countryCode" => "",
+        "areaCode"=> "",
+        "number" => ""
+      }
+    end
+  end 
+  
+  def auth_data
+    if self.active
+      {
+        "id" => self.account_id,
+        "token" => self.token
+      }
+    else
+      false
+    end
+  end
+  
+  
 end

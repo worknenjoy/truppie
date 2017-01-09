@@ -32,7 +32,5 @@ class OrganizerTest < ActiveSupport::TestCase
      assert_equal organizer_account_active.market_place_active, true
      assert_equal organizer_account_active.marketplace.bank_accounts.last.active, true
      assert_equal organizer_account_active.marketplace.bank_accounts.where(:active => true).count, 1
-   end
-   
-   
+   end   
 end

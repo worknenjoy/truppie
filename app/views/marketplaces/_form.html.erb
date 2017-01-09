@@ -1,5 +1,5 @@
 <%= form_for @marketplace, class: "form form-signup", multipart: true, role: "form" do |f| %>
-    <ul class="nav nav-tabs spaced-down" role="tablist">
+  <ul class="nav nav-tabs spaced-down" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informações sobre a conta</a>
     </li>
@@ -80,6 +80,12 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                    <%= f.text_field :complement, placeholder: "Completo", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
                     <%= f.text_field :district, placeholder: "Bairro", class: "form-control" %>
                 </div>
             </div>
@@ -151,6 +157,12 @@
               <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
                   <%= ff.text_field :doc_type, placeholder: "Tipo de documento", class: "form-control" %>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                  <%= ff.text_field :doc_number, placeholder: "Número do documento", class: "form-control" %>
               </div>
           </div>
           <div class="form-group">

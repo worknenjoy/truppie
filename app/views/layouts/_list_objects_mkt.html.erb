@@ -15,6 +15,11 @@
             <tr>
               <td><%= m.organizer.name %></td>
               <td><%= m.person_name %></td>
+              <% if !m.active? %>
+              <td><%= link_to 'Ativar no moip', m %></td>
+              <% else %>
+              <td><span class="label label-success">ativa</label></td>
+              <% end %>
               <td><%= link_to 'Exibir', m %></td>
               <td><%= link_to 'Editar', edit_marketplace_path(m) %></td>
               <td><%= link_to 'Apagar', m, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' } %></td>
