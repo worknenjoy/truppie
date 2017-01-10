@@ -259,7 +259,7 @@ class TourTest < ActiveSupport::TestCase
      assert_equal tour_to_order.available_to_transfer_total, 0
      assert_equal tour_to_order.available_to_transfer_liquid, 0
      assert_equal tour_to_order.available_to_transfer_taxes, 0
-     assert_equal tour_to_order.total_earned_until_now, 1000
+     assert_equal tour_to_order.total_earned_until_now, 0
    end
    
    test "simple payment call" do

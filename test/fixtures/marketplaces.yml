@@ -25,6 +25,7 @@ one:
 
 two:
   active: false
+  organizer: utopicos
   person_name: MyString
   person_lastname: MyString
   document_type: MyString
@@ -43,3 +44,24 @@ two:
   country: MyString
   token: MyString
   account_id: MyString
+  
+real:
+  active: true
+  organizer: utopicos
+  person_name: José da Silva
+  person_lastname: Junior
+  document_type: CPF
+  id_number: 123456789
+  id_type: RG
+  document_number: 222.222.222-22
+  id_issuer: ssp
+  id_issuerdate: 1990-01-01
+  birthDate: 1990-01-01
+  street: Av. Brigadeiro Faria Lima
+  street_number: 2927
+  complement: 8 andar
+  district: Itaim
+  zipcode: 01234-000
+  city: São Paulo
+  state: SP
+  country: BRA

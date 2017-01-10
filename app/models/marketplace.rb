@@ -46,6 +46,25 @@ class Marketplace < ActiveRecord::Base
     }
   end
   
+  def bank_account
+    bank_account_active = self.bank_accounts.where(:active => true)
+    {
+      "bankNumber" => bank_account_active.bankNumber,
+      "agencyNumber" => bank_account_active.agencyNumber,
+      "accountNumber" => bank_account_active.accountNumber,
+      "agencyCheckNumber" => bank_account_active.agencyCheckNumber,
+      "accountCheckNumber" => bank_account_active.accountCheckNumber,
+      "type" => "CHECKING",
+      "holder" => {
+        "taxDocument" => {
+          "type" => bank_account_active.doc_type,
+          "number" => bank_account_active.doc_number
+        },
+        "fullname" => bank_account_active.fullname
+      }
+    }
+  end
+  
   def phone_object
     if !self.organizer.phone.empty?
       pn = self.organizer.phone.split(' ')
@@ -77,6 +96,8 @@ class Marketplace < ActiveRecord::Base
       false
     end
   end
+  
+  
   
   
 end

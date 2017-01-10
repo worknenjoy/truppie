@@ -1,4 +1,5 @@
 <%= render 'layouts/navbar' %>
+<% render 'layouts/flash' %>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -16,7 +17,7 @@
               <td><%= m.organizer.name %></td>
               <td><%= m.person_name %></td>
               <% if !m.active? %>
-              <td><%= link_to 'Ativar no moip', m %></td>
+              <td><%= link_to 'Ativar no moip', activate_marketplace_path(m) %></td>
               <% else %>
               <td><span class="label label-success">ativa</label></td>
               <% end %>

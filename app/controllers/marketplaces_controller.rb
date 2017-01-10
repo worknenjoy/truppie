@@ -1,5 +1,5 @@
 class MarketplacesController < ApplicationController
-  before_action :set_marketplace, only: [:show, :edit, :update, :destroy]
+  before_action :set_marketplace, only: [:show, :edit, :update, :destroy, :activate]
   before_action :authenticate_user!
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
   
@@ -69,6 +69,16 @@ class MarketplacesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to marketplaces_url, notice: 'Marketplace was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+  
+  def activate
+    account_bank_data = @marketplace.account_info
+    begin
+      response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
+    rescue => e
+      puts "Razão: #{e.inspect}"
+      redirect_to marketplaces_path, :flash => { :error => "Não foi possível ativar o marketplace para o #{@marketplace.organizer.name}, verifique os dados novamente." }
     end
   end
 
