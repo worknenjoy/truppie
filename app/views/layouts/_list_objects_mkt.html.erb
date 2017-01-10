@@ -16,10 +16,10 @@
             <tr>
               <td><%= m.organizer.name %></td>
               <td><%= m.person_name %></td>
-              <% if !m.active? %>
-              <td><%= link_to 'Ativar no moip', activate_marketplace_path(m) %></td>
-              <% else %>
+              <% if m.is_active? %>
               <td><span class="label label-success">ativa</label></td>
+              <% else %>
+              <td><%= link_to 'Ativar no moip', activate_marketplace_path(m) %></td>
               <% end %>
               <td><%= link_to 'Exibir', m %></td>
               <td><%= link_to 'Editar', edit_marketplace_path(m) %></td>

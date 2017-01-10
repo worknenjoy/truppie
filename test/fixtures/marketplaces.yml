@@ -46,7 +46,7 @@ two:
   account_id: MyString
   
 real:
-  active: true
+  active: false
   organizer: utopicos
   person_name: José da Silva
   person_lastname: Junior

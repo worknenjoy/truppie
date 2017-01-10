@@ -6,6 +6,11 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#bank_accounts" role="tab">Conta bancária</a>
     </li>
+    <% if !@marketplace.new_record? %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#mkt_status" role="tab">Status no Moip</a>
+    </li>
+    <% end %>
   </ul>
   <div class="tab-content spaced-down">
     <div class="tab-pane active" id="home" role="tabpanel">
@@ -14,105 +19,123 @@
                     <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
                     </span>
                     <%= f.label :organizer %>
-                    <%= f.select :organizer_id, options_for_select(Organizer.all.map{|s|[s.name, s.id]}) %>
+                    <%= f.select :organizer_id, options_for_select(Organizer.all.map{|s|[s.name, s.id]}, (@marketplace.organizer_id if @marketplace.organizer_id.present?)) %>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :person_name, placeholder: "Primeiro nome do titular", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :person_lastname, placeholder: "Último nome do titular", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :document_type, placeholder: "Tipo de documento", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :id_number, placeholder: "Número do documento", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :id_type, placeholder: "Tipo de identificação", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :id_issuer, placeholder: "Emissor", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :id_issuerdate, placeholder: "Data de emissão", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :birthDate, placeholder: "Data de nascimento", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :street, placeholder: "Rua", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :street_number, placeholder: "Número", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :complement, placeholder: "Completo", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :district, placeholder: "Bairro", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :zipcode, placeholder: "CEP", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :city, placeholder: "Cidade", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :state, placeholder: "Estado", class: "form-control" %>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :country, placeholder: "País", class: "form-control" %>
-                </div>
-            </div>
+            <fieldset class="form-group">
+              <legend>Dados pessoais</legend>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :person_name, placeholder: "Primeiro nome do titular", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :person_lastname, placeholder: "Último nome do titular", class: "form-control" %>
+                  </div>
+              </div>
+            </fieldset>
+            <fieldset class="form-group">
+              <legend>CPF</legend>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :document_type, placeholder: "Tipo de documento", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :document_number, placeholder: "Número do documento", class: "form-control" %>
+                  </div>
+              </div>
+            </fieldset>
+            <fieldset class="form-group">
+              <legend>Identidade</legend>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :id_type, placeholder: "Tipo de identificação", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :id_number, placeholder: "Número da identificação", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :id_issuer, placeholder: "Emissor", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :id_issuerdate, placeholder: "Data de emissão", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :birthDate, placeholder: "Data de nascimento", class: "form-control" %>
+                  </div>
+              </div>
+            </fieldset>
+            <fieldset class="form-group">
+              <legend>Dados de endereço</legend>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :street, placeholder: "Rua", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :street_number, placeholder: "Número", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :complement, placeholder: "Completo", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :district, placeholder: "Bairro", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :zipcode, placeholder: "CEP", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :city, placeholder: "Cidade", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :state, placeholder: "Estado", class: "form-control" %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                      <%= f.text_field :country, placeholder: "País", class: "form-control" %>
+                  </div>
+              </div>
+            </fieldset>
       </div>
       <div class="tab-pane" id="bank_accounts" role="tabpanel">
         <%= f.fields_for :bank_accounts, ([@marketplace.bank_accounts.build] if @marketplace.bank_accounts.empty?) do |ff| %>
@@ -180,6 +203,20 @@
         </fieldset>
         <% end %>
       </div>
+      <% if !@marketplace.new_record? %>
+      <div class="tab-pane" id="mkt_status" role="tabpanel">
+          <% if @marketplace.is_active? %>
+            <p>A sua conta se encontra ativa no MOIP e os dados são:</p>
+            <ul class="list-unstyled">
+              <li>Id da conta: <%= @marketplace.account_id %></li>
+              <li>token: <%= @marketplace.token %></li>
+            </ul>
+          <% else %>
+            <p>A sua conta ainda não está ativa no Marketplace do MOIP</p>
+            <%= link_to 'Ativar no moip', activate_marketplace_path(@marketplace) %>
+          <% end %>
+      </div>
+      <% end %>
   </div>
   <div class="pull-right">  
     <a href="<%= new_marketplace_path %> class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">

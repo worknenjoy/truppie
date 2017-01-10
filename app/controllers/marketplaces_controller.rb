@@ -74,12 +74,26 @@ class MarketplacesController < ApplicationController
   
   def activate
     account_bank_data = @marketplace.account_info
-    begin
-      response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
-    rescue => e
-      puts "Razão: #{e.inspect}"
-      redirect_to marketplaces_path, :flash => { :error => "Não foi possível ativar o marketplace para o #{@marketplace.organizer.name}, verifique os dados novamente." }
-    end
+    response = RestClient.post("#{Rails.application.secrets[:moip_domain]}/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_app_token]){|response, request, result, &block| 
+        case response.code
+          when 400 
+            @activation_message = "Não foi possível ativar o marketplace para #{@marketplace.organizer.name}, verifique os dados novamente."
+            @activation_status = "danger"
+            @errors = JSON.parse response
+          when 201
+            @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@marketplace.organizer.name}"
+            @activation_status = "success"
+            @response = JSON.parse response
+            @marketplace.update_attributes(
+              :active => true,
+              :account_id => @response["id"],
+              :token => @response["accessToken"]
+            )
+          else
+            @activation_message = "Não conseguimos resposta do Moip para ativar #{@marketplace.organizer.name}, verifique os dados novamente."
+            @activation_status = "danger"
+          end
+    }
   end
 
   private

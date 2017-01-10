@@ -23,6 +23,10 @@ class MarketplaceTest < ActiveSupport::TestCase
     assert_equal @mkt_active.auth_data, {"id"=>"MyString", "token"=>"MyString"}
   end
   
+  test "return no auth data if is not active" do
+    assert_equal @mkt_real_data.auth_data, false
+  end
+  
   test "return bank account active details" do
     skip("bank account info to send to moip")
     bank_account = 
@@ -50,6 +54,15 @@ class MarketplaceTest < ActiveSupport::TestCase
       response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
       puts response.inspect
       assert_equal true, true
+  end
+  
+  test "is really not active" do
+    assert_equal @mkt_real_data.is_active?, false
+  end
+  
+  test "is really active" do
+    @mkt_real_data.update_attributes(:account_id => "foo", :token => "bar", :active => true)
+    assert_equal @mkt_real_data.is_active?, true
   end
   
 end

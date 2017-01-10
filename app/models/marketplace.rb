@@ -97,7 +97,9 @@ class Marketplace < ActiveRecord::Base
     end
   end
   
-  
+  def is_active?
+    self.auth_data && self.active
+  end
   
   
 end
