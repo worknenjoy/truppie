@@ -126,6 +126,10 @@
                         <p>
                           <strong>Contas:</strong>
                           <% @marketplace.bank_accounts.each do |a| %>
+                              <% if !a.own_id.nil? %>
+                              <p><strong>ID no MOIP</strong></p>
+                              <p><%= a.own_id %></p>
+                              <% end %>
                               <p>
                                 <strong>Número do banco:</strong>
                                 <%= a.bank_number %>
@@ -171,7 +175,28 @@
                       </div>
                       <div class="tab-pane" id="bank_accounts_remote" role="tabpanel">
                         <% if @marketplace.registered_account.any? %>
-                          <%= @marketplace.registered_account.inspect %>
+                          <% @marketplace.registered_account.each do |a| %>
+                            <div class="card spaced-down">
+                              <div class="card-block">
+                                <p>
+                                  <strong>ID:</strong>
+                                  <%= a["id"] %>
+                                </p>
+                                <p>
+                                  <strong>Número da agência:</strong>
+                                  <%= a["agencyNumber"] %>
+                                </p>
+                                <p>
+                                  <strong>Conta:</strong>
+                                  <%= a["accountNumber"] %>
+                                </p>
+                                <p>
+                                  <strong>Banco:</strong>
+                                  <%= a["bankName"] %>
+                                </p>
+                              </div>
+                            </div>
+                          <% end %>
                         <% else %>
                           <p>Sua conta ainda não foi registrada no marketplace. É necessário o cadastro da conta para receber os valores</p>
                         <% end %>

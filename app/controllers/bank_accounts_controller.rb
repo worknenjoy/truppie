@@ -4,30 +4,37 @@ class BankAccountsController < ApplicationController
   
   
   def activate
-    bank_account_data = @bank_account.marketplace.bank_account
-    response = RestClient.post("#{Rails.application.secrets[:moip_domain]}/accounts/#{@bank_account.marketplace.account_id}/bankaccounts", bank_account_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@bank_account.marketplace.token}"){|response, request, result, &block| 
-        puts @bank_account.marketplace.account_id
-        puts "OAuth #{@bank_account.marketplace.token}"
-        puts response.inspect
-        puts response.code
-        case response.code
-          when 400 
-            @activation_message = "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
-            @activation_status = "danger"
-            @errors = JSON.parse response
-          when 401
-            @activation_message = "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name} devido a erro na autenticação"
-            @activation_status = "danger"
-            @errors = JSON.parse response
-          when 201
-            @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@bank_account.marketplace.organizer.name}"
-            @activation_status = "success"
-            @response = JSON.parse response
-          else
-            @activation_message = "Não conseguimos resposta do Moip para ativar #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
-            @activation_status = "danger"
-          end
-    }
+    if !@bank_account.own_id.nil?
+      @activation_message = "Esta conta bancária do #{@bank_account.marketplace.organizer.name} já foi ativada"
+      @activation_status = "danger"
+      @errors = { :errors => { :description => "já tem uma conta no moip associada a esta conta"} }
+    else
+      bank_account_data = @bank_account.marketplace.bank_account
+      response = RestClient.post("#{Rails.application.secrets[:moip_domain]}/accounts/#{@bank_account.marketplace.account_id}/bankaccounts", bank_account_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@bank_account.marketplace.token}"){|response, request, result, &block| 
+          #puts @bank_account.marketplace.account_id
+          #puts "OAuth #{@bank_account.marketplace.token}"
+          #puts response.inspect
+          #puts response.code
+          case response.code
+            when 400 
+              @activation_message = "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
+              @activation_status = "danger"
+              @errors = JSON.parse response
+            when 401
+              @activation_message = "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name} devido a erro na autenticação"
+              @activation_status = "danger"
+              @errors = JSON.parse response
+            when 201
+              @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@bank_account.marketplace.organizer.name}"
+              @activation_status = "success"
+              @response = JSON.parse response
+              @bank_account.update_attributes(:own_id => @response["id"])
+            else
+              @activation_message = "Não conseguimos resposta do Moip para ativar #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
+              @activation_status = "danger"
+            end
+        }
+      end
   end
 
   # GET /bank_accounts
