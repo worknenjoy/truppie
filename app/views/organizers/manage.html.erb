@@ -5,9 +5,40 @@
         <div class="manage-inspiration">
           <div class="card card-block">
               <p>Olá <strong><%= link_to @organizer.name, organizer_path(@organizer) %></strong> <br />
-              Aqui você verá o saldo das suas truppies</p>
-              <p><a href="#" id="js-trigger-overlay" class="btn btn-block btn-primary trigger-overlay"><strong>ver outras</strong></a></p>
-              <p><a href="#" class="btn btn-primary-outline btn-block spaced-down second-action"><strong>Transferir para minha conta</strong></a></p>
+              Aqui você verá o saldo total da sua conta e das suas truppies</p>
+              <% if @organizer.balance %>
+                <ul class="dash-list">
+                  <li id="dash-item--1" class="dash-item dash-item--published">
+                      <div class="dash-item__header">
+                          <h3 class="dash-item__title"><strong>Balanço total da sua conta</strong></h3>
+                      </div>
+                      <div class="dash-item__content">
+                          <ul class="quiz-results">
+                              <li class="quiz-results__item quiz-results__item--average-score quiz-results__number--finishes">
+                                  <span class="quiz-results__number "><%= raw friendly_price(@organizer.balance[0]["unavailable"]) %></span>
+                                  <div class="quiz-results__label">bloqueado</div>
+                              </li>
+                              <li class="quiz-results__item quiz-results__item--finishes quiz-results__number--views">
+                                  <span class="quiz-results__number "><%= raw friendly_price(@organizer.balance[0]["future"]) %></span>
+                                  <div class="quiz-results__label">A liberar</div>
+                              </li>
+                              <li class="quiz-results__item quiz-results__item--views">
+                                  <span class="quiz-results__number quiz-results__number--average-score"><%= raw friendly_price(@organizer.balance[0]["current"]) %></span>
+                                  <div class="quiz-results__label">Atual</div>
+                              </li>
+                          </ul>
+                      </div>
+                  </li>
+              </ul> 
+              <p>
+                <a href="#" class="btn btn-block btn-primary-outline"><strong>Transferir para minha conta</strong></a>
+              </p>
+              <% else %>
+                <p>Sua conta ainda não está ativada no marketplace, favor entrar em contato conosco para ativação</p>
+              <% end %>
+          </div>
+          <div class="card card-block trigger-overlay-container">
+              <p><a href="#" id="js-trigger-overlay" class="btn btn-block btn-primary trigger-overlay"><strong>ver outras truppies</strong></a></p>
           </div>
         </div>
         <div class="manage-container">

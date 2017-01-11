@@ -5,6 +5,7 @@ class MarketplaceTest < ActiveSupport::TestCase
   def setup
     @mkt_active = marketplaces(:one)
     @mkt_real_data = marketplaces(:real)
+    FakeWeb.clean_registry
   end
   
   test "two Marketplaces" do
@@ -28,32 +29,23 @@ class MarketplaceTest < ActiveSupport::TestCase
   end
   
   test "return bank account active details" do
-    skip("bank account info to send to moip")
     bank_account = 
     {
-      "bankNumber" => "",
-      "agencyNumber" => "",
-      "accountNumber" => "",
-      "agencyCheckNumber" => "",
-      "accountCheckNumber" => "",
-      "type" => "CHECKING",
+      "bankNumber" => "MyString",
+      "agencyNumber" => "MyString",
+      "accountNumber" => "MyString",
+      "agencyCheckNumber" => "MyString",
+      "accountCheckNumber" => "MyString",
+      "type" => "MyString",
       "holder" => {
         "taxDocument" => {
-          "type" => "",
-          "number" => ""
+          "type" => "MyString",
+          "number" => "MyString"
         },
-        "fullname" => self.fullname
+        "fullname" => "MyString"
       }
     }
-  end
-  
-  test "requesting a new account from marketplace data" do
-      skip("testing a request to create account on marketplace")
-      account_bank_data = @mkt_real_data.account_info
-      puts account_bank_data.inspect
-      response = RestClient.post "https://sandbox.moip.com.br/v2/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth jdyi6e28vdyz2l8e1nss0jadh1j4ay2"
-      puts response.inspect
-      assert_equal true, true
+    assert_equal @mkt_active.bank_account, bank_account 
   end
   
   test "is really not active" do
@@ -63,6 +55,13 @@ class MarketplaceTest < ActiveSupport::TestCase
   test "is really active" do
     @mkt_real_data.update_attributes(:account_id => "foo", :token => "bar", :active => true)
     assert_equal @mkt_real_data.is_active?, true
+  end
+  
+  test "get registered account with no account" do
+    body = "[]"
+    FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/accounts/#{@mkt_active.account_id}/bankaccounts", :body => body, :status => ["201", "Success"])
+    account = @mkt_active.registered_account
+    assert_equal account, []
   end
   
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108190058) do
+ActiveRecord::Schema.define(version: 20170110231226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,10 @@ ActiveRecord::Schema.define(version: 20170108190058) do
     t.boolean  "active"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "marketplace_id"
   end
+
+  add_index "bank_accounts", ["marketplace_id"], name: "index_bank_accounts_on_marketplace_id", using: :btree
 
   create_table "bank_accounts_marketplaces", id: false, force: :cascade do |t|
     t.integer "marketplace_id",  null: false
@@ -422,6 +425,7 @@ ActiveRecord::Schema.define(version: 20170108190058) do
 
   add_foreign_key "attractions", "languages"
   add_foreign_key "attractions", "quotes"
+  add_foreign_key "bank_accounts", "marketplaces"
   add_foreign_key "confirmeds", "users"
   add_foreign_key "marketplaces", "bank_accounts"
   add_foreign_key "marketplaces", "organizers"

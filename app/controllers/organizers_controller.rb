@@ -86,7 +86,6 @@ class OrganizersController < ApplicationController
     else
       @tour = Tour.find(params[:tour])
     end
-    
   end
   
   def marketplace
@@ -101,9 +100,6 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      
-      
-      
-      params.fetch(:organizer, {}).permit(:name, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone)
+      params.fetch(:organizer, {}).permit(:name, :marketplace_id, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone)
     end
 end

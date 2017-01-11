@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   
-  resources :bank_accounts
+  resources :bank_accounts do
+    member do
+      get 'activate', to: 'bank_accounts#activate', as: 'activate'
+    end
+  end
   resources :marketplaces do
     member do
       get 'activate', to: 'marketplaces#activate', as: 'activate'

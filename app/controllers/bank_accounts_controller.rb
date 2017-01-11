@@ -1,6 +1,34 @@
 class BankAccountsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_bank_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_bank_account, only: [:show, :edit, :update, :destroy, :activate]
+  
+  
+  def activate
+    bank_account_data = @bank_account.marketplace.bank_account
+    response = RestClient.post("#{Rails.application.secrets[:moip_domain]}/accounts/#{@bank_account.marketplace.account_id}/bankaccounts", bank_account_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@bank_account.marketplace.token}"){|response, request, result, &block| 
+        puts @bank_account.marketplace.account_id
+        puts "OAuth #{@bank_account.marketplace.token}"
+        puts response.inspect
+        puts response.code
+        case response.code
+          when 400 
+            @activation_message = "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
+            @activation_status = "danger"
+            @errors = JSON.parse response
+          when 401
+            @activation_message = "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name} devido a erro na autenticação"
+            @activation_status = "danger"
+            @errors = JSON.parse response
+          when 201
+            @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@bank_account.marketplace.organizer.name}"
+            @activation_status = "success"
+            @response = JSON.parse response
+          else
+            @activation_message = "Não conseguimos resposta do Moip para ativar #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
+            @activation_status = "danger"
+          end
+    }
+  end
 
   # GET /bank_accounts
   # GET /bank_accounts.json
@@ -70,6 +98,6 @@ class BankAccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bank_account_params
-      params.require(:bank_account).permit(:marketplace_id, :bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :bank_type, :doc_type, :doc_number, :fullname, :active)
+      params.require(:bank_account).permit(:marketplace, :bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :bank_type, :doc_type, :doc_number, :fullname, :active)
     end
 end

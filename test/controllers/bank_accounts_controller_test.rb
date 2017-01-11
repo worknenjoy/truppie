@@ -50,4 +50,13 @@ class BankAccountsControllerTest < ActionController::TestCase
 
     assert_redirected_to bank_accounts_path
   end
+  
+  test "should not activate bank_account with wrong data" do
+    get :activate, id: @bank_account
+    assert_equal assigns(:activation_message), "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name} devido a erro na autenticação"
+    assert_equal assigns(:activation_status), "danger"
+    assert_equal assigns(:errors), {"errors"=>[{"code"=>"REG-014", "path"=>"v2/accounts", "description"=>"person[taxDocument][0][number] is empty"}, {"code"=>"REG-005", "path"=>"v2/accounts", "description"=>"person[address][0][streetNumber] is invalid"}, {"code"=>"REG-008", "path"=>"v2/accounts", "description"=>"person[address][0][zipcode] is invalid"}, {"code"=>"REG-010", "path"=>"v2/accounts", "description"=>"person[address][0][state] is invalid"}, {"code"=>"REG-011", "path"=>"v2/accounts", "description"=>"person[address][0][country] is invalid"}]}  
+    assert_response :success
+  end
+  
 end

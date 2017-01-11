@@ -6,6 +6,7 @@
    setup do
      sign_in users(:alexandre)
      @organizer_ready = organizers(:utopicos)
+     @mkt = organizers(:mkt)
      
      @organizer = {
        name: "Utópicos mundo afora",
@@ -79,6 +80,4 @@
      get :marketplace, id: @organizer_ready.id
      assert_response :success
    end
-   
-# 
  end

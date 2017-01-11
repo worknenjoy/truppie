@@ -1,8 +1,8 @@
 class BankAccount < ActiveRecord::Base
   belongs_to :marketplace
 
-  validates :bankNumber, presence: true
-  validates :agencyNumber, presence: true
-  validates :accountNumber, presence: true
+  validates :bank_number, presence: true
+  validates :agency_number, presence: true
+  validates :account_number, presence: true
   
 end

@@ -46,15 +46,19 @@ class Marketplace < ActiveRecord::Base
     }
   end
   
+  def bank_account_active
+    self.bank_accounts.where(:active => true).first 
+  end
+  
   def bank_account
-    bank_account_active = self.bank_accounts.where(:active => true)
+    bank_account_active = self.bank_account_active
     {
-      "bankNumber" => bank_account_active.bankNumber,
-      "agencyNumber" => bank_account_active.agencyNumber,
-      "accountNumber" => bank_account_active.accountNumber,
-      "agencyCheckNumber" => bank_account_active.agencyCheckNumber,
-      "accountCheckNumber" => bank_account_active.accountCheckNumber,
-      "type" => "CHECKING",
+      "bankNumber" => bank_account_active.bank_number,
+      "agencyNumber" => bank_account_active.agency_number,
+      "accountNumber" => bank_account_active.account_number,
+      "agencyCheckNumber" => bank_account_active.agency_check_number,
+      "accountCheckNumber" => bank_account_active.account_check_number,
+      "type" => bank_account_active.bank_type,
       "holder" => {
         "taxDocument" => {
           "type" => bank_account_active.doc_type,
@@ -63,6 +67,12 @@ class Marketplace < ActiveRecord::Base
         "fullname" => bank_account_active.fullname
       }
     }
+  end
+  
+  def registered_account
+    response = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{self.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.token}"
+    json_data = JSON.parse(response)
+    json_data    
   end
   
   def phone_object

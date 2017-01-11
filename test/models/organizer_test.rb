@@ -1,6 +1,13 @@
 require 'test_helper'
 
 class OrganizerTest < ActiveSupport::TestCase
+   
+   def setup
+     @mkt = organizers(:mkt)
+     @mantiex = organizers(:mantiex)
+     FakeWeb.clean_registry
+   end
+   
    test "one Organizer" do
      assert_equal 3, Organizer.count
    end
@@ -32,5 +39,16 @@ class OrganizerTest < ActiveSupport::TestCase
      assert_equal organizer_account_active.market_place_active, true
      assert_equal organizer_account_active.marketplace.bank_accounts.last.active, true
      assert_equal organizer_account_active.marketplace.bank_accounts.where(:active => true).count, 1
-   end   
+   end
+   
+   test "organizer should not have a balance if has no marketplace active" do
+     assert_equal @mantiex.balance, false       
+   end
+   
+   test "organizer should have a balance if has a marketplace active" do
+     body = {"unavailable"=>[{"amount"=>0, "currency"=>"BRL"}], "future"=>[{"amount"=>0, "currency"=>"BRL"}], "current"=>[{"amount"=>44592168, "currency"=>"BRL"}]}
+     FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/balances", :body => body.to_json, :status => ["201", "Success"])
+     assert_equal @mkt.balance, {"unavailable"=>[{"amount"=>0, "currency"=>"BRL"}], "future"=>[{"amount"=>0, "currency"=>"BRL"}], "current"=>[{"amount"=>44592168, "currency"=>"BRL"}]}
+     assert_equal @mkt.balance["future"][0]["amount"], 0       
+   end
 end

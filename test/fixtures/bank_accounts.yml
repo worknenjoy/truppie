@@ -1,22 +1,26 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one: 
+one:
+  marketplace: one 
   bank_number: MyString
   agency_number: MyString
   agency_check_number: MyString
   account_number: MyString
   account_check_number: MyString
+  bank_type: MyString
   doc_type: MyString
   doc_number: MyString
   fullname: MyString
   active: true
 
 two:
+  marketplace: one
   bank_number: MyString
   agency_number: MyString
   agency_check_number: MyString
   account_number: MyString
   account_check_number: MyString
+  bank_type: MyString
   doc_type: MyString
   doc_number: MyString
   fullname: MyString

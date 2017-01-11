@@ -89,6 +89,7 @@ class MarketplacesController < ApplicationController
               :account_id => @response["id"],
               :token => @response["accessToken"]
             )
+            @marketplace.organizer.update_attributes(:market_place_active => true)
           else
             @activation_message = "Não conseguimos resposta do Moip para ativar #{@marketplace.organizer.name}, verifique os dados novamente."
             @activation_status = "danger"

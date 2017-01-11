@@ -173,7 +173,7 @@
           <div class="form-group">
               <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
-                  <%= ff.text_field :bank_type, placeholder: "Tipo de banco", class: "form-control" %>
+                  <%= ff.text_field :bank_type, placeholder: "Tipo de conta ex. CHECKING ou SAVING", class: "form-control" %>
               </div>
           </div>
           <div class="form-group">
@@ -198,6 +198,7 @@
               <div class="input-group">
                   <%= f.label :active %>
                   <%= ff.check_box :active, class: "form-control" %>
+                  <%= ff.hidden_field :marketplace_id, value: @marketplace.id %>
               </div>
           </div>
         </fieldset>

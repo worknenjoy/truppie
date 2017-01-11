@@ -9,6 +9,14 @@
 	</ul>
 	<div class="tab-content spaced-down">
 		<div class="tab-pane active" id="home" role="tabpanel">
+		        <div class="form-group">
+  		        <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
+                  </span>
+                  <%= f.label :marketplace %>
+                  <%= f.select :marketplace_id, options_for_select(Marketplace.all.map{|s|[s.person_name, s.id]}, (@organizer.marketplace_id if @organizer.marketplace_id.present?)), {class: "form-control", include_blank: "Escolha uma categoria"} %>
+              </div>
+            </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>

@@ -23,4 +23,14 @@ class Organizer < ActiveRecord::Base
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
   
+  def balance
+    if self.market_place_active
+      response = RestClient.get "https://sandbox.moip.com.br/v2/balances", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.marketplace.token}"
+      json_data = JSON.parse(response)
+      json_data
+    else
+      false
+    end  
+  end
+    
 end

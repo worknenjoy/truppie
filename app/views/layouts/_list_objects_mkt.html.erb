@@ -17,7 +17,16 @@
               <td><%= m.organizer.name %></td>
               <td><%= m.person_name %></td>
               <% if m.is_active? %>
-              <td><span class="label label-success">ativa</label></td>
+              <td><span class="label label-success">conta ativa</label></td>
+              <% if m.registered_account.any? %>  
+                <td><span class="label label-success">conta bancária ativa</label></td>
+              <% else %>
+                <% if m.bank_account_active.nil? %>
+                  <td><small>ative uma conta bancária para registrá-la neste marketplace</small></td>
+                <% else %>
+                  <td><%= link_to 'Registrar conta bancária', activate_bank_account_path(m.bank_account_active.id) %></td>
+                <% end %>
+              <% end %>
               <% else %>
               <td><%= link_to 'Ativar no moip', activate_marketplace_path(m) %></td>
               <% end %>

@@ -14,7 +14,10 @@
                         <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informações sobre a conta</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#bank_accounts" role="tab">Conta bancária</a>
+                        <a class="nav-link" data-toggle="tab" href="#bank_accounts" role="tab">Conta bancária local</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#bank_accounts_remote" role="tab">Conta bancária registrada</a>
                       </li>
                     </ul>
                     <div class="tab-content spaced-down">
@@ -165,6 +168,13 @@
                               </p>                       
                           <% end %>
                         </p>
+                      </div>
+                      <div class="tab-pane" id="bank_accounts_remote" role="tabpanel">
+                        <% if @marketplace.registered_account.any? %>
+                          <%= @marketplace.registered_account.inspect %>
+                        <% else %>
+                          <p>Sua conta ainda não foi registrada no marketplace. É necessário o cadastro da conta para receber os valores</p>
+                        <% end %>
                       </div>
                     </div>
                     <%= link_to 'Edit', edit_marketplace_path(@marketplace) %> |
