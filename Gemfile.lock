@@ -100,10 +100,13 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    metaclass (0.0.4)
     mime-types (2.99)
     mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    mocha (1.2.1)
+      metaclass (~> 0.0.1)
     moip2 (0.1.4)
       httparty
       recursive-open-struct
@@ -233,6 +236,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   json (= 1.8.2)
+  mocha
   moip2 (~> 0.1.4)
   omniauth
   omniauth-facebook

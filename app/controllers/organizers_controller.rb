@@ -1,5 +1,5 @@
 class OrganizersController < ApplicationController
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer]
   before_action :authenticate_user!, :except => [:show]
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
   
@@ -86,6 +86,14 @@ class OrganizersController < ApplicationController
     else
       @tour = Tour.find(params[:tour])
     end
+  end
+  
+  def transfer
+    @organizer = Organizer.find(params[:id])
+    @money_account_json = []
+    @money_account_json.push @organizer.marketplace.bank_account
+    response = RestClient.get "https://sandbox.moip.com.br/v2/transfers", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"
+    @transfer_json = JSON.parse(response)
   end
   
   def marketplace

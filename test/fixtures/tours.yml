@@ -88,6 +88,34 @@ picomarins:
   packages: basico, completo 
   status: 'P'
   
+tour_mkt:
+  title: tour with marketplace
+  description: subindo do pico marins na mantiqueira
+  rating: 3
+  currency: BRL 
+  organizer: mkt
+  start: 2016-06-18 06:00:00
+  end: 2016-06-19 06:00:00
+  photo: 
+  availability: 3 
+  minimum: 
+  maximum: 
+  difficulty: 2
+  where: placeone
+  address: MyString
+  user: laura 
+  included: []
+  nonincluded: [] 
+  category: trekking
+  tags: family, geek, outdoor
+  privacy: MyString
+  meetingpoint: MyString
+  confirmeds:
+  languages: english, portuguese 
+  reviews: boring, cool
+  packages: basico, completo 
+  status: 'P'
+  
 with_orders:
   title: Tour with orders
   description: subindo do pico marins na mantiqueira

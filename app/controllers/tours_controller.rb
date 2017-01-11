@@ -112,7 +112,7 @@ class ToursController < ApplicationController
         client = Moip2::Client.new(Rails.application.secrets[:moip_env], auth)
         api = Moip2::Api.new(client)
         
-        order = api.order.create({
+        @new_order = {
           own_id: "truppie_#{@tour.id}_#{current_user.id}",
           items: [
             {
@@ -126,8 +126,49 @@ class ToursController < ApplicationController
             own_id: "#{current_user.id.to_s}_#{current_user.name.parameterize}",
             fullname: current_user.name,
             email: current_user.email
-          } 
-        })
+          },
+          receivers: [
+          {
+              moipAccount:  {
+                  id: @tour.organizer.marketplace.account_id
+              },
+              type: "SECONDARY",
+              amount: {
+                  percentual: 98
+              }
+          }
+          ] 
+        }
+        
+        #if @tour.organizer.try(:marketplace)
+        #  if @tour.organizer.marketplace.account_id
+        #    @new_order.merge!({
+        #      receivers:  
+        #      [
+        #        moipAccount: {
+         #         id: @tour.organizer.marketplace.account_id
+         #       },
+         #       type: "SECONDARY",
+         #       amount: {
+         #         percentual: 99
+         #       }
+         #     ]
+          #  })
+          #end
+        #end
+        
+        puts @new_order
+        
+        order = api.order.create(@new_order)
+        
+        if order.try(:errors)
+          flash[:error] = order.errors[0][:description]
+          @confirm_headline_message = "Não foi possível confirmar sua reserva, conta do organizador não encontrada"
+          @confirm_status_message = order.errors[0][:description]
+          @status = "danger"
+          redirect_to @tour
+        end
+        
         if not @payment_data[:method].nil?
           payment = api.payment.create(order.id, payment_object_type)
           

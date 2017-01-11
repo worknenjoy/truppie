@@ -1,0 +1,101 @@
+<%= render 'layouts/navbar' %>
+<div class="form-signin">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card card-block">
+                <div class="card-body" style="overflow:hidden;">
+                    <h3 class="text-center spaced-down">
+                        Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
+                    </h3>
+                  <div class="card" style="overflow: hidden">
+            <div class="card-footer" style="overflow: hidden">
+              <span class="pull-left">
+                <% if @money_account_json.length != 0 %>
+                  <%= form_tag('/organizers/transfer_funds', method: :post, class: "form-inline") do -%>
+                    <%= hidden_field_tag :id, @organizer.id %>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                      <div class="input-group">
+                        <div class="input-group-addon">
+                          R$
+                        </div>
+                        <%= text_field_tag :amount, nil, placeholder: "valor a ser transferido",  class: "form-control col-xs-5" %>
+                        <div class="input-group-addon">
+                          .00
+                        </div>
+                      </div>
+                    </div>
+                    <%= submit_tag 'Transferir para minha conta', class: "btn btn-primary" %>
+                  <% end %>
+                <% else %>
+                  <small>Você não tem nenhuma conta cadastrada</small>
+                  <%= link_to "cadastrar nova conta", new_bank_account_path(organizer_id: @organizer.id), class: "btn btn-small btn-primary" %>
+                <% end %>
+              </span>
+              <span class="pull-right">
+                <small>em conta:</small> <span class="label label-success increase-font"><%= raw friendly_price(@organizer.balance[0]["current"]) %></span>
+                <small>a liberar:</small> <span class="label label-warning increase-font"><%= raw friendly_price(@organizer.balance[0]["future"]) %></span>
+              </span>
+            </div>
+          </div>
+          <% if !@money_account_json.nil? %>
+          <h3>Conta</h3>
+          <% @money_account_json.each do |m| %>
+            <div class="row bank-card bofa spaced-down">
+              <div class="title col-sm-12">
+                <i class="fa fa-credit-card"></i>
+              </div>
+              <div class="row content col-sm-12">
+                <div class="info bofa col-sm-12">
+                  <p class="title">Banco</p>
+                  <p><%= m["bankNumber"] %></p>
+                </div>
+                <div class="info bofa col-sm-12">
+                  <div class="logo"></div>
+                </div>
+                <div class="info col-xs-6">
+                  <p class="title">Número da conta</p>
+                  <p><%= m["accountNumber"] %></p>
+                </div>
+                <div class="info col-xs-6">
+                  <p class="title">Nome</p>
+                  <p><%= m["holder"]["fullname"] %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>  
+            <% end %>
+            <% if !@transfers_json.nil? %>
+            <h3>Transferências</h3>
+            <table class="rwd-table">
+              <tr>
+                <th>Nome</th>
+                <th>Status</th>
+                <th>Data</th>
+                <th>Banco</th>
+                <th>Conta</th>
+                <th>Valor</th>
+              </tr>
+              <% @transfers_json["transfers"].each do |t| %>
+              <tr>
+                <td data-th="Nome"><%= t["transferInstrument"]["bankAccount"]["holder"]["fullname"] %></td>
+                <td data-th="Status"><%= t["status"] %></td>
+                <td data-th="Data"><%= l(t["updatedAt"].to_datetime, format: '%d de %B de %Y as %Hh%M') %></td>
+                <td data-th="Banco"><%= t["transferInstrument"]["bankAccount"]["bankName"] %></td>
+                <td data-th="Conta"><%= t["transferInstrument"]["bankAccount"]["accountNumber"] %></td>
+                <td data-th="Valor"><%= number_to_currency(t["amount"]/100, unit: "R$") %></td>
+              </tr>
+              <% end %>
+            </table>
+           <small>Se a transferência que consta na lista não entrou na sua conta, <%= link_to "entre em contato com a gente", contacts_index_path %></small>
+                <% else %>
+                  <p>Nenhuma transferência realizada</p>
+                <% end %>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>

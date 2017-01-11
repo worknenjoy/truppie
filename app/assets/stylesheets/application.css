@@ -32,7 +32,9 @@
  *= require user-ribbon
  *= require manage-entries
  *= require balance-progress
- *= require dash         
+ *= require dash
+ *= require bank-card
+ *= require info-table          
  *= require welcome
  *= require payment-methods
  *= require overlay

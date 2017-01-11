@@ -56,6 +56,7 @@ group :development, :test do
   gem 'byebug'
   gem 'database_cleaner'
   gem 'fakeweb'
+  gem 'mocha'
 end
 
 group :development do

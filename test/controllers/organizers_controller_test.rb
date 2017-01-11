@@ -80,4 +80,17 @@
      get :marketplace, id: @organizer_ready.id
      assert_response :success
    end
+   
+   test "should go to transfer page" do
+     body = [{"current" => 0, "future" => 0}]
+     FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/balances", :body => body.to_json, :status => ["201", "Created"])
+     FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/transfers", :body => "{}", :status => ["200", "Success"])
+     get :transfer, id: @mkt.id
+     assert assigns(:money_account_json), [{"bankNumber"=>"MyString", "agencyNumber"=>"MyString", "accountNumber"=>"MyString", "agencyCheckNumber"=>"MyString", "accountCheckNumber"=>"MyString", "type"=>"MyString", "holder"=>{"taxDocument"=>{"type"=>"MyString", "number"=>"MyString"}, "fullname"=>"MyString"}}]
+     assert assigns(:transfer_json), {}
+     assert_response :success
+   end
+   
+   
+   
  end

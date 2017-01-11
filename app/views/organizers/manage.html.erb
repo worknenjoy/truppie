@@ -31,7 +31,9 @@
                   </li>
               </ul> 
               <p>
-                <a href="#" class="btn btn-block btn-primary-outline"><strong>Transferir para minha conta</strong></a>
+                <%= link_to transfer_organizer_path(@organizer), class: "btn btn-block btn-primary-outline" do %>
+                  <strong>Transferir para minha conta</strong>
+                <% end %>
               </p>
               <% else %>
                 <p>Sua conta ainda não está ativada no marketplace, favor entrar em contato conosco para ativação</p>

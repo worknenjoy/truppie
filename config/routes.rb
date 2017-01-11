@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     member do
       get 'manage/(:tour)', to: 'organizers#manage', as: 'manage'
       get 'marketplace', to: 'organizers#marketplace', as: 'marketplace'
+      get 'transfer', to: 'organizers#transfer', as: 'transfer'
     end
   end
   
