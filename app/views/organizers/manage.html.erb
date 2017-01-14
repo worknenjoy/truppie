@@ -4,6 +4,7 @@
       <div class="col-xs-12">
         <div class="manage-inspiration">
           <div class="card card-block">
+              <%= render 'layouts/organizer_dashboard_navbar' %>
               <p>Olá <strong><%= link_to @organizer.name, organizer_path(@organizer) %></strong> <br />
               Aqui você verá o saldo total da sua conta e das suas truppies</p>
               <% if @organizer.balance %>

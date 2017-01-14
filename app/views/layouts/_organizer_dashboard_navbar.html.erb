@@ -1,0 +1,17 @@
+<nav class="navbar navbar-light bg-faded spaced-down">
+  <%= link_to organizer_path(@organizer), class: 'navbar-brand' do %>
+    <i class="fa fa-map-o"></i> <strong><%= @organizer.name %>: </strong>
+  <% end %>
+  <ul class="nav navbar-nav">
+    <li class="nav-item <%= "active" if current_page? action: 'manage' %>">
+      <%= link_to manage_organizer_path(@organizer), class: 'nav-link' do %>
+        gerenciar                
+      <% end %>
+    </li>
+    <li class="nav-item <%= "active" if current_page? action: 'transfer' %>">
+      <%= link_to transfer_organizer_path(@organizer), class: 'nav-link' do %>
+        transferir               
+      <% end %>
+    </li>
+  </ul>
+</nav>

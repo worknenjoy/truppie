@@ -4,6 +4,7 @@
     <div class="col-xs-12 col-md-12">
       <div class="spaced-default spaced-default-full">
         <% if @status == "danger" %>
+        <%= render 'layouts/organizer_dashboard_navbar' %>
         <div class="card card-inverse card-<%= @status %> text-xs-center">
           <div class="card-block">
             <blockquote class="card-blockquote">
@@ -27,6 +28,7 @@
         </div>
         <% end %>
         <% if @status == "success" %>
+        <%= render 'layouts/organizer_dashboard_navbar' %>
         <div class="card card-inverse card-<%= @status %> text-xs-center">
           <div class="card-block">
             <blockquote class="card-blockquote">

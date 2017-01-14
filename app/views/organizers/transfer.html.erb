@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="card card-block card-transfer">
+                <%= render 'layouts/organizer_dashboard_navbar' %>
                 <div class="card-body" style="overflow:hidden;">
                     <h3 class="text-center spaced-down">
                         Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
@@ -68,8 +69,8 @@
                   <div class="col-xs-12 col-md-6">
                     <p class="spaced-smallest"><strong>Informações sobre a transferência:</strong></p>
                     <ul class="list-group spaced-down">
-                      <li class="list-group-item"><i class="fa fa-hand-o-right"></i> O dinheiro leva 14 dias para entrar na sua conta da Truppie e ficar em conta disponível para transferência</li>
-                      <li class="list-group-item"><i class="fa fa-hand-o-right"></i> Após solicitada, a transferência leva 4 dias úteis para entrar na sua conta</li>
+                      <li class="list-group-item"><i class="fa fa-hand-o-right"></i> O dinheiro leva 14 dias para entrar na sua carteira da Truppie e ficar disponível para transferência</li>
+                      <li class="list-group-item"><i class="fa fa-hand-o-right"></i> Após solicitada, a transferência leva até 4 dias úteis para entrar na sua conta</li>
                     </ul>
                   </div>
                 <% end %>  
