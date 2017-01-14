@@ -2,6 +2,19 @@
 @include media-breakpoint-down(sm) {
   html {
     body {
+      .card-transfer {
+  
+        span {
+          display: block;
+          width: 100%;
+        }
+        .label {
+          line-height: 28px;
+        }
+        .increase-font {
+          font-size: 1.2em;
+        }
+      }
       .manage-entries {
         .manage-main {
           width: 100%;
