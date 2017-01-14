@@ -1,0 +1,44 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <div class="spaced-default spaced-default-full">
+        <% if @status == "danger" %>
+        <div class="card card-inverse card-<%= @status %> text-xs-center">
+          <div class="card-block">
+            <blockquote class="card-blockquote">
+              <h4>
+                <p><%= @message_status %></p> 
+              </h4>
+              <% if !@response_transfer_json.nil? %>
+              <p>Encontramos os seguintes erros para realizar a transferência:</p>
+              <ul class="list-unstyled">
+                <% if @response_transfer_json.length %>
+                  <% @response_transfer_json["errors"].each do |e| %>
+                    <li><%= e["description"] %></li>
+                  <% end %>
+                <% else %>
+                  <%= @response_transfer_json["ERROR"] %>
+                <% end %>
+              </ul>
+              <% end %>
+            </blockquote>
+          </div>
+        </div>
+        <% end %>
+        <% if @status == "success" %>
+        <div class="card card-inverse card-<%= @status %> text-xs-center">
+          <div class="card-block">
+            <blockquote class="card-blockquote">
+              <h4>
+                <p><%= @message_status %></p> 
+              </h4>
+              <p>Aguarde até 4 dias úteis para o dinheiro ser transferido para sua conta</p>
+            </blockquote>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

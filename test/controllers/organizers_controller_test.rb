@@ -4,10 +4,10 @@
  class OrganizersControllerTest < ActionController::TestCase
    self.use_transactional_fixtures = true
    setup do
+     FakeWeb.clean_registry
      sign_in users(:alexandre)
      @organizer_ready = organizers(:utopicos)
      @mkt = organizers(:mkt)
-     
      @organizer = {
        name: "Utópicos mundo afora",
        description: "uma agencia utopica",
@@ -81,7 +81,7 @@
      assert_response :success
    end
    
-   test "should go to transfer page" do
+   test "should go to transfer page with no transference" do
      body = [{"current" => 0, "future" => 0}]
      FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/balances", :body => body.to_json, :status => ["201", "Created"])
      FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/transfers", :body => "{}", :status => ["200", "Success"])
@@ -91,6 +91,68 @@
      assert_response :success
    end
    
+   test "should not transfer amount to organizer if there's no active bank account" do
+     post :transfer_funds, id: @mkt.id, amount: 200, current: 300
+     assert_equal assigns(:bank_account_active_id), nil
+     assert_equal assigns(:amount), 200
+     assert_equal assigns(:status), "danger"
+     assert_equal assigns(:message_status), "Você não tem nenhuma conta bancária ativa no momento"
+     assert_response :success
+   end
    
+   test "should not transfer if there's no enough money" do
+     @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
+     post :transfer_funds, id: @mkt.id, amount: 200, current: 100
+     assert_equal assigns(:bank_account_active_id), "fooid"
+     assert_equal assigns(:amount), 200
+     assert_equal assigns(:current), 100
+     assert_equal assigns(:status), "danger"
+     assert_equal assigns(:message_status), "Você não tem fundos suficientes para realizar esta transferência"
+     assert_response :success
+   end
+   
+   test "should not transfer without amount" do
+     post :transfer_funds, id: @mkt.id
+     assert_equal assigns(:status), "danger"
+     assert_equal assigns(:message_status), "Você não especificou um valor"
+     assert_response :success
+   end
+   
+   test "should not transfer amount to organizer because the token is not valid" do
+     @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
+     post :transfer_funds, id: @mkt.id, amount: 200, current: 500
+     assert_equal assigns(:bank_account_active_id), "fooid"
+     assert_equal assigns(:amount), 200
+     assert_equal assigns(:response_transfer_json), {"ERROR"=>"Token or Key are invalids"}
+     assert_equal assigns(:status), "danger"
+     assert_equal assigns(:message_status), "Você não está autorizado a realizar esta transação"
+     assert_response :success
+   end
+   
+   test "should not transfer amount with moip response of any error" do
+     body = {"errors"=>[{"code"=>"TRA-101", "path"=>"-", "description"=>"Saldo disponivel insuficiente para essa operacao"}]}
+     FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/transfers", :body => body.to_json, :status => ["200", "Success"])
+     @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
+     post :transfer_funds, id: @mkt.id, amount: 200, current: 500
+     assert_equal assigns(:bank_account_active_id), "fooid"
+     assert_equal assigns(:amount), 200
+     assert_equal assigns(:response_transfer_json), {"errors"=>[{"code"=>"TRA-101", "path"=>"-", "description"=>"Saldo disponivel insuficiente para essa operacao"}]}
+     assert_equal assigns(:status), "danger"
+     assert_equal assigns(:message_status), "Não foi possíel realizar a transferência"
+     assert_response :success
+   end 
+   
+   test "should transfer amount with moip response" do
+     body = {:status => "REQUESTED"}
+     FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/transfers", :body => body.to_json, :status => ["201", "Created"])
+     @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
+     post :transfer_funds, id: @mkt.id, amount: 200, current: 500
+     assert_equal assigns(:bank_account_active_id), "fooid"
+     assert_equal assigns(:amount), 200
+     assert_equal assigns(:response_transfer_json), {"status" => "REQUESTED"}
+     assert_equal assigns(:status), "success"
+     assert_equal assigns(:message_status), "Solicitação de transferência realizada com sucesso"
+     assert_response :success
+   end  
    
  end

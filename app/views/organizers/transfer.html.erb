@@ -12,10 +12,10 @@
             <div class="card-footer" style="overflow: hidden">
               <span class="pull-left">
                 <% if @money_account_json.length != 0 %>
-                  <%= form_tag('/organizers/transfer_funds', method: :post, class: "form-inline") do -%>
+                  <%= form_tag(transfer_funds_organizer_path(@organizer), method: :post, class: "form-inline") do -%>
                     <%= hidden_field_tag :id, @organizer.id %>
+                    <%= hidden_field_tag :current, @organizer.balance[0]["current"] %>
                     <div class="form-group">
-                      <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                       <div class="input-group">
                         <div class="input-group-addon">
                           R$
@@ -66,8 +66,8 @@
             </div>
           <% end %>  
             <% end %>
-            <% if !@transfers_json.nil? %>
             <h3>Transferências</h3>
+            <% if !@transfers_json.nil? %>
             <table class="rwd-table">
               <tr>
                 <th>Nome</th>

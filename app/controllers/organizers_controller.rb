@@ -1,7 +1,7 @@
 class OrganizersController < ApplicationController
   before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds]
   
   def check_if_admin
     allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
@@ -94,6 +94,64 @@ class OrganizersController < ApplicationController
     @money_account_json.push @organizer.marketplace.bank_account
     response = RestClient.get "https://sandbox.moip.com.br/v2/transfers", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"
     @transfer_json = JSON.parse(response)
+  end
+  
+  def transfer_funds
+    if params[:amount].nil?
+      @status = "danger"
+      @message_status = "Você não especificou um valor"
+      return 
+    end
+    
+    @organizer = Organizer.find(params[:id])
+    @amount = params[:amount].to_i
+    @current = params[:current].to_i
+    
+    @bank_account_active_id = @organizer.marketplace.bank_account_active.own_id
+    if @bank_account_active_id.nil?
+      @status = "danger"
+      @message_status = "Você não tem nenhuma conta bancária ativa no momento"
+    else
+      if @amount <= @current
+         bank_transfer_data = {
+              "amount" => @amount,
+              "transferInstrument" => {
+                  "method" => "BANK_ACCOUNT",
+                  "bankAccount" => {
+                      "id" => @bank_account_active_id,
+                  }
+              }
+          }
+          response_transfer = RestClient.post("https://sandbox.moip.com.br/v2/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"){|response, request, result, &block| 
+              case response.code
+                when 401
+                  @status = "danger"
+                  @message_status = "Você não está autorizado a realizar esta transação"
+                  @response_transfer_json = JSON.load response
+                when 400 
+                  @status = "danger"
+                  @message_status = "Não foi possíel realizar a transferência"
+                  @response_transfer_json = JSON.load response
+                when 200
+                  @status = "danger"
+                  @message_status = "Não foi possível realizar a transferência"
+                  @response_transfer_json = JSON.load response
+                when 201
+                  @status = "success"
+                  @message_status = "Solicitação de transferência realizada com sucesso"
+                  @response_transfer_json = JSON.load response
+                else
+                  @activation_message = "Não conseguimos resposta do MOIP para a transferência soliticata, verifique os dados novamente."
+                  @activation_status = "danger"
+                  @response_transfer_json = JSON.load response
+                end
+          }
+      else
+         @status = "danger"
+         @message_status = "Você não tem fundos suficientes para realizar esta transferência"
+      end
+    end
+    
   end
   
   def marketplace

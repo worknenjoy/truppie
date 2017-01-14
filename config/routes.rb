@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get 'manage/(:tour)', to: 'organizers#manage', as: 'manage'
       get 'marketplace', to: 'organizers#marketplace', as: 'marketplace'
       get 'transfer', to: 'organizers#transfer', as: 'transfer'
+      post 'transfer_funds', to: 'organizers#transfer_funds', as: 'transfer_funds'
     end
   end
   
