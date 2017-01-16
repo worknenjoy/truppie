@@ -91,21 +91,25 @@ class OrganizersController < ApplicationController
   def transfer
     @organizer = Organizer.find(params[:id])
     @money_account_json = []
-    @money_account_json.push @organizer.marketplace.bank_account
-    response = RestClient.get "https://sandbox.moip.com.br/v2/transfers", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"
-    @transfer_json = JSON.parse(response)
+    if @organizer.try(:marketplace)
+      @money_account_json.push @organizer.marketplace.bank_account
+      response = RestClient.get "#{Rails.application.secrets[:moip_domain]}/transfers", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"
+      @transfer_json = JSON.parse(response)
+    else
+      @transfer_json = {}
+    end
   end
   
   def transfer_funds
+    @organizer = Organizer.find(params[:id])
+    @amount = params[:amount].to_i
+    @current = params[:current].to_i
+    
     if params[:amount].nil?
       @status = "danger"
       @message_status = "Você não especificou um valor"
       return 
     end
-    
-    @organizer = Organizer.find(params[:id])
-    @amount = params[:amount].to_i
-    @current = params[:current].to_i
     
     @bank_account_active_id = @organizer.marketplace.bank_account_active.own_id
     if @bank_account_active_id.nil?
@@ -122,7 +126,7 @@ class OrganizersController < ApplicationController
                   }
               }
           }
-          response_transfer = RestClient.post("https://sandbox.moip.com.br/v2/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"){|response, request, result, &block| 
+          response_transfer = RestClient.post("#{Rails.application.secrets[:moip_domain]}/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"){|response, request, result, &block| 
               case response.code
                 when 401
                   @status = "danger"

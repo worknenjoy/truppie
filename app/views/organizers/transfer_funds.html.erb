@@ -14,12 +14,14 @@
               <% if !@response_transfer_json.nil? %>
               <p>Encontramos os seguintes erros para realizar a transferência:</p>
               <ul class="list-unstyled">
-                <% if @response_transfer_json.length %>
+                <% if @response_transfer_json.key?("errors") %>
                   <% @response_transfer_json["errors"].each do |e| %>
                     <li><%= e["description"] %></li>
                   <% end %>
                 <% else %>
-                  <%= @response_transfer_json["ERROR"] %>
+                  <% if @response_transfer_json.key?("ERROR") %>
+                    <%= @response_transfer_json["ERROR"] %>
+                  <% end %>
                 <% end %>
               </ul>
               <% end %>

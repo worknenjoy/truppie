@@ -218,11 +218,11 @@ class OrdersControllerTest < ActionController::TestCase
   
   test "should send the balance when the payment is settled" do
     @request.env['RAW_POST_DATA'] = {"date":"","env":"","event":"PAYMENT.SETTLED","resource":{"payment":{"_links":{"order":{"href":"https://sandbox.moip.com.br/v2/orders/ORD-4WHF2TSP3X4F","title":"ORD-4WHF2TSP3X4F"},"self":{"href":"https://sandbox.moip.com.br/v2/payments/PAY-ARVJHNTP3KQ6"}},"amount":{"currency":"BRL","fees":261,"liquid":3239,"refunds":0,"total":3500},"createdAt":"2016-04-13T00:46:24.000-03","delayCapture":false,"events":[{"createdAt":"2016-04-13T00:46:25.000-03","type":"PAYMENT.CREATED"},{"createdAt":"2016-04-13T00:46:08.494-03","type":"PAYMENT.SETTLED"}],"fees":[{"amount":261,"type":"TRANSACTION"}],"fundingInstrument":{"creditCard":{"brand":"MASTERCARD","first6":"555566","holder":{"birthDate":"1982-10-06","birthdate":"1982-10-06","fullname":"Alexandre Magno Teles Zimerer","taxDocument":{"number":"05824493677","type":"CPF"}},"id":"CRC-PWZSLZSIXVC5","last4":"8884"},"method":"CREDIT_CARD"},"id":"PAY-4G6UKLVSNLXF","installmentCount":1,"status":"SETTLED","updatedAt":"2016-04-13T00:46:08.494-03"}}}
-    orders = Order.create(:status => 'PAYMENT.SETTLED', :payment => "PAY-4G6UKLVSNLXF", :user => User.last, :tour => Tour.last)
+    orders = Order.create(:status => 'PAYMENT.SETTLED', :payment => "PAY-4G6UKLVSNLXF", :user => @order.user, :tour => @order.tour)
     post :webhook, {}
     assert_not ActionMailer::Base.deliveries.empty?
-    puts ActionMailer::Base.deliveries[1].html_part
-    assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?("Disponível em conta"), true
+    #puts ActionMailer::Base.deliveries[1].html_part
+    assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?("em conta"), true
   end
   
   test "should receive a post with successfull parameters from moip when is boleto" do

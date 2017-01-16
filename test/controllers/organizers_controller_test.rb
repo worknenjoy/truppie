@@ -138,7 +138,7 @@
      assert_equal assigns(:amount), 200
      assert_equal assigns(:response_transfer_json), {"errors"=>[{"code"=>"TRA-101", "path"=>"-", "description"=>"Saldo disponivel insuficiente para essa operacao"}]}
      assert_equal assigns(:status), "danger"
-     assert_equal assigns(:message_status), "Não foi possíel realizar a transferência"
+     assert_equal assigns(:message_status), "Não foi possível realizar a transferência"
      assert_response :success
    end 
    

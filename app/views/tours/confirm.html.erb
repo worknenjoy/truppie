@@ -39,7 +39,7 @@
         </div>
         <div class="payment-tab" id="payment-creditcard">
           <div class="container">
-          	<h4 class="spaced-down">Seus dados e pagamento</h4>
+          	<h4 class="spaced-down">Seus dados para pagamento <small>(cartão de crédito)</small></h4>
           </div>
           <div class="col-md-4">
               <div class="card font-card-small">
@@ -94,21 +94,21 @@
                           </div>
                       </div>
                       <div class="row">
-                          <div class="col-xs-4 col-md-8">
-                              <label for="expMonth">Data de expiração</label>
-                              <div class="form-group">
-                                  <div class="col-xs-7 pl-ziro">
-                                      <%= text_field_tag :expiration_month, nil, placeholder: "MM", required: true, class: "form-control" %>
-                                  </div>
-                                  <div class="col-xs-5 pl-ziro">
-                                      <%= text_field_tag :expiration_year, nil, placeholder: "AA", required: true, class: "form-control" %>
-                                  </div>
-                              </div>
+                          <div class="col-xs-12 col-md-8">
+                            <label for="expMonth">Data de expiração</label>
+                            <div class="form-group">
+                                <div class="col-xs-12 col-md-7 pl-ziro">
+                                    <%= text_field_tag :expiration_month, nil, placeholder: "Mês (dois dígitos)", required: true, class: "form-control" %>
+                                </div>
+                                <div class="col-xs-12 col-md-5 pl-ziro xs-spaced-top">
+                                    <%= text_field_tag :expiration_year, nil, placeholder: "Ano (dois dígitos)", required: true, class: "form-control" %>
+                                </div>
+                            </div>
                           </div>
-                          <div class="col-xs-8 col-md-4 pull-right">
+                          <div class="col-xs-12 col-md-4 pull-right">
                               <div class="form-group">
-                                  <label for="cvCode">Código</label>
-                                  <%= text_field_tag :cvc, nil, placeholder: "CV", required: true, class: "form-control" %>
+                                  <label for="cvCode">Código de verificação</label>
+                                  <%= text_field_tag :cvc, nil, placeholder: "ex. 123", required: true, class: "form-control" %>
                               </div>
                           </div>
                       </div>
@@ -201,7 +201,7 @@
             <div class="col-md-12">
                 <div class="card font-card-small">
                     <div class="card-header">
-                        <h4>Dados para pagamento</h4>
+                        <h4>Dados para pagamento <small>(boleto bancário)</small></h4>
                     </div>
                     <div class="card-block">
                         <div class="col-xs-12">

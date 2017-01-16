@@ -9,8 +9,8 @@ class TourTest < ActiveSupport::TestCase
     @marins = tours(:picomarins)
   end
   
-  test "one tour created" do
-     assert_equal 4, Tour.count
+  test "tours fixtures created" do
+     assert_equal 5, Tour.count
    end
    
    test "a user that create the tour" do

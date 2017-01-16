@@ -5,6 +5,7 @@
         <div class="col-xs-12">
             <div class="card card-block card-transfer">
                 <%= render 'layouts/organizer_dashboard_navbar' %>
+                <% if @organizer.try(:marketplace) %>
                 <div class="card-body" style="overflow:hidden;">
                     <h3 class="text-center spaced-down">
                         Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
@@ -107,6 +108,9 @@
               </div>
               </div>
           </div>
+          <% else %>
+            <p>Você não tem uma conta associada, entre em contato com a gente enviando um e-mail para <a href="mailto:ola@truppie.com">ola@truppie.com</a> para ativá-la</p>
+          <% end %>
       </div>
     </div>
     </div>

@@ -2,6 +2,13 @@
 @include media-breakpoint-down(sm) {
   html {
     body {
+      .xs-spaced-top {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        display: inline-block;
+        overflow: hidden;
+      }
       .card-transfer {
   
         span {

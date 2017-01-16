@@ -70,7 +70,7 @@ class Marketplace < ActiveRecord::Base
   end
   
   def registered_account
-    response = RestClient.get "https://sandbox.moip.com.br/v2/accounts/#{self.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.token}"
+    response = RestClient.get "#{Rails.application.secrets[:moip_domain]}/accounts/#{self.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.token}"
     json_data = JSON.parse(response)
     json_data    
   end
