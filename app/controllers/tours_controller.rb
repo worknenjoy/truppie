@@ -152,25 +152,29 @@ class ToursController < ApplicationController
           @confirm_headline_message = "Não foi possível confirmar sua reserva"
           @confirm_status_message = order.errors[0][:description]
           @status = "danger"
+          puts order.inspect
           return
         end
         
         if not @payment_data[:method].nil?
           payment = api.payment.create(order.id, payment_object_type)
+          puts payment.inspect
           
           if payment.try(:errors)
             @payment_api_error = payment["errors"][0]["path"]
             @payment_api_error_msg = payment["errors"][0]["description"]
+            puts payment.inspect
           else
             if @payment_method == "BOLETO"
               @payment_api_success = payment
               @payment_api_success_url = @payment_api_success[:_links][:pay_boleto][:redirect_href]
             end
-            
           end
           
-          if payment.success? && !@payment_method.nil?
-            
+          puts @payment_method.inspect
+          puts payment.inspect
+                    
+          if payment.success?
             @tour.confirmeds.new(:user  => current_user)
           
             amount_reserved_now = @tour.reserved

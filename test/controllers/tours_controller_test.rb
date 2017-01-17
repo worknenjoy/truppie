@@ -331,7 +331,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a order in a marketplace" do
-    skip("its not finding the moip account even saving a valid one")
+    #skip("its not finding the moip account even saving a valid one")
     @mkt.organizer.marketplace.account_id = "BKA-77RM3B95LDBR"
     @mkt.organizer.marketplace.save
     @payment_data["id"] = @mkt
