@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ActionView::Helpers::NumberHelper
   
   def flash_status(status)
     case status
@@ -31,6 +32,24 @@ module ApplicationHelper
   
   def final_price(p)
     "<small>R$</small> " + "<span>" + p.to_s + "</span>"
+  end
+  
+  def raw_price(p)
+    n = number_with_precision(p, precision: 2, separator: ',').to_s.gsub(',', '.').to_f*100
+    n.to_i
+  end
+  
+  def transfer_status(s)
+    status = {
+      "REQUESTED" => "Solicitado",
+      "COMPLETED" => "Completado",
+      "FAILED" => "Falhou"
+    }
+    status[s]
+  end
+  
+  def bank_list()
+    YAML.load_file('config/banks.yml')
   end
   
 end

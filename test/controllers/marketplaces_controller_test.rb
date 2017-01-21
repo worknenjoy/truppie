@@ -82,6 +82,7 @@ class MarketplacesControllerTest < ActionController::TestCase
         "token" => "06f4ceba740f4ff892146d13be869471_v2"
       }
     assert_response :success
+    assert_not ActionMailer::Base.deliveries.empty?
   end
   
   test "activate bank account on marketplace with success mocking the success response from moip and get the data" do
@@ -93,6 +94,7 @@ class MarketplacesControllerTest < ActionController::TestCase
     assert_equal assigns(:response)["id"], "MPA-EA639011F6DD"
     assert_equal Marketplace.find(@mkt_valid.id).organizer.market_place_active, true
     assert_response :success
+    assert_not ActionMailer::Base.deliveries.empty?
   end
   
   

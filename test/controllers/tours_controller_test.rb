@@ -6,6 +6,7 @@ class ToursControllerTest < ActionController::TestCase
   self.use_transactional_fixtures = true
   
   setup do
+    FakeWeb.clean_registry
     sign_in users(:alexandre)
     @tour = tours(:morro)
     @tour_marins = tours(:picomarins)
@@ -80,6 +81,175 @@ class ToursControllerTest < ActionController::TestCase
       status: ""
     }
     
+    @body_for_order = { 
+      :id => "ORD-ZLAYANLXSEIC",
+      :own_id => "truppie_330594360_68086721",
+      :status => "CREATED",
+      :created_at => "2017-01-17T20:13:29.177-02",
+      :updated_at => "2017-01-17T20:13:29.177-02",
+      :amount => { 
+        :total=>4000,
+        :fees=>0,
+        :refunds=>0,
+        :liquid=>0,
+        :other_receivers=>0,
+        :currency=>"BRL",
+        :subtotals => {
+          :shipping=>0,
+          :addition=>0,
+          :discount=>0,
+          :items=>4000
+        }
+      },
+      :items => [
+        { 
+          :product=>"Morro dois irmaos",
+          :quantity=>1,
+          :detail=>"subida ao morro dois irmaos",
+          :price=>4000
+        }
+      ],
+      :customer => {
+        :id=>"CUS-66WNCZ4JSOL6",
+        :own_id=>"68086721_alexandre-magno",
+        :fullname=>"Alexandre Magno",
+        :created_at=>"2016-03-15T21:37:49.000-03",
+        :email=>"alexandre@email.com",
+        :funding_instrument => {
+          :credit_card => {
+            :id=>"CRC-9CXTBI8WHRPS",
+            :brand=>"VISA",
+            :first6=>"401200",
+            :last4=>"3335"
+          },
+          :method=>"CREDIT_CARD"
+        }, 
+        :_links =>{
+          :self => {
+            :href=>"https://sandbox.moip.com.br/v2/customers/CUS-66WNCZ4JSOL6"
+          }
+        },
+        :funding_instruments => 
+        [
+          {
+            :credit_card => {
+              :id=>"CRC-9CXTBI8WHRPS",
+              :brand=>"VISA",
+              :first6=>"401200",
+              :last4=>"3335"
+            },
+          :method=>"CREDIT_CARD"
+        }
+      ]
+    },
+    :payments => [], :refunds => [], :entries => [],
+    :events => [
+      {
+        :type=>"ORDER.CREATED",
+        :created_at=>"2017-01-17T20:13:29.177-02",
+        :description=>""
+        }
+    ],
+    :receivers =>
+      [
+        {
+          :moip_account=>{
+            :id=>"MPA-0AB3E93AE809",
+            :login=>"alexanmtz@gmail.com",
+            :fullname=>"Alexandre Teles Zimerer"
+        },
+        :type=>"PRIMARY",
+        :amount=>{
+          :total=>4000,
+          :fees=>0,
+          :refunds=>0
+        }
+      }
+    ],
+    :_links => {
+      :self=>{
+        :href=>"https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC"
+    },
+    :checkout=>{
+      :pay_checkout => {
+        :redirect_href=>"https://checkout-new-sandbox.moip.com.br?token=8bcd51e7-389d-406e-8f77-264ebe265b4d&id=ORD-ZLAYANLXSEIC"},
+        :pay_credit_card=> {
+          :redirect_href=>"https://checkout-new-sandbox.moip.com.br?token=8bcd51e7-389d-406e-8f77-264ebe265b4d&id=ORD-ZLAYANLXSEIC&payment-method=credit-card"},
+          :pay_boleto=>{
+            :redirect_href=>"https://checkout-new-sandbox.moip.com.br?token=8bcd51e7-389d-406e-8f77-264ebe265b4d&id=ORD-ZLAYANLXSEIC&payment-method=boleto"},
+            :pay_online_bank_debit_itau=>{
+              :redirect_href=>"https://checkout-sandbox.moip.com.br/debit/itau/ORD-ZLAYANLXSEIC"
+              }
+            }
+          }
+        }
+    @body_for_payment = { 
+      :id => "PAY-QTHEQDTQOJ0C",
+      :status => "IN_ANALYSIS",
+      :delay_capture => false,
+      :amount => {:total=>4000, :fees=>0, :refunds=>0, :liquid=>4000, :currency=>"BRL"},
+      :installment_count => 1,
+      :funding_instrument => {
+        :credit_card=>{
+          :id=>"CRC-9CXTBI8WHRPS",
+          :brand=>"VISA",
+          :first6=>"401200",
+          :last4=>"3335",
+          :holder=>{
+            :birthdate=>"1988-10-10",
+            :birth_date=>"1988-10-10",
+            :tax_document=>{
+              :type=>"CPF",
+              :number=>"22222222222"},
+              :fullname=>"Alexandre Magno Teles Zimerer"
+              }
+            },
+            :method=>"CREDIT_CARD"
+          },
+          :fees => [
+            {
+              :type=>"TRANSACTION", :amount=>0
+            }
+          ],
+          :events => [
+            {
+              :type=>"PAYMENT.IN_ANALYSIS",
+              :created_at=>"2017-01-17T20:13:34.758-02"
+            },
+          {
+            :type=>"PAYMENT.CREATED",
+            :created_at=>"2017-01-17T20:13:32.094-02"
+            }
+          ], 
+          :receivers => 
+          [
+            {
+              :moip_account=>{
+                :id=>"MPA-0AB3E93AE809",
+                :login=>"alexanmtz@gmail.com",
+                :fullname=>"Alexandre Teles Zimerer"
+              },
+              :type=>"PRIMARY",
+              :amount=>{
+                :total=>4000,
+                :fees=>0,
+                :refunds=>0
+              }
+            }
+          ],
+          :_links => {
+            :self=>{
+              :href=>"https://sandbox.moip.com.br/v2/payments/PAY-QTHEQDTQOJ0C"
+            },
+            :order=>{
+              :href=>"https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC",
+              :title=>"ORD-ZLAYANLXSEIC"
+            }
+          },
+          :created_at => "2017-01-17T20:13:32.093-02",
+          :updated_at => "2017-01-17T20:13:34.758-02"
+    }
+    FakeWeb.clean_registry
   end
   
   #teardown do
@@ -254,6 +424,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "increment one more member" do
+    skip("mock api call")
     @tour_confirmed_before = @tour.confirmeds.count
     post :confirm_presence, @payment_data
     @tour_confirmed_after = @tour.confirmeds.count
@@ -272,18 +443,21 @@ class ToursControllerTest < ActionController::TestCase
     assert(assigns(:final_price))
     assert_equal(assigns(:final_price), 320)
   end
+  
+  #
+  #  Confirm presence
+  #
+  #
     
   test "should confirm presence" do
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
     assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
     assert_equal assigns(:status), "success"
+    assert_equal Tour.find(@tour.id).orders.any?, true
     assert_template "confirm_presence"
-  end
-  
-  test "should add order to confirmed presence" do 
-    post :confirm_presence, @payment_data
-    assert_equal Tour.find(@tour.id).orders.any?, true 
   end
   
   test "should not confirm presence with no payment" do
@@ -322,6 +496,8 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a order with the given id" do
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
     assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
@@ -331,21 +507,21 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a order in a marketplace" do
-    #skip("its not finding the moip account even saving a valid one")
-    @mkt.organizer.marketplace.account_id = "BKA-77RM3B95LDBR"
-    @mkt.organizer.marketplace.save
+    #FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    #FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
+    
     @payment_data["id"] = @mkt
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
     assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
     assert_equal assigns(:status), "success"
-    assert_equal assigns(:new_order), {}
+    assert_equal assigns(:new_order), {:own_id=>"truppie_708514591_68086721", :items=>[{:product=>"tour with marketplace", :quantity=>1, :detail=>"subindo do pico marins na mantiqueira", :price=>4000}], :customer=>{:own_id=>"68086721_alexandre-magno", :fullname=>"Alexandre Magno", :email=>"alexanmtz@gmail.com"}, :receivers=>[{:moipAccount=>{:id=>"MPA-014A72F4426C"}, :type=>"SECONDARY", :amount=>{:percentual=>99}}]}
     assert_template "confirm_presence"
     assert_includes ["IN_ANALYSIS", "AUTHORIZED"], Order.last.status
   end
   
   test "should no create a order in a marketplace if not found on moip" do
-    @payment_data["id"] = @mkt
+    @payment_data["id"] = @tour_marins
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
     assert_equal assigns(:confirm_status_message), "A conta Moip informada não foi encontrada"
@@ -354,6 +530,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should access the payment generated by order" do
+    skip("convert to mock api")
     #skip("consult payment")
     post :confirm_presence, @payment_data
     payment_id = Order.last.payment
@@ -370,7 +547,6 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should divide in two the payment generated by order" do
-    #skip("consult payment")
     @payment_data["installment_count"] = 2
     post :confirm_presence, @payment_data
     payment_id = Order.last.payment
@@ -395,6 +571,8 @@ class ToursControllerTest < ActionController::TestCase
   
   
   test "should create a payment with credit card" do
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     post :confirm_presence, @payment_data
     
     order = Order.last
@@ -404,7 +582,6 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a payment with boleto gives a error message when date expiration is over" do
-    #skip("time based")
     @tour.start = Date.new(2012, 9, 30)
     @tour.save()
     post :confirm_presence, @payment_data_boleto
@@ -416,6 +593,8 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a payment with boleto if the right date" do
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     #@payment_data_boleto[:expirationDate] = "2077-09-30"
     @tour.update_attribute(:start, Date.new(2077, 9, 30))
     post :confirm_presence, @payment_data_boleto
@@ -433,6 +612,8 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a payment with boleto that the billing date is 72h before" do
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     #@payment_data_boleto[:expirationDate] = "2077-09-30"
     @tour.start = Date.new(2077, 9, 30).to_date
     @tour.save()
@@ -441,6 +622,8 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should create a payment with boleto that the billing date will exceed 72 hours" do
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     @tour.start = @tour.start + 24.hours
     @tour.save()
     post :confirm_presence, @payment_data_boleto
@@ -458,6 +641,8 @@ class ToursControllerTest < ActionController::TestCase
   #
   
   test "should process a reservation to more people with unlimited availability" do
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     @tour.update_attributes(:availability => nil)
     @payment_data["amount"] = 2
     @payment_data["final_price"] = @tour.value * 2
@@ -470,6 +655,8 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should process a reservation to more people with limited availability" do
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     @payment_data["amount"] = 2
     @payment_data["final_price"] = @tour.value * 2
     
@@ -483,7 +670,8 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should pass a valid birthdate in credit card" do
-    #skip("valid birthdate")
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
+    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     post :confirm_presence, @payment_data
     payment_id = Order.last.payment
     

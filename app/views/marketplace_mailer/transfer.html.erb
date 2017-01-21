@@ -1,0 +1,14 @@
+<h2>Olá, <%= @organizer.name %>!</h2>
+ 
+<p>Informamos que a sua <strong>solicitação de transferência da Carteira da Truppie para sua conta bancária</strong> foi recebida, e será processada em até 4 dias úteis.</p>
+
+<p>Valor: <%= @transfer_value %></p>
+<p>Data da solicitação: <%= @transfer_date %></p>
+
+Quer acompanhar em tempo real? <%= link_to 'Acesse sua carteira', manage_organizer_url(@organizer) %>
+
+<p>Para ver as suas truppies, <%= link_to 'acesse o seu perfil', organizer_url(@organizer) %></p>
+
+<p>Obrigada pela confiança e parceria! :)</p>
+
+<%= render partial: 'marketplace_mailer/footer', locals: {organizer: @organizer } %>

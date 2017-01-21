@@ -1,4 +1,5 @@
 class OrganizersController < ApplicationController
+  include ApplicationHelper
   before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer]
   before_action :authenticate_user!, :except => [:show]
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds]
@@ -95,6 +96,7 @@ class OrganizersController < ApplicationController
       @money_account_json.push @organizer.marketplace.bank_account
       response = RestClient.get "#{Rails.application.secrets[:moip_domain]}/transfers", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"
       @transfer_json = JSON.parse(response)
+      puts @transfer_json.inspect
     else
       @transfer_json = {}
     end
@@ -102,8 +104,8 @@ class OrganizersController < ApplicationController
   
   def transfer_funds
     @organizer = Organizer.find(params[:id])
-    @amount = params[:amount].to_i
-    @current = params[:current].to_i
+    @amount = raw_price(params[:amount])
+    @current = raw_price(params[:current])
     
     if params[:amount].nil?
       @status = "danger"
@@ -144,6 +146,7 @@ class OrganizersController < ApplicationController
                   @status = "success"
                   @message_status = "Solicitação de transferência realizada com sucesso"
                   @response_transfer_json = JSON.load response
+                  MarketplaceMailer.transfer(@organizer, friendly_price(@response_transfer_json["amount"]), l(@response_transfer_json["updatedAt"].to_datetime, format: '%d de %B de %Y as %Hh%M')).deliver_now
                 else
                   @activation_message = "Não conseguimos resposta do MOIP para a transferência soliticata, verifique os dados novamente."
                   @activation_status = "danger"

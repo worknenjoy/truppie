@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
         events: [
           "PAYMENT.*"
         ],
-        target: 'http://www.truppie.com/webhook',
+        target: "#{request.domain}/webhook",
         media: "WEBHOOK"
       }
       base_url = Rails.application.secrets[:moip_domain]

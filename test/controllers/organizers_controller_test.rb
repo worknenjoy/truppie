@@ -94,7 +94,7 @@
    test "should not transfer amount to organizer if there's no active bank account" do
      post :transfer_funds, id: @mkt.id, amount: 200, current: 300
      assert_equal assigns(:bank_account_active_id), nil
-     assert_equal assigns(:amount), 200
+     assert_equal assigns(:amount), 20000
      assert_equal assigns(:status), "danger"
      assert_equal assigns(:message_status), "Você não tem nenhuma conta bancária ativa no momento"
      assert_response :success
@@ -104,8 +104,8 @@
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
      post :transfer_funds, id: @mkt.id, amount: 200, current: 100
      assert_equal assigns(:bank_account_active_id), "fooid"
-     assert_equal assigns(:amount), 200
-     assert_equal assigns(:current), 100
+     assert_equal assigns(:amount), 20000
+     assert_equal assigns(:current), 10000
      assert_equal assigns(:status), "danger"
      assert_equal assigns(:message_status), "Você não tem fundos suficientes para realizar esta transferência"
      assert_response :success
@@ -122,7 +122,7 @@
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
      post :transfer_funds, id: @mkt.id, amount: 200, current: 500
      assert_equal assigns(:bank_account_active_id), "fooid"
-     assert_equal assigns(:amount), 200
+     assert_equal assigns(:amount), 20000
      assert_equal assigns(:response_transfer_json), {"ERROR"=>"Token or Key are invalids"}
      assert_equal assigns(:status), "danger"
      assert_equal assigns(:message_status), "Você não está autorizado a realizar esta transação"
@@ -131,28 +131,29 @@
    
    test "should not transfer amount with moip response of any error" do
      body = {"errors"=>[{"code"=>"TRA-101", "path"=>"-", "description"=>"Saldo disponivel insuficiente para essa operacao"}]}
-     FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/transfers", :body => body.to_json, :status => ["200", "Success"])
+     FakeWeb.register_uri(:post, "#{Rails.application.secrets[:moip_domain]}/transfers", :body => body.to_json, :status => ["200", "Success"])
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
      post :transfer_funds, id: @mkt.id, amount: 200, current: 500
      assert_equal assigns(:bank_account_active_id), "fooid"
-     assert_equal assigns(:amount), 200
+     assert_equal assigns(:amount), 20000
      assert_equal assigns(:response_transfer_json), {"errors"=>[{"code"=>"TRA-101", "path"=>"-", "description"=>"Saldo disponivel insuficiente para essa operacao"}]}
      assert_equal assigns(:status), "danger"
      assert_equal assigns(:message_status), "Não foi possível realizar a transferência"
      assert_response :success
    end 
    
-   test "should transfer amount with moip response" do
-     body = {:status => "REQUESTED"}
+   test "should transfer amount successfully with moip response" do
+     body = {:status => "REQUESTED", :amount => 2000, :updatedAt => "2017-01-17T20:13:52.017-02", :transferInstrument => {:bankAccount => {:holder => { :fullname => 'foo' }, :bankName => 'foo', :accountNumber => 'foo'}}}
      FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/transfers", :body => body.to_json, :status => ["201", "Created"])
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
      post :transfer_funds, id: @mkt.id, amount: 200, current: 500
      assert_equal assigns(:bank_account_active_id), "fooid"
-     assert_equal assigns(:amount), 200
-     assert_equal assigns(:response_transfer_json), {"status" => "REQUESTED"}
+     assert_equal assigns(:amount), 20000
+     assert_equal assigns(:response_transfer_json)["status"], "REQUESTED"
      assert_equal assigns(:status), "success"
      assert_equal assigns(:message_status), "Solicitação de transferência realizada com sucesso"
      assert_response :success
+     assert_not ActionMailer::Base.deliveries.empty?
    end  
    
  end

@@ -1,4 +1,5 @@
 class MarketplacesController < ApplicationController
+  include ApplicationHelper
   before_action :set_marketplace, only: [:show, :edit, :update, :destroy, :activate]
   before_action :authenticate_user!
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
@@ -90,6 +91,7 @@ class MarketplacesController < ApplicationController
               :token => @response["accessToken"]
             )
             @marketplace.organizer.update_attributes(:market_place_active => true)
+            MarketplaceMailer.activate(@marketplace.organizer).deliver_now
           else
             @activation_message = "Não conseguimos resposta do Moip para ativar #{@marketplace.organizer.name}, verifique os dados novamente."
             @activation_status = "danger"

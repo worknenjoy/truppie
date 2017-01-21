@@ -255,7 +255,7 @@
       </div>
       <% end %>
 		</div>
-		<% if @tour.meetingpoint %>		
+		<% if !@tour.meetingpoint.empty? %>		
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong>Ponto de encontro:</strong></h4>

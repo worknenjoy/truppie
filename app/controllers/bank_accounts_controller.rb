@@ -29,6 +29,7 @@ class BankAccountsController < ApplicationController
               @activation_status = "success"
               @response = JSON.parse response
               @bank_account.update_attributes(:own_id => @response["id"])
+              MarketplaceMailer.activate_bank_account(@bank_account.marketplace.organizer).deliver_now
             else
               @activation_message = "Não conseguimos resposta do Moip para ativar #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
               @activation_status = "danger"

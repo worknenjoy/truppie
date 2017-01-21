@@ -16,6 +16,7 @@ utopicos:
   
 mantiex:
   name: Mantiqueira expedicoes
+  marketplace: two
   description: Oferecendo passeios e outdoor lifestyle
   members: alex_member, laura_member
   rating: 3
@@ -39,6 +40,7 @@ mkt:
   website: MyString
   facebook: MyString
   twitter: MyString
+  logo: logo_utopicos.png
 
 # two:
   # name: MyString

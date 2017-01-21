@@ -37,4 +37,34 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal "<small>R$</small> <span>40</span>", final_price(price)
   end
   
+  test "should return raw price" do
+    price = "20,00"
+    assert_equal 2000, raw_price(price)
+  end
+  
+   test "should return raw price when price without unit" do
+    price = "20"
+    assert_equal 2000, raw_price(price)
+  end
+  
+  test "should return raw price when tiven price" do
+    price = "34,20"
+    assert_equal 3420, raw_price(price)
+  end
+  
+  test "should display the transfer status" do
+    status = "REQUESTED"
+    assert_equal "Solicitado", transfer_status(status)
+  end
+  
+  test "should display the transfer status when completed" do
+    status = "COMPLETED"
+    assert_equal "Completado", transfer_status(status)
+  end
+  
+  test "should display the transfer status when failed" do
+    status = "FAILED"
+    assert_equal "Falhou", transfer_status(status)
+  end
+  
 end

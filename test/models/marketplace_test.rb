@@ -21,7 +21,7 @@ class MarketplaceTest < ActiveSupport::TestCase
   end
   
   test "return auth data" do
-    assert_equal @mkt_active.auth_data, {"id"=>"MyString", "token"=>"MyString"}
+    assert_equal @mkt_active.auth_data, {"id"=>"MPA-014A72F4426C", "token"=>"MyString"}
   end
   
   test "return no auth data if is not active" do

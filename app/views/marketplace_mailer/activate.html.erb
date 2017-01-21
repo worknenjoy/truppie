@@ -1,0 +1,18 @@
+<h2>Olá, <%= @organizer.name %>!</h2>
+ 
+<p>Informamos que a sua <strong>Carteira da Truppie</strong> foi ativada com sucesso!</p>
+<p>Nela, você pode a qualquer hora:</p>
+
+<ul>
+  <li>Acompanhar o saldo de cada truppie;</li>
+  <li>Ver o valor que está disponível para saque;</li>
+  <li>Realizar a transferência do valor disponível para sua conta bancária em apenas um clique!</li>
+  <li>Lembrando que sua conta é segura e seus dados são protegidos pelo Moip.</li>
+  <li><%= link_to 'Quero ir para minha carteira!', manage_organizer_url(@organizer) %></li>
+</ul>
+
+<p>Para ver as suas truppies, <%= link_to 'acesse o seu perfil', organizer_url(@organizer) %></p>
+
+<p>Obrigada pela confiança e parceria! :)</p>
+
+<%= render partial: 'marketplace_mailer/footer', locals: {organizer: @organizer } %>

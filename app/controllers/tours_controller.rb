@@ -142,28 +142,31 @@ class ToursController < ApplicationController
                 }
               ]
             )
-            puts @new_order.inspect
           end
         end
         
         order = api.order.create(@new_order)
         
-        if order.try(:errors)
+        if order[:ERROR] 
+          @confirm_headline_message = "Não foi possível confirmar sua reserva"
+          @confirm_status_message = order["ERROR"]
+          @status = "danger"
+          return
+        end
+        
+        if order[:errors]
           @confirm_headline_message = "Não foi possível confirmar sua reserva"
           @confirm_status_message = order.errors[0][:description]
           @status = "danger"
-          puts order.inspect
           return
         end
         
         if not @payment_data[:method].nil?
           payment = api.payment.create(order.id, payment_object_type)
-          puts payment.inspect
           
           if payment.try(:errors)
             @payment_api_error = payment["errors"][0]["path"]
             @payment_api_error_msg = payment["errors"][0]["description"]
-            puts payment.inspect
           else
             if @payment_method == "BOLETO"
               @payment_api_success = payment
@@ -171,9 +174,6 @@ class ToursController < ApplicationController
             end
           end
           
-          puts @payment_method.inspect
-          puts payment.inspect
-                    
           if payment.success?
             @tour.confirmeds.new(:user  => current_user)
           
@@ -283,7 +283,6 @@ class ToursController < ApplicationController
   # POST /tours
   # POST /tours.json
   def create
-    #puts tour_params.inspect
     @tour = Tour.new(tour_params)
     
     respond_to do |format|

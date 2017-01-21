@@ -22,7 +22,7 @@
                                   <div class="input-group-addon">
                                     R$
                                   </div>
-                                  <%= text_field_tag :amount, nil, placeholder: "valor a ser transferido",  class: "form-control col-xs-5" %>
+                                  <%= text_field_tag :amount, nil, placeholder: "valor a ser transferido (ex. 34,20)",  class: "form-control col-xs-5" %>
                                   <%= submit_tag 'Transferir para minha conta', class: "btn btn-primary" %>
                                 </div>
                               </div>
@@ -79,7 +79,7 @@
                 <div class="row">
                   <div class="col-xs-12">
                   <h3 class="spaced-top">Transferências</h3>
-                  <% if !@transfers_json.nil? %>
+                  <% if !@transfer_json.nil? and !@transfer_json.empty? %>
                   <table class="rwd-table">
                     <tr>
                       <th>Nome</th>
@@ -89,14 +89,14 @@
                       <th>Conta</th>
                       <th>Valor</th>
                     </tr>
-                    <% @transfers_json["transfers"].each do |t| %>
+                    <% @transfer_json["transfers"].each do |t| %>
                     <tr>
                       <td data-th="Nome"><%= t["transferInstrument"]["bankAccount"]["holder"]["fullname"] %></td>
-                      <td data-th="Status"><%= t["status"] %></td>
+                      <td data-th="Status"><strong><%= transfer_status(t["status"]) %></strong></td>
                       <td data-th="Data"><%= l(t["updatedAt"].to_datetime, format: '%d de %B de %Y as %Hh%M') %></td>
                       <td data-th="Banco"><%= t["transferInstrument"]["bankAccount"]["bankName"] %></td>
                       <td data-th="Conta"><%= t["transferInstrument"]["bankAccount"]["accountNumber"] %></td>
-                      <td data-th="Valor"><%= number_to_currency(t["amount"]/100, unit: "R$") %></td>
+                      <td data-th="Valor"><%= friendly_price(t["amount"]) %></td>
                     </tr>
                     <% end %>
                   </table>

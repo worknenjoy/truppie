@@ -41,8 +41,34 @@
             </blockquote>
           </div>
         </div>
+        <h3>Status da transferência</h3>
+        <% if !@response_transfer_json.nil? %>
+          <table class="rwd-table">
+            <tr>
+              <th>Nome</th>
+              <th>Status</th>
+              <th>Data</th>
+              <th>Banco</th>
+              <th>Conta</th>
+              <th>Valor</th>
+            </tr>
+            <tr>
+              <td data-th="Nome"><%= @response_transfer_json["transferInstrument"]["bankAccount"]["holder"]["fullname"] %></td>
+              <td data-th="Status"><strong><%= transfer_status(@response_transfer_json["status"]) %></strong></td>
+              <td data-th="Data"><%= l(@response_transfer_json["updatedAt"].to_datetime, format: '%d de %B de %Y as %Hh%M') %></td>
+              <td data-th="Banco"><%= @response_transfer_json["transferInstrument"]["bankAccount"]["bankName"] %></td>
+              <td data-th="Conta"><%= @response_transfer_json["transferInstrument"]["bankAccount"]["accountNumber"] %></td>
+              <td data-th="Valor"><%= friendly_price(@response_transfer_json["amount"]) %></td>
+            </tr>
+          </table>
+         <small>Se a transferência que consta na lista não entrou na sua conta, <%= link_to "entre em contato com a gente", contacts_index_path %></small>
+              </div>
+            </div>
+          </div>
+        </div>
         <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
