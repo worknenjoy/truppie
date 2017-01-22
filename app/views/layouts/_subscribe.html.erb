@@ -1,0 +1,22 @@
+<a name="warning"></a>
+<div class="text-xs-center" style="margin-top: 60px;">
+  <div class="thumbnail center well well-small text-center spaced-down">
+          <h4 class="main-color-font emblem-font"><%= t('organizer-interested-title') %></h4>
+          
+          <%= render 'layouts/flash' %>
+          
+          <p class="lead">
+            <%= t('organizer-interested-text') %>
+            <br />
+            <small>Fique tranquilo, nós não enviamos spam</small>
+          </p>
+          
+          
+    <fieldset class="form-group">
+        <%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
+          <%= email_field(:subscriber, :email, :class => 'form-control spaced-down', :placeholder => 'O meu e-mail é') %>
+        <input type="submit" value="<%= t('organizer-interest-submit-action') %>" class="btn btn-large btn btn-outlined btn-theme btn-lg" />
+      <% end %>
+    </fieldset>
+      </div>    
+</div>

@@ -38,6 +38,8 @@
  *= require welcome
  *= require payment-methods
  *= require overlay
+ *= require main-menu
+ *= require showcase  
  *= require tours  
  */
 

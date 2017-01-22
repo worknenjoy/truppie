@@ -20,6 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 pt-BR:
+  
+  how-it-works-main-menu: "Como funciona"
+  guides-main-menu: "Para os guias"
+  contact-main-menu: "Contato"
+  
   tagline: "living adventures"
   text-intro: "Truppie é uma plataforma desenhada para facilitar as suas próximas viagens e aventuras. Truppie é um estilo de vida; uma nova maneira de aproveitar seu tempo e enriquecer sua existência. Encontre a sua próxima truppie em três simples passos:"
   
@@ -56,11 +61,61 @@ pt-BR:
   alex-second-feature: "Internet das coisas"
   alex-third-feature: "Tech Geek"
   
-  meetings-title: "O escritório"
-  meetings-content: "Nossas reuniões acontecem em escritórios como este - ok, só de vez em quando!"
-  
   newsletter-title: "Fique ligado!"
   newsletter-text: "Deixe seu e-mail para saber das novidades"
+  
+  for-you-on-truppie-title: "Para você que está na turppie, acesse sua conta:"
+  manage-truppie-action: "gerenciar"
+  transfer-truppie-action: "transferir"
+  want-offer-truppies-title: "Quero oferecer meus passeios pela Truppie!"
+  organizer-why-create-account-text: "Crie uma conta na truppie e então você poderá ter seu perfil como guia e oferecer seus passeios"
+  organizer-after-create-account-advantages: "Depois de criar uma conta você terá seu perfil como guia"
+  profile-access: "Acessar seu perfil"
+  enter-login: "criar / logar"
+  create-truppie-account: "Você precisa criar uma conta na Truppie"
+  
+  profile-access-truppie-account: "Com o seu perfil você pode"
+  profile-access-truppie-account-step: "Administrar suas reservas, quantidade de vagas e receber notificações"
+  profile-access-truppie-account-transfer-step: "Solicitar transferências"
+  profile-access-truppie-account-share-step: "E ter um link de pagamento do evento com todas suas informações"
+
+  after-create-truppie-account: "Você precisa"
+  create-account-action-step: "Criar sua conta"
+  contact-us-action-step: "Entrar em contato com a gente"
+  organizer-access-step: "Você terá acesso a sua conta de guia para gerenciar seus passeios de forma fácil"
+  
+  offer-truppie-advantages: "Saiba as vantagens de oferecer suas aventuras utilizando a truppie!"
+  offer-truppies-title-call: "Com ela você pode:"
+  admin-payment-with-us-step: "Administre os pagamentos pela nossa plataforma"
+  admin-payment-with-us-limit-step: "Depois de 14 dias, o dinheiro fica disponível para transferência"
+  admin-payment-with-us-final-step: "Então basta solicitar e o dinheiro será transferido para sua conta"
+  admin-payment-with-us-conclusion: "Com isto, você pode oferecer seus passeios com pagamento facilitado para seus clientes e receber o valor na sua conta."
+  
+  admin-from-anywhere-title: "Administre em qualquer lugar, somos mobile friendly!"
+  admin-from-anywhere-content: "Nossa plataforma foi desenhada pra ser simples, rápido e funcionar de qualquer dispositivo"
+  
+  admin-secure-payment-title: "Nossas transações são seguras"
+  admin-secure-payment-content: "Utilizamos o moip, serviço de pagamento já consolidado no mercado para efetuar nossas transações com segurança"
+  
+  admin-share-event-title: "Nós ajudamos a divulgar seu evento"
+  admin-share-event-content: "Temos nossa página nas mídias sociais para ajudar a divulgar seu evento"
+  
+  organizer-interested-title: "Está interessado em saber mais da gente?"
+  organizer-interested-text: "entraremos em contato com você para ajudá-lo"
+  organizer-interest-submit-action: "Quero saber mais!"
+  
+  user-adventure-info: "Estamos sempre procurando uma nova aventura para você!"
+  user-adventure-step: "Estamos no dia a dia preso a nossa rotina, enquanto o mundo está mudando e diversos guias e pequenas agências querem realizar seus passeios de diversos tipos"
+  user-what-truppie-is: "A Truppie é uma plataforma feita para conectar você aos guias e sua trupe."
+  user-truppie-possibilities: "Com ela você pode:"
+  user-advantages-payment-step: "Reservar seus passeios e pagar no cartão de crédito ou boleto bancário"
+  user-advantages-discover-step: "Descobrir novos passeios de seu interesse"
+  user-advantages-guide-contact-step: "Ter todos os contatos e orientações com o guia"
+  user-advantages-conclusion: "Com isto, você pode reservar seu passeio em dois cliques, pagar da melhor forma e aguardar o evento."
+  user-collect-experience-title: "Colecione experiências com a nossa plataforma"
+  user-why-truppie-is-so-great: "Ajudamos a conectá-lo a experiências incríveis de uma forma fácil, com pagamento facilitado para você focar em contar os dias para a sua aventura!"
+  user-why-truppie-is-so-great-complement: "Com isso, você pode em um lugar ter suas reservas e toda ajuda dos nossos guias que querem lhe oferecer um passeio seguro e inesquecível"
+  user-start-to-use-truppie: "Comece a achar sua truppie!"
   
   activerecord:
     errors:

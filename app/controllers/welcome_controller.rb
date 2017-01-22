@@ -5,6 +5,10 @@ class WelcomeController < ApplicationController
     @organizers = Organizer.all.order(created_at: :asc)
   end
   
+  def organizer
+     @organizer = Organizer.where(:user => current_user).take
+  end
+  
   def logos
     
   end

@@ -1,0 +1,46 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="spaced-default"><%= t('user-adventure-info') %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <figure id="showcase">
+        <section></section>
+        <section></section>
+        <section></section>
+        <section></section>
+      </figure>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <p><%= t('user-adventure-step') %></p>
+      <p><%= t('user-what-truppie-is') %></p>
+      <p><%= t('user-truppie-possibilities') %></p>
+      <ul class="list-group spaced-down">
+        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('user-advantages-payment-step') %></li>
+        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('user-advantages-discover-step')%></li>
+        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('user-advantages-guide-contact-step')%></li>
+      </ul>
+      <p><%= t('user-advantages-conclusion') %></p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <%= image_tag("screenshots/user-order-desktop.png", :alt => "Truppie", :class => "img-fluid") %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="jumbotron">
+        <h2 class="display-5"><%= t('user-collect-experience-title')%></h2>
+        <p class="lead"><%= t('user-why-truppie-is-so-great')%></p>
+        <p><%= t('user-why-truppie-is-so-great-complement')%></p>
+        <p class="lead">
+          <%= link_to t('user-start-to-use-truppie'), root_path, class: 'btn btn-primary btn-lg' %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

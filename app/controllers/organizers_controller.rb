@@ -3,6 +3,7 @@ class OrganizersController < ApplicationController
   before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer]
   before_action :authenticate_user!, :except => [:show]
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds]
+  helper_method :is_organizer_admin
   
   def check_if_admin
     allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
@@ -17,7 +18,7 @@ class OrganizersController < ApplicationController
       redirect_to new_user_session_path
     end 
   end
-
+  
   # GET /organizers
   # GET /organizers.json
   def index
@@ -166,6 +167,24 @@ class OrganizersController < ApplicationController
   end
 
   private
+    def is_organizer_admin
+      if user_signed_in?
+        allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+        
+        if params[:controller] == "organizers" and params[:action] == "show"
+          organizer_id = params[:id]
+          allowed_emails.push Organizer.find(organizer_id).user.email
+        end
+        
+        unless allowed_emails.include? current_user.email
+          return false
+        end 
+        true
+      else
+        false
+      end
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_organizer
       @organizer = Organizer.find(params[:id])

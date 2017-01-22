@@ -1,0 +1,91 @@
+@import "compass/css3";
+
+#showcase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;  
+  width: 100%px;
+  height: 700px;
+  overlflow: hidden;
+}
+
+#showcase section {
+  display: inline-block;
+  position: relative;
+  width: 25%;
+  height: 100%;
+  background-size: cover;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0; 
+    width: 100%;
+    height: 100%;
+    @include transition(all 4.5s);
+  }
+}
+
+$img-01: image_path('showcase/IMG_5341.jpg');
+$img-02: image_path('showcase/IMG_5792.jpg');
+$img-03: image_path('showcase/IMG_7595.jpg');
+$img-04: image_path('showcase/IMG_2572.jpg');
+
+$sections: (
+  1: (
+    (23% 18%, 95% 13%, 100% 91%, 55% 87%),
+    (95% 10%, 100% 80%, 62% 77%, 45% 12%),
+    (100% 67%, 48% 63%, 28% 9%, 95% 3%),
+    (78% 72%, 58% 34%, 95% 27%, 100% 73%)
+  ),
+  2: (
+    (0% 7%, 100% 9%, 95% 93%, 5% 95%),
+    (100% 3%, 95% 95%, 5% 90%, 0% 5%),
+    (95% 83%, 5% 78%, 0% 6%, 100% 11%),
+    (5% 79%, 0% 21%, 100% 16%, 95% 83%)
+  ),
+  3: (
+    (5% 11%, 100% 14%, 95% 88%, 0% 91%),
+    (100% 14%, 95% 84%, 0% 91%, 5% 7%),
+    (95% 79%, 0% 86%, 5% 7%, 100% 3%),
+    (0% 85%, 5% 14%, 100% 3%, 95% 95%)
+  ),
+  4: (
+    (5% 18%, 89% 21%, 62% 73%, 0% 83%),
+    (57% 31%, 45% 67%, 0% 77%, 5% 18%),
+    (45% 57%, 0% 67%, 5% 8%, 72% 12%),
+    (0% 77%, 5% 18%, 47% 21%, 32% 67%)
+  )
+);
+
+@each $section, $key in $sections {
+  $bg: -33.33333 + $section*33.33333;
+  $clip-01: nth($key, 1);
+  $clip-02: nth($key, 2);
+  $clip-03: nth($key, 3);
+  $clip-04: nth($key, 4);
+  
+  section:nth-child(#{$section}) {
+    @include animation(section-#{$section} 8s both infinite);
+  }
+
+  @include keyframes(section-#{$section}) {
+    0%, 20%, 100% { 
+      background: url($img-01) #{$bg}#{'%'} 0%;
+      -webkit-clip-path: polygon($clip-01);
+    }
+    25%, 45% {
+      background: url($img-02) #{$bg}#{'%'} 0%;
+      -webkit-clip-path: polygon($clip-02);
+    }
+    50%, 70% { 
+      background: url($img-03) #{$bg}#{'%'} 0%;
+      -webkit-clip-path: polygon($clip-03);
+    }
+    75%, 95% { 
+      background: url($img-04) #{$bg}#{'%'} 0%;
+      -webkit-clip-path: polygon($clip-04);
+    }
+  }
+}
+

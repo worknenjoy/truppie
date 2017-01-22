@@ -55,6 +55,12 @@ h5 {
   font-weight: bold;
 }
 
+.jumbotron {
+  .btn {
+    white-space: normal;
+  } 
+}
+
 .list-group i {
   color: $brand-primary;
   padding-right: 5px;

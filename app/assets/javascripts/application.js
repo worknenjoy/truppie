@@ -26,5 +26,6 @@
 //= require bootstrap-tagsinput
 //= require bootstrap-number-input
 //= require moip
+//= require main-menu
 //= require main
 

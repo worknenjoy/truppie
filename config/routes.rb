@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   get 'contacts/index'  
   post 'contacts/send_form'
+  
+  get 'welcome/organizer', to: 'welcome#organizer', as: 'organizer_welcome'
+  get 'welcome/user', to: 'welcome#user', as: 'user_welcome'
 
   resources :orders
   
