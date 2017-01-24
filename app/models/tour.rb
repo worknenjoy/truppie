@@ -97,7 +97,9 @@ class Tour < ActiveRecord::Base
       minor = 999999999
       if self.try(:packages) and !self.value
         self.packages.each do |p|
-          minor = p.value if p.value < minor 
+          if !p.nil?
+            minor = p.value if p.value < minor
+          end 
         end
       end
       return "<small>A partir de R$</small> #{minor}"

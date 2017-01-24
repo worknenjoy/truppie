@@ -15,12 +15,12 @@
 
 /* Basic Styles */
 nav.main-menu {
-  height: 40px;
+  height: auto;
   width: 100%;
-  font-size: 11pt;
   font-family: 'PT Sans', Arial, sans-serif;
   font-weight: bold;
   position: relative;
+  background: transparent;
 }
 nav.main-menu ul {
   padding: 0;
@@ -58,9 +58,6 @@ nav.main-menu a#pull {
 
 /*Styles for screen 600px and lower*/
 @media screen and (max-width: 600px) {
-  nav.main-menu { 
-      height: auto;
-    }
     nav.main-menu ul {
       width: 100%;
       display: block;

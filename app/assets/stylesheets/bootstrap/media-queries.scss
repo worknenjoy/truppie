@@ -2,6 +2,15 @@
 @include media-breakpoint-down(sm) {
   html {
     body {
+      .center-xs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      nav.main-menu {
+        background: $gray-light;
+      }
       
       .user-actions {
         .dropdown {
@@ -18,7 +27,6 @@
       .xs-spaced-bottom {
         margin-top: 20px;
         margin-bottom: 10px;
-        padding-bottom: 10px;
         display: inline-block;
         overflow: hidden;
       }
@@ -71,6 +79,9 @@
         .tagline {
           font-size: 0.6em;
         }
+      }
+      .ribbon {
+        top: 38%;
       }
       .ribbon-value {
         top: 40%;
