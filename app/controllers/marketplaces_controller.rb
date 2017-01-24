@@ -85,8 +85,8 @@ class MarketplacesController < ApplicationController
           when 401 
             @activation_message = "Não foi possível ativar o marketplace para #{@marketplace.organizer.name}, verifique os dados novamente."
             @activation_status = "danger"
-            puts errors.inspect
             @errors = JSON.parse response
+            puts @errors.inspect
           when 201
             @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@marketplace.organizer.name}"
             @activation_status = "success"
