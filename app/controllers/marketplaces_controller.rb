@@ -75,7 +75,8 @@ class MarketplacesController < ApplicationController
   
   def activate
     account_bank_data = @marketplace.account_info
-    response = RestClient.post("#{Rails.application.secrets[:moip_domain]}/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_app_token]){|response, request, result, &block| 
+    RestClient.post("#{Rails.application.secrets[:moip_domain]}/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_app_token]){|response, request, result, &block| 
+        puts response.inspect
         case response.code
           when 400 
             @activation_message = "Não foi possível ativar o marketplace para #{@marketplace.organizer.name}, verifique os dados novamente."
