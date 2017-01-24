@@ -1,7 +1,8 @@
 require 'test_helper'
-include Devise::TestHelpers
+
 
 class OrdersControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   setup do
     sign_in users(:alexandre)
     @order = orders(:one)
@@ -260,6 +261,17 @@ class OrdersControllerTest < ActionController::TestCase
     
     assert_not ActionMailer::Base.deliveries.empty?
     assert_not ActionMailer::Base.deliveries[0].html_part.to_s.index("boleto/PAY-55LJ77AT4JTN"), "should not have payment link"
+  end
+  
+  test "should the user receive a email when payment is refunded" do
+    @request.env['RAW_POST_DATA'] = {"date":"","env":"","event":"PAYMENT.REFUNDED","resource":{"payment":{"_links":{"order":{"href":"https://sandbox.moip.com.br/v2/orders/ORD-4WHF2TSP3X4F","title":"ORD-4WHF2TSP3X4F"},"self":{"href":"https://sandbox.moip.com.br/v2/payments/PAY-ARVJHNTP3KQ6"}},"amount":{"currency":"BRL","fees":261,"liquid":3239,"refunds":0,"total":3500},"createdAt":"2016-04-13T00:46:24.000-03","delayCapture":false,"events":[{"createdAt":"2016-04-13T00:46:25.000-03","type":"PAYMENT.CREATED"},{"createdAt":"2016-04-13T00:46:08.494-03","type":"PAYMENT.REFUNDED"}],"fees":[{"amount":261,"type":"TRANSACTION"}],"fundingInstrument":{"creditCard":{"brand":"MASTERCARD","first6":"555566","holder":{"birthDate":"1982-10-06","birthdate":"1982-10-06","fullname":"Alexandre Magno Teles Zimerer","taxDocument":{"number":"05824493677","type":"CPF"}},"id":"CRC-PWZSLZSIXVC5","last4":"8884"},"method":"CREDIT_CARD"},"id":"PAY-4G6UKLVSNLXF","installmentCount":1,"status":"REFUNDED","updatedAt":"2016-04-13T00:46:08.494-03"}}}
+    orders = Order.create(:status => 'PAYMENT.REFUNDED', :payment => "PAY-4G6UKLVSNLXF", :user => @order.user, :tour => @order.tour)
+    post :webhook, {}
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal ActionMailer::Base.deliveries[0].to, [@order.user.email]
+    #puts ActionMailer::Base.deliveries[0].html_part
+    assert_equal ActionMailer::Base.deliveries.count, 2
+    assert_equal ActionMailer::Base.deliveries[0].html_part.to_s.include?("Favor aguardar"), true
   end
   
   test "should receive a post with successfull parameters using a real returned object (email not receiving after a webhook from moip)" do
