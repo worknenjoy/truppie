@@ -70,9 +70,25 @@ class Marketplace < ActiveRecord::Base
   end
   
   def registered_account
-    response = RestClient.get "#{Rails.application.secrets[:moip_domain]}/accounts/#{self.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.token}"
-    json_data = JSON.parse(response)
-    json_data    
+    response = RestClient.get("#{Rails.application.secrets[:moip_domain]}/accounts/#{self.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.token}"){|response, request, result, &block| 
+        case response.code
+          when 401
+            json_data = JSON.parse(response)
+            json_data
+          when 400 
+            json_data = JSON.parse(response)
+            json_data
+          when 200
+            json_data = JSON.parse(response)
+            json_data
+          when 201
+            json_data = JSON.parse(response)
+            json_data
+          else
+            json_data = JSON.parse(response)
+            json_data
+          end
+    }    
   end
   
   def phone_object
