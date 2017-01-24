@@ -40,7 +40,7 @@ gem 'redis'
 
 gem 'bourbon'
 
-gem 'paperclip'
+gem "paperclip",'4.3.6' #last stable version
 gem 'aws-sdk', '~> 2.0'
 gem 'paperclip-aws'
 
