@@ -21,8 +21,8 @@
 
 pt-BR:
   
-  how-it-works-main-menu: "Como funciona"
-  guides-main-menu: "Para os guias"
+  how-it-works-main-menu: "Sou Explorador"
+  guides-main-menu: "Sou Guia"
   contact-main-menu: "Contato"
   
   tagline: "living adventures"
@@ -38,7 +38,7 @@ pt-BR:
   balloom-heading: "Explore"
   balloom-text: "Do que você está a fim? Temos opções variadas!"
   
-  hands-heading: "Escolha"
+  hands-heading: "Reserve"
   hands-text: "Verifique os detalhes e confirme sua presença"
   
   shoes-heading: "Aproveite"
@@ -47,14 +47,14 @@ pt-BR:
   trupppie-title: "Sample title"
   truppie-text: "Por que explorar por aí com a Truppie?"
   
-  truppie-culture: "A Truppie quer promover a cultura"
-  truppie-culture-text: "Com a Truppie queremos que as pessoas tenham acesso as aventuras oferecidas por guias"
+  truppie-culture: "Imersão na natureza"
+  truppie-culture-text: "Saia do concreto, explore trilhas e montanhas"
   
-  truppie-adventure-title: "A Truppie é também dos esportes e aventuras"
-  truppie-adventure-text: "A Truppie quer trazer guias especializados em diferentes tipos de aventuras por todo o país"
+  truppie-adventure-title: "Exercitar-se é preciso"
+  truppie-adventure-text: "Mova seu corpo, oxigene sua mente, saia do óbvio"
   
-  truppie-urban-title: "A Truppie também é urbana!"
-  truppie-urban-text: "Queremos oferecer diversas opções para você fugir da rotina urbana também"
+  truppie-urban-title: "Cuidando do espírito"
+  truppie-urban-text: "Explore momentos de silêncio, paz e conexão com sua essência"
   
   truppie-item: "Excelentes guias, preços justos"
   truppie-second-item: "Toda informação de que você precisa em um único lugar"
@@ -113,9 +113,9 @@ pt-BR:
   organizer-interested-text: "entraremos em contato com você para ajudá-lo"
   organizer-interest-submit-action: "Quero saber mais!"
   
-  user-adventure-info: "Estamos sempre procurando uma nova aventura para você!"
-  user-adventure-step: "Estamos no dia a dia preso a nossa rotina, enquanto o mundo está mudando e diversos guias e pequenas agências querem realizar seus passeios de diversos tipos"
-  user-what-truppie-is: "A Truppie é uma plataforma feita para conectar você aos guias e sua trupe."
+  user-adventure-info: "Estamos sempre buscando uma nova aventura para você!"
+  user-adventure-step: "Estamos presos à nossa rotina, enquanto tem um mundo inteiro de coisas boas a ser explorado lá fora! Quando foi a última vez que você fez algo pela primeira vez? A gente te ajuda a ter novas experiências!"
+  user-what-truppie-is: "A Truppie te conecta à sua trupe. A Truppie te aproxima da sua próxima aventura."
   user-truppie-possibilities: "Com ela você pode:"
   user-advantages-payment-step: "Reservar seus passeios e pagar no cartão de crédito ou boleto bancário"
   user-advantages-discover-step: "Descobrir novos passeios de seu interesse"
@@ -124,7 +124,7 @@ pt-BR:
   user-collect-experience-title: "Colecione experiências com a nossa plataforma"
   user-why-truppie-is-so-great: "Ajudamos a conectá-lo a experiências incríveis de uma forma fácil, com pagamento facilitado para você focar em contar os dias para a sua aventura!"
   user-why-truppie-is-so-great-complement: "Com isso, você pode em um lugar ter suas reservas e toda ajuda dos nossos guias que querem lhe oferecer um passeio seguro e inesquecível"
-  user-start-to-use-truppie: "Comece a achar sua truppie!"
+  user-start-to-use-truppie: "Procurar a minha truppie!"
   
   activerecord:
     errors:
