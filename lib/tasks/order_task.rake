@@ -4,9 +4,11 @@ namespace :truppie do
   task update_order_fee: :environment do
      puts "Processando: #{Order.all.size} pagamentos"
      Order.all.each do |o|
-       if o.update_fee
-         puts o.payment.inspect
-         puts "sucesso para processar o pagamento #{o.payment}"
+       fee = o.update_fee
+       if fee
+         puts "The payment #{o.payment} is being processed"
+         puts "The fee object is #{fee.inspect}"
+         puts "Sucessully proccess the payment #{o.payment}"
        end
      end
   end
