@@ -89,19 +89,19 @@ pt-BR:
   profile-access-truppie-account-share-step: "E ter um link de pagamento do evento com todas suas informações"
 
   after-create-truppie-account: "Como fazer?"
-  create-account-action-step: "Crie sua conta na Truppie"
-  contact-us-action-step: "Entre em contato com a gente"
-  organizer-access-step: "Aguarde "
+  create-account-action-step: "Crie sua conta na Truppie como usuário"
+  contact-us-action-step: "Entre em contato com a gente informando que deseja ser guia"
+  organizer-access-step: "Aguarde nosso retorno, criaremos seu perfil!"
   
-  offer-truppie-advantages: "Saiba as vantagens de oferecer suas aventuras utilizando a truppie!"
-  offer-truppies-title-call: "Com ela você pode:"
-  admin-payment-with-us-step: "Administrar os pagamentos pela nossa plataforma"
-  admin-payment-with-us-limit-step: "Depois de 14 dias, o dinheiro fica disponível para transferência"
-  admin-payment-with-us-final-step: "Então basta solicitar e o dinheiro será transferido para sua conta"
-  admin-payment-with-us-conclusion: "Com isto, você pode oferecer seus passeios com pagamento facilitado para seus clientes e receber o valor na sua conta."
+  offer-truppie-advantages: "Por que oferecer suas aventuras pela nossa plataforma?"
+  offer-truppies-title-call: "Com a Truppie, você pode:"
+  admin-payment-with-us-step: "Criar a gerenciar facilmente quantos eventos quiser"
+  admin-payment-with-us-limit-step: "Acompanhar as reservas e pagamentos em tempo real"
+  admin-payment-with-us-final-step: "Solicitar transferência para sua conta bancária"
+  admin-payment-with-us-conclusion: "Ah, tem outras coisas importante de saber:"
   
-  admin-from-anywhere-title: "Administre de qualquer lugar - somos mobile friendly!"
-  admin-from-anywhere-content: "Nossa plataforma é desenhada pra ser simples, rápida e funcionar em qualquer dispositivo"
+  admin-from-anywhere-title: "Somos mobile friendly"
+  admin-from-anywhere-content: "Administre seus eventos e reservas de qualquer lugar, a Truppie funciona em qualquer dispositivo"
   
   admin-secure-payment-title: "Nossas transações são seguras"
   admin-secure-payment-content: "Utilizamos o Moip, serviço de pagamento já consolidado no mercado, para efetuar as transações com segurança"
@@ -121,9 +121,9 @@ pt-BR:
   user-advantages-discover-step: "Reservar e pagar de maneira fácil e rápida"
   user-advantages-guide-contact-step: "Ter todo o suporte e orientação do guia"
   user-advantages-conclusion: "Assim, é só relaxar e aguardar o dia da sua truppie :)"
-  user-collect-experience-title: "Colecione experiências com a nossa plataforma"
-  user-why-truppie-is-so-great: "Ajudamos a conectá-lo a experiências incríveis de uma forma fácil, com pagamento facilitado para você focar em contar os dias para a sua aventura!"
-  user-why-truppie-is-so-great-complement: "Com isso, você pode em um lugar ter suas reservas e toda ajuda dos nossos guias que querem lhe oferecer um passeio seguro e inesquecível"
+  user-collect-experience-title: "Colecione aventuras com a Truppie!"
+  user-why-truppie-is-so-great: "Ajudamos a conectá-lo a experiências incríveis de forma simples, com pagamento facilitado, para você focar no que importa: contar os dias para a sua aventura!"
+  user-why-truppie-is-so-great-complement: ""
   user-start-to-use-truppie: "Procurar a minha truppie!"
   
   activerecord:
