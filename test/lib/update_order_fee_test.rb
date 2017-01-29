@@ -13,9 +13,13 @@ class UpdateOrderFeeTest < ActiveSupport::TestCase
     
     orders = []
     
-    Order.all  
+    it_was_updated_by_redis = []
     
-    assert_equal Member.first.membership_type, "member"     
+    puts Order.all.where(:status => "AUTHORIZED").count
+      
+    puts Order.all.where(:status => "SETTLED").count
+    
+    assert_equal orders.contains?(it_was_updated_by_redis)     
   end
 
 end
