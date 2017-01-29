@@ -40,15 +40,10 @@ class OrderTest < ActiveSupport::TestCase
     order = orders(:one)
     fee = order.update_fee
     
-    assert_equal fee, {
-        fee: 10,
-        liquid: 20,
-        total: 30
-    }  
-    
+    assert_equal fee, {"fee"=>10, "status"=>"AUTHORIZED", "liquid"=>20, "total"=>30}
   end
   
-  test "get a payment fee and liquid value cached" do
+  test "get a payment fee and liquid value updated" do
     
     body_for_order = {
       :status => "AUTHORIZED",
@@ -58,16 +53,15 @@ class OrderTest < ActiveSupport::TestCase
         :total => 30 
       }
     }
-    
+    FakeWeb.register_uri(:get, %r|sandbox.moip.com.br/v2/payments/PAY-32LJ77AT4JNN|, :body => body_for_order.to_json, :status => ["200", "Success"])
     order = orders(:one)
+    order.update_fee
     fee = order.fees
     
-    assert_equal fee, {
-        fee: 10,
-        liquid: 20,
-        total: 30
-    }  
-    
+    assert_equal fee, {"fee"=>10, "status"=>"AUTHORIZED", "liquid"=>20, "total"=>30}
+    assert_equal order.total_fee, 10
+    assert_equal order.amount_total, 30
+    assert_equal order.price_with_fee, 20
   end
   
   test "get a real payment and get the tax" do

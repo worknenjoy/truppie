@@ -39,18 +39,15 @@ class Order < ActiveRecord::Base
           json_data = JSON.parse(response)
           if json_data.nil?
             false
-          elsif json_data["status"] == "AUTHORIZED" || json_data["status"] == "SETTLED"
-            {
+          else
+            fee_response = {
               fee: json_data["amount"]["fees"],
+              status: json_data["status"],
               liquid: json_data["amount"]["liquid"],
               total: json_data["amount"]["total"]
             }
-          else
-            {
-              fee: 0,
-              liquid: 0,
-              total: 0
-            }
+            $redis.set(self.to_param, fee_response.to_json)
+            JSON.parse fee_response.to_json
           end
         when 404
           puts response.inspect
@@ -67,56 +64,31 @@ class Order < ActiveRecord::Base
     if fees_json.nil?
       self.update_fee  
     end
-    JSON.parse fees_json
-  end
-  
-  def settled
-    headers = {
-      :content_type => 'application/json',
-      :authorization => Rails.application.secrets[:moip_auth]
-    }
-    response = ::RestClient.get "#{Rails.application.secrets[:moip_domain]}/payments/#{self.payment}", headers
-    json_data = JSON.parse(response)
-    
-    if json_data.nil?
-      false
-    elsif json_data["status"] == "SETTLED"
-      {
-        fee: json_data["amount"]["fees"],
-        liquid: json_data["amount"]["liquid"],
-        total: json_data["amount"]["total"]
-      }
-    else
-      {
-        fee: 0,
-        liquid: 0,
-        total: 0
-      }
-    end
+    JSON.parse(fees_json)
   end
   
   def total_fee
-    self.fees[:fee]
+    self.fees["fee"]
   end
   
   def amount_total
-    self.fees[:total]
+    self.fees["total"]
   end
   
   def price_with_fee
-    self.fees[:liquid]
+    self.fees["liquid"]
   end
   
   def available_liquid
-    self.settled[:liquid]
+    self.settled["liquid"]
   end
   
   def available_total
-    self.settled[:total]
+    self.settled["total"]
   end
   
   def available_with_taxes
-    self.settled[:fee]
+    self.settled["fee"]
   end
   
   def full_desc_status(status)
