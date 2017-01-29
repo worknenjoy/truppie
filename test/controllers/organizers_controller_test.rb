@@ -3,6 +3,7 @@
  
  class OrganizersControllerTest < ActionController::TestCase
    self.use_transactional_fixtures = true
+   
    setup do
      FakeWeb.clean_registry
      sign_in users(:alexandre)

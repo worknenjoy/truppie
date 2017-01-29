@@ -5,6 +5,9 @@ class Order < ActiveRecord::Base
   belongs_to :tour
   belongs_to :user
   
+  def to_param
+    "#{id} #{self.payment}".parameterize
+  end
   
   def current_status
     payment_id = self.payment
@@ -25,30 +28,46 @@ class Order < ActiveRecord::Base
     "https://checkout.moip.com.br/boleto/#{self.payment}"
   end
   
-  def fees
+  def update_fee
     headers = {
       :content_type => 'application/json',
       :authorization => Rails.application.secrets[:moip_auth]
     }
-    response = ::RestClient.get "#{Rails.application.secrets[:moip_domain]}/payments/#{self.payment}", headers
-    json_data = JSON.parse(response)
-    
-    if json_data.nil?
-      false
-    elsif json_data["status"] == "AUTHORIZED" || json_data["status"] == "SETTLED"
-      {
-        fee: json_data["amount"]["fees"],
-        liquid: json_data["amount"]["liquid"],
-        total: json_data["amount"]["total"]
-      }
-    else
-      {
-        fee: 0,
-        liquid: 0,
-        total: 0
-      }
+    RestClient.get("#{Rails.application.secrets[:moip_domain]}/payments/#{self.payment}", headers){|response, request, result, &block|
+      case response.code
+        when 200 || 203
+          json_data = JSON.parse(response)
+          if json_data.nil?
+            false
+          elsif json_data["status"] == "AUTHORIZED" || json_data["status"] == "SETTLED"
+            {
+              fee: json_data["amount"]["fees"],
+              liquid: json_data["amount"]["liquid"],
+              total: json_data["amount"]["total"]
+            }
+          else
+            {
+              fee: 0,
+              liquid: 0,
+              total: 0
+            }
+          end
+        when 404
+          puts response.inspect
+          json_data = JSON.parse(response)
+        else
+          puts response.inspect
+          json_data = JSON.parse(response)
+        end
+    }
+  end
+  
+  def fees
+    fees_json = $redis.get(self.to_param) 
+    if fees_json.nil?
+      self.update_fee  
     end
-    
+    JSON.parse fees_json
   end
   
   def settled

@@ -33,6 +33,7 @@ gem 'omniauth-facebook'
 gem 'moip2', '~> 0.1.4'
 gem 'rest-client'
 gem 'json', '1.8.2'
+gem 'fakeredis'
 
 gem 'time_diff'
 gem 'timecop' 
