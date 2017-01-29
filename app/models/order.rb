@@ -41,8 +41,8 @@ class Order < ActiveRecord::Base
             false
           else
             fee_response = {
-              fee: json_data["amount"]["fees"],
               status: json_data["status"],
+              fee: json_data["amount"]["fees"],
               liquid: json_data["amount"]["liquid"],
               total: json_data["amount"]["total"]
             }
@@ -68,27 +68,45 @@ class Order < ActiveRecord::Base
   end
   
   def total_fee
-    self.fees["fee"]
+    if self.fees["status"] == "AUTHORIZED" or self.fees["status"] == "SETTLED" 
+      return self.fees["fee"]
+    end
+    0  
   end
   
   def amount_total
-    self.fees["total"]
+    if self.fees["status"] == "AUTHORIZED" or self.fees["status"] == "SETTLED"
+      return self.fees["total"]
+    end
+    0
   end
   
   def price_with_fee
-    self.fees["liquid"]
+    if self.fees["status"] == "AUTHORIZED" or self.fees["status"] == "SETTLED"
+      return self.fees["liquid"]
+    end
+    0
   end
   
   def available_liquid
-    self.settled["liquid"]
+    if self.fees["status"] == "SETTLED"
+      return self.fees["liquid"]
+    end
+    0
   end
   
   def available_total
-    self.settled["total"]
+    if self.fees["status"] == "SETTLED"
+      return self.fees["total"]
+    end
+    0
   end
   
   def available_with_taxes
-    self.settled["fee"]
+    if self.fees["status"] == "SETTLED"
+      return self.fees["fee"]
+    end
+    0
   end
   
   def full_desc_status(status)

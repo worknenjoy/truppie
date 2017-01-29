@@ -62,6 +62,10 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal order.total_fee, 10
     assert_equal order.amount_total, 30
     assert_equal order.price_with_fee, 20
+    
+    assert_equal order.available_liquid, 0
+    assert_equal order.available_total, 0
+    assert_equal order.available_with_taxes, 0
   end
   
   test "get a real payment and get the tax" do
