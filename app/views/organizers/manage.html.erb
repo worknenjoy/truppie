@@ -40,13 +40,9 @@
                 <p>Sua conta ainda não está ativada no marketplace, favor entrar em contato conosco para ativação</p>
               <% end %>
           </div>
-          <div class="card card-block trigger-overlay-container">
-              <p><a href="#" id="js-trigger-overlay" class="btn btn-block btn-primary trigger-overlay"><strong>ver outras truppies</strong></a></p>
-          </div>
         </div>
         <div class="manage-container">
-          <div class="manage-sidebar overlay overlay-effect">
-              <button type="button" class="close">Close</button>
+          <div class="manage-sidebar">
               <h2 class="spaced-down">Truppies</h2>
               <nav class="scroll">
                 <ul class="flex-scroll">
@@ -56,7 +52,7 @@
                     <div class="manage-card-visa">
                       <%= link_to manage_organizer_path(@organizer, t) do %>
                         <% if t.try(:picture) %>
-                          <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name) %>
+                          <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name, :class=> "image-fluid") %>
                         <% end %>
                       <% end %>
                     </div>

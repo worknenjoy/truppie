@@ -23,8 +23,9 @@
       .flex-nav-item {
           flex: 0 0 auto;
           margin-right: 10px;
+          width: 90%;
           .manage-card  {
-            height: 500px;  
+            height: 100vh;  
           }
            
       }
@@ -73,9 +74,10 @@
       }
       .manage-entries {
         .manage-main {
-          width: 100%;
+          width: 90%;
           h2 {
             font-size: 21px;
+            padding: 10px;
           }
           .manage-item-name {
             small {
