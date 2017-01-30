@@ -46,7 +46,8 @@ class Order < ActiveRecord::Base
               liquid: json_data["amount"]["liquid"],
               total: json_data["amount"]["total"]
             }
-            $redis.set(self.to_param, fee_response.to_json)
+            redis_set_result = $redis.set(self.to_param, fee_response.to_json)
+            puts "trying to save redis key #{self.to_param} and it returns #{redis_set_result.inspect}"
             JSON.parse fee_response.to_json
           end
         when 404
