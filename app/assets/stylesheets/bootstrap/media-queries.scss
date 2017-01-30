@@ -2,6 +2,33 @@
 @include media-breakpoint-down(sm) {
   html {
     body {
+      &.no-scroll {
+        overflow: hidden;
+      }
+      .flex-scroll {
+        display: inline-block;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar; 
+      }
+      
+      // Needed for example two
+      .flex {
+        display: flex;
+        flex-wrap: nowrap; 
+      }
+      
+      .flex-nav-item {
+          flex: 0 0 auto;
+          margin-right: 10px;
+          .manage-card  {
+            height: 500px;  
+          }
+           
+      }
+      
       .center-xs {
         display: flex;
         align-items: center;

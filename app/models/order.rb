@@ -63,6 +63,7 @@ class Order < ActiveRecord::Base
   def fees
     fees_json = $redis.get(self.to_param) 
     if fees_json.nil?
+      puts "Get the fee #{fee_json} from remote"
       fee = self.update_fee
       return fee  
     end

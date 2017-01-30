@@ -48,10 +48,10 @@
           <div class="manage-sidebar overlay overlay-effect">
               <button type="button" class="close">Close</button>
               <h2 class="spaced-down">Truppies</h2>
-              <nav>
-                <ul>
+              <nav class="scroll">
+                <ul class="flex-scroll">
                 <% @tours.each do |t| %>
-                <li>
+                <li class="flex-nav-item">
                   <div class="manage-card <%= 'manage-selected' if t.id == @tour.id %>">
                     <div class="manage-card-visa">
                       <%= link_to manage_organizer_path(@organizer, t) do %>
