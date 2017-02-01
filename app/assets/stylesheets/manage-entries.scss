@@ -103,6 +103,9 @@
   }
   .trigger-overlay-container {
       display: none;
+      a strong {
+        white-space: normal;
+      }
   }
       
   span.manage-plus {
