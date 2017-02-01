@@ -6,7 +6,7 @@ namespace :truppie do
      Order.all.each do |o|
        fee = o.update_fee
        if fee
-         puts "The payment #{o.payment} is being processed"
+         puts "The payment #{o.payment} is being processed with key #{o.to_param}"
          puts "The fee object is #{fee.inspect}"
          puts "Sucessully proccess the payment #{o.payment}"
        end
