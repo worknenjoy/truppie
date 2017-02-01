@@ -1,1 +1,1 @@
-$redis = Redis.new(url: Rails.application.secrets[:redis_url])
+$redis = Redis.new(url: ENV["REDIS_URL"])
