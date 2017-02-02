@@ -166,6 +166,7 @@ GEM
       aws-sdk (>= 1.2.0)
       paperclip (>= 2.5.0)
     pg (0.19.0)
+    puma (3.7.0)
     rack (1.6.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -278,6 +279,7 @@ DEPENDENCIES
   paperclip!
   paperclip-aws
   pg (~> 0.15)
+  puma
   rails (= 4.2.5.1)
   rails_12factor
   redis
