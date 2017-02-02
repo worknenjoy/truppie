@@ -45,7 +45,6 @@ gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523b
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip-aws'
 
-
 gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
