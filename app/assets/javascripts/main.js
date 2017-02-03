@@ -276,5 +276,7 @@ $(function(){
     $(tgt).show();
     return false;
   });
+  
+  $('#birthdate').mask("99/99/9999");
  	 	
 });

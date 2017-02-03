@@ -61,6 +61,15 @@ class ToursController < ApplicationController
       installment_count: params[:installment_count]
     }
     
+    begin
+      valid_birthdate = @payment_data[:birthdate].to_date
+    rescue ArgumentError
+      @confirm_headline_message = "Não foi possível confirmar sua reserva"
+      @confirm_status_message = "A data precisa estar no formato xx/xx/xxxx"
+      @status = "danger"
+      return
+    end
+    
     
     if @payment_method == "BOLETO"
       
@@ -89,7 +98,7 @@ class ToursController < ApplicationController
                     cvc: @payment_data[:cvc],
                     holder: {
                         fullname: @payment_data[:fullname],
-                        birthdate: @payment_data[:birthdate].to_date.strftime('%Y-%m-%d'),
+                        birthdate: valid_birthdate.strftime('%Y-%m-%d'),
                         tax_document: {
                             type: "CPF",
                             number: @payment_data[:cpf_number]

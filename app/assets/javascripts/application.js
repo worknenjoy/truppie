@@ -23,6 +23,7 @@
 //= require typeahead
 //= require bootstrap-tagsinput
 //= require bootstrap-number-input
+//= require jquery.maskedinput
 //= require moip
 //= require main-menu
 //= require main
