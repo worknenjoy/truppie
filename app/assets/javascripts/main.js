@@ -226,7 +226,9 @@ $(function(){
 	    } else {
 	      $("#hash").val('');
 	      $('.form-card-number .alert').remove();
-	      $('.form-card-number').prepend('<div class="alert alert-danger animated bounceIn"><strong>Cartão de crédito inválido</strong><br />Verifique: número, código de confirmação, mês de expiração, ano de expiração</div>');
+	      if(!$('.dialog-alert').length) {
+	         $(this).before('<div class="dialog-alert alert alert-danger animated bounceIn"><strong>Cartão de crédito inválido</strong><br />Verifique: número, código de confirmação, mês de expiração, ano de expiração</div>');  
+	      }
 	      return false; // Don't submit the form
 	    }
 	  });
