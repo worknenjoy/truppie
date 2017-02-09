@@ -6,6 +6,27 @@ class Marketplace < ActiveRecord::Base
   accepts_nested_attributes_for :bank_accounts, :allow_destroy => true
   
   
+  def activate
+    if self.active
+      false  
+    else
+      secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+      begin
+        Stripe.api_key = secret_key
+        account = Stripe::Account.create(
+          {
+            :country => "BR",
+            :managed => true,
+            :email => self.organizer.email
+          }
+        )
+        return account
+      rescue => e # rescue for everything else
+        return e
+      end
+    end
+  end
+   
   def account_info
     {
       "email" => {

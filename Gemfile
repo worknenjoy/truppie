@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5.1'
 
 gem 'puma'
+gem 'stripe'
+gem 'stripe-ruby-mock', :require => 'stripe_mock', :git => 'git://github.com/wanelo/stripe-ruby-mock.git', :branch => 'add_accounts'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
