@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111170753) do
+ActiveRecord::Schema.define(version: 20170211191307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,8 +139,9 @@ ActiveRecord::Schema.define(version: 20170111170753) do
     t.string   "country"
     t.string   "token"
     t.string   "account_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "business",        default: false
   end
 
   add_index "marketplaces", ["bank_account_id"], name: "index_marketplaces_on_bank_account_id", using: :btree

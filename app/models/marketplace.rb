@@ -5,24 +5,45 @@ class Marketplace < ActiveRecord::Base
   
   accepts_nested_attributes_for :bank_accounts, :allow_destroy => true
   
+  def account
+    {
+      :country => "BR",
+      :managed => true,
+      :email => self.organizer.email,
+      :business_url => self.organizer.website,
+      :business_name => self.organizer.name,
+      :display_name => self.organizer.name,
+      :product_description => self.organizer.description,
+      :legal_entity => {
+        :first_name => self.person_name,
+        :last_name => self.person_lastname,
+        :personal_id_number => self.document_number,
+        :dob => {
+          :day => self.dob[:day],
+          :month => self.dob[:month],
+          :year => self.dob[:year]
+        },
+        :type => self.organizer_type,
+        :personal_address => {
+          :city => self.city,
+          :country => self.country,
+          :line1 => self.street,
+          :line2 => self.complement,
+          :state => self.state,
+          :postal_code => self.zipcode
+         }
+      }
+    }
+  end
   
   def activate
-    if self.active
+    if self.is_active?
       false  
     else
-      secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
       begin
+        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
         Stripe.api_key = secret_key
-        account = Stripe::Account.create(
-          {
-            :country => "BR",
-            :managed => true,
-            :email => self.organizer.email,
-            :business_url => self.organizer.website,
-            :business_name => self.organizer.name,
-            :display_name => self.organizer.name
-          }
-        )
+        account = Stripe::Account.create(self.account)
         if !account.id.nil? && !account.keys.secret.nil?
           update_attributes(:account_id => account.id, :token => account.keys.secret, :active => true)
         end
@@ -31,6 +52,64 @@ class Marketplace < ActiveRecord::Base
         return e
       end
     end
+  end
+  
+  def update_account
+    if !self.is_active?
+      false  
+    else
+      begin
+        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+        Stripe.api_key = secret_key
+        account = Stripe::Account.retrieve(self.account_id)
+        puts account.inspect
+        account.legal_entity.first_name = self.person_name
+        account.save
+        return account
+      rescue => e # rescue for everything else
+        return e
+      end
+    end
+  end
+  
+  def deactivate
+    if self.is_active?
+      begin
+        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+        Stripe.api_key = secret_key
+        account = Stripe::Account.retrieve(self.account)
+      rescue => e
+        return e
+      end
+      deleted = account.delete
+      return deleted
+    else
+      false
+    end
+  end
+  
+  def retrieve_account
+    secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+    Stripe.api_key = secret_key
+    account = Stripe::Account.retrieve(self.account)
+    return account
+  end
+  
+  def organizer_type 
+    if self.business
+      "company"
+    else
+      "personal"
+    end
+  end
+  
+  def dob
+    date = self.birthDate
+    {
+      day: date.day,
+      month: date.month,
+      year: date.year
+    }
   end
    
   def account_info
@@ -73,6 +152,21 @@ class Marketplace < ActiveRecord::Base
     }
   end
   
+  def account_missing
+    if is_active?
+      begin
+        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+        Stripe.api_key = secret_key
+        account = Stripe::Account.retrieve(self.account_id)
+        if account.id
+          return account.fields_needed
+        end
+      rescue => e
+        return e
+      end
+    end 
+  end
+  
   def bank_account_active
     self.bank_accounts.where(:active => true).first 
   end
@@ -80,42 +174,45 @@ class Marketplace < ActiveRecord::Base
   def bank_account
     bank_account_active = self.bank_account_active
     {
-      "bankNumber" => bank_account_active.bank_number,
-      "agencyNumber" => bank_account_active.agency_number,
-      "accountNumber" => bank_account_active.account_number,
-      "agencyCheckNumber" => bank_account_active.agency_check_number,
-      "accountCheckNumber" => bank_account_active.account_check_number,
-      "type" => bank_account_active.bank_type,
-      "holder" => {
-        "taxDocument" => {
-          "type" => bank_account_active.doc_type,
-          "number" => bank_account_active.doc_number
-        },
-        "fullname" => bank_account_active.fullname
-      }
+      "object" => "bank_account",
+      "account_number" => bank_account_active.account_number,
+      "country" => self.country,
+      "currency" => "BRL",
+      "account_holder_name" => bank_account_active.fullname,
+      "account_holder_type" => self.organizer_type,
+      "routing_number" => bank_account_active.bank_number
     }
   end
   
-  def registered_account
-    RestClient.get("#{Rails.application.secrets[:moip_domain]}/accounts/#{self.account_id}/bankaccounts", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.token}"){|response, request, result, &block| 
-        case response.code
-          when 401
-            json_data = JSON.parse(response)
-            json_data
-          when 400 
-            json_data = JSON.parse(response)
-            json_data
-          when 200
-            json_data = JSON.parse(response)
-            json_data
-          when 201
-            json_data = JSON.parse(response)
-            json_data
-          else
-            json_data = JSON.parse(response)
-            json_data
-          end
-    }    
+  def registered_bank_account
+    if is_active?
+      begin
+        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+        Stripe.api_key = secret_key
+        bank_accounts = Stripe::Account.retrieve(self.account_id).external_accounts
+        if bank_accounts.total_count
+          bank_accounts.data
+        end
+      rescue => e
+        return e
+      end
+    end   
+  end
+  
+  def register_bank_account
+    secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+    Stripe.api_key = secret_key
+    account = Stripe::Account.retrieve(self.account_id)
+    begin
+      bank_account = account.external_accounts.create(bank_account)
+      if bank_account.id
+        return bank_account
+      else
+        false
+      end
+    rescue => e
+      return e
+    end
   end
   
   def phone_object
