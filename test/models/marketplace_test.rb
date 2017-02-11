@@ -52,38 +52,47 @@ class MarketplaceTest < ActiveSupport::TestCase
     assert_equal account, custom_error
   end
   
-  test "try to register a new basic account with error" do
-    skip("deprecated after sucessfully mock")
-    body = {
-      "error": {
-        "type": "invalid_request_error",
-        "message": "Invalid API Key provided: {********_******_KEY}"
-      }
-    }
-    FakeWeb.register_uri(:post, "https://api.stripe.com/v1/accounts", :body => body, :status => ["400", "NOT AUTHORIZED"])
-    assert_equal @mkt_real_data.activate, false
+  test "Returning a error from api when has conection error" do
+    custom_error = Stripe::APIConnectionError.new(401, "The comunication failed somehow")
+    StripeMock.prepare_error(custom_error, :new_account)
+    account = @mkt_real_data.activate
+    assert_equal account, custom_error
   end
   
-  test "try to register a new basic account with success" do
-    skip("the other")
-    body = {
-      "id": "acct_12QkqYGSOD4VcegJ",
-      "keys": {
-        "secret": "sk_live_AxSI9q6ieYWjGIeRbURf6EG0",
-        "publishable": "pk_live_h9xguYGf2GcfytemKs5tHrtg"
-      },
-      "managed": "true"
-    }
-    FakeWeb.register_uri(:post, "https://api.stripe.com/v1/accounts", :body => body, :status => ["201", "CREATED"])
-    assert_equal @mkt_real_data.activate, {
-      :id => "acct_12QkqYGSOD4VcegJ",
-      :keys =>
-        {
-         :secret => "sk_live_AxSI9q6ieYWjGIeRbURf6EG0",
-         :publishable => "pk_live_h9xguYGf2GcfytemKs5tHrtg"
-        },
-        :managed => "true"
+  test "Returning a error from api when has auth error" do
+    custom_error = Stripe::AuthenticationError.new(401, "Authentication failed, maybe invalid keys")
+    StripeMock.prepare_error(custom_error, :new_account)
+    account = @mkt_real_data.activate
+    assert_equal account, custom_error
+  end
+  
+  test "the new registered account has the id and token from account" do
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal Marketplace.find(@mkt_real_data.id).account_id, 'test_acct_1'
+    assert_equal Marketplace.find(@mkt_real_data.id).token, 'SECRETKEY'
+    assert_equal Marketplace.find(@mkt_real_data.id).auth_data, {
+        "id" => 'test_acct_1',
+        "token" => 'SECRETKEY'
       }
+  end
+  
+  test "the new registered account register all possible info from a marketplace account" do
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal account.business_name, "Utopicos Mundo Afora"
+    assert_equal account.business_url, Marketplace.find(@mkt_real_data.id).organizer.website
+    assert_equal account.display_name, Marketplace.find(@mkt_real_data.id).organizer.name
+    assert_equal account.first_name, Marketplace.find(@mkt_real_data.id).person_name
+    assert_equal account.last_name, Marketplace.find(@mkt_real_data.id).person_lastname
+    assert_equal account.dob, Marketplace.find(@mkt_real_data.id).birthDate
+    assert_equal account.personal_address.city, Marketplace.find(@mkt_real_data.id).city
+    assert_equal account.personal_address.country, Marketplace.find(@mkt_real_data.id).country
+    assert_equal account.personal_address.line1, Marketplace.find(@mkt_real_data.id).street
+    assert_equal account.personal_address.line2, Marketplace.find(@mkt_real_data.id).complement
+    assert_equal account.personal_address.state, Marketplace.find(@mkt_real_data.id).state
+    assert_equal account.personal_address.postal_code, Marketplace.find(@mkt_real_data.id).zipcode
+    assert_equal account.personal_address.product_description, Marketplace.find(@mkt_real_data.id).organizer.description
   end
   
   test "get registered account" do
