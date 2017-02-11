@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
+gem 'thin'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
