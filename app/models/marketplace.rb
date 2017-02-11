@@ -17,9 +17,15 @@ class Marketplace < ActiveRecord::Base
           {
             :country => "BR",
             :managed => true,
-            :email => self.organizer.email
+            :email => self.organizer.email,
+            :business_url => self.organizer.website,
+            :business_name => self.organizer.name,
+            :display_name => self.organizer.name
           }
         )
+        if !account.id.nil? && !account.keys.secret.nil?
+          update_attributes(:account_id => account.id, :token => account.keys.secret, :active => true)
+        end
         return account
       rescue => e # rescue for everything else
         return e
@@ -146,7 +152,5 @@ class Marketplace < ActiveRecord::Base
   
   def is_active?
     self.auth_data && self.active
-  end
-  
-  
+  end 
 end
