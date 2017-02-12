@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :marketplaces do
     member do
       get 'activate', to: 'marketplaces#activate', as: 'activate'
+      get 'update_account', to: 'marketplaces#update_account', as: 'update_account'
     end
   end
   resources :translations
