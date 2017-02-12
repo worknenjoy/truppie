@@ -1,4 +1,5 @@
 banks:
+  '110': BANCO PARA TESTE STRIPE
   '001': BANCO DO BRASIL S.A. (Banco do Brasil)
   '237': BANCO BRADESCO S.A. (Bradesco)
   '341': BANCO ITAU S.A. (Itaú)

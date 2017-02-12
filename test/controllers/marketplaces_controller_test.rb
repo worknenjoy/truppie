@@ -30,7 +30,6 @@ class MarketplacesControllerTest < ActionController::TestCase
     assert_difference('Marketplace.count') do
       post :create, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
     end
-
     assert_redirected_to marketplace_path(assigns(:marketplace))
   end
 
@@ -49,8 +48,8 @@ class MarketplacesControllerTest < ActionController::TestCase
   end
 
   test "should update marketplace" do
-    skip("fix type")
-    patch :update, id: @marketplace, marketplace: { account_id: @marketplace.account_id, active: @marketplace.active, bank_accounts_id: @marketplace.bank_accounts_id, birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, district: @marketplace.district, document_type: @marketplace.document_type, id_issuer: @marketplace.id_issuer, id_issuerdate: @marketplace.id_issuerdate, id_number: @marketplace.id_number, id_type: @marketplace.id_type, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, street_number: @marketplace.street_number, token: @marketplace.token, zipcode: @marketplace.zipcode }
+    skip("No route matches")
+    patch :update, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
     assert_redirected_to marketplace_path(assigns(:marketplace))
   end
 

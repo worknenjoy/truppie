@@ -87,12 +87,6 @@
               <div class="form-group">
                   <div class="input-group">
                       <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                      <%= f.text_field :district, placeholder: "Bairro", class: "form-control" %>
-                  </div>
-              </div>
-              <div class="form-group">
-                  <div class="input-group">
-                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
                       <%= f.text_field :zipcode, placeholder: "CEP", class: "form-control" %>
                   </div>
               </div>
@@ -169,9 +163,10 @@
         <%= f.fields_for :bank_accounts, ([@marketplace.bank_accounts.build] if @marketplace.bank_accounts.empty?) do |ff| %>
         <fieldset class="form-group packages-set">
           <div class="form-group">
+              <p><%= bank_list["banks"][ff.object.bank_number] %>
               <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
-                  <%= ff.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}) %>
+                  <%= ff.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => ff.object.bank_number if ff.object.bank_number.present?  %>
               </div>
           </div>
           <div class="form-group">
@@ -183,7 +178,7 @@
           <div class="form-group">
               <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
-                  <%= ff.text_field :account_number, placeholder: "Número da conta", class: "form-control" %>
+                  <%= ff.text_field :account_number, placeholder: "Número da conta (xxx-xxxx-x)", class: "form-control" %>
               </div>
           </div>
           <div class="form-group">

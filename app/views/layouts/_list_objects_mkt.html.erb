@@ -18,8 +18,8 @@
               <td><%= m.person_name %></td>
               <% if m.is_active? %>
               <td><span class="label label-success">conta ativa</label></td>
-              <td><%= link_to 'Atualizar marketplace', update_account_marketplace_path(m) %></td>  
-              <% if m.registered_bank_account.try(:id) %>  
+              <td><%= link_to 'Atualizar marketplace', update_account_marketplace_path(m) %></td> 
+              <% if m.bank_account_active.try(:own_id) %>  
                 <td><span class="label label-success">conta bancária ativa</label></td>
               <% else %>
                 <% if m.bank_account_active.nil? %>

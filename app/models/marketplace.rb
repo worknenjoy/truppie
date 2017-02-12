@@ -206,15 +206,24 @@ class Marketplace < ActiveRecord::Base
   
   def bank_account
     bank_account_active = self.bank_account_active
-    {
-      "object" => "bank_account",
-      "account_number" => bank_account_active.account_number,
-      "country" => self.country,
-      "currency" => "BRL",
-      "account_holder_name" => bank_account_active.fullname,
-      "account_holder_type" => self.organizer_type,
-      "routing_number" => bank_account_active.bank_number
+    return {
+      object: "bank_account",
+      account_number: bank_account_active.account_number,
+      default_for_currency: true,
+      country: self.country,
+      currency: "BRL",
+      account_holder_name: bank_account_active.fullname,
+      account_holder_type: self.organizer_type,
+      routing_number: "#{bank_account_active.bank_number}-#{bank_account_active.agency_number}"
     }
+  end
+  
+  def delete_bank_account
+    secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+    Stripe.api_key = secret_key
+    account = Stripe::Account.retrieve(self.account_id)
+    deleted = account.external_accounts.retrieve("ba_19mVhuEiJRT3FkN7hBYpgjRJ").delete()
+    return deleted
   end
   
   def registered_bank_account
@@ -236,16 +245,8 @@ class Marketplace < ActiveRecord::Base
     secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
     Stripe.api_key = secret_key
     account = Stripe::Account.retrieve(self.account_id)
-    begin
-      bank_account = account.external_accounts.create(bank_account)
-      if bank_account.id
-        return bank_account
-      else
-        false
-      end
-    rescue => e
-      return e
-    end
+    bank_account = account.external_accounts.create(external_account: self.bank_account)
+    return bank_account
   end
   
   def phone_object
