@@ -12,7 +12,6 @@ class Marketplace < ActiveRecord::Base
       :email => self.organizer.email,
       :business_url => self.organizer.website,
       :business_name => self.organizer.name,
-      :display_name => self.organizer.name,
       :product_description => self.organizer.description,
       :legal_entity => {
         :first_name => self.person_name,
@@ -31,6 +30,14 @@ class Marketplace < ActiveRecord::Base
           :line2 => self.complement,
           :state => self.state,
           :postal_code => self.zipcode
+         },
+         :address => {
+          :city => self.city,
+          :country => self.country,
+          :line1 => self.street,
+          :line2 => self.complement,
+          :state => self.state,
+          :postal_code => self.zipcode
          }
       }
     }
@@ -40,17 +47,17 @@ class Marketplace < ActiveRecord::Base
     if self.is_active?
       false  
     else
-      begin
-        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
-        Stripe.api_key = secret_key
-        account = Stripe::Account.create(self.account)
-        if !account.id.nil? && !account.keys.secret.nil?
-          update_attributes(:account_id => account.id, :token => account.keys.secret, :active => true)
-        end
-        return account
-      rescue => e # rescue for everything else
-        return e
+      secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+      Stripe.api_key = secret_key
+      account = Stripe::Account.create(self.account)
+      if !account.id.nil? && !account.keys.secret.nil?
+        update_attributes(
+          :account_id => account.id,
+          :token => account.keys.secret,
+          :active => true
+        )
       end
+      return account
     end
   end
   
@@ -58,17 +65,43 @@ class Marketplace < ActiveRecord::Base
     if !self.is_active?
       false  
     else
-      begin
-        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
-        Stripe.api_key = secret_key
-        account = Stripe::Account.retrieve(self.account_id)
-        puts account.inspect
-        account.legal_entity.first_name = self.person_name
-        account.save
-        return account
-      rescue => e # rescue for everything else
-        return e
+      secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+      Stripe.api_key = secret_key
+      account = Stripe::Account.retrieve(self.account_id)
+      account.business_url = self.organizer.website if account.business_url != self.organizer.website
+      account.legal_entity.first_name = self.person_name if account.legal_entity.first_name != self.person_name
+      account.legal_entity.last_name = self.person_lastname if account.legal_entity.last_name != self.person_lastname
+      #account.legal_entity.personal_id_number_provided = true if self.document_number
+      #account.legal_entity.personal_id_number = self.document_number if account.legal_entity.personal_id_number != self.document_number
+      account.legal_entity.dob = self.dob if account.legal_entity.dob != self.dob
+      
+      account.legal_entity.personal_address.city = self.city if account.legal_entity.personal_address.city != self.city
+      account.legal_entity.personal_address.country = self.country if account.legal_entity.personal_address.country != self.country
+      account.legal_entity.personal_address.line1 = self.street if account.legal_entity.personal_address.line1 != self.street
+      account.legal_entity.personal_address.line2 = self.complement if account.legal_entity.personal_address.line2 != self.complement
+      account.legal_entity.personal_address.state = self.state if account.legal_entity.personal_address.state != self.state
+      account.legal_entity.personal_address.postal_code = self.zipcode if account.legal_entity.personal_address.postal_code != self.zipcode
+      
+      if self.organizer_type == 'individual'
+        account.legal_entity.address.city = self.city if account.legal_entity.address.city != self.city
+        account.legal_entity.address.country = self.country if account.legal_entity.address.country != self.country
+        account.legal_entity.address.line1 = self.street if account.legal_entity.address.line1 != self.street
+        account.legal_entity.address.line2 = self.complement if account.legal_entity.address.line2 != self.complement
+        account.legal_entity.address.state = self.state if account.legal_entity.address.state != self.state
+        account.legal_entity.address.postal_code = self.zipcode if account.legal_entity.address.postal_code != self.zipcode
+      else
+        account.legal_entity.address.city = self.company_city if account.legal_entity.address.city != self.company_city
+        account.legal_entity.address.country = self.company_country if account.legal_entity.address.country != self.company_country
+        account.legal_entity.address.line1 = self.company_street if account.legal_entity.address.line1 != self.company_street
+        account.legal_entity.address.line2 = self.compcompany_complement if account.legal_entity.address.line2 != self.compcompany_complement
+        account.legal_entity.address.state = self.company_state if account.legal_entity.address.state != self.company_state
+        account.legal_entity.address.postal_code = self.company_zipcode if account.legal_entity.address.postal_code != self.company_zipcode
       end
+      
+      account.product_description = self.organizer.description if account.product_description != self.organizer.description
+      account.legal_entity.type = self.organizer_type if account.legal_entity.type != self.organizer_type
+      account.save
+      return account
     end
   end
   
@@ -99,7 +132,7 @@ class Marketplace < ActiveRecord::Base
     if self.business
       "company"
     else
-      "personal"
+      "individual"
     end
   end
   
@@ -159,7 +192,7 @@ class Marketplace < ActiveRecord::Base
         Stripe.api_key = secret_key
         account = Stripe::Account.retrieve(self.account_id)
         if account.id
-          return account.fields_needed
+          return account.verification.fields_needed
         end
       rescue => e
         return e
@@ -191,7 +224,7 @@ class Marketplace < ActiveRecord::Base
         Stripe.api_key = secret_key
         bank_accounts = Stripe::Account.retrieve(self.account_id).external_accounts
         if bank_accounts.total_count
-          bank_accounts.data
+          return bank_accounts.data
         end
       rescue => e
         return e

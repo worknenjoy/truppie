@@ -9,9 +9,11 @@
 		<%= image_tag attachments['logo-flat.png'].url, :width => '150', :alt => 'Truppie' %><br />
 		<a href="http://www.truppie.com">http://www.truppie.com</a>
 	</div>
+	<% if !attachments[@logo_file].nil? %>
 	<div style="float:left; text-align: center;">
 		<%= image_tag attachments[@logo_file].url, :width => '100', :alt => organizer.name %><br/>
 		<a href="<%= organizer.website %>"><%= organizer.name %></a>
 	</div>
+	<% end %>
 </div>
 <div style="clear: both;"></div>

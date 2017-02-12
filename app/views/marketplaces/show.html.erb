@@ -174,7 +174,7 @@
                         </p>
                       </div>
                       <div class="tab-pane" id="bank_accounts_remote" role="tabpanel">
-                        <% if @marketplace.registered_account.include?("id") %>
+                        <% if @marketplace.registered_bank_account.try(:id) %>
                           <% @marketplace.registered_account.each do |a| %>
                             <div class="card spaced-down">
                               <div class="card-block">
@@ -200,7 +200,7 @@
                         <% else %>
                           <p>Sua conta ainda não foi registrada no marketplace. É necessário o cadastro da conta para receber os valores</p>
                           <p>Motivo:</p>
-                          <%= @marketplace.registered_account.inspect %>
+                          <%= @marketplace.registered_bank_account.inspect %>
                         <% end %>
                       </div>
                     </div>

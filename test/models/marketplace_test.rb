@@ -4,14 +4,14 @@ require 'stripe_mock'
 class MarketplaceTest < ActiveSupport::TestCase
   
   
-  def setup
+  setup do
     StripeMock.start
     @stripe_helper = StripeMock.create_test_helper
     @mkt_active = marketplaces(:one)
     @mkt_real_data = marketplaces(:real)
   end
   
-  def tearDown
+  teardown do
     StripeMock.stop
   end
   
@@ -48,22 +48,25 @@ class MarketplaceTest < ActiveSupport::TestCase
   test "Returning a error when try to create an account" do
     custom_error = Stripe::InvalidRequestError.new(401, "Invalid API Key provided: **aaaa>")
     StripeMock.prepare_error(custom_error, :new_account)
-    account = @mkt_real_data.activate
-    assert_equal account, custom_error
+    assert_raise Stripe::InvalidRequestError do 
+      @mkt_real_data.activate      
+    end
   end
   
   test "Returning a error from api when has conection error" do
     custom_error = Stripe::APIConnectionError.new(401, "The comunication failed somehow")
     StripeMock.prepare_error(custom_error, :new_account)
-    account = @mkt_real_data.activate
-    assert_equal account, custom_error
+    assert_raise Stripe::APIConnectionError do
+      @mkt_real_data.activate
+    end
   end
   
   test "Returning a error from api when has auth error" do
     custom_error = Stripe::AuthenticationError.new(401, "Authentication failed, maybe invalid keys")
     StripeMock.prepare_error(custom_error, :new_account)
-    account = @mkt_real_data.activate
-    assert_equal account, custom_error
+    assert_raise Stripe::AuthenticationError do 
+      @mkt_real_data.activate      
+    end
   end
   
   test "the new registered account has the id and token from account" do
@@ -82,7 +85,6 @@ class MarketplaceTest < ActiveSupport::TestCase
     assert_equal account.id, 'test_acct_1'
     assert_equal account.business_name, "Utopicos Mundo Afora"
     assert_equal account.business_url, Marketplace.find(@mkt_real_data.id).organizer.website
-    assert_equal account.display_name, Marketplace.find(@mkt_real_data.id).organizer.name
     assert_equal account.legal_entity.first_name, Marketplace.find(@mkt_real_data.id).person_name
     assert_equal account.legal_entity.last_name, Marketplace.find(@mkt_real_data.id).person_lastname
     assert_equal account.legal_entity.personal_id_number, Marketplace.find(@mkt_real_data.id).document_number
@@ -101,10 +103,22 @@ class MarketplaceTest < ActiveSupport::TestCase
     account = @mkt_real_data.activate
     assert_equal account.id, 'test_acct_1'
     assert_equal account.email, 'organizer@mail.com'
-    @mkt_real_data.update_attributes(:person_name => 'foo2')
+    @mkt_real_data.update_attributes(:person_name => 'foo2', :person_lastname => 'bla')
     updated = @mkt_real_data.update_account
     assert_equal updated.legal_entity.first_name, 'foo2'
+    assert_equal updated.legal_entity.last_name, 'bla'
+    assert_equal updated.legal_entity.personal_id_number, '222.222.222-22'
   end
+  
+  test "error when updating a account" do
+    custom_error = Stripe::InvalidRequestError.new(401, "Authentication failed, maybe invalid keys")
+    StripeMock.prepare_error(custom_error, :update_account)
+    
+    assert_raise Stripe::InvalidRequestError do 
+      @mkt_active.update_account     
+    end
+  end
+    
   
   test "get missing data" do
     account = @mkt_real_data.activate
@@ -138,12 +152,8 @@ class MarketplaceTest < ActiveSupport::TestCase
     assert_equal deleted_account.id, 'test_acct_1'
   end
   
-  test "send e-mail when activating a account sucessfully" do
-    
-  end
-  
   test "get registered bank accounts" do
-    skip("better handler by the mock")
+    skip("better handler by the mock server")
     account = @mkt_real_data.activate
     assert_equal account.id, 'test_acct_1'
     assert_equal account.email, 'organizer@mail.com'
@@ -159,7 +169,7 @@ class MarketplaceTest < ActiveSupport::TestCase
       "country" => "MyString",
       "currency" => "BRL",
       "account_holder_name" => "MyString",
-      "account_holder_type" => "personal",
+      "account_holder_type" => "individual",
       "routing_number" => "MyString"
     }
     assert_equal @mkt_active.bank_account, bank_account 
