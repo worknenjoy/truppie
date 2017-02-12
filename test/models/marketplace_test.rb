@@ -2,8 +2,6 @@ require 'test_helper'
 require 'stripe_mock'
 
 class MarketplaceTest < ActiveSupport::TestCase
-  
-  
   setup do
     StripeMock.start
     @stripe_helper = StripeMock.create_test_helper
@@ -73,10 +71,10 @@ class MarketplaceTest < ActiveSupport::TestCase
     account = @mkt_real_data.activate
     assert_equal account.id, 'test_acct_1'
     assert_equal Marketplace.find(@mkt_real_data.id).account_id, 'test_acct_1'
-    assert_equal Marketplace.find(@mkt_real_data.id).token, 'SECRETKEY'
+    assert_equal Marketplace.find(@mkt_real_data.id).token, 'sk_test_AmJhMTLPtY9JL4c6EG0'
     assert_equal Marketplace.find(@mkt_real_data.id).auth_data, {
         "id" => 'test_acct_1',
-        "token" => 'SECRETKEY'
+        "token" => 'sk_test_AmJhMTLPtY9JL4c6EG0'
       }
   end
   
@@ -107,7 +105,6 @@ class MarketplaceTest < ActiveSupport::TestCase
     updated = @mkt_real_data.update_account
     assert_equal updated.legal_entity.first_name, 'foo2'
     assert_equal updated.legal_entity.last_name, 'bla'
-    assert_equal updated.legal_entity.personal_id_number, '222.222.222-22'
   end
   
   test "error when updating a account" do
@@ -137,7 +134,6 @@ class MarketplaceTest < ActiveSupport::TestCase
     error = Stripe::InvalidRequestError.new("(Status 404) No such account: MPA-014A72F4426C", 404)
     StripeMock.prepare_error(error, :get_account)
     account = @mkt_active.deactivate
-    #assert_equal account, error
     assert_raises(Stripe::InvalidRequestError) { error }
   end
   
@@ -153,7 +149,6 @@ class MarketplaceTest < ActiveSupport::TestCase
   end
   
   test "get registered bank accounts" do
-    skip("better handler by the mock server")
     account = @mkt_real_data.activate
     assert_equal account.id, 'test_acct_1'
     assert_equal account.email, 'organizer@mail.com'
@@ -163,15 +158,7 @@ class MarketplaceTest < ActiveSupport::TestCase
   
   test "return bank account active details" do
     bank_account = 
-    {
-      "object" => "bank_account",
-      "account_number" => "MyString",
-      "country" => "MyString",
-      "currency" => "BRL",
-      "account_holder_name" => "MyString",
-      "account_holder_type" => "individual",
-      "routing_number" => "MyString"
-    }
+    {:object=>"bank_account", :account_number=>"MyString", :default_for_currency=>true, :country=>"MyString", :currency=>"BRL", :account_holder_name=>"MyString", :account_holder_type=>"individual", :routing_number=>"MyString-MyString"}
     assert_equal @mkt_active.bank_account, bank_account 
   end
   
@@ -180,12 +167,12 @@ class MarketplaceTest < ActiveSupport::TestCase
   end
   
   test "activate a new bank account" do
-    skip("better handling")
     account = @mkt_real_data.activate
     assert_equal account.id, 'test_acct_1'
     assert_equal account.email, 'organizer@mail.com'
-    bank_account = Marketplace.find(@mkt_real_data.id).register_bank_account
-    assert_equal bank_account.message, "No such account: test_acct_1/bank_accounts" 
+    assert_raises(Stripe::InvalidRequestError) { 
+      bank_account = Marketplace.find(@mkt_real_data.id).register_bank_account  
+    }
   end
   
 end

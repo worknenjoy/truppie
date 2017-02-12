@@ -7,35 +7,35 @@ class BankAccountsController < ApplicationController
     if !@bank_account.own_id.nil?
       @activation_message = "Esta conta bancária do #{@bank_account.marketplace.organizer.name} já foi ativada"
       @activation_status = "danger"
-      @errors = { :errors => { :description => "já tem uma conta no moip associada a esta conta"} }
+      @errors = "já tem uma conta associada"
     else
-      bank_account_data = @bank_account.marketplace.bank_account
-      response = RestClient.post("#{Rails.application.secrets[:moip_domain]}/accounts/#{@bank_account.marketplace.account_id}/bankaccounts", bank_account_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@bank_account.marketplace.token}"){|response, request, result, &block| 
-          #puts @bank_account.marketplace.account_id
-          #puts "OAuth #{@bank_account.marketplace.token}"
-          #puts response.inspect
-          #puts response.code
-          case response.code
-            when 400 
-              @activation_message = "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
-              @activation_status = "danger"
-              @errors = JSON.parse response
-            when 401
-              @activation_message = "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name} devido a erro na autenticação"
-              @activation_status = "danger"
-              @errors = JSON.parse response
-            when 201
-              @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@bank_account.marketplace.organizer.name}"
-              @activation_status = "success"
-              @response = JSON.parse response
-              @bank_account.update_attributes(:own_id => @response["id"])
-              MarketplaceMailer.activate_bank_account(@bank_account.marketplace.organizer).deliver_now
-            else
-              @activation_message = "Não conseguimos resposta do Moip para ativar #{@bank_account.marketplace.organizer.name}, verifique os dados novamente."
-              @activation_status = "danger"
-            end
-        }
+      bank_account_active = @bank_account.marketplace.bank_account_active
+      begin
+        bank_register_status = bank_account_active.marketplace.register_bank_account
+        if bank_register_status.id
+          bank_account_active.own_id = bank_register_status.id
+          if bank_account_active.save
+            @activation_message = "Conta ativada com sucesso"
+            @activation_status = "success"
+            @response = bank_register_status
+            MarketplaceMailer.activate_bank_account(@bank_account.marketplace.organizer).deliver_now
+            return bank_register_status            
+          else
+            @activation_message = "Não conseguimos ativar a conta"
+            @activation_status = "danger"
+            @errors = "Não foi possível salvar a conta ativa"
+          end
+        else
+          @activation_message = "Não foi possível ativar esta conta"
+          @activation_status = "danger"
+          @errors = "já tem uma conta associada"
+        end
+      rescue => e
+        @activation_message = "Tivemos um problema pra ativar esta conta bancária"
+        @activation_status = "danger"
+        @errors = e.message
       end
+    end
   end
 
   # GET /bank_accounts
@@ -106,6 +106,6 @@ class BankAccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bank_account_params
-      params.require(:bank_account).permit(:marketplace, :bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :bank_type, :doc_type, :doc_number, :fullname, :active)
+      params.require(:bank_account).permit(:marketplace, :own_id, :bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :bank_type, :doc_type, :doc_number, :fullname, :active)
     end
 end

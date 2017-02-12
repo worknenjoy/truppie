@@ -2,8 +2,22 @@
 
 <p>
   <strong>Marketplace:</strong>
-  <%= @bank_account.marketplace %>
+  <%= @bank_account.marketplace.person_name %>
 </p>
+
+<p>
+  <strong>Organizador:</strong>
+  <%= @bank_account.marketplace.organizer.name %>
+</p>
+
+<% if @bank_account.try(:own_id) %>
+<p>
+  <strong>Id:</strong>
+  <%= @bank_account.own_id %>
+</p>
+<% else %>
+  <p>Ainda não foi associada</p>
+<% end %>
 
 <p>
   <strong>Bank number:</strong>

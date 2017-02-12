@@ -10,19 +10,16 @@
               <h4>
                 <p><%= @activation_message %></p> 
               </h4>
-              <% if !@errors["errors"].nil? %>
-              <p>Encontramos os seguintes erros no marketplace cadastrado:</p>
-              <ul class="list-unstyled">
-                <% @errors["errors"].each do |e| %>
-                    <li><%= e["description"] %></li>
-                <% end %>
-              </ul>
-              <% else %>
-                <%= @errors["ERRORS"] %>
+              <% unless @response.nil? %>
+              <p><%= @response.inspect %></p>
               <% end %>
+              <% if !@errors.nil? %>
+              <p>Encontramos os seguintes erros no marketplace cadastrado:</p>
+              <p><%= @errors %></p>
               <footer>
                 <p><%= link_to 'voltar para os marketplaces', marketplaces_path %></p>
               </footer>
+              <% end %>
             </blockquote>
           </div>
         </div>

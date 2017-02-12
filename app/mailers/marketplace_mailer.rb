@@ -94,7 +94,11 @@ class MarketplaceMailer < ApplicationMailer
         attachments[@logo_file] = open(@organizer.picture.url(:thumbnail)).read
       end
     else
-      attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
+      begin
+        attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
+      rescue => e
+        attachments[@logo_file] = nil
+      end
     end
     
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))

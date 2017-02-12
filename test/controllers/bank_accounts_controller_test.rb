@@ -3,10 +3,15 @@ include Devise::TestHelpers
 
 class BankAccountsControllerTest < ActionController::TestCase
   setup do
-    sign_in users(:alexandre)
+    StripeMock.start
+    @stripe_helper = StripeMock.create_test_helper
     @bank_account = bank_accounts(:one)
     @registered_bank_account = bank_accounts(:registered)
-    FakeWeb.clean_registry
+    ActionMailer::Base.deliveries.clear
+  end
+  
+  teardown do
+    StripeMock.stop
   end
 
   test "should get index" do
