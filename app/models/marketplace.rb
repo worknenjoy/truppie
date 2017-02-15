@@ -43,6 +43,10 @@ class Marketplace < ActiveRecord::Base
     }
   end
   
+  def bank_name
+    bank_list["banks"][self.bank_account.bank_number]
+  end
+  
   def activate
     if self.is_active?
       false  

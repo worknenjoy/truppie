@@ -54,6 +54,7 @@
 # 
    test "should update organizer" do
      patch :update, id: @organizer_ready.id, organizer: @organizer 
+     assert_not ActionMailer::Base.deliveries.empty?
      assert_redirected_to organizer_path(assigns(:organizer))
    end
    
@@ -83,6 +84,7 @@
    end
    
    test "should go to transfer page with no transference" do
+     skip("refactor to stripe")
      body = [{"current" => 0, "future" => 0}]
      FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/balances", :body => body.to_json, :status => ["201", "Created"])
      FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/transfers", :body => "{}", :status => ["200", "Success"])
