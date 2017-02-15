@@ -1,0 +1,134 @@
+<tr>
+  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+      <tr>
+        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+            <tr>
+              <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">&nbsp;</td>
+              <td class="receipt-container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; width: 80%;" width="80%" valign="top">
+                <table class="receipt" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; Margin-bottom: 20px;" width="100%">
+                  <tr class="receipt-subtle" style="color: #aaa;">
+                    <td colspan="2" class="align-center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; text-align: center; border-bottom: 1px solid #eee; margin: 0; padding: 5px;" valign="top" align="center">
+                      Confira seus dados cadastrados
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px;" valign="top">
+                      Nome completo
+                    </td>
+                    <td class="receipt-figure" style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px; text-align: right;" valign="top" align="right">
+                      <%= "#{account.person_name} #{account.person_lastname}" %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px;" valign="top">
+                      Data de nascimento
+                    </td>
+                    <td class="receipt-figure" style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px; text-align: right;" valign="top" align="right">
+                      <%= account.birthDate.strftime("%d/%m/%Y") %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px;" valign="top">
+                      Tipo de conta
+                    </td>
+                    <td class="receipt-figure" style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px; text-align: right;" valign="top" align="right">
+                      <%= account.organizer_type %>
+                    </td>
+                  </tr>
+                </table>
+                <h2 class="align-center" style="color: #222222; font-family: sans-serif; font-weight: 400; line-height: 1.4; margin: 0; Margin-bottom: 15px; font-size: 28px; text-align: center;">
+                  Detalhes da sua conta
+                </h2>
+                <table class="receipt" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; Margin-bottom: 20px;" width="100%">
+                  <tr>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px;" valign="top">Endereço</td>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px;" valign="top">
+                      <% if !account.person_name.nil? %>
+                      <%= account.person_name %>
+                      <% end %>
+                      <% if !account.street.nil? %>
+                      <br><%= account.street %>
+                      <% end %>
+                      <% if !account.complement.nil? && !account.city.nil? && !account.state.nil? %>
+                      <br><%= account.complement %>
+                      <br><%= account.city %> <%= account.state %></td>
+                      <% else %>
+                        <p>Seu endereço está incompleto</p>
+                      <% end %>
+                  </tr>
+                  <% if account.bank_account_active.nil? %>
+                    <tr>
+                      <td>
+                        Seus dados bancários ainda não foram cadastrados
+                      </td>  
+                    <tr>
+                  <% else %>
+                  <tr>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px;" valign="top">Dados bancários</td>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px;" valign="top">
+                      Código do Banco: <%= account.bank_account_active.agency_number %>
+                      <br>Agência <%= account.bank_account_active.agency_number %>
+                      <br>Número da conta <%= account.bank_account_active.bank_number %></td>
+                  </tr>
+                  <% end %>
+                </table>
+                <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; Margin: 0; Margin-bottom: 15px;">tem alguma dúvida? <a href="http://www.truppie.com/contact" target="_blank" style="color: #3498db; text-decoration: underline;">Entre em contato com a gente!</a> e ajudaremos se algum dado estiver errado.</p>
+              </td>
+              <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">&nbsp;</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<!-- START CALL OUT -->
+<tr>
+  <td class="wrapper section-callout" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px; background-color: #1abc9c; color: #ffffff;" valign="top" bgcolor="#1abc9c">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+      <tr>
+        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; color: #ffffff;" valign="top">
+          <h2 class="align-center" style="font-family: sans-serif; font-weight: 400; line-height: 1.4; margin: 0; Margin-bottom: 15px; font-size: 28px; text-align: center; color: #ffffff;">Divulgue seu perfil!</h2>
+          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; Margin: 0; Margin-bottom: 15px; color: #ffffff;">Compartilhe o endereço do seu perfil na Truppie para que as pessoas comecem a fazer suas reservas</p>
+          <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+            <tr>
+              <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; color: #ffffff;" valign="top">&nbsp;</td>
+              <td class="social-sharing-url-container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; width: 300px; color: #ffffff;" width="300" valign="top">
+                <table class="social-sharing-url" border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; Margin: 0 auto 20px;" width="100%">
+                  <tr>
+                    <td style="font-family: sans-serif; vertical-align: top; font-size: 18px; color: #ffffff; background: rgba(255, 255, 255, 0.2); border: 2px dashed #ffffff; font-weight: 600; padding: 10px; text-align: center;" valign="top" align="center"><a href="<%= organizer_url(@organizer) %>"><%= organizer_url(@organizer) %></a></td>
+                  </tr>
+                </table>
+                <table class="social-sharing" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto; Margin: 0 auto; text-align: center;" align="center">
+                  <tr>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; color: #ffffff;" valign="top">
+                      <a href="http://www.instagram.com/truppie_" style="color: #3498db; text-decoration: underline;"><img src="<%= attachments['instagram_mail.png'].url %>" alt="Ver página da Truppie no instagram" width="44" class="social-sharing-icon" style="border: none; -ms-interpolation-mode: bicubic; max-width: 100%; height: 44px; Margin: 0 2px;"></a>
+                    </td>
+                    <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; color: #ffffff;" valign="top">
+                      <a href="http://www.facebook.com/truppie" style="color: #3498db; text-decoration: underline;"><img src="<%= attachments['facebook_mail.png'].url %>" alt="Ver página da Truppie no facebook" width="44" class="social-sharing-icon" style="border: none; -ms-interpolation-mode: bicubic; max-width: 100%; height: 44px; Margin: 0 2px;"></a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; color: #ffffff;" valign="top">&nbsp;</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<!-- END CALL OUT -->
+<tr>
+  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+      <tr>
+        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
+          <p class="align-center" style="font-family: sans-serif; font-size: 14px; font-weight: normal; Margin: 0; Margin-bottom: 15px; text-align: center;">Obrigado por estar com a gente para ajudar nos seus passeios ;).</p>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>

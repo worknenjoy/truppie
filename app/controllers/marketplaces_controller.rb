@@ -124,6 +124,8 @@ class MarketplacesController < ApplicationController
         @errors = "Já se encontra ativo"
       end
     rescue => e
+        puts e.inspect
+        puts e.backtrace
         @activation_message = "O Marketplace não pôde ser atualizado devido a problema na API do Stripe"
         @activation_status = "danger"
         @errors = e.message
