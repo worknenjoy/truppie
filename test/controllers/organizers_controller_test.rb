@@ -38,7 +38,7 @@
      assert_difference('Organizer.count') do
        post :create, organizer: @organizer
      end
-# 
+     assert_not ActionMailer::Base.deliveries.empty?
      assert_redirected_to organizer_path(assigns(:organizer))
    end
 # 
