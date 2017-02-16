@@ -4,11 +4,21 @@ class OrganizerMailer < ApplicationMailer
   def notify(organizer, status)
     
     @organizer = organizer
+    @status = status
+    
+    case @status
+      when "activate"
+        @status_to_user = "criada"
+      when "update"
+        @status_to_user = "atualizada"
+      else
+        @status_to_user = "atualizada"
+    end
     
     copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
     
     mailers = "#{organizer.email}"
-    subject = "Olá #{organizer.name}, sua conta na Truppie foi criada!"
+    subject = "Olá #{organizer.name}, sua conta na Truppie foi #{@status_to_user}!"
     
     @logo_file = "#{@organizer.to_param}.png"
     
