@@ -26,7 +26,7 @@
     		  	<div class="dropdown pull-xs-righ">
       			  <a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="dropdown-user">
       			    <% if current_user.image %>
-      			    <img src="<%= current_user.image %>" alt="user" class="img-circle" width="30" />
+      			    <img src="<%= to_https(current_user.image) %>" alt="user" class="img-circle" width="30" />
       			    <% end %>
       			    <%= current_user.email.split('@')[0] %>
       			  </a>
