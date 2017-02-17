@@ -52,4 +52,10 @@ module ApplicationHelper
     YAML.load_file('config/banks.yml')
   end
   
+  def to_https(url)
+    uri = URI.parse(url)
+    uri.scheme = "https"
+    return uri.to_s
+  end
+  
 end
