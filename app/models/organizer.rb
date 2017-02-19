@@ -25,8 +25,7 @@ class Organizer < ActiveRecord::Base
   
   def balance
     if self.market_place_active
-      response = RestClient.get "https://sandbox.moip.com.br/v2/balances", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.marketplace.token}"
-      json_data = JSON.parse(response)
+      json_data = {}
       json_data
     else
       false

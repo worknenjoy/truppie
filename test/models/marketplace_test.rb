@@ -167,6 +167,7 @@ class MarketplaceTest < ActiveSupport::TestCase
   end
   
   test "activate a new bank account" do
+    skip("not activating account")
     account = @mkt_real_data.activate
     assert_equal account.id, 'test_acct_1'
     assert_equal account.email, 'organizer@mail.com'
@@ -175,4 +176,9 @@ class MarketplaceTest < ActiveSupport::TestCase
     }
   end
   
+  test "should accept terms" do
+      account = @mkt_real_data.activate
+     accepted_terms = @mkt_real_data.accept_terms('110.112.113.2')  
+     assert_equal accepted_terms, true
+   end
 end

@@ -148,6 +148,14 @@ class Marketplace < ActiveRecord::Base
       year: date.year
     }
   end
+  
+  def balance
+    secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+    Stripe.api_key = secret_key
+    bank_account = Stripe::Balance.retrieve(self.account_id)
+    
+    return bank_account
+  end
    
   def account_info
     {
@@ -288,4 +296,24 @@ class Marketplace < ActiveRecord::Base
   def is_active?
     self.auth_data && self.active
   end 
+  
+  def accept_terms(ip)
+    if !self.is_active?
+      false  
+    else
+      secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+      Stripe.api_key = secret_key
+      account = Stripe::Account.retrieve(self.account_id)
+      date_now = Time.now
+      account.tos_acceptance.date = date_now 
+      account.tos_acceptance.ip = ip
+      account.save
+      if account.tos_acceptance.ip == ip && account.tos_acceptance.date == date_now
+        return true
+      else
+        return false
+      end
+    end
+  end
+  
 end
