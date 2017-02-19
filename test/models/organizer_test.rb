@@ -9,6 +9,10 @@ class OrganizerTest < ActiveSupport::TestCase
      @mantiex = organizers(:mantiex)
    end
    
+   teardown do
+    StripeMock.stop
+   end
+   
    test "one Organizer" do
      assert_equal 3, Organizer.count
    end
