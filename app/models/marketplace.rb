@@ -51,7 +51,7 @@ class Marketplace < ActiveRecord::Base
     if self.is_active?
       false  
     else
-      secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+      secret_key = Rails.application.secrets[:stripe_key]
       Stripe.api_key = secret_key
       account = Stripe::Account.create(self.account)
       if !account.id.nil? && !account.keys.secret.nil?
@@ -69,7 +69,7 @@ class Marketplace < ActiveRecord::Base
     if !self.is_active?
       false  
     else
-      secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+      secret_key = Rails.application.secrets[:stripe_key]
       Stripe.api_key = secret_key
       account = Stripe::Account.retrieve(self.account_id)
       account.business_url = self.organizer.website if account.business_url != self.organizer.website
@@ -112,7 +112,7 @@ class Marketplace < ActiveRecord::Base
   def deactivate
     if self.is_active?
       begin
-        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+        secret_key = Rails.application.secrets[:stripe_key]
         Stripe.api_key = secret_key
         account = Stripe::Account.retrieve(self.account)
       rescue => e
@@ -126,7 +126,7 @@ class Marketplace < ActiveRecord::Base
   end
   
   def retrieve_account
-    secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+    secret_key = Rails.application.secrets[:stripe_key]
     Stripe.api_key = secret_key
     account = Stripe::Account.retrieve(self.account)
     return account
@@ -150,10 +150,9 @@ class Marketplace < ActiveRecord::Base
   end
   
   def balance
-    secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+    secret_key = Rails.application.secrets[:stripe_key]
     Stripe.api_key = secret_key
     bank_account = Stripe::Balance.retrieve(self.account_id)
-    
     return bank_account
   end
    
@@ -200,7 +199,7 @@ class Marketplace < ActiveRecord::Base
   def account_missing
     if is_active?
       begin
-        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+        secret_key = Rails.application.secrets[:stripe_key]
         Stripe.api_key = secret_key
         account = Stripe::Account.retrieve(self.account_id)
         if account.id
@@ -231,7 +230,7 @@ class Marketplace < ActiveRecord::Base
   end
   
   def delete_bank_account
-    secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+    secret_key = Rails.application.secrets[:stripe_key]
     Stripe.api_key = secret_key
     account = Stripe::Account.retrieve(self.account_id)
     deleted = account.external_accounts.retrieve("ba_19mVhuEiJRT3FkN7hBYpgjRJ").delete()
@@ -241,7 +240,7 @@ class Marketplace < ActiveRecord::Base
   def registered_bank_account
     if is_active?
       begin
-        secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+        secret_key = Rails.application.secrets[:stripe_key]
         Stripe.api_key = secret_key
         bank_accounts = Stripe::Account.retrieve(self.account_id).external_accounts
         if bank_accounts.total_count
@@ -254,7 +253,7 @@ class Marketplace < ActiveRecord::Base
   end
   
   def register_bank_account
-    secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+    secret_key = Rails.application.secrets[:stripe_key]
     Stripe.api_key = secret_key
     account = Stripe::Account.retrieve(self.account_id)
     bank_account = account.external_accounts.create(external_account: self.bank_account)
@@ -301,10 +300,10 @@ class Marketplace < ActiveRecord::Base
     if !self.is_active?
       false  
     else
-      secret_key = 'sk_test_E9OwGy2A29NqDHrFdunOdmOI'
+      secret_key = Rails.application.secrets[:stripe_key]
       Stripe.api_key = secret_key
       account = Stripe::Account.retrieve(self.account_id)
-      date_now = Time.now
+      date_now = Time.now.to_i
       account.tos_acceptance.date = date_now 
       account.tos_acceptance.ip = ip
       account.save

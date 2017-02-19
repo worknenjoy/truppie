@@ -2,7 +2,7 @@ class OrganizersController < ApplicationController
   include ApplicationHelper
   before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance]
   helper_method :is_organizer_admin
   
   def check_if_admin
@@ -86,6 +86,16 @@ class OrganizersController < ApplicationController
     end
   end
   
+  def dashboard
+    @organizer = Organizer.find(params[:id])
+    @tours = @organizer.tours.order('created_at DESC')
+    if params[:tour].nil? 
+      @tour = @organizer.tours.order('created_at DESC').first
+    else
+      @tour = Tour.find(params[:tour])
+    end
+  end
+  
   def manage
     @organizer = Organizer.find(params[:id])
     @tours = @organizer.tours.order('created_at DESC')
@@ -94,6 +104,57 @@ class OrganizersController < ApplicationController
     else
       @tour = Tour.find(params[:tour])
     end
+  end
+  
+  def tos_acceptance
+    @organizer = Organizer.find(params[:id])
+  end
+  
+  def tos_acceptance_confirm
+    @organizer = Organizer.find(params[:id])
+    if Rails.env.development?
+      @ip = "127.0.0.1"
+    else
+      @ip = params[:ip]
+    end 
+    
+    if request.post?
+      begin 
+        valid_ip = IPAddr.new(@ip)
+      rescue
+        @status = "danger"
+        @status_message = e.message
+      end
+      
+     if valid_ip
+        if @organizer.try(:marketplace)
+          begin
+            accepted = @organizer.marketplace.accept_terms(@ip)
+          rescue => e
+            @status = "danger"
+            puts e.inspect
+            @status_message = "Erro ao requisitar o stripe"
+          end
+          if accepted
+            @status = "success"
+            @status_message = "Seus termos foram aceitos com sucesso"
+          else
+            @status = "danger"
+            @status_message = "Não conseguimos validar seus termos com o Stripe"
+          end
+        else
+          @status = "danger"
+          @status_message = "Você ainda não está cadastrado no Marketplace de guias"
+        end
+     else
+        @status = "danger"
+        @status_message = "Não foi possível aceitar seus termos. Não conseguimos obter seu IP para identificá-lo"
+     end
+   else
+    @status = "danger"
+    @status_message = "Não foi possível aceitar seus termos"
+   end
+    
   end
   
   def transfer

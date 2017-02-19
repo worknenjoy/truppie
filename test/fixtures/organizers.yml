@@ -42,14 +42,17 @@ mkt:
   twitter: MyString
   logo: logo_utopicos.png
 
-# two:
-  # name: MyString
-  # description: MyString
-  # member: one
-  # rating: 
-  # user: laura 
-  # where: one 
-  # email: MyString
-  # website: MyString
-  # facebook: MyString
-  # twitter: MyString
+guide_mkt_validated:
+  name: Marketplace valid
+  marketplace: mkt_validated
+  market_place_active: false
+  description: Oferecendo passeios e outdoor lifestyle
+  members: alex_member, laura_member
+  rating: 3
+  user: joana 
+  where: placeone 
+  email: example@email.com
+  website: MyString
+  facebook: MyString
+  twitter: MyString
+  logo: logo_utopicos.png

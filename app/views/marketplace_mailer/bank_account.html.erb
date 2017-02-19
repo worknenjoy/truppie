@@ -1,26 +1,63 @@
-<h2>Olá, <%= @organizer.name %>!</h2>
- 
-<p>Informamos que a sua <strong>Conta Bancária</strong> na <strong>Carteira da Truppie</strong> foi ativada com sucesso!</p>
-<p>Agora, você irá receber suas reservas na seguinte conta:</p>
+<!-- START NOTIFICATION BANNER -->
+<tr>
+  <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" class="alert alert-success" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; min-width: 100%;" width="100%">
+      <tr>
+        <td align="center" style="font-family: sans-serif; vertical-align: top; font-size: 16px; border-radius: 3px 3px 0 0; color: #ffffff; font-weight: 500; padding: 20px; text-align: center; background-color: #27ae60;" valign="top" bgcolor="#27ae60"> Uma nova conta para recebimento foi ativada! </td>
+      </tr>
+    </table>
+  </td>
+</tr>
 
-<% if @organizer.try(:marketplace) %>
-<ul>
-  <li>Nome completo: <%= @organizer.marketplace.bank_account_active.fullname %></li>
-  <li>Agência: <%= @organizer.marketplace.bank_account_active.agency_number %> - <%= @organizer.marketplace.bank_account_active.agency_check_number %></li>
-  <li>Conta: <%= @organizer.marketplace.bank_account_active.account_number %> - <%= @organizer.marketplace.bank_account_active.account_check_number %></li>
-</ul>
-<% end %>
-<p>Com essa conta você pode</p>
-<ul>
-  <li>Acompanhar o saldo de cada truppie;</li>
-  <li>Ver o valor que está disponível para saque;</li>
-  <li>Realizar a transferência do valor disponível para sua conta bancária em apenas um clique!</li>
-  <li>Lembrando que sua conta é segura e seus dados são protegidos pelo Moip.</li>
-  <li><%= link_to 'Quero ir para minha carteira!', manage_organizer_url(@organizer) %></li>
-</ul>
+<!-- END NOTIFICATION BANNER -->
 
-<p>Para ver as suas truppies, <%= link_to 'acesse o seu perfil', organizer_url(@organizer) %></p>
-
-<p>Obrigada pela confiança e parceria! :)</p>
-
-<%= render partial: 'marketplace_mailer/footer', locals: {organizer: @organizer } %>
+<!-- START MAIN CONTENT AREA --><tr>
+  <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+      <tr>
+        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
+          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; Margin: 0; Margin-bottom: 15px;">
+            Olá, <%= @organizer.name %>!
+          </p>
+          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; Margin: 0; Margin-bottom: 15px;">
+            <p>Informamos que a sua <strong>Carteira da Truppie</strong> foi criada!</p>
+          </p>
+          <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box; min-width: 100% !important;" width="100%">
+            <tbody>
+              <tr>
+                <td align="center" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;" valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
+                    <tbody>
+                      <tr>
+                        <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;" valign="top" bgcolor="#3498db" align="center"> <a href=",<%= manage_organizer_url(@organizer) %>" target="_blank" style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;">
+                          Ver minha conta
+                        </a> 
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; Margin: 0; Margin-bottom: 15px;">
+              <p>Com a sua conta, você pode a qualuqer hora:</p>
+              <ul>
+                <li>Acompanhar o saldo de cada truppie;</li>
+                <li>Ver o valor que está disponível para saque;</li>
+                <li>Acompanhar as transferência dos valores disponíveis para sua conta bancária em apenas um clique!</li>
+              </ul>
+              <p>Lembrando que sua conta é segura e seus dados são protegidos.</p>
+              <p>As transferências são realizadas assim que pagamento é faturado</p>
+              <p><%= link_to 'Quero ir para minha carteira para ver meu saldo e transferências', manage_organizer_url(@organizer) %></p>
+              <p>Para ver as suas truppies, <%= link_to 'acesse o seu perfil', organizer_url(@organizer) %></p>
+              <p>Obrigada pela confiança e parceria! :)</p>
+          </p>
+        </td>
+      </tr>
+      <%= render 'layouts/mail_account_details', account: @account %>
+    </table>
+  </td>
+</tr>
+<!-- END MAIN CONTENT AREA -->
+</table>

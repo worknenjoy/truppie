@@ -1,45 +1,47 @@
-<nav class="navbar navbar-dark bg-inverse navbar-full">
-  <div class="container">
-  	<div class="row">
-  	  <div class="col-xs-12 col-md-2 brand-grid-container center-xs">
-  		<% if !current_page?(root_url) %>
-		  <%= link_to root_path, class: 'navbar-brand pull-left' do %>
-		  	<%= image_tag("logos-02.svg", :alt => "Truppie", :class => 'img-fluid', :width => 100) %>
-		  <% end %>
-	  	<% end %>
-	  	</div>
-	  	<div class="col-xs-12 col-md-8">
-	  	  <nav class="clearfix main-menu xs-spaced-bottom">
-          <ul class="clearfix">
-            <li><%= link_to t('how-it-works-main-menu'), user_welcome_path %></li>
-            <li><%= link_to t('guides-main-menu'), organizer_welcome_path %></li>
-            <li><%= link_to t('contact-main-menu'), contacts_index_path %></li>
-          </ul>
-          <a href="#" id="pull">Menu</a>
-        </nav>
-  	  </div>
-  	  <div class="col-xs-12 col-md-2 center-xs">
-		  <% if not user_signed_in? %>
-		  <%= link_to 'entrar / logar', new_user_session_path, class: 'btn btn-secondary btn-sm pull-xs-right' %>
-		  <% else %>
-  		  <div class="user-actions">
-    		  	<div class="dropdown pull-xs-righ">
-      			  <a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="dropdown-user">
-      			    <% if current_user.image %>
-      			    <img src="<%= to_https(current_user.image) %>" alt="user" class="img-circle" width="30" />
-      			    <% end %>
-      			    <%= current_user.email.split('@')[0] %>
-      			  </a>
-      			  <div class="dropdown-menu" aria-labelledby="openuser">
-      			  	<%= link_to 'Minhas truppies', orders_path, class: 'dropdown-item' %>
-      			    <%= link_to 'Editar usuário', edit_user_registration_path, class: 'dropdown-item' %>
-      			    <div class="dropdown-divider"></div>
-      			    <%= link_to 'Sair', destroy_user_session_path, class: 'dropdown-item' %>
-      			  </div>
-    			 </div>
-	       </div>
-	     </div>
-  	</div>
-  </div>
-  <% end %>
-</nav>
+<div class="main-menu">
+  <nav class="navbar navbar-dark bg-inverse navbar-full">
+    <div class="container">
+    	<div class="row">
+    	  <div class="col-xs-12 col-md-2 brand-grid-container center-xs">
+    		<% if !current_page?(root_url) %>
+  		  <%= link_to root_path, class: 'navbar-brand pull-left' do %>
+  		  	<%= image_tag("logos-02.svg", :alt => "Truppie", :class => 'img-fluid', :width => 100) %>
+  		  <% end %>
+  	  	<% end %>
+  	  	</div>
+  	  	<div class="col-xs-12 col-md-8">
+  	  	  <nav class="clearfix main-menu xs-spaced-bottom">
+            <ul class="clearfix">
+              <li><%= link_to t('how-it-works-main-menu'), user_welcome_path %></li>
+              <li><%= link_to t('guides-main-menu'), organizer_welcome_path %></li>
+              <li><%= link_to t('contact-main-menu'), contacts_index_path %></li>
+            </ul>
+            <a href="#" id="pull">Menu</a>
+          </nav>
+    	  </div>
+    	  <div class="col-xs-12 col-md-2 center-xs">
+  		  <% if not user_signed_in? %>
+  		  <%= link_to 'entrar / logar', new_user_session_path, class: 'btn btn-secondary btn-sm pull-xs-right' %>
+  		  <% else %>
+    		  <div class="user-actions">
+      		  	<div class="dropdown pull-xs-righ">
+        			  <a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="dropdown-user">
+        			    <% if current_user.image %>
+        			    <img src="<%= to_https(current_user.image) %>" alt="user" class="img-circle" width="30" />
+        			    <% end %>
+        			    <%= current_user.email.split('@')[0] %>
+        			  </a>
+        			  <div class="dropdown-menu" aria-labelledby="openuser">
+        			  	<%= link_to 'Minhas truppies', orders_path, class: 'dropdown-item' %>
+        			    <%= link_to 'Editar usuário', edit_user_registration_path, class: 'dropdown-item' %>
+        			    <div class="dropdown-divider"></div>
+        			    <%= link_to 'Sair', destroy_user_session_path, class: 'dropdown-item' %>
+        			  </div>
+      			 </div>
+  	       </div>
+  	     </div>
+    	</div>
+    </div>
+    <% end %>
+  </nav>
+</div>

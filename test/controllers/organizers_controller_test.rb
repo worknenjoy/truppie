@@ -9,6 +9,7 @@
      sign_in users(:alexandre)
      @organizer_ready = organizers(:utopicos)
      @mkt = organizers(:mkt)
+     @guide_mkt_validated = organizers(:guide_mkt_validated)
      @organizer = {
        name: "Utópicos mundo afora",
        description: "uma agencia utopica",
@@ -83,6 +84,30 @@
      assert_response :success
    end
    
+   test "should load the terms in the page" do
+     get :tos_acceptance, id: @organizer_ready.id
+     assert_response :success 
+   end
+   
+   test "should not accept the terms of a not registered guide on marketplace" do
+     post :tos_acceptance_confirm, id: @organizer_ready.id, ip: '100.22.10.1', date_of_acceptance: "2014-12-01T01:29:18".to_date
+     assert_equal assigns(:ip), "100.22.10.1"
+     assert_equal assigns(:status), "danger"
+     assert_equal assigns(:status_message), "Você ainda não está cadastrado no Marketplace de guias"
+     assert_response :success 
+   end
+   
+   test "should accept the terms in the page" do
+     account = @guide_mkt_validated.marketplace.activate
+     assert_equal account.id.include?('acct_'), true
+     
+     post :tos_acceptance_confirm, id: @guide_mkt_validated, ip: '100.22.10.1'
+     assert_equal assigns(:ip), "100.22.10.1"
+     assert_equal assigns(:status_message), "Seus termos foram aceitos com sucesso" 
+     assert_equal assigns(:status), "success"
+     assert_response :success 
+   end
+   
    test "should go to transfer page with no transference" do
      skip("refactor to stripe")
      body = [{"current" => 0, "future" => 0}]
@@ -96,7 +121,7 @@
    
    test "should not transfer amount to organizer if there's no active bank account" do
      post :transfer_funds, id: @mkt.id, amount: 200, current: 300
-     assert_equal assigns(:bank_account_active_id), nil
+     assert_nil assigns(:bank_account_active_id)
      assert_equal assigns(:amount), 20000
      assert_equal assigns(:status), "danger"
      assert_equal assigns(:message_status), "Você não tem nenhuma conta bancária ativa no momento"

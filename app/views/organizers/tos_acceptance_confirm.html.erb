@@ -1,0 +1,38 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <div class="spaced-default spaced-default-full">
+        <% if @status == "danger" %>
+        <div class="card card-inverse card-<%= @status %> text-xs-center">
+          <div class="card-block">
+            <blockquote class="card-blockquote">
+              <h4>
+                <p><%= @status_message %></p> 
+              </h4>
+              <footer>
+                <p><%= link_to 'voltar para os termos', tos_acceptance_organizer_path %></p>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+        <% end %>
+        <% if @status == "success" %>
+        <div class="card card-inverse card-<%= @status %> text-xs-center">
+          <div class="card-block">
+            <blockquote class="card-blockquote">
+              <h4>
+                <p><%= @status_message %></p> 
+              </h4>
+              <div class="card-text">
+                <p>Com os termos aceitos, você pode gerenciar suas reservas e acompanhar o status da sua conta.</p>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+        <p><%= link_to 'gerenciar minha conta', manage_organizer_path, class: "btn btn-block btn-primary btn-lg" %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
