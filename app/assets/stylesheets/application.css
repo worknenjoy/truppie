@@ -40,7 +40,8 @@
  *= require overlay
  *= require main-menu
  *= require showcase  
- *= require tours  
+ *= require tours
+ *= require dashboard   
  */
 
 .full-width {
