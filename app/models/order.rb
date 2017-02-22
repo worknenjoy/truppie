@@ -12,16 +12,10 @@ class Order < ActiveRecord::Base
   def current_status
     payment_id = self.payment
     
-    headers = {
-      :content_type => 'application/json',
-      :authorization => Rails.application.secrets[:moip_auth]
-    }
-    
-    response = ::RestClient.get "#{Rails.application.secrets[:moip_domain]}/payments/#{payment_id}", headers
-    json_data = JSON.parse(response)
-    self.update_attributes({:status => json_data["status"]})
-    json_data["status"]
-    
+    secret_key = Rails.application.secrets[:stripe_key]
+    order = Stripe::Charge.retrieve(self.payment)
+    self.update_attributes({:status => order.status})
+    return order.status
   end
   
   def payment_link
@@ -139,26 +133,16 @@ class Order < ActiveRecord::Base
   
   def friendly_status(status)
     case status
-    when 'CREATED'
+    when 'created'
       '<span class="label label-default">CRIADO</span>'
-    when 'WAITING'
+    when 'paid'
       '<span class="label label-primary">AGUARDANDO</span>'
-    when 'IN_ANALYSIS'
-      '<span class="label label-primary">EM ANALISE</span>'
-    when 'PRE_AUTHORIZED'
-      '<span class="label label-info">PRE-AUTORIZADO</span>'
-    when 'AUTHORIZED'
-      '<span class="label label-success">AUTORIZADO</span>'
-    when 'CANCELLED'
-      '<span class="label label-danger">CANCELADO</span>'
-    when 'REVERSED'
-      '<span class="label label-warning">REVERTIDO</span>'
-    when 'REFUNDED'
-      '<span class="label label-warning">REEMBOLSADO</span>'
-    when 'SETTLED'
-      '<span class="label label-warning">FINALIZADO</span>'
+    when 'fulfilled'
+      '<span class="label label-primary">ACEITO</span>'
+    when 'returned'
+      '<span class="label label-info">REEMBOLSADO</span>'
     else
-      '<span class="label label-default">NAO DEFINIDO</span>'
+      '<span class="label label-default">AGUARDANDO STATUS</span>'
     end
     
   end
