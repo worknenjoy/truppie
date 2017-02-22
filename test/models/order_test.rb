@@ -3,8 +3,12 @@ require 'test_helper'
 class OrderTest < ActiveSupport::TestCase
   self.use_transactional_fixtures = true
   setup do
-     FakeWeb.clean_registry
-     FakeWeb.allow_net_connect = false
+     StripeMock.start
+     @stripe_helper = StripeMock.create_test_helper
+  end
+
+  teardown do
+    StripeMock.stop
   end
   
   test "getting the status of a order" do
@@ -25,7 +29,6 @@ class OrderTest < ActiveSupport::TestCase
   end
   
   test "update a payment fee and liquid value from moip to redis" do
-    
     body_for_order = {
       :status => "AUTHORIZED",
       :amount => {
@@ -44,7 +47,7 @@ class OrderTest < ActiveSupport::TestCase
   end
   
   test "get a payment fee and liquid value updated" do
-    
+    skip("migrate to stripe")
     body_for_order = {
       :status => "AUTHORIZED",
       :amount => {
