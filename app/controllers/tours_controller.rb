@@ -47,20 +47,20 @@ class ToursController < ApplicationController
     end
     
     begin
-      valid_birthdate = @payment_data[:birthdate].to_date
-    rescue ArgumentError
+      valid_birthdate = params[:birthdate].to_date
+    rescue => e
+      puts e.inspect
       @confirm_headline_message = "Não foi possível confirmar sua reserva"
-      @confirm_status_message = "A data precisa estar no formato xx/xx/xxxx"
+      @confirm_status_message = "Não foi possível identificar a data de nascimento"
       @status = "danger"
       return
     end
     
     if @tour.confirmeds.exists?(user: current_user)
-      flash[:error] = "Hey, você já está confirmado neste evento!!"
+      flash[:error] = "Hey, você já está confirmado neste evento, não é necessário reservar novamente!!"
       redirect_to @tour          
     else
-      if !@tour.soldout?
-        
+      if !@tour.soldout?   
         if @tour.try(:description)
           @desc = @tour.try(:description).first(250)
         else
@@ -87,13 +87,21 @@ class ToursController < ApplicationController
         
         begin
           payment = Stripe::Charge.create(@new_charge)
-          puts payment.inspect
-        rescue => e
+          #puts payment.inspect
+        rescue Stripe::CardError => e
           puts e.inspect
-          puts e.backtrace
+          #puts e.backtrace
           ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou o retorno foi #{e.inspect}").deliver_now
           @confirm_headline_message = "Não foi possível confirmar sua reserva"
-          @confirm_status_message = e.message
+          @confirm_status_message = "Tivemos um problema ao processar seu cartão"
+          @status = "danger"
+          return
+        rescue => e
+          puts e.inspect
+          #puts e.backtrace
+          ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar uma reserva e o retorno foi #{e.inspect}").deliver_now
+          @confirm_headline_message = "Não foi possível confirmar sua reserva"
+          @confirm_status_message = "Tivemos um problema para confirmar sua reserva, entraremos em contato para maiores informações"
           @status = "danger"
           return
         end
@@ -159,8 +167,7 @@ class ToursController < ApplicationController
     @order = current_user.orders.last
     @amount = 2
     @final_price = 80
-    @payment_method = "BOLETO"
-    @payment_link = "https://checkout-sandbox.moip.com.br/boleto/#{@order.payment}"
+    @payment_method = "CREDIT_CARD"
     render 'confirm_presence'
   end
   
@@ -172,7 +179,7 @@ class ToursController < ApplicationController
       @tour.update_attributes(:reserved => reserveds - @order.amount)
       flash[:success] = "Você não está mais confirmardo neste evento"
     else
-      flash[:error] = "Houve um problema com sua confirmação para este evento"
+      flash[:error] = "Houve um problema para confirmar sua desistência neste evento"
     end
     redirect_to @tour
   end
