@@ -295,6 +295,28 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_3'
     assert_template "confirm_presence"
   end
+
+  test "should confirm presence of a marketplace account" do
+    mkt = marketplaces(:real)
+    organizer = Tour.find(@tour.id).organizer
+    Tour.find(@tour.id).organizer.update_attributes({:marketplace => mkt})
+    Tour.find(@tour.id).organizer.marketplace.update_attributes({:organizer => organizer})
+    Marketplace.find(mkt.id).activate
+
+    post :confirm_presence, @payment_data
+    assert_equal assigns(:new_charge)[:amount], 4000
+    assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
+    assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
+    assert_equal assigns(:status), "success"
+    assert_equal assigns(:payment).destination.amount, 3760 
+
+    assert_equal Tour.find(@tour.id).orders.any?, true
+    assert_equal Tour.find(@tour.id).orders.first.liquid, 3760
+    assert_equal Tour.find(@tour.id).orders.first.fee, 240 
+    assert_equal Tour.find(@tour.id).orders.last.source_id, 'test_cc_2'
+    assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_4'
+    assert_template "confirm_presence"
+  end
   
   test "should not confirm again" do
     post :confirm_presence, @payment_data

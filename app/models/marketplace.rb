@@ -51,7 +51,6 @@ class Marketplace < ActiveRecord::Base
     if self.is_active?
       false  
     else
-      Stripe.api_key = secret_key
       account = Stripe::Account.create(self.account)
       if !account.id.nil? && !account.keys.secret.nil?
         update_attributes(

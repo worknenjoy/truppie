@@ -69,24 +69,23 @@ class ToursController < ApplicationController
         
         @new_charge = {
           :currency => "brl",
-          :amount => @final_price.to_i,
+          :amount => @final_price.to_i*100,
           :source => params[:token],
           :description => @desc
           
         }
-        
         if @tour.organizer.try(:marketplace)
-          if @tour.organizer.marketplace.account_id
+          if @tour.organizer.marketplace.try(:account_id)
             @account_id = @tour.organizer.marketplace.account_id
             @new_charge.store(:destination, {
               :account => @account_id,
-              :amount => ((@final_price*100).to_i*0.99).to_i,
+              :amount => ((@final_price*100).to_i*0.94).to_i,
             })
           end
         end
         
         begin
-          payment = Stripe::Charge.create(@new_charge)
+          @payment = Stripe::Charge.create(@new_charge)
           #puts payment.inspect
         rescue Stripe::CardError => e
           puts e.inspect
@@ -106,21 +105,21 @@ class ToursController < ApplicationController
           return
         end
         
-        if payment.try(:status)
+        if @payment.try(:status)
           
-          if payment.try(:id)
+          if @payment.try(:id)
             @tour.confirmeds.new(:user  => current_user)
             amount_reserved_now = @tour.reserved
             @reserved_increment = amount_reserved_now + @amount         
             @tour.update_attributes(:reserved => @reserved_increment)
             
             @order = @tour.orders.create(
-              :source_id => payment[:source][:id],
+              :source_id => @payment[:source][:id],
               :own_id => "truppie_#{@tour.id}_#{current_user.id}",
               :user => current_user,
               :tour => @tour,
-              :status => payment[:status],
-              :payment => payment[:id],
+              :status => @payment[:status],
+              :payment => @payment[:id],
               :price => @value,
               :amount => @amount,
               :final_price => @final_price,
@@ -142,7 +141,7 @@ class ToursController < ApplicationController
             @confirm_headline_message = "Não foi possível confirmar sua reserva"
             @confirm_status_message = "O pagamento não foi confirmado"
             @status = "danger"
-            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e houve um error #{payment.inspect}").deliver_now
+            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e houve um error #{@payment.inspect}").deliver_now
           end
         else
           @confirm_headline_message = "Não foi possível confirmar sua reserva"
