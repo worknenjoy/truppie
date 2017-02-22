@@ -312,7 +312,7 @@ class ToursControllerTest < ActionController::TestCase
 
     assert_equal Tour.find(@tour.id).orders.any?, true
     assert_equal Tour.find(@tour.id).orders.first.liquid, 3760
-    assert_equal Tour.find(@tour.id).orders.first.fee, 240 
+    assert_equal Tour.find(@tour.id).orders.first.fee, 240
     assert_equal Tour.find(@tour.id).orders.last.source_id, 'test_cc_2'
     assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_4'
     assert_template "confirm_presence"

@@ -25,8 +25,14 @@ class Organizer < ActiveRecord::Base
   
   def balance
     if self.market_place_active
-      json_data = {}
-      json_data
+      begin
+        balance = Stripe::Balance.retrieve(self.marketplace.token)
+        puts balance.inspect
+        return balance
+      rescue => e
+        puts e.inspect
+        return false
+      end
     else
       false
     end  

@@ -66,20 +66,27 @@ class ToursController < ApplicationController
         else
           @desc = "Truppie #{@tour.title} por #{@tour.organizer.name}"
         end 
+
+        @fees = {
+         :fee => (@final_price.to_i*100) - ((@final_price*100).to_i*0.94).to_i,
+         :liquid => ((@final_price*100).to_i*0.94).to_i,
+         :total => @final_price.to_i*100 
+        }
         
         @new_charge = {
           :currency => "brl",
-          :amount => @final_price.to_i*100,
+          :amount => @fees[:total],
           :source => params[:token],
           :description => @desc
           
         }
+        
         if @tour.organizer.try(:marketplace)
           if @tour.organizer.marketplace.try(:account_id)
             @account_id = @tour.organizer.marketplace.account_id
             @new_charge.store(:destination, {
               :account => @account_id,
-              :amount => ((@final_price*100).to_i*0.94).to_i,
+              :amount => @fees[:liquid]
             })
           end
         end
@@ -123,6 +130,8 @@ class ToursController < ApplicationController
               :price => @value,
               :amount => @amount,
               :final_price => @final_price,
+              :liquid => @fees[:liquid],
+              :fee => @fees[:fee],
               :payment_method => @payment_method
             )
             

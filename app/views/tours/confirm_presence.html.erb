@@ -14,18 +14,6 @@
                 <p><%= @confirm_status_message %></p>
                 <% if @status == "success" %>
                 <p>Você pode acompanhar o status em <%= link_to 'minhas truppies', orders_path %>. </p>
-                
-                <% if @payment_method == "BOLETO" %>
-                  <p>Você escolheu pagar por boleto bancário, para finalizar sua confirmação da reserva, é necessário realizar o pagamento</p>
-                  <p>
-                    <a href="<%= @payment_link %>" target="_blank" class="btn btn-primary-outline">gerar boleto bancário</a>
-                  </p>
-                  <small>Você receberá o boleto também por e-mail</small>                    
-                <% else %>
-                  <p>Não foi possível gerar o pagamento por boleto bancário.</p>
-                  <p><strong>Só é possível fazer a reserva até 3 dias antes do evento</strong></p>
-                  <p>Você pode ao invés disto <%= link_to "voltar para confirmação e pagar com cartão de crédito", confirm_tour_path(@tour) %></p>
-                <% end %>
                 <% else %>
                 <p><%= link_to "voltar para confirmação", confirm_tour_path(@tour) %></p>
                 <% end %>
@@ -52,7 +40,7 @@
                 <tbody>
                   <tr>
                     <td> <span class="user-subhead"><%= link_to @order.tour.organizer.name, organizer_path(@order.tour.organizer) %></span></td>
-                    <td class="text-center"> <%= raw(@order.friendly_status(@order.current_status)) %> </td>
+                    <td class="text-center"> <%= raw(@order.friendly_status(@order.current_status[:type])) %> </td>
                     <td> <%= @order.payment %> </td>
                     <td ><h3><%= raw final_price(@order.price) %></h3> <% if @order.tour.try(:packages) %>
                     <% @order.tour.packages.each do |p| %>

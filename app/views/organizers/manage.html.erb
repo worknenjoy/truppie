@@ -49,7 +49,7 @@
             <h3><%= @tour.orders.count %> reserva(s):</h3>
             <% @tour.orders.each do |o| %>
             <div class="manage-item">
-              <%= raw(o.friendly_status(o.current_status)) %>
+              <%= raw(o.friendly_status(o.current_status[:type])) %>
               <div class="manage-item-name"><%= o.user.name %> - <small><%= o.amount %> reserva(s)</small></div>
               <div class="manage-item-description">
                 <%= o.payment %> - <strong><%= o.payment_method %></strong><br />
