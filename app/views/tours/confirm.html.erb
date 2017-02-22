@@ -33,7 +33,7 @@
                 </ul>
             </div>
         </div>
-        <%= form_tag confirm_presence_tour_path, :method => 'post' do %>
+        <%= form_tag confirm_presence_tour_path, :method => 'post', id: 'form-confirm-reservation' do %>
         <div class="row">
           <%= render 'layouts/payment_type' %>          
         </div>
@@ -56,7 +56,7 @@
                               	<%= hidden_field_tag :id, @tour %>
                               	<%= hidden_field_tag :method, "CREDIT_CARD" %>
                               	<label for="fullname">Nome Completo</label>
-  					            <%= text_field_tag :fullname, nil, placeholder: "Mesmo do cartão de crédito", required: true, class: "form-control" %>
+  					                    <%= text_field_tag :fullname, nil, placeholder: "Mesmo do cartão de crédito", required: true, class: "form-control" %>
                               </div>
                           </div>
                           <div class="col-xs-12">
@@ -67,8 +67,38 @@
                           </div>
                           <div class="col-xs-12">
                               <div class="form-group">
-                              	<label for="cpf_number">Número do CPF</label>
-  					            <%= text_field_tag :cpf_number, nil, placeholder: "Sem pontos ou traços", required: true, class: "form-control" %>
+                              	<label for="street">Rua</label>
+  					                     <%= text_field_tag :street, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_line1" } %>
+                              </div>
+                          </div>
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                                <label for="zipcode">Complemento</label>
+                                 <%= text_field_tag :complement, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_line2" } %>
+                              </div>
+                          </div>
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                                <label for="zipcode">Cidade</label>
+                                 <%= text_field_tag :city, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_city" } %>
+                              </div>
+                          </div>
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                                <label for="zipcode">Estado</label>
+                                 <%= text_field_tag :state, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_state" } %>
+                              </div>
+                          </div>
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                                <label for="zipcode">País</label>
+                                 <%= text_field_tag :country, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_country" } %>
+                              </div>
+                          </div>
+                          <div class="col-xs-12">
+                              <div class="form-group">
+                                <label for="zipcode">CEP</label>
+                                 <%= text_field_tag :zipcode, nil, placeholder: "xxxxx-xx", required: true, class: "form-control", data: { stripe: "address_zip" } %>
                               </div>
                           </div>
                       </div>
@@ -87,7 +117,7 @@
                               <div class="form-group form-card-number">
                                   <label for="cardNumber">Número do cartão</label>
                                   <div class="input-group">
-                                      <%= text_field_tag :number, nil, placeholder: "Número do cartão válido", required: true, class: "form-control" %>
+                                      <%= text_field_tag :number, nil, placeholder: "Número do cartão válido", required: true, class: "form-control", data: { stripe: "number" } %>
                                       <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                   </div>
                               </div>                            
@@ -98,17 +128,17 @@
                             <label for="expMonth">Data de expiração</label>
                             <div class="form-group">
                                 <div class="col-xs-12 col-md-7 pl-ziro">
-                                    <%= text_field_tag :expiration_month, nil, placeholder: "Mês (dois dígitos)", required: true, class: "form-control" %>
+                                    <%= text_field_tag :expiration_month, nil, placeholder: "Mês (dois dígitos)", required: true, class: "form-control", data: { stripe: "exp_month" } %>
                                 </div>
                                 <div class="col-xs-12 col-md-5 pl-ziro xs-spaced-top">
-                                    <%= text_field_tag :expiration_year, nil, placeholder: "Ano (dois dígitos)", required: true, class: "form-control" %>
+                                    <%= text_field_tag :expiration_year, nil, placeholder: "Ano (dois dígitos)", required: true, class: "form-control", data: { stripe: "exp_year" } %>
                                 </div>
                             </div>
                           </div>
                           <div class="col-xs-12 col-md-4 pull-right">
                               <div class="form-group">
                                   <label for="cvCode">Código de verificação</label>
-                                  <%= text_field_tag :cvc, nil, placeholder: "ex. 123", required: true, class: "form-control" %>
+                                  <%= text_field_tag :cvc, nil, placeholder: "ex. 123", required: true, class: "form-control", data: { stripe: "cvc" } %>
                               </div>
                           </div>
                       </div>
@@ -140,6 +170,7 @@
                             <% end %>                        
                         </div>
                       </div>
+                      <!--
                       <div class="row">
                       	<div class="col-xs-12">
                       		<div style="width: 100%">
@@ -148,6 +179,7 @@
                       		</div>
                       	</div>
                       </div>
+                      !-->
                       <div class="row">
                         <div class="col-xs-12 col-md-6">
                           <div class="spaced-smallest">
@@ -171,27 +203,25 @@
                               <div class="price mediafix">
                                 <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
                                 <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' %>
+                                <%= hidden_field_tag :token, '', id:'token' %>
                               </div>
                             </div>
                           </div>
                       </div>
                   </div>
               </div>
+              <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+              <script type="text/javascript">
+                Stripe.setPublishableKey('<%= Rails.configuration.stripe[:publishable_key] %>');
+              </script>
               <div class="row">
   	            <div class="col-md-12">
-  	            	<%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
+  	            	<%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation-button" %>
   	            </div>
-  	            <textarea style="display:none;" id="public_key">-----BEGIN PUBLIC KEY-----
-  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAonuGqRVzIpKya3PVLj22
-  RyBfy67voV7/KBJmB5MhCG3W2BuU2ftrahU0CUekXuTir6m0l0J+mqyoPjZE/GoE
-  BX8Glv4R7J77OkQEqMXST6rKGGjZnIaHy77zNGdqvJA347+0MzeNiIb4vDPL6lMg
-  fiaaqN8Dat+FuCVOZFsay56CnpBbQca62Xe5B5Oh7SxuZvm0VVbsyXXkiTLYRKQp
-  n+8kstWY0XJz84j1GAEubUBGkblNjypXAULyfm1n55oPlhbev4t2B5DjY4GPQa7I
-  HJTzkpqUA3bIinu3M3fcDxQY0Mlog1YSpuuspOJdRbtw2nBrEgF36wpEdU32OlEC
-  lwIDAQAB
-  -----END PUBLIC KEY-----</textarea>
-      <textarea id="encrypted_value" style="display:none"></textarea>
-          	</div>
+          	 </div>
+          	 <div class="spaced-default">
+          	   Poltícias do guia virao aqui no padrão de listas
+        	   </div>
           </div>
         </div>
         <% end %>
@@ -263,48 +293,9 @@
                   <div class="col-md-12">
                     <%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
                   </div>
-                  <textarea style="display:none;" id="public_key">-----BEGIN PUBLIC KEY-----
-    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAonuGqRVzIpKya3PVLj22
-    RyBfy67voV7/KBJmB5MhCG3W2BuU2ftrahU0CUekXuTir6m0l0J+mqyoPjZE/GoE
-    BX8Glv4R7J77OkQEqMXST6rKGGjZnIaHy77zNGdqvJA347+0MzeNiIb4vDPL6lMg
-    fiaaqN8Dat+FuCVOZFsay56CnpBbQca62Xe5B5Oh7SxuZvm0VVbsyXXkiTLYRKQp
-    n+8kstWY0XJz84j1GAEubUBGkblNjypXAULyfm1n55oPlhbev4t2B5DjY4GPQa7I
-    HJTzkpqUA3bIinu3M3fcDxQY0Mlog1YSpuuspOJdRbtw2nBrEgF36wpEdU32OlEC
-    lwIDAQAB
-    -----END PUBLIC KEY-----</textarea>
-        <textarea id="encrypted_value" style="display:none"></textarea>
               </div>
             </div>
         </div>
         <% end %>
-        <div class="container">
-	        <div class="row">
-	        		<div class="col-md-6">
-		            	<div class="reduce-font">
-			            	<p class="spaced-smallest">Tudo certo? Então só falta ler as condições e realizar o pagamento. Em caso de dúvidas, <%= link_to 'entre em contato com a gente', contacts_index_path %> em ola@truppie.com</p>
-					        <h4 class="spaced-smallest">Condições</h4>
-					        <ul>
-						        <li>A reserva é efetivada após a confirmação da operadora do cartão de crédito;</li>
-						        <li>Caso você desista de ir, informe a gente assim que possível em ola@truppie.com;</li>
-						        <li>Se faltarem menos de 48 horas até o início do evento, o reembolso poderá ser de 50%;</li>
-						        <li>Se o evento for cancelado pelo guia por qualquer motivo em qualquer momento, o reembolso é integral;</li>
-						        <li>Em quaisquer destas situações, você pode optar por deixar o valor pago como crédito para uma truppie futura com este guia - mas não esqueça de avisar, ok?</li>
-					        </ul>
-					        <h4 class="spaced-smallest">Importante</h4>
-					        <ul>
-						        <li>Seu cartão será usado em ambiente seguro. Seus dados serão protegidos e nunca fornecidos a terceiros. Fique traquilo!</li>
-						        <li>Este evento depende de condições climáticas para ocorrer</li>
-						        <li>A taxa de serviço do cartão de crédito não é reembolsável</li>
-						        <li>As taxas do cartão estão inclusas</li>
-					        </ul>
-			            </div>
-	        		</div>
-	        		<div class="col-md-6">
-		            	<div class="text-xs-center">
-		            		<%= image_tag("selo_moip_with_debit.png", :alt => "Truppie", :class => "img-fluid pull-xs-right spaced-default pull-against") %>
-		            	</div>
-	        		</div>
-	        	</div>
-        	</div>
 	</div>
 </div>

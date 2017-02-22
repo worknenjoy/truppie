@@ -46,21 +46,6 @@ class ToursController < ApplicationController
       @final_price = params[:final_price].to_i      
     end
     
-    @payment_data = {
-      method: @payment_method,
-      expiration_month: params[:expiration_month],
-      expiration_year: params[:expiration_year],
-      number: params[:number],
-      cvc: params[:cvc],
-      fullname: params[:fullname],
-      birthdate: params[:birthdate],
-      cpf_number: params[:cpf_number],
-      country_code: params[:country_code],
-      area_code: params[:area_code],
-      phone_number: params[:phone_number],
-      installment_count: params[:installment_count]
-    }
-    
     begin
       valid_birthdate = @payment_data[:birthdate].to_date
     rescue ArgumentError
@@ -70,162 +55,86 @@ class ToursController < ApplicationController
       return
     end
     
-    
-    if @payment_method == "BOLETO"
-      
-      payment_object_type = {
-         funding_instrument: {
-           method: @payment_data[:method],
-           boleto: {
-             expirationDate: @tour.start.strftime('%Y-%m-%d'),
-             instructionLines: {
-                first: @tour.title,
-                second: @tour.organizer.name,
-                third: "Reservado por #{current_user.name}"
-              }
-            }
-          } 
-        }
-    elsif @payment_method == "CREDIT_CARD" && !@payment_data[:birthdate].nil?
-        payment_object_type = {
-            installment_count: @payment_data[:installment_count] || 1,
-            funding_instrument: {
-                method: @payment_data[:method],
-                credit_card: {
-                    expiration_month: @payment_data[:expiration_month],
-                    expiration_year: @payment_data[:expiration_year],
-                    number: @payment_data[:number],
-                    cvc: @payment_data[:cvc],
-                    holder: {
-                        fullname: @payment_data[:fullname],
-                        birthdate: valid_birthdate.strftime('%Y-%m-%d'),
-                        tax_document: {
-                            type: "CPF",
-                            number: @payment_data[:cpf_number]
-                    }
-                        
-                  }
-                }
-              }
-          }
-    else
-      payment_object_type = {}
-    end
-    
     if @tour.confirmeds.exists?(user: current_user)
       flash[:error] = "Hey, você já está confirmado neste evento!!"
       redirect_to @tour          
     else
       if !@tour.soldout?
-        auth = Moip2::Auth::Basic.new(Rails.application.secrets[:moip_token], Rails.application.secrets[:moip_key])
-        client = Moip2::Client.new(Rails.application.secrets[:moip_env], auth)
-        api = Moip2::Api.new(client)
         
-        @new_order = {
-          own_id: "truppie_#{@tour.id}_#{current_user.id}",
-          items: [
-            {
-              product: @tour.title,
-              quantity: @amount,
-              detail: @tour.description.first(250),
-              price: @value * 100
-            }
-          ],
-          customer: {
-            own_id: "#{current_user.id.to_s}_#{current_user.name.parameterize}",
-            fullname: current_user.name,
-            email: current_user.email
-          }
+        if @tour.try(:description)
+          @desc = @tour.try(:description).first(250)
+        else
+          @desc = "Truppie #{@tour.title} por #{@tour.organizer.name}"
+        end 
+        
+        @new_charge = {
+          :currency => "brl",
+          :amount => @final_price.to_i,
+          :source => params[:token],
+          :description => @desc
+          
         }
         
         if @tour.organizer.try(:marketplace)
           if @tour.organizer.marketplace.account_id
-            @new_order.store(:receivers,
-              [
-                moipAccount: {
-                  id: @tour.organizer.marketplace.account_id
-                },
-                type: "SECONDARY",
-                amount: {
-                  percentual: 99
-                }
-              ]
-            )
+            @account_id = @tour.organizer.marketplace.account_id
+            @new_charge.store(:destination, {
+              :account => @account_id,
+              :amount => ((@final_price*100).to_i*0.99).to_i,
+            })
           end
         end
         
-        order = api.order.create(@new_order)
-        
-        if order[:ERROR] 
+        begin
+          payment = Stripe::Charge.create(@new_charge)
+          puts payment.inspect
+        rescue => e
+          puts e.inspect
+          puts e.backtrace
+          ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou o retorno foi #{e.inspect}").deliver_now
           @confirm_headline_message = "Não foi possível confirmar sua reserva"
-          @confirm_status_message = order["ERROR"]
+          @confirm_status_message = e.message
           @status = "danger"
           return
         end
         
-        if order[:errors]
-          @confirm_headline_message = "Não foi possível confirmar sua reserva"
-          @confirm_status_message = order.errors[0][:description]
-          @status = "danger"
-          return
-        end
-        
-        if not @payment_data[:method].nil?
-          payment = api.payment.create(order.id, payment_object_type)
+        if payment.try(:status)
           
-          if payment.try(:errors)
-            @payment_api_error = payment["errors"][0]["path"]
-            @payment_api_error_msg = payment["errors"][0]["description"]
-          else
-            if @payment_method == "BOLETO"
-              @payment_api_success = payment
-              @payment_api_success_url = @payment_api_success[:_links][:pay_boleto][:redirect_href]
-            end
-          end
-          
-          if payment.success?
+          if payment.try(:id)
             @tour.confirmeds.new(:user  => current_user)
-          
             amount_reserved_now = @tour.reserved
             @reserved_increment = amount_reserved_now + @amount         
             @tour.update_attributes(:reserved => @reserved_increment)
             
             @order = @tour.orders.create(
-              :source_id => order.id,
+              :source_id => payment[:source][:id],
               :own_id => "truppie_#{@tour.id}_#{current_user.id}",
               :user => current_user,
               :tour => @tour,
-              :status => payment.status,
-              :payment => payment.id,
+              :status => payment[:status],
+              :payment => payment[:id],
               :price => @value,
               :amount => @amount,
               :final_price => @final_price,
               :payment_method => @payment_method
             )
             
-            if @tour.save()
-              #flash[:order_id] = order.id
+            begin
+              @tour.save()
               @confirm_headline_message = "Sua presença foi confirmada para a truppie"
               @confirm_status_message = "Você receberá um e-mail sobre o processamento do seu pagamento"
               @status = "success"
-              if @payment_method == "BOLETO"
-                @payment_link = @payment_api_success_url
-              end
-            else
+            rescue => e
+              puts e.inspect
               @confirm_headline_message = "Não foi possível confirmar sua reserva"
-              @confirm_status_message = "Houve um problema com o seu pagamento"
-              if @payment_api_error
-                @confirm_status_message = "Houve um problema com o seu pagamento: #{@payment_api_error}"
-              end
-              
+              @confirm_status_message = e.message
               @status = "danger"
             end
           else
             @confirm_headline_message = "Não foi possível confirmar sua reserva"
-            @confirm_status_message = payment.errors[0].description
+            @confirm_status_message = "O pagamento não foi confirmado"
             @status = "danger"
-            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e o moip retornou #{payment.errors.inspect}").deliver_now
-            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento mas não foi possível devido a: #{@payment_api_error_msg}", @tour).deliver_now
+            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e houve um error #{payment.inspect}").deliver_now
           end
         else
           @confirm_headline_message = "Não foi possível confirmar sua reserva"
@@ -335,7 +244,7 @@ class ToursController < ApplicationController
   def set_tour
     @tour = Tour.find(params[:id])
   end
-
+  
   # Never trust parameters from the scary internet, only allow the white list through.
   def tour_params
     
