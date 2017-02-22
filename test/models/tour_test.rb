@@ -205,14 +205,13 @@ class TourTest < ActiveSupport::TestCase
         :final_price => 1000,
         :payment => 'somepayment_id',
         :user => User.last,
-        :tour => Tour.last
+        :tour => Tour.last,
+        :fee => 10,
+        :liquid => 990
       )
-     assert_equal tour_to_order.total_taxes, 0
-     assert_equal tour_to_order.price_with_taxes, 0
-     assert_equal tour_to_order.available_to_transfer_total, 0
-     assert_equal tour_to_order.available_to_transfer_liquid, 0
-     assert_equal tour_to_order.available_to_transfer_taxes, 0
-     assert_equal tour_to_order.total_earned_until_now, 0
+     assert_equal tour_to_order.total_taxes, 10
+     assert_equal tour_to_order.price_with_taxes, 990
+     assert_equal tour_to_order.total_earned_until_now, 990
    end
    
    test "simple payment call" do

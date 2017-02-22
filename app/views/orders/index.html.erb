@@ -51,10 +51,7 @@
                                     </td>
                                     <td><%= l(o.created_at, format: '%d de %B as %I:%M %p')  %></td>
                                     <td class="text-center">
-                                        <%= raw(o.friendly_status(o.current_status)) %>
-                                        <% if o.payment_method == "BOLETO" %>
-                                        <p><a href="<%= o.payment_link %>">pagar boleto</a></p>
-                                        <% end %>
+                                        <%= raw(o.friendly_status(o.current_status[:type])) %>
                                     </td>
                                     <td>
                                         <%= o.payment %>
