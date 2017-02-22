@@ -18,19 +18,10 @@ class OrderTest < ActiveSupport::TestCase
   test "one tour created" do
     assert_equal 4, Order.count
   end
-   
-  test "order return boleto payment" do
-    assert_equal orders(:bol).payment_method, "BOLETO" 
-  end
-   
-  test "order return boleto payment link" do 
-    order = orders(:bol)
-    assert_equal order.payment_link, "https://checkout.moip.com.br/boleto/#{order.payment}"
-  end
   
-  test "update a payment fee and liquid value from moip to redis" do
+  test "update a payment fee and liquid value into redis" do
     body_for_order = {
-      :status => "AUTHORIZED",
+      :status => "succeeded",
       :amount => {
         :fees => 10,    
         :liquid => 20,
