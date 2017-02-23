@@ -127,9 +127,9 @@ class ToursController < ApplicationController
               :tour => @tour,
               :status => @payment[:status],
               :payment => @payment[:id],
-              :price => @value,
+              :price => @value.to_i*100,
               :amount => @amount,
-              :final_price => @final_price,
+              :final_price => @final_price.to_i*100,
               :liquid => @fees[:liquid],
               :fee => @fees[:fee],
               :payment_method => @payment_method

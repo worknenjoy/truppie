@@ -159,14 +159,14 @@ class OrganizersController < ApplicationController
   
   def transfer
     @organizer = Organizer.find(params[:id])
-    @money_account_json = []
+    @bank_account = []
     if @organizer.try(:marketplace)
-      @money_account_json.push @organizer.marketplace.bank_account
-      response = RestClient.get "#{Rails.application.secrets[:moip_domain]}/transfers", :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"
-      @transfer_json = JSON.parse(response)
-      puts @transfer_json.inspect
+      @balance = @organizer.marketplace.balance
+      @transfers = @organizer.marketplace.transfers
+      @bank_account.push(@organizer.marketplace.bank_account_active)
     else
-      @transfer_json = {}
+      @transfers = []
+      @balance = {}
     end
   end
   
