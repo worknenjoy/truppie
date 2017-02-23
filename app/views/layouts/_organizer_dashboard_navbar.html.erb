@@ -14,7 +14,7 @@
         <% end %>
       </li>
     </ul>
-    <% if @organizer.marketplace.account_missing.empty? %>
+    <% if @organizer.marketplace.try(:account_missing) %>
       <span class="navbar-text pull-right">
         <span class="label label-pill label-success">Conta verificada</span>
       </span>
