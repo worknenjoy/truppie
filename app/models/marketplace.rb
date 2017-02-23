@@ -71,8 +71,6 @@ class Marketplace < ActiveRecord::Base
       account.business_url = self.organizer.website if account.business_url != self.organizer.website
       account.legal_entity.first_name = self.person_name if account.legal_entity.first_name != self.person_name
       account.legal_entity.last_name = self.person_lastname if account.legal_entity.last_name != self.person_lastname
-      #account.legal_entity.personal_id_number_provided = true if self.document_number
-      #account.legal_entity.personal_id_number = self.document_number if account.legal_entity.personal_id_number != self.document_number
       account.legal_entity.dob = self.dob if account.legal_entity.dob != self.dob
       
       account.legal_entity.personal_address.city = self.city if account.legal_entity.personal_address.city != self.city
@@ -108,7 +106,6 @@ class Marketplace < ActiveRecord::Base
   def deactivate
     if self.is_active?
       begin
-        Stripe.api_key = secret_key
         account = Stripe::Account.retrieve(self.account)
       rescue => e
         return e
@@ -121,7 +118,6 @@ class Marketplace < ActiveRecord::Base
   end
   
   def retrieve_account
-    Stripe.api_key = secret_key
     account = Stripe::Account.retrieve(self.account)
     return account
   end
@@ -144,7 +140,6 @@ class Marketplace < ActiveRecord::Base
   end
   
   def balance
-    Stripe.api_key = secret_key
     bank_account = Stripe::Balance.retrieve(self.account_id)
     return bank_account
   end
@@ -197,7 +192,8 @@ class Marketplace < ActiveRecord::Base
           return account.verification.fields_needed
         end
       rescue => e
-        return e
+        puts e.inspect
+        return ["not active account"]
       end
     end 
   end
@@ -221,7 +217,6 @@ class Marketplace < ActiveRecord::Base
   end
   
   def delete_bank_account
-    Stripe.api_key = secret_key
     account = Stripe::Account.retrieve(self.account_id)
     deleted = account.external_accounts.retrieve("ba_19mVhuEiJRT3FkN7hBYpgjRJ").delete()
     return deleted
@@ -230,7 +225,6 @@ class Marketplace < ActiveRecord::Base
   def registered_bank_account
     if is_active?
       begin
-        Stripe.api_key = secret_key
         bank_accounts = Stripe::Account.retrieve(self.account_id).external_accounts
         if bank_accounts.total_count
           return bank_accounts.data
@@ -242,7 +236,6 @@ class Marketplace < ActiveRecord::Base
   end
   
   def register_bank_account
-    Stripe.api_key = secret_key
     account = Stripe::Account.retrieve(self.account_id)
     bank_account = account.external_accounts.create(external_account: self.bank_account)
     return bank_account
@@ -288,7 +281,6 @@ class Marketplace < ActiveRecord::Base
     if !self.is_active?
       false  
     else
-      Stripe.api_key = secret_key
       account = Stripe::Account.retrieve(self.account_id)
       date_now = Time.now.to_i
       account.tos_acceptance.date = date_now 
