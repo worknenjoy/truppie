@@ -31,7 +31,11 @@ module ApplicationHelper
   end
   
   def final_price(p)
-    "<small>R$</small> " + "<span>" + (p/100).to_s + "</span>"
+    if p.to_i
+      "<small>R$</small> " + "<span>" + (p/100).to_s + "</span>"
+    else
+      "<small> não conseguimos obter o preço </span>"
+    end
   end
   
   def raw_price(p)

@@ -6,7 +6,7 @@ class OrdersControllerTest < ActionController::TestCase
   setup do
     sign_in users(:alexandre)
     @order = orders(:one)
-    @payment = "PAY-32LJ77AT4JNN"
+    @payment = "ch_19qSuIBrSjgsps2DCXDNuqsD"
     @post_params = {
       "id": "evt_19qSuHBrSjgsps2DD5DiwGT5",
       "object": "event",
@@ -122,56 +122,27 @@ class OrdersControllerTest < ActionController::TestCase
     assert_response :success
   end
   
-  test "should receive a post with successfull parameters from moip and try to find succesfull this order" do
-    orders = Order.create(:status => 'succeeded', :payment => @payment, :user => User.last, :tour => Tour.last)
+  test "should receive a post with successfull parameters and try to find succesfull this order" do
+    orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)
     
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
+    assert_equal assigns(:event), "charge.succeeded"
     assert_not_nil assigns(:status_data)
     assert_response :success
     
-    puts ActionMailer::Base.deliveries[0].html_part
+    #puts ActionMailer::Base.deliveries[0].html_part
     
     assert_not ActionMailer::Base.deliveries.empty?
   end
   
   test "should send the balance in each email confirmation send for the guide" do
-    skip("migrate to stripe")
-    orders = Order.create(:status => 'PAYMENT.AUTHORIZED', :payment => @payment, :user => User.last, :tour => Tour.last)
+    orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
     #puts ActionMailer::Base.deliveries[1].html_part
     assert_not ActionMailer::Base.deliveries.empty?
-    assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?("http://localhost:3000/organizers/1041462269"), true
-    assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?(tours(:morro).to_param), true
-  end
-  
-  test "should send the balance when the payment is settled" do
-    skip("migrate to stripe")
-    @request.env['RAW_POST_DATA'] = {"date":"","env":"","event":"PAYMENT.SETTLED","resource":{"payment":{"_links":{"order":{"href":"https://sandbox.moip.com.br/v2/orders/ORD-4WHF2TSP3X4F","title":"ORD-4WHF2TSP3X4F"},"self":{"href":"https://sandbox.moip.com.br/v2/payments/PAY-ARVJHNTP3KQ6"}},"amount":{"currency":"BRL","fees":261,"liquid":3239,"refunds":0,"total":3500},"createdAt":"2016-04-13T00:46:24.000-03","delayCapture":false,"events":[{"createdAt":"2016-04-13T00:46:25.000-03","type":"PAYMENT.CREATED"},{"createdAt":"2016-04-13T00:46:08.494-03","type":"PAYMENT.SETTLED"}],"fees":[{"amount":261,"type":"TRANSACTION"}],"fundingInstrument":{"creditCard":{"brand":"MASTERCARD","first6":"555566","holder":{"birthDate":"1982-10-06","birthdate":"1982-10-06","fullname":"Alexandre Magno Teles Zimerer","taxDocument":{"number":"05824493677","type":"CPF"}},"id":"CRC-PWZSLZSIXVC5","last4":"8884"},"method":"CREDIT_CARD"},"id":"PAY-4G6UKLVSNLXF","installmentCount":1,"status":"SETTLED","updatedAt":"2016-04-13T00:46:08.494-03"}}}
-    orders = Order.create(:status => 'PAYMENT.SETTLED', :payment => "PAY-4G6UKLVSNLXF", :user => @order.user, :tour => @order.tour)
-    post :webhook, {}
-    assert_not ActionMailer::Base.deliveries.empty?
-    #puts ActionMailer::Base.deliveries[1].html_part
-    assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?("em conta"), true
-  end
-  
-  test "should receive a post with successfull parameters from moip when is boleto" do
-    skip("migrate to stripe")
-    order = Order.create(:status => 'PAYMENT.WAITING', :payment => @payment_boleto, :user => User.last, :tour => Tour.last, :payment_method => "BOLETO")
-    
-    #puts orders.inspect 
-    
-    @request.env['RAW_POST_DATA'] = @post_params_boleto
-    post :webhook, {}
-    assert_not_nil assigns(:status_data)
-    assert_response :success
-    
-    #puts ActionMailer::Base.deliveries[0].html_part
-    order_link = "https://sandbox.moip.com.br/v2/payments/#{order.payment}"
-    
-    assert_not ActionMailer::Base.deliveries.empty?
-    assert ActionMailer::Base.deliveries[0].html_part.to_s.index("boleto/PAY-55LJ77AT4JTN"), "should have payment link"
+    #assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?(tours(:morro).to_param), true
   end
   
   test "should not receive payment link when is authorized" do

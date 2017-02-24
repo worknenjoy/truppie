@@ -49,11 +49,12 @@ class OrdersController < ApplicationController
       puts request_raw_json.inspect
       
       @event = request_raw_json["type"]
+
       
-      if @event
-        @payment_id = request_raw_json["id"]
-        @payment_status = request_raw_json["status"]
-        @status = request_raw_json["outcome"]["status"]
+      if @event == "charge.succeeded"
+        @payment_id = request_raw_json["data"]["object"]["id"]
+        @payment_status = request_raw_json["data"]["object"]["status"]
+        @status = request_raw_json["data"]["object"]["outcome"]["type"]
         
         order = Order.where(payment: @payment_id).joins(:user).take
         order_tour = Order.where(payment: @payment_id).joins(:tour).take
