@@ -1,0 +1,124 @@
+{
+  "name": "truppie",
+  "description": "marketplace for adventures",
+  "scripts": {
+  },
+  "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_REGION": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "facebook_id": {
+      "required": true
+    },
+    "facebook_secret": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "LOG_LEVEL": {
+      "required": true
+    },
+    "MlpQSzBHN1YxUEZFTlpST0xIUFowVUFVVkREVEJIUVU6Q01SOUk4U0xQVktRRDlKN0hERUFYUEFaWlpaNlU5VktBU1NGUlhMQQ": {
+      "required": true
+    },
+    "moip_auth": {
+      "required": true
+    },
+    "MOIP_DOMAIN": {
+      "required": true
+    },
+    "MOIP_ENV": {
+      "required": true
+    },
+    "moip_key": {
+      "required": true
+    },
+    "moip_token": {
+      "required": true
+    },
+    "PAPERTRAIL_API_TOKEN": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    },
+    "RAILS_ENV": {
+      "required": true
+    },
+    "RAILS_MAX_THREADS": {
+      "required": true
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "REDIS_URL": {
+      "required": true
+    },
+    "REDISCLOUD_URL": {
+      "required": true
+    },
+    "REDISTOGO_URL": {
+      "required": true
+    },
+    "RFlLT0dOT0xTRUhDRTlDT0FQUEdXTUMwMERNQzlJRUM6VEFGT0tWSjJRN1dRQlpBRFNWT1ROT0lPQldNR01WVVI5RU9ORjFXNA": {
+      "required": true
+    },
+    "ROLLBAR_ACCESS_TOKEN": {
+      "required": true
+    },
+    "ROLLBAR_ENDPOINT": {
+      "required": true
+    },
+    "S3_BUCKET_NAME": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
+    },
+    "SENDGRID_PASSWORD": {
+      "required": true
+    },
+    "SENDGRID_USERNAME": {
+      "required": true
+    },
+    "truppiemail_domain": {
+      "required": true
+    },
+    "truppiemail_password": {
+      "required": true
+    },
+    "truppiemail_username": {
+      "required": true
+    },
+    "WEB_CONCURRENCY": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "logentries",
+    "papertrail",
+    "heroku-postgresql",
+    "rediscloud",
+    "redistogo",
+    "heroku-redis",
+    "rollbar",
+    "sendgrid"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-redis.git"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
