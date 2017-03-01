@@ -2,6 +2,8 @@ require 'open-uri'
 
 class CreditCardStatusMailer < ApplicationMailer
   
+  layout 'guide_mail_template'
+  
   def status_change(status, order, user, tour, organizer)
     @order = order
     @status = status
