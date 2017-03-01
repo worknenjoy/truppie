@@ -82,7 +82,8 @@ class CreditCardStatusMailerTest < ActionMailer::TestCase
      @status = {
         subject: "O seu pagamento se encontra em análise pela operadora do cartão",
         content: "em análise",
-        guide: 'status_change_guide_authorized'
+        guide: 'status_change_guide_authorized',
+        status_class: "alert-error"
      }
      
      mail = CreditCardStatusMailer.guide_mail(@status, order, User.take, tour_to_order, tour_to_order.organizer)

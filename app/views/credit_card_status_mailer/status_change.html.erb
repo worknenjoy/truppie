@@ -1,27 +1,30 @@
-<h2>Olá, explorador(a)!</h2>
-
-<p><%= raw(@status[:mail_first_line]) %></p>
-
-<p><%= raw(@status[:mail_second_line]) %></p>
-
-<h4>Veja o resumo do seu pedido:</h4>
-
-<% if !@order %>
-	<p class="lead">
-		<span class="label label-pill label-warning">
-			Não há reservas para você neste momento
-		</span>
-	</p>
-<% else %>
-	<%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
-<% end %>
-
-<p>Para conferir o andamento do status a qualquer hora, acesse: <a href="http://www.truppie.com/orders">http://www.truppie.com/orders</a></p>
-
-<p>Se tiver alguma dúvida, escreva pra gente: ola@truppie.com.</p> 
-
-<p>Até mais!</p>
-
-<p>Um abraço,</p>
-
-<%= render partial: 'credit_card_status_mailer/footer', locals: {organizer: @organizer } %>
+<!-- START MAIN CONTENT AREA -->
+<tr>
+  <td>
+    <table border="0" cellpadding="0" cellspacing="0" class="alert <%= @status[:status_class] %>">
+      <tr>
+        <td align="center"> <%= raw(@status[:mail_first_line]) %> </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <td class="wrapper">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <!-- START NOTIFICATION BANNER -->
+      <tr>
+        <td>
+          <h3>Olá <%= @order.user.name %></h4>
+          
+          <h4 class="align-center"></h4>
+          <p><%= raw(@status[:mail_second_line]) %></p>
+          <% if !@order%>
+            <p>Não há reservas para você neste momento</p>
+          <% else %>
+          <%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>

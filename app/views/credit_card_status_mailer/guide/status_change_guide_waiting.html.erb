@@ -2,13 +2,6 @@
 
 <p>O explorador <%= @user.name %> (<%= @user.email %>) acaba de solicitar a reserva de sua truppie <%= @tour.title %>! :D</p>
 
-<% if @order.payment_method == "BOLETO" %>
-  <p>O pagamento dele será feito via boleto bancário; te avisaremos quando ele for realizado.</p>
-<% else %>
-  <p>O pagamento foi feito via cartão de crédito e se enconta em análise junto à operadora.</p>
-  <p>Quando aprovado, vamos te avisar, ok?</p>
-<% end %>
-
 <h4>Temos aqui um resumo do seu pedido:</h4>
 
 <% if !@order %>
