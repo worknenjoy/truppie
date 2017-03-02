@@ -13,6 +13,8 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'ola@truppie.com'
+
+  config.secret_key = Rails.application.secrets[:devise_secret_key]
   
   config.omniauth :facebook, Rails.application.secrets[:facebook_id], Rails.application.secrets[:facebook_secret]
   
