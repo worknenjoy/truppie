@@ -166,7 +166,7 @@
               <p><%= bank_list["banks"][ff.object.bank_number] %>
               <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
-                  <%= ff.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => ff.object.bank_number if ff.object.bank_number.present?  %>
+                  <%= ff.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => ff.object.bank_number  %>
               </div>
           </div>
           <div class="form-group">
