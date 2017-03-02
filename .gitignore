@@ -13,4 +13,3 @@
 /tmp
 /public/*
 config/my_secrets.yml
-config/secrets.yml
