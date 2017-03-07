@@ -49,9 +49,11 @@ class OrdersController < ApplicationController
       puts request_raw_json.inspect
       
       @event = request_raw_json["type"]
-
       
-      if @event == "charge.succeeded" || @event == "charge.pending" || @event == "charge.failed"
+      @event_types = ["charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
+
+      if @event_types.include?(@event)
+         
         @payment_id = request_raw_json["data"]["object"]["id"]
         @status = request_raw_json["data"]["object"]["status"]
         
