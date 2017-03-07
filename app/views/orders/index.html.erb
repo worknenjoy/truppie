@@ -51,7 +51,7 @@
                                     </td>
                                     <td><%= l(o.created_at, format: '%d de %B as %I:%M %p')  %></td>
                                     <td class="text-center">
-                                        <%= raw(o.friendly_status(o.current_status[:type])) %>
+                                        <%= raw(o.friendly_status(o.current_status)) %>
                                     </td>
                                     <td>
                                         <%= o.payment %>
