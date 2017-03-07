@@ -51,21 +51,24 @@ class OrdersController < ApplicationController
       @event = request_raw_json["type"]
 
       
-      if @event == "charge.succeeded"
+      if @event == "charge.succeeded" || @event == "charge.pending" || @event == "charge.failed"
         @payment_id = request_raw_json["data"]["object"]["id"]
-        @payment_status = request_raw_json["data"]["object"]["status"]
-        @status = request_raw_json["data"]["object"]["outcome"]["type"]
+        @status = request_raw_json["data"]["object"]["status"]
         
         order = Order.where(payment: @payment_id).joins(:user).take
+        
+        if !order.try(:status)
+          order.update_attributes(:status => @status)
+        end
+        
+        
         order_tour = Order.where(payment: @payment_id).joins(:tour).take
         user = order.user
         tour = order_tour.tour
         organizer = tour.organizer
-        
-        puts @status.inspect
-        
+
         case @status
-        when "pending" 
+        when "pending"
             @status_class = "alert-success"
             @subject = "Solicitação de reserva de uma truppie! :)"
             @guide_template = "status_change_guide_waiting"
@@ -77,7 +80,7 @@ class OrdersController < ApplicationController
             @guide_template = "status_change_guide_authorized"
             @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
             @mail_second_line = "O seu cartão de crédito encontra-se em análise junto à operadora e, assim que for aprovado, vamos te avisar, ok?"
-        when 'failed'
+        when "failed"
             @status_class = "alert-danger"
             @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
             @guide_template = "status_change_guide_cancelled"

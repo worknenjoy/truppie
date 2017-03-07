@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
     begin
       order = Stripe::Charge.retrieve(self.payment)
       self.update_attributes({:status => order.status})
-      return order.outcome
+      return order.status
     rescue => e
       return {
         :type => 'not_available'

@@ -106,11 +106,13 @@ class OrdersControllerTest < ActionController::TestCase
   end
   
   test "should not create a webhook without default parameter" do
+    skip("migrate to stripe")
     get :new_webhook
     assert_equal 'voce precisa definir o tipo de webhook que voce ira enviar', flash[:error]
   end
   
   test "should create a default webhook" do
+    skip("migrate to stripe")
     get :new_webhook, {:webhook_type => 'default'}
     
     assert_equal 'webhook padrao criado com sucesso', flash[:success]
@@ -118,6 +120,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
   
   test "should return success when post to webhook" do
+    skip("migrate to stripe")
     post :webhook
     assert_response :success
   end
@@ -143,6 +146,16 @@ class OrdersControllerTest < ActionController::TestCase
     #puts ActionMailer::Base.deliveries[1].html_part
     assert_not ActionMailer::Base.deliveries.empty?
     #assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?(tours(:morro).to_param), true
+  end
+  
+  test "should update status if doesnt have any" do
+    orders = Order.create(:price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)
+    @request.env['RAW_POST_DATA'] = @post_params
+    post :webhook, {}
+    
+    assert_equal Order.find(orders.id).status, 'succeeded'
+    #puts ActionMailer::Base.deliveries[1].html_part
+    assert_not ActionMailer::Base.deliveries.empty?
   end
   
   test "should not receive payment link when is authorized" do
