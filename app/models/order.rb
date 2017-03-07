@@ -69,6 +69,24 @@ class Order < ActiveRecord::Base
   
   def friendly_status(status)
     case status
+    when 'succeeded'
+      '<span class="label label-success">AUTORIZADO</span>'
+    when 'pending'
+      '<span class="label label-primary">AGUARDANDO</span>'
+    when 'failed'
+      '<span class="label label-danger">NAO AUTORIZADO</span>'
+    when 'invalid'
+      '<span class="label label-info">INVALIDO</span>'
+    when 'not_available'
+      '<span class="label label-info">NAO DISPONIVEL</span>'
+    else
+      '<span class="label label-default">AGUARDANDO STATUS</span>'
+    end
+    
+  end
+  
+  def friendly_status_detailed(status)
+    case status
     when 'issuer_declined'
       '<span class="label label-danger">NEGADO</span>'
     when 'blocked'
