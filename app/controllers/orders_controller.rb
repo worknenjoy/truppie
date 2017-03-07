@@ -57,18 +57,20 @@ class OrdersController < ApplicationController
         @payment_id = request_raw_json["data"]["object"]["id"]
         @status = request_raw_json["data"]["object"]["status"]
         
-        order = Order.where(payment: @payment_id).joins(:user).take
-        
-        if !order.try(:status)
-          order.update_attributes(:status => @status)
+        begin
+          order = Order.where(payment: @payment_id).joins(:user).take
+          if !order.try(:status)
+            order.update_attributes({:status => @status})
+          end
+          order_tour = Order.where(payment: @payment_id).joins(:tour).take
+          user = order.user
+          tour = order_tour.tour
+          organizer = tour.organizer
+        rescue => e
+           CreditCardStatusMailer.status_message('Pagamento não encontrado').deliver_now
+           return :bad_request        
         end
         
-        
-        order_tour = Order.where(payment: @payment_id).joins(:tour).take
-        user = order.user
-        tour = order_tour.tour
-        organizer = tour.organizer
-
         case @status
         when "pending"
             @status_class = "alert-success"
