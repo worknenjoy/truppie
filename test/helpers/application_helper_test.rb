@@ -34,7 +34,7 @@ class ApplicationHelperTest < ActionView::TestCase
   
   test "should return the final price formatted" do
     price = 40
-    assert_equal "<small>R$</small> <span>40</span>", final_price(price)
+    assert_equal "<small>R$</small><span>40</span>", final_price(price)
   end
   
   test "should return raw price" do

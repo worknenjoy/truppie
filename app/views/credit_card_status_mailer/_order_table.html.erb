@@ -8,7 +8,7 @@
         </tr>
         <tr>
           <td>Valor</td>
-          <td class="receipt-figure"><%= raw final_price(order.price) %></td>
+          <td class="receipt-figure"><%= raw final_price_from_cents(order.price) %></td>
         </tr>
         <% if order.tour.try(:packages) %>
             <% order.tour.packages.each do |p| %>
@@ -33,7 +33,7 @@
         <% else %>
         <tr class="receipt-bold">
           <td>Total</td>
-          <td class="receipt-figure"><%= raw final_price(order.final_price) %></td>
+          <td class="receipt-figure"><%= raw final_price_from_cents(order.final_price) %></td>
         </tr>
         <% end %>
       </table>

@@ -14,7 +14,7 @@ class OrganizerTest < ActiveSupport::TestCase
    end
    
    test "one Organizer" do
-     assert_equal 3, Organizer.count
+     assert_equal 4, Organizer.count
    end
    
    test "organizer has two members" do

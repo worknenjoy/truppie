@@ -55,7 +55,11 @@
           </p>
         </td>
       </tr>
-      <%= render 'layouts/mail_account_details', account: @account %>
+      <% if @account.nil? %>
+        <p>É preciso completar sua conta para começar a receber pela truppie. <a href="mailto:ola@truppie.com">Entre em contato com a gente</a></p>
+      <% else %>
+        <%= render 'layouts/mail_account_details', account: @account %>
+      <% end %>
     </table>
   </td>
 </tr>
