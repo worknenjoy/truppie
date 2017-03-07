@@ -38,6 +38,14 @@ module ApplicationHelper
     end
   end
   
+  def final_price_from_cents(p)
+    if p.to_i
+      return "<small>R$</small><span>#{p/100}</span>"
+    else
+      "<small> não conseguimos obter o preço </span>"
+    end
+  end
+  
   def raw_price(p)
     n = number_with_precision(p, precision: 2, separator: ',').to_s.gsub(',', '.').to_f*100
     n.to_i

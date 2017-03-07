@@ -76,7 +76,7 @@
                                       <% if o.final_price.nil? %>
                                       <h4><%= raw final_price(o.price) %></h4>
                                       <% else %>
-                                      <h4><%= raw final_price(o.final_price) %></h4>
+                                      <h4><%= raw final_price_from_cents(o.final_price) %></h4>
                                       <% end %>
                                     </td>
                                 </tr>
