@@ -20,6 +20,7 @@ class OrderTest < ActiveSupport::TestCase
   end
   
   test "update a payment fee and liquid value into redis" do
+    skip("migrate to stripe")
     body_for_order = {
       :status => "succeeded",
       :amount => {
