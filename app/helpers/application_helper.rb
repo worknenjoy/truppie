@@ -31,7 +31,7 @@ module ApplicationHelper
   end
   
   def final_price(p)
-    if p.to_i
+    if p
       return "<small>R$</small><span>#{p}</span>"
     else
       "<small> não conseguimos obter o preço </span>"

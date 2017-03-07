@@ -23,7 +23,7 @@ class ToursController < ApplicationController
       if @packagename
         @final_price = @tour.packages.find_by_name(@packagename).value
       else
-        @final_price = false
+        @final_price = ""
       end      
     end
   end
