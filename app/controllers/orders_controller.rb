@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
       
       @event = request_raw_json["type"]
       
-      @event_types = ["charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
+      @event_types = ["charge.succeeded", "charge.pending", "charge.failed", "payment.created", "payment.created"]
 
       if @event_types.include?(@event)
          

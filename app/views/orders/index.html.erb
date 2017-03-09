@@ -62,7 +62,7 @@
                                        <% end %>
                                        <% if o.tour.try(:packages) %>
                                        		<% o.tour.packages.each do |p| %>
-                    												<% if p.value == o.price %>
+                    												<% if (p.value).to_i*100 == (o.price).to_i %>
                     												  <h5><%= raw final_price(p.value) %></h5>
                     													Pacote <%= p.name %>
                     												<% end %>						                                       		
