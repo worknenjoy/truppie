@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
   end
   
   def amount_total
-    self.fees[:liquid]
+    self.fees[:total]
   end
   
   def price_with_fee

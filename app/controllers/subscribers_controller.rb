@@ -4,7 +4,11 @@ class SubscribersController < ApplicationController
     
     if !@subscriber.valid?
       flash[:error] = @subscriber.errors.messages[:email][0]
-      redirect_to request.referrer + '#warning'
+      if request.referrer
+        redirect_to request.referrer + '#warning'
+      else
+        redirect_to root_path + '#warning'
+      end
     else
        if @subscriber.save
           flash[:success] = "Você foi inscrito com sucesso, aguarde as novidades"

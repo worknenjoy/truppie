@@ -50,6 +50,10 @@ class OrganizerTest < ActiveSupport::TestCase
      assert_equal @mantiex.balance, false       
    end
    
+   test "display just published organizers" do
+     
+   end
+   
    test "organizer should have a balance if has a marketplace active" do
      skip("balance after has order working")
      #body = {"unavailable"=>[{"amount"=>0, "currency"=>"BRL"}], "future"=>[{"amount"=>0, "currency"=>"BRL"}], "current"=>[{"amount"=>44592168, "currency"=>"BRL"}]}

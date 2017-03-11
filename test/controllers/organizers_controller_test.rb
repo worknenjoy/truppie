@@ -5,7 +5,6 @@
    self.use_transactional_fixtures = true
    
    setup do
-     FakeWeb.clean_registry
      sign_in users(:alexandre)
      @organizer_ready = organizers(:utopicos)
      @mkt = organizers(:mkt)
@@ -147,6 +146,7 @@
    end
    
    test "should not transfer amount to organizer because the token is not valid" do
+     skip("migrate to stripe")
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
      post :transfer_funds, id: @mkt.id, amount: 200, current: 500
      assert_equal assigns(:bank_account_active_id), "fooid"
@@ -158,6 +158,7 @@
    end
    
    test "should not transfer amount with moip response of any error" do
+     skip("migrate to stripe")
      body = {"errors"=>[{"code"=>"TRA-101", "path"=>"-", "description"=>"Saldo disponivel insuficiente para essa operacao"}]}
      FakeWeb.register_uri(:post, "#{Rails.application.secrets[:moip_domain]}/transfers", :body => body.to_json, :status => ["200", "Success"])
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
@@ -171,6 +172,7 @@
    end 
    
    test "should transfer amount successfully with moip response" do
+     skip("migrate to stripe")
      body = {:status => "REQUESTED", :amount => 2000, :updatedAt => "2017-01-17T20:13:52.017-02", :transferInstrument => {:bankAccount => {:holder => { :fullname => 'foo' }, :bankName => 'foo', :accountNumber => 'foo'}}}
      FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/transfers", :body => body.to_json, :status => ["201", "Created"])
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")

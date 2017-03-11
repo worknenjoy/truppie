@@ -107,6 +107,8 @@ class MarketplaceMailer < ApplicationMailer
     end
     
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
     
     mail(
       from: 'ola@truppie.com',
@@ -142,6 +144,8 @@ class MarketplaceMailer < ApplicationMailer
     end
     
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
     
     mail(
       from: 'ola@truppie.com',

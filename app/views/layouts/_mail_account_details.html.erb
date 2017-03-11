@@ -4,6 +4,9 @@
       <tr>
         <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">
           <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;" width="100%">
+            <% if account.nil? %>
+              <tr>Sua conta ainda não foi cadastrada.</tr>
+            <% else %>
             <tr>
               <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;" valign="top">&nbsp;</td>
               <td class="receipt-container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; width: 80%;" width="80%" valign="top">
@@ -18,7 +21,11 @@
                       Nome completo
                     </td>
                     <td class="receipt-figure" style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px; text-align: right;" valign="top" align="right">
+                      <% if account.person_name %>
                       <%= "#{account.person_name} #{account.person_lastname}" %>
+                      <% else %>
+                      <strong>O nome não foi cadastrado</strong>
+                      <% end %>
                     </td>
                   </tr>
                   <tr>
@@ -26,7 +33,11 @@
                       Data de nascimento
                     </td>
                     <td class="receipt-figure" style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px; text-align: right;" valign="top" align="right">
+                      <% if account.birthDate %>
                       <%= account.birthDate.strftime("%d/%m/%Y") %>
+                      <% else %>
+                      <strong>Sua data de nascimento ainda não foi cadastrada</strong>
+                      <% end %>
                     </td>
                   </tr>
                   <tr>
@@ -34,7 +45,11 @@
                       Tipo de conta
                     </td>
                     <td class="receipt-figure" style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-bottom: 1px solid #eee; margin: 0; padding: 5px; text-align: right;" valign="top" align="right">
+                      <% if account.organizer_type %>
                       <%= account.organizer_type %>
+                      <% else %>
+                      <strong>O tipo de conta não foi cadastrado</strong>
+                      <% end %>
                     </td>
                   </tr>
                 </table>
@@ -84,6 +99,7 @@
     </table>
   </td>
 </tr>
+<% end %>
 <!-- START CALL OUT -->
 <tr>
   <td class="wrapper section-callout" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px; background-color: #1abc9c; color: #ffffff;" valign="top" bgcolor="#1abc9c">

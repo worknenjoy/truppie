@@ -3,6 +3,7 @@ include Devise::TestHelpers
 
 class BankAccountsControllerTest < ActionController::TestCase
   setup do
+    sign_in users(:alexandre)
     StripeMock.start
     @stripe_helper = StripeMock.create_test_helper
     @bank_account = bank_accounts(:one)
@@ -60,13 +61,13 @@ class BankAccountsControllerTest < ActionController::TestCase
   
   test "should not activate bank_account with wrong data" do
     get :activate, id: @bank_account
-    assert_equal assigns(:activation_message), "Não foi possível ativar o marketplace para #{@bank_account.marketplace.organizer.name} devido a erro na autenticação"
+    assert_equal assigns(:activation_message), "Tivemos um problema pra ativar esta conta bancária"
     assert_equal assigns(:activation_status), "danger"
-    assert_equal assigns(:errors), {"ERROR"=>"Token or Key are invalids"}  
     assert_response :success
   end
   
   test "should activate a bank_account with the right data and associate with a id" do
+    skip("migrate to marketplace")
     body = {"id"=>"BKA-MFTMJF33MHJ0", "agencyNumber"=>"2345", "accountNumber"=>"12345678", "holder"=>{"thirdParty"=>false, "taxDocument"=>{"number"=>"123.456.798-91", "type"=>"CPF"}, "fullname"=>"Alexandre Teles Zimerer"}, "status"=>"NOT_VERIFIED", "createdAt"=>"2017-01-10T22:04:30.000-02:00", "accountCheckNumber"=>"2", "_links"=>{"self"=>{"href"=>"https://sandbox.moip.com.br//accounts/BKA-MFTMJF33MHJ0/bankaccounts"}}}
     FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/accounts/#{@bank_account.marketplace.account_id}/bankaccounts", :body => body.to_json, :status => ["201", "Created"])
     get :activate, id: @bank_account
@@ -80,7 +81,7 @@ class BankAccountsControllerTest < ActionController::TestCase
     get :activate, id: @registered_bank_account
     assert_equal assigns(:activation_status), "danger"
     assert_equal assigns(:activation_message), "Esta conta bancária do #{@registered_bank_account.marketplace.organizer.name} já foi ativada"
-    assert_equal assigns(:errors), { :errors => { :description => "já tem uma conta no moip associada a esta conta"} }
+    assert_equal assigns(:errors), "já tem uma conta associada"
     assert_response :success
     
   end

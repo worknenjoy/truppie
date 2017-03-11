@@ -211,7 +211,7 @@ class TourTest < ActiveSupport::TestCase
       )
      assert_equal tour_to_order.total_taxes, 10
      assert_equal tour_to_order.price_with_taxes, 990
-     assert_equal tour_to_order.total_earned_until_now, 990
+     assert_equal tour_to_order.total_earned_until_now, 1000
    end
    
    test "simple payment call" do

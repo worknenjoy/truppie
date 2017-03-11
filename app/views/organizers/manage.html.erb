@@ -49,13 +49,16 @@
             <h3><%= @tour.orders.count %> reserva(s):</h3>
             <% @tour.orders.each do |o| %>
             <div class="manage-item">
-              <%= raw(o.friendly_status(o.current_status[:type])) %>
-              <div class="manage-item-name"><%= o.user.name %> - <small><%= o.amount %> reserva(s)</small></div>
+              <div class="manage-item-name"><%= raw(o.friendly_status(o.current_status)) %></div>
+              <div class="manage-item-name"><%= o.user.name %></div>
+              <div><%= o.amount %> reserva(s) de <%= raw final_price_from_cents(o.price) %></div>
               <div class="manage-item-description">
-                <%= o.payment %> - <strong><%= o.payment_method %></strong><br />
+                <strong><%= o.payment_method %></strong><br />
                 <small>Feita em <%= l(o.created_at, format: '%d de %B de %Y às %Hh%M') %></small> 
               </div>
-              <div class="manage-item-price"><%= raw final_price(o.price) %></div>
+              <div class="manage-item-price">
+                <%= raw final_price_from_cents(o.final_price) %>
+              </div>
             </div>
             <% end %>
           </div>

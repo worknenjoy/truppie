@@ -90,11 +90,11 @@ class MarketplacesControllerTest < ActionController::TestCase
     assert_equal Marketplace.find(@mkt_valid.id).organizer.market_place_active, true
     assert_equal Marketplace.find(@mkt_valid.id).active, true
     assert_equal Marketplace.find(@mkt_valid.id).is_active?, true
-    assert_equal Marketplace.find(@mkt_valid.id).token, "SECRETKEY"
+    assert_equal Marketplace.find(@mkt_valid.id).token, "sk_test_AmJhMTLPtY9JL4c6EG0"
     assert_equal Marketplace.find(@mkt_valid.id).account_id, "test_acct_1"
     assert_equal Marketplace.find(@mkt_valid.id).auth_data, {
         "id" => "test_acct_1",
-        "token" => "SECRETKEY"
+        "token" => "sk_test_AmJhMTLPtY9JL4c6EG0"
       }
     assert_response :success
     assert_not ActionMailer::Base.deliveries.empty?
