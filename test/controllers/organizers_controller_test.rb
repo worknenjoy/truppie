@@ -5,6 +5,7 @@
    self.use_transactional_fixtures = true
    
    setup do
+     StripeMock.start
      sign_in users(:alexandre)
      @organizer_ready = organizers(:utopicos)
      @mkt = organizers(:mkt)
@@ -21,6 +22,10 @@
        user_id: users(:alexandre).id
      }
      
+   end
+   
+   teardown do
+    StripeMock.stop
    end
 # 
    test "should get index" do
