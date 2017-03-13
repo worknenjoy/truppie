@@ -221,8 +221,17 @@
   	            	<%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation-button" %>
   	            </div>
           	 </div>
-          	 <div class="spaced-default">
-          	   Poltícias do guia virao aqui no padrão de listas
+          	 <div class="spaced-top">
+          	   <% if @tour.organizer.policy.any? %>
+          	     <div class="col-xs-12 col-md-12">
+                    <p class="spaced-smallest"><strong>Políticas do <%= @tour.organizer.name %>:</strong></p>
+                    <ul class="list-group spaced-down">
+                      <% @tour.organizer.policy.each do |p| %>
+                        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= p %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+          	   <% end %>
         	   </div>
           </div>
         </div>

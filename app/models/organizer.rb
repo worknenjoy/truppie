@@ -6,6 +6,8 @@ class Organizer < ActiveRecord::Base
   belongs_to :user
   belongs_to :where
   
+  scope :publisheds, -> { where(status: 'P') }
+  
   
   def to_param
     "#{id} #{name}".parameterize

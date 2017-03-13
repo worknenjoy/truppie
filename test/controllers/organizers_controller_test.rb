@@ -93,6 +93,38 @@
      assert_response :success 
    end
    
+   test "should create policies" do
+     @organizer["policy"] = "almoco;jantar;cafe"
+     
+     assert_difference('Organizer.count') do
+      post :create, organizer: @organizer
+     end
+     
+     assert_equal Organizer.last.policy[0], "almoco"
+     assert_equal Organizer.last.policy[1], "jantar"
+     assert_equal Organizer.last.policy[2], "cafe"
+   end
+   
+   test "should create with no members" do
+     @organizer["members"] = ""
+     
+     assert_difference('Organizer.count') do
+      post :create, organizer: @organizer
+     end
+     
+     assert_equal Organizer.last.members, []
+   end
+   
+   test "should create policies empty" do
+     @organizer["policy"] = ""
+     
+     assert_difference('Organizer.count') do
+      post :create, organizer: @organizer
+     end
+     
+     assert_equal Organizer.last.policy, []
+   end
+   
    test "should not accept the terms of a not registered guide on marketplace" do
      post :tos_acceptance_confirm, id: @organizer_ready.id, ip: '100.22.10.1', date_of_acceptance: "2014-12-01T01:29:18".to_date
      assert_equal assigns(:ip), "100.22.10.1"

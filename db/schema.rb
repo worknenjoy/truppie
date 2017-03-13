@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222210944) do
+ActiveRecord::Schema.define(version: 20170311231408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -250,6 +250,8 @@ ActiveRecord::Schema.define(version: 20170222210944) do
     t.string   "account_id"
     t.boolean  "market_place_active",  default: false
     t.integer  "marketplace_id"
+    t.string   "status"
+    t.string   "policy",               default: [],                 array: true
   end
 
   add_index "organizers", ["marketplace_id"], name: "index_organizers_on_marketplace_id", using: :btree

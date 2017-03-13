@@ -5,6 +5,7 @@ class OrganizerTest < ActiveSupport::TestCase
    def setup
      StripeMock.start
      @stripe_helper = StripeMock.create_test_helper
+     @organizer = organizers(:utopicos)
      @mkt = organizers(:mkt)
      @mantiex = organizers(:mantiex)
    end
@@ -51,7 +52,18 @@ class OrganizerTest < ActiveSupport::TestCase
    end
    
    test "display just published organizers" do
+     @organizer.status = 'P'
+     @organizer.save()
      
+     is_inside = false
+     
+     Organizer.publisheds.each do |o|
+       if o.name == @organizer.name
+         is_inside = true
+       end
+     end
+     
+     assert is_inside, "is inside!"
    end
    
    test "organizer should have a balance if has a marketplace active" do

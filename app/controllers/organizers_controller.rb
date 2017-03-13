@@ -259,6 +259,31 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      params.fetch(:organizer, {}).permit(:name, :marketplace_id, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone)
+      
+      split_val = ";"
+      
+      if params[:organizer][:members] == "" or params[:organizer][:members].nil?
+        params[:organizer][:members] = []
+      else
+        members_to_array = params[:organizer][:members].split(split_val)
+        members = []
+        members_to_array.each do |m|
+          members.push User.find_by_name(m)
+        end
+        params[:organizer][:members] = members
+      end
+      
+      if params[:organizer][:policy] == "" or params[:organizer][:policy].nil?
+        params[:organizer][:policy] = []
+      else
+        included_to_array = params[:organizer][:policy].split(split_val)
+        included = []
+        included_to_array.each do |i|
+          included.push i
+        end
+        params[:organizer][:policy] = included
+      end
+      
+      params.fetch(:organizer, {}).permit(:name, :marketplace_id, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone, :status, :members, :policy).merge(params[:organizer])
     end
 end
