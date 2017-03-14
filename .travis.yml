@@ -1,5 +1,6 @@
 before_script:
   - psql -c 'create database truppie_test;' -U postgres
+  - rake db:migrate
 language: ruby
 rvm:
   - 2.2.3

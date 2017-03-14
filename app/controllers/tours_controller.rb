@@ -383,6 +383,6 @@ class ToursController < ApplicationController
     params[:tour][:attractions] = []
     params[:tour][:currency] = "BRL"
     
-    params.fetch(:tour, {}).permit(:title, :organizer, :where, :user, :picture, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, :included, :nonincluded, :take, :goodtoknow, :meetingpoint, :category_id, :status, :tags, :languages, :organizer, :user, :attractions, :currency).merge(params[:tour])
+    params.fetch(:tour, {}).permit(:title, :organizer, :where, :user, :picture, :link, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, :included, :nonincluded, :take, :goodtoknow, :meetingpoint, :category_id, :status, :tags, :languages, :organizer, :user, :attractions, :currency).merge(params[:tour])
   end
 end

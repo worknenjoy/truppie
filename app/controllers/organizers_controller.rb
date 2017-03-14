@@ -106,6 +106,11 @@ class OrganizersController < ApplicationController
     end
   end
   
+  def confirm_account
+    @organizer = Organizer.find(params[:id])
+    @marketplace = @organizer.marketplace
+  end
+  
   def tos_acceptance
     @organizer = Organizer.find(params[:id])
   end

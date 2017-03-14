@@ -1,0 +1,237 @@
+<%= render 'layouts/navbar' %>
+<div class="form-signin">
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+          <!-- Nav tabs -->
+            <div class="card card-block">
+                <div class="card-body" style="overflow:hidden;">
+                    <h3 class="text-center spaced-down">
+                        Dados para receber pagamentos
+                    </h3>
+                    <p>
+                      Atualize seus dados para receber os pagamentos na carteira da Truppie!
+                    </p>
+                  <% if @errors.present? %>
+                  <div class="card card-inverse card-danger">
+                    <div class="card-block">
+                      <blockquote class="card-blockquote">
+                        <h4>Tivemos um erro para salvar este marketplace</h4>
+                        <ul class="list-group spaced-down">
+                          <% @errors.messages.each do |attr, e| %>
+                              <li class="list-group-item list-group-item-danger"><i class="fa fa-thumbs-o-down"></i> <%= attr %>: <%= e %></li>
+                          <% end %>
+                        </ul>
+                      </blockquote>
+                    </div>
+                  </div>
+                <% end %>
+                <%= form_for @marketplace, class: "form form-signup", multipart: true, role: "form" do |f| %>
+                  <ul class="nav nav-tabs spaced-down" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informações sobre a conta</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#business" role="tab">Informações sobre o negócio</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#bank_accounts" role="tab">Conta bancária</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content spaced-down">
+                    <div class="tab-pane active" id="home" role="tabpanel">
+                          <fieldset class="form-group">
+                            <legend>Dados pessoais</legend>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :person_name, placeholder: "Primeiro nome do titular", class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :person_lastname, placeholder: "Último nome do titular", class: "form-control" %>
+                                </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="form-group">
+                            <legend>CPF</legend>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :document_number, placeholder: "Número do documento", class: "form-control" %>
+                                    <%= f.hidden_field :document_type, value: "CPF" %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :birthDate, placeholder: "Data de nascimento (AAAA/DD/MM)", class: "form-control" %>
+                                </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="form-group">
+                            <legend>Dados de endereço</legend>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :street, placeholder: "Rua", class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :complement, placeholder: "Complemento", class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :zipcode, placeholder: "CEP", class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :city, placeholder: "Cidade", class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :state, placeholder: "Estado", class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                    <%= f.text_field :country, placeholder: "País (BR)", class: "form-control" %>
+                                </div>
+                            </div>
+                          </fieldset>
+                      </div>
+                      <div class="tab-pane" id="business" role="tabpanel">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
+                                    </span>
+                                    <%= f.label :business %>
+                                    <%= f.check_box :business, class: "form-control" %>
+                                </div>
+                            </div>
+                            <fieldset class="form-group">
+                              <legend>Endereço da empresa</legend>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                      <%= f.text_field :company_street, placeholder: "Endereço", class: "form-control" %>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                      <%= f.text_field :compcompany_complement, placeholder: "Complemento", class: "form-control" %>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                      <%= f.text_field :company_zipcode, placeholder: "CEP", class: "form-control" %>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                      <%= f.text_field :company_city, placeholder: "Cidade", class: "form-control" %>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                      <%= f.text_field :company_state, placeholder: "Estado", class: "form-control" %>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                                      <%= f.text_field :company_country, placeholder: "País", class: "form-control" %>
+                                  </div>
+                              </div>
+                            </fieldset>
+                      </div>
+                      <div class="tab-pane" id="bank_accounts" role="tabpanel">
+                        <%= f.fields_for :bank_accounts, ([@marketplace.bank_accounts.build] if @marketplace.bank_accounts.empty?) do |ff| %>
+                        <fieldset class="form-group packages-set">
+                          <div class="form-group">
+                              <p><%= bank_list["banks"][ff.object.bank_number] %>
+                              <div class="input-group">
+                                  <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                                  <%= ff.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => ff.object.bank_number  %>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="input-group">
+                                  <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                                  <%= ff.text_field :agency_number, placeholder: "Número da agência", class: "form-control" %>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="input-group">
+                                  <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                                  <%= ff.text_field :account_number, placeholder: "Número da conta (xxx-xxxx-x)", class: "form-control" %>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="input-group">
+                                  <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                                  <%= ff.text_field :fullname, placeholder: "Nome completo", class: "form-control" %>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="input-group">
+                                  <%= f.label :active %>
+                                  <%= ff.check_box :active, class: "form-control" %>
+                                  <%= ff.hidden_field :marketplace_id, value: @marketplace.id %>
+                              </div>
+                          </div>
+                        </fieldset>
+                        <% end %>
+                      </div>
+                      <% if !@marketplace.new_record? %>
+                      <div class="tab-pane" id="mkt_status" role="tabpanel">
+                          <% if @marketplace.is_active? %>
+                            <p>A sua conta se encontra ativa os dados são:</p>
+                            <ul class="list-unstyled">
+                              <li>Id da conta: <%= @marketplace.account_id %></li>
+                              <li>token: <%= @marketplace.token %></li>
+                            </ul>
+                            <p>
+                              <%= @marketplace.account %>
+                            </p>
+                            <h3>Contas</h3>
+                            <%= @marketplace.registered_bank_account %>
+                            <h3>Pendências</h3>
+                            <%= @marketplace.account_missing %>
+                          <% else %>
+                            <p>A sua conta ainda não está ativa no Marketplace</p>
+                            <%= link_to 'Ativar no moip', activate_marketplace_path(@marketplace) %>
+                          <% end %>
+                      </div>
+                      <% end %>
+                  </div>
+                  <div class="pull-right">  
+                    <a href="<%= new_marketplace_path %> class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">
+                        Cancelar
+                      </a>  
+                      <%= link_to("Confirmar conta", "#", class: "btn btn-lg btn-primary create-marketplace") %>
+                  </div>
+                  <% end %>
+                 </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div id="fullscreen_bg" class="fullscreen_bg"/>
+</div>

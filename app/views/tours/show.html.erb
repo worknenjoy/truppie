@@ -155,6 +155,9 @@
 			                	Os guias falam 
 			                	<strong><%= @tour.languages.map { |m| m.name }.join(', ') %></strong>
 		                	 </li>
+		                	<% if @tour.try(:link) %>
+                      <li><a href="<%= @tour.link %>"><i class="fa fa-facebook-square"></i> acompanhar evento no facebook</a></li>
+                      <% end %>
 			            </ul>
 			        </div>
 			        <div class="card-footer">
