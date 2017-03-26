@@ -6,6 +6,8 @@ class Organizer < ActiveRecord::Base
   belongs_to :user
   belongs_to :where
   
+  scope :publisheds, -> { where(status: 'P') }
+  
   
   def to_param
     "#{id} #{name}".parameterize
@@ -25,9 +27,14 @@ class Organizer < ActiveRecord::Base
   
   def balance
     if self.market_place_active
-      response = RestClient.get "https://sandbox.moip.com.br/v2/balances", :content_type => :json, :accept => :json, :authorization => "OAuth #{self.marketplace.token}"
-      json_data = JSON.parse(response)
-      json_data
+      begin
+        balance = Stripe::Balance.retrieve(self.marketplace.token)
+        puts balance.inspect
+        return balance
+      rescue => e
+        puts e.inspect
+        return false
+      end
     else
       false
     end  

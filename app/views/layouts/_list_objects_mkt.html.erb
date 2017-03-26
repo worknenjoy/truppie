@@ -18,7 +18,8 @@
               <td><%= m.person_name %></td>
               <% if m.is_active? %>
               <td><span class="label label-success">conta ativa</label></td>
-              <% if m.registered_account.any? %>  
+              <td><%= link_to 'Atualizar marketplace', update_account_marketplace_path(m) %></td> 
+              <% if m.bank_account_active.try(:own_id) %>  
                 <td><span class="label label-success">conta bancária ativa</label></td>
               <% else %>
                 <% if m.bank_account_active.nil? %>
@@ -28,7 +29,7 @@
                 <% end %>
               <% end %>
               <% else %>
-              <td><%= link_to 'Ativar no moip', activate_marketplace_path(m) %></td>
+              <td><%= link_to 'Ativar marketplace', activate_marketplace_path(m) %></td>
               <% end %>
               <td><%= link_to 'Exibir', m %></td>
               <td><%= link_to 'Editar', edit_marketplace_path(m) %></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111170753) do
+ActiveRecord::Schema.define(version: 20170314201752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,8 +139,17 @@ ActiveRecord::Schema.define(version: 20170111170753) do
     t.string   "country"
     t.string   "token"
     t.string   "account_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "business",               default: false
+    t.string   "company_city"
+    t.string   "company_country"
+    t.string   "company_street"
+    t.string   "compcompany_complement"
+    t.string   "company_state"
+    t.string   "company_zipcode"
+    t.date     "terms_accepted"
+    t.string   "terms_ip"
   end
 
   add_index "marketplaces", ["bank_account_id"], name: "index_marketplaces_on_bank_account_id", using: :btree
@@ -177,6 +186,8 @@ ActiveRecord::Schema.define(version: 20170111170753) do
     t.integer  "amount",         default: 1
     t.integer  "final_price"
     t.string   "payment_method", default: "CREDIT_CARD"
+    t.integer  "liquid"
+    t.integer  "fee"
   end
 
   add_index "orders", ["tour_id"], name: "index_orders_on_tour_id", using: :btree
@@ -239,6 +250,8 @@ ActiveRecord::Schema.define(version: 20170111170753) do
     t.string   "account_id"
     t.boolean  "market_place_active",  default: false
     t.integer  "marketplace_id"
+    t.string   "status"
+    t.string   "policy",               default: [],                 array: true
   end
 
   add_index "organizers", ["marketplace_id"], name: "index_organizers_on_marketplace_id", using: :btree
@@ -371,6 +384,7 @@ ActiveRecord::Schema.define(version: 20170111170753) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.integer  "reserved",             default: 0
+    t.string   "link"
   end
 
   add_index "tours", ["attraction_id"], name: "index_tours_on_attraction_id", using: :btree

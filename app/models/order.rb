@@ -11,105 +11,35 @@ class Order < ActiveRecord::Base
   
   def current_status
     payment_id = self.payment
-    
-    headers = {
-      :content_type => 'application/json',
-      :authorization => Rails.application.secrets[:moip_auth]
-    }
-    
-    response = ::RestClient.get "#{Rails.application.secrets[:moip_domain]}/payments/#{payment_id}", headers
-    json_data = JSON.parse(response)
-    self.update_attributes({:status => json_data["status"]})
-    json_data["status"]
-    
-  end
-  
-  def payment_link
-    "https://checkout.moip.com.br/boleto/#{self.payment}"
-  end
-  
-  def update_fee
-    headers = {
-      :content_type => 'application/json',
-      :authorization => Rails.application.secrets[:moip_auth]
-    }
-    RestClient.get("#{Rails.application.secrets[:moip_domain]}/payments/#{self.payment}", headers){|response, request, result, &block|
-      case response.code
-        when 200 || 203
-          json_data = JSON.parse(response)
-          if json_data.nil?
-            false
-          else
-            fee_response = {
-              status: json_data["status"],
-              fee: json_data["amount"]["fees"],
-              liquid: json_data["amount"]["liquid"],
-              total: json_data["amount"]["total"]
-            }
-            redis_set_result = $redis.set(self.to_param, fee_response.to_json)
-            puts "trying to save redis key #{self.to_param} and it returns #{redis_set_result.inspect}"
-            JSON.parse fee_response.to_json
-          end
-        when 404
-          puts response.inspect
-          json_data = JSON.parse(response)
-        else
-          puts response.inspect
-          json_data = JSON.parse(response)
-        end
-    }
+    begin
+      order = Stripe::Charge.retrieve(self.payment)
+      self.update_attributes({:status => order.status})
+      return order.status
+    rescue => e
+      return {
+        :type => 'not_available'
+      }
+    end
   end
   
   def fees
-    fees_json = $redis.get(self.to_param) 
-    if fees_json.nil?
-      puts "Get the fee from remote"
-      fee = self.update_fee
-      return fee  
-    end
-    JSON.parse(fees_json)
+    {
+      :fee => self.try(:fee),
+      :liquid => self.try(:liquid),
+      :total => self.try(:final_price)
+    }
   end
   
   def total_fee
-    if self.fees["status"] == "AUTHORIZED" or self.fees["status"] == "SETTLED" 
-      return self.fees["fee"]
-    end
-    0  
+    self.fees[:fee]  
   end
   
   def amount_total
-    if self.fees["status"] == "AUTHORIZED" or self.fees["status"] == "SETTLED"
-      return self.fees["total"]
-    end
-    0
+    self.fees[:total]
   end
   
   def price_with_fee
-    if self.fees["status"] == "AUTHORIZED" or self.fees["status"] == "SETTLED"
-      return self.fees["liquid"]
-    end
-    0
-  end
-  
-  def available_liquid
-    if self.fees["status"] == "SETTLED"
-      return self.fees["liquid"]
-    end
-    0
-  end
-  
-  def available_total
-    if self.fees["status"] == "SETTLED"
-      return self.fees["total"]
-    end
-    0
-  end
-  
-  def available_with_taxes
-    if self.fees["status"] == "SETTLED"
-      return self.fees["fee"]
-    end
-    0
+    self.fees[:liquid]
   end
   
   def full_desc_status(status)
@@ -139,26 +69,36 @@ class Order < ActiveRecord::Base
   
   def friendly_status(status)
     case status
-    when 'CREATED'
-      '<span class="label label-default">CRIADO</span>'
-    when 'WAITING'
-      '<span class="label label-primary">AGUARDANDO</span>'
-    when 'IN_ANALYSIS'
-      '<span class="label label-primary">EM ANALISE</span>'
-    when 'PRE_AUTHORIZED'
-      '<span class="label label-info">PRE-AUTORIZADO</span>'
-    when 'AUTHORIZED'
+    when 'succeeded'
       '<span class="label label-success">AUTORIZADO</span>'
-    when 'CANCELLED'
-      '<span class="label label-danger">CANCELADO</span>'
-    when 'REVERSED'
-      '<span class="label label-warning">REVERTIDO</span>'
-    when 'REFUNDED'
-      '<span class="label label-warning">REEMBOLSADO</span>'
-    when 'SETTLED'
-      '<span class="label label-warning">FINALIZADO</span>'
+    when 'pending'
+      '<span class="label label-primary">AGUARDANDO</span>'
+    when 'failed'
+      '<span class="label label-danger">NAO AUTORIZADO</span>'
+    when 'invalid'
+      '<span class="label label-info">INVALIDO</span>'
+    when 'not_available'
+      '<span class="label label-info">NAO DISPONIVEL</span>'
     else
-      '<span class="label label-default">NAO DEFINIDO</span>'
+      '<span class="label label-default">AGUARDANDO STATUS</span>'
+    end
+    
+  end
+  
+  def friendly_status_detailed(status)
+    case status
+    when 'issuer_declined'
+      '<span class="label label-danger">NEGADO</span>'
+    when 'blocked'
+      '<span class="label label-primary">BLOQUEADO</span>'
+    when 'authorized'
+      '<span class="label label-primary">AUTORIZADO</span>'
+    when 'invalid'
+      '<span class="label label-info">INVALIDO</span>'
+    when 'not_available'
+      '<span class="label label-info">NAO DISPONIVEL</span>'
+    else
+      '<span class="label label-default">AGUARDANDO STATUS</span>'
     end
     
   end

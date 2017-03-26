@@ -1,0 +1,30 @@
+<div class="card card-block">
+  <%= render 'layouts/organizer_dashboard_navbar' %>
+  <p>Olá <strong><%= link_to @organizer.name, organizer_path(@organizer) %></strong> <br />
+  Aqui você verá o saldo total da sua conta e das suas truppies</p>
+  <% if @organizer.balance %>
+    <ul class="dash-list">
+      <li id="dash-item--1" class="dash-item dash-item--published">
+          <div class="dash-item__header">
+              <h3 class="dash-item__title"><strong>Balanço total da sua conta</strong></h3>
+          </div>
+          <div class="dash-item__content">
+              <ul class="quiz-results">
+                  <li class="quiz-results__item quiz-results__item--average-score quiz-results__number--finishes">
+                      <span class="quiz-results__number "><%= raw friendly_price(@organizer.balance[:available][0][:amount]) %></span>
+                      <div class="quiz-results__label">Disponível</div>
+                  </li>
+                  <li class="quiz-results__item quiz-results__item--finishes quiz-results__number--views">
+                      <span class="quiz-results__number "><%= raw friendly_price(@organizer.balance[:pending][0][:amount]) %></span>
+                      <div class="quiz-results__label">A liberar</div>
+                  </li>
+              </ul>
+          </div>
+      </li>
+  </ul> 
+  <% else %>
+  <div class="alert alert-info" role="alert">
+    <strong>Atenção!</strong> Não conseguimos obter os dados da sua conta para exibi-los aqui.
+  </div>
+  <% end %>
+  </div>

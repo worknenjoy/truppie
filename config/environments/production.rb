@@ -23,12 +23,19 @@ Rails.application.configure do
     :storage => :s3,
     :s3_region => ENV['AWS_REGION'],
     :s3_host_name => 's3-sa-east-1.amazonaws.com',
+    :s3_protocol => :https,
     :s3_credentials => {
       :bucket => ENV['S3_BUCKET_NAME'],
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+  
+  config.force_ssl = true
+  
+  config.to_prepare { Devise::SessionsController.force_ssl }
+  config.to_prepare { Devise::RegistrationsController.force_ssl }
+  config.to_prepare { Devise::PasswordsController.force_ssl }
 
   # Code is not reloaded between requests.
   config.cache_classes = true

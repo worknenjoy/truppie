@@ -1,44 +1,57 @@
-<table cellpadding="5" cellspacing="0" border="2" align="center">
-    <thead>
-        <tr>
-        <th><span>Truppie</span></th>
-        <th><span>Reservada em</span></th>
-        <th><span>Código do pedido</span></th>
-        <th>Valor</th>
-        <th>Reservas</th>
-        <th>Total</th>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>&nbsp;</td>
+    <td class="receipt-container">
+      <table class="receipt" border="0" cellpadding="0" cellspacing="0">
+        <tr class="receipt-subtle">
+          <td colspan="2" class="align-center">Reserva feita em <strong><%= l(order.created_at, format: '%d de %B as %I:%M %p')  %></strong></td>
         </tr>
-    </thead>
-    <tbody>
         <tr>
-            <td width="30%">
-                <%= link_to order.tour.title, tour_url(order.tour), class: 'user-link' %>
-                <span class="user-subhead"><%= order.tour.organizer.name %></span>
-            </td>
-            <td><%= l(order.created_at, format: '%d de %B as %I:%M %p')  %></td>
-            <td class="text-center">
-                <%= order.payment %>
-            </td>
-            <td width="20%">
-               <h3><%= raw final_price(order.price) %></h3>
-               <% if order.tour.try(:packages) %>
-               		<% order.tour.packages.each do |p| %>
-        						<% if p.value == order.price %>
-        							Pacote <%= p.name %>
-        						<% end %>						                                       		
-               		<% end %>
-               <% end %>
-            </td>
-            <td class="text-center">
-              <h3><%= order.amount %></h3>
-            </td>
-            <td class="text-center">
-              <% if order.final_price.nil? %>
-              <h4><%= raw final_price(order.price) %></h4>
-              <% else %>
-              <h4><%= raw final_price(order.final_price) %></h4>
-              <% end %>
-            </td>
+          <td>Valor</td>
+          <td class="receipt-figure"><%= raw final_price_from_cents(order.price) %></td>
         </tr>
-    </tbody>
+        <% if order.tour.try(:packages) %>
+            <% order.tour.packages.each do |p| %>
+              <% if (p.value).to_i*100 == (order.price).to_i %>
+                <tr>
+                  <td>Pacote</td>
+                  <td class="receipt-figure"><%= p.name %></td>
+                </tr>
+              <% end %>                                                     
+            <% end %>
+         <% end %>
+        <tr>
+          <td>Reservas</td>
+          <td class="receipt-figure"><%= order.amount %></td>
+        </tr>
+        <% if order.final_price.nil? %>
+        <h4><%= raw final_price(order.price) %></h4>
+        <tr class="receipt-bold">
+          <td>Total</td>
+          <td class="receipt-figure"><%= raw final_price(order.price) %></td>
+        </tr>
+        <% else %>
+        <tr class="receipt-bold">
+          <td>Total</td>
+          <td class="receipt-figure"><%= raw final_price_from_cents(order.final_price) %></td>
+        </tr>
+        <% end %>
+      </table>
+      <h2 class="align-center">Detalhes do evento</h2>
+      <table class="receipt" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><h4><%= order.tour.title %></h4></td>
+          <td>
+            <strong>
+            <%= l(order.tour.start, format: '%A') %> <br/> <%= l(order.tour.start, format: '%d de %B de %Y às %Hh%M') %><br/ ><strong><%= friendly_when(order.tour.start) %></strong>
+            </strong>
+            <%= order.tour.where.name %> - <%= order.tour.where.city %> - <%= order.tour.where.state %>
+        </tr>
+      </table>
+      <p>Para conferir o andamento do status a qualquer hora, acesse: <a href="http://www.truppie.com/orders">http://www.truppie.com/orders</a></p>
+      <p>Se tiver alguma dúvida, escreva pra gente: ola@truppie.com.</p> 
+      <p>Até mais!</p>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
 </table>

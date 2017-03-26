@@ -31,7 +31,19 @@ module ApplicationHelper
   end
   
   def final_price(p)
-    "<small>R$</small> " + "<span>" + p.to_s + "</span>"
+    if p
+      return "<small>R$</small><span>#{p}</span>"
+    else
+      "<small> não conseguimos obter o preço </span>"
+    end
+  end
+  
+  def final_price_from_cents(p)
+    if p.to_i
+      return "<small>R$</small><span>#{p/100}</span>"
+    else
+      "<small> não conseguimos obter o preço </span>"
+    end
   end
   
   def raw_price(p)
@@ -50,6 +62,16 @@ module ApplicationHelper
   
   def bank_list()
     YAML.load_file('config/banks.yml')
+  end
+  
+  def to_https(url)
+    uri = URI.parse(url)
+    uri.scheme = "https"
+    return uri.to_s
+  end
+  
+  def is_active(page)
+    return current_page? action: page
   end
   
 end

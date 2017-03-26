@@ -6,7 +6,8 @@ class ToursControllerTest < ActionController::TestCase
   self.use_transactional_fixtures = true
   
   setup do
-    FakeWeb.clean_registry
+    StripeMock.start
+    @stripe_helper = StripeMock.create_test_helper
     sign_in users(:alexandre)
     @tour = tours(:morro)
     @tour_marins = tours(:picomarins)
@@ -15,34 +16,11 @@ class ToursControllerTest < ActionController::TestCase
     @payment_data = {
       id: @tour,
       method: "CREDIT_CARD",
-      expiration_month: 04,
-      expiration_year: 18,
-      number: "4012001038443335",
-      cvc: "123",
       fullname: "Alexandre Magno Teles Zimerer",
       birthdate: "10/10/1988",
-      cpf_number: "22222222222",
-      country_code: "55",
-      area_code: "11",
-      phone_number: "55667788",
-      value: @tour.value
-    }
-    
-    @boleto = {
-      expirationDate: "2016-09-30",
-      instructionLines: {
-        first: "Primeira linha se instrução",
-        second: "Segunda linha se instrução",
-        third: "Terceira linha se instrução"
-      },
-    }
-    
-    @payment_data_boleto = {
-      id: @tour,
-      method: "BOLETO",
       value: @tour.value,
+      token: StripeMock.generate_card_token(last4: "9191", exp_year: 1984) 
     }
-    
     
     @basic_tour = {
       title: "A basic truppie",
@@ -75,186 +53,16 @@ class ToursControllerTest < ActionController::TestCase
       attractions: "",
       privacy: "",
       meetingpoint: "",
-      #confirmed: "",
       languages: "",
       verified: "",
       status: ""
     }
-    
-    @body_for_order = { 
-      :id => "ORD-ZLAYANLXSEIC",
-      :own_id => "truppie_330594360_68086721",
-      :status => "CREATED",
-      :created_at => "2017-01-17T20:13:29.177-02",
-      :updated_at => "2017-01-17T20:13:29.177-02",
-      :amount => { 
-        :total=>4000,
-        :fees=>0,
-        :refunds=>0,
-        :liquid=>0,
-        :other_receivers=>0,
-        :currency=>"BRL",
-        :subtotals => {
-          :shipping=>0,
-          :addition=>0,
-          :discount=>0,
-          :items=>4000
-        }
-      },
-      :items => [
-        { 
-          :product=>"Morro dois irmaos",
-          :quantity=>1,
-          :detail=>"subida ao morro dois irmaos",
-          :price=>4000
-        }
-      ],
-      :customer => {
-        :id=>"CUS-66WNCZ4JSOL6",
-        :own_id=>"68086721_alexandre-magno",
-        :fullname=>"Alexandre Magno",
-        :created_at=>"2016-03-15T21:37:49.000-03",
-        :email=>"alexandre@email.com",
-        :funding_instrument => {
-          :credit_card => {
-            :id=>"CRC-9CXTBI8WHRPS",
-            :brand=>"VISA",
-            :first6=>"401200",
-            :last4=>"3335"
-          },
-          :method=>"CREDIT_CARD"
-        }, 
-        :_links =>{
-          :self => {
-            :href=>"https://sandbox.moip.com.br/v2/customers/CUS-66WNCZ4JSOL6"
-          }
-        },
-        :funding_instruments => 
-        [
-          {
-            :credit_card => {
-              :id=>"CRC-9CXTBI8WHRPS",
-              :brand=>"VISA",
-              :first6=>"401200",
-              :last4=>"3335"
-            },
-          :method=>"CREDIT_CARD"
-        }
-      ]
-    },
-    :payments => [], :refunds => [], :entries => [],
-    :events => [
-      {
-        :type=>"ORDER.CREATED",
-        :created_at=>"2017-01-17T20:13:29.177-02",
-        :description=>""
-        }
-    ],
-    :receivers =>
-      [
-        {
-          :moip_account=>{
-            :id=>"MPA-0AB3E93AE809",
-            :login=>"alexanmtz@gmail.com",
-            :fullname=>"Alexandre Teles Zimerer"
-        },
-        :type=>"PRIMARY",
-        :amount=>{
-          :total=>4000,
-          :fees=>0,
-          :refunds=>0
-        }
-      }
-    ],
-    :_links => {
-      :self=>{
-        :href=>"https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC"
-    },
-    :checkout=>{
-      :pay_checkout => {
-        :redirect_href=>"https://checkout-new-sandbox.moip.com.br?token=8bcd51e7-389d-406e-8f77-264ebe265b4d&id=ORD-ZLAYANLXSEIC"},
-        :pay_credit_card=> {
-          :redirect_href=>"https://checkout-new-sandbox.moip.com.br?token=8bcd51e7-389d-406e-8f77-264ebe265b4d&id=ORD-ZLAYANLXSEIC&payment-method=credit-card"},
-          :pay_boleto=>{
-            :redirect_href=>"https://checkout-new-sandbox.moip.com.br?token=8bcd51e7-389d-406e-8f77-264ebe265b4d&id=ORD-ZLAYANLXSEIC&payment-method=boleto"},
-            :pay_online_bank_debit_itau=>{
-              :redirect_href=>"https://checkout-sandbox.moip.com.br/debit/itau/ORD-ZLAYANLXSEIC"
-              }
-            }
-          }
-        }
-    @body_for_payment = { 
-      :id => "PAY-QTHEQDTQOJ0C",
-      :status => "IN_ANALYSIS",
-      :delay_capture => false,
-      :amount => {:total=>4000, :fees=>0, :refunds=>0, :liquid=>4000, :currency=>"BRL"},
-      :installment_count => 1,
-      :funding_instrument => {
-        :credit_card=>{
-          :id=>"CRC-9CXTBI8WHRPS",
-          :brand=>"VISA",
-          :first6=>"401200",
-          :last4=>"3335",
-          :holder=>{
-            :birthdate=>"1988-10-10",
-            :birth_date=>"1988-10-10",
-            :tax_document=>{
-              :type=>"CPF",
-              :number=>"22222222222"},
-              :fullname=>"Alexandre Magno Teles Zimerer"
-              }
-            },
-            :method=>"CREDIT_CARD"
-          },
-          :fees => [
-            {
-              :type=>"TRANSACTION", :amount=>0
-            }
-          ],
-          :events => [
-            {
-              :type=>"PAYMENT.IN_ANALYSIS",
-              :created_at=>"2017-01-17T20:13:34.758-02"
-            },
-          {
-            :type=>"PAYMENT.CREATED",
-            :created_at=>"2017-01-17T20:13:32.094-02"
-            }
-          ], 
-          :receivers => 
-          [
-            {
-              :moip_account=>{
-                :id=>"MPA-0AB3E93AE809",
-                :login=>"alexanmtz@gmail.com",
-                :fullname=>"Alexandre Teles Zimerer"
-              },
-              :type=>"PRIMARY",
-              :amount=>{
-                :total=>4000,
-                :fees=>0,
-                :refunds=>0
-              }
-            }
-          ],
-          :_links => {
-            :self=>{
-              :href=>"https://sandbox.moip.com.br/v2/payments/PAY-QTHEQDTQOJ0C"
-            },
-            :order=>{
-              :href=>"https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC",
-              :title=>"ORD-ZLAYANLXSEIC"
-            }
-          },
-          :created_at => "2017-01-17T20:13:32.093-02",
-          :updated_at => "2017-01-17T20:13:34.758-02"
-    }
-    FakeWeb.clean_registry
+
   end
   
-  #teardown do
-    #DatabaseCleaner.clean
-  #end
+  teardown do
+    StripeMock.stop
+  end
 
   test "should get index" do
     get :index
@@ -448,30 +256,72 @@ class ToursControllerTest < ActionController::TestCase
   #  Confirm presence
   #
   #
+  
+  test "should decline payment if has a card error" do
+    StripeMock.prepare_card_error(:card_declined)
+    
+    post :confirm_presence, @payment_data
+    assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
+    assert_equal assigns(:confirm_status_message), "Tivemos um problema ao processar seu cartão"
+    assert_equal assigns(:status), "danger"
+    assert_equal Tour.find(@tour.id).orders.any?, false
+    #assert_equal Tour.find(@tour.id), token
+    assert_template "confirm_presence"
+  end
+
+  test "should decline payment if has other error" do
+
+    custom_error = Stripe::StripeError.new('new_charge', "Please knock first.", 401)
+
+    StripeMock.prepare_error(custom_error, :new_charge)
+    
+    post :confirm_presence, @payment_data
+    assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
+    assert_equal assigns(:confirm_status_message), "Tivemos um problema para confirmar sua reserva, entraremos em contato para maiores informações"
+    assert_equal assigns(:status), "danger"
+    assert_equal Tour.find(@tour.id).orders.any?, false
+    #assert_equal Tour.find(@tour.id), token
+    assert_template "confirm_presence"
+  end
     
   test "should confirm presence" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
     assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
     assert_equal assigns(:status), "success"
+
     assert_equal Tour.find(@tour.id).orders.any?, true
+    assert_equal Tour.find(@tour.id).orders.last.source_id, 'test_cc_2'
+    assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_3'
     assert_template "confirm_presence"
   end
-  
-  test "should not confirm presence with no payment" do
-    post :confirm_presence, {id: @tour}
-    assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
-    assert_equal assigns(:confirm_status_message), "Todos os valores devem ser maiores que zero"
-    assert_equal assigns(:status), "danger"
-    assert_equal Tour.find(@tour.id).orders.any?, false
+
+  test "should confirm presence of a marketplace account" do
+    mkt = marketplaces(:real)
+    organizer = Tour.find(@tour.id).organizer
+    Tour.find(@tour.id).organizer.update_attributes({:marketplace => mkt})
+    Tour.find(@tour.id).organizer.marketplace.update_attributes({:organizer => organizer})
+    Marketplace.find(mkt.id).activate
+
+    post :confirm_presence, @payment_data
+    assert_equal assigns(:new_charge)[:amount], 4000
+    assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
+    assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
+    assert_equal assigns(:status), "success"
+    assert_equal assigns(:payment).destination.amount, 3760 
+
+    assert_equal Tour.find(@tour.id).orders.any?, true
+    assert_equal Tour.find(@tour.id).orders.first.liquid, 3760
+    assert_equal Tour.find(@tour.id).orders.first.fee, 240
+    assert_equal Tour.find(@tour.id).orders.last.source_id, 'test_cc_2'
+    assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_4'
+    assert_template "confirm_presence"
   end
   
   test "should not confirm again" do
     post :confirm_presence, @payment_data
     post :confirm_presence, @payment_data
-    assert_equal "Hey, você já está confirmado neste evento!!", flash[:error]
+    assert_equal "Hey, você já está confirmado neste evento, não é necessário reservar novamente!!", flash[:error]
     assert_redirected_to tour_path(assigns(:tour))
   end
   
@@ -495,21 +345,17 @@ class ToursControllerTest < ActionController::TestCase
     assert_redirected_to tour_path(assigns(:tour))
   end
   
-  test "should create a order with the given id" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
+  test "should create a order with the given id and status" do
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
     assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
     assert_equal assigns(:status), "success"
     assert_template "confirm_presence"
-    assert_includes ["IN_ANALYSIS", "AUTHORIZED"], Order.last.status
+    assert_includes ["succeeded"], Order.last.status
   end
   
-  test "should create a order in a marketplace" do
-    #FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    #FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
-    
+  test "should create a order on stripe with destination account fees" do
+    skip("migrate to stripe")
     @payment_data["id"] = @mkt
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
@@ -519,186 +365,4 @@ class ToursControllerTest < ActionController::TestCase
     assert_template "confirm_presence"
     assert_includes ["IN_ANALYSIS", "AUTHORIZED"], Order.last.status
   end
-  
-  test "should no create a order in a marketplace if not found on moip" do
-    @payment_data["id"] = @tour_marins
-    post :confirm_presence, @payment_data
-    assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
-    assert_equal assigns(:confirm_status_message), "A conta Moip informada não foi encontrada"
-    assert_equal assigns(:status), "danger"
-    assert_template "confirm_presence"
-  end
-  
-  test "should access the payment generated by order" do
-    skip("convert to mock api")
-    #skip("consult payment")
-    post :confirm_presence, @payment_data
-    payment_id = Order.last.payment
-    
-    headers = {
-      :content_type => 'application/json',
-      :authorization => Rails.application.secrets[:moip_auth]
-    }
-    
-    response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{payment_id}", headers
-    json_data = JSON.parse(response)
-    assert_equal payment_id, json_data["id"]
-    assert_equal 4000, json_data["amount"]["total"]
-  end
-  
-  test "should divide in two the payment generated by order" do
-    @payment_data["installment_count"] = 2
-    post :confirm_presence, @payment_data
-    payment_id = Order.last.payment
-    
-    headers = {
-      :content_type => 'application/json',
-      :authorization => Rails.application.secrets[:moip_auth]
-    }
-    
-    response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{payment_id}", headers
-    json_data = JSON.parse(response)
-    # puts json_data.inspect
-    assert_equal 2, json_data["installmentCount"]
-  end
-  
-  
-  #
-  #
-  # Other payment type
-  #
-  #
-  
-  
-  test "should create a payment with credit card" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
-    post :confirm_presence, @payment_data
-    
-    order = Order.last
-    
-    assert_equal assigns(:payment_method), "CREDIT_CARD"
-    assert_equal order.payment_method, "CREDIT_CARD"
-  end
-  
-  test "should create a payment with boleto gives a error message when date expiration is over" do
-    @tour.start = Date.new(2012, 9, 30)
-    @tour.save()
-    post :confirm_presence, @payment_data_boleto
-    assert_equal assigns(:payment_api_error), "fundingInstrument.boleto.validExpirationDate"
-    #puts ActionMailer::Base.deliveries[0].inspect
-    #assert_not ActionMailer::Base.deliveries[0].html_part.nil?
-    assert_equal ActionMailer::Base.deliveries.last.to, ['ola@truppie.com', 'organizer@mail.com']
-    assert_equal ActionMailer::Base.deliveries.last.subject, "Algo errado na tentativa de pagamento para a sua truppie - #{@tour.title}"
-  end
-  
-  test "should create a payment with boleto if the right date" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
-    #@payment_data_boleto[:expirationDate] = "2077-09-30"
-    @tour.update_attribute(:start, Date.new(2077, 9, 30))
-    post :confirm_presence, @payment_data_boleto
-    
-    order = Order.last
-    
-    assert_equal assigns(:payment_method), "BOLETO"
-    assert_equal assigns(:payment_api_success)[:_links][:self][:href], "https://sandbox.moip.com.br/v2/payments/#{order.payment}"
-    assert_equal assigns(:payment_api_success_url), "https://checkout-sandbox.moip.com.br/boleto/#{order.payment}"
-    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:first], @tour.title
-    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:second], @tour.organizer.name
-    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:third], "Reservado por #{order.user.name}"
-    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:instruction_lines][:third], "Reservado por #{order.user.name}"
-    #assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:expiration_date], @tour.start.to_date.strftime('%Y-%m-%d')
-  end
-  
-  test "should create a payment with boleto that the billing date is 72h before" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
-    #@payment_data_boleto[:expirationDate] = "2077-09-30"
-    @tour.start = Date.new(2077, 9, 30).to_date
-    @tour.save()
-    post :confirm_presence, @payment_data_boleto
-    assert_equal assigns(:payment_api_success)["funding_instrument"][:boleto][:expiration_date], (@tour.start).strftime('%Y-%m-%d')      
-  end
-  
-  test "should create a payment with boleto that the billing date will exceed 72 hours" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
-    @tour.start = @tour.start + 24.hours
-    @tour.save()
-    post :confirm_presence, @payment_data_boleto
-    assert_equal assigns(:payment_api_error), "fundingInstrument.boleto.validExpirationDate"
-    #puts ActionMailer::Base.deliveries[0].to.inspect
-    #assert_not ActionMailer::Base.deliveries[0].html_part.nil?
-    assert_equal ActionMailer::Base.deliveries.last.to, ['ola@truppie.com', 'organizer@mail.com']
-    assert_equal ActionMailer::Base.deliveries.last.subject, "Algo errado na tentativa de pagamento para a sua truppie - #{@tour.title}"
-  end 
-    
-  #
-  #
-  # Reservation
-  #
-  #
-  
-  test "should process a reservation to more people with unlimited availability" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
-    @tour.update_attributes(:availability => nil)
-    @payment_data["amount"] = 2
-    @payment_data["final_price"] = @tour.value * 2
-    post :confirm_presence, @payment_data
-    assert_equal(assigns(:amount), 2)
-    assert_equal(assigns(:final_price), @tour.value * 2)
-    order = Order.last
-    
-    assert_equal @tour.available, nil
-  end
-  
-  test "should process a reservation to more people with limited availability" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
-    @payment_data["amount"] = 2
-    @payment_data["final_price"] = @tour.value * 2
-    
-    post :confirm_presence, @payment_data
-    assert_equal(assigns(:amount), 2)
-    assert_equal(assigns(:final_price), @tour.value * 2)
-    assert_equal(assigns(:reserved_increment), 2)
-    order = Order.last
-    assert_equal Tour.order("updated_at").last.available, 1
-    
-  end
-  
-  test "should pass a valid birthdate in credit card" do
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders", :body => @body_for_order.to_json, :status => ["201", "Created"])
-    FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/orders/ORD-ZLAYANLXSEIC/payments", :body => @body_for_payment.to_json, :status => ["201", "Created"])
-    post :confirm_presence, @payment_data
-    payment_id = Order.last.payment
-    
-    headers = {
-      :content_type => 'application/json',
-      :authorization => Rails.application.secrets[:moip_auth]
-    }
-    
-    response = RestClient.get "https://sandbox.moip.com.br/v2/payments/#{payment_id}", headers
-    json_data = JSON.parse(response)
-    assert_equal '1988-10-10', json_data["fundingInstrument"]["creditCard"]["holder"]["birthdate"]
-  end
-  
-  test "after the event send the balance to the guide" do
-    
-  end
-  
-  test "after 14 days after the evento send balance to the guide" do
-    
-  end
-
-  
-  # test "should destroy tour" do
-    # assert_difference('Tour.count', -1) do
-      # delete :destroy, id: @tour
-    # end
-# 
-    # assert_redirected_to tours_path
-  # end
 end

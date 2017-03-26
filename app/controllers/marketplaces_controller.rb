@@ -1,6 +1,6 @@
 class MarketplacesController < ApplicationController
   include ApplicationHelper
-  before_action :set_marketplace, only: [:show, :edit, :update, :destroy, :activate]
+  before_action :set_marketplace, only: [:show, :edit, :update, :destroy, :activate, :update_account]
   before_action :authenticate_user!
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
   
@@ -37,13 +37,17 @@ class MarketplacesController < ApplicationController
   # POST /marketplaces.json
   def create
     @marketplace = Marketplace.new(marketplace_params)
-
     respond_to do |format|
       if @marketplace.save
-        format.html { redirect_to @marketplace, notice: 'Marketplace was successfully created.' }
+        format.html {
+          redirect_to @marketplace, notice: 'Marketplace was successfully created.' 
+        }
         format.json { render :show, status: :created, location: @marketplace }
       else
-        format.html { render :new }
+        format.html { 
+          @errors = @marketplace.errors
+          render :new, notice: "#{@marketplace.errors.inspect}" 
+        }
         format.json { render json: @marketplace.errors, status: :unprocessable_entity }
       end
     end
@@ -74,37 +78,60 @@ class MarketplacesController < ApplicationController
   end
   
   def activate
-    account_bank_data = @marketplace.account_info
-    RestClient.post("#{Rails.application.secrets[:moip_domain]}/accounts", account_bank_data.to_json, :content_type => :json, :accept => :json, :authorization => Rails.application.secrets[:moip_app_token]){|response, request, result, &block| 
-        puts response.inspect
-        case response.code
-          when 400 
-            @activation_message = "Não foi possível ativar o marketplace para #{@marketplace.organizer.name}, verifique os dados novamente."
-            @activation_status = "danger"
-            @errors = JSON.parse response
-          when 401 
-            @activation_message = "Não foi possível ativar o marketplace para #{@marketplace.organizer.name}, verifique os dados novamente."
-            @activation_status = "danger"
-            @errors = JSON.parse response
-            puts @errors.inspect
-          when 201
-            @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@marketplace.organizer.name}"
-            @activation_status = "success"
-            @response = JSON.parse response
-            @marketplace.update_attributes(
-              :active => true,
-              :account_id => @response["id"],
-              :token => @response["accessToken"]
-            )
-            @marketplace.organizer.update_attributes(:market_place_active => true)
-            MarketplaceMailer.activate(@marketplace.organizer).deliver_now
-          else
-            @activation_message = "Não conseguimos resposta do Moip para ativar #{@marketplace.organizer.name}, verifique os dados novamente."
-            @activation_status = "danger"
-          end
-    }
+    begin
+      account = @marketplace.activate
+      if account
+        if account.id
+          @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@marketplace.organizer.name}"
+          @activation_status = "success"
+          @response = account
+          @marketplace.organizer.update_attributes(:market_place_active => true)
+          MarketplaceMailer.activate(@marketplace.organizer).deliver_now
+        else
+          @activation_message = "Marketplace #{@marketplace.organizer.name} não foi criado"
+          @activation_status = "danger"
+          @errors = "Houve algum problema e ele não gerou o id"
+        end
+      else
+        @activation_message = "Marketplace #{@marketplace.organizer.name} já se encontra ativo"
+        @activation_status = "danger"
+        @errors = "Já se encontra ativo"
+      end
+    rescue => e
+        @activation_message = "Marketplace #{@marketplace.organizer.name} não pôde ser ativado devido a problema na API do Stripe"
+        @activation_status = "danger"
+        @errors = e.message
+    end
   end
-
+  
+  def update_account
+    begin
+      account = @marketplace.update_account
+      if account
+        if account.id
+          @activation_message = "Conseguimos com sucesso atualizar sua conta do #{@marketplace.organizer.name}"
+          @activation_status = "success"
+          @response = account
+          MarketplaceMailer.update(@marketplace.organizer).deliver_now
+        else
+          @activation_message = "Marketplace #{@marketplace.organizer.name} não foi atualizado"
+          @activation_status = "danger"
+          @errors = "Houve algum problema e ele não achou sua conta"
+        end
+      else
+        @activation_message = "Marketplace #{@marketplace.organizer.name} já se encontra ativo"
+        @activation_status = "danger"
+        @errors = "Já se encontra ativo"
+      end
+    rescue => e
+        puts e.inspect
+        puts e.backtrace
+        @activation_message = "O Marketplace não pôde ser atualizado devido a problema na API do Stripe"
+        @activation_status = "danger"
+        @errors = e.message
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_marketplace
@@ -113,9 +140,6 @@ class MarketplacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def marketplace_params
-      
-      
-      
-      params.fetch(:marketplace, {}).permit(:organizer_id, :bank_accounts, :active, :person_name, :person_lastname, :document_type, :id_number, :id_type, :id_issuer, :id_issuerdate, :birthDate, :street, :street_number, :complement, :district, :zipcode, :city, :state, :country, :token, :account_id).merge(params[:marketplace])
+      params.fetch(:marketplace, {}).permit(:organizer_id, :active, :person_name, :person_lastname, :document_type, :id_number, :id_type, :id_issuer, :id_issuerdate, :birthDate, :street, :street_number, :complement, :district, :zipcode, :city, :state, :country, :token, :account_id, :document_number, :business, :company_street, :compcompany_complement, :company_zipcode, :company_city, :company_state, :company_country, bank_accounts_attributes: [:bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :doc_number, :doc_type, :bank_type, :fullname, :active, :marketplace_id]).merge(params[:marketplace])
     end
 end

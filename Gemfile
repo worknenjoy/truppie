@@ -1,10 +1,15 @@
 source 'https://rubygems.org'
 
+ruby "2.2.3"
+
+gem "mime-types", '2.6.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 
 gem 'puma'
+gem 'stripe'
+gem 'stripe-ruby-mock', :require => 'stripe_mock', :git => 'git://github.com/alexanmtz/stripe-ruby-mock.git', :branch => 'master'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -18,6 +23,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
+gem 'thin'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

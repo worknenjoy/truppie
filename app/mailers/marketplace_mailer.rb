@@ -1,6 +1,7 @@
 require 'open-uri'
 
 class MarketplaceMailer < ApplicationMailer
+  layout 'mail_modern_generic'
   
   def activate(organizer)
     
@@ -20,10 +21,16 @@ class MarketplaceMailer < ApplicationMailer
         attachments[@logo_file] = open(@organizer.picture.url(:thumbnail)).read
       end
     else
-      attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
+      begin
+        attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
+      rescue => e
+        attachments[@logo_file] = nil
+      end
     end
     
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
     
     mail(
       from: 'ola@truppie.com',
@@ -31,6 +38,45 @@ class MarketplaceMailer < ApplicationMailer
       to: mailers,
       bcc: copy_mailers,
       template_name: 'activate',
+      template_path: 'marketplace_mailer' 
+     )
+  end
+  
+  def update(organizer)
+    
+    @organizer = organizer
+    @account = organizer.marketplace
+    
+    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
+    
+    mailers = "#{organizer.email}"
+    subject = "Sua carteira da Truppie foi atualizada com sucesso"
+    
+    @logo_file = "#{@organizer.to_param}.png"
+    
+    if @organizer.picture.present?
+      if Rails.env.development?
+        attachments[@logo_file] = @organizer.picture.url(:thumbnail)
+      else
+        attachments[@logo_file] = open(@organizer.picture.url(:thumbnail)).read
+      end
+    else
+      begin
+        attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
+      rescue => e
+        attachments[@logo_file] = nil
+      end
+    end
+    
+    attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
+    
+    mail(
+      subject: subject,
+      to: mailers,
+      bcc: copy_mailers,
+      template_name: 'update',
       template_path: 'marketplace_mailer' 
      )
   end
@@ -53,10 +99,16 @@ class MarketplaceMailer < ApplicationMailer
         attachments[@logo_file] = open(@organizer.picture.url(:thumbnail)).read
       end
     else
-      attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
+      begin
+        attachments[@logo_file] = File.read("app/assets/images/#{@organizer.logo}")
+      rescue => e
+        attachments[@logo_file] = nil
+      end
     end
     
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
     
     mail(
       from: 'ola@truppie.com',
@@ -77,7 +129,7 @@ class MarketplaceMailer < ApplicationMailer
     copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
     
     mailers = "#{organizer.email}"
-    subject = "Sua solicitação de transferência foi recebida"
+    subject = "Uma nova transferência para sua conta foi realizada"
     
     @logo_file = "#{@organizer.to_param}.png"
     
@@ -92,6 +144,8 @@ class MarketplaceMailer < ApplicationMailer
     end
     
     attachments['logo-flat.png'] = File.read(Rails.root.join('app/assets/images/logo-flat.png'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
     
     mail(
       from: 'ola@truppie.com',

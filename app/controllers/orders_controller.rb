@@ -46,79 +46,52 @@ class OrdersController < ApplicationController
       else
         request_raw_json = JSON.parse(request.raw_post())
       end
-      #puts request_raw_json
-      @event = request_raw_json["event"]
+      puts request_raw_json.inspect
       
-      if !@event.empty?
-        @payment_id = request_raw_json["resource"]["payment"]["id"]
-        @payment_status = request_raw_json["resource"]["payment"]["status"]
-        @status = request_raw_json["event"]
+      @event = request_raw_json["type"]
+      
+      @event_types = ["charge.succeeded", "charge.pending", "charge.failed", "payment.created", "payment.created"]
+
+      if @event_types.include?(@event)
+         
+        @payment_id = request_raw_json["data"]["object"]["id"]
+        @status = request_raw_json["data"]["object"]["status"]
         
-        order = Order.where(payment: @payment_id).joins(:user).take
-        order_tour = Order.where(payment: @payment_id).joins(:tour).take
-        user = order.user
-        tour = order_tour.tour
-        organizer = tour.organizer
-        
-        #puts order
-        #puts order_tour
-        #puts user
-        #puts tour
-        #puts organizer
+        begin
+          order = Order.where(payment: @payment_id).joins(:user).take
+          if !order.try(:status)
+            order.update_attributes({:status => @status})
+          end
+          order_tour = Order.where(payment: @payment_id).joins(:tour).take
+          user = order.user
+          tour = order_tour.tour
+          organizer = tour.organizer
+        rescue => e
+           CreditCardStatusMailer.status_message('Pagamento não encontrado').deliver_now
+           return :bad_request        
+        end
         
         case @status
-        when "PAYMENT.WAITING" 
+        when "pending"
+            @status_class = "alert-success"
             @subject = "Solicitação de reserva de uma truppie! :)"
             @guide_template = "status_change_guide_waiting"
             @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
             @mail_second_line = "Estamos aguardando o pagamento do seu cartão junto a operadora e, assim que for aprovado, vamos te avisar, ok?"
-            
-            if order.payment_method == "BOLETO"
-              @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
-              @mail_second_line = "Estamos aguardando o pagamento do boleto para poder confirmar sua reserva."
-            end
-            
-        when "PAYMENT.IN_ANALYSIS" 
+        when "succeeded"
+            @status_class = "alert-success" 
             @subject = "Solicitação de reserva de uma truppie! :)"
-            @guide_template = "status_change_guide_waiting"
-            @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
-            @mail_second_line = "O seu cartão de crédito encontra-se em análise junto à operadora e, assim que for aprovado, vamos te avisar, ok?"
-        when "PAYMENT.PRE_AUTHORIZED"
-            @subject = "Solicitação de reserva pré-autorizada de uma truppie! :)"
-            @guide_template = "status_change_guide_waiting"
-            @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
-            @mail_second_line = "O seu cartão de crédito foi pré aprovado, assim que for aprovado, vamos te avisar, ok?"
-        when "PAYMENT.AUTHORIZED"
-            @subject = "A reserva de sua truppie está confirmada! :D"
             @guide_template = "status_change_guide_authorized"
-            @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, boas novas: o pagamento foi autorizado pela operadora de seu cartão e sua truppie está oficialmente reservada! Uhuul \o/ "
-            @mail_second_line = "Agora basta aguardar o início do evento. Você pode acompanhá-lo em <a href='#{tour_url(tour)}'>#{tour_url(tour)}</a>"
-            
-            if order.payment_method == "BOLETO"
-              @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, boas novas: acusamos o pagamento do boleto e sua truppie está oficialmente reservada! Uhuul \o/ "
-            end
-            
-        when 'PAYMENT.CANCELLED'
+            @mail_first_line = "Referente à solicitação de reserva da truppie <strong>#{tour.title}</strong> com o guia <strong>#{organizer.name}</strong>, <br />temos boas novas: o pagamento foi <strong>autorizado</strong> pela operadora de seu cartão e sua truppie está <strong>oficialmente reservada!</strong> Uhuul \o/ "
+            @mail_second_line = "Você está confirmado no evento. Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>. Você também pode acompanhar sua reserva em <a href='#{tour_url(tour)}'>#{tour_url(tour)}</a>"
+        when "failed"
+            @status_class = "alert-danger"
             @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
             @guide_template = "status_change_guide_cancelled"
             @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, por algum motivo, a operadora do cartão de crédito recusou o pagamento e sua truppie não pode ser reservada ainda."
             @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
-        when "PAYMENT.REVERSED"
-            @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
-            @guide_template = "status_change_guide_cancelled"
-            @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.name} com o guia #{organizer.name}, por algum motivo, o seu pagamento foi estornado (O Estorno é a contestação do pagamento feita pelo comprador direto na operadora de cartão, como por exemplo pelo motivo de não reconhecimento do pagamento em sua fatura)."
-            @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
-        when "PAYMENT.REFUNDED"
-            @subject = "Pedido de reembolso de uma truppie"
-            @guide_template = "status_change_guide_refunded"
-            @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, você será reembolsado."
-            @mail_second_line = "Favor aguardar a próxima fatura do cartão o crédito referente a esta compra."
-        when "PAYMENT.SETTLED"
-            @subject = "Seu pagamento foi concluído"
-            @guide_template = "status_change_guide_settled"
-            @mail_first_line = "Referente à truppie #{tour.title} com o guia #{organizer.name}, informamos que o pagamento foi devidamente faturado pelo Moip, e este é o nome que aparecerá em sua fatura do cartão de crédito."
-            @mail_second_line = "O Moip é um sistema de pagamento que usamos na Truppie para garantir o pagamento seguro."
         else
+            @status_class = "alert-warning"
             @subject = "Não conseguimos obter o status junto a operadora"
             @guide_template = "status_change_guide_cancelled"
             @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, não tivemos uma atualização de status que pudéssemos indentificar."
@@ -127,11 +100,7 @@ class OrdersController < ApplicationController
         
         is_in_the_history = order.status_history.include?(@status)
         
-        if order.payment_method == "BOLETO"
-          is_status_to_ignore = [].include?(@status)
-        else
-          is_status_to_ignore = ["PAYMENT.WAITING", "PAYMENT.IN_ANALYSIS"].include?(@status)
-        end
+        is_status_to_ignore = ['pending'].include?(@status)
         
         if !is_in_the_history
           
@@ -139,7 +108,7 @@ class OrdersController < ApplicationController
           
           if order.save()
             #puts "Pedido de pagamento #{order.payment} atualizado com sucesso"
-            if @status == 'PAYMENT.CANCELLED'
+            if @status == 'failed'
               t = tour.confirmeds.where(:user => user).delete_all
               #puts "Usuario #{t} desconfirmado com sucesso"
             end
@@ -149,6 +118,7 @@ class OrdersController < ApplicationController
               subject: @subject,
               mail_first_line: @mail_first_line,
               mail_second_line: @mail_second_line,
+              status_class: @status_class,
               guide: @guide_template
             }
             mail = CreditCardStatusMailer.status_change(@status_data, order, user, tour, organizer).deliver_now
@@ -160,15 +130,16 @@ class OrdersController < ApplicationController
             CreditCardStatusMailer.status_message("O usuario #{user.name} esta com o status #{@status}").deliver_now
           end
         else
-          puts 'O webhook do moip tentou enviar uma notificação repetida'
+          puts 'O webhook tentou enviar uma notificação repetida'
         end
       else
         CreditCardStatusMailer.status_message('erro ao tentar processar o request').deliver_now
       end
     else
-      CreditCardStatusMailer.status_message('alguem postou no webhook sem os dados do Moip').deliver_now       
+      CreditCardStatusMailer.status_message('alguem postou no webhook sem os dados').deliver_now       
     end
-    render nothing: true
+    render layout: false
+    return :success
   end
   
   # GET /orders

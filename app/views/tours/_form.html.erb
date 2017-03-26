@@ -39,6 +39,12 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                    <%= f.text_field :link, placeholder: "Link (ex facebook)", class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-male"></span></span>
                     <%= f.number_field :availability, placeholder: "Vagas", min: 1, class: "form-control" %>
                 </div>

@@ -1,15 +1,20 @@
 require 'test_helper'
+require 'stripe_mock'
 
 class MarketplaceTest < ActiveSupport::TestCase
-  
-  def setup
+  setup do
+    StripeMock.start
+    @stripe_helper = StripeMock.create_test_helper
     @mkt_active = marketplaces(:one)
     @mkt_real_data = marketplaces(:real)
-    FakeWeb.clean_registry
+  end
+  
+  teardown do
+    StripeMock.stop
   end
   
   test "two Marketplaces" do
-    assert_equal 3, Marketplace.count
+    assert_equal 4, Marketplace.count
   end
   
   test "split phone into a object" do
@@ -28,23 +33,132 @@ class MarketplaceTest < ActiveSupport::TestCase
     assert_equal @mkt_real_data.auth_data, false
   end
   
+  test "try to register a account already active" do
+    assert_equal @mkt_active.activate, false
+  end
+  
+  test "try to register a new simple account" do
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal account.email, 'organizer@mail.com'
+  end
+  
+  test "Returning a error when try to create an account" do
+    custom_error = Stripe::InvalidRequestError.new(401, "Invalid API Key provided: **aaaa>")
+    StripeMock.prepare_error(custom_error, :new_account)
+    assert_raise Stripe::InvalidRequestError do 
+      @mkt_real_data.activate      
+    end
+  end
+  
+  test "Returning a error from api when has conection error" do
+    custom_error = Stripe::APIConnectionError.new(401, "The comunication failed somehow")
+    StripeMock.prepare_error(custom_error, :new_account)
+    assert_raise Stripe::APIConnectionError do
+      @mkt_real_data.activate
+    end
+  end
+  
+  test "Returning a error from api when has auth error" do
+    custom_error = Stripe::AuthenticationError.new(401, "Authentication failed, maybe invalid keys")
+    StripeMock.prepare_error(custom_error, :new_account)
+    assert_raise Stripe::AuthenticationError do 
+      @mkt_real_data.activate      
+    end
+  end
+  
+  test "the new registered account has the id and token from account" do
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal Marketplace.find(@mkt_real_data.id).account_id, 'test_acct_1'
+    assert_equal Marketplace.find(@mkt_real_data.id).token, 'sk_test_AmJhMTLPtY9JL4c6EG0'
+    assert_equal Marketplace.find(@mkt_real_data.id).auth_data, {
+        "id" => 'test_acct_1',
+        "token" => 'sk_test_AmJhMTLPtY9JL4c6EG0'
+      }
+  end
+  
+  test "the new registered account register all possible info from a marketplace account" do
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal account.business_name, "Utopicos Mundo Afora"
+    assert_equal account.business_url, Marketplace.find(@mkt_real_data.id).organizer.website
+    assert_equal account.legal_entity.first_name, Marketplace.find(@mkt_real_data.id).person_name
+    assert_equal account.legal_entity.last_name, Marketplace.find(@mkt_real_data.id).person_lastname
+    assert_equal account.legal_entity.personal_id_number, Marketplace.find(@mkt_real_data.id).document_number
+    assert_equal account.legal_entity.dob.to_json, Marketplace.find(@mkt_real_data.id).dob.to_json
+    assert_equal account.legal_entity.personal_address.city, Marketplace.find(@mkt_real_data.id).city
+    assert_equal account.legal_entity.personal_address.country, Marketplace.find(@mkt_real_data.id).country
+    assert_equal account.legal_entity.personal_address.line1, Marketplace.find(@mkt_real_data.id).street
+    assert_equal account.legal_entity.personal_address.line2, Marketplace.find(@mkt_real_data.id).complement
+    assert_equal account.legal_entity.personal_address.state, Marketplace.find(@mkt_real_data.id).state
+    assert_equal account.legal_entity.personal_address.postal_code, Marketplace.find(@mkt_real_data.id).zipcode
+    assert_equal account.product_description, Marketplace.find(@mkt_real_data.id).organizer.description
+    assert_equal account.legal_entity.type, Marketplace.find(@mkt_real_data.id).organizer_type
+  end
+  
+  test "updating a account active remote" do
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal account.email, 'organizer@mail.com'
+    @mkt_real_data.update_attributes(:person_name => 'foo2', :person_lastname => 'bla')
+    updated = @mkt_real_data.update_account
+    assert_equal updated.legal_entity.first_name, 'foo2'
+    assert_equal updated.legal_entity.last_name, 'bla'
+  end
+  
+  test "error when updating a account" do
+    custom_error = Stripe::InvalidRequestError.new(401, "Authentication failed, maybe invalid keys")
+    StripeMock.prepare_error(custom_error, :update_account)
+    
+    assert_raise Stripe::InvalidRequestError do 
+      @mkt_active.update_account     
+    end
+  end
+    
+  
+  test "get missing data" do
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal account.email, 'organizer@mail.com'
+    assert Marketplace.find(@mkt_real_data.id).account_missing, []
+  end
+  
+  test "deactivating a account not active" do
+    try_to_deactivate = @mkt_real_data.deactivate
+    assert_equal try_to_deactivate, false
+  end
+  
+  test "deactivating a account not found" do
+    skip("delete not working yet")
+    error = Stripe::InvalidRequestError.new("(Status 404) No such account: MPA-014A72F4426C", 404)
+    StripeMock.prepare_error(error, :get_account)
+    account = @mkt_active.deactivate
+    assert_raises(Stripe::InvalidRequestError) { error }
+  end
+  
+  test "deactivating a account successfully" do
+    skip("delete not working yet")
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal account.email, 'organizer@mail.com'
+    
+    deleted_account = @mkt_real_data.deactivate
+    assert_equal deleted_account.deleted, true
+    assert_equal deleted_account.id, 'test_acct_1'
+  end
+  
+  test "get registered bank accounts" do
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal account.email, 'organizer@mail.com'
+    bank_account = @mkt_real_data.registered_bank_account
+    assert_equal bank_account, []
+  end
+  
   test "return bank account active details" do
     bank_account = 
-    {
-      "bankNumber" => "MyString",
-      "agencyNumber" => "MyString",
-      "accountNumber" => "MyString",
-      "agencyCheckNumber" => "MyString",
-      "accountCheckNumber" => "MyString",
-      "type" => "MyString",
-      "holder" => {
-        "taxDocument" => {
-          "type" => "MyString",
-          "number" => "MyString"
-        },
-        "fullname" => "MyString"
-      }
-    }
+    {:object=>"bank_account", :account_number=>"MyString", :default_for_currency=>true, :country=>"MyString", :currency=>"BRL", :account_holder_name=>"MyString", :account_holder_type=>"individual", :routing_number=>"MyString-MyString"}
     assert_equal @mkt_active.bank_account, bank_account 
   end
   
@@ -52,16 +166,19 @@ class MarketplaceTest < ActiveSupport::TestCase
     assert_equal @mkt_real_data.is_active?, false
   end
   
-  test "is really active" do
-    @mkt_real_data.update_attributes(:account_id => "foo", :token => "bar", :active => true)
-    assert_equal @mkt_real_data.is_active?, true
+  test "activate a new bank account" do
+    skip("not activating account")
+    account = @mkt_real_data.activate
+    assert_equal account.id, 'test_acct_1'
+    assert_equal account.email, 'organizer@mail.com'
+    assert_raises(Stripe::InvalidRequestError) { 
+      bank_account = Marketplace.find(@mkt_real_data.id).register_bank_account  
+    }
   end
   
-  test "get registered account with no account" do
-    body = "[]"
-    FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/accounts/#{@mkt_active.account_id}/bankaccounts", :body => body, :status => ["201", "Success"])
-    account = @mkt_active.registered_account
-    assert_equal account, []
-  end
-  
+  test "should accept terms" do
+      account = @mkt_real_data.activate
+     accepted_terms = @mkt_real_data.accept_terms('110.112.113.2')  
+     assert_equal accepted_terms, true
+   end
 end

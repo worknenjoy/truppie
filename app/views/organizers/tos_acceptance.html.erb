@@ -1,0 +1,30 @@
+<%= render 'layouts/navbar' %>
+  <div class="container manage-entries">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= form_tag tos_acceptance_confirm_organizer_path, method: :post do %>
+        <div class="manage-inspiration">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="cart-title spaced-down">Termos de aceitação para se cadastrar na Truppie como guia</h3>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Você precisa aceitar estes termos para realização das transferências das reservas feitas pela Truppie para sua conta
+              </h6>
+            </div>
+            <div class="card-block terms">
+              <div class="card-text">
+              <p>Os serviços de processamento de pagamento da <strong>Truppie</strong> são fornecidos pela <strong>Stripe</strong> e estão sujeitos ao Stripe Connected Account Agreement (Contrato de Conta Vinculada da Stripe), que inclui os Stripe Terms of Service(Termos de Serviço da Stripe, conjuntamente, “Stripe Services Agreement”, Contrato de Serviços da Stripe). Ao concordar com estes termos ou continuar a operar como <strong><%= @organizer.name %></strong> pela <strong>Truppie</strong>, você aceita o Contrato de Serviços da Stripe, que pode ser alterado pela Stripe periodicamente.</p>
+              <p>Como condição da utilização de serviços de processamento de pagamento pela <strong>Truppie</strong> por meio da Stripe, você concorda em fornecer a <strong>Truppie</strong> informações precisas e completas sobre você e sua empresa e autoriza a Truppie a compartilhá-las, além das informações de transações relacionadas ao seu uso dos serviços de processamento de pagamento fornecidos pela Stripe.</p>
+              <div class="clearfix">
+                <%= hidden_field_tag :ip, request.remote_ip %>
+                <button class="btn btn-primary btn-lg pull-right">Aceitar termos</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"/>   
+</div>
+</div>

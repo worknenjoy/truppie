@@ -5,10 +5,11 @@
    self.use_transactional_fixtures = true
    
    setup do
-     FakeWeb.clean_registry
+     StripeMock.start
      sign_in users(:alexandre)
      @organizer_ready = organizers(:utopicos)
      @mkt = organizers(:mkt)
+     @guide_mkt_validated = organizers(:guide_mkt_validated)
      @organizer = {
        name: "Utópicos mundo afora",
        description: "uma agencia utopica",
@@ -21,6 +22,10 @@
        user_id: users(:alexandre).id
      }
      
+   end
+   
+   teardown do
+    StripeMock.stop
    end
 # 
    test "should get index" do
@@ -38,7 +43,7 @@
      assert_difference('Organizer.count') do
        post :create, organizer: @organizer
      end
-# 
+     assert_not ActionMailer::Base.deliveries.empty?
      assert_redirected_to organizer_path(assigns(:organizer))
    end
 # 
@@ -54,6 +59,7 @@
 # 
    test "should update organizer" do
      patch :update, id: @organizer_ready.id, organizer: @organizer 
+     assert_not ActionMailer::Base.deliveries.empty?
      assert_redirected_to organizer_path(assigns(:organizer))
    end
    
@@ -82,7 +88,64 @@
      assert_response :success
    end
    
+   test "should load the terms in the page" do
+     get :tos_acceptance, id: @organizer_ready.id
+     assert_response :success 
+   end
+   
+   test "should create policies" do
+     @organizer["policy"] = "almoco;jantar;cafe"
+     
+     assert_difference('Organizer.count') do
+      post :create, organizer: @organizer
+     end
+     
+     assert_equal Organizer.last.policy[0], "almoco"
+     assert_equal Organizer.last.policy[1], "jantar"
+     assert_equal Organizer.last.policy[2], "cafe"
+   end
+   
+   test "should create with no members" do
+     @organizer["members"] = ""
+     
+     assert_difference('Organizer.count') do
+      post :create, organizer: @organizer
+     end
+     
+     assert_equal Organizer.last.members, []
+   end
+   
+   test "should create policies empty" do
+     @organizer["policy"] = ""
+     
+     assert_difference('Organizer.count') do
+      post :create, organizer: @organizer
+     end
+     
+     assert_equal Organizer.last.policy, []
+   end
+   
+   test "should not accept the terms of a not registered guide on marketplace" do
+     post :tos_acceptance_confirm, id: @organizer_ready.id, ip: '100.22.10.1', date_of_acceptance: "2014-12-01T01:29:18".to_date
+     assert_equal assigns(:ip), "100.22.10.1"
+     assert_equal assigns(:status), "danger"
+     assert_equal assigns(:status_message), "Você ainda não está cadastrado no Marketplace de guias"
+     assert_response :success 
+   end
+   
+   test "should accept the terms in the page" do
+     account = @guide_mkt_validated.marketplace.activate
+     assert_equal account.id.include?('acct_'), true
+     
+     post :tos_acceptance_confirm, id: @guide_mkt_validated, ip: '100.22.10.1'
+     assert_equal assigns(:ip), "100.22.10.1"
+     assert_equal assigns(:status_message), "Seus termos foram aceitos com sucesso" 
+     assert_equal assigns(:status), "success"
+     assert_response :success 
+   end
+   
    test "should go to transfer page with no transference" do
+     skip("refactor to stripe")
      body = [{"current" => 0, "future" => 0}]
      FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/balances", :body => body.to_json, :status => ["201", "Created"])
      FakeWeb.register_uri(:get, "https://sandbox.moip.com.br/v2/transfers", :body => "{}", :status => ["200", "Success"])
@@ -94,7 +157,7 @@
    
    test "should not transfer amount to organizer if there's no active bank account" do
      post :transfer_funds, id: @mkt.id, amount: 200, current: 300
-     assert_equal assigns(:bank_account_active_id), nil
+     assert_nil assigns(:bank_account_active_id)
      assert_equal assigns(:amount), 20000
      assert_equal assigns(:status), "danger"
      assert_equal assigns(:message_status), "Você não tem nenhuma conta bancária ativa no momento"
@@ -120,6 +183,7 @@
    end
    
    test "should not transfer amount to organizer because the token is not valid" do
+     skip("migrate to stripe")
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
      post :transfer_funds, id: @mkt.id, amount: 200, current: 500
      assert_equal assigns(:bank_account_active_id), "fooid"
@@ -131,6 +195,7 @@
    end
    
    test "should not transfer amount with moip response of any error" do
+     skip("migrate to stripe")
      body = {"errors"=>[{"code"=>"TRA-101", "path"=>"-", "description"=>"Saldo disponivel insuficiente para essa operacao"}]}
      FakeWeb.register_uri(:post, "#{Rails.application.secrets[:moip_domain]}/transfers", :body => body.to_json, :status => ["200", "Success"])
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")
@@ -144,6 +209,7 @@
    end 
    
    test "should transfer amount successfully with moip response" do
+     skip("migrate to stripe")
      body = {:status => "REQUESTED", :amount => 2000, :updatedAt => "2017-01-17T20:13:52.017-02", :transferInstrument => {:bankAccount => {:holder => { :fullname => 'foo' }, :bankName => 'foo', :accountNumber => 'foo'}}}
      FakeWeb.register_uri(:post, "https://sandbox.moip.com.br/v2/transfers", :body => body.to_json, :status => ["201", "Created"])
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")

@@ -1,0 +1,168 @@
+<!-- START MAIN CONTENT AREA -->
+<% if @status == "activate" %>
+<tr>
+  <td class="wrapper">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+          <h1>Seja bem vindo!</h1>
+          <p style="text-align: center;"><strong>sua conta como guia foi criada</strong></p>
+          <p>Olá <strong><%= @organizer.name %></strong>, você agora faz parte da nossa plataforma de aventuras!</p>
+          <p>
+            Para começar a usar a Truppie e oferecer seus passeios por nossa plataforma e passar a receber as reservas do seu cliente,
+            você precisa seguir os seguintes passos:
+          </p>
+          <hr>
+          <h2>1. Cadastrar seus dados para transferência</h2>
+          <p>
+            Você irá ter uma conta verificada na nossa plataforma onde poderá acompanhar suas vendas
+            e ter acesso a todas vantagem de ter uma conta na Truppie.
+          </p>
+          <p>
+            Seus clientes poderão pagar no cartão de crédito e os valores arrecadados do seu passeio
+            irá diretamente para sua conta.
+          </p>
+          <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+            <tbody>
+              <tr>
+                <td align="left">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td> <a href="<%= confirm_account_organizer_url(@organizer) %>" target="_blank">Confirmar minha conta</a> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <h2>2. Aceite os termos</h2>
+          <p>Precisamos que você aceite nossos termos de uso, que diz que você está fornecendo os dados corretamente.</p>
+          <p>Precisamos disto para garantir sua segurança e firmar as responsabilidades que teremos de repassar os valores arrecadados.
+          </p>
+          <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
+            <tbody>
+              <tr>
+                <td align="left">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td> <a href="<%= tos_acceptance_organizer_url(@organizer) %>" target="_blank">Ver os termos e aceitar</a> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <h2>3. Divulgue seu evento</h2>
+          <p>Divulgue seu evento e seja notificado das reservas</p>
+          <p>Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!</p>
+          <p>Quem sabe eles também se interessem pela sua aventura!</p>
+          <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
+            <tbody>
+              <tr>
+                <td align="left">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td> <a href="http://www.facebook.com/truppie" target="_blank">Ver nossa página do Facebook</a> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<% end %>
+<% if @status == "update" %>
+<tr>
+  <td class="wrapper">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+          <h1>Sua conta foi atualizada</h1>
+          <p style="text-align: center;"><strong>sua conta como guia foi atualizada</strong></p>
+          <p>Olá <strong><%= @organizer.name %></strong>, sua conta foi atualizada</p>
+          <p>Você já cadastrou seus dados para começar a receber pela Truppie?</p>
+          <p>Se ainda não o fez, basta seguir os passos:</p>
+          <h2>1. Cadastrar seus dados para transferência</h2>
+          <p>
+            Você irá ter uma conta verificada na nossa plataforma onde poderá acompanhar suas vendas
+            e ter acesso a todas vantagem de ter uma conta na Truppie.
+          </p>
+          <p>
+            Seus clientes poderão pagar no cartão de crédito e os valores arrecadados do seu passeio
+            irá diretamente para sua conta.
+          </p>
+          <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+            <tbody>
+              <tr>
+                <td align="left">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td> <a href="http://truppie.com/organizer/confirm_account" target="_blank">Confirmar minha conta</a> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <h2>2. Aceite os termos</h2>
+          <p>Precisamos que você aceite nossos termos de uso, que diz que você está fornecendo os dados corretamente.</p>
+          <p>Precisamos disto para garantir sua segurança e firmar as responsabilidades que teremos de repassar os valores arrecadados.
+          </p>
+          <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
+            <tbody>
+              <tr>
+                <td align="left">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td> <a href="<%= tos_acceptance_organizer_url(@organizer) %>" target="_blank">Ver os termos e aceitar</a> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <h2>3. Divulgue seu evento</h2>
+          <p>Divulgue seu evento e seja notificado das reservas</p>
+          <p>Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!</p>
+          <p>Quem sabe eles também se interessem pela sua aventura!</p>
+          <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
+            <tbody>
+              <tr>
+                <td align="left">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td> <a href="http://www.facebook.com/truppie" target="_blank">Ver nossa página do Facebook</a> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<% end %>
+<!-- END MAIN CONTENT AREA -->
+

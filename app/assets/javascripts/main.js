@@ -32,7 +32,7 @@ $(function(){
 	
 	localStorage.clear();
 	
-	$('#tour_included, #tour_nonincluded, #tour_take, #tour_goodtoknow, .package-value').tagsinput({
+	$('#tour_included, #tour_nonincluded, #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
 		delimiter: ";"
 	});
 	
@@ -213,24 +213,27 @@ $(function(){
 		return false;
 	});
 	
-	$("#confirm-reservation").click(function() {
-	    var cc = new Moip.CreditCard({
-	      number  : $("#number").val(),
-	      cvc     : $("#cvc").val(),
-	      expMonth: $("#expiration_month").val(),
-	      expYear : $("#expiration_year").val(),
-	      pubKey  : $("#public_key").val()
-	    });
-	    if( cc.isValid()){
-	      $("#hash").val(cc.hash());
-	    } else {
-	      $("#hash").val('');
-	      $('.form-card-number .alert').remove();
-	      if(!$('.dialog-alert').length) {
-	         $(this).before('<div class="dialog-alert alert alert-danger animated bounceIn"><strong>Cartão de crédito inválido</strong><br />Verifique: número, código de confirmação, mês de expiração, ano de expiração</div>');  
-	      }
-	      return false; // Don't submit the form
-	    }
+	function stripeResponseHandler(status, response) {
+	  var $form = $('#form-confirm-reservation');
+	  
+	  if(response.error) {
+	    $form.find('.alert').remove();
+	    $form.find('#confirm-reservation-button').before('<div class="dialog-alert alert alert-danger animated bounceIn"><strong>' + response.error.param + '</strong><br />' + response.error.message +  ' </div>');
+	    $form.find('#confirm-reservation-button').prop('disabled', false);
+	  } else {
+	    $('#token').val(response.id);
+      // and re-submit
+      $form.get(0).submit();
+	  }
+	}
+	
+	$("#form-confirm-reservation").bind('submit', function() {
+	  
+	    $(this).find('#confirm-reservation-button').prop('disabled', true);
+	    
+	    Stripe.card.createToken($(this), stripeResponseHandler);
+	    
+	   return false;
 	  });
 	  
   	if($('.overall-alert').length) {

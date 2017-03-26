@@ -14,6 +14,10 @@
   <%= f.label :marketplace %>
   <%= f.select :marketplace_id, options_for_select(Marketplace.all.map{|s|[s.person_name, s.id]}, (@bank_account.marketplace_id if @bank_account.marketplace_id.present?)) %>
   <div class="field">
+    <%= f.label :own_id %><br>
+    <%= f.text_field :own_id %>
+  </div>
+  <div class="field">
     <%= f.label :bank_number %><br>
     <%= f.text_field :bank_number %>
   </div>

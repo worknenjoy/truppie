@@ -2,7 +2,7 @@ require 'test_helper'
 
 class OrderTaskTest < ActiveSupport::TestCase
   test "update order fee" do
-    
+    skip("migrate to stripe")
     FakeWeb.clean_registry
     FakeWeb.allow_net_connect = false
     

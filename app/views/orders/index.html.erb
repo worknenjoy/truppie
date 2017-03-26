@@ -52,9 +52,6 @@
                                     <td><%= l(o.created_at, format: '%d de %B as %I:%M %p')  %></td>
                                     <td class="text-center">
                                         <%= raw(o.friendly_status(o.current_status)) %>
-                                        <% if o.payment_method == "BOLETO" %>
-                                        <p><a href="<%= o.payment_link %>">pagar boleto</a></p>
-                                        <% end %>
                                     </td>
                                     <td>
                                         <%= o.payment %>
@@ -65,7 +62,7 @@
                                        <% end %>
                                        <% if o.tour.try(:packages) %>
                                        		<% o.tour.packages.each do |p| %>
-                    												<% if p.value == o.price %>
+                    												<% if (p.value).to_i*100 == (o.price).to_i %>
                     												  <h5><%= raw final_price(p.value) %></h5>
                     													Pacote <%= p.name %>
                     												<% end %>						                                       		
@@ -79,7 +76,7 @@
                                       <% if o.final_price.nil? %>
                                       <h4><%= raw final_price(o.price) %></h4>
                                       <% else %>
-                                      <h4><%= raw final_price(o.final_price) %></h4>
+                                      <h4><%= raw final_price_from_cents(o.final_price) %></h4>
                                       <% end %>
                                     </td>
                                 </tr>

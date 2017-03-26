@@ -1,1 +1,3 @@
+{<img src="https://travis-ci.org/alexanmtz/truppie.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/alexanmtz/truppie]
+
 ### The trupe hippie chic exploring adventures platform

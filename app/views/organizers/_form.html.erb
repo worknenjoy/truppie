@@ -6,6 +6,9 @@
 	  <li class="nav-item">
 	    <a class="nav-link" data-toggle="tab" href="#foto" role="tab">Foto</a>
 	  </li>
+	  <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#politica" role="tab">Políticas do guia</a>
+    </li>
 	</ul>
 	<div class="tab-content spaced-down">
 		<div class="tab-pane active" id="home" role="tabpanel">
@@ -76,6 +79,12 @@
                     <%= f.text_field :members, value: (@organizer.members.name if @organizer.members.present?), placeholder: "Membros", class: "form-control" %>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+                    <%= f.select :status, options_for_select([['Não Publicado', 'N'],['Publicado', 'P']], (@organizer.status if @organizer.status.present?)), {class: "form-control", include_blank: "Escolha um status"} %>
+                </div>
+            </div>
     	</div>
     	<div class="tab-pane" id="foto" role="tabpanel">
     		<div class="form-group">
@@ -92,6 +101,14 @@
             <% end %>
             </div>
     	</div>
+    	<div class="tab-pane" id="politica" role="tabpanel">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="fa fa-photo"></span></span>
+                <%= f.text_field :policy, value: (@organizer.policy.join(';') if @organizer.policy.present?), class: "form-control" %>
+            </div>
+        </div>
+      </div>
 	</div>
 	<!--
     <div class="form-group">
