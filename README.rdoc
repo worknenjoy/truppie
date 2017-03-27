@@ -1,3 +1,12 @@
 {<img src="https://travis-ci.org/alexanmtz/truppie.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/alexanmtz/truppie]
 
-### The trupe hippie chic exploring adventures platform
+# The trupe hippie chic exploring adventures platform
+
+= H1
+  Welcome to the Truppie platform
+  
+  Here you will know how contributing to Truppie.
+  
+  # This project is Open Source and works with developers around the world.
+  # Any developer can contribute with this project and be assigned to 
+
