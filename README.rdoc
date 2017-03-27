@@ -1,12 +1,27 @@
 {<img src="https://travis-ci.org/alexanmtz/truppie.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/alexanmtz/truppie]
 
-# The trupe hippie chic exploring adventures platform
+The trupe hippie chic exploring adventures platform
 
-= H1
+= Be a Truppist!
+
   Welcome to the Truppie platform
   
   Here you will know how contributing to Truppie.
   
-  # This project is Open Source and works with developers around the world.
-  # Any developer can contribute with this project and be assigned to 
+  This project is Open Source and works with developers around the world.
+  Any developer can contribute with this project and be assigned to to the issues.
+  
+  == What it is?
+  
+  Truppie is a project that connects tour guides with explorers. The development of the platform is made by developers like you.
+  
+  == How it works
+  
+  Choose the Issues, be assigned and send a pull request.
+  
+  We will analyze and if is good to merge, it will goes to production and you will be paid por it.
+  
+  You can request a Bug fix, creating a new issue and be paid for it.
+  
+  So if you are not a developer, actually you can be paid if we accept that feature too.  
 
