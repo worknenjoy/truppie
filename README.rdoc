@@ -11,11 +11,11 @@ The trupe hippie chic exploring adventures platform
   This project is Open Source and works with developers around the world.
   Any developer can contribute with this project and be assigned to to the issues.
   
-  == What it is?
+== What it is?
   
   Truppie is a project that connects tour guides with explorers. The development of the platform is made by developers like you.
   
-  == How it works
+== How it works
   
   Choose the Issues, be assigned and send a pull request.
   
