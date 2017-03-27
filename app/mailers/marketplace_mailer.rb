@@ -2,12 +2,11 @@ require 'open-uri'
 
 class MarketplaceMailer < ApplicationMailer
   layout 'mail_modern_generic'
+  @copy_mailers = "ola@truppie.com, #{Rails.application.secrets[:admin_email]}, #{Rails.application.secrets[:admin_email_alt]}"
   
   def activate(organizer)
     
     @organizer = organizer
-    
-    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
     
     mailers = "#{organizer.email}"
     subject = "Sua carteira da Truppie foi ativada com sucesso"
@@ -36,7 +35,7 @@ class MarketplaceMailer < ApplicationMailer
       from: 'ola@truppie.com',
       subject: subject,
       to: mailers,
-      bcc: copy_mailers,
+      bcc: @copy_mailers,
       template_name: 'activate',
       template_path: 'marketplace_mailer' 
      )
@@ -46,8 +45,6 @@ class MarketplaceMailer < ApplicationMailer
     
     @organizer = organizer
     @account = organizer.marketplace
-    
-    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
     
     mailers = "#{organizer.email}"
     subject = "Sua carteira da Truppie foi atualizada com sucesso"
@@ -75,7 +72,7 @@ class MarketplaceMailer < ApplicationMailer
     mail(
       subject: subject,
       to: mailers,
-      bcc: copy_mailers,
+      bcc: @copy_mailers,
       template_name: 'update',
       template_path: 'marketplace_mailer' 
      )
@@ -84,8 +81,6 @@ class MarketplaceMailer < ApplicationMailer
   def activate_bank_account(organizer)
     
     @organizer = organizer
-    
-    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
     
     mailers = "#{organizer.email}"
     subject = "Sua conta bancária foi cadastrada na Truppie com sucesso"
@@ -114,7 +109,7 @@ class MarketplaceMailer < ApplicationMailer
       from: 'ola@truppie.com',
       subject: subject,
       to: mailers,
-      bcc: copy_mailers,
+      bcc: @copy_mailers,
       template_name: 'bank_account',
       template_path: 'marketplace_mailer' 
      )
@@ -125,8 +120,6 @@ class MarketplaceMailer < ApplicationMailer
     @organizer = organizer
     @transfer_value = value
     @transfer_date = date
-    
-    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
     
     mailers = "#{organizer.email}"
     subject = "Uma nova transferência para sua conta foi realizada"
@@ -151,7 +144,7 @@ class MarketplaceMailer < ApplicationMailer
       from: 'ola@truppie.com',
       subject: subject,
       to: mailers,
-      bcc: copy_mailers,
+      bcc: @copy_mailers,
       template_name: 'transfer',
       template_path: 'marketplace_mailer' 
      )

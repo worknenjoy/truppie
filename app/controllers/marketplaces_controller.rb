@@ -5,7 +5,7 @@ class MarketplacesController < ApplicationController
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
   
   def check_if_admin
-    allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+    allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
     
     unless allowed_emails.include? current_user.email
       flash[:notice] = "Você não está autorizado a entrar nesta página"

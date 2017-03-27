@@ -13,3 +13,4 @@
 /tmp
 /public/*
 config/my_secrets.yml
+.env

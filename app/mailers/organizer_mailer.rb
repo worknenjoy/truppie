@@ -1,5 +1,6 @@
 class OrganizerMailer < ApplicationMailer
   layout 'base_mail'
+  @copy_mailers = "ola@truppie.com, #{Rails.application.secrets[:admin_email]}, #{Rails.application.secrets[:admin_email_alt]}"
   
   def notify(organizer, status)
     
@@ -14,8 +15,6 @@ class OrganizerMailer < ApplicationMailer
       else
         @status_to_user = "atualizada"
     end
-    
-    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
     
     mailers = "#{organizer.email}"
     subject = "Olá #{organizer.name}, sua conta na Truppie foi #{@status_to_user}!"
@@ -46,7 +45,7 @@ class OrganizerMailer < ApplicationMailer
       from: 'ola@truppie.com',
       subject: subject,
       to: mailers,
-      bcc: copy_mailers,
+      bcc: @copy_mailers,
       template_name: 'notify',
       template_path: 'organizer_mailer' 
      )

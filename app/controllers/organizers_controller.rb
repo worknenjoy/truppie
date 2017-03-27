@@ -6,7 +6,7 @@ class OrganizersController < ApplicationController
   helper_method :is_organizer_admin
   
   def check_if_admin
-    allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+    allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
     
     if params[:controller] == "organizers" and params[:action] == "manage"
       organizer_id = params[:id]
@@ -175,6 +175,7 @@ class OrganizersController < ApplicationController
     end
   end
   
+  #deprecated - convert to stripe manual transfer (the money is transfered automatically)
   def transfer_funds
     @organizer = Organizer.find(params[:id])
     @amount = raw_price(params[:amount])
@@ -241,7 +242,7 @@ class OrganizersController < ApplicationController
   private
     def is_organizer_admin
       if user_signed_in?
-        allowed_emails = ["laurinha.sette@gmail.com", "alexanmtz@gmail.com"]
+        allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
         
         if params[:controller] == "organizers" and params[:action] == "show"
           organizer_id = params[:id]

@@ -4,6 +4,8 @@ ruby "2.2.3"
 
 gem "mime-types", '2.6.2'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 

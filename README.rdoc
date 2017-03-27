@@ -1,6 +1,6 @@
 {<img src="https://travis-ci.org/alexanmtz/truppie.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/alexanmtz/truppie]
 
-The trupe hippie chic exploring adventures platform
+The trupe hippie chic exploring adventures platform: https://www.truppie.com
 
 = Be a Truppist!
 
@@ -13,7 +13,10 @@ The trupe hippie chic exploring adventures platform
   
 == What it is?
   
-  Truppie is a project that connects tour guides with explorers. The development of the platform is made by developers like you.
+  Truppie is a project that connects tour guides with explorers.
+  The development of the platform is made by developers like you.
+  
+  Truppie is safe, we use ssl for all transactions.
   
 == How it works
   
@@ -23,5 +26,22 @@ The trupe hippie chic exploring adventures platform
   
   You can request a Bug fix, creating a new issue and be paid for it.
   
-  So if you are not a developer, actually you can be paid if we accept that feature too.  
+  So if you are not a developer, actually you can be paid if we accept that feature too.
+  
+== Advantages
+
+  As developer, you can learn with a collaborative platform!
+  
+  Be paid on demmand for new features, bug fixes and improvements of the project
+  
+== Requirements
+  
+  To work with us, you need to be a developer that works well with TDD and BDD.
+  
+== Installing
+
+=== Env variables to secure our working
+  
+  When you have the project installed, you can request the development env variables  
+  
 
