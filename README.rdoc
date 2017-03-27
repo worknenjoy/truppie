@@ -42,6 +42,10 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
 
 === Env variables to secure our working
   
-  When you have the project installed, you can request the development env variables  
+  When you have the project installed, you can request the development env variables
+
+=== RELEASE NOTES
+
+#1 - 2.0.rc1 - Use Stripe as the main payment platform
   
 
