@@ -46,6 +46,8 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
 
 === RELEASE NOTES
 
-#1 - 2.0.rc1 - Use Stripe as the main payment platform
-  
+- 2.0.rc1 
+  - #1: Use Stripe as the main payment platform 
+  - Continuous Integration system with Heroku pipeline, Github and Travis CI
+  - SSL support   
 

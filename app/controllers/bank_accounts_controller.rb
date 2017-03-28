@@ -9,8 +9,8 @@ class BankAccountsController < ApplicationController
       @activation_status = "danger"
       @errors = "já tem uma conta associada"
     else
-      bank_account_active = @bank_account.marketplace.bank_account_active
       begin
+        bank_account_active = @bank_account.marketplace.bank_account_active
         bank_register_status = bank_account_active.marketplace.register_bank_account
         if bank_register_status.id
           bank_account_active.own_id = bank_register_status.id
