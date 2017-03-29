@@ -216,7 +216,7 @@ class Marketplace < ActiveRecord::Base
       begin
         account = Stripe::Account.retrieve(self.account_id)
         if account.id
-          return account.verification.fields_needed
+          return account.verification
         end
       rescue => e
         puts e.inspect
