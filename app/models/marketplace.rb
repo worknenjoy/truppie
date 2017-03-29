@@ -117,13 +117,18 @@ class Marketplace < ActiveRecord::Base
       account.legal_entity.type = self.organizer_type if account.legal_entity.type != self.organizer_type
       
       if self.photo.present?
-        upload = Stripe::FileUpload.create(
-            :file => File.new(photo.path),
-            :purpose => "identity_document"
-        )
-        puts upload.inspect
-        account.legal_entity.verification.document = upload.id
+        begin
+          upload = Stripe::FileUpload.create({
+              :file => File.new(photo.path),
+              :purpose => "identity_document"
+          }, {:stripe_account => self.account_id})
+          account.legal_entity.verification.document = upload.id
+          puts upload.inspect
+        rescue => e
+          ContactMailer.notify("Houve uma tentativa de enviar a foto pois #{e.inspect}").deliver_now
+        end
       end
+      
       account.save
       return account
     end
