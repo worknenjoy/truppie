@@ -207,6 +207,10 @@
                     <%= f.file_field :photo, class: "form-control" %>
                 </div>
             </div>
+            <p>
+              <h3>Arquivos enviados</h3>
+              <%= @marketplace.uploads.inspect %>
+            </p>
             <div class="form-group">
             <% unless @marketplace.nil? %>
                 <% if @marketplace.photo.present? %>

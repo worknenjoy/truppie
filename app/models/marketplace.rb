@@ -80,6 +80,14 @@ class Marketplace < ActiveRecord::Base
     end
   end
   
+  def uploads
+    begin
+      Stripe::FileUpload.list
+    rescue => e
+      e
+    end
+  end
+  
   def update_account
     if !self.is_active?
       false  
