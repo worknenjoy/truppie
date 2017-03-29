@@ -5,6 +5,17 @@ class Marketplace < ActiveRecord::Base
   
   accepts_nested_attributes_for :bank_accounts, :allow_destroy => true
   
+   has_attached_file :photo, styles: {
+    thumbnail: '300x300>',
+    square: '400x400#',
+    cover: '600x800>',
+    medium: '500x500>',
+    large: '800x800>',
+  }
+  
+  # Validate the attached image is image/jpg, image/png, etc
+  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+  
   def account
     {
       :country => "BR",
@@ -41,6 +52,12 @@ class Marketplace < ActiveRecord::Base
          }
       }
     }
+  end
+  
+  def document_picture 
+    if !self.document.nil?
+      self.document if self.document.present?
+    end
   end
   
   def bank_name
@@ -98,6 +115,15 @@ class Marketplace < ActiveRecord::Base
       
       account.product_description = self.organizer.description if account.product_description != self.organizer.description
       account.legal_entity.type = self.organizer_type if account.legal_entity.type != self.organizer_type
+      
+      if self.photo.present?
+        upload = Stripe::FileUpload.create(
+            :file => File.new(photo.path),
+            :purpose => "identity_document"
+        )
+        puts upload.inspect
+        account.legal_entity.verification.document = upload.id
+      end
       account.save
       return account
     end

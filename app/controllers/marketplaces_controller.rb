@@ -140,6 +140,6 @@ class MarketplacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def marketplace_params
-      params.fetch(:marketplace, {}).permit(:organizer_id, :active, :person_name, :person_lastname, :document_type, :id_number, :id_type, :id_issuer, :id_issuerdate, :birthDate, :street, :street_number, :complement, :district, :zipcode, :city, :state, :country, :token, :account_id, :document_number, :business, :company_street, :compcompany_complement, :company_zipcode, :company_city, :company_state, :company_country, bank_accounts_attributes: [:bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :doc_number, :doc_type, :bank_type, :fullname, :active, :marketplace_id]).merge(params[:marketplace])
+      params.fetch(:marketplace, {}).permit(:organizer_id, :photo, :active, :person_name, :person_lastname, :document_type, :id_number, :id_type, :id_issuer, :id_issuerdate, :birthDate, :street, :street_number, :complement, :district, :zipcode, :city, :state, :country, :token, :account_id, :document_number, :business, :company_street, :compcompany_complement, :company_zipcode, :company_city, :company_state, :company_country, bank_accounts_attributes: [:bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :doc_number, :doc_type, :bank_type, :fullname, :active, :marketplace_id]).merge(params[:marketplace])
     end
 end

@@ -23,6 +23,9 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#bank_accounts" role="tab">Conta bancária</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#foto" role="tab">Foto</a>
+    </li>
     <% if !@marketplace.new_record? %>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#mkt_status" role="tab">Status da conta</a>
@@ -196,6 +199,21 @@
           </div>
         </fieldset>
         <% end %>
+      </div>
+      <div class="tab-pane" id="foto" role="tabpanel">
+        <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-photo"></span></span>
+                    <%= f.file_field :photo, class: "form-control" %>
+                </div>
+            </div>
+            <div class="form-group">
+            <% unless @marketplace.nil? %>
+                <% if @marketplace.photo.present? %>
+                  <%= image_tag @marketplace.photo.url(:thumbnail) %>
+                <% end %>
+            <% end %>
+            </div>
       </div>
       <% if !@marketplace.new_record? %>
       <div class="tab-pane" id="mkt_status" role="tabpanel">
