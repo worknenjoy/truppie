@@ -1,0 +1,4 @@
+.bundle/
+.env
+.project
+tmp/
