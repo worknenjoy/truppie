@@ -101,6 +101,7 @@ class MarketplacesController < ApplicationController
         @activation_message = "Marketplace #{@marketplace.organizer.name} não pôde ser ativado devido a problema na API do Stripe"
         @activation_status = "danger"
         @errors = e.message
+        puts e.inspect
     end
   end
   

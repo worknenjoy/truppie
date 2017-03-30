@@ -9,6 +9,9 @@
             <blockquote class="card-blockquote">
               <h4>
                 <p><%= @activation_message %></p> 
+                <% if !@errors.nil? %>
+                <p><%= @errors %></p>
+                <% end %>
               </h4>
               <% if !@errors["errors"].nil? %>
               <p>Encontramos os seguintes erros no marketplace cadastrado:</p>
