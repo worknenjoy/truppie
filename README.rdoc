@@ -1,6 +1,6 @@
 {<img src="https://travis-ci.org/alexanmtz/truppie.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/alexanmtz/truppie]
 
-https://truppie.com/assets/logo_truppie-839885d09468eb209481b15d636391314cfa8e6cb9c1cb61c24f1833c0dca023.svg
+{<img src="https://truppie.com/assets/logo_truppie-839885d09468eb209481b15d636391314cfa8e6cb9c1cb61c24f1833c0dca023.svg" alt="truppie logo" />}[http://www.truppie.com]
 
 The trupe hippie chic exploring adventures platform: https://www.truppie.com
 
