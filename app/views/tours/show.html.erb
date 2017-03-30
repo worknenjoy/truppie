@@ -156,8 +156,10 @@
 			                	<strong><%= @tour.languages.map { |m| m.name }.join(', ') %></strong>
 		                	 </li>
 		                	<% if @tour.try(:link) %>
+					    <% if !@tour.link.empty? %>
                       <li><a href="<%= @tour.link %>"><i class="fa fa-facebook-square"></i> acompanhar evento no facebook</a></li>
                       <% end %>
+					    <% end %>
 			            </ul>
 			        </div>
 			        <div class="card-footer">

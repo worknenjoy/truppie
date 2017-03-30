@@ -127,7 +127,7 @@ class Marketplace < ActiveRecord::Base
       if self.photo.present?
         begin
           upload = Stripe::FileUpload.create({
-              :file => File.new(photo.path),
+              :file => open(photo.url),
               :purpose => "identity_document"
           }, {:stripe_account => self.account_id})
           account.legal_entity.verification.document = upload.id
