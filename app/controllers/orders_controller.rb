@@ -67,7 +67,8 @@ class OrdersController < ApplicationController
           tour = order_tour.tour
           organizer = tour.organizer
         rescue => e
-           CreditCardStatusMailer.status_message('Pagamento não encontrado').deliver_now
+           CreditCardStatusMailer.status_message("Pagamento não encontrado. Webhook recebido #{request_raw_json}").deliver_now
+           
            return :bad_request        
         end
         
