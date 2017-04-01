@@ -148,6 +148,45 @@ class OrdersControllerTest < ActionController::TestCase
     #assert_equal ActionMailer::Base.deliveries[1].html_part.to_s.include?(tours(:morro).to_param), true
   end
   
+  test "a new transfer should trigger a order approved on email" do
+    orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :payment => "ch_1A345fHWrGpvLtXMRsbSfDV4", :user => User.last, :tour => Tour.last)
+    transfer = {
+      "source_transaction": "ch_1A345fHWrGpvLtXMRsbSfDV4",
+      "type":"stripe_account",
+      "data": {
+        "object": {
+          "id": "an id",
+           "status": "succeeded"
+        }
+        
+      } 
+    }
+    @request.env['RAW_POST_DATA'] = transfer
+    post :webhook, {}
+    
+    assert_equal assigns(:transfer), "ch_1A345fHWrGpvLtXMRsbSfDV4"
+    #transaction = transfer["source_transaction"]
+    #puts ActionMailer::Base.deliveries[0].html_part
+    #puts ActionMailer::Base.deliveries[1].html_part
+    
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal ActionMailer::Base.deliveries.length, 2 
+    
+  end
+  
+  test "when post to webhook and theres no orders found" do
+    skip('handle cases where theres no order found')
+    
+    transfer = {"id":"tr_1A345iHWrGpvLtXMLjNvHALf","object":"transfer","amount":1880,"amount_reversed":0,"application_fee":null,"balance_transaction":"txn_1A345iHWrGpvLtXMNkWecVrI","created":1490883454,"currency":"brl","date":1490883454,"description":null,"destination":"acct_1A2RYaFJqvzNLRuj","destination_payment":"py_1A345iFJqvzNLRujUNpC6QG1","failure_code":null,"failure_message":null,"livemode":true,"metadata":{},"method":"standard","recipient":null,"reversals":{"object":"list","data":[],"has_more":false,"total_count":0,"url":"/v1/transfers/tr_1A345iHWrGpvLtXMLjNvHALf/reversals"},"reversed":false,"source_transaction":"ch_1A345fHWrGpvLtXMRsbSfDV4","source_type":"card","statement_descriptor":null,"status":"paid","transfer_group":"group_ch_1A345fHWrGpvLtXMRsbSfDV4","type":"stripe_account"}
+    @request.env['RAW_POST_DATA'] = transfer
+    post :webhook, {}
+    #transaction = transfer["source_transaction"]
+    #puts ActionMailer::Base.deliveries[1].html_part
+    
+    assert_not ActionMailer::Base.deliveries.empty?
+    
+  end
+  
   test "should update status if doesnt have any" do
     orders = Order.create(:price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)
     @request.env['RAW_POST_DATA'] = @post_params
