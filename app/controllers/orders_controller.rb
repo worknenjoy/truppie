@@ -46,16 +46,25 @@ class OrdersController < ApplicationController
       else
         request_raw_json = JSON.parse(request.raw_post())
       end
+      
+      puts "webhook"
       puts request_raw_json.inspect
       
       @event = request_raw_json["type"]
       
-      @event_types = ["charge.succeeded", "charge.pending", "charge.failed", "payment.created", "payment.created"]
+      @event_types = ["stripe_account", "charge.succeeded", "charge.pending", "charge.failed", "payment.created", "payment.created"]
 
       if @event_types.include?(@event)
-         
+        
         @payment_id = request_raw_json["data"]["object"]["id"]
         @status = request_raw_json["data"]["object"]["status"]
+        
+        @transfer = request_raw_json["source_transaction"]
+       
+        
+        if @transfer
+          @payment_id = request_raw_json["source_transaction"]
+        end 
         
         begin
           order = Order.where(payment: @payment_id).joins(:user).take

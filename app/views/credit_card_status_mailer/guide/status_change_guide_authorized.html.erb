@@ -16,6 +16,7 @@
         <td>
           <h1>Olá, <%= @organizer.name %>!</h1>
           <p>O pagamento do explorador <strong><%= @user.name %></strong> <a href="mailto:<%= @user.email %>">(<%= @user.email %>)</a> foi autorizado e sua reserva está oficialmente confirmada na truppie <strong><%= @tour.title %></strong>!</p>
+          <p>Também uma nova transferência foi solicitada para a sua conta</p>
           <h2 class="align-center">Temos aqui o resumo do pedido</h2>
           <% if !@order%>
             <p>Não há reservas para você neste momento</p>
