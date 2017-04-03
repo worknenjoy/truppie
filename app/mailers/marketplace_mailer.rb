@@ -2,7 +2,6 @@ require 'open-uri'
 
 class MarketplaceMailer < ApplicationMailer
   layout 'mail_modern_generic'
-  @copy_mailers = "ola@truppie.com, #{Rails.application.secrets[:admin_email]}, #{Rails.application.secrets[:admin_email_alt]}"
   
   def activate(organizer)
     
@@ -10,6 +9,7 @@ class MarketplaceMailer < ApplicationMailer
     
     mailers = "#{organizer.email}"
     subject = "Sua carteira da Truppie foi ativada com sucesso"
+    @copy_mailers = "ola@truppie.com, #{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
     
     @logo_file = "#{@organizer.to_param}.png"
     
@@ -48,6 +48,7 @@ class MarketplaceMailer < ApplicationMailer
     
     mailers = "#{organizer.email}"
     subject = "Sua carteira da Truppie foi atualizada com sucesso"
+    @copy_mailers = "ola@truppie.com, #{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
     
     @logo_file = "#{@organizer.to_param}.png"
     
@@ -84,6 +85,7 @@ class MarketplaceMailer < ApplicationMailer
     
     mailers = "#{organizer.email}"
     subject = "Sua conta bancária foi cadastrada na Truppie com sucesso"
+    @copy_mailers = "ola@truppie.com, #{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
     
     @logo_file = "#{@organizer.to_param}.png"
     
@@ -123,6 +125,7 @@ class MarketplaceMailer < ApplicationMailer
     
     mailers = "#{organizer.email}"
     subject = "Uma nova transferência para sua conta foi realizada"
+    @copy_mailers = "ola@truppie.com, #{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
     
     @logo_file = "#{@organizer.to_param}.png"
     
