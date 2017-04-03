@@ -11,7 +11,7 @@ class CreditCardStatusMailer < ApplicationMailer
     @tour = tour
     @organizer = organizer
     
-    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com" 
+    @copy_mailers = "ola@truppie.com,#{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
     
     mailers = "#{user.email}"
     
@@ -40,7 +40,7 @@ class CreditCardStatusMailer < ApplicationMailer
       from: 'ola@truppie.com',
       subject: @status[:subject],
       to: mailers,
-      bcc: copy_mailers,
+      bcc: @copy_mailers,
       template_name: 'status_change',
       template_path: 'credit_card_status_mailer' 
      )
@@ -54,7 +54,7 @@ class CreditCardStatusMailer < ApplicationMailer
     @tour = tour
     @organizer = organizer
     
-    copy_mailers = "ola@truppie.com, alexanmtz@gmail.com, laurinha.sette@gmail.com"
+    @copy_mailers = "ola@truppie.com,#{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
     
     organizer_mailers = "#{organizer.email}"
     
@@ -82,7 +82,7 @@ class CreditCardStatusMailer < ApplicationMailer
       from: 'ola@truppie.com',
       subject: "Notificação enviada ao usuário da sua truppie - #{@status[:subject]}",
       to: organizer_mailers,
-      bcc: copy_mailers,
+      bcc: @copy_mailers,
       template_name: @status[:guide],
       template_path: 'credit_card_status_mailer/guide'
      )
