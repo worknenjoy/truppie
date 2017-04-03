@@ -1,6 +1,5 @@
 class OrganizerMailer < ApplicationMailer
   layout 'base_mail'
-  @copy_mailers = "ola@truppie.com, #{Rails.application.secrets[:admin_email]}, #{Rails.application.secrets[:admin_email_alt]}"
   
   def notify(organizer, status)
     
@@ -16,6 +15,7 @@ class OrganizerMailer < ApplicationMailer
         @status_to_user = "atualizada"
     end
     
+    @copy_mailers = "ola@truppie.com,#{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
     mailers = "#{organizer.email}"
     subject = "Olá #{organizer.name}, sua conta na Truppie foi #{@status_to_user}!"
     
