@@ -16,9 +16,13 @@
         <% else %>
         	<% if @tour.try(:packages) %>
         	<div class="ribbon base packages">
-				<% @tour.packages.each do |t| %>
+				<% @tour.packages.each_with_index do |t, i| %>
 					<small><%= t.name %></small>
 					<span><%= raw t.price %></span><br />
+					<% break if i == 1; %>	
+				<% end %>
+				<% if @tour.packages.length > 2 %>
+					<a class="btn btn-primary btn-sm btn-block" href="#packages">ver todos os pacotes abaixo</a>	
 				<% end %>
 				<%= link_to 'Reservar', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
 			</div>
@@ -178,13 +182,16 @@
 		<% if @tour.packages.any? and !@tour.value %>
 		<div class="row">
 			<div class="col-xs-12">
-				<h3 class="spaced-default">Opções de pacotes</h3>
+				<h3 class="spaced-default">
+					<a name="packages">Opções de pacotes</a>
+				</h3>
 			</div>
 		</div>
 		<div class="row text-xs-center">
 			<% @tour.packages.each do |p| %>
-			<!-- item -->
-            <div class="col-md-6">
+	
+	<!-- item -->    
+	<div class="col-md-6">
                 <div class="card panel-pricing">
                     <div class="card-header card-info" style="color: white;">
                         <h3><%= p.name %></h3>
@@ -208,6 +215,7 @@
             </div>
             <!-- /item -->
 			<% end %>
+			
 		</div>
 		<% end %>
 		<div class="row">
@@ -293,4 +301,3 @@
 	  </div>
 	  <% end %>
 	</div>
-</div>

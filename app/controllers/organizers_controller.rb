@@ -8,7 +8,7 @@ class OrganizersController < ApplicationController
   def check_if_admin
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
     
-    if params[:controller] == "organizers" and params[:action] == "manage"
+    if params[:controller] == "organizers" and (params[:action] == "manage" or params[:action] == "tos_acceptance")
       organizer_id = params[:id]
       allowed_emails.push Organizer.find(organizer_id).user.email
     end
