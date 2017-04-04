@@ -180,7 +180,7 @@
     	</div>
     	<div class="tab-pane" id="packages" role="tabpanel">
             <p>Você pode adicionar pacotes com valores diferentes (lembre-se que o campo de preço da truppie deve ficar em branco)</p>
-            <%= f.fields_for :packages, ([@tour.packages.build, @tour.packages.build] if @tour.packages.empty?)  do |ff| %>
+            <%= f.fields_for :packages, (Array.new(12, @tour.packages.build) if @tour.packages.empty?)  do |ff| %>
             <fieldset class="form-group packages-set">
 	            <div class="form-group">
 	                <div class="input-group">
@@ -215,7 +215,7 @@
     </div>
    -->
     <div class="pull-right">  
-    	<a href="<%= new_tour_path %> class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">
+    	<a href="<%= new_tour_path %>" class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">
         	Cancelar
         </a>  
         <%= link_to("Salvar truppie", "#", class: "btn btn-lg btn-primary criar-truppie") %>
