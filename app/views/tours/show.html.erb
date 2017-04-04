@@ -17,13 +17,12 @@
         	<% if @tour.try(:packages) %>
         	<div class="ribbon base packages">
 				<% @tour.packages.each_with_index do |t, i| %>
-			             
 					<small><%= t.name %></small>
 					<span><%= raw t.price %></span><br />
-					<% break if i == 2; %>	
+					<% break if i == 1; %>	
 				<% end %>
 				<% if @tour.packages.length > 2 %>
-					<a class="btn btn-outline btn-sm btn-block" href="#packages">ver todos os pacotes abaixo</a>	
+					<a class="btn btn-primary btn-sm btn-block" href="#packages">ver todos os pacotes abaixo</a>	
 				<% end %>
 				<%= link_to 'Reservar', confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
 			</div>
