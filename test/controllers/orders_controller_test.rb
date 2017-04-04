@@ -140,7 +140,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
   
   test "should send the balance in each email confirmation send for the guide" do
-    orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)
+    orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :liquid => 180, :payment => @payment, :user => User.last, :tour => Tour.last)
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
     #puts ActionMailer::Base.deliveries[1].html_part
