@@ -56,6 +56,23 @@ $(function(){
 	  }
 	});
 	where.initialize();
+	var count = $('.packages-set').length;
+	$('.add-packages').on('click', function(e){
+	  $('<div />').load('/packages/new', function(data){
+	     var new_data = $(data).find('input').each(function(e){
+          $(this).attr('name', 'tour[packages_attributes][' + count  +  '][' + this.id + ']');
+          console.log(this);
+          if(this.id == 'included') {
+            $(this).tagsinput({
+              delimiter: ";"
+            });
+          }
+        }).end();
+        count++;
+        $('.new-packages-content:eq(0)').prepend(new_data);
+	  });	  
+	  return false;
+	});
 	
 	$('#tour_where').tagsinput({
 	  typeaheadjs: {

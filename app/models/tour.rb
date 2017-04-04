@@ -15,7 +15,7 @@ class Tour < ActiveRecord::Base
   
   has_and_belongs_to_many :orders
   
-  accepts_nested_attributes_for :packages
+  accepts_nested_attributes_for :packages, allow_destroy: true, reject_if: :all_blank
   
   validates_presence_of :title, :organizer, :where
   

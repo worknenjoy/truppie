@@ -1,5 +1,21 @@
-<h1>New Package</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', packages_path %>
+<fieldset class="form-group packages-set">
+  <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+          <%= hidden_field_tag :id, nil %>
+          <%= text_field_tag :name, nil, placeholder: "Nome do pacote", class: "form-control" %>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-money"></span></span>
+          <%= number_field_tag :value, nil, placeholder: "Valor do pacote", class: "form-control" %>
+      </div>
+  </div>
+  <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
+          <%= text_field_tag :included, nil, placeholder: "O que inclui no pacote", class: "form-control  package-value" %>
+      </div>
+  </div>
+</fieldset>

@@ -15,6 +15,8 @@ class PackagesController < ApplicationController
   # GET /packages/new
   def new
     @package = Package.new
+    
+    render layout: false
   end
 
   # GET /packages/1/edit
