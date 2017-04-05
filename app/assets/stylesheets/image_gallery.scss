@@ -1,0 +1,18 @@
+@import 'bootstrap/variables';
+
+.gallery {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(to bottom, $list-group-hover-bg 0%, $gray-lightest 100%);
+  margin: 1em 0;
+  padding: 1em;
+}
+
+.gallery-image {
+  flex-grow: 0;
+  margin: 10px 0.2em;
+}
+
+.gallery-image:last-item {
+  flex-shrink: 1;
+}

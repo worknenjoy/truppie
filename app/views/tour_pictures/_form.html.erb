@@ -1,0 +1,25 @@
+<%= form_for(@tour_picture) do |f| %>
+  <% if @tour_picture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tour_picture.errors.count, "error") %> prohibited this tour_picture from being saved:</h2>
+
+      <ul>
+      <% @tour_picture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :photo %><br>
+    <%= f.file_field :photo %>
+  </div>
+  <div class="field">
+    <%= f.label :tour_id %><br>
+    <%= f.select :tour_id, options_for_select(Tour.all.map{|s|[s.title, s.id]}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

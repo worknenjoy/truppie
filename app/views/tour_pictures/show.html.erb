@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @tour_picture.photo %>
+</p>
+
+<p>
+  <strong>Tour:</strong>
+  <%= @tour_picture.tour %>
+</p>
+
+<%= link_to 'Edit', edit_tour_picture_path(@tour_picture) %> |
+<%= link_to 'Back', tour_pictures_path %>
