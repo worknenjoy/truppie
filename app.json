@@ -6,6 +6,9 @@
   "env": {},
   "formation": {
   },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  }
   "addons": [
     "logentries",
     "papertrail",

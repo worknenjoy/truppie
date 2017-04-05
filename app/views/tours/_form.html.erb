@@ -180,7 +180,13 @@
     	</div>
     	<div class="tab-pane" id="packages" role="tabpanel">
             <p>Você pode adicionar pacotes com valores diferentes (lembre-se que o campo de preço da truppie deve ficar em branco)</p>
-            <%= f.fields_for :packages, (Array.new(12, @tour.packages.build) if @tour.packages.empty?)  do |ff| %>
+            <div class="form-group">
+                <div class="input-group">
+                  <%= link_to 'Adicionar pacote', new_package_path, class: 'add-packages' %>
+                </div>
+            </div>
+             <%= f.fields_for :packages, (Array.new(1, @tour.packages.build) if @tour.packages.empty?) do |ff| %>
+            <div class="new-packages-content">
             <fieldset class="form-group packages-set">
 	            <div class="form-group">
 	                <div class="input-group">
@@ -200,7 +206,9 @@
 	                    <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: "O que inclui no pacote", class: "form-control  package-value" %>
 	                </div>
 	            </div>
+	            
             </fieldset>
+	    </div>
             <% end %>
     	</div>
 	</div>
