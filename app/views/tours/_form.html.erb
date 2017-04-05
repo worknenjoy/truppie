@@ -185,7 +185,7 @@
                   <%= link_to 'Adicionar pacote', new_package_path, class: 'add-packages' %>
                 </div>
             </div>
-            <%= f.fields_for :packages do |ff| %>
+             <%= f.fields_for :packages, (Array.new(1, @tour.packages.build) if @tour.packages.empty?) do |ff| %>
             <div class="new-packages-content">
             <fieldset class="form-group packages-set">
 	            <div class="form-group">
@@ -206,8 +206,9 @@
 	                    <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: "O que inclui no pacote", class: "form-control  package-value" %>
 	                </div>
 	            </div>
-	            </div>
+	            
             </fieldset>
+	    </div>
             <% end %>
     	</div>
 	</div>
