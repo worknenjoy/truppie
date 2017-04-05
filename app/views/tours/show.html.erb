@@ -179,6 +179,24 @@
 		        </div>
 	       </div>
 		</div>
+    <% if !@pictures.nil? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h4 class="spaced-top">
+          Fotos
+        </h4>
+      </div>
+      <div class="cols-xs-12">
+        <div class="gallery">
+          <% @pictures.each do |p| %>
+          <div class="gallery-image">
+                <%= image_tag p.photo.url(:thumbnail), :alt => "Truppie", class: "img-fluid" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
 		<% if @tour.packages.any? and !@tour.value %>
 		<div class="row">
 			<div class="col-xs-12">
@@ -220,7 +238,7 @@
 		<% end %>
 		<div class="row">
 			<div class="col-xs-12">
-				<h4 class="spaced-smallest"><strong>Sobre</strong></h4>
+				<h4><strong>Sobre</strong></h4>
 				<p><%= raw @tour.description %></p>
 			</div>
 		</div>

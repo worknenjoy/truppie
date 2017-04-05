@@ -201,7 +201,8 @@ class ToursController < ApplicationController
   # GET /tours/1
   # GET /tours/1.json
   def show
-    
+    @pictures = TourPicture.where(:tour => @tour.id)
+    puts @pictures
   end
 
   # GET /tours/new

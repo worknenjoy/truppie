@@ -98,7 +98,9 @@ class Tour < ActiveRecord::Base
       if self.try(:packages) and !self.value
         self.packages.each do |p|
           if !p.nil?
-            minor = p.value if p.value < minor
+            if p.try(:value)
+              minor = p.value if p.value < minor
+            end
           end 
         end
       end

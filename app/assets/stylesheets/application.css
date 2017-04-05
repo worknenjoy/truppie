@@ -41,7 +41,8 @@
  *= require main-menu
  *= require showcase  
  *= require tours
- *= require dashboard   
+ *= require dashboard 
+ *= require image_gallery   
  */
 
 .full-width {

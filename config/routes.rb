@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :tour_pictures
   resources :bank_accounts do
     member do
       get 'activate', to: 'bank_accounts#activate', as: 'activate'

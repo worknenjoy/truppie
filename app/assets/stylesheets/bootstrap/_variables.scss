@@ -37,6 +37,8 @@ $brand-primary-darker:      darken($brand-primary, 15%) !default;
 $brand-primary-lighter:     lighten($brand-primary, 15%) !default;
 $brand-success:             #31BCB0 !default;
 $brand-info:                #5bc0de !default;
+$brand-info-light:        lighten($brand-info, 20%) !default;
+$brand-info-lighter:        lighten($brand-info, 30%) !default;
 $brand-warning:             #f0ad4e !default;
 $brand-danger:              #d9534f !default;
 

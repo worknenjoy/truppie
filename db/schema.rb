@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329203825) do
+ActiveRecord::Schema.define(version: 20170405192413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -358,6 +358,18 @@ ActiveRecord::Schema.define(version: 20170329203825) do
   add_index "tags_tours", ["tag_id", "tour_id"], name: "index_tags_tours_on_tag_id_and_tour_id", using: :btree
   add_index "tags_tours", ["tour_id", "tag_id"], name: "index_tags_tours_on_tour_id_and_tag_id", using: :btree
 
+  create_table "tour_pictures", force: :cascade do |t|
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "tour_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "tour_pictures", ["tour_id"], name: "index_tour_pictures_on_tour_id", using: :btree
+
   create_table "tours", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
@@ -464,6 +476,7 @@ ActiveRecord::Schema.define(version: 20170329203825) do
   add_foreign_key "organizers", "wheres"
   add_foreign_key "reviews", "tours"
   add_foreign_key "reviews", "users"
+  add_foreign_key "tour_pictures", "tours"
   add_foreign_key "tours", "attractions"
   add_foreign_key "tours", "categories"
   add_foreign_key "tours", "confirmeds"
