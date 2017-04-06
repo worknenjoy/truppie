@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  photo: 
-  tour_id: 
+  tour: morro 
 
-two:
-  photo: 
-  tour_id: 
+two: 
+  tour: morro

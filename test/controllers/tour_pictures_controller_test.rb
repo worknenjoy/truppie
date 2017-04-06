@@ -18,7 +18,7 @@ class TourPicturesControllerTest < ActionController::TestCase
 
   test "should create tour_picture" do
     assert_difference('TourPicture.count') do
-      post :create, tour_picture: { photo: @tour_picture.photo, tour_id: @tour_picture.tour_id }
+      post :create, tour_picture: { tour_id: @tour_picture.tour_id }
     end
 
     assert_redirected_to tour_picture_path(assigns(:tour_picture))
@@ -35,7 +35,7 @@ class TourPicturesControllerTest < ActionController::TestCase
   end
 
   test "should update tour_picture" do
-    patch :update, id: @tour_picture, tour_picture: { photo: @tour_picture.photo, tour_id: @tour_picture.tour_id }
+    patch :update, id: @tour_picture, tour_picture: { tour_id: @tour_picture.tour_id }
     assert_redirected_to tour_picture_path(assigns(:tour_picture))
   end
 
