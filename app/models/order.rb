@@ -32,7 +32,7 @@ class Order < ActiveRecord::Base
   
   def total_fee
     if self.try(:fees).has_key?(:fee)
-      self.fees[:fee]
+      self.try(:fees)[:fee] || 0
     else
       0
     end

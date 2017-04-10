@@ -15,17 +15,14 @@
       <tr>
         <td>
           <h1>Olá, <%= @organizer.name %>!</h1>
-          <p>O pagamento do explorador <strong><%= @user.name %></strong> <a href="mailto:<%= @user.email %>">(<%= @user.email %>)</a> foi autorizado e sua reserva está oficialmente confirmada na truppie <strong><%= @tour.title %></strong>!</p>
-          <p>Também uma nova transferência foi solicitada para a sua conta</p>
-          <% if @order.try(:liquid) %>
-          <p>O valor transferido será de <strong><%= raw final_price_from_cents(@order.liquid) %></strong></p>
-          <% end %>
-          <p>Você irá recebê-lo em 30 dias com a transferência para a conta fornecida.</p>
+          <p>O pagamento do explorador(a) <strong><%= @user.name %></strong> <a href="mailto:<%= @user.email %>">(<%= @user.email %>)</a> foi autorizado e sua reserva está oficialmente confirmada na truppie <strong><%= @tour.title %></strong>!</p>
+          <p>Uma nova transferência foi solicitada para a sua conta.</p>
+          <p>Você irá recebê-la em 30 dias a partir de hoje. e vamos avisá-lo quando ela for realizada.</p>
           <h2 class="align-center">Temos aqui o resumo do pedido</h2>
           <% if !@order%>
             <p>Não há reservas para você neste momento</p>
           <% else %>
-          <%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
+          <%= render partial: 'credit_card_status_mailer/order_balance_account', locals: {order: @order} %>
           <% end %>
         </td>
       </tr>

@@ -58,6 +58,7 @@ class OrdersController < ApplicationController
         
         @payment_id = request_raw_json["data"]["object"]["id"]
         @status = request_raw_json["data"]["object"]["status"]
+        @destination = request_raw_json["data"]["object"]["destination_payment"]
         
         @transfer = request_raw_json["source_transaction"] || request_raw_json["data"]["object"]["source_transaction"]
         
@@ -83,6 +84,9 @@ class OrdersController < ApplicationController
           if !order.try(:status)
             order.update_attributes({:status => @status})
           end
+          if @destination
+            order.update_attributes({:destination => @destination})
+          end
           order_tour = Order.where(payment: @payment_id).joins(:tour).take
           user = order.user
           tour = order_tour.tour
@@ -105,7 +109,7 @@ class OrdersController < ApplicationController
             @subject = "Solicitação de reserva de uma truppie! :)"
             @guide_template = "status_change_guide_authorized"
             @mail_first_line = "Referente à solicitação de reserva da truppie <strong>#{tour.title}</strong> com o guia <strong>#{organizer.name}</strong>, <br />temos boas novas: o pagamento foi <strong>autorizado</strong> pela operadora de seu cartão e sua truppie está <strong>oficialmente reservada!</strong> Uhuul \o/ "
-            @mail_second_line = "Você está confirmado no evento. Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>. Você também pode acompanhar sua reserva em <a href='#{tour_url(tour)}'>#{tour_url(tour)}</a>"
+            @mail_second_line = "Você está confirmado no evento. <br />Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>."
         when "failed"
             @status_class = "alert-danger"
             @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
