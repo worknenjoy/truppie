@@ -182,6 +182,11 @@
      assert_response :success
    end
    
+   test "should load successfully the organizer manage" do
+     get :manage, id: @mkt.id
+     assert_response :success
+   end
+   
    test "should not transfer amount to organizer because the token is not valid" do
      skip("migrate to stripe")
      @mkt.marketplace.bank_account_active.update_attributes(:own_id => "fooid")

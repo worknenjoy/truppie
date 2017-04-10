@@ -29,7 +29,6 @@ class Organizer < ActiveRecord::Base
     if self.market_place_active
       begin
         balance = Stripe::Balance.retrieve(self.marketplace.token)
-        puts balance.inspect
         return balance
       rescue => e
         puts e.inspect
