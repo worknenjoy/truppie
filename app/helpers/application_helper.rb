@@ -22,6 +22,13 @@ module ApplicationHelper
     end
   end
   
+  def to_https(url)
+    uri = URI.parse("https://example.com/some/path")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    return http.get(uri.request_uri)
+  end
+  
   def friendly_price(p)
     if p > 0 
       number_to_currency(p.to_f/100, :unit => "R$")

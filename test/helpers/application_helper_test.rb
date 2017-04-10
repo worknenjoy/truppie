@@ -22,6 +22,11 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal "daqui a aproximadamente 20 horas", friendly_when(time)
   end
   
+  test "should return https url" do
+    url = "http://www.foo.com"
+    assert_equal "https://www.foo.com", to_https(url)
+  end
+  
   test "should return the price friendly" do
     price = 2000
     assert_equal "R$ 20,00", friendly_price(price)

@@ -4,7 +4,7 @@
 	<% tour.confirmeds.each do |t| %>
 		<% if t.user.image %>
 		<button type="button" class="activate-tooltip btn-link" data-toggle="tooltip" data-placement="top" title="<%= t.user.name %>">
-			<img width="50" src="<%= t.user.image %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
+			<img width="50" src="<%= to_https(t.user.image) %>?type=normal" class="avatar img-circle img-thumbnail" alt="avatar">
 		</button>
 		<% else %>
 		<button type="button" class="activate-tooltip btn-link" data-toggle="tooltip" data-placement="top" title="<%= t.user.name %>">
