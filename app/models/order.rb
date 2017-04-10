@@ -31,7 +31,7 @@ class Order < ActiveRecord::Base
   end
   
   def total_fee
-    self.fees[:fee]  
+    self.fees[:fee] || 0
   end
   
   def amount_total
