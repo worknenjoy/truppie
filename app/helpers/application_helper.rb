@@ -23,7 +23,7 @@ module ApplicationHelper
   end
   
   def to_https(url)
-    uri = URI.parse("https://example.com/some/path")
+    uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     return http.get(uri.request_uri)
