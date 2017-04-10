@@ -31,7 +31,11 @@ class Order < ActiveRecord::Base
   end
   
   def total_fee
-    self.fees[:fee] || 0
+    if self.try(:fees).has_key?(:fee)
+      self.fees[:fee]
+    else
+      0
+    end
   end
   
   def amount_total
@@ -39,7 +43,11 @@ class Order < ActiveRecord::Base
   end
   
   def price_with_fee
-    self.fees[:liquid]
+    if self.try(:fees).has_key?(:liquid)
+      self.fees[:liquid]
+    else
+      0
+    end
   end
   
   def full_desc_status(status)

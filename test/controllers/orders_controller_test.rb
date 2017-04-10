@@ -228,7 +228,46 @@ class OrdersControllerTest < ActionController::TestCase
     post :webhook, {}
     
     assert_equal assigns(:transfer), "ch_payment222"
-    assert_equal assigns(:status), "paid"
+    assert_equal assigns(:status), "succeeded"
+    assert_equal assigns(:status_class), "alert-success"
+    
+    #transaction = transfer["source_transaction"]
+    #puts ActionMailer::Base.deliveries[0].html_part
+    #puts ActionMailer::Base.deliveries[1].html_part
+    
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal ActionMailer::Base.deliveries.length, 2 
+    
+  end
+  
+  test "a new transfer should trigger a order approved if approve payment on review" do
+    orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :payment => "ch_1A73vtHWrGpvLtXMtlnovGAi", :user => User.last, :tour => Tour.last)
+    @review_params = {
+      "id": "evt_1A74DZHWrGpvLtXMOAjJ1go1",
+      "object": "event",
+      "api_version": "2017-01-27",
+      "created": 1491837253,
+      "data": {
+        "object": {
+          "id": "prv_1A73vvHWrGpvLtXMxF4pHcns",
+          "object": "review",
+          "charge": "ch_1A73vtHWrGpvLtXMtlnovGAi",
+          "created": 1491836159,
+          "livemode": true,
+          "open": false,
+          "reason": "approved"
+        }
+      },
+      "livemode": true,
+      "pending_webhooks": 1,
+      "request": "req_ARy9tHfm1mjAHk",
+      "type": "review.closed"
+    }
+    @request.env['RAW_POST_DATA'] = @review_params
+    post :webhook, {}
+    
+    assert_equal assigns(:reviewed), "ch_1A73vtHWrGpvLtXMtlnovGAi"
+    assert_equal assigns(:status), "succeeded"
     assert_equal assigns(:status_class), "alert-success"
     
     #transaction = transfer["source_transaction"]

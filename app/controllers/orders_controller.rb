@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
       
       @event = request_raw_json["type"]
       
-      @event_types = ["stripe_account", "transfer.created", "transfer.updated", "charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
+      @event_types = ["stripe_account", "review.closed", "transfer.created", "transfer.updated", "charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
 
       if @event_types.include?(@event)
         
@@ -60,10 +60,22 @@ class OrdersController < ApplicationController
         @status = request_raw_json["data"]["object"]["status"]
         
         @transfer = request_raw_json["source_transaction"] || request_raw_json["data"]["object"]["source_transaction"]
-       
+        
+        @reviewed = request_raw_json["data"]["object"]["charge"]
         
         if @transfer
           @payment_id = @transfer
+          if @status == "paid"
+            @status = "succeeded"
+          end
+        end
+        
+        if @reviewed
+          @payment_id = @reviewed 
+          @status = request_raw_json["data"]["object"]["reason"]
+          if @status == "approved"
+            @status = "succeeded"
+          end
         end 
         
         begin
@@ -89,12 +101,6 @@ class OrdersController < ApplicationController
             @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
             @mail_second_line = "Estamos aguardando o pagamento do seu cartão junto a operadora e, assim que for aprovado, vamos te avisar, ok?"
         when "succeeded"
-            @status_class = "alert-success" 
-            @subject = "Solicitação de reserva de uma truppie! :)"
-            @guide_template = "status_change_guide_authorized"
-            @mail_first_line = "Referente à solicitação de reserva da truppie <strong>#{tour.title}</strong> com o guia <strong>#{organizer.name}</strong>, <br />temos boas novas: o pagamento foi <strong>autorizado</strong> pela operadora de seu cartão e sua truppie está <strong>oficialmente reservada!</strong> Uhuul \o/ "
-            @mail_second_line = "Você está confirmado no evento. Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>. Você também pode acompanhar sua reserva em <a href='#{tour_url(tour)}'>#{tour_url(tour)}</a>"
-        when "paid"
             @status_class = "alert-success" 
             @subject = "Solicitação de reserva de uma truppie! :)"
             @guide_template = "status_change_guide_authorized"
