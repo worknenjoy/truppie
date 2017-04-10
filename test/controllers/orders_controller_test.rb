@@ -58,6 +58,54 @@ class OrdersControllerTest < ActionController::TestCase
       },
       "type": "charge.succeeded"
     }
+    
+    @transfer_params = {
+      "id": "evt_1A73vwHWrGpvLtXMMX1dJmTh",
+      "object": "event",
+      "api_version": "2017-01-27",
+      "created": 1491836160,
+      "data": {
+        "object": {
+          "id": "tr_1A73vvHWrGpvLtXM3xmc4LDB",
+          "object": "transfer",
+          "amount": 3290,
+          "amount_reversed": 0,
+          "application_fee": "null",
+          "balance_transaction": "txn_1A73vvHWrGpvLtXMX21VAplk",
+          "created": 1491836159,
+          "currency": "brl",
+          "date": 1491836159,
+          "description": "null",
+          "destination": "acct_1A38LlAV9HfXM8dB",
+          "destination_payment": "py_1A73vvAV9HfXM8dBEbnCNUSk",
+          "failure_code": "null",
+          "failure_message": "null",
+          "livemode": true,
+          "metadata": {},
+          "method": "standard",
+          "recipient": "null",
+          "reversals": {
+            "object": "list",
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/transfers/tr_1A73vvHWrGpvLtXM3xmc4LDB/reversals"
+          },
+          "reversed": false,
+          "source_transaction": "ch_payment222",
+          "source_type": "card",
+          "statement_descriptor": "null",
+          "status": "paid",
+          "transfer_group": "group_ch_1A73vtHWrGpvLtXMtlnovGAi",
+          "type": "stripe_account"
+        }
+      },
+      "livemode": true,
+      "pending_webhooks": 1,
+      "request": "req_ARxroCgpsUoRMN",
+      "type": "transfer.created"
+    }
+    
     ActionMailer::Base.deliveries.clear
     
   end
@@ -165,6 +213,24 @@ class OrdersControllerTest < ActionController::TestCase
     post :webhook, {}
     
     assert_equal assigns(:transfer), "ch_1A345fHWrGpvLtXMRsbSfDV4"
+    #transaction = transfer["source_transaction"]
+    #puts ActionMailer::Base.deliveries[0].html_part
+    #puts ActionMailer::Base.deliveries[1].html_part
+    
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal ActionMailer::Base.deliveries.length, 2 
+    
+  end
+  
+  test "a new transfer should trigger a order approved by email if approved later" do
+    orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :payment => "ch_payment222", :user => User.last, :tour => Tour.last)
+    @request.env['RAW_POST_DATA'] = @transfer_params
+    post :webhook, {}
+    
+    assert_equal assigns(:transfer), "ch_payment222"
+    assert_equal assigns(:status), "paid"
+    assert_equal assigns(:status_class), "alert-success"
+    
     #transaction = transfer["source_transaction"]
     #puts ActionMailer::Base.deliveries[0].html_part
     #puts ActionMailer::Base.deliveries[1].html_part
