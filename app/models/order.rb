@@ -44,7 +44,7 @@ class Order < ActiveRecord::Base
   
   def price_with_fee
     if self.try(:fees).has_key?(:liquid)
-      self.fees[:liquid]
+      self.try(:fees)[:liquid] || 0
     else
       0
     end

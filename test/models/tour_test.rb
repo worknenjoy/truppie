@@ -214,6 +214,42 @@ class TourTest < ActiveSupport::TestCase
      assert_equal tour_to_order.total_earned_until_now, 1000
    end
    
+   test "truppie with a order with total of taxes with nil" do
+      tour_to_order = tours(:morro)
+      
+      #puts payment.inspect
+      order = tour_to_order.orders.create(
+        :status => 'succeeded',
+        :price => 1000,
+        :status_history => ['succeeded'],
+        :final_price => 1000,
+        :payment => 'somepayment_id',
+        :user => User.last,
+        :tour => Tour.last,
+        :liquid => 990
+      )
+     assert_equal tour_to_order.total_taxes, 0
+     assert_equal tour_to_order.price_with_taxes, 990
+     assert_equal tour_to_order.total_earned_until_now, 1000
+   end
+   
+   test "truppie with final_price nil" do
+      tour_to_order = tours(:morro)
+      
+      #puts payment.inspect
+      order = tour_to_order.orders.create(
+        :status => 'succeeded',
+        :price => 1000,
+        :status_history => ['succeeded'],
+        :payment => 'somepayment_id',
+        :user => User.last,
+        :tour => Tour.last
+      )
+     assert_equal tour_to_order.total_taxes, 0
+     assert_equal tour_to_order.price_with_taxes, 0
+     assert_equal tour_to_order.total_earned_until_now, 0
+   end
+   
    test "simple payment call" do
      skip("calling moip sandbox several times")
      auth = Moip2::Auth::Basic.new(Rails.application.secrets[:moip_token], Rails.application.secrets[:moip_key])
