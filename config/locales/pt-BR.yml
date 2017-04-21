@@ -104,7 +104,7 @@ pt-BR:
   admin-from-anywhere-content: "Administre seus eventos e reservas de qualquer lugar, a Truppie funciona em qualquer dispositivo"
   
   admin-secure-payment-title: "Nossas transações são seguras"
-  admin-secure-payment-content: "Utilizamos o Moip, serviço de pagamento já consolidado no mercado, para efetuar as transações com segurança"
+  admin-secure-payment-content: "Utilizamos o Stripe, serviço de pagamento já consolidado no mercado, para efetuar as transações com segurança"
   
   admin-share-event-title: "Nós ajudamos a divulgar seu evento"
   admin-share-event-content: "Divulgamos seus eventos nas nossas páginas nas principais redes sociais"
