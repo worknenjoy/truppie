@@ -1,5 +1,5 @@
-#7
-_Fork is a resource that allows the user to have a copy of a project. The project can have new ramifications after being approved by the admin._ 
+
+_A Fork is a copy of a repository.Forking a repository allows you to freely experiment with changes without affecting the original project._ 
 
 **Steps to fork a Project:**
 
@@ -8,7 +8,7 @@ _Fork is a resource that allows the user to have a copy of a project. The projec
  
 ![Fork](https://cloud.githubusercontent.com/assets/27444220/25282917/56b5111e-2688-11e7-9b5e-831d3a5e760d.PNG)
 
-After the repository was chosen, the system displays all the project files then the user can chose requested file to edit and click on the file to open project files.
+After the repository is chosen,the system displays all the project files that you fork, then the user can choose the requested file to edit. Click on the file to open the project files.
 
 ![s_a](https://cloud.githubusercontent.com/assets/27444220/25283075/ebd3ffb2-2688-11e7-88f6-3f2a383dd871.PNG)
  
@@ -16,7 +16,7 @@ The user has to click on the icon below to edit the project files.
 
 ![edit_](https://cloud.githubusercontent.com/assets/27444220/25283203/5af29d68-2689-11e7-8360-83f3e9e61d3a.PNG)
 
-The system allows the user to edit the file, this way the user can improve and correct mistakes as desired.
+The system allows the user to edit the file, this way the user can improve and fix errors as desired.
 
 After performing changes, the user must fill in the form “Propose file change”, explain the changes performed in the comment box and click on the button “Propose file change”.
  
@@ -47,5 +47,7 @@ After the Pull Request being created, the system displays a screen with a reques
 After the user has to click on the link below the comment box "Travis" to view the system executing the automated testing integration according to the picture below.
 
 ![test](https://cloud.githubusercontent.com/assets/27444220/25283725/180cb568-268b-11e7-85dc-46ee5ea20ad1.PNG)
+
+
 
  
