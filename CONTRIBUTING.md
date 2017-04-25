@@ -48,6 +48,24 @@ After the user has to click on the link below the comment box "Travis" to view t
 
 ![test](https://cloud.githubusercontent.com/assets/27444220/25283725/180cb568-268b-11e7-85dc-46ee5ea20ad1.PNG)
 
+When the system finishes the integration process test, every change has to be approved by the project admin. If the admin doesn't approve a change, the admin can request the review of the changes done in the project. For the user to see the feedback, the user has to click on the link “Pull resquest”, select the tab "Created" then the user has to select the pull request that has the review.
 
+![request review](https://cloud.githubusercontent.com/assets/27444220/25400108/f0931726-29c7-11e7-95e2-f4c14da0b892.PNG)
+
+The system displays the screen with comments about the pull request review on the tab "Conversation" then the user has to click on the tab “Files changes”.
+
+![change pull](https://cloud.githubusercontent.com/assets/27444220/25400174/206be14e-29c8-11e7-939c-4a08dcdfb4fb.PNG)
+
+The system displays the project edition screen. The user has to click on the icon below to edit the project files.
+
+![edit](https://cloud.githubusercontent.com/assets/27444220/25400216/494da598-29c8-11e7-9316-626d3aa38ff3.PNG)
+
+The system allows the user to edit the file, this way the user can fix errors as suggested by admin. 
+After performing changes, the user must fill in the form “Commit changes”, explain the changes performed in the comment box, select the option “Commit directly to the patch-3 branch” and click on the button “Commit changes”.
+
+![edicao do arquivo](https://cloud.githubusercontent.com/assets/27444220/25400309/7dd3ddfa-29c8-11e7-8a39-bf156529e48a.PNG)
+![commit c](https://cloud.githubusercontent.com/assets/27444220/25400345/9e70da36-29c8-11e7-987b-0fc72211cf40.PNG)
+
+After the user commit the project, the project admin has to approve the project so that the project can be integrated with the original project.
 
  
