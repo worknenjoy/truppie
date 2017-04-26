@@ -32,7 +32,7 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
   1. Suggesting improvements in the platform;
   2. Requesting a bug fix.
 
-We have a {Contribution Guideline}[CONTRIBUTING.md] to guide you to how contribute with content and code.
+We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/master/CONTRIBUTING.md] to guide you to how contribute with content and code.
   
 == Advantages
 
