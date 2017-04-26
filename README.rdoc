@@ -28,7 +28,7 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
   5. If it is good to merge, the code goes to production;
   6. You get paid for it.
   
-  We have a Contribution Guideline to guide you through the coding.
+  We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/master/CONTRIBUTING.md] to guide you to how contribute with content and code.
   
   If you are not a developer, you can also contribute to the project and be paid for it! How? By:
   1. Suggesting improvements in the platform;
