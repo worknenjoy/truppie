@@ -62,8 +62,33 @@ en:
   newsletter-text: "Leave your e-mail to be notified about the first truppie:"
   
   
-
   bank_controller_activation_msg_one: "Esta conta bancária do #{@bank_account.marketplace.organizer.name} já foi ativada"
-  bank_controller_activation_msg_status: "danger"
-  bank_controller_activation_errors: "já tem uma conta associada"  
-  
+  bank_controller_activation_msg_status_one: "danger"
+  bank_controller_activation_errors: "já tem uma conta associada"
+  bank_controller_activation_errors_two: "Não foi possível salvar a conta ativa"
+  bank_controller_activation_msg_two: "Conta ativada com sucesso"
+  bank_controller_activation_msg_status_two: "success"
+  bank_controller_activation_msg_three: "Não conseguimos ativar a conta"
+  bank_controller_activation_msg_four: "Não foi possível ativar esta conta"
+  bank_controller_activation_msg_five: "Tivemos um problema pra ativar esta conta bancária"
+
+  contacts_controller_error: "Faltou preencher o email e/ou a mensagem"
+  contacts_controller_succes: "Sua mensagem foi enviada com sucesso, entraremos em contato em breve"
+  contacts_controller_error_two: "Não foi possível enviar o seu e-mail. Tente novamente"
+
+  marketplace_controller_notice: "Você não está autorizado a entrar nesta página"
+  marketplace_controller_notice_two: "Marketplace was successfully created."
+  marketplace_controller_notice_three: "Marketplace was successfully updated."
+  marketplace_controller_notice_four: "Marketplace was successfully destroyed."
+  marketplace_controller_activation_message_one: "Conseguimos com sucesso criar uma conta no marketplace para #{@marketplace.organizer.name}"
+  marketplace_controller_activation_message_two: "Marketplace #{@marketplace.organizer.name} não foi criado"
+  marketplace_controller_activation_message_three: "Marketplace #{@marketplace.organizer.name} já se encontra ativo"
+  marketplace_controller_activation_message_four: "Marketplace #{@marketplace.organizer.name} não pôde ser ativado devido a problema na API do Stripe"
+  marketplace_controller_activation_message_five: "Conseguimos com sucesso atualizar sua conta do #{@marketplace.organizer.name}"
+  marketplace_controller_activation_message_six: "Marketplace #{@marketplace.organizer.name} não foi atualizado"
+  marketplace_controller_activation_message_seven: "Marketplace #{@marketplace.organizer.name} já se encontra ativo"
+  marketplace_controller_activation_message_eight: "O Marketplace não pôde ser atualizado devido a problema na API do Stripe"
+  marketplace_controller_errors_one: "Houve algum problema e ele não gerou o id"
+  marketplace_controller_errors_two: "Já se encontra ativo"
+  marketplace_controller_errors_three: "Houve algum problema e ele não achou sua conta"
+  marketplace_controller_errors_four: "Já se encontra ativo"
