@@ -352,3 +352,7 @@ pt-BR:
   bank_controller_activation_msg_three: "Não conseguimos ativar a conta"
   bank_controller_activation_msg_four: "Não foi possível ativar esta conta"
   bank_controller_activation_msg_five: "Tivemos um problema pra ativar esta conta bancária"
+
+  contacts_controller_error: "Faltou preencher o email e/ou a mensagem"
+  contacts_controller_succes: "Sua mensagem foi enviada com sucesso, entraremos em contato em breve"
+  contacts_controller_error_two: "Não foi possível enviar o seu e-mail. Tente novamente"
