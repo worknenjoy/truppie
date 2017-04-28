@@ -342,3 +342,13 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+  
+  bank_controller_activation_msg_one: "Esta conta bancária do #{@bank_account.marketplace.organizer.name} já foi ativada"
+  bank_controller_activation_msg_status_one: "danger"
+  bank_controller_activation_errors: "já tem uma conta associada"
+  bank_controller_activation_errors_two: "Não foi possível salvar a conta ativa"
+  bank_controller_activation_msg_two: "Conta ativada com sucesso"
+  bank_controller_activation_msg_status_two: "success"
+  bank_controller_activation_msg_three: "Não conseguimos ativar a conta"
+  bank_controller_activation_msg_four: "Não foi possível ativar esta conta"
+  bank_controller_activation_msg_five: "Tivemos um problema pra ativar esta conta bancária"

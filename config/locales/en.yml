@@ -62,6 +62,8 @@ en:
   newsletter-text: "Leave your e-mail to be notified about the first truppie:"
   
   
-  
-  
+
+  bank_controller_activation_msg_one: "Esta conta bancária do #{@bank_account.marketplace.organizer.name} já foi ativada"
+  bank_controller_activation_msg_status: "danger"
+  bank_controller_activation_errors: "já tem uma conta associada"  
   

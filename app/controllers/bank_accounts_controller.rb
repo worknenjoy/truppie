@@ -5,9 +5,9 @@ class BankAccountsController < ApplicationController
   
   def activate
     if !@bank_account.own_id.nil?
-      @activation_message = "Esta conta bancária do #{@bank_account.marketplace.organizer.name} já foi ativada"
-      @activation_status = "danger"
-      @errors = "já tem uma conta associada"
+      @activation_message = t('bank_controller_activation_msg_one')
+      @activation_status = t('bank_controller_activation_msg_status')
+      @errors = t('bank_controller_activation_errors')
     else
       begin
         bank_account_active = @bank_account.marketplace.bank_account_active
@@ -15,24 +15,24 @@ class BankAccountsController < ApplicationController
         if bank_register_status.id
           bank_account_active.own_id = bank_register_status.id
           if bank_account_active.save
-            @activation_message = "Conta ativada com sucesso"
-            @activation_status = "success"
+            @activation_message = t('bank_controller_activation_msg_two')
+            @activation_status = t('bank_controller_activation_msg_status_two')
             @response = bank_register_status
             MarketplaceMailer.activate_bank_account(@bank_account.marketplace.organizer).deliver_now
             return bank_register_status            
           else
-            @activation_message = "Não conseguimos ativar a conta"
-            @activation_status = "danger"
-            @errors = "Não foi possível salvar a conta ativa"
+            @activation_message = t('bank_controller_activation_msg_three')
+            @activation_status = t('bank_controller_activation_msg_status_one')
+            @errors = t('bank_controller_activation_errors_two')
           end
         else
-          @activation_message = "Não foi possível ativar esta conta"
-          @activation_status = "danger"
-          @errors = "já tem uma conta associada"
+          @activation_message = t('bank_controller_activation_msg_four')
+          @activation_status = t('bank_controller_activation_msg_status_one')
+          @errors = t('bank_controller_activation_errors')
         end
       rescue => e
-        @activation_message = "Tivemos um problema pra ativar esta conta bancária"
-        @activation_status = "danger"
+        @activation_message = t('bank_controller_activation_msg_five')
+        @activation_status = t('bank_controller_activation_msg_status_one')
         @errors = e.message
       end
     end
