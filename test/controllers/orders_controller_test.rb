@@ -7,6 +7,8 @@ class OrdersControllerTest < ActionController::TestCase
     sign_in users(:alexandre)
     @order = orders(:one)
     @payment = "ch_19qSuIBrSjgsps2DCXDNuqsD"
+    @marketplace_stub_user_id = marketplaces(:marketplace_stub_user_id)
+
     @post_params = {
       "id": "evt_19qSuHBrSjgsps2DD5DiwGT5",
       "object": "event",
@@ -105,9 +107,63 @@ class OrdersControllerTest < ActionController::TestCase
       "request": "req_ARxroCgpsUoRMN",
       "type": "transfer.created"
     }
-    
+
+    @transfer_done_params = {
+        "id" => "evt_1ADs4UFJqvzNLRujpNsC81iI",
+        "object"=>"event",
+        "api_version"=>"2017-01-27",
+        "created"=>1493458858,
+        "data" => {
+            "object" => {
+              "id" => "po_1ADs4UFJqvzNLRuj6roovWYx",
+              "object"=>"transfer",
+              "amount"=>1880,
+              "amount_reversed"=>0,
+              "application_fee"=>nil,
+              "balance_transaction"=>"txn_1ADs4UFJqvzNLRuj3YMkBNFp",
+              "bank_account" =>
+              {
+                  "id"=>"ba_1A2RtgFJqvzNLRujrEiEaZGU",
+                  "object"=>"bank_account",
+                  "account_holder_name"=>"Laura Zerwes Amado Sette",
+                  "account_holder_type"=>"individual",
+                  "bank_name"=>"BANCO BRADESCO S.A.",
+                  "country"=>"BR",
+                  "currency"=>"brl",
+                  "fingerprint"=>"MK7eWClTBE5ZllFf",
+                  "last4"=>"5677",
+                  "routing_number"=>"237-1432",
+                  "status"=>"new"
+              },
+              "created"=>1493458858,
+              "currency"=>"brl",
+              "date"=>1493683200,
+              "description"=>"STRIPE TRANSFER",
+              "destination"=>"ba_1A2RtgFJqvzNLRujrEiEaZGU",
+              "failure_code"=>nil,
+              "failure_message"=>nil,
+              "livemode"=>true,
+              "metadata"=>{},
+              "method"=>"standard",
+              "recipient"=>nil,
+              "reversals"=> {"object"=>"list", "data"=>[], "has_more"=>false, "total_count"=>0, "url"=>"/v1/transfers/po_1ADs4UFJqvzNLRuj6roovWYx/reversals"},
+              "reversed"=>false,
+              "source_transaction"=>nil,
+              "source_type"=>"card",
+              "statement_descriptor"=>nil,
+              "status"=>"in_transit",
+              "transfer_group"=>nil,
+              "type"=>"bank_account"
+            }
+      },
+      "livemode"=>true,
+      "pending_webhooks"=>1,
+      "request"=>nil,
+      "type"=>"transfer.created",
+      "user_id"=>"acct_1A2RYaFJqvzNLRuj"
+    }
     @charge_params = {"id":"tr_1A73vvHWrGpvLtXM3xmc4LDB","object":"transfer","amount":3290,"amount_reversed":0,"application_fee":"null","balance_transaction":"txn_1A73vvHWrGpvLtXMX21VAplk","created":1491836159,"currency":"brl","date":1491836159,"description":"null","destination":"acct_1A38LlAV9HfXM8dB","destination_payment":"py_1A73vvAV9HfXM8dBEbnCNUSk","failure_code":"null","failure_message":"null","livemode":true,"metadata":{},"method":"standard","recipient":"null","reversals":{"object":"list","data":[],"has_more":false,"total_count":0,"url":"/v1/transfers/tr_1A73vvHWrGpvLtXM3xmc4LDB/reversals"},"reversed":false,"source_transaction":"ch_1A73vtHWrGpvLtXMtlnovGAi","source_type":"card","statement_descriptor":"null","status":"paid","transfer_group":"group_ch_1A73vtHWrGpvLtXMtlnovGAi","type":"stripe_account"}
-    
+
     ActionMailer::Base.deliveries.clear
     
   end
@@ -236,7 +292,7 @@ class OrdersControllerTest < ActionController::TestCase
     #transaction = transfer["source_transaction"]
     #puts ActionMailer::Base.deliveries[0].html_part
     #puts ActionMailer::Base.deliveries[1].html_part
-    
+
     assert_not ActionMailer::Base.deliveries.empty?
     assert_equal ActionMailer::Base.deliveries.length, 2 
     
@@ -300,6 +356,35 @@ class OrdersControllerTest < ActionController::TestCase
     assert_equal ActionMailer::Base.deliveries.length, 2 
     
   end
+
+  test "should send a email when a succeeded transfer webhook is send to the organizer" do
+    orders = Order.create(:price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)
+    @request.env['RAW_POST_DATA'] = @transfer_done_params
+    post :webhook, {}
+
+    puts ActionMailer::Base.deliveries[0].html_part
+    #puts ActionMailer::Base.deliveries[1].html_part
+
+    assert_equal assigns(:user_id), 'acct_1A2RYaFJqvzNLRuj'
+    assert_equal assigns(:status), 'in_transit'
+    assert_equal assigns(:type_of_action), 'transfer'
+    assert_equal assigns(:amount_to_transfer), 1880
+    assert_equal assigns(:marketplace_organizer), @marketplace_stub_user_id
+    assert_equal assigns(:marketplace_organizer_owner), "Laura Zerwes Amado Sette"
+    assert_equal assigns(:marketplace_organizer_bankname), "BANCO BRADESCO S.A."
+    assert_equal assigns(:marketplace_organizer_banknumber), "5677"
+
+
+    assert_equal assigns(:status_class), "alert-success"
+    assert_equal assigns(:subject), "Uma nova transferência foi realizada"
+    assert_equal assigns(:guide_template), "status_change_guide_transfer"
+    assert_equal assigns(:mail_first_line), "Uma nova transferência foi solicitada"
+    assert_equal assigns(:mail_second_line), "Uma transferência no valor de 1880 foi realizada para sua conta"
+
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal ActionMailer::Base.deliveries.length, 1
+
+  end
   
   test "when post to webhook and theres no orders found" do
     skip('handle cases where theres no order found')
@@ -313,6 +398,8 @@ class OrdersControllerTest < ActionController::TestCase
     assert_not ActionMailer::Base.deliveries.empty?
     
   end
+
+
   
   test "should update status if doesnt have any" do
     orders = Order.create(:price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)

@@ -47,11 +47,13 @@ class OrdersController < ApplicationController
         request_raw_json = JSON.parse(request.raw_post())
       end
       
-      puts "webhook"
-      puts request_raw_json.inspect
+      #puts "webhook"
+      #puts request_raw_json.inspect
       
       @event = request_raw_json["type"]
-      
+      @user_id = request_raw_json["user_id"]
+
+
       @event_types = ["stripe_account", "review.closed", "transfer.created", "transfer.updated", "charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
 
       if @event_types.include?(@event)
@@ -77,7 +79,35 @@ class OrdersController < ApplicationController
           if @status == "approved"
             @status = "succeeded"
           end
-        end 
+        end
+
+        @amount_to_transfer = request_raw_json["data"]["object"]["amount"]
+        @type_of_action = request_raw_json["data"]["object"]["object"]
+
+        if @user_id && @type_of_action == 'transfer'
+          @marketplace_organizer = Marketplace.where(:account_id => @user_id).first
+
+          @marketplace_organizer_owner = request_raw_json["data"]["object"]["bank_account"]["account_holder_name"]
+          @marketplace_organizer_bankname = request_raw_json["data"]["object"]["bank_account"]["bank_name"]
+          @marketplace_organizer_banknumber = request_raw_json["data"]["object"]["bank_account"]["last4"]
+
+          @status_class = "alert-success"
+          @subject = "Uma nova transferência foi realizada"
+          @guide_template = "status_change_guide_transfer"
+          @mail_first_line = "Uma nova transferência foi solicitada"
+          @mail_second_line = "Uma transferência no valor de 1880 foi realizada para sua conta"
+
+          @status_data = {
+              subject: @subject,
+              mail_first_line: @mail_first_line,
+              mail_second_line: @mail_second_line,
+              status_class: @status_class,
+              guide: @guide_template
+          }
+          #guide_mail = CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
+          #return :success
+
+        end
         
         begin
           order = Order.where(payment: @payment_id).joins(:user).take
@@ -93,7 +123,6 @@ class OrdersController < ApplicationController
           organizer = tour.organizer
         rescue => e
            CreditCardStatusMailer.status_message("Pagamento não encontrado. Webhook recebido #{request_raw_json}").deliver_now
-           
            return :bad_request        
         end
         

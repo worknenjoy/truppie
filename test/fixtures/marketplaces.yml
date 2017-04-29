@@ -86,3 +86,26 @@ mkt_validated:
   city: São Paulo
   state: SP
   country: BR
+
+marketplace_stub_user_id:
+  active: true
+  organizer: utopicos
+  bank_accounts: one, two
+  person_name: MyString
+  person_lastname: MyString
+  document_type: MyString
+  id_number: MyString
+  id_type: MyString
+  id_issuer: MyString
+  id_issuerdate: MyString
+  birthDate: 2017-01-08
+  street: MyString
+  street_number: MyString
+  complement: MyString
+  district: MyString
+  zipcode: MyString
+  city: MyString
+  state: MyString
+  country: MyString
+  token: MyString
+  account_id: acct_1A2RYaFJqvzNLRuj
