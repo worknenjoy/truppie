@@ -93,19 +93,17 @@ class OrdersController < ApplicationController
 
           @status_class = "alert-success"
           @subject = "Uma nova transferência foi realizada"
-          @guide_template = "status_change_guide_transfer"
-          @mail_first_line = "Uma nova transferência foi solicitada"
-          @mail_second_line = "Uma transferência no valor de 1880 foi realizada para sua conta"
+          @mail_first_line = "Uma nova transferência foi realizada para #{@marketplace_organizer_owner}"
+          @mail_second_line = "Uma transferência no valor de #{final_price_from_cents(@amount_to_transfer)} foi realizada para sua conta <br /> no banco #{@marketplace_organizer_bankname} de número ****#{@marketplace_organizer_banknumber}"
 
           @status_data = {
               subject: @subject,
               mail_first_line: @mail_first_line,
               mail_second_line: @mail_second_line,
-              status_class: @status_class,
-              guide: @guide_template
+              status_class: @status_class
           }
-          #guide_mail = CreditCardStatusMailer.guide_mail(@status_data, order, user, tour, organizer).deliver_now
-          #return :success
+          transfer_mail = TransferMailer.transfered(@marketplace_organizer.organizer, @status_data).deliver_now
+          return :success
 
         end
         

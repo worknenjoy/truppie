@@ -14,7 +14,7 @@ class MarketplaceTest < ActiveSupport::TestCase
   end
   
   test "two Marketplaces" do
-    assert_equal 4, Marketplace.count
+    assert_equal 5, Marketplace.count
   end
   
   test "split phone into a object" do

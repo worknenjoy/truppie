@@ -362,7 +362,7 @@ class OrdersControllerTest < ActionController::TestCase
     @request.env['RAW_POST_DATA'] = @transfer_done_params
     post :webhook, {}
 
-    puts ActionMailer::Base.deliveries[0].html_part
+    #puts ActionMailer::Base.deliveries[0].html_part
     #puts ActionMailer::Base.deliveries[1].html_part
 
     assert_equal assigns(:user_id), 'acct_1A2RYaFJqvzNLRuj'
@@ -377,9 +377,8 @@ class OrdersControllerTest < ActionController::TestCase
 
     assert_equal assigns(:status_class), "alert-success"
     assert_equal assigns(:subject), "Uma nova transferência foi realizada"
-    assert_equal assigns(:guide_template), "status_change_guide_transfer"
-    assert_equal assigns(:mail_first_line), "Uma nova transferência foi solicitada"
-    assert_equal assigns(:mail_second_line), "Uma transferência no valor de 1880 foi realizada para sua conta"
+    assert_equal assigns(:mail_first_line), "Uma nova transferência foi realizada para Laura Zerwes Amado Sette"
+    assert_equal assigns(:mail_second_line), "Uma transferência no valor de <small>R$</small><span>18</span> foi realizada para sua conta <br /> no banco BANCO BRADESCO S.A. de número ****5677"
 
     assert_not ActionMailer::Base.deliveries.empty?
     assert_equal ActionMailer::Base.deliveries.length, 1
