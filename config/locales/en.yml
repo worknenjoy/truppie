@@ -248,3 +248,6 @@ en:
   tours_view_index_link_three: "Apagar"
   tours_view_index_link_three_confirm: "Tem certeza que deseja apagar esta truppie?"
   tours_view_index_link_four: "Criar nova truppie"
+
+  tours_view_new_h3: "Adicionar truppie ou "
+  tours_view_new_link: "ver todas as truppies"

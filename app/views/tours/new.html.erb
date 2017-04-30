@@ -7,7 +7,7 @@
             <div class="card card-block">
                 <div class="card-body" style="overflow:hidden;">
                     <h3 class="text-center spaced-down">
-                        Adicionar truppie ou <small><%= link_to 'ver todas as truppies', tours_path %></small>
+                        <%= t('tours_view_new_h3') %><small><%= link_to t('tours_view_new_link') , tours_path %></small>
                     </h3>
                 	<%= render 'form' %>
 				  </div>
