@@ -232,3 +232,10 @@ en:
   tours_view_confirm_presence_th_two: "Quantidade"
   tours_view_confirm_presence_th_three: "Total"
 
+
+  confirm_eds_partial_h4: "Confirmados"
+  confirm_eds_partial_strong: "Você"
+  confirm_eds_partial_span: " reserva(s)"
+  confirm_eds_partial_small: "Ninguem confirmou ainda. "
+  confirm_eds_partial_link: "Confirmar a sua"
+
