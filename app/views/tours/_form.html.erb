@@ -1,19 +1,19 @@
 <%= form_for @tour, class: "form form-signup", multipart: true, role: "form" do |f| %>
     <ul class="nav nav-tabs spaced-down" role="tablist">
 	  <li class="nav-item">
-	    <a class="nav-link active" data-toggle="tab" href="#home" role="tab">Informações básicas</a>
+	    <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><%= t('tours_view_form_a_one') %></a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#desc" role="tab">Descrições</a>
+	    <a class="nav-link" data-toggle="tab" href="#desc" role="tab"><%= t('tours_view_form_a_two') %></a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#foto" role="tab">Foto</a>
+	    <a class="nav-link" data-toggle="tab" href="#foto" role="tab"><%= t('tours_view_form_a_three') %></a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#guia" role="tab">Guia</a>
+	    <a class="nav-link" data-toggle="tab" href="#guia" role="tab"><%= t('tours_view_form_a_four') %></a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" data-toggle="tab" href="#packages" role="tab">Pacotes</a>
+	    <a class="nav-link" data-toggle="tab" href="#packages" role="tab"><%= t('tours_view_form_a_five') %></a>
 	  </li>
 	</ul>
 	<div class="tab-content spaced-down">
@@ -22,135 +22,135 @@
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
                     </span>
-                    <%= f.text_field :title, placeholder: "Título da truppie", class: "form-control" %>
+                    <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
-                    <%= f.text_field :where, value: (@tour.where.name if @tour.where.present?), placeholder: "Onde?", class: "form-control" %>
+                    <%= f.text_field :where, value: (@tour.where.name if @tour.where.present?), placeholder: t('tours_view_form_placeholder_two'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :address, placeholder: "Endereço", class: "form-control" %>
+                    <%= f.text_field :address, placeholder: t('tours_view_form_placeholder_three'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :link, placeholder: "Link (ex facebook)", class: "form-control" %>
+                    <%= f.text_field :link, placeholder: t('tours_view_form_placeholder_four'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-male"></span></span>
-                    <%= f.number_field :availability, placeholder: "Vagas", min: 1, class: "form-control" %>
+                    <%= f.number_field :availability, placeholder: t('tours_view_form_placeholder_five'), min: 1, class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-sort-down"></span></span>
-                    <%= f.number_field :minimum, placeholder: "Mínimo", min: 1, class: "form-control" %>
+                    <%= f.number_field :minimum, placeholder: t('tours_view_form_placeholder_six'), min: 1, class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-sort-up"></span></span>
-                    <%= f.number_field :maximum, placeholder: "Máximo", min: 1, class: "form-control" %>
+                    <%= f.number_field :maximum, placeholder: t('tours_view_form_placeholder_seven'), min: 1, class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-trophy"></span></span>
-                    <%= f.number_field :difficulty, placeholder: "Dificuldade", max: 5, min: 1, class: "form-control" %>
+                    <%= f.number_field :difficulty, placeholder: t('tours_view_form_placeholder_eight'), max: 5, min: 1, class: "form-control" %>
                 </div>
             </div>
             
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                    <%= f.datetime_local_field :start, placeholder: "Quando começa", class: "form-control" %>
+                    <%= f.datetime_local_field :start, placeholder: t('tours_view_form_placeholder_nine'), class: "form-control" %>
                 </div>
             </div>
             
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                    <%= f.datetime_local_field :end, placeholder: "Quando termina", class: "form-control" %>
+                    <%= f.datetime_local_field :end, placeholder: t('tours_view_form_placeholder_ten'), class: "form-control" %>
                 </div>
             </div>
             
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-ticket"></span></span>
-                    <%= f.number_field :value, placeholder: "Preço (ex: 30 para R$ 30,00)", min: 0, class: "form-control" %>
-                	<small>Para pacotes diferentes de preços, vá na aba "Pacotes"</small>
+                    <%= f.number_field :value, placeholder: t('tours_view_form_placeholder_eleven'), min: 0, class: "form-control" %>
+                	<small><%= t('tours_view_form_small') %></small>
                 </div>
             </div>
         </div>
         <div class="tab-pane" id="desc" role="tabpanel">
     		<div class="form-group">
-                <%= f.text_area :description, placeholder: "Descrição completa", class: "form-control" %>
+                <%= f.text_area :description, placeholder: t('tours_view_form_placeholder_twelve'), class: "form-control" %>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-thumbs-up"></span></span>
-                    <%= f.text_field :included, value: (@tour.included.join(';') if @tour.included.present?), placeholder: "O que inclui?", class: "form-control" %>
+                    <%= f.text_field :included, value: (@tour.included.join(';') if @tour.included.present?), placeholder: t('tours_view_form_placeholder_thirteen'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-thumbs-down"></span></span>
-                    <%= f.text_field :nonincluded, value: (@tour.nonincluded.join(';') if @tour.nonincluded.present?), placeholder: "O que não inclui?", class: "form-control" %>
+                    <%= f.text_field :nonincluded, value: (@tour.nonincluded.join(';') if @tour.nonincluded.present?), placeholder: t('tours_view_form_placeholder_fourteen'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-book"></span></span>
-                    <%= f.text_field :take, placeholder: "O que levar?", value: (@tour.take.join(';') if @tour.take.present?), class: "form-control" %>
+                    <%= f.text_field :take, placeholder: t('tours_view_form_placeholder_fifteen'), value: (@tour.take.join(';') if @tour.take.present?), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-info-circle"></span></span>
-                    <%= f.text_field :goodtoknow, value: (@tour.goodtoknow.join(';') if @tour.goodtoknow.present?), placeholder: "Bom saber", class: "form-control" %>
+                    <%= f.text_field :goodtoknow, value: (@tour.goodtoknow.join(';') if @tour.goodtoknow.present?), placeholder: t('tours_view_form_placeholder_sixteen'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
-                    <%= f.text_field :meetingpoint, placeholder: "Qual o ponto de encontro?", class: "form-control" %>
+                    <%= f.text_field :meetingpoint, placeholder: t('tours_view_form_placeholder_seventeen'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-bookmark"></span></span>
-                    <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}, (@tour.category_id if @tour.category_id.present?)), {class: "form-control", include_blank: "Escolha uma categoria"} %>
+                    <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}, (@tour.category_id if @tour.category_id.present?)), {class: "form-control", include_blank: t('tours_view_form_include_blank_one')} %>
                 </div>
-                <p><a href="#" id="reveal-new-cat">Adicionar categoria</a></p>
+                <p><a href="#" id="reveal-new-cat"><%= t('tours_view_form_a_six') %></a></p>
                 <div class="input-group" id="new-cat" style="display:none">
-                    <span class="input-group-addon">Nova Categoria:</span>
-                    <input type="text" placeholder="nome da categoria" class="form-control" />
+                    <span class="input-group-addon"><%= t('tours_view_form_span') %></span>
+                    <input type="text" placeholder= <%= t('tours_view_form_placeholder_eighteen') %> class="form-control" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-eye"></span></span>
-                    <%= f.select :status, options_for_select([['Não Publicado', 'N'],['Publicado', 'P']], (@tour.status if @tour.status.present?)), {class: "form-control", include_blank: "Escolha um status"} %>
+                    <%= f.select :status, options_for_select([[t('tours_view_form_options_a'), t('tours_view_form_options_b')],[t('tours_view_form_options_c'), t('tours_view_form_options_d')]], (@tour.status if @tour.status.present?)), {class: "form-control", include_blank: t('tours_view_form_include_blank_two')} %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-tags"></span></span>
-                    <%= f.text_field :tags, value: (@tour.tags.map{ |t| t.name}.join(';') if @tour.tags.present?), placeholder: "Quais são as tags?", class: "form-control" %>
+                    <%= f.text_field :tags, value: (@tour.tags.map{ |t| t.name}.join(';') if @tour.tags.present?), placeholder: t('tours_view_form_placeholder_nineteen'), class: "form-control" %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-globe"></span></span>
-                    <%= f.text_field :languages, value: (@tour.languages.map{ |l| l.name}.join(';') if @tour.languages.present?), placeholder: "Idiomas falados?", class: "form-control" %>
+                    <%= f.text_field :languages, value: (@tour.languages.map{ |l| l.name}.join(';') if @tour.languages.present?), placeholder: t('tours_view_form_placeholder_twenty'), class: "form-control" %>
                 </div>
             </div>
     	</div>
@@ -170,19 +170,19 @@
             </div>
     	</div>
     	<div class="tab-pane" id="guia" role="tabpanel">
-            <p>Para associar um organizador a esta truppie, você precisa ser membro desta organização</p>
+            <p><%=  t('tours_view_form_p_one') %></p>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-map-o"></span></span>
-                    <%= f.text_field :organizer, value: (@tour.organizer.name if @tour.organizer.present?), placeholder: "Organizador", class: "form-control" %>
+                    <%= f.text_field :organizer, value: (@tour.organizer.name if @tour.organizer.present?), placeholder: t('tours_view_form_placeholder_twentyone'), class: "form-control" %>
                 </div>
             </div>
     	</div>
     	<div class="tab-pane" id="packages" role="tabpanel">
-            <p>Você pode adicionar pacotes com valores diferentes (lembre-se que o campo de preço da truppie deve ficar em branco)</p>
+            <p><%=  t('tours_view_form_p_two') %></p>
             <div class="form-group">
                 <div class="input-group">
-                  <%= link_to 'Adicionar pacote', new_package_path, class: 'add-packages' %>
+                  <%= link_to t('tours_view_form_link_one'), new_package_path, class: 'add-packages' %>
                 </div>
             </div>
              <%= f.fields_for :packages, (Array.new(1, @tour.packages.build) if @tour.packages.empty?) do |ff| %>
@@ -191,19 +191,19 @@
 	            <div class="form-group">
 	                <div class="input-group">
 	                    <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
-	                    <%= ff.text_field :name, placeholder: "Nome do pacote", class: "form-control" %>
+	                    <%= ff.text_field :name, placeholder: t('tours_view_form_placeholder_twentytwo'), class: "form-control" %>
 	                </div>
 	            </div>
 	            <div class="form-group">
 	                <div class="input-group">
 	                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
-	                    <%= ff.number_field :value, placeholder: "Valor do pacote", class: "form-control" %>
+	                    <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_twentythree'), class: "form-control" %>
 	                </div>
 	            </div>
 	            <div class="form-group">
 	                <div class="input-group">
 	                    <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
-	                    <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: "O que inclui no pacote", class: "form-control  package-value" %>
+	                    <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value" %>
 	                </div>
 	            </div>
 	            
@@ -224,8 +224,8 @@
    -->
     <div class="pull-right">  
     	<a href="<%= new_tour_path %>" class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">
-        	Cancelar
+        	<%= t('tours_view_form_a_seven') %>
         </a>  
-        <%= link_to("Salvar truppie", "#", class: "btn btn-lg btn-primary criar-truppie") %>
+        <%= link_to(t('tours_view_form_link_two'), "#", class: "btn btn-lg btn-primary criar-truppie") %>
     </div>
   <% end %>
