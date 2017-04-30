@@ -6,7 +6,7 @@ class BankAccountsController < ApplicationController
   def activate
     if !@bank_account.own_id.nil?
       @activation_message = t('bank_controller_activation_msg_one', organizer: @bank_account.marketplace.organizer.name)
-      @activation_status = t('bank_controller_activation_msg_status')
+      @activation_status = t('bank_controller_activation_msg_status_one')
       @errors = t('bank_controller_activation_errors')
     else
       begin
