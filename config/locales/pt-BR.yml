@@ -521,11 +521,15 @@ pt-BR:
   confirm_eds_partial_small: "Ninguem confirmou ainda. "
   confirm_eds_partial_link: "Confirmar a sua"
 
+  tours_view_edit_h3: "Editar truppie ou "
+  tours_view_edit_link: "ver todas as truppies"
 
-
-
-
-
+  tours_view_index_h3: "Todas as truppies já criadas"
+  tours_view_index_link_one: "Exibir"
+  tours_view_index_link_two: "Editar"
+  tours_view_index_link_three: "Apagar"
+  tours_view_index_link_three_confirm: "Tem certeza que deseja apagar esta truppie?"
+  tours_view_index_link_four: "Criar nova truppie"
 
 
 
