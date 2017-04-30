@@ -83,23 +83,23 @@ class MarketplacesController < ApplicationController
       if account
         if account.id
           @activation_message = t('marketplace_controller_activation_message_one', organizer: @marketplace.organizer.name)
-          @activation_status = "success"
+          @activation_status = t('status_sucess')
           @response = account
           @marketplace.organizer.update_attributes(:market_place_active => true)
           MarketplaceMailer.activate(@marketplace.organizer).deliver_now
         else
           @activation_message = t('marketplace_controller_activation_message_two', organizer: @marketplace.organizer.name)
-          @activation_status = "danger"
+          @activation_status = t('status_danger')
           @errors = t('marketplace_controller_errors')
         end
       else
         @activation_message = t("marketplace_controller_activation_message_three", organizer: @marketplace.organizer.name)
-        @activation_status = "danger"
+        @activation_status = t('status_danger')
         @errors = t("marketplace_controller_errors_two")
       end
     rescue => e
         @activation_message = t("marketplace_controller_activation_message_four", organizer: @marketplace.organizer.name)
-        @activation_status = "danger"
+        @activation_status = t('status_danger')
         @errors = e.message
         puts e.inspect
     end
@@ -111,24 +111,24 @@ class MarketplacesController < ApplicationController
       if account
         if account.id
           @activation_message = t("marketplace_controller_activation_message_five", organizer: @marketplace.organizer.name)
-          @activation_status = "success"
+          @activation_status = t('status_sucess')
           @response = account
           MarketplaceMailer.update(@marketplace.organizer).deliver_now
         else
           @activation_message = t("marketplace_controller_activation_message_six", organizer: @marketplace.organizer.name)
-          @activation_status = "danger"
+          @activation_status = t('status_danger')
           @errors = t('marketplace_controller_errors_three')
         end
       else
         @activation_message = t("marketplace_controller_activation_message_seven", organizer: @marketplace.organizer.name)
-        @activation_status = "danger"
+        @activation_status = t('status_danger')
         @errors = t("marketplace_controller_errors_four")
       end
     rescue => e
         puts e.inspect
         puts e.backtrace
         @activation_message = t("marketplace_controller_activation_message_eight")
-        @activation_status = "danger"
+        @activation_status = t('status_danger')
         @errors = e.message
     end
   end

@@ -8,7 +8,7 @@ class ToursController < ApplicationController
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
     
     unless allowed_emails.include? current_user.email
-      flash[:notice] = "Você não está autorizado a entrar nesta página"
+      flash[:notice] = t('tours_controller_notice_one')
       redirect_to root_url
     end 
   end
@@ -50,21 +50,21 @@ class ToursController < ApplicationController
       valid_birthdate = params[:birthdate].to_date
     rescue => e
       puts e.inspect
-      @confirm_headline_message = "Não foi possível confirmar sua reserva"
-      @confirm_status_message = "Não foi possível identificar a data de nascimento"
-      @status = "danger"
+      @confirm_headline_message = t("tours_controller_headline_msg")
+      @confirm_status_message = t("tours_controller_status_msg")
+      @status = t('status_danger')
       return
     end
     
     if @tour.confirmeds.exists?(user: current_user)
-      flash[:error] = "Hey, você já está confirmado neste evento, não é necessário reservar novamente!!"
+      flash[:error] = t('tours_controller_errors_one')
       redirect_to @tour          
     else
       if !@tour.soldout?   
         if @tour.try(:description)
           @desc = @tour.try(:description).first(250)
         else
-          @desc = "Truppie #{@tour.title} por #{@tour.organizer.name}"
+          @desc = t('tours_controller_desc',title: @tour.title, organizer: @tour.organizer.name)
         end 
 
         @fees = {
@@ -97,18 +97,18 @@ class ToursController < ApplicationController
         rescue Stripe::CardError => e
           puts e.inspect
           #puts e.backtrace
-          ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou o retorno foi #{e.inspect}").deliver_now
-          @confirm_headline_message = "Não foi possível confirmar sua reserva"
-          @confirm_status_message = "Tivemos um problema ao processar seu cartão"
-          @status = "danger"
+          ContactMailer.notify(t('tours_controller_mailer_notify_one', name: current_user.name, email: current_user.email, inspect: e.inspect)).deliver_now
+          @confirm_headline_message = t('tours_controller_headline_msg')
+          @confirm_status_message = t('tours_controller_status_msg_two')
+          @status = t('status_danger')
           return
         rescue => e
           puts e.inspect
           #puts e.backtrace
-          ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar uma reserva e o retorno foi #{e.inspect}").deliver_now
-          @confirm_headline_message = "Não foi possível confirmar sua reserva"
-          @confirm_status_message = "Tivemos um problema para confirmar sua reserva, entraremos em contato para maiores informações"
-          @status = "danger"
+          ContactMailer.notify(t('tours_controller_mailer_notify_one', name: current_user.name, email: current_user.email, inspect: e.inspect)).deliver_now
+          @confirm_headline_message = t('tours_controller_headline_msg')
+          @confirm_status_message = t('tours_controller_status_msg_three')
+          @status = t('status_danger')
           return
         end
         
@@ -137,40 +137,40 @@ class ToursController < ApplicationController
             
             begin
               @tour.save()
-              @confirm_headline_message = "Sua presença foi confirmada para a truppie"
-              @confirm_status_message = "Você receberá um e-mail sobre o processamento do seu pagamento"
-              @status = "success"
+              @confirm_headline_message = t('tours_controller_confirm_headline_msg')
+              @confirm_status_message = t('tours_controller_status_msg_four')
+              @status = t('status_success')
             rescue => e
               puts e.inspect
-              @confirm_headline_message = "Não foi possível confirmar sua reserva"
+              @confirm_headline_message = t('tours_controller_headline_msg')
               @confirm_status_message = e.message
-              @status = "danger"
+              @status = t('status_danger')
             end
           else
-            @confirm_headline_message = "Não foi possível confirmar sua reserva"
-            @confirm_status_message = "O pagamento não foi confirmado"
-            @status = "danger"
-            ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento e houve um error #{@payment.inspect}").deliver_now
+            @confirm_headline_message = t('tours_controller_headline_msg')
+            @confirm_status_message = t('tours_controller_status_msg_five')
+            @status = t('status_danger')
+            ContactMailer.notify( t(tours_controller_mailer_notify_two , name: current_user.name, email: current_user.email, inspect: @payment.inspect)).deliver_now
           end
         else
-          @confirm_headline_message = "Não foi possível confirmar sua reserva"
-          @confirm_status_message = "Você não forneceu dados suficientes para o pagamento"
-          @status = "danger"
-          ContactMailer.notify("O usuário #{current_user.name} do email #{current_user.email} tentou efetuar o pagamento sem fornecer as informações").deliver_now
+          @confirm_headline_message = t('tours_controller_headline_msg')
+          @confirm_status_message = t("tours_controller_status_msg_six")
+          @status = t('status_danger')
+          ContactMailer.notify(t('tours_controller_mailer_notify_three', name: current_user.name, email: current_user.email )).deliver_now
         end
       else
-        @confirm_headline_message = "Não foi possível confirmar sua reserva"
-        @confirm_status_message = "Este evento está esgotado"
-        @status = "danger"
+        @confirm_headline_message = t('tours_controller_headline_msg')
+        @confirm_status_message = t('tours_controller_status_msg_seven')
+        @status = t('status_danger')
         redirect_to @tour
       end 
     end
   end
   
   def confirm_presence_alt
-    @confirm_headline_message = "Evento confirmado com sucesso"
-    @confirm_status_message = "Obrigado por se inscrever neste evento"
-    @status = "success"
+    @confirm_headline_message = t('tours_controller_confirm_headline_msg_two')
+    @confirm_status_message = t('tours_controller_confirm_status_msg')
+    @status = t('status_success')
     @tour = Tour.last
     @order = current_user.orders.last
     @amount = 2
@@ -185,9 +185,9 @@ class ToursController < ApplicationController
     reserveds = @tour.reserved
     if @tour.confirmeds.where(user: current_user).delete_all
       @tour.update_attributes(:reserved => reserveds - @order.amount)
-      flash[:success] = "Você não está mais confirmardo neste evento"
+      flash[:success] = t('tours_controller_unconfirm_success')
     else
-      flash[:error] = "Houve um problema para confirmar sua desistência neste evento"
+      flash[:error] = t('tours_controller_unconfirm_error')
     end
     redirect_to @tour
   end
@@ -221,10 +221,10 @@ class ToursController < ApplicationController
     
     respond_to do |format|
       if @tour.save
-        format.html { redirect_to @tour, notice: 'Truppie criada com sucesso' }
+        format.html { redirect_to @tour, notice: t('tours_controller_create_notice_one') }
         format.json { render :show, status: :created, location: @tour }
       else
-        format.html { redirect_to tours_path, notice: "o campo #{@tour.errors.first[0]} #{@tour.errors.first[1]}" }
+        format.html { redirect_to tours_path, notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
@@ -236,10 +236,10 @@ class ToursController < ApplicationController
   def update
     respond_to do |format|
       if @tour.update(tour_params)
-        format.html { redirect_to @tour, notice: 'Truppie atualizada com sucesso' }
+        format.html { redirect_to @tour, notice: t('tours_controller_update_notice') }
         format.json { render :show, status: :ok, location: @tour }
       else
-        format.html { redirect_to tours_path, notice: "o campo #{@tour.errors.first[0]} #{@tour.errors.first[1]}" }
+        format.html { redirect_to tours_path, notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
@@ -250,7 +250,7 @@ class ToursController < ApplicationController
   def destroy
     @tour.destroy
     respond_to do |format|
-      format.html { redirect_to tours_url, notice: 'Tour was successfully destroyed.' }
+      format.html { redirect_to tours_url, notice: t('tours_controller_destroy_notice') }
       format.json { head :no_content }
     end
   end
