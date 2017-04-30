@@ -116,3 +116,17 @@ en:
   tours_controller_create_notice_two: "o campo %{error_one} %{error_two}"
   tours_controller_update_notice: "Truppie atualizada com sucesso"
   tours_controller_destroy_notice: "Tour was successfully destroyed."
+
+  contacts_views_index_h2: "Entre em contato com a Truppie"
+  contacts_views_index_p: "Se preferir, você pode enviar um e-mail para"
+  contacts_views_index_a_title: "enviar um e-mail para a truppie diretamente"
+  contacts_views_index_label_one: "Nome"
+  contacts_views_index_placeholder_one: "Seu nome"
+  contacts_views_index_label_two: "E-mail"
+  contacts_views_index_placeholder_two: "Seu e-mail é"
+  contacts_views_index_small: "Fique tranquilo, não compartilharemos seu e-mail com ninguém"
+  contacts_views_index_label_three: "Assunto"
+  contacts_views_index_label_four: "Mensagem:"
+  contacts_views_index_placeholder_three: "Sua mensagem"
+  contacts_views_submit: "Enviar"
+

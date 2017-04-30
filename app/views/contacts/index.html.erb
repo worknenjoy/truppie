@@ -3,27 +3,27 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h2 class="spaced-smallest">Entre em contato com a Truppie</h2>
-			<p>Se preferir, você pode enviar um e-mail para <a href="mailto:ola@truppie.com" title="enviar um e-mail para a truppie diretamente">ola@truppie.com</a>
+			<h2 class="spaced-smallest"> <%= t('contacts_views_index_h2') %></h2>
+			<p> <%= t('contacts_views_index_p') %> <a href="mailto:ola@truppie.com" title="<%= t('contacts_views_index_a_title') %>">ola@truppie.com</a>
 			<%= form_tag contacts_send_form_path, :method => 'post' do %>
 			  <fieldset class="form-group">
-			    <label for="exampleInputEmail1">Nome</label>
-			    <%= text_field_tag :name, current_user.try(:name), placeholder: "Seu nome", class: "form-control" %>
+			    <label for="exampleInputEmail1"><%= t('contacts_views_index_label_one') %></label>
+			    <%= text_field_tag :name, current_user.try(:name), placeholder: t('contacts_views_index_placeholder_one'), class: "form-control" %>
 			  </fieldset>
 			  <fieldset class="form-group">
-			    <label for="exampleInputEmail1">E-mail</label>
-			    <%= text_field_tag :email, current_user.try(:email), placeholder: "Seu e-mail é", class: "form-control" %>
-			    <small class="text-muted">Fique tranquilo, não compartilharemos seu e-mail com ninguém</small>
+			    <label for="exampleInputEmail1"><%= t('contacts_views_index_label_two') %></label>
+			    <%= text_field_tag :email, current_user.try(:email), placeholder: t('contacts_views_index_placeholder_two'), class: "form-control" %>
+			    <small class="text-muted"><%= t('contacts_views_index_small') %></small>
 			  </fieldset>
 			  <fieldset class="form-group">
-			    <label for="exampleSelect1">Assunto</label>
+			    <label for="exampleSelect1"><%= t('contacts_views_index_label_three') %></label>
 			    <%= select_tag(:subject, options_for_select([['Dúvida', 'Dúvida'], ['Crítica', 'Crítica'], ['Sugestão', 'Sugestão'], ['Elogio', 'Elogio']]), class: 'form-control') %>
 			  </fieldset>
 			  <fieldset class="form-group">
-			    <label for="exampleTextarea">Mensagem:</label>
-			    <%= text_area_tag(:body, nil, class: "form-control", rows: "5", placeholder: 'Sua mensagem') %>
+			    <label for="exampleTextarea"><%= t('contacts_views_index_label_four') %></label>
+			    <%= text_area_tag(:body, nil, class: "form-control", rows: "5", placeholder: t('contacts_views_index_placeholder_three')) %>
 			  </fieldset>
-			  <%= submit_tag "Enviar", class: 'btn btn-success btn-lg pull-xs-right' %>
+			  <%= submit_tag t('contacts_views_submit'), class: 'btn btn-success btn-lg pull-xs-right' %>
 			<% end %>
 		</div>
 	</div>
