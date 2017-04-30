@@ -219,3 +219,16 @@ en:
   tours_view_confirm_small_four: "(boleto bancário)"
   tours_view_confirm_span_two: "Escolha uma opção de pacote:"
   tours_view_confirm_submit: "Confirmar Reserva"
+
+  
+  tours_view_confirm_presence_p_one: "Você pode acompanhar o status em "
+  tours_view_confirm_presence_link_one: "minhas truppies"  
+  tours_view_confirm_presence_link_two: "voltar para confirmação"
+  tours_view_confirm_presence_h3: "Segue abaixo as informações do seu pedido"
+  tours_view_confirm_presence_span_one: "Organizador"
+  tours_view_confirm_presence_span_two: "Status"
+  tours_view_confirm_presence_span_three: "Código do pedido"
+  tours_view_confirm_presence_th_one: "Valor da reserva"
+  tours_view_confirm_presence_th_two: "Quantidade"
+  tours_view_confirm_presence_th_three: "Total"
+
