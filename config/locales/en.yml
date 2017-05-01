@@ -287,6 +287,49 @@ en:
   welcome_view_defs_p_2: %Q{Aenean ornare nec mauris nec vulputate. Duis efficitur diam arcu, ut euismod nisi maximus et. Etiam sollicitudin lacinia elementum. Sed eget bibendum est. Nulla facilisi. Donec convallis metus eleifend tortor mattis condimentum. Integer ut felis pulvinar, euismod orci ac, pretium mauris. Nunc semper nunc sed lacus placerat semper vel nec sapien.}
   welcome_view_defs_p_3: %Q{Cras accumsan dapibus pulvinar. Morbi at nulla a purus congue placerat. Proin luctus vitae ligula a vehicula. Curabitur in ex mauris. Quisque gravida dui ex, vitae pulvinar odio porttitor ac. Nunc sit amet imperdiet nunc. Aenean varius id elit ac gravida. Cras hendrerit porttitor nunc ut molestie. Sed a tincidunt orci, sed convallis ex. Quisque velit justo, convallis et ornare consequat, tincidunt sit amet dolor. Nullam sed elit a nunc laoreet rutrum. In eget dolor a massa dapibus pretium vitae non ligula. Fusce eu felis a ligula imperdiet varius et ut metus. Etiam a lacinia ligula, sit amet accumsan nibh.}
 
+  welcome_view_faq_h3: "FAQ"
+  welcome_view_faq_small: "Tire suas dúvidas"
+  welcome_view_faq_strong_one: "A Truppie é uma agência de viagens?"
+  welcome_view_faq_strong_two: "Por que Truppie?"
+  welcome_view_faq_strong_three: "O que é uma truppie?"
+  welcome_view_faq_strong_four: "A Truppie faz truppies também?"
+  welcome_view_faq_strong_five: "Qual a relação da Truppie com os guias?"
+  welcome_view_faq_strong_six: "Em quais locais a Truppie está presente?"
+  welcome_view_faq_strong_seven: "Como eu faço a reserva/pagamento de uma truppie que eu escolhi?"
+  welcome_view_faq_strong_eight: "E se eu não puder/quiser mais ir?"
+  welcome_view_faq_strong_nine: "A quem devo recorrer se tiver dúvidas sobre uma truppie específica?"
+  welcome_view_faq_strong_ten: "Eu posso me cadastrar como guia na Truppie?"
+  welcome_view_faq_strong_eleven: "Eu posso reservar duas truppies no mesmo dia?"
+  welcome_view_faq_p_one: "Não. Somos uma plataforma que conecta guias (autônomos ou de agências de viagem locais) a pessoas que buscam viagens e outros tipos de experiências."
+  welcome_view_faq_p_two: "Trip + Hippie + Trupe = Truppie <br /> Um novo conceito de estilo e filosofia de vida."
+  welcome_view_faq_p_three: "ualquer tipo de aventura/evento/passeio, seja uma trilha para uma cachoeira, um passeio no centro histórico de uma cidade, um roteiro gastronômico ou um acampamento de vários dias no meio do mato. É uma experiência única e engrandecedora na sua vida."
+  welcome_view_faq_p_four: "Ainda não. Quem sabe um dia? Por ora, ela é meramente a plataforma que dá todo o suporte necessário para a realização de truppies organizadas por guias externos."
+  welcome_view_faq_p_five: "A Truppie é a plataforma que guias externos utilizam para criar suas próprias truppies. Os guias são os responsáveis pelas informações fornecidas, confirmações de reserva, pagamento, aviso do número de vaga, cancelamento, etc - tudo feito por meio do site da Truppie. A responsabilidade última pelo evento é do guia organizador."
+  welcome_view_faq_p_six: "Por enquanto, no Rio de Janeiro. Mas com planos para expandir em breve para São Paulo e outros lugares do Brasil."
+  welcome_view_faq_p_seven: "Na Truppie, você realiza o pagamento diretamente pelo site, via cartão de crédito, débito ou boleto bancário. Uma vez confirmado o pagamento, a sua vaga já está automaticamente reservada."
+  welcome_view_faq_p_eight: "Basta enviar um e-mail para a Truppie nos avisando: vouteajudar@truppie.com. Se a notificação ocorrer com pelo menos 48 horas de antecedência, o explorador é reembolsado em 100%. Das 48 horas anteriores até o momento do evento, o valor pago não será reembolsado, mas o explorador o terá como crédito junto ao guia, para ser utilizado em uma truppie futura, de sua escolha."
+  welcome_view_faq_p_nine: "O guia organizador é a pessoa que mais sabe sobre sua própria truppie, então recomendamos entrar em contato com eles pelo e-mail ou telefone fornecidos na página do evento em questão. Porém, havendo algum problema, a Truppie está disponível para ajudá-lo também. "
+  welcome_view_faq_p_ten: "Você já exerce a atividade que gostaria de oferecer como truppie - seja profissionalmente ou por hobby, seja no seu dia-a-dia ou de maneira esporádica? Você se sente confiante de conduzir um grupo como líder? Você dá conta da administração do  evento, dando atenção às dúvidas e necessidades dos seus exploradores? E, mais importante: você se identifica com os princípios e valores da Truppie? Se respondeu sim a todas estas perguntas, então sim, você pode se cadastrar como guia na Truppie. "
+  welcome_view_faq_p_eleven: "Não. Uma vez que você se compromete com um guia, ele está contando com a sua presença para o seu evento. Você não consegue estar em dois lugares ao mesmo tempo, certo?"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
