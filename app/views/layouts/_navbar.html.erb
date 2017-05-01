@@ -21,7 +21,7 @@
     	  </div>
     	  <div class="col-xs-12 col-md-2 center-xs">
   		  <% if not user_signed_in? %>
-  		  <%= link_to 'entrar / logar', new_user_session_path, class: 'btn btn-secondary btn-sm pull-xs-right' %>
+  		  <%= link_to t('navbar_partial_link_one'), new_user_session_path, class: 'btn btn-secondary btn-sm pull-xs-right' %>
   		  <% else %>
     		  <div class="user-actions">
       		  	<div class="dropdown pull-xs-righ">
@@ -32,10 +32,10 @@
         			    <%= current_user.email.split('@')[0] %>
         			  </a>
         			  <div class="dropdown-menu" aria-labelledby="openuser">
-        			  	<%= link_to 'Minhas truppies', orders_path, class: 'dropdown-item' %>
-        			    <%= link_to 'Editar usuário', edit_user_registration_path, class: 'dropdown-item' %>
+        			  	<%= link_to t('navbar_partial_link_two'), orders_path, class: 'dropdown-item' %>
+        			    <%= link_to t('navbar_partial_link_three'), edit_user_registration_path, class: 'dropdown-item' %>
         			    <div class="dropdown-divider"></div>
-        			    <%= link_to 'Sair', destroy_user_session_path, class: 'dropdown-item' %>
+        			    <%= link_to t('navbar_partial_link_four'), destroy_user_session_path, class: 'dropdown-item' %>
         			  </div>
       			 </div>
   	       </div>

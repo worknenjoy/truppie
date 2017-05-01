@@ -8,7 +8,7 @@ class MarketplacesController < ApplicationController
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
     
     unless allowed_emails.include? current_user.email
-      flash[:notice] = "Você não está autorizado a entrar nesta página"
+      flash[:notice] = t('marketplace_controller_notice')
       redirect_to root_path
     end 
   end
@@ -40,7 +40,7 @@ class MarketplacesController < ApplicationController
     respond_to do |format|
       if @marketplace.save
         format.html {
-          redirect_to @marketplace, notice: 'Marketplace was successfully created.' 
+          redirect_to @marketplace, notice: t('marketplace_controller_notice_two') 
         }
         format.json { render :show, status: :created, location: @marketplace }
       else
@@ -58,7 +58,7 @@ class MarketplacesController < ApplicationController
   def update
     respond_to do |format|
       if @marketplace.update(marketplace_params)
-        format.html { redirect_to @marketplace, notice: 'Marketplace was successfully updated.' }
+        format.html { redirect_to @marketplace, notice: t('marketplace_controller_notice_three') }
         format.json { render :show, status: :ok, location: @marketplace }
       else
         format.html { render :edit }
@@ -72,7 +72,7 @@ class MarketplacesController < ApplicationController
   def destroy
     @marketplace.destroy
     respond_to do |format|
-      format.html { redirect_to marketplaces_url, notice: 'Marketplace was successfully destroyed.' }
+      format.html { redirect_to marketplaces_url, notice: t('marketplace_controller_notice_four') }
       format.json { head :no_content }
     end
   end
@@ -82,24 +82,24 @@ class MarketplacesController < ApplicationController
       account = @marketplace.activate
       if account
         if account.id
-          @activation_message = "Conseguimos com sucesso criar uma conta no marketplace para #{@marketplace.organizer.name}"
-          @activation_status = "success"
+          @activation_message = t('marketplace_controller_activation_message_one', organizer: @marketplace.organizer.name)
+          @activation_status = t('status_success')
           @response = account
           @marketplace.organizer.update_attributes(:market_place_active => true)
           MarketplaceMailer.activate(@marketplace.organizer).deliver_now
         else
-          @activation_message = "Marketplace #{@marketplace.organizer.name} não foi criado"
-          @activation_status = "danger"
-          @errors = "Houve algum problema e ele não gerou o id"
+          @activation_message = t('marketplace_controller_activation_message_two', organizer: @marketplace.organizer.name)
+          @activation_status = t('status_danger')
+          @errors = t('marketplace_controller_errors')
         end
       else
-        @activation_message = "Marketplace #{@marketplace.organizer.name} já se encontra ativo"
-        @activation_status = "danger"
-        @errors = "Já se encontra ativo"
+        @activation_message = t("marketplace_controller_activation_message_three", organizer: @marketplace.organizer.name)
+        @activation_status = t('status_danger')
+        @errors = t("marketplace_controller_errors_two")
       end
     rescue => e
-        @activation_message = "Marketplace #{@marketplace.organizer.name} não pôde ser ativado devido a problema na API do Stripe"
-        @activation_status = "danger"
+        @activation_message = t("marketplace_controller_activation_message_four", organizer: @marketplace.organizer.name)
+        @activation_status = t('status_danger')
         @errors = e.message
         puts e.inspect
     end
@@ -110,25 +110,25 @@ class MarketplacesController < ApplicationController
       account = @marketplace.update_account
       if account
         if account.id
-          @activation_message = "Conseguimos com sucesso atualizar sua conta do #{@marketplace.organizer.name}"
-          @activation_status = "success"
+          @activation_message = t("marketplace_controller_activation_message_five", organizer: @marketplace.organizer.name)
+          @activation_status = t('status_success')
           @response = account
           MarketplaceMailer.update(@marketplace.organizer).deliver_now
         else
-          @activation_message = "Marketplace #{@marketplace.organizer.name} não foi atualizado"
-          @activation_status = "danger"
-          @errors = "Houve algum problema e ele não achou sua conta"
+          @activation_message = t("marketplace_controller_activation_message_six", organizer: @marketplace.organizer.name)
+          @activation_status = t('status_danger')
+          @errors = t('marketplace_controller_errors_three')
         end
       else
-        @activation_message = "Marketplace #{@marketplace.organizer.name} já se encontra ativo"
-        @activation_status = "danger"
-        @errors = "Já se encontra ativo"
+        @activation_message = t("marketplace_controller_activation_message_seven", organizer: @marketplace.organizer.name)
+        @activation_status = t('status_danger')
+        @errors = t("marketplace_controller_errors_four")
       end
     rescue => e
         puts e.inspect
         puts e.backtrace
-        @activation_message = "O Marketplace não pôde ser atualizado devido a problema na API do Stripe"
-        @activation_status = "danger"
+        @activation_message = t("marketplace_controller_activation_message_eight")
+        @activation_status = t('status_danger')
         @errors = e.message
     end
   end

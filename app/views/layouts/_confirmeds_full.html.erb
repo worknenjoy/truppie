@@ -1,5 +1,5 @@
 <h4 class="spaced-smallest">
-  Confirmados
+  <%= t('confirm_eds_partial_h4') %>
 </h4>
 <div class="row">
   <div class="confirmeds">
@@ -11,7 +11,7 @@
                   <span>
                     <% if current_user %>
                       <% if c.user.name == current_user.name %>
-                        <strong>Você</strong>
+                        <strong><%= t('confirm_eds_partial_strong') %></strong>
                         <!-- <%= button_to "desistir", unconfirm_presence_tour_path(@tour), data: { confirm: "Are you sure?" }, class: 'btn btn-secondary btn-sm btn-block' %> -->
                       <% else %>
                         <strong><%= c.user.name %></strong>
@@ -20,7 +20,7 @@
                       <strong><%= c.user.name %></strong>
                     <% end %>
                   </span>
-                  <span><%= c.user.orders.where(:user_id => c.user.id, :tour_id => tour.id).last.amount %> reserva(s)</span>
+                  <span><%= c.user.orders.where(:user_id => c.user.id, :tour_id => tour.id).last.amount %> <%= t('confirm_eds_partial_span') %></span>
                   <i></i>
                   <i></i>
                   <i></i>
@@ -36,7 +36,7 @@
       <% end %>
       <% else %>
         <div class="col-xs-12">
-          <p class="small">Ninguem confirmou ainda. <%= link_to 'Confirmar a sua', confirm_tour_path %></p>
+          <p class="small"><%= t('confirm_eds_partial_small') %><%= link_to t('confirm_eds_partial_link'), confirm_tour_path %></p>
         </div>
       <% end %>
   </div>

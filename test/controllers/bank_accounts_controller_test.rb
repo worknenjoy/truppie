@@ -80,7 +80,7 @@ class BankAccountsControllerTest < ActionController::TestCase
   test "should not activate a bank_account if the id already exist" do
     get :activate, id: @registered_bank_account
     assert_equal assigns(:activation_status), "danger"
-    assert_equal assigns(:activation_message), "Esta conta bancária do #{@registered_bank_account.marketplace.organizer.name} já foi ativada"
+    assert_equal assigns(:activation_message), I18n.translate('bank_controller_activation_msg_one', organizer: @registered_bank_account.marketplace.organizer.name)
     assert_equal assigns(:errors), "já tem uma conta associada"
     assert_response :success
     

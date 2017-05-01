@@ -13,28 +13,28 @@
               <footer>
                 <p><%= @confirm_status_message %></p>
                 <% if @status == "success" %>
-                <p>Você pode acompanhar o status em <%= link_to 'minhas truppies', orders_path %>. </p>
+                <p><%= t('tours_view_confirm_presence_p_one') %><%= link_to t('tours_view_confirm_presence_link_one'), orders_path %>. </p>
                 <% else %>
-                <p><%= link_to "voltar para confirmação", confirm_tour_path(@tour) %></p>
+                <p><%= link_to t('tours_view_confirm_presence_link_two'), confirm_tour_path(@tour) %></p>
                 <% end %>
               </footer>
             </blockquote>
           </div>
         </div>
         <% if @status == "success" %>
-        <h3 class="spaced-top">Segue abaixo as informações do seu pedido</h3>
+        <h3 class="spaced-top"><%= t('tours_view_confirm_presence_h3') %></h3>
         <div class="main-box no-header clearfix">
           <div class="main-box-body clearfix">
             <div class="table-responsive">
               <table class="table user-list">
                 <thead>
                   <tr>
-                    <th class="text-center"><span>Organizador</span></th>
-                    <th class="text-center"><span>Status</span></th>
-                    <th><span>Código do pedido</span></th>
-                    <th>Valor da reserva</th>
-                    <th>Quantidade</th>
-                    <th>Total</th>
+                    <th class="text-center"><span><%= t('tours_view_confirm_presence_span_one') %></span></th>
+                    <th class="text-center"><span><%= t('tours_view_confirm_presence_span_two') %></span></th>
+                    <th><span><%= t('tours_view_confirm_presence_span_three') %></span></th>
+                    <th><%= t('tours_view_confirm_presence_th_one') %></th>
+                    <th><%= t('tours_view_confirm_presence_th_two') %></th>
+                    <th><%= t('tours_view_confirm_presence_th_three') %></th>
                   </tr>
                 </thead>
                 <tbody>
