@@ -451,7 +451,7 @@ pt-BR:
   tours_view_form_options_a: "Não Publicado"
   tours_view_form_options_b: "N"
   tours_view_form_options_c: "Publicado"
-  tours_view_form_options_c: "P"
+  tours_view_form_options_d: "P"
   tours_view_form_p_one: "Para associar um organizador a esta truppie, você precisa ser membro desta organização"
   tours_view_form_p_two: "Você pode adicionar pacotes com valores diferentes (lembre-se que o campo de preço da truppie deve ficar em branco)"
   tours_view_form_link_one: "Adicionar pacote"
