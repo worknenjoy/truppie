@@ -83,7 +83,7 @@ class MarketplacesController < ApplicationController
       if account
         if account.id
           @activation_message = t('marketplace_controller_activation_message_one', organizer: @marketplace.organizer.name)
-          @activation_status = t('status_sucess')
+          @activation_status = t('status_success')
           @response = account
           @marketplace.organizer.update_attributes(:market_place_active => true)
           MarketplaceMailer.activate(@marketplace.organizer).deliver_now
@@ -111,7 +111,7 @@ class MarketplacesController < ApplicationController
       if account
         if account.id
           @activation_message = t("marketplace_controller_activation_message_five", organizer: @marketplace.organizer.name)
-          @activation_status = t('status_sucess')
+          @activation_status = t('status_success')
           @response = account
           MarketplaceMailer.update(@marketplace.organizer).deliver_now
         else
