@@ -368,6 +368,7 @@ class OrdersControllerTest < ActionController::TestCase
     assert_equal assigns(:user_id), 'acct_1A2RYaFJqvzNLRuj'
     assert_equal assigns(:status), 'in_transit'
     assert_equal assigns(:type_of_action), 'transfer'
+    assert_equal assigns(:transfer_status), 'in_transit'
     assert_equal assigns(:amount_to_transfer), 1880
     assert_equal assigns(:marketplace_organizer), @marketplace_stub_user_id
     assert_equal assigns(:marketplace_organizer_owner), "Laura Zerwes Amado Sette"

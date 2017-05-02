@@ -83,8 +83,10 @@ class OrdersController < ApplicationController
 
         @amount_to_transfer = request_raw_json["data"]["object"]["amount"]
         @type_of_action = request_raw_json["data"]["object"]["object"]
+        @transfer_status = request_raw_json["data"]["object"]["status"]
 
-        if @user_id && @type_of_action == 'transfer'
+
+        if @user_id && @type_of_action == 'transfer' && @transfer_status == 'in_transit'
           @marketplace_organizer = Marketplace.where(:account_id => @user_id).first
 
           @marketplace_organizer_owner = request_raw_json["data"]["object"]["bank_account"]["account_holder_name"]
