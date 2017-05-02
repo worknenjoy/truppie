@@ -2,7 +2,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<h3 class="spaced-smallest">Todas as truppies já criadas</h3>
+			<h3 class="spaced-smallest"><%= t('tours_view_index_h3') %></h3>
 			
 			<table class="table user-list spaced-down">
 			  <thead>
@@ -15,15 +15,15 @@
 			    <% @tours.each do |tour| %>
 			      <tr>
 			      	<td><%= tour.title %></td>
-			        <td><%= link_to 'Exibir', tour %></td>
-			        <td><%= link_to 'Editar', edit_tour_path(tour) %></td>
-			        <td><%= link_to 'Apagar', tour, method: :delete, data: { confirm: 'Tem certeza que deseja apagar esta truppie?' } %></td>
+			        <td><%= link_to t('tours_view_index_link_one'), tour %></td>
+			        <td><%= link_to t('tours_view_index_link_two'), edit_tour_path(tour) %></td>
+			        <td><%= link_to t('tours_view_index_link_three'), tour, method: :delete, data: { confirm: t('tours_view_index_link_three_confirm') } %></td>
 			      </tr>
 			    <% end %>
 			  </tbody>
 			</table>
 			
-			<%= link_to 'Criar nova truppie', new_tour_path, class: 'btn btn-primary pull-right' %>
+			<%= link_to t('tours_view_index_link_four'), new_tour_path, class: 'btn btn-primary pull-right' %>
 		</div>
 	</div>
 </div>

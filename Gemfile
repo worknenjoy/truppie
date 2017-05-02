@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby "2.2.3"
-
 gem "mime-types", '2.6.2'
 
 gem 'dotenv-rails', groups: [:development, :test]
@@ -42,7 +40,7 @@ gem 'omniauth-facebook'
 
 gem 'moip2', '~> 0.1.4'
 gem 'rest-client'
-gem 'json', '1.8.2'
+gem 'json'
 gem 'fakeredis'
 
 gem 'time_diff'

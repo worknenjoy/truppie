@@ -1,7 +1,7 @@
 <% guides.each_slice(2) do |part_guides| %>
 <div class="row">
   <div class="col-xs-12">
-    <h3 class="light-heading" style="padding: 4px;">Guias</h3>
+    <h3 class="light-heading" style="padding: 4px;"><%= t('guides_partial_h3_one') %></h3>
   </div>
 </div>
 <div class="row">
@@ -37,11 +37,11 @@
               <p class="card-text spaced-down"><%= g.description %></p>
               <% if g.website %>
               <%= link_to g.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
-                <i class="fa fa-external-link"></i> entrar no site
+                <i class="fa fa-external-link"></i> <%= t('guides_partial_a_one') %>
               <% end %>
             <% end %>
             <% if g.email %>
-            <a class="btn btn-primary-outline btn-sm" href="mailto:<%= g.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
+            <a class="btn btn-primary-outline btn-sm" href="mailto:<%= g.email %>"><i class="fa fa-envelope"></i><%= t('guides_partial_a_two') %></a> <br />
             <% end %>
             <div class="hovercard spaced-default">
               <div class="bottom">

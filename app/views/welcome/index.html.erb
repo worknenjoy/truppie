@@ -16,7 +16,7 @@
 		<% if @tours.any? %>
 		<div class="card card-floating wow bounceIn">
 		  <div class="card-header">
-		    <i class="fa fa-calendar"></i> Próxima saída
+		    <i class="fa fa-calendar"></i> <%= t('welcome_view_index_div_one') %>
 		  </div>
 		  <div class="spaced-down">
 			  <div class="row">
@@ -43,8 +43,8 @@
 			    </div>
 			    <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
 			    	<strong><%= link_to(@tours.first.title, tour_path(@tours.first)) %></strong>
-			    	<small>com</small> <%= @tours.first.organizer.name %><br />
-			    	<small>em <strong><%= @tours.first.where.name %>, <%= @tours.first.where.state %></strong></small>
+			    	<small><%= t('welcome_view_index_small_one') %></small> <%= @tours.first.organizer.name %><br />
+			    	<small><%= t('welcome_view_index_small_two') %><strong><%= @tours.first.where.name %>, <%= @tours.first.where.state %></strong></small>
 		    	</div>
 			  </div>
 		  </div>
@@ -52,7 +52,7 @@
 			  <div class="row">
 			  	<div class="col-xs-12">
 				  	<div class="spaced-down">
-				  		<a href="<%= tour_path(@tours.first) %>" class="btn btn-block btn-primary btn-sm">Reservar</a>
+				  		<a href="<%= tour_path(@tours.first) %>" class="btn btn-block btn-primary btn-sm"><%= t('welcome_view_index_a_one') %></a>
 				  	</div>
 			  	</div>
 			  </div>
@@ -81,7 +81,7 @@
 			    <p class="lead emblem-font"><%= t('second-description') %></p>
 			  </div>
 			  <div class="top-note">
-			  	<small>Travessia Petrópolis - Teresópolis - RJ</small>
+			  	<small><%= t('welcome_view_index_small_three') %></small>
 			  </div>
 		    </div>
 		    <div class="carousel-item">
@@ -96,7 +96,7 @@
 			    <p class="lead emblem-font"><%= t('first-description') %></p>
 			  </div>
 			  <div class="top-note">
-			  	<small>Vale do Pati - BA</small>
+			  	<small><%= t('welcome_view_index_small_four') %></small>
 			  </div>
 		    </div>
 		    <div class="carousel-item">
@@ -112,7 +112,7 @@
 			    <p class="lead emblem-font"><%= t('third-description') %></p>
 			    </div>
 			    <div class="top-note">
-			  		<small>Pico do Papagaio, Aiuruoca - MG</small>
+			  		<small><%= t('welcome_view_index_small_five') %></small>
 		  	  </div>
 		    </div>
 	  </div>
@@ -169,21 +169,21 @@
     <div class="col-xs-12 col-md-6">
       <div class="card">
         <div class="card-header">
-          Se você é guia
+          <%= t('welcome_view_index_div_two') %>
         </div>
         <div class="card-block text-center">
-          <h4 class="card-title">Vamos ser parceiros?</h4>
-          <p class="card-text">A gente divulga seu evento, facilita a reserva para seus clientes, e você pode focar em oferecer um passeio inesquecível!</p>
-          <a href="https://goo.gl/forms/7MVxQJfWtLSsMcUw1" class="btn btn-primary btn-block">Inscreva-se na Truppie!</a><br />
-          <a href="https://drive.google.com/open?id=0B0EJ2VirMDNqcFlQS29Vb3ptMk90QnpDRzBMeWkyLUxIVDVr" class="btn btn-primary btn-block">Baixar manual do guia</a>
+          <h4 class="card-title"><%= t('welcome_view_index_h4_one') %></h4>
+          <p class="card-text"><%= t('welcome_view_index_p_one') %></p>
+          <a href="https://goo.gl/forms/7MVxQJfWtLSsMcUw1" class="btn btn-primary btn-block"><%= t('welcome_view_index_a_one') %></a><br />
+          <a href="https://drive.google.com/open?id=0B0EJ2VirMDNqcFlQS29Vb3ptMk90QnpDRzBMeWkyLUxIVDVr" class="btn btn-primary btn-block"> <%= t('welcome_view_index_a_two') %> </a>
         </div>
       </div>
     </div>
     <div class="col-xs-12 col-md-6">
         <div class="card">
         <div class="card-header">
-          <h4>Siga a gente nas redes sociais</h4>
-          <small>Siga a gente no <a href="http://www.facebook.com">Facebook</a> e fique sabendo das novidades, passeios e inspiração pra você sair da rotina e querer viajar!</small>
+          <h4><%= t('welcome_view_index_h4_two') %></h4>
+          <small><%= t('welcome_view_index_small_six') %><a href="http://www.facebook.com">Facebook</a><%= t('welcome_view_index_small_seven') %></small>
         </div>
         <div class="card-block">
           <div id="fb-root"></div>
@@ -207,7 +207,7 @@
 	  <% if @tours.any? %>
 		<div class="row">
 			<div class="col-xs-12">
-				<h3 class="light-heading" style="padding: 4px;">Próximas truppies</h3>
+				<h3 class="light-heading" style="padding: 4px;"><%= t('welcome_view_index_h3_one') %></h3>
 			</div>
 		</div>
 		<% @tours.each do |t| %>
@@ -239,7 +239,7 @@
 		            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
 					
 		            <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
-		            	<i class="fa fa-ticket"></i> Saber mais
+		            	<i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
 		            <% end %>
 		            <!-- Twitter Button -->   
 				</div>
@@ -260,15 +260,14 @@
 					</div>
 					<span>
 						<%= link_to organizer_path(t.organizer) do %>
-						<small>pela </small><strong><%= t.organizer.name %></strong>
+						<small><%= t('welcome_view_index_small_eight') %> </small><strong><%= t.organizer.name %></strong>
 						<% end %>
 					</span>
 				</div>
-		
 				<div class="twPc-divStats">
 					<ul class="twPc-Arrange">
 						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Quando?</span>
+							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_one') %></span>
 							<span class="twPc-StatValue">
 								<%= l(t.start, format: '%d de %B / %Y') %>
 							</span>
@@ -278,26 +277,26 @@
 						</li>
 						<% if !t.where.name.blank? %>
 						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Onde?</span>
+							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_two') %></span>
 							<span class="twPc-StatValue">
 								<%= t.where.name %> 
 							</span>
 						</li>
 						<% end %>
 						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">Que horas?</span>
+							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_three') %></span>
 							<span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
 						</li>
 						<div class="sized-1x">
 					    	<%= render partial: "layouts/confirmeds", locals: {tour: t} %>
 					    </div>
 						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block">vagas</span>
+							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_four') %></span>
 							<span class="twPc-StatValue">
 								<% if not t.soldout? %> 
-			            			<strong><%= t.available %></strong> vagas disponíveis
+			            			<strong><%= t.available %></strong> <%= t('welcome_view_index_span_five') %>
 			            		<% else %>
-			            			Não ha mais ticket disponiveis
+			            			<%= t('welcome_view_index_span_six') %>
 			            		<% end %>
 							</span>
 						</li>
@@ -352,7 +351,7 @@
 	                <p class="lead">
 	                	<%= t('newsletter-text') %>
 	                	<br />
-	                	<small>Fique tranquilo, nós não enviamos spam</small>
+	                	<small><%= t('welcome_view_index_small_nine') %></small>
 	                </p>
 	                
 	                
@@ -380,7 +379,7 @@
 		                </div>
 		                <div class="info">
 		                    <div class="title">
-		                        <a target="_blank" href="http://www.7cantosdomundo.com.br">Laura Sette</a>
+		                        <a target="_blank" href="http://www.7cantosdomundo.com.br"><%= t('welcome_view_index_a_three') %></a>
 		                    </div>
 		                    <div class="desc"><%= t('laura-feature') %></div>
 		                    <div class="desc"><%= t('laura-second-feature') %></div>
@@ -408,11 +407,11 @@
 		                </div>
 		                <div class="info">
 		                    <div class="title">
-		                        <a target="_blank" href="http://www.alexandremagno.net">Alexandre Magno</a>
+		                        <a target="_blank" href="http://www.alexandremagno.net"><%= t('welcome_view_index_a_four') %></a>
 		                    </div>
 		                    <div class="desc"><%= t('alex-feature') %></div>
 		                    <div class="desc"><%= t('alex-second-feature') %></div>
-		                    <div class="desc">Tech geek</div>
+		                    <div class="desc"><%= t('welcome_view_index_div_four') %></div>
 		                    <div class="desc"><a href="http://www.alexandremagno.net">alexandremagno.net</a></div>
 		                </div>
 		                <div class="bottom">

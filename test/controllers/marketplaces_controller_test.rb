@@ -63,7 +63,8 @@ class MarketplacesControllerTest < ActionController::TestCase
   
   test "try to activate marketplace already active" do
     get :activate, id: @marketplace
-    assert_equal assigns(:activation_message), "Marketplace #{@marketplace.organizer.name} já se encontra ativo"
+
+    assert_equal assigns(:activation_message), I18n.translate('marketplace_controller_activation_message_three', organizer: @marketplace.organizer.name, )
     assert_equal assigns(:activation_status), "danger"
     assert_equal assigns(:errors), "Já se encontra ativo"  
     assert_response :success
@@ -74,7 +75,7 @@ class MarketplacesControllerTest < ActionController::TestCase
     StripeMock.prepare_error(custom_error, :new_account)
     get :activate, id: @mkt_valid
     assert_equal assigns(:errors), "The comunication failed somehow"
-    assert_equal assigns(:activation_message), "Marketplace #{@marketplace.organizer.name} não pôde ser ativado devido a problema na API do Stripe"
+    assert_equal assigns(:activation_message), I18n.translate('marketplace_controller_activation_message_four', organizer: @mkt_valid.organizer.name)
     assert_equal assigns(:activation_status), "danger"
     assert_equal Marketplace.find(@mkt_valid.id).organizer.market_place_active, false
     assert_nil assigns(:response)   
@@ -85,7 +86,7 @@ class MarketplacesControllerTest < ActionController::TestCase
     get :activate, id: @mkt_valid
     assert_nil assigns(:errors)
     assert_equal assigns(:response).id, "test_acct_1"
-    assert_equal assigns(:activation_message), "Conseguimos com sucesso criar uma conta no marketplace para #{@mkt_valid.organizer.name}"
+    assert_equal assigns(:activation_message), I18n.translate('marketplace_controller_activation_message_one', organizer: @mkt_valid.organizer.name)
     assert_equal assigns(:activation_status), "success"
     assert_equal Marketplace.find(@mkt_valid.id).organizer.market_place_active, true
     assert_equal Marketplace.find(@mkt_valid.id).active, true
@@ -110,7 +111,7 @@ class MarketplacesControllerTest < ActionController::TestCase
     get :update_account, id: @mkt_valid
     assert_nil assigns(:errors)
     assert_equal assigns(:response).id, "test_acct_1"
-    assert_equal assigns(:activation_message), "Conseguimos com sucesso atualizar sua conta do #{@mkt_valid.organizer.name}"
+    assert_equal assigns(:activation_message), I18n.translate('marketplace_controller_activation_message_five', organizer: @mkt_valid.organizer.name)
     assert_equal assigns(:activation_status), "success"
     assert_equal Marketplace.find(@mkt_valid.id).person_name, "foo2"
     assert_equal assigns(:response).legal_entity.first_name, "foo2"
