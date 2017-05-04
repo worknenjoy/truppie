@@ -93,9 +93,9 @@ en:
   marketplace_controller_errors_three: "There was a problem and it didn't find your account"
   marketplace_controller_errors_four: "It is already active"
   
-  tours_controller_notice_one: "Você não está autorizado a entrar nesta página"
-  tours_controller_headline_msg: "Não foi possível confirmar sua reserva"
-  tours_controller_status_msg: "Não foi possível identificar a data de nascimento"
+  tours_controller_notice_one: "You do not have permission to access this page"
+  tours_controller_headline_msg: "It was not possible to confirm your reservation"
+  tours_controller_status_msg: "It was not possible to identify the date of birth"
   tours_controller_errors_one: "Hey, você já está confirmado neste evento, não é necessário reservar novamente!!"
   tours_controller_desc: "Truppie %{title} por %{organizer}"
   tours_controller_mailer_notify_one: "O usuário %{name} do email %{email} tentou o retorno foi %{inspect}"
