@@ -31,7 +31,7 @@ en:
   third-description: "Learn with experiences and evolve as a human being"
   
   balloom-heading: "Explore"
-  balloom-text: "What are you up to? All is here! Check out the available truppies"
+  balloom-text: "What are you up to? Check out the available truppies"
   
   hands-heading: "Choose"
   hands-text: "Check the details and confirm your presence with one click"
@@ -62,15 +62,15 @@ en:
   newsletter-text: "Leave your e-mail to be notified about the first truppie:"
   
   
-  bank_controller_activation_msg_one: "Esta conta bancária do %{organizer} já foi ativada"
-  bank_controller_activation_msg_status_one: "danger"
-  bank_controller_activation_errors: "já tem uma conta associada"
-  bank_controller_activation_errors_two: "Não foi possível salvar a conta ativa"
-  bank_controller_activation_msg_two: "Conta ativada com sucesso"
-  bank_controller_activation_msg_status_two: "success"
-  bank_controller_activation_msg_three: "Não conseguimos ativar a conta"
-  bank_controller_activation_msg_four: "Não foi possível ativar esta conta"
-  bank_controller_activation_msg_five: "Tivemos um problema pra ativar esta conta bancária"
+  bank_controller_activation_msg_one: "The %{organizer} bank account was already activated"
+  bank_controller_activation_msg_status_one: "Danger"
+  bank_controller_activation_errors: "It already has an account associated"
+  bank_controller_activation_errors_two: "It was not possible to save the active account"
+  bank_controller_activation_msg_two: "Account successfully activated"
+  bank_controller_activation_msg_status_two: "Success"
+  bank_controller_activation_msg_three: "We could not activate the account"
+  bank_controller_activation_msg_four: "It was not possible to activate the account"
+  bank_controller_activation_msg_five: "We had a problem to activate this bank account"
 
   contacts_controller_error: "You are missing the e-mail address and/or the message"
   contacts_controller_succes: "Your message was successfully sent. We'll be contacting you soon"
