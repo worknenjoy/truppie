@@ -36,6 +36,10 @@ class OrganizersController < ApplicationController
     @organizer = Organizer.new
   end
 
+  def organizer_new_tour
+
+  end
+
   # GET /organizers/1/edit
   def edit
   end

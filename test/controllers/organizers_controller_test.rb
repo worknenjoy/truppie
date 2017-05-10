@@ -67,6 +67,16 @@
      get :manage, id: @organizer_ready.id
      assert_response :success
    end
+
+   test "should open panel" do
+     get :dashboard, id: @organizer_ready.id
+     assert_response :success
+   end
+
+   test "should open new tour for the organizer" do
+     get :organizer_new_tour, id: @organizer_ready.id
+     assert_response :success
+   end
    
    test "should not admin organizer if is not the organizer owner and no admin" do
      sign_out users(:alexandre)
