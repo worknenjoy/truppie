@@ -1,0 +1,225 @@
+
+// Color Variables
+$navy: #0C1726;
+$porpus: #C4DDF2;
+$storm: #020507;
+$blueCrab: #A7C1D9;
+$overcast: #849EBF;
+
+
+// Container
+.event-list {
+  margin: 20px auto;
+  width: 100%;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  ul li {
+    list-style-type: none;
+  }
+}
+
+// New Event Tile
+#newEventHolder {
+  margin-bottom: 10px;
+  width: 100%;
+  border: 3px dashed darken($porpus, 15%);
+  text-align: center;
+  line-height: 4;
+  font-size: 24px;
+  color: darken($porpus, 15%);
+  box-sizing: border-box;
+  border-radius: 3px;
+
+  &:hover {
+    border: 3px dashed darken($porpus, 35%);
+    color: darken($porpus, 35%);
+    cursor: pointer;
+  }
+}
+
+
+// Add Event Form
+#newEventForm {
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  display: none;
+  overflow: hidden;
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: lighten($navy, 20%);
+  }
+
+  input[type="text"] {
+    padding-left: 15px;
+    width: 100%;
+    line-height: 1.875;
+    font-size: 16px;
+    color: $blueCrab;
+    border: 2px solid $porpus;
+    outline: 0;
+    box-sizing: border-box;
+    background: lighten($porpus, 12%);
+
+    &:focus { background: #FFF; border: 2px solid darken($porpus, 10%); }
+
+    .default {
+      margin-bottom: 20px;
+      height: 50px;
+    }
+
+  }
+
+  textarea.btn-event {
+    margin-bottom: 20px;
+    padding: 5px;
+    height: 120px;
+    width: 100%;
+    line-height: 1.875;
+    font-size: 16px;
+    color: $blueCrab;
+    border: 2px solid $porpus;
+    outline: 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background: lighten($porpus, 12%);
+
+    &:focus { background: #FFF; border: 2px solid darken($porpus, 10%); }
+  }
+
+  button.btn-event {
+    margin-right: 10px;
+    padding: 0 15px;
+    background: $overcast;
+    color: lighten($porpus, 10%);
+    font-size: 16px;
+    font-weight: 400;
+    border: 0;
+    outline: 0;
+    line-height: 3.5;
+    border-radius: 3px;
+    cursor: pointer;
+    float: right;
+
+    &:hover {
+      background: darken($overcast, 10%);
+    }
+  }
+
+  button#cancelAddEvent {
+    background:lighten($porpus, 5%);
+    color: darken($overcast, 20%);
+    cursor: pointer;
+
+    &:hover {
+      background: $porpus;
+    }
+  }
+}
+
+// Event Tile
+#eventHolder {
+  padding: 17px 15px;
+  margin-bottom: 10px;
+  background: $porpus;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 3px;
+
+  &::after {
+    content:"";
+    display: table;
+    clear: both;
+  }
+
+  .event-date-holder {
+    float: left;
+    background: $blueCrab;
+    margin-right: 20px;
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0px 1px 0px 0px lighten($porpus, 5%);
+
+    #dateNumber {
+      display: block;
+      font-size: 30px;
+      font-weight: 700;
+      color: $navy;
+    }
+
+    #dateDay {
+      text-transform: uppercase;
+    }
+  }
+
+  .event-details-holder {
+    float: left;
+    line-height: 14px;
+    width: 86%;
+
+    &::after {
+      content:"";
+      display: table;
+      clear: both;
+    }
+
+    h1 {
+      float: left;
+      margin-right: 30px;
+      vertical-align: bottom;
+      font-size: 20px;
+      font-weight: 600;
+      color: lighten($navy, 20%);
+    }
+
+    span#eventDescription {
+      position: relative;
+      padding-top: 4px;
+      color: darken($porpus, 70%);
+      float: left;
+      font-size: 18px;
+
+      &::before {
+        content:"//";
+        position: absolute;
+        left: -20px;
+        color: darken($porpus, 40%);
+      }
+    }
+
+    ul#editTools {
+      float: right;
+      margin: 0px 0px 0px 10px;
+      padding: 0px;
+
+      li {
+        display: inline;
+        margin-right: 15px;
+        padding-top: 5px;
+        font-size: 20px;
+        color: darken($porpus, 25%);
+
+        & .fa {
+          text-decoration: 0px 1px 0px 0px lighten($porpus, 5%);
+
+          &:hover {
+            color: darken($porpus, 35%);
+            cursor: pointer;
+          }
+        }
+
+        &:last-child { margin-right: 0; }
+
+      }
+    }
+  }
+}
+
+.hide { display: none; }
