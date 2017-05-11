@@ -22,6 +22,59 @@ function clearAlert() {
   window.clearTimeout(timeoutID);
 }
 
+function eventHolder() {
+    var newEventHolder = document.getElementById("newEventHolder");
+    var eventForm = document.getElementById("newEventForm");
+    var eventDate = document.getElementById("eventDate");
+    var addEvent = document.getElementById("addEvent");
+    var cancel = document.getElementById("cancelAddEvent");
+    var upcomingEvents = document.getElementById("upcomingEvents");
+    var eventHolder = document.getElementById("eventHolder");
+    var removeEvent = document.getElementById("removeEvent");
+
+// Show New Event form
+    $(newEventHolder).click(function() {
+        $(eventForm).slideDown(400);
+    });
+
+// Close New Event form
+    $(cancel).click(function() {
+        $(eventForm).slideUp(400);
+    });
+
+// Delete icon removed event from list
+    $(removeEvent).click(function() {
+        $(eventHolder).addClass('hide').stop();
+    });
+}
+
+function removeUpload() {
+    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    $('.file-upload-content').hide();
+    $('.image-upload-wrap').show();
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('.image-upload-wrap').hide();
+
+            $('.file-upload-image').attr('src', e.target.result);
+            $('.file-upload-content').show();
+
+            $('.image-title').html(input.files[0].name);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+
+    } else {
+        removeUpload();
+    }
+}
+
 $(function(){
 	
 	$('.dropdown-toggle').dropdown();
@@ -300,5 +353,30 @@ $(function(){
   });
   
   $('#birthdate').mask("99/99/9999");
- 	 	
+
+  eventHolder();
+
+    new Quill('#editor-container', {
+        modules: {
+            toolbar: [
+                [{ header: [1, 2, false] }],
+                ['bold', 'italic', 'underline']
+            ]
+        },
+        placeholder: 'describe the event...',
+        theme: 'snow'  // or 'bubble'
+    });
+
+    $('.image-upload-wrap').on('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').on('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+
+    $('.file-upload-input').on('change', function(e){
+        readURL(e.target);
+    });
+
+
 });

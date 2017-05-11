@@ -48,7 +48,7 @@ Rails.application.routes.draw do
       post 'tos_acceptance_confirm', to: 'organizers#tos_acceptance_confirm', as: 'tos_acceptance_confirm'
       get 'dashboard', to: 'organizers#dashboard', as: 'dashboard'
       get 'confirm_account', to: 'organizers#confirm_account', as: 'confirm_account'
-      get 'organizer_new_tour', to: 'organizers#organizer_new_tour', as: 'organizer_new_tour'
+      get 'guided_tour', to: 'organizers#guided_tour', as: 'guided_tour'
     end
   end
   
