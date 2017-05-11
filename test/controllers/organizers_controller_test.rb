@@ -74,7 +74,9 @@
    end
 
    test "should open new tour for the organizer" do
-     get :organizer_new_tour, id: @organizer_ready.id
+     get :guided_tour, id: @organizer_ready.id
+
+     assert_not_nil assigns(:guided_tour).length, @organizer_ready.tours.new.length
      assert_response :success
    end
    

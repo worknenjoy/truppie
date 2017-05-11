@@ -1,0 +1,136 @@
+<%= render 'layouts/navbar' %>
+<div class="container manage-entries">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="manage-inspiration">
+        <%= render 'layouts/organizer_intro_block', locals: {organizer: @organizer} %>
+      </div>
+      <div class="manage-container">
+        <div class="manage-sidebar">
+          <div class="card">
+            <div class="card-block card-organizer">
+              <div class="text-xs-center">
+                <h4 class="card-title spaced-down">
+                  <%= render partial: 'layouts/organizer_picture', locals: { organizer: @organizer }%>
+                  <strong><%= @organizer.name %> </strong>
+                </h4>
+                <p class="card-text spaced-down"><%= @organizer.description %></p>
+                <% if !@organizer.website.nil? %>
+                    <%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
+                        <i class="fa fa-external-link"></i> ver perfil
+                    <% end %>
+                <% end %>
+                <% if !@organizer.email.nil? %>
+                    <a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%= render partial: 'organizer_side_menu' %>
+        </div>
+        <div class="manage-main">
+          <h2 class="spaced-down" style="overflow:hidden; padding-bottom: 10px;">
+            <div class="pull-left">
+            <%= t('new_tour_label') %>
+            </div>
+            <div class="pull-right">
+              <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher" href="">
+                <i class="fa fa-facebook"></i> <%= t('import_event_label') %>
+              </a>
+            </div>
+          </h2>
+          <div class="event-list">
+            <div id="newEventHolder">
+              <span><i class="fa fa-plus"></i> <%= t('new_guided_tour_label') %></span>
+            </div>
+            <%= form_for @guided_tour, class: "form", multipart: true, role: "form" do |f| %>
+            <div id="newEventForm">
+              <div class="hide">
+                <h4 class="text-xs-center spaced-down"><%= t('tour_category_label') %></h4>
+                <div class="spaced-top" style="text-align: center">
+                  <%= image_tag("icons-truppie-fill/icones_truppie-19.svg", :alt => "Truppie", width: 100) %>
+                  <%= image_tag("icons-truppie-fill/icones_truppie-20.svg", :alt => "Truppie", width: 100) %>
+                  <%= image_tag("icons-truppie-fill/icones_truppie-21.svg", :alt => "Truppie", width: 100) %>
+                  <%= image_tag("icons-truppie-fill/icones_truppie-22.svg", :alt => "Truppie", width: 100) %>
+                  <%= image_tag("icons-truppie-fill/icones_truppie-23.svg", :alt => "Truppie", width: 100) %>
+                  <%= image_tag("icons-truppie-fill/icones_truppie-24.svg", :alt => "Truppie", width: 100) %>
+                  <%= image_tag("icons-truppie-fill/icones_truppie-25.svg", :alt => "Truppie", width: 100) %>
+                  <%= image_tag("icons-truppie-fill/icones_truppie-26.svg", :alt => "Truppie", width: 100) %>
+                  <%= image_tag("icons-truppie-fill/icones_truppie-27.svg", :alt => "Truppie", width: 100) %>
+                </div>
+              </div>
+              <label for="event-date"><%= t('event-date-title') %></label>
+              <%= render partial: 'calendar', locals: {f: f} %>
+              <input type="hidden" name="date-start">
+              <input type="hidden" name="date-end">
+              <input type="hidden" name="time-start">
+              <input type="hidden" name="time-end">
+              <div class="form-group">
+                <div class="file-upload">
+                  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+
+                  <div class="image-upload-wrap">
+                    <input class="file-upload-input" type="file" accept="image/*" />
+                    <div class="drag-text">
+                      <h3>Drag and drop a file or select add Image</h3>
+                    </div>
+                  </div>
+                  <div class="file-upload-content">
+                    <img class="file-upload-image" src="#" alt="your image" />
+                    <div class="image-title-wrap">
+                      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <label for="event-title">Event Title</label>
+              <input type="text" name="event-title" class="event-input default" maxlength="80"/>
+              <label for="event-description">Description</label>
+              <div class="spaced-down">
+                <div id="editor-container" class="spaced-down">
+              </div>
+              </div>
+              <!--
+              <textarea name="event-descripton" id="eventDescriptionInput" class="textarea">Event Description</textarea>
+              -->
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">R$</div>
+                  <input type="number" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                  <div class="input-group-addon">.00</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <button name="add-event" id="addEvent" class="btn-event">Add New Event</button>
+                <button name="cancel-add-event" id="cancelAddEvent" class="btn-event">Cancel</button>
+              </div>
+            </div>
+            <% end %>
+            <ul id="upcomingEvents">
+              <% @organizer.tours.nexts.each do |t| %>
+              <li id="eventHolder">
+                <div class="event-date-holder">
+                  <span id="dateNumber"><%= l(t.start, format: '%d') %></span>
+                  <span id="dateDay"><%= l(t.start, format: '%b') %></span>
+                </div>
+                <div class="event-details-holder">
+                  <h1><%= t.title %></h1>
+                  <span id="eventDescription"><%= truncate t.description, :length => 10 %></span>
+                  <ul id="editTools">
+                    <li><i class="fa fa-pencil-square-o"></i></li>
+                    <li><i class="fa fa-bars"></i></li>
+                    <li><i class="fa fa-times" id="removeEvent"></i></li>
+                  </ul>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>

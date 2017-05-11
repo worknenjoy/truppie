@@ -1,0 +1,154 @@
+/* STYLING : LESS CSS */
+$color-base: #f6b;
+$color-text-default: #333;
+$color-text-selected: #fff;
+
+
+$color-sel1: $color-base; // selection 1
+$color-sel2: #6cf; // selection 2
+$color-range: lighten($color-sel1, 10%); // range
+
+
+/* green theme */
+/*
+$color-base: #3c3;
+$color-sel2: #f80;
+$color-range: lighten($color-base, 20%);
+*/
+
+/* blue theme */
+
+$color-base: #4cf;
+$color-sel2: #f6b;
+$color-range: lighten($color-base, 12%);
+
+.c-container {
+  box-sizing: border-box;
+  font-family: 'Roboto', arial, helvetica, sans-serif; font-weight:400;
+}
+
+#c {
+  padding:40px;
+  margin:20px auto;
+  background:#fff;
+  border:1px solid #eee;
+  border-top-width:2px;
+  font-family: 'Roboto', arial, helvetica, sans-serif;
+  font-weight:400;
+
+
+  i { font-style:normal; }
+  h1 { margin-top:0; font-size: 2rem; font-weight:300; }
+  h1 b { font-weight: 500; }
+
+  input { padding:5px 10px; }
+  table { border-collapse: collapse; cursor: default; width:100%; }
+  table td { border:1px solid #ddd; padding:5px; text-align:center; vertical-align:middle; }
+  table td:hover i { background: #eee; }
+  table td:active i { transition:none; transform: scale(0.95); }
+  table td i { font-style:normal; }
+  table td i {
+    display: inline-block;
+    position:relative;
+    width:34px;
+    height:34px;
+    line-height:34px;
+    border-radius:50%;
+    transition: all .2s ease;
+  }
+  table thead td { background: #eee; text-transform: uppercase; font-size:1.2rem; font-weight: 300; }
+  .sel1,.sel2, .range { color:#fff; }
+  table td.range i { background: $color-range }
+  table td.sel1 i { background: $color-sel1 }
+  table td.sel2 i { background: $color-sel2 }
+  .sel1 i, .sel2 i { animation: bounce .2s ease-in-out 1; }
+
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    20% { transform: translateY(-5px); }
+    50% { transform: translateY(5px); }
+    100% { transform: translateY(0px); }
+  }
+
+  td.disabled, td.notCurMonth { color: #ddd; font-size: 1.2rem; }
+  h1 { margin: 0 0 30px; }
+  p.sub { margin: -20px 0 60px; font-size: 1.6rem; font-weight: 300; line-height:140%; }
+  p.sub i { font-size:1.2rem; text-transform:uppercase; color:$color-base; font-weight:700; line-height:140%; }
+  #disp {
+    position:relative;
+    text-transform: uppercase;
+    text-align:center;
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.8rem;
+    background: $color-base;
+    color: #fff;
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer */
+    -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+    -webkit-user-select: none; /* Chrome, Safari, and Opera */
+    -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+    user-select:none;
+    touch-callout:none;
+  }
+  #month { display: inline; font-weight:300; }
+  #disp .nav {
+    color:#fff;
+    float:right;
+    width:15%;
+    cursor:pointer;
+    width: 40px;
+    height: 40px;
+    line-height: 36px;
+    border-radius:50%;
+    margin: 10px 10px 0 0;
+  }
+  #disp #prev { float:left; margin-right:0; margin-left: 10px; }
+
+  #disp .nav:hover { background: rgba(255,255,255,0.1); }
+  #disp .nav:active { transform: scale(0.9); }
+
+  .nav.disabled { opacity:.5; }
+
+  #out1,#out2 { color:#aaa; font-size:1.3rem; text-transform: uppercase; }
+
+
+
+  /* SELECT HELPER */
+  #calHelp {
+    font-weight: 400;
+    font-size:1.2rem;
+    text-transform: uppercase;
+  }
+
+  #calHelp div {
+    display: inline-block;
+    width:50%;
+    margin: 0 0 20px;
+  }
+
+  #calHelp div.first { width:auto; padding: 0 10px 0 0;}
+
+  #calHelp b { font-weight: 400; }
+
+  #calHelp i {
+    display: inline-block;
+    width:30px;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    margin: 0 3px 0 0;
+    background: $color-text-default;
+    color: $color-text-selected;
+    border-radius: 50%;
+  }
+
+  #calHelp .active i { background: $color-base; }
+  #calHelp .disabled { opacity: .3; }
+
+  .log h4 { margin: 20px 0 0; font-weight:500;  }
+  .log {font-size:1.2rem; line-height:150%; color:#aaa; margin-top:30px; }
+  .log p { margin-top:0; }
+}
+
+

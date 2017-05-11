@@ -1,287 +1,348 @@
-.header {
-  padding: 30px 0;
-  font-size: 24px;
-  text-align: center;
-  border-bottom: 1px solid #bbb;
-  font-weight: bold;
-}
+.payment-methods {
 
-.footer {
-  padding: 30px 0;
-  font-size: 14px;
-  text-align: center;
-  color: #aaa;
-}
-
-.footer .devices {
-  margin: 0 0 15px;
-  font-family: fontawesome;
-  font-size: 35px;
-}
-
-
-
-/*
-* SVG Icons
-**********************************************************/
-
-svg {
-  display: block;
-  position: absolute;
-  top: 2px;
-  right: 15px;
-  width: 45px;
-  height: 45px;
-}
-
-svg.svg-debit {
-  top: 5px;
-  right: 17px;
-  width: 40px;
-  height: 40px;
-}
-
-svg.svg-visa {
-  right: 125px;
-}
-
-svg.svg-master {
-  right: 70px;
-}
-
-svg.svg-sofort {
-  top: -8px;
-  right: 8px;
-  width: 65px;
-  height: 65px;
-}
-
-.svg-cash-hand { fill: #FFCA65; }
-.svg-cash-thumb { stroke: #FBAD3E; fill: none; }
-.svg-cash-money { fill: #34b154; }
-.svg-cash-money-inner { fill: #fff; opacity: .4; }
-.svg-cash-shirt-inner { fill: #def; }
-.svg-cash-shirt-outer { fill: #07b; }
-
-.svg-debit-card {fill: #e5e5e5; }
-.svg-debit-data { fill: #bbb; }
-.svg-debit-sign { fill: #fff; }
-.svg-debit-read { fill: #555; }
-
-.svg-visa-border { fill: #005098; }
-.svg-visa-letter { fill: #005098; }
-.svg-visa-corner { fill: #F6A500; }
-
-.svg-master-border { fill: #E30613; }
-.svg-master-circle1 { fill: #E40520; }
-.svg-master-circle2 { fill: #FAB31E; }
-.svg-master-letter { fill: #fff; }
-
-.svg-amex-border { fill: #0098D0; }
-.svg-amex-letter { fill: #0098D0; }
-
-.svg-sofort-line1 { fill: #ee7f00; }
-.svg-sofort-line2 { fill: #383a41; }
-.svg-sofort-fill { fill: #fff; }
-
-.svg-click-border { fill: #FF8000; }
-.svg-click-logo { fill: #FF8000; }
-.svg-click-letter { fill: #FF8000; }
-.svg-click-letter-center { fill: #808080; }
-
-.svg-paypal-border { fill: #1B557D; }
-.svg-paypal-letter1to3 { fill: #1B557D; }
-.svg-paypal-letter4to6 { fill: #107DB0; }
-
-/*
-* Buttons
-**********************************************************/
-
-.button {
-  position: relative;
-  height: 50px;
-  padding: 0 0 0 50px;
-  line-height: 48px;
-  border-bottom: 1px solid #bbb;
-  background: #fafafa;
-  cursor: pointer;
-  width: 100%;
-  font-weight: bold;
-}
-
-.button:hover {
-  background: #f5f5f5;
-}
-
-.button:after {
-  content: '';
-  position: absolute;
-  top: 15px;
-  left: 18px;
-  display: block;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 1px #bbb, inset 0 0 0 7px #fff;
-  background: #fff;
-}
-
-.button:hover:after {
-  background: #bbb;
-}
-
-.button.active:after {
-  background: #555;
-}
-
-/*
-* Breakpoint
-**********************************************************/
-
-@media all and (min-width: 500px) {
-
-  svg {
-    right: 25px;
-    width: 55px;
-    height: 55px;
-  }
-
-  svg.svg-debit {
-    top: 4px;
-    right: 27px;
-    width: 50px;
-    height: 50px;
-  }
-
-  svg.svg-visa {
-    right: 175px;
-  }
-
-  svg.svg-master {
-    right: 100px;
-  }
-
-  svg.svg-sofort {
-    top: -14px;
-    right: 15px;
-    width: 85px;
-    height: 85px;
-  }
-
-  .button {
-    height: 60px;
-    padding: 0 0 0 60px;
-    font-size: 18px;
-    line-height: 58px;
-  }
-
-  .button:after {
-    top: 20px;
-    left: 23px;
-  }
-
-}
-
-/*
-* Breakpoint
-**********************************************************/
-
-@media all and (min-width: 700px) {
-
-  svg {
-    top: auto !important;
-    right: 0 !important;
-    left: 0;
-    margin: auto;
-    bottom: 10px;
-    width: 60px;
-    height: 60px;
-  }
-  
-  svg.svg-cash {
-    bottom: 5px;
-    width: 70px;
-    height: 70px;
-  }
-
-  svg.svg-debit {
-    width: 60px;
-    height: 60px;
-  }
-
-  svg.svg-visa {
-    bottom: 50px;
-    width: 40px;
-    height: 40px;
-  }
-
-  svg.svg-master {
-    bottom: 25px;
-    width: 40px;
-    height: 40px;
-  }
-
-  svg.svg-amex {
-    bottom: 0;
-    width: 40px;
-    height: 40px;
-  }
-
-  svg.svg-sofort {
-    bottom: 0;
-    width: 85px;
-    height: 85px;
-  }
-
-  svg.svg-click {
-    bottom: -2px;
-    width: 90px;
-    height: 90px;
-  }
-
-  svg.svg-paypal {
-    bottom: -8px;
-    width: 100px;
-    height: 100px;
-  }
-
-  .svg-visa-border,
-  .svg-master-border,
-  .svg-amex-border,
-  .svg-click-border,
-  .svg-paypal-border {
-    display: none;
-  }
-
-  .payments {
-    margin: 0 auto;
-    padding: 25px;
-    overflow: hidden;
-  }
-
-  .button {
-    float: left;
-    height: 150px;
-    margin-right: 10px;
-    padding: 50px 0 0;
-    line-height: 1;
+  .header {
+    padding: 30px 0;
+    font-size: 24px;
     text-align: center;
-    border: 0;
-    border-radius: 3px;
-    box-shadow: inset 0 0 0 1px #bbb;
-  }
-
-  .button:last-child {
-    margin-right: 0;
-  }
-
-  .button:after {
-    top: 15px;
-    left: 47%;
+    border-bottom: 1px solid #bbb;
+    font-weight: bold;
   }
 
   .footer {
-    border-top: 1px solid #bbb;
+    padding: 30px 0;
+    font-size: 14px;
+    text-align: center;
+    color: #aaa;
   }
 
+  .footer .devices {
+    margin: 0 0 15px;
+    font-family: fontawesome;
+    font-size: 35px;
+  }
+
+  /*
+  * SVG Icons
+  **********************************************************/
+
+  svg {
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+  }
+
+  svg.svg-debit {
+    top: 5px;
+    right: 17px;
+    width: 40px;
+    height: 40px;
+  }
+
+  svg.svg-visa {
+    right: 125px;
+  }
+
+  svg.svg-master {
+    right: 70px;
+  }
+
+  svg.svg-sofort {
+    top: -8px;
+    right: 8px;
+    width: 65px;
+    height: 65px;
+  }
+
+  .svg-cash-hand {
+    fill: #FFCA65;
+  }
+  .svg-cash-thumb {
+    stroke: #FBAD3E;
+    fill: none;
+  }
+  .svg-cash-money {
+    fill: #34b154;
+  }
+  .svg-cash-money-inner {
+    fill: #fff;
+    opacity: .4;
+  }
+  .svg-cash-shirt-inner {
+    fill: #def;
+  }
+  .svg-cash-shirt-outer {
+    fill: #07b;
+  }
+
+  .svg-debit-card {
+    fill: #e5e5e5;
+  }
+  .svg-debit-data {
+    fill: #bbb;
+  }
+  .svg-debit-sign {
+    fill: #fff;
+  }
+  .svg-debit-read {
+    fill: #555;
+  }
+
+  .svg-visa-border {
+    fill: #005098;
+  }
+  .svg-visa-letter {
+    fill: #005098;
+  }
+  .svg-visa-corner {
+    fill: #F6A500;
+  }
+
+  .svg-master-border {
+    fill: #E30613;
+  }
+  .svg-master-circle1 {
+    fill: #E40520;
+  }
+  .svg-master-circle2 {
+    fill: #FAB31E;
+  }
+  .svg-master-letter {
+    fill: #fff;
+  }
+
+  .svg-amex-border {
+    fill: #0098D0;
+  }
+  .svg-amex-letter {
+    fill: #0098D0;
+  }
+
+  .svg-sofort-line1 {
+    fill: #ee7f00;
+  }
+  .svg-sofort-line2 {
+    fill: #383a41;
+  }
+  .svg-sofort-fill {
+    fill: #fff;
+  }
+
+  .svg-click-border {
+    fill: #FF8000;
+  }
+  .svg-click-logo {
+    fill: #FF8000;
+  }
+  .svg-click-letter {
+    fill: #FF8000;
+  }
+  .svg-click-letter-center {
+    fill: #808080;
+  }
+
+  .svg-paypal-border {
+    fill: #1B557D;
+  }
+  .svg-paypal-letter1to3 {
+    fill: #1B557D;
+  }
+  .svg-paypal-letter4to6 {
+    fill: #107DB0;
+  }
+
+  /*
+  * Buttons
+  **********************************************************/
+
+  .button {
+    position: relative;
+    height: 50px;
+    padding: 0 0 0 50px;
+    line-height: 48px;
+    border-bottom: 1px solid #bbb;
+    background: #fafafa;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+  }
+
+  .button:hover {
+    background: #f5f5f5;
+  }
+
+  .button:after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px #bbb, inset 0 0 0 7px #fff;
+    background: #fff;
+  }
+
+  .button:hover:after {
+    background: #bbb;
+  }
+
+  .button.active:after {
+    background: #555;
+  }
+
+  /*
+  * Breakpoint
+  **********************************************************/
+
+  @media all and (min-width: 500px) {
+
+    svg {
+      right: 25px;
+      width: 55px;
+      height: 55px;
+    }
+
+    svg.svg-debit {
+      top: 4px;
+      right: 27px;
+      width: 50px;
+      height: 50px;
+    }
+
+    svg.svg-visa {
+      right: 175px;
+    }
+
+    svg.svg-master {
+      right: 100px;
+    }
+
+    svg.svg-sofort {
+      top: -14px;
+      right: 15px;
+      width: 85px;
+      height: 85px;
+    }
+
+    .button {
+      height: 60px;
+      padding: 0 0 0 60px;
+      font-size: 18px;
+      line-height: 58px;
+    }
+
+    .button:after {
+      top: 20px;
+      left: 23px;
+    }
+
+  }
+
+  /*
+  * Breakpoint
+  **********************************************************/
+
+  @media all and (min-width: 700px) {
+
+    svg {
+      top: auto !important;
+      right: 0 !important;
+      left: 0;
+      margin: auto;
+      bottom: 10px;
+      width: 60px;
+      height: 60px;
+    }
+
+    svg.svg-cash {
+      bottom: 5px;
+      width: 70px;
+      height: 70px;
+    }
+
+    svg.svg-debit {
+      width: 60px;
+      height: 60px;
+    }
+
+    svg.svg-visa {
+      bottom: 50px;
+      width: 40px;
+      height: 40px;
+    }
+
+    svg.svg-master {
+      bottom: 25px;
+      width: 40px;
+      height: 40px;
+    }
+
+    svg.svg-amex {
+      bottom: 0;
+      width: 40px;
+      height: 40px;
+    }
+
+    svg.svg-sofort {
+      bottom: 0;
+      width: 85px;
+      height: 85px;
+    }
+
+    svg.svg-click {
+      bottom: -2px;
+      width: 90px;
+      height: 90px;
+    }
+
+    svg.svg-paypal {
+      bottom: -8px;
+      width: 100px;
+      height: 100px;
+    }
+
+    .svg-visa-border,
+    .svg-master-border,
+    .svg-amex-border,
+    .svg-click-border,
+    .svg-paypal-border {
+      display: none;
+    }
+
+    .payments {
+      margin: 0 auto;
+      padding: 25px;
+      overflow: hidden;
+    }
+
+    .button {
+      float: left;
+      height: 150px;
+      margin-right: 10px;
+      padding: 50px 0 0;
+      line-height: 1;
+      text-align: center;
+      border: 0;
+      border-radius: 3px;
+      box-shadow: inset 0 0 0 1px #bbb;
+    }
+
+    .button:last-child {
+      margin-right: 0;
+    }
+
+    .button:after {
+      top: 15px;
+      left: 47%;
+    }
+
+    .footer {
+      border-top: 1px solid #bbb;
+    }
+
+  }
 }
