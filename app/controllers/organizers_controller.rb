@@ -1,6 +1,6 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour]
   before_action :authenticate_user!, :except => [:show]
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance]
   helper_method :is_organizer_admin
@@ -36,8 +36,8 @@ class OrganizersController < ApplicationController
     @organizer = Organizer.new
   end
 
-  def organizer_new_tour
-
+  def guided_tour
+    @guided_tour = @organizer.tours.new
   end
 
   # GET /organizers/1/edit

@@ -7,22 +7,7 @@
         </div>
         <div class="manage-container">
           <div class="manage-sidebar">
-            <ul class="list-group">
-              <li class="list-group-item">
-                <a href="">
-                  <span class="label label-default label-pill pull-xs-right"><%= @organizer.tours.count %></span>
-                  <%= t('admin-truppie-label') %>
-                </a>
-              </li>
-              <li class="list-group-item">
-                <span class="label label-default label-pill pull-xs-right">2</span>
-                Dapibus ac facilisis in
-              </li>
-              <li class="list-group-item">
-                <span class="label label-default label-pill pull-xs-right">1</span>
-                Morbi leo risus
-              </li>
-            </ul>
+            <%= render partial: 'organizer_side_menu' %>
           </div>
           <div class="manage-main">
             <div class="">
@@ -35,7 +20,7 @@
                 <%= t('organizer-dashboard-desc') %>
               </p>
               <p class="text-xs-center">
-                <%= link_to "", class: 'btn btn-primary btn-lg' do %>
+                <%= link_to guided_tour_organizer_path(@organizer), class: 'btn btn-primary btn-lg' do %>
                     <%= t('organizer-new-tour') %> <i class="fa fa-plus"></i>
               <% end %>
               </p>

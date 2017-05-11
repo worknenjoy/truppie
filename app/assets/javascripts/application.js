@@ -19,11 +19,13 @@
 //= require jquery.event.swipe
 //= require picturefill
 //= require tether
+//= require quill
 //= require bootstrap
 //= require typeahead
 //= require bootstrap-tagsinput
 //= require bootstrap-number-input
 //= require jquery.maskedinput
 //= require main-menu
+//= require date-range
 //= require main
 
