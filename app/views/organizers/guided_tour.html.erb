@@ -43,7 +43,7 @@
             <div id="newEventHolder">
               <span><i class="fa fa-plus"></i> <%= t('new_guided_tour_label') %></span>
             </div>
-            <%= form_for @guided_tour, class: "form", multipart: true, role: "form" do |f| %>
+            <%= form_for @guided_tour, class: "form form-signup", multipart: true, role: "form" do |f| %>
             <div id="newEventForm">
               <div class="hide">
                 <h4 class="text-xs-center spaced-down"><%= t('tour_category_label') %></h4>
@@ -108,7 +108,7 @@
               </div>
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                  <span class="input-group-addon"><span class="fa fa-link"></span></span>
                   <%= f.text_field :link, placeholder: t('tours_view_form_placeholder_four'), class: "form-control" %>
                 </div>
               </div>
@@ -122,7 +122,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-trophy"></span></span>
-                  <%= f.number_field :difficulty, placeholder: t('tours_view_form_placeholder_eight'), max: 5, min: 1, class: "form-control" %>
+                  <%= f.select :difficulty, options_for_select([['Muito facil', 1], ['Fácil', 2], ['Médio', 3], ['Difícil', 4], ['Muito difícil', 5]], (@guided_tour.difficulty if @guided_tour.difficulty.present?)), {class: "form-control", include_blank: 'Nível de dificuldade'} %>
                 </div>
               </div>
 
@@ -178,7 +178,7 @@
                 </div>
                 <div class="input-group col-xs-6">
                   <small style="vertical-align: -webkit-baseline-middle;"><%= t('or-label') %></small>
-                  <%= link_to '#', class: 'btn btn-primary btn-sm pull-right' do %>
+                  <%= link_to '#', class: 'btn btn-info-outline btn-sm pull-right' do %>
                       <%= t('organizer-new-package') %> <i class="fa fa-plus"></i>
                   <% end %>
 
