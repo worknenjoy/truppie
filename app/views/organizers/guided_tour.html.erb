@@ -97,8 +97,9 @@
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
-                  <%= f.text_field :where, value: (@guided_tour.where.name if @guided_tour.where.present?), placeholder: t('tours_view_form_placeholder_two'), class: "form-control" %>
+                  <%= f.text_field :place, value: '', placeholder: t('tours_view_form_placeholder_two'), class: "form-control places-input" %>
                 </div>
+                <div id="map"></div>
               </div>
               <div class="form-group">
                 <div class="input-group">
@@ -186,8 +187,8 @@
               </div>
 
               <div class="form-group">
-                <button name="add-event" id="addEvent" class="btn-event">Add New Event</button>
-                <button name="cancel-add-event" id="cancelAddEvent" class="btn-event">Cancel</button>
+                <button name="add-event" id="addEvent" class="btn-event"><%= t('new_event_create') %></button>
+                <button name="cancel-add-event" id="cancelAddEvent" class="btn-event"><%= t('new_event_cancel') %></button>
               </div>
             </div>
             <% end %>
