@@ -179,8 +179,8 @@ class Marketplace < ActiveRecord::Base
   end
   
   def balance
-    bank_account = Stripe::Balance.retrieve(destination: self.account_id)
-    puts bank_account.inspect
+    bank_account = Stripe::Balance.retrieve({:stripe_account => self.account_id})
+    #puts bank_account.inspect
     return bank_account
   end
    
@@ -240,7 +240,7 @@ class Marketplace < ActiveRecord::Base
   
   def transfers
     transfer_history = Stripe::Transfer.list(limit: 10, destination: self.account_id)
-    puts transfer_history.inspect
+    #puts transfer_history.inspect
     return transfer_history
   end
   
