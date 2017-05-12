@@ -54,8 +54,10 @@ $overcast: #849EBF;
     color: lighten($navy, 20%);
   }
 
-  input[type="text"] {
+  input[type="text"].default {
     padding-left: 15px;
+    margin-bottom: 20px;
+    height: 50px;
     width: 100%;
     line-height: 1.875;
     font-size: 16px;
@@ -66,12 +68,6 @@ $overcast: #849EBF;
     background: lighten($porpus, 12%);
 
     &:focus { background: #FFF; border: 2px solid darken($porpus, 10%); }
-
-    .default {
-      margin-bottom: 20px;
-      height: 50px;
-    }
-
   }
 
   textarea.btn-event {

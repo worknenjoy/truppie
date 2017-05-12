@@ -96,9 +96,92 @@
 
               <div class="form-group">
                 <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
+                  <%= f.text_field :where, value: (@guided_tour.where.name if @guided_tour.where.present?), placeholder: t('tours_view_form_placeholder_two'), class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                  <%= f.text_field :address, placeholder: t('tours_view_form_placeholder_three'), class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                  <%= f.text_field :link, placeholder: t('tours_view_form_placeholder_four'), class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-male"></span></span>
+                  <%= f.number_field :availability, placeholder: t('tours_view_form_placeholder_five'), min: 1, class: "form-control" %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-trophy"></span></span>
+                  <%= f.number_field :difficulty, placeholder: t('tours_view_form_placeholder_eight'), max: 5, min: 1, class: "form-control" %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-thumbs-up"></span></span>
+                  <%= f.text_field :included, value: (@guided_tour.included.join(';') if @guided_tour.included.present?), placeholder: t('tours_view_form_placeholder_thirteen'), class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-thumbs-down"></span></span>
+                  <%= f.text_field :nonincluded, value: (@guided_tour.nonincluded.join(';') if @guided_tour.nonincluded.present?), placeholder: t('tours_view_form_placeholder_fourteen'), class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-book"></span></span>
+                  <%= f.text_field :take, placeholder: t('tours_view_form_placeholder_fifteen'), value: (@guided_tour.take.join(';') if @guided_tour.take.present?), class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-info-circle"></span></span>
+                  <%= f.text_field :goodtoknow, value: (@guided_tour.goodtoknow.join(';') if @guided_tour.goodtoknow.present?), placeholder: t('tours_view_form_placeholder_sixteen'), class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-location-arrow"></span></span>
+                  <%= f.text_field :meetingpoint, placeholder: t('tours_view_form_placeholder_seventeen'), class: "form-control" %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-tags"></span></span>
+                  <%= f.text_field :tags, value: (@guided_tour.tags.map{ |t| t.name}.join(';') if @guided_tour.tags.present?), placeholder: t('tours_view_form_placeholder_nineteen'), class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-globe"></span></span>
+                  <%= f.text_field :languages, value: (@guided_tour.languages.map{ |l| l.name}.join(';') if @guided_tour.languages.present?), placeholder: t('tours_view_form_placeholder_twenty'), class: "form-control" %>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="input-group col-xs-6">
                   <div class="input-group-addon">R$</div>
-                  <input type="number" class="form-control" id="exampleInputAmount" placeholder="Amount">
+                  <%= f.number_field :maximum, placeholder: 'valor unico', min: 1, class: "form-control text-xs-right" %>
                   <div class="input-group-addon">.00</div>
+                </div>
+                <div class="input-group col-xs-6">
+                  <small style="vertical-align: -webkit-baseline-middle;"><%= t('or-label') %></small>
+                  <%= link_to '#', class: 'btn btn-primary btn-sm pull-right' do %>
+                      <%= t('organizer-new-package') %> <i class="fa fa-plus"></i>
+                  <% end %>
+
                 </div>
               </div>
 
@@ -108,6 +191,7 @@
               </div>
             </div>
             <% end %>
+            <h4 class="spaced-top"><%= t('events-next') %></h4>
             <ul id="upcomingEvents">
               <% @organizer.tours.nexts.each do |t| %>
               <li id="eventHolder">
