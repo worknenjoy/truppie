@@ -45,6 +45,7 @@
  *= require dashboard 
  *= require image_gallery
  *= require adding-list
+ *= require map
  *= require quill.snow
  *= require date-range
  */
