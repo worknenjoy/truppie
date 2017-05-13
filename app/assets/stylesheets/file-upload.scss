@@ -1,29 +1,12 @@
-.file-upload-btn {
-  width: 100%;
-  margin: 0;
-  color: #fff;
-  background: #1FB264;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  border-bottom: 4px solid #15824B;
-  transition: all .2s ease;
-  outline: none;
-  text-transform: uppercase;
-  font-weight: 700;
-}
+@import 'bootstrap/variables';
 
-.file-upload-btn:hover {
-  background: #1AA059;
-  color: #ffffff;
-  transition: all .2s ease;
-  cursor: pointer;
-}
+// Color Variables
+$navy: #0C1726;
+$porpus: #C4DDF2;
+$storm: #020507;
+$blueCrab: #A7C1D9;
+$overcast: #849EBF;
 
-.file-upload-btn:active {
-  border: 0;
-  transition: all .2s ease;
-}
 
 .file-upload-content {
   display: none;
@@ -43,14 +26,14 @@
 
 .image-upload-wrap {
   margin-top: 20px;
-  border: 4px dashed #1FB264;
+  border: 4px dashed $porpus;
   position: relative;
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
-  background-color: #1FB264;
-  border: 4px dashed #ffffff;
+  background-color: $porpus;
+  border: 4px dashed lighten($porpus, 30%);
 }
 
 .image-title-wrap {
@@ -65,7 +48,7 @@
 .drag-text h3 {
   font-weight: 100;
   text-transform: uppercase;
-  color: #15824B;
+  color: $navy;
   padding: 60px 0;
 }
 
@@ -74,31 +57,4 @@
   max-width: 200px;
   margin: auto;
   padding: 20px;
-}
-
-.remove-image {
-  width: 200px;
-  margin: 0;
-  color: #fff;
-  background: #cd4535;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  border-bottom: 4px solid #b02818;
-  transition: all .2s ease;
-  outline: none;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.remove-image:hover {
-  background: #c13b2a;
-  color: #ffffff;
-  transition: all .2s ease;
-  cursor: pointer;
-}
-
-.remove-image:active {
-  border: 0;
-  transition: all .2s ease;
 }
