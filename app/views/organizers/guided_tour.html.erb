@@ -67,25 +67,25 @@
               <input type="hidden" name="time-end">
               <div class="form-group">
                 <div class="file-upload">
-                  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                  <button class="file-upload-btn btn btn-info-outline btn-block" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
 
                   <div class="image-upload-wrap">
                     <input class="file-upload-input" type="file" accept="image/*" />
                     <div class="drag-text">
-                      <h3>Drag and drop a file or select add Image</h3>
+                      <h3><%= t('event-drag-drop-file') %></h3>
                     </div>
                   </div>
                   <div class="file-upload-content">
                     <img class="file-upload-image" src="#" alt="your image" />
                     <div class="image-title-wrap">
-                      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                      <button type="button" onclick="removeUpload()" class="remove-image btn btn-warning-outline"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
                     </div>
                   </div>
                 </div>
               </div>
               <label for="event-title">Event Title</label>
               <input type="text" name="event-title" class="event-input default" maxlength="80"/>
-              <label for="event-description">Description</label>
+              <label for="event-description"><%= t('event-desc-label') %></label>
               <div class="spaced-down">
                 <div id="editor-container" class="spaced-down">
               </div>
@@ -179,15 +179,80 @@
                 </div>
                 <div class="input-group col-xs-6">
                   <small style="vertical-align: -webkit-baseline-middle;"><%= t('or-label') %></small>
-                  <%= link_to '#', class: 'btn btn-info-outline btn-sm pull-right' do %>
+                  <%= link_to '#new-packages-modal', class: 'btn btn-info-outline btn-sm pull-right', data: {toggle: 'modal', target: '#new-packages-modal'} do %>
                       <%= t('organizer-new-package') %> <i class="fa fa-plus"></i>
                   <% end %>
-
                 </div>
+                <div class="modal fade" id="new-packages-modal">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Modal title</h4>
+                      </div>
+                      <div class="modal-body">
+                        <h3><%= t('add-packages-title') %></h3>
+                        <p><%= t('add-packages-desc') %></p>
+                        <%= f.fields_for :packages, (Array.new(1, @guided_tour.packages.build) if @guided_tour.packages.empty?) do |ff| %>
+                            <div class="new-packages-content">
+                              <fieldset class="form-group packages-set">
+                                <div class="form-group">
+                                  <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                                    <%= ff.text_field :name, placeholder: t('tours_view_form_placeholder_twentytwo'), class: "form-control" %>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                                    <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_twentythree'), class: "form-control", min: 1 %>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="input-group">
+                                    <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
+                                    <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value" %>
+                                  </div>
+                                </div>
+
+                              </fieldset>
+                            </div>
+                        <% end %>
+                        <h3><%= t('event-packages-title') %></h3>
+                        <% if !@guided_tour.try(:packages) %>
+                        <div class="packages-container" style="overflow:hidden;">
+                          <ul class="packages" style="overflow: hidden;">
+                            <% @guided_tour.packages.each do |p| %>
+                            <li class="packages-item">
+                              <h3 class="package-item_title"><%= p.name %></h3>
+                              <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
+                                <% p.included.each do |i| %>
+                                    <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
+                                <% end %>
+                              </ul>
+                              <h4 class="package-item_price"><% p.price %></h4>
+                            </li>
+                              <% end %>
+                          </ul>
+                        </div>
+                        <% else %>
+                        <span class="label-info"><%= t('event-no-packages-message') %></span>
+                        <% end %>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
               </div>
 
               <div class="form-group">
                 <button name="add-event" id="addEvent" class="btn-event"><%= t('new_event_create') %></button>
+                <button name="add-event" id="addEvent" class="btn-event"><%= t('new_event_draft') %></button>
                 <button name="cancel-add-event" id="cancelAddEvent" class="btn-event"><%= t('new_event_cancel') %></button>
               </div>
             </div>
