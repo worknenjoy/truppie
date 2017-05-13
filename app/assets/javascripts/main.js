@@ -33,18 +33,21 @@ function eventHolder() {
     var removeEvent = document.getElementById("removeEvent");
 
 // Show New Event form
-    $(newEventHolder).click(function() {
+    $(newEventHolder).on('click',function() {
         $(eventForm).slideDown(400);
+        return false;
     });
 
 // Close New Event form
-    $(cancel).click(function() {
+    $(cancel).on('click', function() {
         $(eventForm).slideUp(400);
+        return false;
     });
 
 // Delete icon removed event from list
-    $(removeEvent).click(function() {
+    $(removeEvent).on('click', function() {
         $(eventHolder).addClass('hide').stop();
+        return false;
     });
 }
 
