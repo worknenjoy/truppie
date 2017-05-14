@@ -377,7 +377,7 @@ $(function(){
                     ['bold', 'italic', 'underline']
                 ]
             },
-            placeholder: 'describe the event...',
+            placeholder: 'descreva seu evento...',
             theme: 'snow'  // or 'bubble'
         });
         quill.on('editor-change', function(eventName, args) {

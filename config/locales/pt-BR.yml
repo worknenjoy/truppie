@@ -129,6 +129,35 @@ pt-BR:
 
   organizer-percent-label: "Taxa (%)"
   tours_view_form_p_colab: "Colaboradores"
+
+  panel-label: "Painel"
+  balance-label: "Balanços"
+  transfer-label: "Transferências"
+  verified-label: "Conta verificada"
+
+
+  organizer-tours-label: "truppies"
+  hello-organizer-welcome: "Olá %{organizer}"
+  organizer-panel-welcome: "Este é o seu painel da truppie, onde você poderá criar seus passeios"
+  organizer-dashboard-desc: "Aqui, você tem acesso a criação da sua truppie, assim como atualização da sua conta"
+  organizer-new-tour: "criar uma truppie agora"
+
+
+  new-tour-label: "Criação de uma nova truppie"
+  new-guided-tour-label: "adicionar truppie"
+  import-event-label: "importar do facebook"
+  events-next: "Próximas truppies"
+  event-date-title: "Data da truppie"
+  event-call-start: "ínicio"
+  event-call-end: "fim"
+  event-add-image: "adicionar imagem"
+  event-drag-drop-file: "ou solte a imagem do seu computador aqui"
+  event-title: "Título da truppie"
+  event-desc-label: "Descrição da truppie"
+  new-event-cancel: "Cancelar"
+  organizer-new-package: "Criar pacotes"
+  or-label: "ou você pode"
+
   
   activerecord:
     errors:
