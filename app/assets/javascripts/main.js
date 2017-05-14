@@ -52,7 +52,7 @@ function eventHolder() {
 }
 
 function removeUpload() {
-    $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+    $('.file-upload-input').replaceWith($('.file-upload-input').clone(true));
     $('.file-upload-content').hide();
     $('.image-upload-wrap').show();
 }
@@ -61,11 +61,22 @@ function readURL(input) {
     if (input.files && input.files[0]) {
 
         var reader = new FileReader();
+        var img = document.createElement("img");
 
         reader.onload = function(e) {
             $('.image-upload-wrap').hide();
 
-            $('.file-upload-image').attr('src', e.target.result);
+            //$('.file-upload-image').attr('src', e.target.result);
+
+            $('.file-upload-content').find('img').remove();
+
+            img.src = e.target.result;
+
+            img.style.width = '100%';
+
+            $('.file-upload-content').append(img);
+
+
             $('.file-upload-content').show();
 
             $('.image-title').html(input.files[0].name);
@@ -382,7 +393,7 @@ $(function(){
     });
 
     $('.file-upload-input').on('change', function(e){
-        readURL(e.target);
+        readURL(this);
     });
 
 

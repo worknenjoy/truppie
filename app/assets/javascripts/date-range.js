@@ -29,8 +29,14 @@
 
             // temp
             if( _id('out1') === null ) { $('#cal').after('<i id="out1"></i>'); }
-            _id('out1').innerHTML = '<br>Selected 1: ' + e.innerText + '/' + month + '/' + year;
+            _id('out1').innerHTML = '<p>Início do evento: ' + e.innerText + '/' + month + '/' + year + '</p>';
             _id('sel1text').innerHTML = e.innerText + '-' + month + '-' + year;
+
+
+            var datetime = new Date(year, month, e.innerText, $('#_starttime_4i').val(), $('#_starttime_5i').val());
+
+            $('.start-field').val(datetime.toISOString());
+
         }
 
         // second doesnt exist
@@ -60,8 +66,13 @@
                     if(go){ e.classList.add('range'); }
                     // temp
                     if( _id('out2') === null ) { $('#out1').after('<i id="out2"></i>'); }
-                    _id('out2').innerHTML = '<br>Selected 2: ' + e.innerText + '/' + month + '/' + year;
+                    _id('out2').innerHTML = 'Fim do evento: ' + e.innerText + '/' + month + '/' + year;
                     _id('sel2text').innerHTML = e.innerText + '-' + month + '-' + year;
+
+                    var datetime = new Date(year, month, e.innerText, $('#_endtime_4i').val(), $('#_endtime_5i').val());
+
+                    $('.end-field').val(datetime.toISOString());
+
                 }
                 if(stop){ go=0; }
 
@@ -85,17 +96,6 @@
         } //end else/if
 
     } //userSelect(e);
-
-
-
-
-
-
-
-
-
-
-
 
 
     /*-----------------------------------------------------
@@ -162,7 +162,7 @@
         //console.log(m);
 
         str += '<table>';
-        str += '<thead><tr><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td><td>Sun</td></tr></thead><tbody>';
+        str += '<thead><tr><td>Seg</td><td>Ter</td><td>Qua</td><td>Qui</td><td>Sex</td><td>Sab</td><td>Dom</td></tr></thead><tbody>';
 
         for(key in days){
             i++;
@@ -186,18 +186,18 @@
 
 // months array (0 based index)
     var monthArr = [
-        'january',
-        'february',
-        'march',
-        'april',
-        'may',
-        'june',
-        'july',
-        'august',
-        'september',
-        'october',
-        'november',
-        'december'
+        'jan',
+        'fev',
+        'mar',
+        'abr',
+        'mai',
+        'jun',
+        'jul',
+        'ago',
+        'set',
+        'out',
+        'nov',
+        'dez'
     ]
 
     /* INIT */
