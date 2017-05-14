@@ -1,4 +1,5 @@
 <%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
 <div class="container manage-entries">
   <div class="row">
     <div class="col-xs-12">
@@ -61,10 +62,10 @@
               </div>
               <label for="event-date"><%= t('event-date-title') %></label>
               <%= render partial: 'calendar', locals: {f: f} %>
-              <input type="hidden" name="date-start">
-              <input type="hidden" name="date-end">
-              <input type="hidden" name="time-start">
-              <input type="hidden" name="time-end">
+
+              <%= f.hidden_field :start, value: '', class: 'start-field' %>
+              <%= f.hidden_field :end, value: '', class: 'end-field' %>
+
               <div class="form-group">
                 <div class="file-upload">
                   <button class="file-upload-btn btn btn-info-outline btn-block" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
@@ -76,7 +77,6 @@
                     </div>
                   </div>
                   <div class="file-upload-content">
-                    <img class="file-upload-image" src="#" alt="your image" />
                     <div class="image-title-wrap">
                       <button type="button" onclick="removeUpload()" class="remove-image btn btn-warning-outline"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
                     </div>
