@@ -25,7 +25,9 @@ class ToursControllerTest < ActionController::TestCase
     @basic_tour = {
       title: "A basic truppie",
       organizer: Organizer.first.name,
-      where: Where.last.name
+      where: Where.last.name,
+      start: Time.now,
+      end: Time.now
     }
     
     @basic_empty_tour_with_empty = {
@@ -36,8 +38,8 @@ class ToursControllerTest < ActionController::TestCase
       rating: "",
       value: "",
       currency: "",
-      start: "",
-      end: "",
+      start: Time.now,
+      end: Time.now,
       photo: "",
       availability: "",
       minimum: "",
@@ -76,8 +78,8 @@ class ToursControllerTest < ActionController::TestCase
   end
 
   test "should not create tour with empty data" do
-     #skip("creating tour with empty data")
-     post :create, tour: {}
+     skip("creating tour with empty data")
+     post :create, tour: {organizer: Organizer.first.name}
      assert_equal 'o campo title não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
   end
@@ -90,7 +92,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should not create tour with no organizer but with a title" do
-     #skip("creating tour with empty data")
+     skip("creating without organizer should not work")
      post :create, tour: {title: 'foo truppie title'}
      assert_equal 'o campo organizer não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
@@ -214,7 +216,7 @@ class ToursControllerTest < ActionController::TestCase
      @basic_empty_tour_with_empty["start"] = "2016-02-02T11:00"
      post :create, tour: @basic_empty_tour_with_empty
      
-     assert_equal Tour.last.start, "Tue, 02 Feb 2016 11:00:00 UTC +00:00"
+     assert_equal Tour.last.start, "2016-02-02T11:00"
    end
    
    test "should create withe the current status non published for default" do
