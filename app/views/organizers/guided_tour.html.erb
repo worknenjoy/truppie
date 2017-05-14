@@ -84,7 +84,7 @@
                 </div>
               </div>
               <label for="event-title"><%= t('event-title') %></label>
-              <%= f.hidden_field :organizer_id, value: @organizer.id %>
+              <%= f.hidden_field :organizer, value: @organizer %>
               <%= f.hidden_field :user_id, value: @organizer.user.id %>
               <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control event-input default" %>
               <label for="event-description"><%= t('event-desc-label') %></label>

@@ -257,7 +257,7 @@ class ToursController < ApplicationController
   # POST /tours.json
   def create
     @tour = Tour.new(tour_params)
-    @organizer = Organizer.find(params[:tour][:organizer_id])
+    @organizer = params[:tour][:organizer]
     
     respond_to do |format|
       if @tour.save
