@@ -269,7 +269,6 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      
       split_val = ";"
       
       if params[:organizer][:members] == "" or params[:organizer][:members].nil?

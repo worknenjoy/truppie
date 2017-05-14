@@ -43,7 +43,7 @@
             <div id="newEventHolder">
               <span><i class="fa fa-plus"></i> <%= t('new_guided_tour_label') %></span>
             </div>
-            <%= form_for @guided_tour, class: "form form-signup", multipart: true, role: "form" do |f| %>
+            <%= form_for @guided_tour, class: "form form-signup criar-truppie", multipart: true, role: "form" do |f| %>
             <div id="newEventForm">
               <div class="hide">
                 <h4 class="text-xs-center spaced-down"><%= t('tour_category_label') %></h4>
@@ -70,7 +70,7 @@
                   <button class="file-upload-btn btn btn-info-outline btn-block" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
 
                   <div class="image-upload-wrap">
-                    <input class="file-upload-input" type="file" accept="image/*" />
+                    <%= f.file_field :picture, class: "file-upload-input", accept: "image/*" %>
                     <div class="drag-text">
                       <h3><%= t('event-drag-drop-file') %></h3>
                     </div>
@@ -83,21 +83,20 @@
                   </div>
                 </div>
               </div>
-              <label for="event-title">Event Title</label>
-              <input type="text" name="event-title" class="event-input default" maxlength="80"/>
+              <label for="event-title"><%= t('event-title') %></label>
+              <%= f.hidden_field :organizer_id, value: @organizer.id %>
+              <%= f.hidden_field :user_id, value: @organizer.user.id %>
+              <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control event-input default" %>
               <label for="event-description"><%= t('event-desc-label') %></label>
               <div class="spaced-down">
                 <div id="editor-container" class="spaced-down">
               </div>
               </div>
-              <!--
-              <textarea name="event-descripton" id="eventDescriptionInput" class="textarea">Event Description</textarea>
-              -->
-
+              <%= f.text_area :description, value: '', placeholder: t('tours_view_form_placeholder_twelve'), class: "textarea hide" %>
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
-                  <%= f.text_field :place, value: '', placeholder: t('tours_view_form_placeholder_two'), class: "form-control places-input" %>
+                  <%= f.text_field :where, value: (@guided_tour.where.name if @guided_tour.where.present?), placeholder: t('tours_view_form_placeholder_two'), class: "form-control places-input" %>
                 </div>
                 <div id="map"></div>
               </div>
@@ -174,7 +173,7 @@
               <div class="form-group row">
                 <div class="input-group col-xs-6">
                   <div class="input-group-addon">R$</div>
-                  <%= f.number_field :maximum, placeholder: 'valor unico', min: 1, class: "form-control text-xs-right" %>
+                  <%= f.number_field :value, placeholder: 'valor unico', min: 1, class: "form-control text-xs-right" %>
                   <div class="input-group-addon">.00</div>
                 </div>
                 <div class="input-group col-xs-6">
@@ -251,9 +250,8 @@
               </div>
 
               <div class="form-group">
-                <button name="add-event" id="addEvent" class="btn-event"><%= t('new_event_create') %></button>
-                <button name="add-event" id="addEvent" class="btn-event"><%= t('new_event_draft') %></button>
-                <button name="cancel-add-event" id="cancelAddEvent" class="btn-event"><%= t('new_event_cancel') %></button>
+                <%= link_to(t('tours_view_form_link_two'), "#", id: 'addEvent', class: "btn-event criar-truppie") %>
+                <a href="#" id="cancelAddEvent" class="btn-event"><%= t('new_event_cancel') %></a>
               </div>
             </div>
             <% end %>

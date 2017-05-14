@@ -28,7 +28,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
-                    <%= f.text_field :where, value: (@tour.where.name if @tour.where.present?), placeholder: t('tours_view_form_placeholder_two'), class: "form-control" %>
+                    <%= f.text_field :where, value: (@tour.where.name if @tour.where.present?), placeholder: t('tours_view_form_placeholder_two'), class: "form-control where-field" %>
                 </div>
             </div>
             <div class="form-group">
@@ -174,7 +174,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-map-o"></span></span>
-                    <%= f.text_field :organizer, value: (@tour.organizer.name if @tour.organizer.present?), placeholder: t('tours_view_form_placeholder_twentyone'), class: "form-control" %>
+                    <%= f.text_field :organizer, value: (@tour.organizer.name if @tour.organizer.present?), placeholder: t('tours_view_form_placeholder_twentyone'), class: "form-control organizer-chooser" %>
                 </div>
             </div>
     	</div>
