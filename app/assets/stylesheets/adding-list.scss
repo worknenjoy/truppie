@@ -89,7 +89,7 @@ $overcast: #849EBF;
     &:focus { background: #FFF; border: 2px solid darken($porpus, 10%); }
   }
 
-  button.btn-event {
+  .btn-event {
     margin-right: 10px;
     padding: 0 15px;
     background: $overcast;
@@ -108,7 +108,7 @@ $overcast: #849EBF;
     }
   }
 
-  button#cancelAddEvent {
+  #cancelAddEvent {
     background:lighten($porpus, 5%);
     color: darken($overcast, 20%);
     cursor: pointer;

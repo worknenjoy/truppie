@@ -421,7 +421,7 @@ class ToursController < ApplicationController
           end
         else
           @confirm_headline_message = t('tours_controller_headline_msg')
-          @confirm_status_message = t("tours_controller_status_msg_six")
+          @confirm_status_message = t('tours_controller_status_msg_six')
           @status = t('status_danger')
           ContactMailer.notify(t('tours_controller_mailer_notify_three', name: current_user.name, email: current_user.email )).deliver_now
         end
