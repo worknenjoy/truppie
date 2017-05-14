@@ -130,7 +130,7 @@ $(function(){
 	  return false;
 	});
 	
-	$('#tour_where').tagsinput({
+	$('.where-field').tagsinput({
 	  typeaheadjs: {
 	    name: 'where',
 	    displayKey: 'name',
@@ -203,7 +203,7 @@ $(function(){
 	});
 	organizers.initialize();
 	
-	$('#tour_organizer').tagsinput({
+	$('.organizer-chooser').tagsinput({
 	  typeaheadjs: {
 	    name: 'organizers',
 	    displayKey: 'name',
@@ -221,7 +221,7 @@ $(function(){
 	
 	$(".criar-truppie").on('click', function(){
 		
-		if($('#new-cat').find('input').val().length) {
+		if($('#new-cat').find('input')) {
 			var option = new Option($('#new-cat').find('input').val(), $('#new-cat').find('input').val());
 			$('#tour_category_id').find(":selected").removeAttr("selected");
 			$('#tour_category_id').append($(option).attr('selected', 'selected'));
@@ -358,17 +358,21 @@ $(function(){
   $('#birthdate').mask("99/99/9999");
 
   eventHolder();
-
-    new Quill('#editor-container', {
-        modules: {
-            toolbar: [
-                [{ header: [1, 2, false] }],
-                ['bold', 'italic', 'underline']
-            ]
-        },
-        placeholder: 'describe the event...',
-        theme: 'snow'  // or 'bubble'
-    });
+    if(document.getElementById('editor-container')) {
+        var quill = new Quill('#editor-container', {
+            modules: {
+                toolbar: [
+                    [{header: [1, 2, false]}],
+                    ['bold', 'italic', 'underline']
+                ]
+            },
+            placeholder: 'describe the event...',
+            theme: 'snow'  // or 'bubble'
+        });
+        quill.on('editor-change', function(eventName, args) {
+            $('#tour_description').val(quill.container.firstChild.innerHTML);
+        });
+    }
 
     $('.image-upload-wrap').on('dragover', function () {
         $('.image-upload-wrap').addClass('image-dropping');
