@@ -19,7 +19,11 @@ class Tour < ActiveRecord::Base
 
   accepts_nested_attributes_for :organizer
   
-  validates_presence_of :title, :organizer, :where
+  validates_presence_of :title, :organizer, :where, :start, :end
+
+  validates_each :start, :end do |model, attr, value|
+    model.errors.add(attr, 'Must be a valid date') if value.nil?
+  end
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
   
@@ -54,6 +58,14 @@ class Tour < ActiveRecord::Base
     else
       "Duração total de <strong>#{distance_words}</strong>".html_safe
     end
+  end
+
+  def starttime
+    Time.now
+  end
+
+  def endtime
+    Time.now
   end
   
   def days
