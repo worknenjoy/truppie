@@ -30,24 +30,24 @@
           <%= render partial: 'organizer_side_menu' %>
         </div>
         <div class="manage-main">
-          <h2 class="spaced-down" style="overflow:hidden; padding-bottom: 10px;">
+          <h4 class="spaced-down" style="overflow:hidden; padding-bottom: 10px;">
             <div class="pull-left">
-            <%= t('new_tour_label') %>
+            <%= t('new-tour-label') %>
             </div>
             <div class="pull-right">
               <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher" href="">
-                <i class="fa fa-facebook"></i> <%= t('import_event_label') %>
+                <i class="fa fa-facebook"></i> <%= t('import-event-label') %>
               </a>
             </div>
-          </h2>
+          </h4>
           <div class="event-list">
             <div id="newEventHolder">
-              <span><i class="fa fa-plus"></i> <%= t('new_guided_tour_label') %></span>
+              <span><i class="fa fa-plus"></i> <%= t('new-guided-tour-label') %></span>
             </div>
             <%= form_for @guided_tour, class: "form form-signup criar-truppie", multipart: true, role: "form" do |f| %>
             <div id="newEventForm">
               <div class="hide">
-                <h4 class="text-xs-center spaced-down"><%= t('tour_category_label') %></h4>
+                <h4 class="text-xs-center spaced-down"><%= t('tour-category-label') %></h4>
                 <div class="spaced-top" style="text-align: center">
                   <%= image_tag("icons-truppie-fill/icones_truppie-19.svg", :alt => "Truppie", width: 100) %>
                   <%= image_tag("icons-truppie-fill/icones_truppie-20.svg", :alt => "Truppie", width: 100) %>
@@ -89,7 +89,7 @@
               <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control event-input default" %>
               <label for="event-description"><%= t('event-desc-label') %></label>
               <div class="spaced-down">
-                <div id="editor-container" class="spaced-down">
+                <div id="editor-container" class="stpaced-down">
               </div>
               </div>
               <%= f.text_area :description, value: '', placeholder: t('tours_view_form_placeholder_twelve'), class: "textarea hide" %>
@@ -251,7 +251,7 @@
 
               <div class="form-group">
                 <%= link_to(t('tours_view_form_link_two'), "#", id: 'addEvent', class: "btn-event criar-truppie") %>
-                <a href="#" id="cancelAddEvent" class="btn-event"><%= t('new_event_cancel') %></a>
+                <a href="#" id="cancelAddEvent" class="btn-event"><%= t('new-event-cancel') %></a>
               </div>
             </div>
             <% end %>
