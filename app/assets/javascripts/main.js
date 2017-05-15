@@ -396,5 +396,12 @@ $(function(){
         readURL(this);
     });
 
+    $('.clear-package').on('click', function (event) {
+        $('#new-packages-modal').find('input').each(function(e){
+            $(this).val('');
+        });
+
+    })
+
 
 });

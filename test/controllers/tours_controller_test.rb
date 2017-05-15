@@ -38,7 +38,25 @@ class ToursControllerTest < ActionController::TestCase
       organizer: Organizer.first.name,
       where: Where.last.name,
       start: Time.now,
-      end: Time.now
+      end: Time.now,
+      value: 20
+    }
+
+    @basic_tour_no_price = {
+        title: "A basic truppie",
+        organizer: Organizer.first.name,
+        where: Where.last.name,
+        start: Time.now,
+        end: Time.now
+    }
+
+    @basic_tour_packages = {
+        title: "A basic truppie with packages",
+        organizer: Organizer.first.name,
+        where: Where.last.name,
+        start: Time.now,
+        end: Time.now,
+        packages_attributes: {"0"=>{"name"=>"Barato", "value"=>"10", "included"=>"barato;caro"}}
     }
 
     @basic_tour_with_collaborators = {
@@ -54,7 +72,7 @@ class ToursControllerTest < ActionController::TestCase
       where: Where.last.name,
       description: "",
       rating: "",
-      value: "",
+      value: 20,
       currency: "",
       start: Time.now,
       end: Time.now,
@@ -121,6 +139,20 @@ class ToursControllerTest < ActionController::TestCase
      #puts @basic_tour.inspect
      post :create, tour: @basic_tour
      assert_equal 'Truppie criada com sucesso', flash[:notice]
+  end
+
+  test "should not create without price" do
+    #skip("creating tour with organizer")
+    #puts @basic_tour.inspect
+    post :create, tour: @basic_tour_no_price
+    assert_equal 'o campo value não pode ficar em branco', flash[:notice]
+  end
+
+  test "should create without price but package" do
+    #skip("creating tour with organizer")
+    #puts @basic_tour.inspect
+    post :create, tour: @basic_tour_packages
+    assert_equal 'Truppie criada com sucesso', flash[:notice]
   end
 
   test "should create tour with date" do

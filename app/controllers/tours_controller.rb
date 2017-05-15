@@ -257,15 +257,13 @@ class ToursController < ApplicationController
   # POST /tours.json
   def create
     @tour = Tour.new(tour_params)
-    @organizer = params[:tour][:organizer]
-    
     respond_to do |format|
       if @tour.save
         format.html { redirect_to @tour, notice: t('tours_controller_create_notice_one') }
         format.json { render :show, status: :created, location: @tour }
       else
         format.html {
-          redirect_to guided_tour_organizer_path(@organizer),
+          redirect_to guided_tour_organizer_path(tour_params[:organizer]),
           notice: t('tours_controller_create_notice_two',
           error_one: @tour.errors.first[0], error_two: @tour.errors.first[1])
         }
@@ -309,15 +307,6 @@ class ToursController < ApplicationController
   def tour_params
     
     split_val = ";"
-    organizer = params[:tour][:organizer]
-    new_organizer = Organizer.find_by_name(organizer)
-    
-    unless new_organizer.nil?
-      new_user = new_organizer.user
-      params[:tour][:user] = new_user
-    end
-    
-    params[:tour][:organizer] = new_organizer
     
     if params[:tour][:tags] == "" or params[:tour][:tags].nil?
       params[:tour][:tags] = []
@@ -344,7 +333,7 @@ class ToursController < ApplicationController
     pkg_attr = params[:tour][:packages_attributes]
     
     if !pkg_attr.nil?
-      post_data = [] 
+      post_data = []
       pkg_attr.each do |p|
         included_array = p[1]["included"].split(split_val)
         post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], percent: p[1]["percent"], included: included_array)

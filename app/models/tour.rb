@@ -27,6 +27,12 @@ class Tour < ActiveRecord::Base
   validates_each :start, :end do |model, attr, value|
     model.errors.add(attr, 'Must be a valid date') if value.nil?
   end
+
+  #validates_each :value do |model, attr, value|
+  #  model.errors.add(attr, 'deve ser um preço válido') if value.nil?
+  #end
+
+  validates_presence_of :value, :if => Proc.new { |a| !a.packages.any? }
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
   
