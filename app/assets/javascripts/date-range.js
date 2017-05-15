@@ -29,11 +29,11 @@
 
             // temp
             if( _id('out1') === null ) { $('#cal').after('<i id="out1"></i>'); }
-            _id('out1').innerHTML = '<p>Início do evento: ' + e.innerText + '/' + month + '/' + year + '</p>';
-            _id('sel1text').innerHTML = e.innerText + '-' + month + '-' + year;
+            _id('out1').innerHTML = '<div class="event-start-choosen"><small>início</small> ' + e.innerText + '/' + parseInt(month + 1) + '/' + year + '</div>';
+            _id('sel1text').innerHTML = e.innerText + '-' + parseInt(month + 1) + '-' + year;
 
 
-            var datetime = new Date(year, month, e.innerText, $('#_starttime_4i').val(), $('#_starttime_5i').val());
+            var datetime = new Date(year, parseInt(month + 1), e.innerText, $('#_starttime_4i').val(), $('#_starttime_5i').val());
 
             $('.start-field').val(datetime.toISOString());
 
@@ -66,10 +66,10 @@
                     if(go){ e.classList.add('range'); }
                     // temp
                     if( _id('out2') === null ) { $('#out1').after('<i id="out2"></i>'); }
-                    _id('out2').innerHTML = 'Fim do evento: ' + e.innerText + '/' + month + '/' + year;
-                    _id('sel2text').innerHTML = e.innerText + '-' + month + '-' + year;
+                    _id('out2').innerHTML = '<div class="event-end-choosen"><small>fim</small> ' + e.innerText + '/' + parseInt(month + 1) + '/' + year + '</div>';
+                    _id('sel2text').innerHTML = e.innerText + '-' + parseInt(month + 1) + '-' + year;
 
-                    var datetime = new Date(year, month, e.innerText, $('#_endtime_4i').val(), $('#_endtime_5i').val());
+                    var datetime = new Date(year, parseInt(month + 1), e.innerText, $('#_endtime_4i').val(), $('#_endtime_5i').val());
 
                     $('.end-field').val(datetime.toISOString());
 
