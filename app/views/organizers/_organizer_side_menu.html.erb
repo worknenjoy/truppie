@@ -1,3 +1,22 @@
+<div class="card">
+  <div class="card-block card-organizer">
+    <div class="text-xs-center">
+      <h4 class="card-title spaced-down">
+        <%= render partial: 'layouts/organizer_picture', locals: { organizer: @organizer }%>
+        <strong><%= @organizer.name %> </strong>
+      </h4>
+      <p class="card-text spaced-down"><%= @organizer.description %></p>
+      <% if !@organizer.website.nil? %>
+          <%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
+              <i class="fa fa-external-link"></i> ver perfil
+          <% end %>
+      <% end %>
+      <% if !@organizer.email.nil? %>
+          <a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
+      <% end %>
+    </div>
+  </div>
+</div>
 <ul class="list-group">
   <li class="list-group-item">
     <a href="<%= guided_tour_organizer_path(@organizer) %>">
