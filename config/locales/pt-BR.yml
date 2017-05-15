@@ -155,6 +155,12 @@ pt-BR:
   or-label: "ou você pode"
 
 
+  modal-packages-title: "Gerenciamento de pacotes"
+  add-packages-title: "Adicionar pacote"
+  add-packages-desc: "Você pode adicionar mais de um preço por pacote, como alguns incluírem hospedagem, alimentação, etc"
+  event-packages-title: "Pacotes já incluídos"
+  event-no-packages-message: "Não há ainda nenhum pacote adicionado"
+
 
   
   activerecord:

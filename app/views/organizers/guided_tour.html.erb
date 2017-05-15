@@ -8,25 +8,6 @@
       </div>
       <div class="manage-container">
         <div class="manage-sidebar">
-          <div class="card">
-            <div class="card-block card-organizer">
-              <div class="text-xs-center">
-                <h4 class="card-title spaced-down">
-                  <%= render partial: 'layouts/organizer_picture', locals: { organizer: @organizer }%>
-                  <strong><%= @organizer.name %> </strong>
-                </h4>
-                <p class="card-text spaced-down"><%= @organizer.description %></p>
-                <% if !@organizer.website.nil? %>
-                    <%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
-                        <i class="fa fa-external-link"></i> ver perfil
-                    <% end %>
-                <% end %>
-                <% if !@organizer.email.nil? %>
-                    <a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
-                <% end %>
-              </div>
-            </div>
-          </div>
           <%= render partial: 'organizer_side_menu' %>
         </div>
         <div class="manage-main">
@@ -84,7 +65,7 @@
                 </div>
               </div>
               <label for="event-title"><%= t('event-title') %></label>
-              <%= f.hidden_field :organizer, value: @organizer %>
+              <%= f.hidden_field :organizer_id, value: @organizer.id %>
               <%= f.hidden_field :user_id, value: @organizer.user.id %>
               <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control event-input default" %>
               <label for="event-description"><%= t('event-desc-label') %></label>
@@ -189,7 +170,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">Modal title</h4>
+                        <h4 class="modal-title"><%= t('modal-packages-title') %></h4>
                       </div>
                       <div class="modal-body">
                         <h3><%= t('add-packages-title') %></h3>
@@ -215,10 +196,14 @@
                                     <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value" %>
                                   </div>
                                 </div>
-
                               </fieldset>
                             </div>
                         <% end %>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <%= link_to t('tours_view_form_link_one'), new_package_path, class: 'add-packages' %>
+                          </div>
+                        </div>
                         <h3><%= t('event-packages-title') %></h3>
                         <% if !@guided_tour.try(:packages) %>
                         <div class="packages-container" style="overflow:hidden;">
@@ -241,8 +226,8 @@
                         <% end %>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-action="close clear-packages">Close</button>
+                        <button type="button" data-dismiss="modal" data-action="save" class="btn btn-primary">Save changes</button>
                       </div>
                     </div><!-- /.modal-content -->
                   </div><!-- /.modal-dialog -->
@@ -265,7 +250,6 @@
                 </div>
                 <div class="event-details-holder">
                   <h1><%= t.title %></h1>
-                  <span id="eventDescription"><%= truncate t.description, :length => 10 %></span>
                   <ul id="editTools">
                     <li><i class="fa fa-pencil-square-o"></i></li>
                     <li><i class="fa fa-bars"></i></li>

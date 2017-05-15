@@ -79,6 +79,7 @@
      assert_not_nil assigns(:guided_tour), @organizer_ready.tours.new
      assert_response :success
    end
+
    
    test "should not admin organizer if is not the organizer owner and no admin" do
      sign_out users(:alexandre)
