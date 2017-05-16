@@ -123,7 +123,7 @@ class ToursController < ApplicationController
         format.html { redirect_to @tour, notice: t('tours_controller_update_notice') }
         format.json { render :show, status: :ok, location: @tour }
       else
-        format.html { redirect_to tours_path, notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
+        format.html { redirect_to edit_guided_tour_organizer_path(Organizer.find(tour_params[:organizer_id]), @tour), notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
@@ -149,7 +149,9 @@ class ToursController < ApplicationController
   def tour_params
     
     split_val = ";"
-    organizer = params[:tour][:organizer]
+    organizer = params[:tour][:organizer_id]
+
+    puts organizer.inspect
 
     if organizer.class == String
       new_organizer = Organizer.find_by_name(organizer)
