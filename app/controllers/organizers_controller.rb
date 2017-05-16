@@ -43,8 +43,6 @@ class OrganizersController < ApplicationController
   def edit_guided_tour
     @guided_tour = Tour.find(params[:tour])
     @organizer = Organizer.find(params[:id])
-    @should_hide_form = false
-
   end
 
   # GET /organizers/1/edit

@@ -17,8 +17,8 @@
       <label for="event-date"><%= t('event-date-title') %></label>
       <%= render partial: 'calendar', locals: {f: f} %>
 
-      <%= f.hidden_field :start, value: '', class: 'start-field' %>
-      <%= f.hidden_field :end, value: '', class: 'end-field' %>
+      <%= f.hidden_field :start, class: 'start-field' %>
+      <%= f.hidden_field :end, class: 'end-field' %>
 
       <div class="form-group">
         <div class="file-upload">
@@ -38,7 +38,7 @@
         </div>
       </div>
       <label for="event-title"><%= t('event-title') %></label>
-      <%= f.hidden_field :organizer, value: @organizer %>
+      <%= f.hidden_field :organizer_id, value: @organizer.id %>
       <%= f.hidden_field :user_id, value: @organizer.user.id %>
       <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control event-input default" %>
       <label for="event-description"><%= t('event-desc-label') %></label>
