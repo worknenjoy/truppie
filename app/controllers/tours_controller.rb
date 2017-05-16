@@ -268,9 +268,8 @@ class ToursController < ApplicationController
   def tour_params
     
     split_val = ";"
-    organizer = params[:tour][:organizer_id]
+    organizer = params[:tour][:organizer_id] || params[:tour][:organizer]
 
-    puts organizer.inspect
 
     if organizer.class == String
       new_organizer = Organizer.find_by_name(organizer)
