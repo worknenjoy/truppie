@@ -80,6 +80,11 @@
      assert_response :success
    end
 
+   test "should display the edit form" do
+     post :edit_guided_tour, {id: @organizer_ready.id, tour: @organizer_ready.tours.first}
+     assert_equal assigns(:should_hide_form), false
+   end
+
    
    test "should not admin organizer if is not the organizer owner and no admin" do
      sign_out users(:alexandre)

@@ -268,6 +268,17 @@ class ToursController < ApplicationController
   def tour_params
     
     split_val = ";"
+    organizer = params[:tour][:organizer]
+
+    if organizer.class == String
+      new_organizer = Organizer.find_by_name(organizer)
+
+      unless new_organizer.nil?
+        new_user = new_organizer.user
+        params[:tour][:user] = new_user
+        params[:tour][:organizer] = new_organizer
+      end
+    end
     
     if params[:tour][:tags] == "" or params[:tour][:tags].nil?
       params[:tour][:tags] = []
