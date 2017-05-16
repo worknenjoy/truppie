@@ -380,6 +380,7 @@ $(function(){
             placeholder: 'descreva seu evento...',
             theme: 'snow'  // or 'bubble'
         });
+        quill.container.firstChild.innerHTML = $('#tour_description').val();
         quill.on('editor-change', function(eventName, args) {
             $('#tour_description').val(quill.container.firstChild.innerHTML);
         });

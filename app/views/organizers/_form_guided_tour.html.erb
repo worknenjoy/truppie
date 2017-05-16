@@ -21,9 +21,14 @@
       <%= f.hidden_field :end, class: 'end-field' %>
 
       <div class="form-group">
+        <div style="width: 100%; text-align: center;" class="spaced-small">
+        <% if @guided_tour.picture.present? %>
+            <%= image_tag @guided_tour.picture.url(:media), class: 'img-fluid' %>
+        <% end %>
+        </div>
+
         <div class="file-upload">
           <button class="file-upload-btn btn btn-info-outline btn-block" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
-
           <div class="image-upload-wrap">
             <%= f.file_field :picture, class: "file-upload-input", accept: "image/*" %>
             <div class="drag-text">
@@ -46,7 +51,7 @@
         <div id="editor-container" class="stpaced-down">
         </div>
       </div>
-      <%= f.text_area :description, value: '', placeholder: t('tours_view_form_placeholder_twelve'), class: "textarea hide" %>
+      <%= f.text_area :description, placeholder: t('tours_view_form_placeholder_twelve'), class: "textarea hide" %>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
