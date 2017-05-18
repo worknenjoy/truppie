@@ -8,26 +8,12 @@
 		<% else %>
 			<div class="placeholder-truppie-image"></div>
 		<% end %>
-        <% if @tour.try(:value) %>
+
         <div class="ribbon base" style="text-align: right">
         	<span><%= raw @tour.price %></span>
         	<%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
     	</div>
-        <% else %>
-        	<% if @tour.try(:packages) %>
-        	<div class="ribbon base packages">
-				<% @tour.packages.each_with_index do |t, i| %>
-					<small><%= t.name %></small>
-					<span><%= raw t.price %></span><br />
-					<% break if i == 1; %>	
-				<% end %>
-				<% if @tour.packages.length > 2 %>
-					<a class="btn btn-primary btn-sm btn-block" href="#packages"><%= t('tours_view_show_a_one')%></a>	
-				<% end %>
-				<%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
-			</div>
-        	<% end %>
-        <% end %>
+        
 	</div>
 	<div class="container">
 		<div class="row divider-default">
