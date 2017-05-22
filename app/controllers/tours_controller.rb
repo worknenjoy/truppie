@@ -154,7 +154,7 @@ class ToursController < ApplicationController
           end
         else
           @confirm_headline_message = t('tours_controller_headline_msg')
-          @confirm_status_message = t("tours_controller_status_msg_six")
+          @confirm_status_message = t('tours_controller_status_msg_six')
           @status = t('status_danger')
           ContactMailer.notify(t('tours_controller_mailer_notify_three', name: current_user.name, email: current_user.email )).deliver_now
         end
@@ -218,13 +218,16 @@ class ToursController < ApplicationController
   # POST /tours.json
   def create
     @tour = Tour.new(tour_params)
-    
     respond_to do |format|
       if @tour.save
         format.html { redirect_to @tour, notice: t('tours_controller_create_notice_one') }
         format.json { render :show, status: :created, location: @tour }
       else
-        format.html { redirect_to tours_path, notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
+        format.html {
+          redirect_to guided_tour_organizer_path(tour_params[:organizer]),
+          notice: t('tours_controller_create_notice_two',
+          error_one: @tour.errors.first[0], error_two: @tour.errors.first[1])
+        }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
@@ -239,7 +242,7 @@ class ToursController < ApplicationController
         format.html { redirect_to @tour, notice: t('tours_controller_update_notice') }
         format.json { render :show, status: :ok, location: @tour }
       else
-        format.html { redirect_to tours_path, notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
+        format.html { redirect_to edit_guided_tour_organizer_path(Organizer.find(tour_params[:organizer_id]), @tour), notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
@@ -265,15 +268,18 @@ class ToursController < ApplicationController
   def tour_params
     
     split_val = ";"
-    organizer = params[:tour][:organizer]
-    new_organizer = Organizer.find_by_name(organizer)
-    
-    unless new_organizer.nil?
-      new_user = new_organizer.user
-      params[:tour][:user] = new_user
+    organizer = params[:tour][:organizer_id] || params[:tour][:organizer]
+
+
+    if organizer.class == String
+      new_organizer = Organizer.find_by_name(organizer)
+
+      unless new_organizer.nil?
+        new_user = new_organizer.user
+        params[:tour][:user] = new_user
+        params[:tour][:organizer] = new_organizer
+      end
     end
-    
-    params[:tour][:organizer] = new_organizer
     
     if params[:tour][:tags] == "" or params[:tour][:tags].nil?
       params[:tour][:tags] = []
@@ -300,7 +306,7 @@ class ToursController < ApplicationController
     pkg_attr = params[:tour][:packages_attributes]
     
     if !pkg_attr.nil?
-      post_data = [] 
+      post_data = []
       pkg_attr.each do |p|
         included_array = p[1]["included"].split(split_val)
         post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], included: included_array)
@@ -350,14 +356,6 @@ class ToursController < ApplicationController
         goodtoknow.push g
       end
       params[:tour][:goodtoknow] = goodtoknow
-    end
-    
-    if params[:tour][:start] == "" or params[:tour][:start].nil?
-      params[:tour][:start] = Time.now
-    end
-    
-    if params[:tour][:end] == "" or params[:tour][:end].nil?
-      params[:tour][:end] = 4.hours.from_now
     end
     
     current_cat = params[:tour][:category_id]

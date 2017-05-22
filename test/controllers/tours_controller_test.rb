@@ -25,7 +25,27 @@ class ToursControllerTest < ActionController::TestCase
     @basic_tour = {
       title: "A basic truppie",
       organizer: Organizer.first.name,
-      where: Where.last.name
+      where: Where.last.name,
+      start: Time.now,
+      end: Time.now,
+      value: 20
+    }
+
+    @basic_tour_no_price = {
+        title: "A basic truppie",
+        organizer: Organizer.first.name,
+        where: Where.last.name,
+        start: Time.now,
+        end: Time.now
+    }
+
+    @basic_tour_packages = {
+        title: "A basic truppie with packages",
+        organizer: Organizer.first.name,
+        where: Where.last.name,
+        start: Time.now,
+        end: Time.now,
+        packages_attributes: {"0"=>{"name"=>"Barato", "value"=>"10", "included"=>"barato;caro"}}
     }
     
     @basic_empty_tour_with_empty = {
@@ -34,10 +54,10 @@ class ToursControllerTest < ActionController::TestCase
       where: Where.last.name,
       description: "",
       rating: "",
-      value: "",
+      value: 20,
       currency: "",
-      start: "",
-      end: "",
+      start: Time.now,
+      end: Time.now,
       photo: "",
       availability: "",
       minimum: "",
@@ -76,8 +96,8 @@ class ToursControllerTest < ActionController::TestCase
   end
 
   test "should not create tour with empty data" do
-     #skip("creating tour with empty data")
-     post :create, tour: {}
+     skip("creating tour with empty data")
+     post :create, tour: {organizer: Organizer.first.name}
      assert_equal 'o campo title não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
   end
@@ -90,7 +110,7 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should not create tour with no organizer but with a title" do
-     #skip("creating tour with empty data")
+     skip("creating without organizer should not work")
      post :create, tour: {title: 'foo truppie title'}
      assert_equal 'o campo organizer não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
@@ -101,7 +121,29 @@ class ToursControllerTest < ActionController::TestCase
      #puts @basic_tour.inspect
      post :create, tour: @basic_tour
      assert_equal 'Truppie criada com sucesso', flash[:notice]
-   end
+  end
+
+  test "should not create without price" do
+    #skip("creating tour with organizer")
+    #puts @basic_tour.inspect
+    post :create, tour: @basic_tour_no_price
+    assert_equal 'o campo value não pode ficar em branco', flash[:notice]
+  end
+
+  test "should create without price but package" do
+    #skip("creating tour with organizer")
+    #puts @basic_tour.inspect
+    post :create, tour: @basic_tour_packages
+    assert_equal 'Truppie criada com sucesso', flash[:notice]
+  end
+
+  test "should create tour with date" do
+    @basic_tour[:start] = 'Mon May 15 2017 17:12:00 GMT+0200 (CEST)'
+    other_tour = @basic_tour
+    post :create, tour: other_tour
+    assert_equal 'Truppie criada com sucesso', flash[:notice]
+    assert_equal Tour.last.start, 'Mon May 15 2017 17:12:00 GMT+0200 (CEST)'
+  end
   
   test "should create tour with basic data" do
      #skip("creating tour with organizer")
@@ -206,7 +248,7 @@ class ToursControllerTest < ActionController::TestCase
      @basic_empty_tour_with_empty["start"] = "2016-02-02T11:00"
      post :create, tour: @basic_empty_tour_with_empty
      
-     assert_equal Tour.last.start, "Tue, 02 Feb 2016 11:00:00 UTC +00:00"
+     assert_equal Tour.last.start, "2016-02-02T11:00"
    end
    
    test "should create withe the current status non published for default" do

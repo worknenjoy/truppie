@@ -16,8 +16,20 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :orders
   
   accepts_nested_attributes_for :packages, allow_destroy: true, reject_if: :all_blank
+
+  accepts_nested_attributes_for :organizer
   
-  validates_presence_of :title, :organizer, :where
+  validates_presence_of :title, :organizer, :where, :start, :end
+
+  validates_each :start, :end do |model, attr, value|
+    model.errors.add(attr, 'Must be a valid date') if value.nil?
+  end
+
+  #validates_each :value do |model, attr, value|
+  #  model.errors.add(attr, 'deve ser um preço válido') if value.nil?
+  #end
+
+  validates_presence_of :value, :if => Proc.new { |a| !a.packages.any? }
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
   
@@ -52,6 +64,14 @@ class Tour < ActiveRecord::Base
     else
       "Duração total de <strong>#{distance_words}</strong>".html_safe
     end
+  end
+
+  def starttime
+    Time.now
+  end
+
+  def endtime
+    Time.now
   end
   
   def days

@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require places
 //= require jquery
 //= require modernizr-custom
 //= require classie
@@ -19,11 +20,13 @@
 //= require jquery.event.swipe
 //= require picturefill
 //= require tether
+//= require quill
 //= require bootstrap
 //= require typeahead
 //= require bootstrap-tagsinput
 //= require bootstrap-number-input
 //= require jquery.maskedinput
 //= require main-menu
+//= require date-range
 //= require main
 

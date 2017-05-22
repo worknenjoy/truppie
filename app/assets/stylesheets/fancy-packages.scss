@@ -1,0 +1,97 @@
+$bgColor: #1d1f20;
+$mainColor: #2ba6cb;
+$secondaryColor: #e9e9e9;
+
+.packages-container {
+  background-color: lighten($bgColor, 80%);
+  border-radius: 1px;
+  padding: 10px 0;
+}
+
+.packages {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  top: 50%;
+  width: 90%;
+}
+.packages-item {
+  background-color: $secondaryColor;
+  border-bottom: 1px solid $bgColor;
+  color: #333;
+  line-height: 1em;
+  padding: 1em;
+  position: relative;
+  transition: all 200ms ease-out;
+
+  &:hover,
+  &:active {
+    background-color: $mainColor;
+    color: #fff;
+    margin: 0 -.5em;
+    z-index: 2;
+  }
+
+  &:nth-child(1),
+  &:nth-child(3) {
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      transition: all 200ms ease-out;
+    }
+  }
+
+  &:nth-child(1) {
+    &:after {
+      border-style: solid;
+      border-color: darken($mainColor, 5%) darken($bgColor, 2%) transparent darken($bgColor, 2%);
+      border-width: 0 .5em 0 .5em;
+      left: 0; right: 0; bottom: 0;
+    }
+
+    &:hover,
+    &:active {
+      padding: 1em 1em 1.5em 1em;
+      &:after {
+        border-width: .5em .5em 0 .5em;
+      }
+    }
+  }
+
+  &:nth-child(3) {
+    &:after {
+      border-style: solid;
+      border-width: 0 .5em 0 .5em;
+      border-color: transparent darken($bgColor, 2%) darken($mainColor, 5%) darken($bgColor, 2%);
+      top: 0; right: 0; left: 0;
+    }
+
+    &:hover,
+    &:active {
+      padding: 1.5em 1em 1em 1em;
+      &:after {
+        border-width: 0 .5em .5em .5em;
+      }
+    }
+  }
+}
+.package-item_title {
+  font-size: 1.6em;
+}
+.package-item_desc {
+  font-size: .9em;
+  max-width: 60%;
+}
+.package-item_price {
+  font-size: 2em;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  sup, small {
+    font-size: .6em;
+  }
+}

@@ -1,6 +1,6 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour]
   before_action :authenticate_user!, :except => [:show]
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance]
   helper_method :is_organizer_admin
@@ -34,6 +34,15 @@ class OrganizersController < ApplicationController
   # GET /organizers/new
   def new
     @organizer = Organizer.new
+  end
+
+  def guided_tour
+    @guided_tour = @organizer.tours.new
+  end
+
+  def edit_guided_tour
+    @guided_tour = Tour.find(params[:tour])
+    @organizer = Organizer.find(params[:id])
   end
 
   # GET /organizers/1/edit
@@ -265,7 +274,6 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      
       split_val = ";"
       
       if params[:organizer][:members] == "" or params[:organizer][:members].nil?

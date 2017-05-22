@@ -22,6 +22,10 @@ class Organizer < ActiveRecord::Base
     large: '800x800>',
   }
 
+  validates :name, uniqueness: true
+
+  accepts_nested_attributes_for :tours, allow_destroy: true, reject_if: :all_blank
+
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
   

@@ -22,6 +22,73 @@ function clearAlert() {
   window.clearTimeout(timeoutID);
 }
 
+function eventHolder() {
+    var newEventHolder = document.getElementById("newEventHolder");
+    var eventForm = document.getElementById("newEventForm");
+    var eventDate = document.getElementById("eventDate");
+    var addEvent = document.getElementById("addEvent");
+    var cancel = document.getElementById("cancelAddEvent");
+    var upcomingEvents = document.getElementById("upcomingEvents");
+    var eventHolder = document.getElementById("eventHolder");
+    var removeEvent = document.getElementById("removeEvent");
+
+// Show New Event form
+    $(newEventHolder).on('click',function() {
+        $(eventForm).slideDown(400);
+        return false;
+    });
+
+// Close New Event form
+    $(cancel).on('click', function() {
+        $(eventForm).slideUp(400);
+        return false;
+    });
+
+// Delete icon removed event from list
+    $(removeEvent).on('click', function() {
+        $(eventHolder).addClass('hide').stop();
+        return false;
+    });
+}
+
+function removeUpload() {
+    $('.file-upload-input').replaceWith($('.file-upload-input').clone(true));
+    $('.file-upload-content').hide();
+    $('.image-upload-wrap').show();
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+
+        var reader = new FileReader();
+        var img = document.createElement("img");
+
+        reader.onload = function(e) {
+            $('.image-upload-wrap').hide();
+
+            //$('.file-upload-image').attr('src', e.target.result);
+
+            $('.file-upload-content').find('img').remove();
+
+            img.src = e.target.result;
+
+            img.style.width = '100%';
+
+            $('.file-upload-content').append(img);
+
+
+            $('.file-upload-content').show();
+
+            $('.image-title').html(input.files[0].name);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+
+    } else {
+        removeUpload();
+    }
+}
+
 $(function(){
 	
 	$('.dropdown-toggle').dropdown();
@@ -74,7 +141,7 @@ $(function(){
 	  return false;
 	});
 	
-	$('#tour_where').tagsinput({
+	$('.where-field').tagsinput({
 	  typeaheadjs: {
 	    name: 'where',
 	    displayKey: 'name',
@@ -147,7 +214,7 @@ $(function(){
 	});
 	organizers.initialize();
 	
-	$('#tour_organizer').tagsinput({
+	$('.organizer-chooser').tagsinput({
 	  typeaheadjs: {
 	    name: 'organizers',
 	    displayKey: 'name',
@@ -165,7 +232,7 @@ $(function(){
 	
 	$(".criar-truppie").on('click', function(){
 		
-		if($('#new-cat').find('input').val().length) {
+		if($('#new-cat').find('input')) {
 			var option = new Option($('#new-cat').find('input').val(), $('#new-cat').find('input').val());
 			$('#tour_category_id').find(":selected").removeAttr("selected");
 			$('#tour_category_id').append($(option).attr('selected', 'selected'));
@@ -300,5 +367,42 @@ $(function(){
   });
   
   $('#birthdate').mask("99/99/9999");
- 	 	
+
+  eventHolder();
+    if(document.getElementById('editor-container')) {
+        var quill = new Quill('#editor-container', {
+            modules: {
+                toolbar: [
+                    [{header: [1, 2, false]}],
+                    ['bold', 'italic', 'underline']
+                ]
+            },
+            placeholder: 'descreva seu evento...',
+            theme: 'snow'  // or 'bubble'
+        });
+        quill.container.firstChild.innerHTML = $('#tour_description').val();
+        quill.on('editor-change', function(eventName, args) {
+            $('#tour_description').val(quill.container.firstChild.innerHTML);
+        });
+    }
+
+    $('.image-upload-wrap').on('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').on('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+
+    $('.file-upload-input').on('change', function(e){
+        readURL(this);
+    });
+
+    $('.clear-package').on('click', function (event) {
+        $('#new-packages-modal').find('input').each(function(e){
+            $(this).val('');
+        });
+
+    })
+
+
 });

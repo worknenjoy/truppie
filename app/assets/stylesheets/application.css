@@ -37,12 +37,18 @@
  *= require info-table          
  *= require welcome
  *= require payment-methods
+ *= require file-upload
  *= require overlay
  *= require main-menu
  *= require showcase  
  *= require tours
  *= require dashboard 
- *= require image_gallery   
+ *= require image_gallery
+ *= require adding-list
+ *= require map
+ *= require fancy-packages
+ *= require quill.snow
+ *= require date-range
  */
 
 .full-width {

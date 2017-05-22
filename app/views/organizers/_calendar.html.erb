@@ -1,0 +1,27 @@
+<div class="c-container">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
+  <div id="c">
+
+    <div id="calHelp">
+      <div class="first active"><i>a</i> <b id="sel1text"><%= t('event-call-start') %></b></div><div class="disabled"><i>b</i> <b id="sel2text"><%= t('event-call-end') %></b></div>
+    </div>
+
+    <div id="disp">
+      <div id="prev" class="nav">&larr;</div>
+      <div id="month">Hello world</div>
+      <div id="next" class="nav">&rarr;</div></div>
+    <div id="cal"></div>
+
+    <div class="form-group row">
+      <div class="col-xs-6">
+        <%= label_tag 'Horário de início' %>
+        <%= time_select nil, :starttime, html_options: { class: "form-control start-time" } %>
+      </div>
+      <div class="col-xs-6">
+        <%= label_tag 'Horário de término' %>
+        <%= time_select nil, :endtime, html_options: { class: "form-control end-time" } %>
+      </div>
+    </div>
+
+  </div><!-- /#c -->
+</div>
