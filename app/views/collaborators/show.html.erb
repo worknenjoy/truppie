@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Marketplace:</strong>
+  <%= @collaborator.marketplace %>
+</p>
+
+<p>
+  <strong>Percent:</strong>
+  <%= @collaborator.percent %>
+</p>
+
+<p>
+  <strong>Transfer:</strong>
+  <%= @collaborator.transfer %>
+</p>
+
+<%= link_to 'Edit', edit_collaborator_path(@collaborator) %> |
+<%= link_to 'Back', collaborators_path %>

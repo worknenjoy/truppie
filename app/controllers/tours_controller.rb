@@ -65,7 +65,10 @@ class ToursController < ApplicationController
           @desc = @tour.try(:description).first(250)
         else
           @desc = t('tours_controller_desc',title: @tour.title, organizer: @tour.organizer.name)
-        end 
+        end
+
+        @organizer_percent = @tour.organizer.percent || 1
+        @tour_total_percent = (@organizer_percent/100.00) + 0.95
 
         @fees = {
          :fee => (@final_price.to_i*100) - ((@final_price*100).to_i*0.94).to_i,

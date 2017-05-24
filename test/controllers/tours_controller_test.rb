@@ -315,6 +315,8 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal Tour.find(@tour.id).orders.first.fee, 240
     assert_equal Tour.find(@tour.id).orders.last.source_id, 'test_cc_2'
     assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_4'
+    #assert_equal Customer.last.token, 'blabla'
+    #assert_equal Customer.last.email, 'example@foo.com'
     assert_template "confirm_presence"
   end
   
@@ -350,6 +352,14 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
     assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
     assert_equal assigns(:status), "success"
+    assert_template "confirm_presence"
+    assert_includes ["succeeded"], Order.last.status
+  end
+
+  test "should create a order with percentage of the organizer" do
+    post :confirm_presence, @payment_data
+    assert_equal assigns(:organizer_percent), 1
+    assert_equal assigns(:tour_total_percent), 0.96
     assert_template "confirm_presence"
     assert_includes ["succeeded"], Order.last.status
   end

@@ -33,6 +33,12 @@ class OrganizerTest < ActiveSupport::TestCase
      organizer_account_active = organizers(:mkt)
      assert_equal organizer_account_active.market_place_active, true
    end
+
+   test "organizer has percentage" do
+     organizer_account_active = organizers(:mkt)
+     organizer_account_active.update_attributes({:percent => 10})
+     assert_equal organizer_account_active.percent, 10
+   end
    
    test "organizer with an active marketplace should have mkt account" do
      organizer_account_active = organizers(:mkt)

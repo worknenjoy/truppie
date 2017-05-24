@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  marketplace_id: 
+  percent: 1
+  transfer: MyString
+
+two:
+  marketplace_id: 
+  percent: 1
+  transfer: MyString

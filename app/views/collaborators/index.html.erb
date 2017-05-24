@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Collaborators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Marketplace</th>
+      <th>Percent</th>
+      <th>Transfer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @collaborators.each do |collaborator| %>
+      <tr>
+        <td><%= collaborator.marketplace %></td>
+        <td><%= collaborator.percent %></td>
+        <td><%= collaborator.transfer %></td>
+        <td><%= link_to 'Show', collaborator %></td>
+        <td><%= link_to 'Edit', edit_collaborator_path(collaborator) %></td>
+        <td><%= link_to 'Destroy', collaborator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Collaborator', new_collaborator_path %>
