@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :collaborators
+  resources :customers
   resources :tour_pictures
   resources :bank_accounts do
     member do

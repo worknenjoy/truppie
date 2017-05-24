@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410191633) do
+ActiveRecord::Schema.define(version: 20170524214311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,24 @@ ActiveRecord::Schema.define(version: 20170410191633) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "collaborators", force: :cascade do |t|
+    t.integer  "marketplace_id"
+    t.integer  "percent"
+    t.string   "transfer"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "collaborators", ["marketplace_id"], name: "index_collaborators_on_marketplace_id", using: :btree
+
+  create_table "collaborators_tours", id: false, force: :cascade do |t|
+    t.integer "tour_id",         null: false
+    t.integer "collaborator_id", null: false
+  end
+
+  add_index "collaborators_tours", ["collaborator_id", "tour_id"], name: "index_collaborators_tours_on_collaborator_id_and_tour_id", using: :btree
+  add_index "collaborators_tours", ["tour_id", "collaborator_id"], name: "index_collaborators_tours_on_tour_id_and_collaborator_id", using: :btree
+
   create_table "confirmeds", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
@@ -100,6 +118,16 @@ ActiveRecord::Schema.define(version: 20170410191633) do
 
   add_index "confirmeds_tours", ["confirmed_id", "tour_id"], name: "index_confirmeds_tours_on_confirmed_id_and_tour_id", using: :btree
   add_index "confirmeds_tours", ["tour_id", "confirmed_id"], name: "index_confirmeds_tours_on_tour_id_and_confirmed_id", using: :btree
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "token"
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "customers", ["user_id"], name: "index_customers_on_user_id", using: :btree
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -265,6 +293,7 @@ ActiveRecord::Schema.define(version: 20170410191633) do
     t.integer  "marketplace_id"
     t.string   "status"
     t.string   "policy",               default: [],                 array: true
+    t.integer  "percent",              default: 3
   end
 
   add_index "organizers", ["marketplace_id"], name: "index_organizers_on_marketplace_id", using: :btree
@@ -466,7 +495,9 @@ ActiveRecord::Schema.define(version: 20170410191633) do
   add_foreign_key "attractions", "languages"
   add_foreign_key "attractions", "quotes"
   add_foreign_key "bank_accounts", "marketplaces"
+  add_foreign_key "collaborators", "marketplaces"
   add_foreign_key "confirmeds", "users"
+  add_foreign_key "customers", "users"
   add_foreign_key "marketplaces", "bank_accounts"
   add_foreign_key "marketplaces", "organizers"
   add_foreign_key "members", "users"
