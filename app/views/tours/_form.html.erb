@@ -177,6 +177,27 @@
                     <%= f.text_field :organizer, value: (@tour.organizer.name if @tour.organizer.present?), placeholder: t('tours_view_form_placeholder_twentyone'), class: "form-control" %>
                 </div>
             </div>
+            <p><%=  t('tours_view_form_p_colab') %></p>
+            <%= f.fields_for :collaborators, (Array.new(1, @tour.collaborators.build) if @tour.collaborators.empty?) do |ff| %>
+                <div class="new-collaborator-content">
+                  <fieldset class="form-group">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                        <%= ff.label :marketplace %>
+                        <%= ff.select :marketplace_id, options_for_select(Marketplace.all.map{|s|[s.person_name, s.id]}, (ff.object.marketplace_id if ff.object.marketplace_id.present?)), {class: "form-control", include_blank: "Escolha uma categoria"} %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                        <%= ff.number_field :percent, placeholder: t('organizer-percent-label'), max: 100, min: 1, class: "form-control" %>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+            <% end %>
+
     	</div>
     	<div class="tab-pane" id="packages" role="tabpanel">
             <p><%=  t('tours_view_form_p_two') %></p>
@@ -185,30 +206,30 @@
                   <%= link_to t('tours_view_form_link_one'), new_package_path, class: 'add-packages' %>
                 </div>
             </div>
-             <%= f.fields_for :packages, (Array.new(1, @tour.packages.build) if @tour.packages.empty?) do |ff| %>
+           <%= f.fields_for :packages, (Array.new(1, @tour.packages.build) if @tour.packages.empty?) do |ff| %>
             <div class="new-packages-content">
-            <fieldset class="form-group packages-set">
-	            <div class="form-group">
-	                <div class="input-group">
-	                    <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
-	                    <%= ff.text_field :name, placeholder: t('tours_view_form_placeholder_twentytwo'), class: "form-control" %>
-	                </div>
-	            </div>
-	            <div class="form-group">
-	                <div class="input-group">
-	                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
-	                    <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_twentythree'), class: "form-control" %>
-	                </div>
-	            </div>
-	            <div class="form-group">
-	                <div class="input-group">
-	                    <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
-	                    <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value" %>
-	                </div>
-	            </div>
-	            
-            </fieldset>
-	    </div>
+              <fieldset class="form-group packages-set">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                        <%= ff.text_field :name, placeholder: t('tours_view_form_placeholder_twentytwo'), class: "form-control" %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                        <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_twentythree'), class: "form-control" %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
+                        <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value" %>
+                    </div>
+                </div>
+
+              </fieldset>
+	          </div>
             <% end %>
     	</div>
 	</div>

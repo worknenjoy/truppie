@@ -68,11 +68,19 @@ class ToursController < ApplicationController
         end
 
         @organizer_percent = @tour.organizer.percent || 1
-        @tour_total_percent = (@organizer_percent/100.00) + 0.95
+        @tour_total_percent = 0.95 - (@organizer_percent/100.00)
+
+        if @tour.collaborators.any?
+          @tour_collaborator_percent = @tour.collaborators.first.percent.to_i/100.00
+        else
+          @tour_collaborator_percent = 0
+        end
+
+        @liquid = ((@final_price*100).to_i*(@tour_total_percent - @tour_collaborator_percent)).to_i
 
         @fees = {
-         :fee => (@final_price.to_i*100) - ((@final_price*100).to_i*0.94).to_i,
-         :liquid => ((@final_price*100).to_i*0.94).to_i,
+         :fee => (@final_price.to_i*100) - @liquid,
+         :liquid => @liquid,
          :total => @final_price.to_i*100 
         }
         
