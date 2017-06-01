@@ -65,7 +65,7 @@ class OrganizersController < ApplicationController
     respond_to do |format|
       if @organizer.update(organizer_params)
         format.html { 
-          OrganizerMailer.notify(@organizer, "update").deliver_now
+          #OrganizerMailer.notify(@organizer, "update").deliver_now
           redirect_to @organizer, notice: 'Organizer was successfully updated.'
         }
         format.json { render :show, status: :ok, location: @organizer }

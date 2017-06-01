@@ -86,17 +86,32 @@ class OrdersController < ApplicationController
         @transfer_status = request_raw_json["data"]["object"]["status"]
 
 
-        if @user_id && @type_of_action == 'transfer' && @transfer_status == 'in_transit'
+        if @user_id && @type_of_action == 'transfer'
           @marketplace_organizer = Marketplace.where(:account_id => @user_id).first
 
           @marketplace_organizer_owner = request_raw_json["data"]["object"]["bank_account"]["account_holder_name"]
           @marketplace_organizer_bankname = request_raw_json["data"]["object"]["bank_account"]["bank_name"]
           @marketplace_organizer_banknumber = request_raw_json["data"]["object"]["bank_account"]["last4"]
 
-          @status_class = "alert-success"
-          @subject = "Uma nova transferência foi realizada"
-          @mail_first_line = "Uma nova transferência foi realizada para #{@marketplace_organizer_owner}"
-          @mail_second_line = "Uma transferência no valor de #{final_price_from_cents(@amount_to_transfer)} foi realizada para sua conta <br /> no banco #{@marketplace_organizer_bankname} de número ****#{@marketplace_organizer_banknumber}"
+          case @transfer_status
+          when 'in_transit'
+            @status_class = "alert-success"
+            @subject = "Uma nova transferência a caminho"
+            @mail_first_line = "Uma nova transferência foi solicitada para #{@marketplace_organizer_owner}"
+            @mail_second_line = "Uma transferência no valor de <strong>#{final_price_from_cents(@amount_to_transfer)}</strong> está em andamento para sua conta <br /> no banco #{@marketplace_organizer_bankname} de número ****#{@marketplace_organizer_banknumber} e avisaremos quando for concluída"
+          when 'paid'
+            @status_class = "alert-success"
+            @subject = "Uma nova transferência foi realizada para sua conta"
+            @mail_first_line = "Uma nova transferência foi realizada para #{@marketplace_organizer_owner}"
+            @mail_second_line = "Uma transferência no valor de <strong>#{final_price_from_cents(@amount_to_transfer)}</strong> foi concluída para sua conta <br /> no banco #{@marketplace_organizer_bankname} de número ****#{@marketplace_organizer_banknumber}"
+          else
+            @status_class = "alert-success"
+            @subject = "Uma nova transferência a caminho"
+            @mail_first_line = "Uma nova transferência foi solicitada para #{@marketplace_organizer_owner}"
+            @mail_second_line = "Uma transferência no valor de <strong>#{final_price_from_cents(@amount_to_transfer)}</strong> está em andamento para sua conta <br /> no banco #{@marketplace_organizer_bankname} de número ****#{@marketplace_organizer_banknumber}"
+          end
+
+
 
           @status_data = {
               subject: @subject,

@@ -27,6 +27,13 @@ class ToursControllerTest < ActionController::TestCase
       organizer: Organizer.first.name,
       where: Where.last.name
     }
+
+    @basic_tour_with_collaborators = {
+        title: "A basic truppie",
+        organizer: Organizer.first.name,
+        where: Where.last.name,
+        collaborators: [collaborators(:one)]
+    }
     
     @basic_empty_tour_with_empty = {
       title: "Another basic truppie",
@@ -211,9 +218,14 @@ class ToursControllerTest < ActionController::TestCase
    
    test "should create withe the current status non published for default" do
      post :create, tour: @basic_empty_tour_with_empty
-     
      assert_equal Tour.last.status, ""
    end
+
+  test "should create with collaborators" do
+    skip('testing collaborators add')
+    post :create, tour: @basic_tour_with_collaborators
+    assert_equal Tour.last.collaborators, ""
+  end
 
   test "should show tour" do
     get :show, id: @tour
@@ -359,7 +371,22 @@ class ToursControllerTest < ActionController::TestCase
   test "should create a order with percentage of the organizer" do
     post :confirm_presence, @payment_data
     assert_equal assigns(:organizer_percent), 1
-    assert_equal assigns(:tour_total_percent), 0.96
+    assert_equal assigns(:tour_total_percent), 0.94
+    assert_equal assigns(:fees), {:fee=>240, :liquid=>3760, :total=>4000}
+    assert_template "confirm_presence"
+    assert_includes ["succeeded"], Order.last.status
+  end
+
+  test "should create a order with percentage of the organizer and collaborator" do
+    @tour.collaborators.create({
+        marketplace: Marketplace.last,
+        percent: 20
+    })
+    post :confirm_presence, @payment_data
+    assert_equal assigns(:organizer_percent), 1
+    assert_equal assigns(:tour_total_percent), 0.94
+    assert_equal assigns(:tour_collaborator_percent), 0.2
+    assert_equal assigns(:fees), {:fee=>1040, :liquid=>2960, :total=>4000}
     assert_template "confirm_presence"
     assert_includes ["succeeded"], Order.last.status
   end

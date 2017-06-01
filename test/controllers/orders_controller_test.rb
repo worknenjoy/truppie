@@ -377,9 +377,9 @@ class OrdersControllerTest < ActionController::TestCase
 
 
     assert_equal assigns(:status_class), "alert-success"
-    assert_equal assigns(:subject), "Uma nova transferência foi realizada"
-    assert_equal assigns(:mail_first_line), "Uma nova transferência foi realizada para Laura Zerwes Amado Sette"
-    assert_equal assigns(:mail_second_line), "Uma transferência no valor de <small>R$</small><span>18</span> foi realizada para sua conta <br /> no banco BANCO BRADESCO S.A. de número ****5677"
+    assert_equal assigns(:subject), "Uma nova transferência a caminho"
+    assert_equal assigns(:mail_first_line), "Uma nova transferência foi solicitada para Laura Zerwes Amado Sette"
+    assert_equal assigns(:mail_second_line), "Uma transferência no valor de <strong><small>R$</small><span>18</span></strong> está em andamento para sua conta <br /> no banco BANCO BRADESCO S.A. de número ****5677 e avisaremos quando for concluída"
 
     assert_not ActionMailer::Base.deliveries.empty?
     assert_equal ActionMailer::Base.deliveries.length, 1

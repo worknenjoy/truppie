@@ -125,6 +125,10 @@ pt-BR:
   user-why-truppie-is-so-great: "Ajudamos a conectá-lo a experiências incríveis de forma simples, com pagamento facilitado, para você focar no que importa: contar os dias para a sua aventura!"
   user-why-truppie-is-so-great-complement: ""
   user-start-to-use-truppie: "Procurar a minha truppie!"
+
+
+  organizer-percent-label: "Taxa (%)"
+  tours_view_form_p_colab: "Colaboradores"
   
   activerecord:
     errors:
