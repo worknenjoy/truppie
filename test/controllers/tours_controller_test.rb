@@ -311,7 +311,7 @@ class ToursControllerTest < ActionController::TestCase
   test "should confirm presence of a marketplace account" do
     mkt = marketplaces(:real)
     organizer = Tour.find(@tour.id).organizer
-    Tour.find(@tour.id).organizer.update_attributes({:marketplace => mkt})
+    Tour.find(@tour.id).organizer.update_attributes({:marketplace => mkt, percent: 1})
     Tour.find(@tour.id).organizer.marketplace.update_attributes({:organizer => organizer})
     Marketplace.find(mkt.id).activate
 
@@ -369,6 +369,7 @@ class ToursControllerTest < ActionController::TestCase
   end
 
   test "should create a order with percentage of the organizer" do
+    Tour.find(@tour.id).organizer.update_attributes({percent: 1})
     post :confirm_presence, @payment_data
     assert_equal assigns(:organizer_percent), 1
     assert_equal assigns(:tour_total_percent), 0.94
@@ -378,6 +379,7 @@ class ToursControllerTest < ActionController::TestCase
   end
 
   test "should create a order with percentage of the organizer and collaborator" do
+    Tour.find(@tour.id).organizer.update_attributes({percent: 1})
     @tour.collaborators.create({
         marketplace: Marketplace.last,
         percent: 20
