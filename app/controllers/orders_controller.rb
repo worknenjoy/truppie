@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
       @user_id = request_raw_json["user_id"]
 
 
-      @event_types = ["stripe_account", "review.closed", "transfer.created", "transfer.updated", "charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
+      @event_types = ["stripe_account", "review.closed", "transfer.created", "transfer.updated", "transfer.paid", "charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
 
       if @event_types.include?(@event)
         
