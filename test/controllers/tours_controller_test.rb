@@ -388,7 +388,35 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal assigns(:organizer_percent), 1
     assert_equal assigns(:tour_total_percent), 0.94
     assert_equal assigns(:tour_collaborator_percent), 0.2
+
+    assert_equal Order.last.fee, 1040
+    assert_equal Order.last.liquid, 2960
+    assert_equal Order.last.final_price, 4000
+
     assert_equal assigns(:fees), {:fee=>1040, :liquid=>2960, :total=>4000}
+    assert_equal Tour.find(@tour.id).collaborators.first.percent, 20
+    assert_template "confirm_presence"
+    assert_includes ["succeeded"], Order.last.status
+  end
+
+  test "should create a order with percentage of the organizer and collaborator using dot notation in percent" do
+    Tour.find(@tour.id).organizer.update_attributes({percent: 1})
+    @tour.collaborators.create({
+         marketplace: Marketplace.last,
+         percent: 40.3
+     })
+    post :confirm_presence, @payment_data
+    assert_equal assigns(:organizer_percent), 1
+    assert_equal assigns(:tour_total_percent), 0.94
+
+    assert_equal assigns(:tour_collaborator_percent), 0.403
+    assert_equal assigns(:fees), {:fee=>1852, :liquid=>2148, :total=>4000}
+
+    assert_equal Tour.find(@tour.id).collaborators.first.percent, 40.3
+    assert_equal Order.last.fee, 1852
+    assert_equal Order.last.liquid, 2148
+    assert_equal Order.last.final_price, 4000
+
     assert_template "confirm_presence"
     assert_includes ["succeeded"], Order.last.status
   end
