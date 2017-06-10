@@ -222,6 +222,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= ff.number_field :percent, placeholder: t('organizer-percent-label'), max: 100, min: 1, :step => 0.01, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
                         <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value" %>

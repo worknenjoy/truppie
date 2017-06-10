@@ -12,6 +12,7 @@ class ToursControllerTest < ActionController::TestCase
     @tour = tours(:morro)
     @tour_marins = tours(:picomarins)
     @mkt = tours(:tour_mkt)
+    @with_order_and_packages = tours(:with_orders)
     
     @payment_data = {
       id: @tour,
@@ -20,6 +21,16 @@ class ToursControllerTest < ActionController::TestCase
       birthdate: "10/10/1988",
       value: @tour.value,
       token: StripeMock.generate_card_token(last4: "9191", exp_year: 1984) 
+    }
+
+    @payment_data_packages = {
+        id: @with_order_and_packages,
+        method: "CREDIT_CARD",
+        fullname: "Alexandre Magno Teles Zimerer",
+        birthdate: "10/10/1988",
+        package: @with_order_and_packages.packages.first.id,
+        value: @tour.value,
+        token: StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
     }
     
     @basic_tour = {
@@ -255,13 +266,23 @@ class ToursControllerTest < ActionController::TestCase
     get :confirm, {id: @tour}
     assert(assigns(:final_price))
     assert_equal(assigns(:final_price), 40)
+    #assert_equal(assigns(:package), 40)
     
   end
   
-  test "should go to confirm presence with confirming package" do
+  test "should go to confirm presence with confirming package name" do
     get :confirm, {id: @tour_marins, packagename: @tour_marins.packages.first.name}
+    assert(assigns(:packagename))
     assert(assigns(:final_price))
     assert_equal(assigns(:final_price), 320)
+  end
+
+  test "should go to confirm presence with confirming package id" do
+    get :confirm, {id: @tour_marins, package: @tour_marins.packages.first.id}
+    assert(assigns(:package))
+    assert(assigns(:final_price))
+    assert_equal(assigns(:final_price), 320)
+
   end
   
   #
@@ -304,7 +325,7 @@ class ToursControllerTest < ActionController::TestCase
 
     assert_equal Tour.find(@tour.id).orders.any?, true
     assert_equal Tour.find(@tour.id).orders.last.source_id, 'test_cc_2'
-    assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_3'
+    assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_5'
     assert_template "confirm_presence"
   end
 
@@ -326,7 +347,7 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal Tour.find(@tour.id).orders.first.liquid, 3760
     assert_equal Tour.find(@tour.id).orders.first.fee, 240
     assert_equal Tour.find(@tour.id).orders.last.source_id, 'test_cc_2'
-    assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_4'
+    assert_equal Tour.find(@tour.id).orders.last.payment, 'test_ch_6'
     #assert_equal Customer.last.token, 'blabla'
     #assert_equal Customer.last.email, 'example@foo.com'
     assert_template "confirm_presence"
@@ -408,6 +429,7 @@ class ToursControllerTest < ActionController::TestCase
     post :confirm_presence, @payment_data
     assert_equal assigns(:organizer_percent), 1
     assert_equal assigns(:tour_total_percent), 0.94
+    assert_equal assigns(:final_price), 40
 
     assert_equal assigns(:tour_collaborator_percent), 0.403
     assert_equal assigns(:fees), {:fee=>1852, :liquid=>2148, :total=>4000}
@@ -417,6 +439,53 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal Order.last.liquid, 2148
     assert_equal Order.last.final_price, 4000
 
+    assert_template "confirm_presence"
+    assert_includes ["succeeded"], Order.last.status
+  end
+
+  test "should create a order with percentage of the organizer and collaborator when percent is zero" do
+    Tour.find(@tour.id).organizer.update_attributes({percent: 1})
+    @tour.collaborators.create({
+         marketplace: Marketplace.last,
+         percent: 0
+     })
+    post :confirm_presence, @payment_data
+    assert_equal assigns(:organizer_percent), 1
+    assert_equal assigns(:tour_total_percent), 0.94
+    assert_equal assigns(:tour_collaborator_percent), 0.0
+
+    assert_equal Order.last.fee, 240
+    assert_equal Order.last.liquid, 3760
+    assert_equal Order.last.final_price, 4000
+
+    assert_equal assigns(:fees), {:fee=>240, :liquid=>3760, :total=>4000}
+    assert_equal Tour.find(@tour.id).collaborators.first.percent.to_f, 0.0
+    assert_template "confirm_presence"
+    assert_includes ["succeeded"], Order.last.status
+  end
+
+  test "should create a order with percentage of the organizer and collaborator when is a package" do
+    Tour.find(@with_order_and_packages.id).organizer.update_attributes({percent: 1})
+    Tour.find(@with_order_and_packages.id).packages.first.update_attributes({percent: 40.3})
+    @tour.collaborators.create({
+         marketplace: Marketplace.last,
+         percent: 0
+     })
+    post :confirm_presence, @payment_data_packages
+    assert_equal assigns(:organizer_percent), 1
+    assert_equal assigns(:tour_total_percent), 0.94
+    assert_equal assigns(:tour_collaborator_percent), 0.0
+    assert_equal assigns(:final_price), 40
+
+    assert_equal assigns(:package), @with_order_and_packages.packages.first
+    assert_equal assigns(:tour_package_percent), 40.3
+    assert_equal assigns(:tour_package_percent_factor), 0.403
+
+    assert_equal assigns(:fees), {:fee=>1852, :liquid=>2148, :total=>4000}
+
+    assert_equal Order.last.fee, 1852
+    assert_equal Order.last.liquid, 2148
+    assert_equal Order.last.final_price, 4000
     assert_template "confirm_presence"
     assert_includes ["succeeded"], Order.last.status
   end

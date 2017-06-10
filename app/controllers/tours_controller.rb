@@ -20,8 +20,12 @@ class ToursController < ApplicationController
     if @tour.value
       @final_price = @tour.value
     else
-      if @packagename
-        @final_price = @tour.packages.find_by_name(@packagename).value
+      if params[:package]
+        @package = @tour.packages.find(params[:package])
+        @final_price = @package.value
+      elsif @packagename
+        @package = @tour.packages.find_by_name(@packagename)
+        @final_price = @package.value
       else
         @final_price = ""
       end      
@@ -31,7 +35,16 @@ class ToursController < ApplicationController
   def confirm_presence
     @tour = Tour.find(params[:id])
     @value = params[:value].to_i
-    
+    puts 'param in confirm presence'
+    puts params.inspect
+    if params[:package]
+      @package = @tour.packages.find(params[:package])
+    elsif params[:packagename]
+      @package = @tour.packages.find_by_name(params[:packagename])
+    else
+      @package = nil
+    end
+
     @payment_method = params[:method]
     
     if params[:amount].nil? || params[:amount].empty?
@@ -70,16 +83,29 @@ class ToursController < ApplicationController
         @organizer_percent = @tour.organizer.percent || 1
         @tour_total_percent = 0.95 - (@organizer_percent/100.00)
 
-
         if @tour.collaborators.any?
-          @tour_collaborator_percent = (@tour.collaborators.first.percent / 100.00).to_f
+          @tour_collaborator_percent = (@tour.collaborators.first.percent || 0) / 100.00
         else
           @tour_collaborator_percent = 0
         end
 
+        if @package
+          @tour_package_percent = @package.percent
+          puts "package percent"
+          puts @tour_package_percent.inspect
+          @tour_package_percent_factor = @tour_package_percent / 100.00
+          puts "package percent factor"
+          puts @tour_package_percent_factor.inspect
+        else
+          @tour_package_percent = 0
+          @tour_package_percent_factor = 0
+        end
+
         @price_cents = (@final_price*100).to_i
 
-        @liquid = (@price_cents)*(@tour_total_percent - @tour_collaborator_percent)
+        @liquid = (@price_cents)*(@tour_total_percent - @tour_collaborator_percent - @tour_package_percent_factor)
+        puts "liquid"
+        puts @liquid.inspect
 
         @fees = {
          :fee => (@price_cents - @liquid).round.to_i,
@@ -92,7 +118,6 @@ class ToursController < ApplicationController
           :amount => @fees[:total],
           :source => params[:token],
           :description => @desc
-          
         }
         
         if @tour.organizer.try(:marketplace)
@@ -317,7 +342,7 @@ class ToursController < ApplicationController
       post_data = [] 
       pkg_attr.each do |p|
         included_array = p[1]["included"].split(split_val)
-        post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], included: included_array)
+        post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], percent: p[1]["percent"], included: included_array)
       end
       params[:tour][:packages] = post_data        
     end

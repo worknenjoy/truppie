@@ -150,6 +150,7 @@
                             <small><%= t('tours_view_confirm_small_three') %></small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
                             <h2 class="spaced-smallest"><%= raw final_price(@final_price) %></h2>
                             <%= hidden_field_tag :value, @final_price %>
+                            <%= hidden_field_tag :packagename, @packagename %>
                           <% else %>
                               <% if @tour.packages.any? and !@tour.value %>
                                 <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_span_one') %></span>
@@ -162,6 +163,7 @@
                                   <%= radio_button_tag :value, p.value %>
                                   <% end %>
                                   <%= p.name %>
+                                  <%= hidden_field_tag :package, p.id %>
                                   <h4><strong><%= raw p.price %></strong></h4>
                                 </label>
                                 <% end %>
@@ -246,10 +248,12 @@
                     </div>
                     <div class="card-block">
                         <div class="col-xs-12">
+                          <%= hidden_field_tag :package, @package.try(:id) %>
                           <% if @packagename %>
                             <small><%= t('tours_view_confirm_small_three') %></small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
                             <h2 class="spaced-smallest"><%= raw final_price(@final_price) %></h2>
                             <%= hidden_field_tag :value, @final_price %>
+                            <%= hidden_field_tag :packagename, @packagename %>
                           <% else %>
                               <% if @tour.packages.any? and !@tour.value %>
                                 <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_span_two') %></span>
@@ -262,6 +266,7 @@
                                   <%= radio_button_tag :value, p.value %>
                                   <% end %>
                                   <%= p.name %>
+                                  <%= hidden_field_tag :package, p.id %>
                                   <h4><strong><%= raw p.price %></strong></h4>
                                 </label>
                                 <% end %>
