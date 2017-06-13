@@ -142,20 +142,18 @@ var rangeCal = {
 
 
         // button actions
-        $('#dactions').on('click', 'button', function(){
+        $('#dactions').on('click', 'button', function(e){
 
             var ok = true;
 
             // Cancel button
-            if( this.className.indexOf('red') > -1 ){
+            if( this.className.indexOf('btn-cancel') > -1 ){
                 // reset form and close
             }
             // OK button
             else {
                 // close the datepicker
 
-                // trigger error if selection 2 not made
-                if( _id('sel2') == null ) { ok = false; rangeCal.err('Also choose a return date'); }
 
             }
 
@@ -467,6 +465,7 @@ var rangeCal = {
             to = _id('dateTo'),
             from = _id('dateFrom');
 
+
         // check if we're not resetting output
         if(date !== 'reset'){
 
@@ -524,6 +523,7 @@ var rangeCal = {
 
 
         $(cur).find('.r_date').html(str);
+
 
 
     },
