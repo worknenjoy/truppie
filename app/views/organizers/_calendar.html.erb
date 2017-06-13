@@ -1,27 +1,57 @@
-<div class="c-container">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,100,100italic' rel='stylesheet' type='text/css'>
-  <div id="c">
-
-    <div id="calHelp">
-      <div class="first active"><i>a</i> <b id="sel1text"><%= t('event-call-start') %></b></div><div class="disabled"><i>b</i> <b id="sel2text"><%= t('event-call-end') %></b></div>
+<div
+id="dateField"
+data-days = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+data-months = "January,February,March,April,May,June,Juli,August,September,October,November,December"
+data-monthsNum = "12"
+readonly="true"
+>
+  <div class="fromTo" id="fromToPicker">
+    <div class="dateBox" id="dateFromPicker">
+      <i class="r_head">Departure</i>
+      <i class="r_date">Select a date</i>
     </div>
-
-    <div id="disp">
-      <div id="prev" class="nav">&larr;</div>
-      <div id="month">Hello world</div>
-      <div id="next" class="nav">&rarr;</div></div>
-    <div id="cal"></div>
-
-    <div class="form-group row">
-      <div class="col-xs-6">
-        <%= label_tag 'Horário de início' %>
-        <%= time_select nil, :starttime, html_options: { class: "form-control start-time" } %>
-      </div>
-      <div class="col-xs-6">
-        <%= label_tag 'Horário de término' %>
-        <%= time_select nil, :endtime, html_options: { class: "form-control end-time" } %>
-      </div>
+    <div class="dateBox days off" id="daysNumPicker">
+      <i class="r_head">Days</i>
+      <i class="r_days"><span class="r_dots">&middot;&middot;&middot;&middot;</span><em>0</em><span class="r_dots">&middot;&middot;&middot;&middot;</span></i>
     </div>
+    <div class="dateBox off" id="dateToPicker">
+      <i class="r_head">Return</i>
+      <i class="r_date">Select a date</i>
+    </div>
+  </div>
+</div>
 
-  </div><!-- /#c -->
+<div id="cal">
+
+  <div class="fromTo" id="fromTo">
+    <div class="dateBox" id="dateFrom">
+      <i class="r_head">Departure</i>
+      <i class="r_date">Select a date</i>
+    </div>
+    <div class="dateBox days off" id="daysNum">
+    <i class="r_head">Days</i>
+    <i class="r_days"><span class="r_dots">&middot;&middot;&middot;&middot;</span><em>0</em><span class="r_dots">&middot;&middot;&middot;&middot;</span></i>
+    </div>
+    <div class="dateBox off" id="dateTo">
+      <i class="r_head">Return</i>
+      <i class="r_date">Select a date</i>
+    </div>
+  </div>
+
+  <i class="clear" style="clear:both;"></i>
+
+  <!-- the calendars -->
+  <div id="r_cals">
+    <div id="r_nav">
+      <i class="nav next" id="next">&rsaquo;</i>
+      <i class="nav prev off" id="prev">&lsaquo;</i>
+    </div>
+    <div id="dp"></div>
+  </div>
+
+
+  <div id="dactions">
+    <button class="btn btn-outline">Cancel</button><button class="btn btn-success">Apply</button>
+  </div>
+
 </div>
