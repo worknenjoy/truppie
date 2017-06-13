@@ -17,7 +17,7 @@ class Tour < ActiveRecord::Base
   has_and_belongs_to_many :orders
   
   accepts_nested_attributes_for :packages, allow_destroy: true, reject_if: :all_blank
-  git stat
+
   accepts_nested_attributes_for :collaborators, allow_destroy: true, reject_if: :all_blank
 
   accepts_nested_attributes_for :organizer
