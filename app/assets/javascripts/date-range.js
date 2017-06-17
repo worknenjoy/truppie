@@ -159,6 +159,27 @@ var rangeCal = {
 
             // close if OK
             if(ok) main.className = '';
+
+            var dateFromText = $('#dateFrom').find('.r_date').text();
+            var dateToText = $('#dateTo').find('.r_date').text();
+            var daysNumPicker = $('#daysNum').find('.r_days em').text();
+
+            var startDate = new Date(dateFromText);
+            var endDate = new Date(dateToText);
+
+            if(dateToText == 'mesmo dia') {
+                daysNumPicker = 0;
+                endDate = startDate;
+            }
+
+            $('.start-field').val(startDate);
+            $('.end-field').val(endDate);
+
+            $('#dateFromPicker').find('.r_date').text(dateFromText);
+
+            $('#dateToPicker').find('.r_date').text(dateToText);
+
+            $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
             return false;
         })
 
@@ -230,7 +251,7 @@ var rangeCal = {
     },
 
     // difference in days
-    dateDiff: function(date1, date2, sel2){
+    dateDiff: function(date1, date2){
 
         // Create dates
         var dmy1 = new Date(date1),
@@ -459,7 +480,6 @@ var rangeCal = {
      0.79kb
      */
     set: function(date, fromTo){
-
         var cur,
             str = '',
             to = _id('dateTo'),
@@ -509,7 +529,7 @@ var rangeCal = {
         // RESET
         else {
             cur = _id('fromTo');
-            str = 'Select a date'; // FIX: This is not translateable as is
+            str = _id('dateField').getAttribute('data-label');
 
             to.classList.add('off');
             daysNum.classList.add('off');
@@ -520,7 +540,6 @@ var rangeCal = {
 
             to.querySelector('.r_date').innerText = str;
         }
-
 
         $(cur).find('.r_date').html(str);
 

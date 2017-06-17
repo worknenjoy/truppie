@@ -165,6 +165,14 @@ pt-BR:
   event-packages-title: "Pacotes já incluídos"
   event-no-packages-message: "Não há ainda nenhum pacote adicionado"
 
+  departure-date: Saída
+  return-date: Retorno
+  select-date: selecionar data
+  days: Dias
+  cancel: Cancelar
+  change-date: Inserir data
+  same-date: mesmo dia
+
   
   activerecord:
     errors:
@@ -173,6 +181,7 @@ pt-BR:
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+
   date:
     abbr_day_names:
     - Dom
@@ -204,6 +213,14 @@ pt-BR:
     - Quinta-feira
     - Sexta-feira
     - Sábado
+    day_names_calendar:
+    - Segunda
+    - Terça
+    - Quarta
+    - Quinta
+    - Sexta
+    - Sábado
+    - Domingo
     formats:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
