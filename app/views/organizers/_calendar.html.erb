@@ -1,40 +1,52 @@
 <div
 id="dateField"
-data-days = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
-data-months = "January,February,March,April,May,June,Juli,August,September,October,November,December"
+data-days = <%= t(:"date.day_names_calendar").join(',') %>
+data-months = <%= t(:"date.month_names").join(',')[1..-1] %>
 data-monthsNum = "12"
-readonly="true"
+data-label = "<%= t('same-date') %>"
 >
   <div class="fromTo" id="fromToPicker">
     <div class="dateBox" id="dateFromPicker">
-      <i class="r_head">Departure</i>
-      <i class="r_date">Select a date</i>
+      <i class="r_head"><%= t('departure-date') %></i>
+      <i class="r_date"><%= t('select-date') %></i>
     </div>
     <div class="dateBox days off" id="daysNumPicker">
-      <i class="r_head">Days</i>
-      <i class="r_days"><span class="r_dots">&middot;&middot;&middot;&middot;</span><em>0</em><span class="r_dots">&middot;&middot;&middot;&middot;</span></i>
+      <i class="r_head"><%= t('days') %></i>
+      <i class="r_days"><span class="r_dots">&middot;</span><em>0</em><span class="r_dots">&middot;</span></i>
     </div>
     <div class="dateBox off" id="dateToPicker">
-      <i class="r_head">Return</i>
-      <i class="r_date">Select a date</i>
+      <i class="r_head"><%= t('return-date') %></i>
+      <i class="r_date"><%= t('select-date') %></i>
     </div>
   </div>
 </div>
+
+<div class="form-group row">
+  <div class="col-xs-6">
+    <%= label_tag 'Horário de início' %>
+    <%= time_select nil, :starttime, html_options: { class: "form-control start-time" } %>
+  </div>
+  <div class="col-xs-6">
+    <%= label_tag 'Horário de término' %>
+    <%= time_select nil, :endtime, html_options: { class: "form-control end-time" } %>
+  </div>
+</div>
+
 
 <div id="cal">
 
   <div class="fromTo" id="fromTo">
     <div class="dateBox" id="dateFrom">
-      <i class="r_head">Departure</i>
-      <i class="r_date">Select a date</i>
+      <i class="r_head"><%= t('departure-date') %></i>
+      <i class="r_date"><%= t('select-date') %></i>
     </div>
     <div class="dateBox days off" id="daysNum">
     <i class="r_head">Days</i>
     <i class="r_days"><span class="r_dots">&middot;&middot;&middot;&middot;</span><em>0</em><span class="r_dots">&middot;&middot;&middot;&middot;</span></i>
     </div>
     <div class="dateBox off" id="dateTo">
-      <i class="r_head">Return</i>
-      <i class="r_date">Select a date</i>
+      <i class="r_head"><%= t('return-date') %></i>
+      <i class="r_date"><%= t('select-date') %></i>
     </div>
   </div>
 
@@ -50,8 +62,9 @@ readonly="true"
   </div>
 
 
-  <div id="dactions">
-    <button class="btn btn-outline btn-cancel">Cancel</button><button class="btn btn-success">Apply</button>
+  <div id="dactions" style="margin:10px;">
+    <button class="btn btn-outline btn-cancel" style="margin-right: 10px;"><%= t('cancel') %></button>
+    <button class="btn btn-success"><%= t('change-date') %></button>
   </div>
 
 </div>
