@@ -367,6 +367,8 @@ $(function(){
   });
   
   $('#birthdate').mask("99/99/9999");
+  //$('.start-time, .end-time').mask("99:99");
+
 
   eventHolder();
     if(document.getElementById('editor-container')) {
