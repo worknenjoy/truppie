@@ -24,11 +24,11 @@ data-label = "<%= t('same-date') %>"
 <div class="form-group row">
   <div class="col-xs-6">
     <%= label_tag 'Horário de início' %>
-    <%= time_select nil, :starttime, html_options: { class: "form-control start-time" } %>
+    <%= text_field_tag :start_time, nil, value: (l(f.object.start, format: '%H:%M') if f.object.try(:start)) %>
   </div>
   <div class="col-xs-6">
     <%= label_tag 'Horário de término' %>
-    <%= time_select nil, :endtime, html_options: { class: "form-control end-time" } %>
+    <%= text_field_tag :end_time, nil, value: (l(f.object.end, format: '%H:%M') if f.object.try(:end)) %>
   </div>
 </div>
 

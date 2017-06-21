@@ -12,6 +12,71 @@
 
 'use strict';
 
+function dateToUTC(date) {
+    return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+};
+
+function updateDates(e) {
+    var dateFromText = $('#dateFrom').find('.r_date').text();
+    var dateToText = $('#dateTo').find('.r_date').text();
+    var daysNumPicker = $('#daysNum').find('.r_days em').text();
+
+    var startDateRow = $('.sel1').attr('data-date');
+
+    if(startDateRow) {
+        var startDate = new Date(startDateRow);
+    } else {
+        var startDate = new Date($('.start-field').val());
+    }
+
+    var startTime = $('#start_time').val();
+
+    var startTimeArray = startTime.split(':');
+    var startTimeHours = startTimeArray[0];
+    var startTimeMinutes = startTimeArray[1];
+
+    if(startTimeHours > 0 && startTimeMinutes > 0) {
+        startDate.setHours(startTimeHours);
+        startDate.setMinutes(startTimeMinutes);
+    }
+
+    var endDateRow = $('.sel2').attr('data-date');
+
+    if(endDateRow) {
+        var endDate = new Date(endDateRow);
+    } else {
+        var endDate = new Date($('.end-field').val());;
+    }
+
+    var endTime = $('#end_time').val();
+
+    var endTimeArray = endTime.split(':');
+    var endTimeHours = endTimeArray[0];
+    var endTimeMinutes = endTimeArray[1];
+
+    if(dateToText == 'mesmo dia') {
+        daysNumPicker = 0;
+        endDate = startDate;
+        $('.end-field').val(endDate);
+    }
+
+    if(endTimeHours > 0 && endTimeMinutes > 0) {
+        endDate.setHours(endTimeHours);
+        endDate.setMinutes(endTimeMinutes);
+    }
+
+
+    $('.start-field').val(startDate);
+    $('.end-field').val(endDate);
+
+    if(e.type !== "change") {
+
+        $('#dateFromPicker').find('.r_date').text(dateFromText);
+        $('#dateToPicker').find('.r_date').text(dateToText);
+        $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
+    }
+}
+
 // small helpers
 function _id(e) { return document.getElementById(e); }
 //function _e(e) { return document.querySelector(e); }
@@ -160,26 +225,7 @@ var rangeCal = {
             // close if OK
             if(ok) main.className = '';
 
-            var dateFromText = $('#dateFrom').find('.r_date').text();
-            var dateToText = $('#dateTo').find('.r_date').text();
-            var daysNumPicker = $('#daysNum').find('.r_days em').text();
-
-            var startDate = new Date(dateFromText);
-            var endDate = new Date(dateToText);
-
-            if(dateToText == 'mesmo dia') {
-                daysNumPicker = 0;
-                endDate = startDate;
-            }
-
-            $('.start-field').val(startDate);
-            $('.end-field').val(endDate);
-
-            $('#dateFromPicker').find('.r_date').text(dateFromText);
-
-            $('#dateToPicker').find('.r_date').text(dateToText);
-
-            $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
+            updateDates(e);
             return false;
         })
 
@@ -369,7 +415,7 @@ var rangeCal = {
      */
     /* todo: add action for setting input 1 + hidden input 2+3 */
     select: function(e, main){
-
+        console.log(e, main);
         // vars: this, main
 
         // selection 1 + 2
@@ -675,5 +721,38 @@ var rangeCal = {
 
 } /* end rangeCal */
 
-var dateInput = $('#dateField');
-rangeCal.init(dateInput);
+if($('#dateField').length) {
+    var dateInput = $('#dateField');
+    rangeCal.init(dateInput);
+}
+
+
+if($('.start-field').val().length) {
+    var currentStartDate = new Date($('.start-field').val());
+    var currentEndDate = new Date($('.end-field').val());
+
+    var startDateOut = $('.start-field').attr('data-date-start');
+
+    var endDateOut = $('.end-field').attr('data-date-end');
+
+    var startDateRow = currentStartDate.getFullYear() + '-' + (currentStartDate.getMonth() + 1) + '-' + currentStartDate.getDate();
+
+    var startDateElement = $( 'td[data-date=' + startDateRow + ']');
+    var calElement = $('#cal');
+
+    $('#dateFromPicker').find('.r_date').text(startDateOut);
+    $('#dateToPicker').find('.r_date').text(endDateOut);
+
+    var currentDaysCount = rangeCal.dateDiff(currentStartDate, currentEndDate);
+
+    $('#dateFrom').find('.r_date').text(startDateOut);
+    $('#dateTo').find('.r_date').text(endDateOut);
+
+    $('#daysNumPicker').find('.r_days em').text(currentDaysCount);
+    $('#daysNum').find('.r_days em').text(currentDaysCount);
+    
+    $('#start_time, #end_time').bind('change', function(e){
+        updateDates(e);
+    });
+
+}
