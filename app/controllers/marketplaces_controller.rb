@@ -3,6 +3,7 @@ class MarketplacesController < ApplicationController
   before_action :set_marketplace, only: [:show, :edit, :update, :destroy, :activate, :update_account, :request_external_payment_type_auth]
   before_action :authenticate_user!
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
+  skip_before_action :verify_authenticity_token
   
   def check_if_admin
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
@@ -134,7 +135,6 @@ class MarketplacesController < ApplicationController
   end
 
   def request_external_payment_type_auth
-    puts @marketplace.payment_types.inspect
     if @marketplace.payment_types.any?
       @authorize = @marketplace.payment_types_authorize
       if @authorize
@@ -151,7 +151,10 @@ class MarketplacesController < ApplicationController
       @activation_status = "danger"
       @activation_message = "Não foi ativada nenhuma forma de pagamento externa associada"
     end
+  end
 
+  def return
+    render :nothing => true
   end
   
   private

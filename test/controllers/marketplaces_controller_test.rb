@@ -128,7 +128,8 @@ class MarketplacesControllerTest < ActionController::TestCase
   end
 
   test "the return of the user authoring a new payment" do
-    get :return 
+    get :return
+    assert_response :success
   end
 
   test "marketplace activate a external payment with success mail sent" do
