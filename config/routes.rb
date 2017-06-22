@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       get 'activate', to: 'marketplaces#activate', as: 'activate'
       get 'update_account', to: 'marketplaces#update_account', as: 'update_account'
+      get 'request_external_payment_type_auth', to: 'marketplaces#request_external_payment_type_auth', as: 'request_external_payment_type_auth'
     end
   end
   resources :translations

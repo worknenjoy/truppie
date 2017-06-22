@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608210433) do
+ActiveRecord::Schema.define(version: 20170622142033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,14 @@ ActiveRecord::Schema.define(version: 20170608210433) do
   add_index "marketplaces", ["bank_account_id"], name: "index_marketplaces_on_bank_account_id", using: :btree
   add_index "marketplaces", ["organizer_id"], name: "index_marketplaces_on_organizer_id", using: :btree
 
+  create_table "marketplaces_payment_types", id: false, force: :cascade do |t|
+    t.integer "marketplace_id",  null: false
+    t.integer "payment_type_id", null: false
+  end
+
+  add_index "marketplaces_payment_types", ["marketplace_id", "payment_type_id"], name: "marketplace_payment", using: :btree
+  add_index "marketplaces_payment_types", ["payment_type_id", "marketplace_id"], name: "payment_marketplace", using: :btree
+
   create_table "members", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -325,6 +333,20 @@ ActiveRecord::Schema.define(version: 20170608210433) do
 
   add_index "packages_tours", ["package_id", "tour_id"], name: "index_packages_tours_on_package_id_and_tour_id", using: :btree
   add_index "packages_tours", ["tour_id", "package_id"], name: "index_packages_tours_on_tour_id_and_package_id", using: :btree
+
+  create_table "payment_types", force: :cascade do |t|
+    t.integer  "marketplace_id"
+    t.string   "type_name"
+    t.string   "email"
+    t.string   "token"
+    t.string   "appId"
+    t.string   "auth"
+    t.string   "key"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "payment_types", ["marketplace_id"], name: "index_payment_types_on_marketplace_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "name"
@@ -507,6 +529,7 @@ ActiveRecord::Schema.define(version: 20170608210433) do
   add_foreign_key "organizers", "members"
   add_foreign_key "organizers", "users"
   add_foreign_key "organizers", "wheres"
+  add_foreign_key "payment_types", "marketplaces"
   add_foreign_key "reviews", "tours"
   add_foreign_key "reviews", "users"
   add_foreign_key "tour_pictures", "tours"

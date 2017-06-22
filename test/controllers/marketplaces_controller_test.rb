@@ -118,6 +118,32 @@ class MarketplacesControllerTest < ActionController::TestCase
     
     assert_not ActionMailer::Base.deliveries.empty?
   end
+
+  test "marketplace activate a external payment without the credentials" do
+    get :request_external_payment_type_auth, id: @mkt_valid
+    assert_equal assigns(:activation_status), "danger"
+    assert_equal assigns(:activation_message), "Não foi ativada nenhuma forma de pagamento externa associada"
+    assert ActionMailer::Base.deliveries.empty?
+    assert_response :success
+  end
+
+  test "the return of the user authoring a new payment" do
+    get :return 
+  end
+
+  test "marketplace activate a external payment with success mail sent" do
+    @mkt_valid.payment_types.create({
+         type_name: 'pagseguro',
+         email: 'payment@pagseguro.com',
+         auth: '123'
+     })
+    get :request_external_payment_type_auth, id: @mkt_valid
+    assert_equal assigns(:activation_status), "success"
+    assert_equal assigns(:activation_message), "Autorização enviada para o cliente com sucesso"
+    #puts ActionMailer::Base.deliveries[1].html_part
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_response :success
+  end
   
   test "activate bank account on marketplace with success mocking the success response from moip and get the data" do
     skip("skip for now")

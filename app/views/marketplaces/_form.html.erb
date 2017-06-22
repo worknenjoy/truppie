@@ -31,6 +31,9 @@
       <a class="nav-link" data-toggle="tab" href="#mkt_status" role="tab">Status da conta</a>
     </li>
     <% end %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#payment_types" role="tab">Pagamento</a>
+    </li>
   </ul>
   <div class="tab-content spaced-down">
     <div class="tab-pane active" id="home" role="tabpanel">
@@ -240,6 +243,24 @@
           <% end %>
       </div>
       <% end %>
+      <div class="tab-pane" id="payment_types" role="tabpanel">
+        <%= f.fields_for :payment_types, ([@marketplace.payment_types.build] if @marketplace.payment_types.empty?) do |ff| %>
+            <fieldset class="form-group">
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                  <%= ff.select :type_name, ['pagseguro'] %>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                  <%= ff.text_field :email, placeholder: "email da conta", class: "form-control" %>
+                </div>
+              </div>
+            </fieldset>
+        <% end %>
+      </div>
   </div>
   <div class="pull-right">  
     <a href="<%= new_marketplace_path %> class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">

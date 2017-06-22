@@ -177,8 +177,45 @@ class MarketplaceTest < ActiveSupport::TestCase
   end
   
   test "should accept terms" do
-      account = @mkt_real_data.activate
+     account = @mkt_real_data.activate
      accepted_terms = @mkt_real_data.accept_terms('110.112.113.2')  
      assert_equal accepted_terms, true
-   end
+  end
+
+  test "should create marketplace with external payment system" do
+    mkt = marketplaces(:one)
+
+    mkt.payment_types.create({
+      type_name: 'pagseguro',
+      email: 'payment@pagseguro.com',
+      token: 'abc',
+      appId: '1234',
+      auth: 'aaaa',
+      key: '2345'
+    })
+
+    assert_equal mkt.payment_types.first.type_name, 'pagseguro'
+    assert_equal mkt.payment_types.first.email, 'payment@pagseguro.com'
+    assert_equal mkt.payment_types.first.token, 'abc'
+    assert_equal mkt.payment_types.first.appId, '1234'
+    assert_equal mkt.payment_types.first.auth, 'aaaa'
+    assert_equal mkt.payment_types.first.key, '2345'
+  end
+
+  test "should see the payment type authorization" do
+    url = 'https://ws.pagseguro.uol.com.br/v2/authorizations/request?appId=truppie&appKey=CDEF210C5C5C6DFEE4E36FBE9DB6F509'
+    xml_body = '<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?><authorizationRequest><code>1234</code><date>2017-06-22T13:02:46.000-03:00</date></authorizationRequest>'
+    FakeWeb.register_uri(:post, url, :body => xml_body, :status => ["200", "Success"])
+
+    mkt = marketplaces(:one)
+
+    mkt.payment_types.create({
+       type_name: 'pagseguro',
+       email: 'payment@pagseguro.com'
+   })
+
+    assert_equal mkt.payment_types_authorize, '1234'
+    assert_equal mkt.payment_types.first.auth, '1234'
+  end
+
 end

@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  marketplace: one
+  email: MyString
+  token: MyString
+  appId: MyString
+  auth: MyString
+  key: MyString
+
+two:
+  email: MyString
+  token: MyString
+  appId: MyString
+  auth: MyString
+  key: MyString

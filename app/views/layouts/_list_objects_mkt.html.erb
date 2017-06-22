@@ -31,6 +31,11 @@
               <% else %>
               <td><%= link_to 'Ativar marketplace', activate_marketplace_path(m) %></td>
               <% end %>
+              <% if m.payment_types.any? %>
+                  <td><%= link_to 'obter autorização', request_external_payment_type_auth_marketplace_path(m) %></td>
+              <% else %>
+                <td></td>
+              <% end %>
               <td><%= link_to 'Exibir', m %></td>
               <td><%= link_to 'Editar', edit_marketplace_path(m) %></td>
               <td><%= link_to 'Apagar', m, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' } %></td>

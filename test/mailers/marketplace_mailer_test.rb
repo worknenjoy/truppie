@@ -95,5 +95,23 @@ class MarketplaceMailerTest < ActionMailer::TestCase
      assert_equal "Sua carteira da Truppie foi ativada com sucesso", mail.subject
      
    end
+
+  test "send mail with authorization to enable external payments" do
+    m = Marketplace.last
+    m.payment_types.create({
+        type_name: 'pagseguro',
+        email: 'payment@pagseguro.com',
+        auth: '123'
+    })
+    mail = MarketplaceMailer.request_app_auth(m).deliver_now
+
+    #puts ActionMailer::Base.deliveries[0].html_part
+
+    assert_not ActionMailer::Base.deliveries.empty?
+    assert_equal ["ola@truppie.com"], mail.from
+    assert_equal ["payment@pagseguro.com"], mail.to
+    assert_equal "Autorização para usar o #{m.payment_types.first.type_name} nas suas truppies", mail.subject
+
+  end
    
 end

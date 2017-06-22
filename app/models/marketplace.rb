@@ -1,9 +1,12 @@
+require 'json'
+
 class Marketplace < ActiveRecord::Base
   belongs_to :organizer
   has_and_belongs_to_many :bank_accounts
-  
+  has_and_belongs_to_many :payment_types
   
   accepts_nested_attributes_for :bank_accounts, :allow_destroy => true
+  accepts_nested_attributes_for :payment_types, :allow_destroy => true
   
    has_attached_file :photo, styles: {
     thumbnail: '300x300>',
@@ -338,6 +341,44 @@ class Marketplace < ActiveRecord::Base
         return false
       end
     end
+  end
+
+  def payment_types_authorize
+      post_params = {
+          appId: 'truppie',
+          appKey: 'CDEF210C5C5C6DFEE4E36FBE9DB6F509',
+      }
+
+      url = "https://ws.pagseguro.uol.com.br/v2/authorizations/request?appId=#{post_params[:appId]}
+&appKey=#{post_params[:appKey]}"
+
+      xml = <<EOF
+          <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+              <authorizationRequest>
+                <reference>REF1234</reference>
+                  <permissions>
+                    <code>CREATE_CHECKOUTS</code>
+                    <code>RECEIVE_TRANSACTION_NOTIFICATIONS</code>
+                    <code>SEARCH_TRANSACTIONS</code>
+                    <code>MANAGE_PAYMENT_PRE_APPROVALS</code>
+                  </permissions>
+                  <account>
+                    <email>#{self.payment_types.first.email}</email>
+                  </account>
+                <redirectURL>http://truppie.com/redirect</redirectURL>
+                <notificationURL>http://truppie.com/webhook/pagseguro</notificationURL>
+              </authorizationRequest>
+EOF
+
+      begin
+        response = RestClient.post url, xml, {content_type: :xml}
+        xml_response = Hash.from_xml(response.body).to_json
+      rescue => e
+        puts e.inspect
+      end
+      code = JSON.parse(xml_response)['authorizationRequest']['code']
+      self.payment_types.first.update_attributes({:auth => code})
+      return code
   end
   
 end

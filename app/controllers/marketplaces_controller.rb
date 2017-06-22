@@ -1,6 +1,6 @@
 class MarketplacesController < ApplicationController
   include ApplicationHelper
-  before_action :set_marketplace, only: [:show, :edit, :update, :destroy, :activate, :update_account]
+  before_action :set_marketplace, only: [:show, :edit, :update, :destroy, :activate, :update_account, :request_external_payment_type_auth]
   before_action :authenticate_user!
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage]
   
@@ -131,6 +131,27 @@ class MarketplacesController < ApplicationController
         @activation_status = t('status_danger')
         @errors = e.message
     end
+  end
+
+  def request_external_payment_type_auth
+    puts @marketplace.payment_types.inspect
+    if @marketplace.payment_types.any?
+      @authorize = @marketplace.payment_types_authorize
+      if @authorize
+        if @marketplace.payment_types.first.email && @marketplace.payment_types.first.auth
+          @activation_status = "success"
+          @activation_message = "Autorização enviada para o cliente com sucesso"
+          MarketplaceMailer.request_app_auth(@marketplace).deliver_now
+        end
+      else
+        @activation_status = "danger"
+        @activation_message = "Não foi possível tentar autorizar esta conta"
+      end
+    else
+      @activation_status = "danger"
+      @activation_message = "Não foi ativada nenhuma forma de pagamento externa associada"
+    end
+
   end
   
   private
