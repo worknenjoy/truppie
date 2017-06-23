@@ -153,12 +153,13 @@ class MarketplacesController < ApplicationController
     end
   end
 
-  def return
+  def redirect
     @notificationCode = params["notificationCode"]
+    @pubkey = params["publicKey"]
     if @notificationCode
       response = RestClient.get "https://ws.pagseguro.uol.com.br/v2/authorizations/notifications/#{@notificationCode}?appId=truppie&appKey=CDEF210C5C5C6DFEE4E36FBE9DB6F509"
       puts response.inspect
-      ContactMailer.notify("foi enviada uma notificacao <strong>#{@notificationCode}</strong> de autorizacao do pagseguro e consultando obteve <code>#{response.inspect}</code> como resposta").deliver_now
+      ContactMailer.notify("foi enviada uma notificacao <strong>#{@notificationCode}</strong> de autorizacao do pagseguro e consultando obteve <code>#{response.inspect}</code> como resposta e pub key #{@pubkey}").deliver_now
     end
     render :nothing => true
   end

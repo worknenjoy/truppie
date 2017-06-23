@@ -211,6 +211,12 @@ class OrdersController < ApplicationController
     render layout: false
     return :success
   end
+
+  def external_payment
+    puts "external payment webhook"
+    puts params.inspect
+    ContactMailer.notify("um post com os parametros #{params.inspect} foi enviado pelo metodo de pagamento externo").deliver_now
+  end
   
   # GET /orders
   # GET /orders.json

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get 'activate', to: 'marketplaces#activate', as: 'activate'
       get 'update_account', to: 'marketplaces#update_account', as: 'update_account'
       get 'request_external_payment_type_auth', to: 'marketplaces#request_external_payment_type_auth', as: 'request_external_payment_type_auth'
-      get 'return', to: 'marketplaces#return', as: 'return'
+      get 'redirect', to: 'marketplaces#redirect', as: 'redirect'
     end
   end
   resources :translations
@@ -33,8 +33,9 @@ Rails.application.routes.draw do
   resources :orders
   
   post 'webhook', to: 'orders#webhook'
+  post 'webhook/external_payment', to: 'orders#external_payment'
   get 'new_webhook', to: 'orders#new_webhook'
-  get 'return', to: 'marketplaces#return'
+  get 'redirect', to: 'marketplaces#redirect'
   
   resources :organizers do
     member do
