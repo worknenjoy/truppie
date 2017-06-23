@@ -127,10 +127,50 @@ class MarketplacesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "the return of the user authoring a new payment" do
+  test "the return of the user authoring a new payment not found" do
     #assert assigns(:notificationCode)
     #assert_not ActionMailer::Base.deliveries.empty?
     assert_raises(Exception) { get :redirect, notificationCode: '1234' }
+  end
+
+  test "the return of the user authoring a new payment sucessfully" do
+    @mkt_valid.payment_types.create({
+        type_name: 'pagseguro',
+        email: 'payment@pagseguro.com',
+        auth: '123'
+    })
+    xml_body = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"yes\"?><authorization><code>07F2A02B2C474C88855040A139D63724</code><authorizerEmail>payment@pagseguro.com</authorizerEmail><creationDate>2017-06-22T18:00:55.000-03:00</creationDate><reference>#{@mkt_valid.payment_types.first.id}</reference><account><publicKey>PUBEA850D7B7DF34B20B35C53CDE3D8B28A</publicKey></account><permissions><permission><code>CREATE_CHECKOUTS</code><status>APPROVED</status><lastUpdate>2017-06-23T15:55:01.000-03:00</lastUpdate></permission><permission><code>RECEIVE_TRANSACTION_NOTIFICATIONS</code><status>APPROVED</status><lastUpdate>2017-06-23T15:55:01.000-03:00</lastUpdate></permission><permission><code>SEARCH_TRANSACTIONS</code><status>APPROVED</status><lastUpdate>2017-06-23T15:55:01.000-03:00</lastUpdate></permission><permission><code>MANAGE_PAYMENT_PRE_APPROVALS</code><status>APPROVED</status><lastUpdate>2017-06-23T15:55:01.000-03:00</lastUpdate></permission></permissions></authorization>"
+    url = "https://ws.pagseguro.uol.com.br/v2/authorizations/notifications/B629D492BA4FBA4F9E2774BECFA98BBD4845?appId=truppie&appKey=CDEF210C5C5C6DFEE4E36FBE9DB6F509"
+    FakeWeb.register_uri(:get, url, :body => xml_body, :status => ["200", "Success"])
+    get :redirect, notificationCode: 'B629D492BA4FBA4F9E2774BECFA98BBD4845'
+    assert assigns(:notificationCode)
+    assert_equal assigns(:payment_type_id), "#{@mkt_valid.payment_types.first.id}"
+    assert_equal assigns(:payment_type), @mkt_valid.payment_types.first
+    assert_equal assigns(:code), '07F2A02B2C474C88855040A139D63724'
+    assert_equal assigns(:activation_status), 'success'
+    assert_equal PaymentType.find(@mkt_valid.payment_types.first.id).token, '07F2A02B2C474C88855040A139D63724'
+    assert_not ActionMailer::Base.deliveries.empty?
+
+  end
+
+  test "the return of the user authoring a new payment sucessfully by email" do
+    @mkt_valid.payment_types.create({
+        type_name: 'pagseguro',
+        email: 'payment@pagseguro.com',
+        auth: '123'
+    })
+    xml_body = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"yes\"?><authorization><code>07F2A02B2C474C88855040A139D63724</code><authorizerEmail>payment@pagseguro.com</authorizerEmail><creationDate>2017-06-22T18:00:55.000-03:00</creationDate><reference>dfafa</reference><account><publicKey>PUBEA850D7B7DF34B20B35C53CDE3D8B28A</publicKey></account><permissions><permission><code>CREATE_CHECKOUTS</code><status>APPROVED</status><lastUpdate>2017-06-23T15:55:01.000-03:00</lastUpdate></permission><permission><code>RECEIVE_TRANSACTION_NOTIFICATIONS</code><status>APPROVED</status><lastUpdate>2017-06-23T15:55:01.000-03:00</lastUpdate></permission><permission><code>SEARCH_TRANSACTIONS</code><status>APPROVED</status><lastUpdate>2017-06-23T15:55:01.000-03:00</lastUpdate></permission><permission><code>MANAGE_PAYMENT_PRE_APPROVALS</code><status>APPROVED</status><lastUpdate>2017-06-23T15:55:01.000-03:00</lastUpdate></permission></permissions></authorization>"
+    url = "https://ws.pagseguro.uol.com.br/v2/authorizations/notifications/B629D492BA4FBA4F9E2774BECFA98BBD4845?appId=truppie&appKey=CDEF210C5C5C6DFEE4E36FBE9DB6F509"
+    FakeWeb.register_uri(:get, url, :body => xml_body, :status => ["200", "Success"])
+    get :redirect, notificationCode: 'B629D492BA4FBA4F9E2774BECFA98BBD4845'
+    assert assigns(:notificationCode)
+    assert_equal assigns(:payment_type_id), 'dfafa'
+    assert_equal assigns(:payment_type), @mkt_valid.payment_types.first
+    assert_equal assigns(:code), '07F2A02B2C474C88855040A139D63724'
+    assert_equal PaymentType.find(@mkt_valid.payment_types.first.id).token, '07F2A02B2C474C88855040A139D63724'
+    assert_equal assigns(:activation_status), 'success'
+    assert_not ActionMailer::Base.deliveries.empty?
+
   end
 
   test "marketplace activate a external payment with success mail sent" do

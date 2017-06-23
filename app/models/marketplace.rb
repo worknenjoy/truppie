@@ -355,7 +355,7 @@ class Marketplace < ActiveRecord::Base
       xml = <<EOF
           <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
               <authorizationRequest>
-                <reference>REF1234</reference>
+                <reference>#{self.payment_types.first.id}</reference>
                   <permissions>
                     <code>CREATE_CHECKOUTS</code>
                     <code>RECEIVE_TRANSACTION_NOTIFICATIONS</code>

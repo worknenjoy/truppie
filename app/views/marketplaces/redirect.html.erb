@@ -1,0 +1,33 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <div class="spaced-default spaced-default-full">
+        <% if @activation_status == "danger" %>
+            <div class="card card-inverse card-<%= @activation_status %> text-xs-center">
+              <div class="card-block">
+                <blockquote class="card-blockquote">
+                  <h4><%= @activation_message %></h4>
+                  <footer>
+                    <p><%= link_to 'ir para a truppie', root_url %></p>
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+        <% end %>
+        <% if @activation_status == "success" %>
+            <div class="card card-inverse card-<%= @activation_status %> text-xs-center">
+              <div class="card-block">
+                <blockquote class="card-blockquote">
+                  <h4><%= @activation_message %></h4>
+                  <footer>
+                    <p><%= link_to 'ir para a truppie', root_url %></p>
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

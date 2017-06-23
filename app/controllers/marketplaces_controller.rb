@@ -158,10 +158,27 @@ class MarketplacesController < ApplicationController
     @pubkey = params["publicKey"]
     if @notificationCode
       response = RestClient.get "https://ws.pagseguro.uol.com.br/v2/authorizations/notifications/#{@notificationCode}?appId=truppie&appKey=CDEF210C5C5C6DFEE4E36FBE9DB6F509"
-      puts response.inspect
+      xml_to_json_response = Hash.from_xml(response.body).to_json
+      puts xml_to_json_response.inspect
+      response_json = JSON.parse(xml_to_json_response)
+      @payment_type_id = response_json["authorization"]["reference"]
+      @email = response_json["authorization"]["authorizerEmail"]
+      begin
+        @payment_type = PaymentType.find(@payment_type_id)
+      rescue ActiveRecord::RecordNotFound
+        @payment_type = PaymentType.where(email: @email ).first
+      end
+      @code = response_json["authorization"]["code"]
+      @payment_update = @payment_type.update_attributes({:token => @code})
+      if @payment_update
+        @activation_status = "success"
+        @activation_message = "Sua forma de pagamento pelo #{@payment_type.type_name} foi autorizada com sucesso, agora suas truppies irão oferecer esta nova forma automaticamente"
+      else
+        @activation_status = "danger"
+        @activation_message = "Não foi possvel autorizar o #{@payment_type.type_name} como forma de pagamento. Não encontramos o código enviado pelo serviço"
+      end
       ContactMailer.notify("foi enviada uma notificacao <strong>#{@notificationCode}</strong> de autorizacao do pagseguro e consultando obteve <code>#{response.inspect}</code> como resposta e pub key #{@pubkey}").deliver_now
     end
-    render :nothing => true
   end
   
   private
