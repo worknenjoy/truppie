@@ -7,7 +7,7 @@ class ContactMailer < ApplicationMailer
     if !tour.nil?
       mail(from: "ola@truppie", subject: "Algo errado na tentativa de pagamento para a sua truppie - #{tour.title}", body: "Olá #{tour.organizer.name}, #{text}", to: "ola@truppie.com,#{tour.organizer.email}")
     else
-      mail(from: "ola@truppie", subject: "Algo errado na tentativa de pagamento", body: text, to: 'ola@truppie.com')    
+      mail(from: "ola@truppie", subject: "Uma notificação da truppie", body: text, to: 'ola@truppie.com')
     end
   end
   

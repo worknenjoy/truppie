@@ -366,7 +366,7 @@ class Marketplace < ActiveRecord::Base
                     <email>#{self.payment_types.first.email}</email>
                   </account>
                 <redirectURL>http://truppie.com/redirect</redirectURL>
-                <notificationURL>http://truppie.com/webhook/pagseguro</notificationURL>
+                <notificationURL>http://truppie.com/webhook_external_payment</notificationURL>
               </authorizationRequest>
 EOF
 

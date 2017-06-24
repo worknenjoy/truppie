@@ -399,13 +399,19 @@ class OrdersControllerTest < ActionController::TestCase
     
   end
 
+  test "should send post to external payment" do
+    post :webhook, {}
+    
+    assert_response :success
+    #puts ActionMailer::Base.deliveries[1].html_part
+    assert_not ActionMailer::Base.deliveries.empty?
+  end
 
-  
   test "should update status if doesnt have any" do
     orders = Order.create(:price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)
     @request.env['RAW_POST_DATA'] = @post_params
     post :webhook, {}
-    
+
     assert_equal Order.find(orders.id).status, 'succeeded'
     #puts ActionMailer::Base.deliveries[1].html_part
     assert_not ActionMailer::Base.deliveries.empty?

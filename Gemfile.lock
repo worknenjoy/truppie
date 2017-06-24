@@ -58,6 +58,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    aitch (0.5.0)
+      nokogiri (>= 1.6.0)
     arel (6.0.4)
     aws-sdk (1.67.0)
       aws-sdk-v1 (= 1.67.0)
@@ -178,6 +180,11 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    pagseguro-oficial (2.5.0)
+      aitch (~> 0.2)
+      i18n (~> 0.7)
+      json (~> 1.8)
+      nokogiri (~> 1.6)
     paperclip-aws (1.6.8)
       aws-sdk (>= 1.2.0)
       paperclip (>= 2.5.0)
@@ -300,6 +307,7 @@ DEPENDENCIES
   moip2 (~> 0.1.4)
   omniauth
   omniauth-facebook
+  pagseguro-oficial (~> 2.5.0)
   paperclip!
   paperclip-aws
   pg (~> 0.15)

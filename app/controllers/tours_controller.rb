@@ -33,176 +33,11 @@ class ToursController < ApplicationController
   end
   
   def confirm_presence
-    @tour = Tour.find(params[:id])
-    @value = params[:value].to_i
-    puts 'param in confirm presence'
-    puts params.inspect
-    if params[:package]
-      @package = @tour.packages.find(params[:package])
-    elsif params[:packagename]
-      @package = @tour.packages.find_by_name(params[:packagename])
+    @payment_type = params[:payment_type]
+    if @payment_type == 'external'
+      confirm_external(params)
     else
-      @package = nil
-    end
-
-    @payment_method = params[:method]
-    
-    if params[:amount].nil? || params[:amount].empty?
-      @amount = 1
-    else
-      @amount = params[:amount].to_i
-    end
-    
-    if params[:final_price].nil? || params[:final_price].empty?
-      @final_price = @value
-    else
-      @final_price = params[:final_price].to_i      
-    end
-    
-    begin
-      valid_birthdate = params[:birthdate].to_date
-    rescue => e
-      puts e.inspect
-      @confirm_headline_message = t("tours_controller_headline_msg")
-      @confirm_status_message = t("tours_controller_status_msg")
-      @status = t('status_danger')
-      return
-    end
-    
-    if @tour.confirmeds.exists?(user: current_user)
-      flash[:error] = t('tours_controller_errors_one')
-      redirect_to @tour          
-    else
-      if !@tour.soldout?   
-        if @tour.try(:description)
-          @desc = @tour.try(:description).first(250)
-        else
-          @desc = t('tours_controller_desc',title: @tour.title, organizer: @tour.organizer.name)
-        end
-
-        @organizer_percent = @tour.organizer.percent || 1
-        @tour_total_percent = 0.95 - (@organizer_percent/100.00)
-
-        if @tour.collaborators.any?
-          @tour_collaborator_percent = (@tour.collaborators.first.percent || 0) / 100.00
-        else
-          @tour_collaborator_percent = 0
-        end
-
-        if @package
-          @tour_package_percent = @package.percent
-          puts "package percent"
-          puts @tour_package_percent.inspect
-          @tour_package_percent_factor = @tour_package_percent / 100.00
-          puts "package percent factor"
-          puts @tour_package_percent_factor.inspect
-        else
-          @tour_package_percent = 0
-          @tour_package_percent_factor = 0
-        end
-
-        @price_cents = (@final_price*100).to_i
-
-        @liquid = (@price_cents)*(@tour_total_percent - @tour_collaborator_percent - @tour_package_percent_factor)
-        puts "liquid"
-        puts @liquid.inspect
-
-        @fees = {
-         :fee => (@price_cents - @liquid).round.to_i,
-         :liquid => @liquid.round.to_i,
-         :total => @price_cents
-        }
-        
-        @new_charge = {
-          :currency => "brl",
-          :amount => @fees[:total],
-          :source => params[:token],
-          :description => @desc
-        }
-        
-        if @tour.organizer.try(:marketplace)
-          if @tour.organizer.marketplace.try(:account_id)
-            @account_id = @tour.organizer.marketplace.account_id
-            @new_charge.store(:destination, {
-              :account => @account_id,
-              :amount => @fees[:liquid]
-            })
-          end
-        end
-        
-        begin
-          @payment = Stripe::Charge.create(@new_charge)
-          #puts payment.inspect
-        rescue Stripe::CardError => e
-          puts e.inspect
-          #puts e.backtrace
-          ContactMailer.notify(t('tours_controller_mailer_notify_one', name: current_user.name, email: current_user.email, inspect: e.inspect)).deliver_now
-          @confirm_headline_message = t('tours_controller_headline_msg')
-          @confirm_status_message = t('tours_controller_status_msg_two')
-          @status = t('status_danger')
-          return
-        rescue => e
-          puts e.inspect
-          #puts e.backtrace
-          ContactMailer.notify(t('tours_controller_mailer_notify_one', name: current_user.name, email: current_user.email, inspect: e.inspect)).deliver_now
-          @confirm_headline_message = t('tours_controller_headline_msg')
-          @confirm_status_message = t('tours_controller_status_msg_three')
-          @status = t('status_danger')
-          return
-        end
-        
-        if @payment.try(:status)
-          
-          if @payment.try(:id)
-            @tour.confirmeds.new(:user  => current_user)
-            amount_reserved_now = @tour.reserved
-            @reserved_increment = amount_reserved_now + @amount         
-            @tour.update_attributes(:reserved => @reserved_increment)
-            
-            @order = @tour.orders.create(
-              :source_id => @payment[:source][:id],
-              :own_id => "truppie_#{@tour.id}_#{current_user.id}",
-              :user => current_user,
-              :tour => @tour,
-              :status => @payment[:status],
-              :payment => @payment[:id],
-              :price => @value.to_i*100,
-              :amount => @amount,
-              :final_price => @price_cents,
-              :liquid => @fees[:liquid],
-              :fee => @fees[:fee],
-              :payment_method => @payment_method
-            )
-            
-            begin
-              @tour.save()
-              @confirm_headline_message = t('tours_controller_confirm_headline_msg')
-              @confirm_status_message = t('tours_controller_status_msg_four')
-              @status = t('status_success')
-            rescue => e
-              puts e.inspect
-              @confirm_headline_message = t('tours_controller_headline_msg')
-              @confirm_status_message = e.message
-              @status = t('status_danger')
-            end
-          else
-            @confirm_headline_message = t('tours_controller_headline_msg')
-            @confirm_status_message = t('tours_controller_status_msg_five')
-            @status = t('status_danger')
-            ContactMailer.notify( t(tours_controller_mailer_notify_two , name: current_user.name, email: current_user.email, inspect: @payment.inspect)).deliver_now
-          end
-        else
-          @confirm_headline_message = t('tours_controller_headline_msg')
-          @confirm_status_message = t("tours_controller_status_msg_six")
-          @status = t('status_danger')
-          ContactMailer.notify(t('tours_controller_mailer_notify_three', name: current_user.name, email: current_user.email )).deliver_now
-        end
-      else
-        @confirm_headline_message = t('tours_controller_headline_msg')
-        @confirm_status_message = t('tours_controller_status_msg_seven')
-        @status = t('status_danger')
-        redirect_to @tour
-      end 
+      confirm_direct(params)
     end
   end
   
@@ -241,7 +76,6 @@ class ToursController < ApplicationController
   # GET /tours/1.json
   def show
     @pictures = TourPicture.where(:tour => @tour.id)
-    puts @pictures
   end
 
   # GET /tours/new
@@ -425,4 +259,262 @@ class ToursController < ApplicationController
     
     params.fetch(:tour, {}).permit(:title, :organizer, :where, :user, :picture, :link, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, :included, :nonincluded, :take, :goodtoknow, :meetingpoint, :category_id, :status, :tags, :languages, :organizer, :user, :attractions, :currency).merge(params[:tour])
   end
+
+  def confirm_direct(params)
+    @tour = Tour.find(params[:id])
+    @value = params[:value].to_i
+    if params[:package]
+      @package = @tour.packages.find(params[:package])
+    elsif params[:packagename]
+      @package = @tour.packages.find_by_name(params[:packagename])
+    else
+      @package = nil
+    end
+
+    @payment_method = params[:method]
+
+    if params[:amount].nil? || params[:amount].empty?
+      @amount = 1
+    else
+      @amount = params[:amount].to_i
+    end
+
+    if params[:final_price].nil? || params[:final_price].empty?
+      @final_price = @value
+    else
+      @final_price = params[:final_price].to_i
+    end
+
+    begin
+      valid_birthdate = params[:birthdate].to_date
+    rescue => e
+      puts e.inspect
+      @confirm_headline_message = t("tours_controller_headline_msg")
+      @confirm_status_message = t("tours_controller_status_msg")
+      @status = t('status_danger')
+      return
+    end
+
+    if @tour.confirmeds.exists?(user: current_user)
+      flash[:error] = t('tours_controller_errors_one')
+      redirect_to @tour
+    else
+      if !@tour.soldout?
+        if @tour.try(:description)
+          @desc = @tour.try(:description).first(250)
+        else
+          @desc = t('tours_controller_desc',title: @tour.title, organizer: @tour.organizer.name)
+        end
+
+        @organizer_percent = @tour.organizer.percent || 1
+        @tour_total_percent = 0.95 - (@organizer_percent/100.00)
+
+        if @tour.collaborators.any?
+          @tour_collaborator_percent = (@tour.collaborators.first.percent || 0) / 100.00
+        else
+          @tour_collaborator_percent = 0
+        end
+
+        if @package
+          @tour_package_percent = @package.percent
+          @tour_package_percent_factor = @tour_package_percent / 100.00
+        else
+          @tour_package_percent = 0
+          @tour_package_percent_factor = 0
+        end
+
+        @price_cents = (@final_price*100).to_i
+
+        @liquid = (@price_cents)*(@tour_total_percent - @tour_collaborator_percent - @tour_package_percent_factor)
+
+        @fees = {
+            :fee => (@price_cents - @liquid).round.to_i,
+            :liquid => @liquid.round.to_i,
+            :total => @price_cents
+        }
+
+        @new_charge = {
+            :currency => "brl",
+            :amount => @fees[:total],
+            :source => params[:token],
+            :description => @desc
+        }
+
+        if @tour.organizer.try(:marketplace)
+          if @tour.organizer.marketplace.try(:account_id)
+            @account_id = @tour.organizer.marketplace.account_id
+            @new_charge.store(:destination, {
+                :account => @account_id,
+                :amount => @fees[:liquid]
+            })
+          end
+        end
+
+        begin
+          @payment = Stripe::Charge.create(@new_charge)
+            #puts payment.inspect
+        rescue Stripe::CardError => e
+          puts e.inspect
+          #puts e.backtrace
+          ContactMailer.notify(t('tours_controller_mailer_notify_one', name: current_user.name, email: current_user.email, inspect: e.inspect)).deliver_now
+          @confirm_headline_message = t('tours_controller_headline_msg')
+          @confirm_status_message = t('tours_controller_status_msg_two')
+          @status = t('status_danger')
+          return
+        rescue => e
+          puts e.inspect
+          #puts e.backtrace
+          ContactMailer.notify(t('tours_controller_mailer_notify_one', name: current_user.name, email: current_user.email, inspect: e.inspect)).deliver_now
+          @confirm_headline_message = t('tours_controller_headline_msg')
+          @confirm_status_message = t('tours_controller_status_msg_three')
+          @status = t('status_danger')
+          return
+        end
+
+        if @payment.try(:status)
+
+          if @payment.try(:id)
+            @tour.confirmeds.new(:user  => current_user)
+            amount_reserved_now = @tour.reserved
+            @reserved_increment = amount_reserved_now + @amount
+            @tour.update_attributes(:reserved => @reserved_increment)
+
+            @order = @tour.orders.create(
+                :source_id => @payment[:source][:id],
+                :own_id => "truppie_#{@tour.id}_#{current_user.id}",
+                :user => current_user,
+                :tour => @tour,
+                :status => @payment[:status],
+                :payment => @payment[:id],
+                :price => @value.to_i*100,
+                :amount => @amount,
+                :final_price => @price_cents,
+                :liquid => @fees[:liquid],
+                :fee => @fees[:fee],
+                :payment_method => @payment_method
+            )
+
+            begin
+              @tour.save()
+              @confirm_headline_message = t('tours_controller_confirm_headline_msg')
+              @confirm_status_message = t('tours_controller_status_msg_four')
+              @status = t('status_success')
+            rescue => e
+              puts e.inspect
+              @confirm_headline_message = t('tours_controller_headline_msg')
+              @confirm_status_message = e.message
+              @status = t('status_danger')
+            end
+          else
+            @confirm_headline_message = t('tours_controller_headline_msg')
+            @confirm_status_message = t('tours_controller_status_msg_five')
+            @status = t('status_danger')
+            ContactMailer.notify( t(tours_controller_mailer_notify_two , name: current_user.name, email: current_user.email, inspect: @payment.inspect)).deliver_now
+          end
+        else
+          @confirm_headline_message = t('tours_controller_headline_msg')
+          @confirm_status_message = t("tours_controller_status_msg_six")
+          @status = t('status_danger')
+          ContactMailer.notify(t('tours_controller_mailer_notify_three', name: current_user.name, email: current_user.email )).deliver_now
+        end
+      else
+        @confirm_headline_message = t('tours_controller_headline_msg')
+        @confirm_status_message = t('tours_controller_status_msg_seven')
+        @status = t('status_danger')
+        redirect_to @tour
+      end
+    end
+  end
+
+  def confirm_external(params)
+    @tour = Tour.find(params[:id])
+
+    @value = params[:value].to_i
+    if params[:package]
+      @package = @tour.packages.find(params[:package])
+    elsif params[:packagename]
+      @package = @tour.packages.find_by_name(params[:packagename])
+    else
+      @package = nil
+    end
+
+    @payment_method = params[:method]
+
+    if params[:amount].nil? || params[:amount].empty?
+      @amount = 1
+    else
+      @amount = params[:amount].to_i
+    end
+
+    if params[:final_price].nil? || params[:final_price].empty?
+      @final_price = @value
+    else
+      @final_price = params[:final_price].to_i
+    end
+
+    @price_cents = (@final_price*100).to_i
+
+    @fees = {
+        :fee => (@price_cents).round.to_i,
+        :liquid => @price_cents.to_i,
+        :total => @price_cents
+    }
+
+    begin
+      valid_birthdate = params[:birthdate].to_date
+    rescue => e
+      puts e.inspect
+      @confirm_headline_message = t("tours_controller_headline_msg")
+      @confirm_status_message = t("tours_controller_status_msg")
+      @status = t('status_danger')
+      return
+    end
+
+    @order = @tour.orders.create(
+        :source => @tour.organizer.marketplace.payment_types.first.type_name,
+        # :source_id => @payment[:source][:id],
+        :own_id => "truppie_#{@tour.id}",
+        :user => current_user,
+        :tour => @tour,
+        :status => 'pending',
+        # :payment => @payment[:id],
+        :price => @value.to_i*100,
+        :amount => @amount,
+        :final_price => @price_cents,
+        :liquid => @fees[:liquid],
+        :fee => @fees[:fee],
+        :payment_method => @payment_method
+    )
+
+    payment = PagSeguro::PaymentRequest.new
+    payment.credentials = PagSeguro::ApplicationCredentials.new('truppie', 'CDEF210C5C5C6DFEE4E36FBE9DB6F509', @tour.organizer.marketplace.payment_types.first.token)
+
+    payment.reference = @order.own_id
+    payment.notification_url = "#{root_url}/webhook_external"
+    payment.redirect_url = "#{root_url}/redirect_external"
+
+    payment.extra_params << { senderBirthDate: valid_birthdate }
+
+    payment.items << {
+        id: @order.own_id,
+        description: @tour.title,
+        amount: (@price_cents/100).round
+    }
+
+    puts "=> REQUEST"
+    puts PagSeguro::PaymentRequest::RequestSerializer.new(payment).to_params
+
+    response = payment.register
+
+    puts
+    puts "=> RESPONSE"
+    puts response.inspect
+    #puts response.response.body.inspect
+    #puts response.url
+    #puts response.code
+    #puts response.created_at
+    #puts response.errors.to_a
+
+  end
+
 end

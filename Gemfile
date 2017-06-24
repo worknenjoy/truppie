@@ -39,6 +39,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'moip2', '~> 0.1.4'
+gem 'pagseguro-oficial', '~> 2.5.0'
 gem 'rest-client'
 gem 'json'
 gem 'fakeredis'

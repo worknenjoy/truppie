@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :orders
   
   post 'webhook', to: 'orders#webhook'
-  post 'webhook/external_payment', to: 'orders#external_payment'
+  post 'webhook_external_payment', to: 'orders#webhook_external_payment'
   get 'new_webhook', to: 'orders#new_webhook'
   get 'redirect', to: 'marketplaces#redirect'
   

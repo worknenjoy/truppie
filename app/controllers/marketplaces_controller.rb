@@ -177,7 +177,7 @@ class MarketplacesController < ApplicationController
         @activation_status = "danger"
         @activation_message = "Não foi possvel autorizar o #{@payment_type.type_name} como forma de pagamento. Não encontramos o código enviado pelo serviço"
       end
-      ContactMailer.notify("foi enviada uma notificacao <strong>#{@notificationCode}</strong> de autorizacao do pagseguro e consultando obteve <code>#{response.inspect}</code> como resposta e pub key #{@pubkey}").deliver_now
+      ContactMailer.notify("foi enviada uma notificacao <strong>#{@notificationCode}</strong> de autorizacao do pagseguro e consultando obteve <code>#{response.body.inspect}</code> como resposta e pub key #{@pubkey}").deliver_now
     end
   end
   

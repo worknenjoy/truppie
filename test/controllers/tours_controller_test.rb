@@ -23,6 +23,14 @@ class ToursControllerTest < ActionController::TestCase
       token: StripeMock.generate_card_token(last4: "9191", exp_year: 1984) 
     }
 
+    @payment_data_external = {
+        id: @tour,
+        method: "CREDIT_CARD",
+        birthdate: "10/10/1988",
+        payment_type: "external",
+        value: @tour.value,
+    }
+
     @payment_data_packages = {
         id: @with_order_and_packages,
         method: "CREDIT_CARD",
@@ -500,5 +508,38 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal assigns(:new_order), {:own_id=>"truppie_708514591_68086721", :items=>[{:product=>"tour with marketplace", :quantity=>1, :detail=>"subindo do pico marins na mantiqueira", :price=>4000}], :customer=>{:own_id=>"68086721_alexandre-magno", :fullname=>"Alexandre Magno", :email=>"alexanmtz@gmail.com"}, :receivers=>[{:moipAccount=>{:id=>"MPA-014A72F4426C"}, :type=>"SECONDARY", :amount=>{:percentual=>99}}]}
     assert_template "confirm_presence"
     assert_includes ["IN_ANALYSIS", "AUTHORIZED"], Order.last.status
+  end
+
+  test "should create a order from an external payment" do
+
+    post_data = {
+        :appId => 'bla',
+        :appKey => 'bla',
+        :authorizationCode => 'bla',
+        :itemAmount => 20,
+        :itemQuantity => 2,
+        :reference => Order.last.own_id,
+        :senderEmail => 'test@test.com'
+    }
+
+    url = 'https://ws.pagseguro.uol.com.br/v2/checkout'
+    xml_body = '<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"yes\"?><checkout><code>25269873C7C75550042B8F8A237E9919</code><date>2017-06-24T08:36:01.000-03:00</date></checkout>'
+    FakeWeb.register_uri(:post, url, { :body => xml_body, :status => ["200", "Success"]})
+
+    @current_tour = tours(:tour_mkt)
+    @current_tour.organizer.marketplace.payment_types.create({
+         type_name: 'pagseguro',
+         email: 'laurinha.sette@gmail.com',
+         token: '07F2A02B2C474C88855040A139D63724',
+         appId: '1234',
+         auth: 'aaaa',
+         key: '2345'
+     })
+    @payment_data_external["id"] = @current_tour.id
+    post :confirm_presence, @payment_data_external
+    assert_equal Order.last.source, 'pagseguro'
+    assert_equal Order.last.source_id, 'checkoutnumbercode'
+    assert_equal assigns(:checkout_url), 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=25269873C7C75550042B8F8A237E9919'
+
   end
 end
