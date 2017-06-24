@@ -754,5 +754,5 @@ if($('.start-field').val().length) {
     $('#start_time, #end_time').bind('change', function(e){
         updateDates(e);
     });
-
 }
+

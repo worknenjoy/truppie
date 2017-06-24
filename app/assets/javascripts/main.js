@@ -367,7 +367,9 @@ $(function(){
   });
   
   $('#birthdate').mask("99/99/9999");
-  //$('.start-time, .end-time').mask("99:99");
+
+
+  //$('#start_time, #end_time').mask("Hh:Mm Pp");
 
 
   eventHolder();

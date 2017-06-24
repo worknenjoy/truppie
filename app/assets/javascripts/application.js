@@ -15,6 +15,8 @@
 //= require modernizr-custom
 //= require classie
 //= require overlay
+//= require moment-with-locales
+//= require timepicker
 //= require wow
 //= require jquery.event.move
 //= require jquery.event.swipe

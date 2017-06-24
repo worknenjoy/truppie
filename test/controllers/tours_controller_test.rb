@@ -170,6 +170,14 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal 'Truppie criada com sucesso', flash[:notice]
     assert_equal Tour.last.start, 'Mon May 15 2017 17:12:00 GMT+0200 (CEST)'
   end
+
+  test "should create tour with date that comes from date picker" do
+    @basic_tour[:start] = 'Sat Jul 01 2017 19:21:00 GMT+0200 (CEST)'
+    other_tour = @basic_tour
+    post :create, tour: other_tour
+    assert_equal 'Truppie criada com sucesso', flash[:notice]
+    assert_equal Tour.last.start, 'Sat Jul 01 2017 19:21:00 GMT+0200 (CEST)'
+  end
   
   test "should create tour with basic data" do
      #skip("creating tour with organizer")
