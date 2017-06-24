@@ -30,6 +30,14 @@ class ToursController < ApplicationController
         @final_price = ""
       end      
     end
+    @marketplace = @tour.organizer.try(:marketplace)
+    if @marketplace
+      @external_payment_active = true if @marketplace.payment_types.any?
+      if @external_payment_active
+        @payment_type = 'external' if @marketplace.payment_types.first.email
+      end
+    end
+
   end
   
   def confirm_presence
@@ -460,61 +468,78 @@ class ToursController < ApplicationController
         :total => @price_cents
     }
 
-    begin
-      valid_birthdate = params[:birthdate].to_date
-    rescue => e
-      puts e.inspect
-      @confirm_headline_message = t("tours_controller_headline_msg")
-      @confirm_status_message = t("tours_controller_status_msg")
-      @status = t('status_danger')
-      return
+    if @tour.confirmeds.exists?(user: current_user)
+      flash[:error] = t('tours_controller_errors_one')
+      redirect_to @tour
+    else
+      if !@tour.soldout?
+        @order = @tour.orders.create(
+            :source => @tour.organizer.marketplace.payment_types.first.type_name,
+            # :source_id => @payment[:source][:id],
+            :own_id => "truppie_#{@tour.id}",
+            :user => current_user,
+            :tour => @tour,
+            :status => 'pending',
+            # :payment => @payment[:id],
+            :price => @value.to_i*100,
+            :amount => @amount,
+            :final_price => @price_cents,
+            :liquid => @fees[:liquid],
+            :fee => @fees[:fee],
+            :payment_method => @payment_method
+        )
+
+        payment = PagSeguro::PaymentRequest.new
+        payment.credentials = PagSeguro::ApplicationCredentials.new('truppie', 'CDEF210C5C5C6DFEE4E36FBE9DB6F509', @tour.organizer.marketplace.payment_types.first.token)
+
+        payment.reference = @order.own_id
+        payment.notification_url = "#{root_url}/webhook_external_payment"
+        payment.redirect_url = "#{root_url}/redirect_external"
+
+        #payment.extra_params << { senderBirthDate: valid_birthdate }
+
+        payment.items << {
+            id: @order.own_id,
+            description: @tour.title,
+            amount: @value.to_i,
+            quantity: @amount
+        }
+
+        puts "=> REQUEST"
+        puts PagSeguro::PaymentRequest::RequestSerializer.new(payment).to_params
+
+        response = payment.register
+
+        puts
+        puts "=> RESPONSE"
+        puts response.inspect
+        puts response.response.body.inspect
+        puts response.url
+        puts response.code
+        puts response.created_at
+        puts response.errors.to_a
+
+        @order.update_attributes({:payment => response.url, :source_id => response.code })
+
+        if response
+          if response.errors.any?
+            puts response.inspect
+            @confirm_headline_message = "Não foi possível confirmar sua reserva"
+            @confirm_status_message = "Tivemos um problema para acessar o sistema"
+            @status = "danger"
+          else
+            redirect_to response.url
+          end
+        else
+          @confirm_headline_message = "Não foi possível confirmar sua reserva"
+          @confirm_status_message = "Tivemos um problema para acessar o sistema"
+          @status = "danger"
+        end
+      else
+        @confirm_headline_message = "Não foi possível confirmar sua reserva"
+        @confirm_status_message = "Este evento está esgotado"
+        @status = "danger"
+      end
     end
-
-    @order = @tour.orders.create(
-        :source => @tour.organizer.marketplace.payment_types.first.type_name,
-        # :source_id => @payment[:source][:id],
-        :own_id => "truppie_#{@tour.id}",
-        :user => current_user,
-        :tour => @tour,
-        :status => 'pending',
-        # :payment => @payment[:id],
-        :price => @value.to_i*100,
-        :amount => @amount,
-        :final_price => @price_cents,
-        :liquid => @fees[:liquid],
-        :fee => @fees[:fee],
-        :payment_method => @payment_method
-    )
-
-    payment = PagSeguro::PaymentRequest.new
-    payment.credentials = PagSeguro::ApplicationCredentials.new('truppie', 'CDEF210C5C5C6DFEE4E36FBE9DB6F509', @tour.organizer.marketplace.payment_types.first.token)
-
-    payment.reference = @order.own_id
-    payment.notification_url = "#{root_url}/webhook_external"
-    payment.redirect_url = "#{root_url}/redirect_external"
-
-    payment.extra_params << { senderBirthDate: valid_birthdate }
-
-    payment.items << {
-        id: @order.own_id,
-        description: @tour.title,
-        amount: (@price_cents/100).round
-    }
-
-    puts "=> REQUEST"
-    puts PagSeguro::PaymentRequest::RequestSerializer.new(payment).to_params
-
-    response = payment.register
-
-    puts
-    puts "=> RESPONSE"
-    puts response.inspect
-    #puts response.response.body.inspect
-    #puts response.url
-    #puts response.code
-    #puts response.created_at
-    #puts response.errors.to_a
-
   end
-
 end

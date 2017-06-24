@@ -34,11 +34,11 @@
             </div>
         </div>
         <%= form_tag confirm_presence_tour_path, :method => 'post', id: 'form-confirm-reservation' do %>
-        <!--
+        <% if @payment_type %>
         <div class="row">
           <%= render 'layouts/payment_type' %>          
         </div>
-        -->
+        <% end %>
         <div class="payment-tab" id="payment-creditcard">
           <div class="container">
           	<h4 class="spaced-down"><%= t('tours_view_confirm_h4_two') %> <small><%= t('tours_view_confirm_small_one') %></small></h4>
@@ -239,42 +239,42 @@
         </div>
         <% end %>
         <%= form_tag confirm_presence_tour_path, :method => 'post' do %>
-          <div class="payment-tab hidden" id="payment-boleto">
-            <%= hidden_field_tag :method, "BOLETO" %>
+          <div class="payment-tab hidden" id="payment-external">
+            <%= hidden_field_tag :payment_type, @payment_type %>
+            <%= hidden_field_tag :method, "CREDIT_CARD" %>
             <div class="col-md-12">
                 <div class="card font-card-small">
                     <div class="card-header">
-                        <h4><%= t('tours_view_confirm_h4_six') %> <small><%= t('tours_view_confirm_small_four') %></small></h4>
+                        <h4>Pagamento no cartão <small>(parcelado)</small></h4>
                     </div>
                     <div class="card-block">
                         <div class="col-xs-12">
-                          <%= hidden_field_tag :package, @package.try(:id) %>
                           <% if @packagename %>
-                            <small><%= t('tours_view_confirm_small_three') %></small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
-                            <h2 class="spaced-smallest"><%= raw final_price(@final_price) %></h2>
-                            <%= hidden_field_tag :value, @final_price %>
-                            <%= hidden_field_tag :packagename, @packagename %>
+                              <small><%= t('tours_view_confirm_small_three') %></small><br /> <h2 class="spaced-smallest"><%= raw @packagename %></h2><br/>
+                              <h2 class="spaced-smallest"><%= raw final_price(@final_price) %></h2>
+                              <%= hidden_field_tag :value, @final_price %>
+                              <%= hidden_field_tag :packagename, @packagename %>
                           <% else %>
                               <% if @tour.packages.any? and !@tour.value %>
-                                <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_span_two') %></span>
-                                <div class="b-package-options">
-                                <% @tour.packages.each_with_index do |p, i| %>
-                                <label class="radio package-item-confirm">
-                                  <% if i == 0 %>
-                                  <%= radio_button_tag :value, p.value, selected: "selected" %>
-                                  <% else %>
-                                  <%= radio_button_tag :value, p.value %>
-                                  <% end %>
-                                  <%= p.name %>
-                                  <%= hidden_field_tag :package, p.id %>
-                                  <h4><strong><%= raw p.price %></strong></h4>
-                                </label>
-                                <% end %>
-                                </div>
+                                  <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_span_one') %></span>
+                                  <div class="cc-package-options">
+                                    <% @tour.packages.each_with_index do |p, i| %>
+                                        <label class="radio package-item-confirm">
+                                          <% if i == 0 %>
+                                              <%= radio_button_tag :value, p.value, selected: "selected" %>
+                                          <% else %>
+                                              <%= radio_button_tag :value, p.value %>
+                                          <% end %>
+                                          <%= p.name %>
+                                          <%= hidden_field_tag :package, p.id %>
+                                          <h4><strong><%= raw p.price %></strong></h4>
+                                        </label>
+                                    <% end %>
+                                  </div>
                               <% else %>
-                                <%= hidden_field_tag :value, @tour.value %>
+                                  <%= hidden_field_tag :value, @tour.value %>
                               <% end %>
-                            <% end %>                        
+                          <% end %>
                         </div>
                         <div class="row">
                           <div class="col-xs-12 col-md-6">
@@ -307,7 +307,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <%= submit_tag t('tours_view_confirm_submit'), class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
+                    <%= submit_tag t('submit-external-payment'), class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation" %>
                   </div>
               </div>
             </div>

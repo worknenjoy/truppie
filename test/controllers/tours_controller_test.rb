@@ -275,7 +275,6 @@ class ToursControllerTest < ActionController::TestCase
     assert(assigns(:final_price))
     assert_equal(assigns(:final_price), 40)
     #assert_equal(assigns(:package), 40)
-    
   end
   
   test "should go to confirm presence with confirming package name" do
@@ -511,9 +510,38 @@ class ToursControllerTest < ActionController::TestCase
   end
 
   test "should create a order from an external payment" do
+    @current_tour = tours(:tour_mkt)
+    @current_tour.organizer.marketplace.payment_types.create({
+         type_name: 'pagseguro',
+         email: 'laurinha.sette@gmail.com',
+         token: '07F2A02B2C474C88855040A139D63724',
+         appId: '1234',
+         auth: 'aaaa',
+         key: '2345'
+     })
 
-    PagSeguro::PaymentRequest = mock()
-    PagSeguro::ApplicationCredentials = mock()
+    fakeData = {
+        'url' => 'http://foo',
+        'response' => OpenStruct.new({'body' =>  ''}),
+        'code' => 'foo',
+        'created_at' => DateTime.now,
+        'errors' => {}
+    }
+
+    PagSeguro::PaymentRequest.any_instance.stubs(:register).returns(OpenStruct.new fakeData)
+
+    @payment_data_external["id"] = @current_tour.id
+    post :confirm_presence, @payment_data_external
+    assert_equal Order.last.source, 'pagseguro'
+    assert_equal Order.last.amount, 1
+    assert_equal Order.last.final_price, 4000
+    assert_equal Order.last.source_id, 'foo'
+    assert_equal Order.last.payment, 'http://foo'
+    assert_equal Order.last.source_id, 'foo'
+    assert_redirected_to 'http://foo'
+  end
+
+  test "confirm when has a external payment" do
 
     @current_tour = tours(:tour_mkt)
     @current_tour.organizer.marketplace.payment_types.create({
@@ -524,11 +552,16 @@ class ToursControllerTest < ActionController::TestCase
          auth: 'aaaa',
          key: '2345'
      })
-    @payment_data_external["id"] = @current_tour.id
-    post :confirm_presence, @payment_data_external
-    assert_equal Order.last.source, 'pagseguro'
-    assert_equal Order.last.source_id, 'checkoutnumbercode'
-    assert_equal assigns(:checkout_url), 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=25269873C7C75550042B8F8A237E9919'
+
+    get :confirm, {id: @current_tour, package: @current_tour.packages.first.id }
+
+    assert(assigns(:final_price))
+    assert_equal(assigns(:final_price), 320)
+
+    assert_equal assigns(:marketplace), @current_tour.organizer.marketplace
+    assert assigns(:external_payment_active)
+    assert_equal assigns(:payment_type), 'external'
 
   end
+
 end
