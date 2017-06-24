@@ -257,7 +257,7 @@
                           <% else %>
                               <% if @tour.packages.any? and !@tour.value %>
                                   <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_span_one') %></span>
-                                  <div class="cc-package-options">
+                                  <div class="b-package-options">
                                     <% @tour.packages.each_with_index do |p, i| %>
                                         <label class="radio package-item-confirm">
                                           <% if i == 0 %>

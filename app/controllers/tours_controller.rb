@@ -480,8 +480,8 @@ class ToursController < ApplicationController
         payment.credentials = PagSeguro::ApplicationCredentials.new('truppie', 'CDEF210C5C5C6DFEE4E36FBE9DB6F509', @tour.organizer.marketplace.payment_types.first.token)
 
         payment.reference = @own_id
-        payment.notification_url = "#{root_url}/webhook_external_payment"
-        payment.redirect_url = "#{root_url}/redirect_external"
+        payment.notification_url = "http://www.truppie.com/webhook_external_payment"
+        payment.redirect_url = "http://www.truppie.com/redirect_external"
 
         #payment.extra_params << { senderBirthDate: valid_birthdate }
 

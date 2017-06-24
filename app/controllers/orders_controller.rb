@@ -217,6 +217,11 @@ class OrdersController < ApplicationController
     puts params.inspect
     ContactMailer.notify("um post com os parametros #{params.inspect} foi enviado pelo metodo de pagamento externo").deliver_now
   end
+
+  def redirect_external
+    puts 'redirect_external'
+    puts params.inspect
+  end
   
   # GET /orders
   # GET /orders.json
