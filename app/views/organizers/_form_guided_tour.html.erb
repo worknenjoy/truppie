@@ -17,8 +17,8 @@
       <label for="event-date"><%= t('event-date-title') %></label>
       <%= render partial: 'calendar', locals: {f: f} %>
 
-      <%= f.hidden_field :start, class: 'start-field', 'data-date-start' => l(f.object.start, format: '%d %B %Y') %>
-      <%= f.hidden_field :end, class: 'end-field', 'data-date-end' => l(f.object.end, format: '%d %B %Y') %>
+      <%= f.hidden_field :start, class: 'start-field', 'data-date-start' => l(f.object.start, format: '%d %B %Y') if f.object.start %>
+      <%= f.hidden_field :end, class: 'end-field', 'data-date-end' => l(f.object.end, format: '%d %B %Y') if f.object.end %>
 
       <div class="form-group">
         <div style="width: 100%; text-align: center;" class="spaced-small">
