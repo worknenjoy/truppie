@@ -473,26 +473,13 @@ class ToursController < ApplicationController
       redirect_to @tour
     else
       if !@tour.soldout?
-        @order = @tour.orders.create(
-            :source => @tour.organizer.marketplace.payment_types.first.type_name,
-            # :source_id => @payment[:source][:id],
-            :own_id => "truppie_#{@tour.id}",
-            :user => current_user,
-            :tour => @tour,
-            :status => 'pending',
-            # :payment => @payment[:id],
-            :price => @value.to_i*100,
-            :amount => @amount,
-            :final_price => @price_cents,
-            :liquid => @fees[:liquid],
-            :fee => @fees[:fee],
-            :payment_method => @payment_method
-        )
+
+        @own_id = "truppie_#{@tour.id}"
 
         payment = PagSeguro::PaymentRequest.new
         payment.credentials = PagSeguro::ApplicationCredentials.new('truppie', 'CDEF210C5C5C6DFEE4E36FBE9DB6F509', @tour.organizer.marketplace.payment_types.first.token)
 
-        payment.reference = @order.own_id
+        payment.reference = @own_id
         payment.notification_url = "#{root_url}/webhook_external_payment"
         payment.redirect_url = "#{root_url}/redirect_external"
 
@@ -519,15 +506,29 @@ class ToursController < ApplicationController
         puts response.created_at
         puts response.errors.to_a
 
-        @order.update_attributes({:payment => response.url, :source_id => response.code })
-
-        if response
+        if response.url
           if response.errors.any?
             puts response.inspect
             @confirm_headline_message = "Não foi possível confirmar sua reserva"
             @confirm_status_message = "Tivemos um problema para acessar o sistema"
             @status = "danger"
           else
+            @order = @tour.orders.create(
+                :source => @tour.organizer.marketplace.payment_types.first.type_name,
+                # :source_id => @payment[:source][:id],
+                :own_id => @own_id,
+                :user => current_user,
+                :tour => @tour,
+                :status => 'pending',
+                # :payment => @payment[:id],
+                :price => @value.to_i*100,
+                :amount => @amount,
+                :final_price => @price_cents,
+                :liquid => @fees[:liquid],
+                :fee => @fees[:fee],
+                :payment_method => @payment_method
+            )
+            @order.update_attributes({:payment => response.url, :source_id => response.code })
             redirect_to response.url
           end
         else
