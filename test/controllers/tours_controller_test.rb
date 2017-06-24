@@ -512,19 +512,8 @@ class ToursControllerTest < ActionController::TestCase
 
   test "should create a order from an external payment" do
 
-    post_data = {
-        :appId => 'bla',
-        :appKey => 'bla',
-        :authorizationCode => 'bla',
-        :itemAmount => 20,
-        :itemQuantity => 2,
-        :reference => Order.last.own_id,
-        :senderEmail => 'test@test.com'
-    }
-
-    url = 'https://ws.pagseguro.uol.com.br/v2/checkout'
-    xml_body = '<?xml version=\"1.0\" encoding=\"ISO-8859-1\" standalone=\"yes\"?><checkout><code>25269873C7C75550042B8F8A237E9919</code><date>2017-06-24T08:36:01.000-03:00</date></checkout>'
-    FakeWeb.register_uri(:post, url, { :body => xml_body, :status => ["200", "Success"]})
+    PagSeguro::PaymentRequest = mock()
+    PagSeguro::ApplicationCredentials = mock()
 
     @current_tour = tours(:tour_mkt)
     @current_tour.organizer.marketplace.payment_types.create({
