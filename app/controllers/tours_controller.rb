@@ -486,7 +486,7 @@ class ToursController < ApplicationController
         #payment.extra_params << { senderBirthDate: valid_birthdate }
 
         payment.items << {
-            id: @order.own_id,
+            id: @own_id,
             description: @tour.title,
             amount: @value.to_i,
             quantity: @amount
