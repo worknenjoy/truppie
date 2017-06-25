@@ -1,0 +1,6 @@
+.media{box-shadow:0px 0px 4px -2px #000; margin: 20px 0; padding:15px;}
+.media-body{padding:10px;}
+.media-body a{text-decoration:none;}
+.media .label{padding:5px 10px;}
+.dp{border:10px solid #eee; transition: transform 0.2s ease-in-out;}
+.dp:hover{ border:2px solid #eee; transform:scale(1.12); -ms-transform:scale(1.12); -webkit-transform:scale(1.12); -webkit-font-smoothing:antialiased;}

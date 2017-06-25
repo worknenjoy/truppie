@@ -107,6 +107,7 @@
      get :marketplace, id: @organizer_ready.id
      assert_response :success
    end
+
    
    test "should load the terms in the page" do
      get :tos_acceptance, id: @organizer_ready.id
@@ -204,6 +205,16 @@
    
    test "should load successfully the organizer manage" do
      get :manage, id: @mkt.id
+     assert_response :success
+   end
+
+   test "should load the calendar page" do
+     get :schedule, id: @mkt.id
+     assert_response :success
+   end
+
+   test "should load the clients page" do
+     get :clients, id: @mkt.id
      assert_response :success
    end
    

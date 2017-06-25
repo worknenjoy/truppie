@@ -1,5 +1,14 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
+<svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <svg id="icon-chevron" viewBox="0 0 1024 1024">
+      <title>Click to Show or Hide Menu</title>
+      <path class="path1" d="M316 334l196 196 196-196 60 60-256 256-256-256z"></path>
+
+    </svg>
+  </defs>
+</svg>
 <div class="container manage-entries">
   <div class="row">
     <div class="col-xs-12">
@@ -16,16 +25,33 @@
               <ul class="dash-list">
                 <li id="dash-item--1" class="dash-item dash-item--published">
                   <div class="dash-item__header">
-                    <div class="dash-item__title" style="overflow: hidden;">
-                      <div class="pull-left">
-                        <%= link_to @guided_tour.title, tours_path(@guided_tour), style: 'font-size: 24px;' %>
-                      </div>
+                    <h3 class="dash-item__title" style="overflow: hidden;">
+                      <%= link_to @guided_tour.title, tours_path(@guided_tour), style: 'font-size: 24px;' %>
+                      <!--
                       <div class="pull-right">
                         <a target="_blank" class="btn btn-primary btn-facebook btn-sm float-right" rel="publisher" href="#">
                           <i class="fa fa-facebook"></i> <%= t('import-event-label') %>
                         </a>
                       </div>
-                    </div>
+                      -->
+                    </h3>
+                    <ul class="dash-item__nav">
+                      <li class="dash-item__nav__item">
+                        <%= link_to copy_tour_tour_path(@guided_tour) do %>
+                          copiar evento
+                        <% end %>
+                      </li>
+                      <li class="dash-item__nav__item">
+                        <%= link_to @guided_tour, method: :delete, data: { confirm: 'Quer mesmo apagar seu evento?' } do %>
+                          apagar
+                        <% end %>
+                      </li>
+                      <li class="dash-item__nav__item">
+                        <%= link_to @guided_tour do %>
+                          ver evento
+                        <% end %>
+                      </li>
+                    </ul>
                   </div>
                   <div class="dash-item__content">
                     <ul class="quiz-results">

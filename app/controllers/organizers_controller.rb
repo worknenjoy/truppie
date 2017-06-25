@@ -114,6 +114,14 @@ class OrganizersController < ApplicationController
       @tour = Tour.find(params[:tour])
     end
   end
+
+  def schedule
+    @organizer = Organizer.find(params[:id])
+  end
+
+  def clients
+    @organizer = Organizer.find(params[:id])
+  end
   
   def confirm_account
     @organizer = Organizer.find(params[:id])

@@ -49,7 +49,7 @@ class Organizer < ActiveRecord::Base
         clients_array.push o.user
       end
     end
-    clients_array
+    clients_array.uniq
   end
 
 

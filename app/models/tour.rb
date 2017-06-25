@@ -37,8 +37,12 @@ class Tour < ActiveRecord::Base
   validates_presence_of :value, :if => Proc.new { |a| !a.packages.any? }
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
+
+  scope :past, lambda { where("start <= ?", Time.now).order("start ASC") }
   
   scope :recents, lambda { where(status: 'P').order(:start).reverse }
+
+  scope :recents_all, lambda { order(:start).reverse }
   
   scope :publisheds, -> { where(status: 'P') }
   
