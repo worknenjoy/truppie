@@ -8,11 +8,11 @@ class Tour < ActiveRecord::Base
   belongs_to :category
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :attractions
-  has_and_belongs_to_many :confirmeds
+  has_and_belongs_to_many :confirmeds, dependent: :destroy
   has_and_belongs_to_many :languages
   has_and_belongs_to_many :reviews, dependent: :destroy
-  has_and_belongs_to_many :packages
-  has_and_belongs_to_many :collaborators
+  has_and_belongs_to_many :packages, dependent: :destroy
+  has_and_belongs_to_many :collaborators, dependent: :destroy
   
   has_and_belongs_to_many :orders
   
@@ -23,6 +23,8 @@ class Tour < ActiveRecord::Base
   accepts_nested_attributes_for :organizer
   
   validates_presence_of :title, :organizer, :where, :start, :end
+
+  default_scope { where("removed IS NOT true") }
 
   validates_each :start, :end do |model, attr, value|
     model.errors.add(attr, 'Must be a valid date') if value.nil?

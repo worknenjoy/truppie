@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170623224353) do
+ActiveRecord::Schema.define(version: 20170625161809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -463,6 +463,7 @@ ActiveRecord::Schema.define(version: 20170623224353) do
     t.datetime "picture_updated_at"
     t.integer  "reserved",             default: 0
     t.string   "link"
+    t.boolean  "removed"
   end
 
   add_index "tours", ["attraction_id"], name: "index_tours_on_attraction_id", using: :btree

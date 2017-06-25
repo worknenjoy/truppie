@@ -1,5 +1,6 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
+<% :notice %>
 <div class="container manage-entries">
   <div class="row">
     <div class="col-xs-12">
@@ -28,25 +29,47 @@
             <%= render 'form_guided_tour' %>
             <h4 class="spaced-top"><%= t('events-next') %></h4>
             <ul id="upcomingEvents">
-              <% @organizer.tours.nexts.each do |t| %>
+              <% @organizer.tours.each do |t| %>
               <li id="eventHolder">
+                <% if t.try(:start) and t.try(:end) %>
                 <div class="event-date-holder">
                   <span id="dateNumber"><%= l(t.start, format: '%d') %></span>
                   <span id="dateDay"><%= l(t.start, format: '%b') %></span>
                 </div>
+                <% else %>
+                    <div class="event-date-holder">
+                      Sem data
+                    </div>
+                <% end %>
                 <div class="event-details-holder">
-                  <h1><%= t.title %></h1>
+                  <h1>
+                    <%= t.title %>
+                    <% if t.status == 'P' %>
+                        <small><span class="label label-success">publicado</span></small>
+                    <% else %>
+                        <small><span class="label label-info">não publicado</span></small>
+                    <% end %>
+                  </h1>
+
                   <ul id="editTools">
                     <li>
                       <%= link_to edit_guided_tour_organizer_path(t.organizer, t) do %>
                       <i class="fa fa-pencil-square-o"></i>
+                      <small>editar</small>
                       <% end %>
                     </li>
                     <li>
-                      <i class="fa fa-bars"></i>
-                      <small>editar</small>
+                      <%= link_to copy_tour_tour_path(t) do %>
+                          <i class="fa fa-bars"></i>
+                          <small>copiar</small>
+                      <% end %>
                     </li>
-                    <li><i class="fa fa-times" id="removeEvent"></i></li>
+                    <li>
+                      <%= link_to t, method: :delete, data: { confirm: 'Quer mesmo apagar seu evento?' } do %>
+                          <i class="fa fa-times" id="removeEvent"></i>
+                          <small>apagar</small>
+                      <% end %>
+                    </li>
                   </ul>
                 </div>
               </li>
