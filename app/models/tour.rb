@@ -38,7 +38,7 @@ class Tour < ActiveRecord::Base
   
   scope :nexts, lambda { where("start >= ?", Time.now).order("start ASC") }
 
-  scope :past, lambda { where("start <= ?", Time.now).order("start ASC") }
+  scope :past, lambda { where("start <= ?", Time.now).order("start DESC") }
   
   scope :recents, lambda { where(status: 'P').order(:start).reverse }
 

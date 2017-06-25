@@ -21,7 +21,7 @@
                 </a>
                 <div class="media-body">
                   <h4 class="media-heading"><%= c.name %></h4>
-                  <small> <%= "já entrou na truppie #{c.sign_in_count} vezes"  %></small>, 
+                  <small> <%= "já entrou na truppie #{c.sign_in_count} vezes"  %></small>,
                   <small><strong><%= "último acesso #{friendly_when(c.last_sign_in_at)}" %></strong></small>
                   <div>
                     <a><span class="label label-info">já fez <%= c.orders.count %> reservas</span></a>
