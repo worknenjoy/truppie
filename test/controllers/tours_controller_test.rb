@@ -296,6 +296,14 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal Tour.last.collaborators, ""
   end
 
+  test "should copy event" do
+    get :copy_tour, id: @tour
+
+    assert_redirected_to "organizers/#{@tour.organizer.to_param}/guided_tour"
+    assert_equal "Evento copiado com sucesso", flash[:notice]
+    assert_equal Tour.last.title, "#{@tour.title} - copiado"
+  end
+
   test "should show tour" do
     get :show, id: @tour
     assert_response :success

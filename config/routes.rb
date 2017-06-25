@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   resources :tours do
     member do
       get 'confirm/(:packagename)', to: 'tours#confirm', as: 'confirm'
+      get 'copy_tour', to: 'tours#copy_tour', as: 'copy_tour'
       post 'confirm_presence'
       get 'confirm_presence_alt'
       post 'unconfirm_presence'

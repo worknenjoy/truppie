@@ -8,11 +8,11 @@
       <p class="card-text spaced-down"><%= @organizer.description %></p>
       <% if !@organizer.website.nil? %>
           <%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
-              <i class="fa fa-external-link"></i> ver perfil
+              <i class="fa fa-external-link"></i> ir para seu website
           <% end %>
       <% end %>
       <% if !@organizer.email.nil? %>
-          <a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
+          <a class="btn btn-primary-outline btn-sm" href="mailto:ola@truppie.com"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail pra gente</a> <br />
       <% end %>
     </div>
   </div>
@@ -22,6 +22,14 @@
     <a href="<%= guided_tour_organizer_path(@organizer) %>">
       <span class="label label-default label-pill pull-xs-right"><%= @organizer.tours.count %></span>
       <%= t('organizer-tours-label') %>
+    </a>
+    <a href="<%= guided_tour_organizer_path(@organizer) %>">
+      <span class="label label-default label-pill pull-xs-right"><%= @organizer.clients.count %></span>
+      <%= t('organizer-clients-label') %>
+    </a>
+    <a href="<%= guided_tour_organizer_path(@organizer) %>">
+      <span class="label label-default label-pill pull-xs-right"><%= @organizer.tours.count %></span>
+      <%= t('calendar') %>
     </a>
   </li>
 </ul>
