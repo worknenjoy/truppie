@@ -1,7 +1,7 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy, :copy_tour]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :copy_tour]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :destroy, :copy_tour]
   
   def check_if_admin
     
@@ -130,18 +130,19 @@ class ToursController < ApplicationController
   end
 
   def copy_tour
-    puts params.inspect
     organizer = @tour.organizer
 
     old_tour = @tour
-    new_tour = Tour.new(old_tour.attributes.merge({:title => "#{@tour.title} - copiado", :id => ''}))
+    new_tour = Tour.new(old_tour.attributes.merge({:title => "#{@tour.title} - copiado", :status => 'D', :id => ''}))
 
     respond_to do |format|
       if new_tour.save
-        format.html { redirect_to "organizers/#{organizer.to_param}/guided_tour", notice: t('tours_controller_copy_success') }
+        format.html {
+          redirect_to "organizers/#{organizer.to_param}/guided_tour", flash: {success: t('tours_controller_copy_success')}
+        }
         format.json { render :copy_tour, status: :ok, location: @tour }
       else
-        format.html { redirect_to "organizers/#{organizer.to_param}/guided_tour", error: t('tours_controller_copy_error', error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
+        format.html { redirect_to "organizers/#{organizer.to_param}/guided_tour", flash: {notice: t('tours_controller_copy_error')} }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
@@ -150,9 +151,13 @@ class ToursController < ApplicationController
   # DELETE /tours/1
   # DELETE /tours/1.json
   def destroy
-    @tour.destroy
-    respond_to do |format|
-      format.html { redirect_to tours_url, notice: t('tours_controller_destroy_notice') }
+    if @tour.update_attributes({:removed => true})
+      respond_to do |format|
+        format.html { redirect_to "organizers/#{@tour.organizer.to_param}/guided_tour", flash: {success: t('tours_controller_destroy_notice')} }
+        format.json { head :no_content }
+      end
+    else
+      format.html { redirect_to "organizers/#{@tour.organizer.to_param}/guided_tour", flash: {error: t('tours_controller_destroy_notice_fail')} }
       format.json { head :no_content }
     end
   end

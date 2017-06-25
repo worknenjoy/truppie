@@ -11,7 +11,7 @@ function is_desktop_screen() {
 var timeoutID;
 
 function delayedAlert() {
-  timeoutID = window.setTimeout(slowAlert, 12000);
+  timeoutID = window.setTimeout(slowAlert, 5000);
 }
 
 function slowAlert() {
@@ -242,6 +242,14 @@ $(function(){
 		$('#new_tour, .edit_tour').trigger('submit');
 		return false;
 	});
+
+    $(".publish-truppie").on('click', function(){
+
+        $('.tour-status').val('P');
+
+        $('#new_tour, .edit_tour').trigger('submit');
+        return false;
+    });
 	
 	$(".criar-guia").on('click', function(){
 		$('#new_organizer, .edit_organizer').trigger('submit');

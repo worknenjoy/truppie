@@ -7,8 +7,7 @@ class Organizer < ActiveRecord::Base
   belongs_to :where
   
   scope :publisheds, -> { where(status: 'P') }
-  
-  
+
   def to_param
     "#{id} #{name}".parameterize
   end
@@ -42,5 +41,17 @@ class Organizer < ActiveRecord::Base
       false
     end  
   end
+
+  def clients
+    clients_array = []
+    self.tours.each do |t|
+      t.orders.each do |o|
+        clients_array.push o.user
+      end
+    end
+    clients_array
+  end
+
+
     
 end

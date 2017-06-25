@@ -748,7 +748,8 @@ pt-BR:
   close: "Fechar"
   save-changes: "Salvar mudanças"
   save-and-publish: "Salvar e publicar"
-  calendar: "calendário"
+  calendar: "Calendário de atividades"
 
   tours_controller_copy_success: "Evento copiado com sucesso"
   tours_controller_copy_error: "Houve um erro ao tentar copiar o evento"
+  tours_controller_destroy_notice_fail: "Não foi possível apagar a truppie"

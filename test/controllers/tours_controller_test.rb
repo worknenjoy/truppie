@@ -193,7 +193,15 @@ class ToursControllerTest < ActionController::TestCase
        post :create, tour: @basic_empty_tour_with_empty
      end
      assert_redirected_to tour_path(assigns(:tour))
-   end
+  end
+
+  test "should destroy" do
+    assert_difference('Tour.count', -1) do
+      delete :destroy, id: @tour
+    end
+    #assert_equal Tour.find(@tour.id).removed, true
+    assert_redirected_to "organizers/#{@tour.organizer.to_param}/guided_tour"
+  end
    
    test "should associate tags" do
      #skip("creating tour with tags")

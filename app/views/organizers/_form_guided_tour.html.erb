@@ -19,6 +19,7 @@
 
       <%= f.hidden_field :start, class: 'start-field', 'data-date-start' => (l(f.object.start, format: '%d %B %Y') if f.object.start) %>
       <%= f.hidden_field :end, class: 'end-field', 'data-date-end' => (l(f.object.end, format: '%d %B %Y') if f.object.end) %>
+      <%= f.hidden_field :status, class: 'tour-status' %>
 
       <div class="form-group">
         <div style="width: 100%; text-align: center;" class="spaced-small">
@@ -182,6 +183,7 @@
                     <%= link_to t('tours_view_form_link_one'), new_package_path, class: 'add-packages' %>
                   </div>
                 </div>
+                <!--
                 <h3><%= t('event-packages-title') %></h3>
                 <% if !@guided_tour.try(:packages) %>
                     <div class="packages-container" style="overflow:hidden;">
@@ -202,6 +204,7 @@
                 <% else %>
                     <span class="label-info"><%= t('event-no-packages-message') %></span>
                 <% end %>
+                -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" data-action="close clear-packages"><%= t('close') %></button>
@@ -213,7 +216,7 @@
       </div>
 
       <div class="form-group">
-        <%= link_to(t('save-and-publish'), "#", id: 'PublishEvent', class: "btn-event criar-truppie") %>
+        <%= link_to(t('save-and-publish'), "#", id: 'PublishEvent', class: "btn-event publish-truppie") %>
         <%= link_to(t('tours_view_form_link_two'), "#", id: 'addEvent', class: "btn-event criar-truppie") %>
         <a href="#" id="cancelAddEvent" class="btn-event"><%= t('new-event-cancel') %></a>
       </div>

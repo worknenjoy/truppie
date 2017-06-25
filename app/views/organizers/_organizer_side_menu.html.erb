@@ -23,12 +23,15 @@
       <span class="label label-default label-pill pull-xs-right"><%= @organizer.tours.count %></span>
       <%= t('organizer-tours-label') %>
     </a>
+  </li>
+  <li class="list-group-item">
     <a href="<%= guided_tour_organizer_path(@organizer) %>">
       <span class="label label-default label-pill pull-xs-right"><%= @organizer.clients.count %></span>
       <%= t('organizer-clients-label') %>
     </a>
+  </li>
+  <li class="list-group-item">
     <a href="<%= guided_tour_organizer_path(@organizer) %>">
-      <span class="label label-default label-pill pull-xs-right"><%= @organizer.tours.count %></span>
       <%= t('calendar') %>
     </a>
   </li>

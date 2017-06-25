@@ -11,16 +11,52 @@
           <%= render partial: 'organizer_side_menu' %>
         </div>
         <div class="manage-main">
-          <h4 class="spaced-down" style="overflow:hidden; padding-bottom: 10px;">
-            <div class="pull-left">
-              <%= @guided_tour.title %>
+          <div class="row">
+            <div class="col-xs-12">
+              <ul class="dash-list">
+                <li id="dash-item--1" class="dash-item dash-item--published">
+                  <div class="dash-item__header">
+                    <div class="dash-item__title" style="overflow: hidden;">
+                      <div class="pull-left">
+                        <%= link_to @guided_tour.title, tours_path(@guided_tour), style: 'font-size: 24px;' %>
+                      </div>
+                      <div class="pull-right">
+                        <a target="_blank" class="btn btn-primary btn-facebook btn-sm float-right" rel="publisher" href="#">
+                          <i class="fa fa-facebook"></i> <%= t('import-event-label') %>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dash-item__content">
+                    <ul class="quiz-results">
+                      <li class="quiz-results__item quiz-results__item--finishes">
+                        <span class="quiz-results__number quiz-results__number--finishes">
+                            <%= @guided_tour.orders.size %>
+                        </span>
+                        <div class="quiz-results__label">Reservas</div>
+                      </li>
+                      <li class="quiz-results__item quiz-results__item--average-score">
+                        <span class="quiz-results__number quiz-results__number--average-score" style="font-size: 14px;">
+                          <%= friendly_when(@guided_tour.start)%>
+                        </span>
+                        <div class="quiz-results__label">quando</div>
+                      </li>
+                      <li class="quiz-results__item quiz-results__item--views">
+                        <span class="quiz-results__number quiz-results__number--views" style="font-size: 16px">
+                          <% if @guided_tour.status == 'P' %>
+                              <span class="label label-success">publicado</span>
+                          <% else %>
+                              <span class="label label-info">não publicado</span>
+                          <% end %>
+                        </span>
+                        <div class="quiz-results__label">status</div>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
             </div>
-            <div class="pull-right">
-              <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher" href="">
-                <i class="fa fa-facebook"></i> <%= t('import-event-label') %>
-              </a>
-            </div>
-          </h4>
+          </div>
           <div class="row">
             <div class="col-xs-12">
               <%= render 'form_guided_tour' %>

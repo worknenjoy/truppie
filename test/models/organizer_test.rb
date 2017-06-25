@@ -71,6 +71,20 @@ class OrganizerTest < ActiveSupport::TestCase
      
      assert is_inside, "is inside!"
    end
+
+   test "organizer has clients" do
+
+     @tour = tours(:morro)
+     @order_one = orders(:one)
+     @order_two = orders(:two_reservation)
+
+     @tour.orders << @order_one
+     @tour.orders << @order_two
+     @tour.save
+
+     assert_equal @tour.organizer.clients, [@order_one.user, @order_two.user]
+
+   end
    
    test "organizer should have a balance if has a marketplace active" do
      skip("balance after has order working")
@@ -79,4 +93,7 @@ class OrganizerTest < ActiveSupport::TestCase
      assert_equal @mkt.balance, {"unavailable"=>[{"amount"=>0, "currency"=>"BRL"}], "future"=>[{"amount"=>0, "currency"=>"BRL"}], "current"=>[{"amount"=>44592168, "currency"=>"BRL"}]}
      assert_equal @mkt.balance["future"][0]["amount"], 0       
    end
+
+
+
 end
