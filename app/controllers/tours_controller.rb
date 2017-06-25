@@ -1,7 +1,7 @@
 class ToursController < ApplicationController
-  before_action :set_tour, only: [:show, :edit, :update, :destroy]
+  before_action :set_tour, only: [:show, :edit, :update, :destroy, :copy_tour]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :copy_tour]
   
   def check_if_admin
     
@@ -105,7 +105,7 @@ class ToursController < ApplicationController
         format.json { render :show, status: :created, location: @tour }
       else
         format.html {
-          redirect_to guided_tour_organizer_path(tour_params[:organizer]),
+          redirect_to guided_tour_organizer_path(tour_params[:organizer] || tour_params[:organizer_id]),
           notice: t('tours_controller_create_notice_two',
           error_one: @tour.errors.first[0], error_two: @tour.errors.first[1])
         }
@@ -124,6 +124,24 @@ class ToursController < ApplicationController
         format.json { render :show, status: :ok, location: @tour }
       else
         format.html { redirect_to edit_guided_tour_organizer_path(Organizer.find(tour_params[:organizer_id]), @tour), notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
+        format.json { render json: @tour.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def copy_tour
+    puts params.inspect
+    organizer = @tour.organizer
+
+    old_tour = @tour
+    new_tour = Tour.new(old_tour.attributes.merge({:title => "#{@tour.title} - copiado", :id => ''}))
+
+    respond_to do |format|
+      if new_tour.save
+        format.html { redirect_to "organizers/#{organizer.to_param}/guided_tour", notice: t('tours_controller_copy_success') }
+        format.json { render :copy_tour, status: :ok, location: @tour }
+      else
+        format.html { redirect_to "organizers/#{organizer.to_param}/guided_tour", error: t('tours_controller_copy_error', error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end

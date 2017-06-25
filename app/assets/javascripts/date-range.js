@@ -415,7 +415,6 @@ var rangeCal = {
      */
     /* todo: add action for setting input 1 + hidden input 2+3 */
     select: function(e, main){
-        console.log(e, main);
         // vars: this, main
 
         // selection 1 + 2
@@ -721,13 +720,13 @@ var rangeCal = {
 
 } /* end rangeCal */
 
-if($('#dateField').length) {
+if($('#dateField').get(0)) {
     var dateInput = $('#dateField');
     rangeCal.init(dateInput);
 }
 
 
-if($('.start-field').val().length) {
+if($('.start-field').get(0)) {
     var currentStartDate = new Date($('.start-field').val());
     var currentEndDate = new Date($('.end-field').val());
 
@@ -747,9 +746,13 @@ if($('.start-field').val().length) {
 
     $('#dateFrom').find('.r_date').text(startDateOut);
     $('#dateTo').find('.r_date').text(endDateOut);
-
-    $('#daysNumPicker').find('.r_days em').text(currentDaysCount);
     $('#daysNum').find('.r_days em').text(currentDaysCount);
+
+    if(currentDaysCount) {
+        $('#daysNumPicker').find('.r_days em').text(currentDaysCount);
+    } else {
+        $('#daysNumPicker').find('.r_days em').text(0);
+    }
     
     $('#start_time, #end_time').bind('change', function(e){
         updateDates(e);
