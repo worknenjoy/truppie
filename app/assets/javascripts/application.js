@@ -31,5 +31,7 @@
 //= require jquery.maskedinput
 //= require main-menu
 //= require date-range
+//= require calendar-app
+//= require dash
 //= require main
 

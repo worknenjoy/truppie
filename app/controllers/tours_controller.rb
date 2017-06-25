@@ -133,7 +133,7 @@ class ToursController < ApplicationController
     organizer = @tour.organizer
 
     old_tour = @tour
-    new_tour = Tour.new(old_tour.attributes.merge({:title => "#{@tour.title} - copiado", :status => 'D', :id => ''}))
+    new_tour = Tour.new(old_tour.attributes.merge({:title => "#{@tour.title} - copiado", :status => '', :id => ''}))
 
     respond_to do |format|
       if new_tour.save
@@ -143,6 +143,7 @@ class ToursController < ApplicationController
         format.json { render :copy_tour, status: :ok, location: @tour }
       else
         format.html { redirect_to "organizers/#{organizer.to_param}/guided_tour", flash: {notice: t('tours_controller_copy_error')} }
+        puts @tour.errors.inspect
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end

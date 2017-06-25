@@ -48,6 +48,8 @@
  *= require map
  *= require fancy-packages
  *= require quill.snow
+ *= require schedule
+ *= require user-list
  *= require date-range
  */
 

@@ -49,6 +49,8 @@ Rails.application.routes.draw do
       get 'dashboard', to: 'organizers#dashboard', as: 'dashboard'
       get 'confirm_account', to: 'organizers#confirm_account', as: 'confirm_account'
       get 'guided_tour', to: 'organizers#guided_tour', as: 'guided_tour'
+      get 'schedule', to: 'organizers#schedule', as: 'schedule'
+      get 'clients', to: 'organizers#clients', as: 'clients'
       get 'edit_guided_tour/(:tour)', to: 'organizers#edit_guided_tour', as: 'edit_guided_tour'
     end
   end
