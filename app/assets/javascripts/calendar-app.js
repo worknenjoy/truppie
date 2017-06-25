@@ -157,9 +157,6 @@ CalendarApp.prototype.showDay = function(e, dayEle) {
     this.calDaySelected = dayEle;
 
     this.openDayWindow(dayDate);
-
-
-
 };
 CalendarApp.prototype.openDayWindow = function(date){
 
