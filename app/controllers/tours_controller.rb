@@ -138,12 +138,13 @@ class ToursController < ApplicationController
     respond_to do |format|
       if new_tour.save
         format.html {
-          redirect_to "organizers/#{organizer.to_param}/guided_tour", flash: {success: t('tours_controller_copy_success')}
+          redirect_to "/organizers/#{organizer.to_param}/guided_tour", flash: {success: t('tours_controller_copy_success')}
         }
         format.json { render :copy_tour, status: :ok, location: @tour }
       else
-        format.html { redirect_to "organizers/#{organizer.to_param}/guided_tour", flash: {notice: t('tours_controller_copy_error')} }
-        puts @tour.errors.inspect
+        format.html {
+          redirect_to "/organizers/#{organizer.to_param}/guided_tour", flash: {notice: t('tours_controller_copy_error')}
+        }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
@@ -154,11 +155,11 @@ class ToursController < ApplicationController
   def destroy
     if @tour.update_attributes({:removed => true})
       respond_to do |format|
-        format.html { redirect_to "organizers/#{@tour.organizer.to_param}/guided_tour", flash: {success: t('tours_controller_destroy_notice')} }
+        format.html { redirect_to "/organizers/#{@tour.organizer.to_param}/guided_tour", flash: {success: t('tours_controller_destroy_notice')} }
         format.json { head :no_content }
       end
     else
-      format.html { redirect_to "organizers/#{@tour.organizer.to_param}/guided_tour", flash: {error: t('tours_controller_destroy_notice_fail')} }
+      format.html { redirect_to "/organizers/#{@tour.organizer.to_param}/guided_tour", flash: {error: t('tours_controller_destroy_notice_fail')} }
       format.json { head :no_content }
     end
   end

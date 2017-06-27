@@ -34,11 +34,11 @@
             </h4>
             <ul id="upcomingEvents">
               <% @organizer.tours.nexts.each do |t| %>
-              <li id="eventHolder">
+              <li class="eventHolder">
                 <% if t.try(:start) and t.try(:end) %>
                 <div class="event-date-holder">
-                  <span id="dateNumber"><%= l(t.start, format: '%d') %></span>
-                  <span id="dateDay"><%= l(t.start, format: '%b') %></span>
+                  <span class="dateNumber"><%= l(t.start, format: '%d') %></span>
+                  <span class="dateDay"><%= l(t.start, format: '%b') %></span>
                 </div>
                 <% else %>
                     <div class="event-date-holder">
@@ -46,16 +46,16 @@
                     </div>
                 <% end %>
                 <div class="event-details-holder">
-                  <h1>
+                  <% if t.status == 'P' %>
+                      <small><span class="label label-success">publicado</span></small>
+                  <% else %>
+                      <small><span class="label label-info">não publicado</span></small>
+                  <% end %>
+                  <h4>
                     <%= t.title %>
-                    <% if t.status == 'P' %>
-                        <small><span class="label label-success">publicado</span></small>
-                    <% else %>
-                        <small><span class="label label-info">não publicado</span></small>
-                    <% end %>
-                  </h1>
+                  </h4>
 
-                  <ul id="editTools">
+                  <ul class="editTools">
                     <li>
                       <%= link_to edit_guided_tour_organizer_path(t.organizer, t) do %>
                       <i class="fa fa-pencil-square-o"></i>
@@ -85,11 +85,11 @@
             </h4>
             <ul id="olderEvents">
               <% @organizer.tours.past.each do |t| %>
-                  <li id="eventHolder">
+                  <li class="eventHolder">
                     <% if t.try(:start) and t.try(:end) %>
                         <div class="event-date-holder">
-                          <span id="dateNumber"><%= l(t.start, format: '%d') %></span>
-                          <span id="dateDay"><%= l(t.start, format: '%b') %></span>
+                          <span class="dateNumber"><%= l(t.start, format: '%d') %></span>
+                          <span class="dateDay"><%= l(t.start, format: '%b') %></span>
                         </div>
                     <% else %>
                         <div class="event-date-holder">
@@ -97,16 +97,16 @@
                         </div>
                     <% end %>
                     <div class="event-details-holder">
-                      <h1>
+                      <% if t.status == 'P' %>
+                          <small><span class="label label-success">publicado</span></small>
+                      <% else %>
+                          <small><span class="label label-info">não publicado</span></small>
+                      <% end %>
+                      <h4>
                         <%= t.title %>
-                        <% if t.status == 'P' %>
-                            <small><span class="label label-success">publicado</span></small>
-                        <% else %>
-                            <small><span class="label label-info">não publicado</span></small>
-                        <% end %>
-                      </h1>
+                      </h4>
 
-                      <ul id="editTools">
+                      <ul class="editTools">
                         <li>
                           <%= link_to edit_guided_tour_organizer_path(t.organizer, t) do %>
                               <i class="fa fa-pencil-square-o"></i>

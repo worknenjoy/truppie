@@ -130,8 +130,8 @@ pt-BR:
   organizer-percent-label: "Taxa (%)"
   tours_view_form_p_colab: "Colaboradores"
 
-  panel-label: "Painel"
-  balance-label: "Balanços"
+  panel-label: "Truppies"
+  balance-label: "Reservas"
   transfer-label: "Transferências"
   verified-label: "Conta verificada"
 
@@ -456,7 +456,7 @@ pt-BR:
   tours_controller_create_notice_one: "Truppie criada com sucesso"
   tours_controller_create_notice_two: "o campo %{error_one} %{error_two}"
   tours_controller_update_notice: "Truppie atualizada com sucesso"
-  tours_controller_destroy_notice: "Tour was successfully destroyed."
+  tours_controller_destroy_notice: "Truppie removida com sucesso"
 
   contacts_views_index_h2: "Entre em contato com a Truppie"
   contacts_views_index_p: "Se preferir, você pode enviar um e-mail para"
