@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       get 'guided_tour', to: 'organizers#guided_tour', as: 'guided_tour'
       get 'schedule', to: 'organizers#schedule', as: 'schedule'
       get 'clients', to: 'organizers#clients', as: 'clients'
+      get 'external_events', to: 'organizers#external_events', as: 'external_events'
       get 'edit_guided_tour/(:tour)', to: 'organizers#edit_guided_tour', as: 'edit_guided_tour'
     end
   end

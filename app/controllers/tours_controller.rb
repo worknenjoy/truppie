@@ -93,6 +93,7 @@ class ToursController < ApplicationController
 
   # GET /tours/1/edit
   def edit
+
   end
 
   # POST /tours

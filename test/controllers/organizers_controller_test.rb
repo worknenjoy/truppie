@@ -217,6 +217,16 @@
      get :clients, id: @mkt.id
      assert_response :success
    end
+
+   test "should list events from facebook of the organizer" do
+     response_body = {"data"=>[{"description"=>"Vou comemorar meu aniversário hoje Nó de Corda Rosas, a partir das 20:00, com uma cervejinha e cachaça com mel de leve.\n\nE sábado pra comemorar direito lhes convido para a Festa Da Música Tupiniquim:\n\nhttps://www.facebook.com/events/1658444127765080/?ref=ts&fref=ts", "name"=>"Aniversário", "place"=>{"name"=>"Parque Das Rosas - Barra Da Tijuca", "location"=>{"latitude"=>-23.003000331376, "longitude"=>-43.349793013295}, "id"=>"276507949199490"}, "start_time"=>"2015-10-08T20:00:00-0300", "id"=>"199210710409935", "rsvp_status"=>"attending"}, {"description"=>"O Gandhifica está de volta com música nova e muito Rock para celebrar uma boa música com uma boa cerveja na Cervejaria Therezópolis, no Downtown, com convidados mais que especiais.\n\nSerá nesta próxima sexta, a partir das 19:00.\n\nO Gandhifica é formado por Adriana Ramalho e Alexandre Magno Teles, que farão voz e violão tocando suas versões de vários Rocks e MPB com um toque de bossa nova e reggae", "end_time"=>"2015-07-17T22:00:00-0300", "name"=>"Show do Gandhifica na Cervejaria Therezópolis - Downtown", "place"=>{"name"=>"DowntownRJ", "location"=>{"city"=>"Rio de Janeiro", "country"=>"Brazil", "latitude"=>-23.0045624, "longitude"=>-43.3197021, "state"=>"RJ", "street"=>"Avenida das Américas, 500 - Barra da Tijuca", "zip"=>"22640100"}, "id"=>"100342806685671"}, "start_time"=>"2015-07-17T19:00:00-0300", "id"=>"867199850030220", "rsvp_status"=>"attending"}], "paging"=>{"cursors"=>{"before"=>"QVFIUkJvS1E0TDkxaUVpbGE2Q2hJcm5VOWZAnSDduWUNxV1JWSF9NaW1qVGdjd09QMDVHRW1vSzJ5Q0JkaVVuTTZAUQ2NLM3FRMUtiYmRsZAWphV1ZA2cnRqTGV3", "after"=>"QVFIUlQxOW5fWWFaaWhLWF9hRTVkMzdNNU5EblE3ekl3dlFPX0FiazBXOVRzbEtRLWhPX1BtMnM4X1lDam1IRE1wa0Q2TVVxdXpVSm9CT2kzWWlKeldhRm93"}, "next"=>"https://graph.facebook.com/v2.9/10154033067028556/events?type=created&limit=2&after=QVFIUlQxOW5fWWFaaWhLWF9hRTVkMzdNNU5EblE3ekl3dlFPX0FiazBXOVRzbEtRLWhPX1BtMnM4X1lDam1IRE1wa0Q2TVVxdXpVSm9CT2kzWWlKeldhRm93"}}
+     FakeWeb.register_uri(:get, "https://graph.facebook.com/v2.9/10154033067028556/events?type=created&limit=2", :body => response_body.to_json, :status => ["200", "Success"])
+     get :external_events, { id: @mkt.id, source: 'facebook', format: :json }
+     assert_equal assigns(:source), 'facebook'
+     assert_equal assigns(:response_json), JSON.load(response_body.to_json)
+     assert_response :success
+     assert_equal JSON.load(response.body)[0]["name"], "Aniversário"
+   end
    
    test "should not transfer amount to organizer because the token is not valid" do
      skip("migrate to stripe")
