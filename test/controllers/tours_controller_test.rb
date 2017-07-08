@@ -200,7 +200,7 @@ class ToursControllerTest < ActionController::TestCase
       delete :destroy, id: @tour
     end
     #assert_equal Tour.find(@tour.id).removed, true
-    assert_redirected_to "organizers/#{@tour.organizer.to_param}/guided_tour"
+    assert_redirected_to "/organizers/#{@tour.organizer.to_param}/guided_tour"
   end
    
    test "should associate tags" do
@@ -307,7 +307,7 @@ class ToursControllerTest < ActionController::TestCase
   test "should copy event" do
     get :copy_tour, id: @tour
 
-    assert_redirected_to "organizers/#{@tour.organizer.to_param}/guided_tour"
+    assert_redirected_to "/organizers/#{@tour.organizer.to_param}/guided_tour"
     assert_equal "Evento copiado com sucesso", flash[:success]
     assert_equal Tour.last.title, "#{@tour.title} - copiado"
   end

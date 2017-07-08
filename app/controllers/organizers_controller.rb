@@ -1,8 +1,8 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events]
   helper_method :is_organizer_admin
   
   def check_if_admin
@@ -121,6 +121,14 @@ class OrganizersController < ApplicationController
 
   def clients
     @organizer = Organizer.find(params[:id])
+  end
+
+  def external_events
+    @source = params[:source]
+    @response = RestClient.get("https://graph.facebook.com/v2.9/10154033067028556/events?type=created&limit=2", :content_type => :json, :accept => :json, :authorization => "OAuth #{Rails.application.secrets[:facebook_app_id]}")
+    @response_json = JSON.load @response
+    #puts @response_json.inspect
+    #https://www.facebook.com/v2.9/dialog/oauth?response_type=token&display=popup&client_id=1696671210617842&redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer%2Fcallback%3Fmethod%3DGET%26path%3D10154033067028556%252Fevents%253Ftype%253Dcreated%2526limit%253D2%26version%3Dv2.9&scope=rsvp_event%2Cuser_events
   end
   
   def confirm_account
