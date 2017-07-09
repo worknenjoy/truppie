@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require modernizr-custom
 //= require classie
+//= require jsrender
 //= require overlay
 //= require moment-with-locales
 //= require timepicker

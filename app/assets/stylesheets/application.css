@@ -17,7 +17,8 @@
  *= require image-card
  *= require bootstrap-notice 
  *= require form-login 
- *= require date-view 
+ *= require date-view
+ *= require event-list
  *= require bootstrap-ribbon
  *= require navbar
  *= require bootstrap-social  

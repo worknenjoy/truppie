@@ -1,0 +1,88 @@
+$main-color: #f26226;
+$black: #323232;
+
+.import-events-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.module {
+  padding: 0 10px;
+  h2 {
+    font-weight: 300;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 30px;
+    color: $black;
+    margin-bottom: 10px;
+
+  }
+  .subtitle {
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: center;
+    color: $main-color;
+  }
+}
+
+.events-container {
+
+}
+
+.events-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  li {
+    margin-bottom: 50px;
+  }
+}
+
+.event-header {
+  display: flex;
+}
+
+.event-details {
+  padding-left: 14px;
+  margin-bottom: 20px;
+}
+
+.event-title {
+  line-height: 1.5;
+  a {
+    transition: all 0.5s ease;
+    color: $main-color;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 20px;
+    margin-bottom: 4px;
+    line-height: 1;
+    text-decoration: none;
+    &:hover {
+      //text-decoration: underline;
+      color: darken($main-color, 20%);
+    }
+  }
+
+}
+
+.event-date {
+  color: $black;
+  font-size: 18px;
+}
+
+.event-icon {
+  flex: 0 0 45px;
+  background-color: $main-color;
+}
+
+.event-content {
+  padding-top: 15px;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.5;
+}

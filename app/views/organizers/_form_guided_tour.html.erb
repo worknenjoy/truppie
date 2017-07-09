@@ -1,6 +1,6 @@
 <%= form_for @guided_tour, class: "form form-signup criar-truppie", multipart: true, role: "form" do |f| %>
     <div id="newEventForm" class="<%= 'hide' if @guided_tour.new_record? %>">
-      <div class="hide">
+      <div>
         <h4 class="text-xs-center spaced-down"><%= t('tour-category-label') %></h4>
         <div class="spaced-top" style="text-align: center">
           <%= image_tag("icons-truppie-fill/icones_truppie-19.svg", :alt => "Truppie", width: 100) %>
