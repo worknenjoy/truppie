@@ -1,10 +1,10 @@
 <%= render 'layouts/navbar' %>
 <div class="cover">
 	<div class="img-holder">
-		<% if @tour.try(:picture) %>
+    <% if @tour.try(:photo) %>
+      <%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
+		<% elsif @tour.try(:picture) %>
 			<%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
-		<% elsif @tour.try(:photo) %>
-			<%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>				
 		<% else %>
 			<div class="placeholder-truppie-image"></div>
 		<% end %>
@@ -272,7 +272,7 @@
       </div>
       <% end %>
 		</div>
-		<% if !@tour.meetingpoint.empty? %>		
+		<% if !@tour.meetingpoint.nil? %>
 		<div class="row">
 			<div class="col-xs-12">
 				<h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_nine') %></strong></h4>

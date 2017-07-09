@@ -130,9 +130,10 @@ class OrganizersController < ApplicationController
       events.each do |e|
         @response.push JSON.load RestClient.get("https://graph.facebook.com/v2.9/#{e}", :content_type => :json, :accept => :json, :authorization => "OAuth 1696671210617842|j7p28AxJdNYI4vbjzGi6ygTtTSQ")
       end
-      puts @response.inspect
+
       @response.each do |r|
-        puts r.inspect
+
+        @photo = JSON.load RestClient.get("https://graph.facebook.com/v2.9/#{r["id"]}/picture/?redirect=0&type=large", :content_type => :json, :accept => :json, :authorization => "OAuth 1696671210617842|j7p28AxJdNYI4vbjzGi6ygTtTSQ")
 
         @tour = Tour.new({
           title: r["name"],
@@ -142,6 +143,7 @@ class OrganizersController < ApplicationController
           organizer: @organizer,
           where: Where.create({:name => r["place"]["name"]}),
           value: 20,
+          photo: @photo["data"]["url"],
           link: "http://www.facebook.com/events/#{r["id"]}",
           user: @organizer.user
         })
