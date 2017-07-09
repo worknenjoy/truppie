@@ -240,6 +240,7 @@
      assert_equal assigns(:tour), Tour.last
      assert_equal assigns(:response)[0]["name"], "Aniversário"
      assert_equal Tour.last.title, "Aniversário"
+     assert_equal Tour.last.link, "http://www.facebook.com/events/199210710409935"
      assert_equal flash[:success], "evento importado com sucesso"
      assert_redirected_to "/organizers/#{@mkt.to_param}/guided_tour"
    end

@@ -142,6 +142,7 @@ class OrganizersController < ApplicationController
           organizer: @organizer,
           where: Where.create({:name => r["place"]["name"]}),
           value: 20,
+          link: "http://www.facebook.com/events/#{r["id"]}",
           user: @organizer.user
         })
         if @tour.save
