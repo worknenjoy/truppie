@@ -753,3 +753,8 @@ pt-BR:
   tours_controller_copy_success: "Evento copiado com sucesso"
   tours_controller_copy_error: "Houve um erro ao tentar copiar o evento"
   tours_controller_destroy_notice_fail: "Não foi possível apagar a truppie"
+
+  import-from-facebook-title: "Importar eventos do facebook"
+  import-event-action: "importar eventos"
+  import-event-desc: "Escolha os eventos do facebook que deseja importar para a Truppie"
+  tour-category-label: "E ai, qual é dessa truppie?"

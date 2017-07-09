@@ -1,0 +1,55 @@
+<%= form_tag import_events_organizer_path, :method => 'post' do %>
+<div class="modal fade" id="import-from-facebook-dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title"><%= t('import-from-facebook-title') %></h4>
+      </div>
+      <div class="modal-body">
+        <p class="small"><%= t('import-event-desc') %></p>
+        <div style="text-align: center" class="loading-events">
+          <i class="fa fa-2x fa-spin fa-compass" aria-hidden="true"></i><br />
+          <small style="font-size: 12px">Carregando eventos...</small>
+        </div>
+        <script id="event-list-template" type="text/x-jsrender">
+          <div class="import-events-container">
+            <div class="events-container module">
+              <ul class="events-list">
+                {{for event}}
+                <li>
+                  <div class="event-header">
+                    <div class="event-icon">
+                      <img src="" alt="" />
+                    </div>
+                    <div class="event-details">
+                      <div class="event-title">{{:name}}</div>
+                      <div class="event-date">{{:start_time}}</div>
+                    </div>
+                  </div>
+                  <div class="event-content">
+                  {{:description}}
+                  </div>
+                  <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-warning-outline">
+                      <input name="events[]" type="checkbox" autocomplete="off" value="{{:id}}"> Quero este evento na truppie
+                    </label>
+                  </div>
+                </li>
+                {{/for}}
+              </ul>
+            </div>
+          </div>
+        </script>
+        <div id="imported-events-container"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-action="close clear-packages"><%= t('close') %></button>
+        <button type="submit" class="btn btn-primary"><%= t('import-event-action') %></button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<% end %>

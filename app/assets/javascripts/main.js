@@ -413,8 +413,33 @@ $(function(){
         $('#new-packages-modal').find('input').each(function(e){
             $(this).val('');
         });
+    });
 
-    })
 
+    var modal_show = false;
+
+    $('#import-from-facebook-dialog').on('show.bs.modal', function(){
+        if(!modal_show) {
+            modal_show = true;
+            $('.loading-events').fadeIn();
+            $.getJSON('/organizers/4-7-cantos-do-mundo/external_events.json', function (data) {
+                moment.locale('pt');
+                var tmpl = $('#event-list-template');
+                var list = {event: []};
+                for(var i = 0; i < data.length; i++) {
+                    list.event.push({
+                        id: data[i].id,
+                        name: data[i].name,
+                        description: data[i].description,
+                        start_time: moment(data[i].start_time).format("dddd, D MMMM YYYY, h:mm a")
+                    });
+                }
+                var html = tmpl.render(list);
+                $('#imported-events-container').html(html);
+                $('#imported-events-container').addClass('animated bounceIn');
+                $('.loading-events').fadeOut();
+            });
+        }
+    });
 
 });

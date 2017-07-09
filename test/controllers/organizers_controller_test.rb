@@ -227,6 +227,22 @@
      assert_response :success
      assert_equal JSON.load(response.body)[0]["name"], "Aniversário"
    end
+
+   test "should not receive the import action to create new event from request" do
+     post :import_events, { id: @mkt.id }
+     assert flash[:error], "não foi possivel importar o evento"
+     assert_redirected_to "/organizers/#{@mkt.to_param}/guided_tour"
+   end
+
+   test "should receive the import action to create new event from request" do
+     post :import_events, { id: @mkt.id, events: ["199210710409935"] }
+     assert_equal assigns(:organizer), @mkt
+     assert_equal assigns(:tour), Tour.last
+     assert_equal assigns(:response)[0]["name"], "Aniversário"
+     assert_equal Tour.last.title, "Aniversário"
+     assert_equal flash[:success], "evento importado com sucesso"
+     assert_redirected_to "/organizers/#{@mkt.to_param}/guided_tour"
+   end
    
    test "should not transfer amount to organizer because the token is not valid" do
      skip("migrate to stripe")
