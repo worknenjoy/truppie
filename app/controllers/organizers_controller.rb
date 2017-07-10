@@ -157,14 +157,22 @@ class OrganizersController < ApplicationController
       end
     else
       flash[:error] = "não foi possivel importar o evento"
+      redirect_to "/organizers/#{@organizer.to_param}/guided_tour"
+      return
     end
-    redirect_to "/organizers/#{@organizer.to_param}/guided_tour"
+    redirect_to "/organizers/#{@organizer.to_param}/edit_guided_tour/#{@tour.to_param}"
   end
 
   def external_events
     @source = params[:source]
-    @response = RestClient.get("https://graph.facebook.com/v2.9/10154033067028556/events?type=created&limit=2", :content_type => :json, :accept => :json, :authorization => "OAuth 1696671210617842|j7p28AxJdNYI4vbjzGi6ygTtTSQ")
-    @response_json = JSON.load @response
+    @token = params[:token]
+    @user_id = params[:user_id]
+    if @token && @user_id
+      @response = RestClient.get("https://graph.facebook.com/v2.9/#{@user_id}/events?type=created&limit=10", :content_type => :json, :accept => :json, :authorization => "OAuth #{@token}")
+      @response_json = JSON.load @response
+    else
+      render :status => 404
+    end
     #puts @response_json.inspect
     #https://www.facebook.com/v2.9/dialog/oauth?response_type=token&display=popup&client_id=1696671210617842&redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer%2Fcallback%3Fmethod%3DGET%26path%3D10154033067028556%252Fevents%253Ftype%253Dcreated%2526limit%253D2%26version%3Dv2.9&scope=rsvp_event%2Cuser_events
   end

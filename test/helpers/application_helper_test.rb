@@ -74,7 +74,5 @@ class ApplicationHelperTest < ActionView::TestCase
   
   test "should convert user image to https" do
     assert_equal "https://www.truppie.com", to_https("http://www.truppie.com")
-    
   end
-  
 end
