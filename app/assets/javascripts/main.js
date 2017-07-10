@@ -415,31 +415,43 @@ $(function(){
         });
     });
 
-
-    var modal_show = false;
-
-    $('#import-from-facebook-dialog').on('show.bs.modal', function(){
-        if(!modal_show) {
-            modal_show = true;
-            $('.loading-events').fadeIn();
-            $.getJSON('/organizers/4-7-cantos-do-mundo/external_events.json', function (data) {
-                moment.locale('pt');
-                var tmpl = $('#event-list-template');
-                var list = {event: []};
-                for(var i = 0; i < data.length; i++) {
-                    list.event.push({
-                        id: data[i].id,
-                        name: data[i].name,
-                        description: data[i].description,
-                        start_time: moment(data[i].start_time).format("dddd, D MMMM YYYY, h:mm a")
-                    });
-                }
-                var html = tmpl.render(list);
-                $('#imported-events-container').html(html);
-                $('#imported-events-container').addClass('animated bounceIn');
-                $('.loading-events').fadeOut();
+    if($('#import-from-facebook-action').length) {
+        $.ajaxSetup({cache: true});
+        $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
+            FB.init({
+                appId: '1696671210617842',
+                version: 'v2.5' // or v2.1, v2.2, v2.3, ...
             });
-        }
-    });
+            //$('#loginbutton,#feedbutton').removeAttr('disabled');
+            $('#import-from-facebook-action').on('click', function () {
+                FB.login(function(response) {
+                    var token = response["accessToken"];
+                    var user_id = response["userId"];
+
+                    $('.loading-events').fadeIn();
+                    $.getJSON('/organizers/4-7-cantos-do-mundo/external_events.json?token=' + token + '&user_id=' + user_id, function (data) {
+                        moment.locale('pt');
+                        var tmpl = $('#event-list-template');
+                        var list = {event: []};
+                        for(var i = 0; i < data.length; i++) {
+                            list.event.push({
+                                id: data[i].id,
+                                name: data[i].name,
+                                description: data[i].description,
+                                start_time: moment(data[i].start_time).format("dddd, D MMMM YYYY, h:mm a")
+                            });
+                        }
+                        var html = tmpl.render(list);
+                        $('#imported-events-container').html(html);
+                        $('#imported-events-container').addClass('animated bounceIn');
+                        $('.loading-events').fadeOut();
+
+                }, {scope: 'rsvp_event,user_events'});
+                return false;
+            });
+
+        });
+    }
+
 
 });

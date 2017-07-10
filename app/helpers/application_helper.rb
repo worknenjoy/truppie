@@ -80,5 +80,4 @@ module ApplicationHelper
   def is_active(page)
     return current_page? action: page
   end
-  
 end
