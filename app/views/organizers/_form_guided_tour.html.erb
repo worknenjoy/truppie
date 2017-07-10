@@ -28,6 +28,12 @@
         <% end %>
         </div>
 
+        <div style="width: 100%; text-align: center;" class="spaced-small">
+          <% if @guided_tour.photo.present? %>
+              <%= image_tag @guided_tour.photo, class: 'img-fluid' %>
+          <% end %>
+        </div>
+
         <div class="file-upload">
           <button class="file-upload-btn btn btn-info-outline btn-block" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
           <div class="image-upload-wrap">
