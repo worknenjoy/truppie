@@ -424,34 +424,42 @@ $(function(){
             });
             //$('#loginbutton,#feedbutton').removeAttr('disabled');
             $('#import-from-facebook-action').on('click', function () {
-                FB.login(function(response) {
-                    var token = response["accessToken"];
-                    var user_id = response["userId"];
+                FB.login(function (response) {
+                    var token = response["authResponse"]["accessToken"];
+                    var user_id = response["authResponse"]["userID"];
+                    var modal = $('#import-from-facebook-dialog');
 
-                    $('.loading-events').fadeIn();
-                    $.getJSON('/organizers/4-7-cantos-do-mundo/external_events.json?token=' + token + '&user_id=' + user_id, function (data) {
-                        moment.locale('pt');
-                        var tmpl = $('#event-list-template');
-                        var list = {event: []};
-                        for(var i = 0; i < data.length; i++) {
-                            list.event.push({
-                                id: data[i].id,
-                                name: data[i].name,
-                                description: data[i].description,
-                                start_time: moment(data[i].start_time).format("dddd, D MMMM YYYY, h:mm a")
-                            });
-                        }
-                        var html = tmpl.render(list);
-                        $('#imported-events-container').html(html);
-                        $('#imported-events-container').addClass('animated bounceIn');
-                        $('.loading-events').fadeOut();
+                    modal.modal('show');
+                    modal.on('shown.bs.modal', function () {
 
+                        $('.loading-events').fadeIn();
+                        $.getJSON('/organizers/4-7-cantos-do-mundo/external_events.json?token=' + token + '&user_id=' + user_id, function (data, status, xhr) {
+                            moment.locale('pt');
+                            var tmpl = $('#event-list-template');
+                            var list = {event: []};
+                            for (var i = 0; i < data.length; i++) {
+                                list.event.push({
+                                    id: data[i].id,
+                                    name: data[i].name,
+                                    description: data[i].description,
+                                    start_time: moment(data[i].start_time).format("dddd, D MMMM YYYY, h:mm a")
+                                });
+                            }
+                            var html = tmpl.render(list);
+                            $('#imported-events-container').html(html);
+                            $('#imported-events-container').addClass('animated bounceIn');
+                            $('#facebook_token').val(token);
+                            $('#facebook_user_id').val(user_id);
+                            $('.loading-events').fadeOut();
+                        }).error(function (e) {
+                            console.log(e);
+                            $('#imported-events-container').html('<label class="label label-warning">Não foi possível exibir os eventos</label>');
+                            $('.loading-events').fadeOut();
+                        });
+                    });
                 }, {scope: 'rsvp_event,user_events'});
                 return false;
             });
-
         });
     }
-
-
 });

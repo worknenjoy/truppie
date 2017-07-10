@@ -125,15 +125,18 @@ class OrganizersController < ApplicationController
 
   def import_events
     events = params["events"]
+    @token = params["facebook_token"]
+    @user_id = params["facebook_user_id"]
+
     if !events.nil?
       @response = []
       events.each do |e|
-        @response.push JSON.load RestClient.get("https://graph.facebook.com/v2.9/#{e}", :content_type => :json, :accept => :json, :authorization => "OAuth 1696671210617842|j7p28AxJdNYI4vbjzGi6ygTtTSQ")
+        @response.push JSON.load RestClient.get("https://graph.facebook.com/v2.9/#{e}", :content_type => :json, :accept => :json, :authorization => "OAuth #{@token}")
       end
 
       @response.each do |r|
 
-        @photo = JSON.load RestClient.get("https://graph.facebook.com/v2.9/#{r["id"]}/picture/?redirect=0&type=large", :content_type => :json, :accept => :json, :authorization => "OAuth 1696671210617842|j7p28AxJdNYI4vbjzGi6ygTtTSQ")
+        @photo = JSON.load RestClient.get("https://graph.facebook.com/v2.9/#{r["id"]}/picture/?redirect=0&type=large", :content_type => :json, :accept => :json, :authorization => "OAuth #{@token}")
 
         @tour = Tour.new({
           title: r["name"],
@@ -168,7 +171,7 @@ class OrganizersController < ApplicationController
     @token = params[:token]
     @user_id = params[:user_id]
     if @token && @user_id
-      @response = RestClient.get("https://graph.facebook.com/v2.9/#{@user_id}/events?type=created&limit=10", :content_type => :json, :accept => :json, :authorization => "OAuth #{@token}")
+      @response = RestClient.get("https://graph.facebook.com/v2.9/#{@user_id}/events?type=created&limit=5", :content_type => :json, :accept => :json, :authorization => "OAuth #{@token}")
       @response_json = JSON.load @response
     else
       render :status => 404
