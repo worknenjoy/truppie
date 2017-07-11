@@ -19,6 +19,7 @@
  *= require form-login 
  *= require date-view
  *= require event-list
+ *= require user-page
  *= require bootstrap-ribbon
  *= require navbar
  *= require bootstrap-social  

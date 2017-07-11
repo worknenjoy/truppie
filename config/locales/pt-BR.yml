@@ -758,3 +758,5 @@ pt-BR:
   import-event-action: "importar eventos"
   import-event-desc: "Escolha os eventos do facebook que deseja importar para a Truppie"
   tour-category-label: "E ai, qual é dessa truppie?"
+
+  facebook-login: "entrar com o facebook"

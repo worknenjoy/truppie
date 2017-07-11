@@ -1,0 +1,129 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 wow bounceIn">
+      <% if !@organizer.nil? %>
+          <p class="spaced-smallest">
+            <%= t('for-you-on-truppie-title') %>
+          </p>
+          <nav class="navbar navbar-light bg-faded">
+            <%= link_to organizer_path(@organizer), class: 'navbar-brand' do %>
+                <i class="fa fa-map-o"></i> <strong><%= @organizer.name %>: </strong>
+            <% end %>
+            <ul class="nav navbar-nav">
+              <li class="nav-item">
+                <%= link_to manage_organizer_path(@organizer), class: 'nav-link' do %>
+                    <%= t('manage-truppie-action') %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to transfer_organizer_path(@organizer), class: 'nav-link' do %>
+                    <%= t('transfer-truppie-action') %>
+                <% end %>
+              </li>
+            </ul>
+          </nav>
+      <% end %>
+    </div>
+  </div>
+  <div class="row wow bounceIn">
+    <div class="col-xs-12">
+      <div class="jumbotron" style="margin-top: 40px;">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <h4 class="display-5 spaced-down"><%= t('want-offer-truppies-title') %> </h4>
+            <p><%= t('organizer-why-create-account-text') %></p>
+            <p>
+              <% if !@organizer.nil? %>
+                <p><%= link_to t('profile-access'), organizer_path(@organizer), class: 'btn btn-primary btn-lg' %></p>
+                <p><%= t('profile-access-truppie-account') %></p>
+                <ul class="list-group spaced-down">
+                  <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('profile-access-truppie-account-step') %></li>
+                  <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('profile-access-truppie-account-transfer-step') %></li>
+                  <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('profile-access-truppie-account-share-step') %></li>
+                </ul>
+            <% else %>
+                <p><%= t('create-truppie-account') %></p>
+                <p><%= t('organizer-after-create-account-advantages') %></p>
+                <p><strong><%= t('after-create-truppie-account') %></strong></p>
+                <ul class="list-group spaced-down">
+                  <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('create-account-action-step') %></li>
+                  <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= link_to t('contact-us-action-step'), contacts_index_path %></li>
+                  <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('organizer-access-step') %></li>
+                </ul>
+                <p><%= link_to t('enter-login'), new_user_session_path, class: 'btn btn-primary btn-lg' %></p>
+            <% end %>
+            </p>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <%= image_tag("screenshots/organizer-profile-mobile.png", :alt => "Truppie", :class => "img-fluid") %>
+          </div>
+        </div>
+      </div>
+      <h2 class="spaced-top"><%= t('offer-truppie-advantages') %></h2>
+    </div>
+  </div>
+  <div class="row wow bounceIn">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= image_tag("screenshots/organizer-balance-desktop.png", :alt => "Truppie", :class => "img-fluid") %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= image_tag("screenshots/organizer-balance.png", :alt => "Truppie", :class => "img-fluid") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p><%= t('offer-truppies-title-call') %></p>
+          <ul class="list-group spaced-down">
+            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-step') %></li>
+            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-limit-step') %></li>
+            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-final-step')%></li>
+          </ul>
+          <p><%= t('admin-payment-with-us-conclusion') %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row cards">
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <%= image_tag("mobile-friendly.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <p class="tagline emblem-font"><%= t('admin-from-anywhere-title') %>
+            </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-from-anywhere-content') %></p>
+          </div>
+        </div>
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <picture>
+                <%= image_tag("secure-payment.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              </picture>
+              <p class="tagline emblem-font"><%= t('admin-secure-payment-title') %>
+            </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-secure-payment-content') %></p>
+          </div>
+        </div>
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <%= image_tag("facebook-share.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <p class="tagline emblem-font"><%= t('admin-share-event-title') %>
+            </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-share-event-content') %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class='col-xs-12'>
+      <%= render partial: 'layouts/subscribe' %>
+    </div>
+  </div>
+</div>
