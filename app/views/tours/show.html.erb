@@ -3,8 +3,7 @@
 	<div class="img-holder">
     <% if @tour.try(:photo) and !@tour.picture.exists? %>
       <%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
-		<% end %>
-    <% if @tour.try(:picture) %>
+    <% elsif @tour.try(:picture) %>
 			<%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
 		<% else %>
 			<div class="placeholder-truppie-image"></div>

@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  include ApplicationHelper
   
   def index
     @tours = Tour.publisheds.nexts

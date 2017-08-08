@@ -238,9 +238,9 @@
 
    test "should receive the import action to create new event from request" do
      response_body = {"description"=> "foo", "name"=> "Aniversário", "place"=> {"name" => "Parque Das Rosas - Barra Da Tijuca", "location"=> {"latitude" => -23.003000331376, "longitude" => -43.349793013295}, "id" => "276507949199490"}, "start_time" => "2015-10-08T20:00:00-0300", "id" => "199210710409935"}
-     response_picture = {"data" => {"is_silhouette" => false, "url" => "pic"}}
+     response_picture = {"cover" => {"source" => "pic"}}
      FakeWeb.register_uri(:get, "https://graph.facebook.com/v2.9/199210710409935", :body => response_body.to_json, :status => ["200", "Success"])
-     FakeWeb.register_uri(:get, "https://graph.facebook.com/v2.9/199210710409935/picture/?redirect=0&type=large", :body => response_picture.to_json, :status => ["200", "Success"])
+     FakeWeb.register_uri(:get, "https://graph.facebook.com/v2.9/199210710409935/?fields=cover", :body => response_picture.to_json, :status => ["200", "Success"])
      post :import_events, { id: @mkt.id, events: ["199210710409935"], facebook_token: '1234', facebook_user_id: 'user'}
      assert_equal assigns(:organizer), @mkt
      assert_equal assigns(:tour), Tour.last

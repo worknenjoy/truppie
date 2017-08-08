@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   #force_ssl if: :ssl_configured?
+  helper_method :is_organizer_admin
 
   #def ssl_configured?
   #  !Rails.env.development?
@@ -10,4 +11,39 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include ApplicationHelper
+
+  def check_if_admin
+    allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
+
+    if params[:controller] == "organizers" and (params[:action] == "manage" or params[:action] == "tos_acceptance")
+      organizer_id = params[:id]
+      allowed_emails.push Organizer.find(organizer_id).user.email
+    end
+
+    unless allowed_emails.include? current_user.email
+      flash[:notice] = "Você não está autorizado a entrar nesta página"
+      redirect_to new_user_session_path
+    end
+  end
+
+  private
+
+  def is_organizer_admin
+    if user_signed_in?
+      allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
+
+      if params[:controller] == "organizers" and params[:action] == "show"
+        organizer_id = params[:id]
+        allowed_emails.push Organizer.find(organizer_id).user.email
+      end
+
+      unless allowed_emails.include? current_user.email
+        return false
+      end
+      true
+    else
+      false
+    end
+  end
+
 end
