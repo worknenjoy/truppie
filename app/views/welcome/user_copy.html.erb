@@ -1,47 +1,124 @@
 <%= render 'layouts/navbar' %>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      <h2 class="spaced-default"><%= t('user-adventure-info') %></h2>
-    </div>
+<div id='intro'>
+  <div class='cta container'>
+    <img alt='Splash' class='splash' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/adventure-splash.svg'>
+    <p class="symbol-font" style="font-size: 2em; margin: 0">abcdefghijpq lmnopqrwsxz</p>
+    <h1 class="emblem-font">Explore e experimente</h1>
+    <p><%= t('user-adventure-info') %></p>
+    <%= link_to new_user_session_path, class: 'button' do %>
+        <span>Comece a se aventurar</span>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <figure id="showcase">
-        <section></section>
-        <section></section>
-        <section></section>
-        <section></section>
-      </figure>
-    </div>
+</div>
+<div id='tours'>
+  <div class='container'>
+    <h2>Onde você gostaria de ir?</h2>
+    <form action='#'>
+      <input id='location' placeholder='Location' type='text'>
+      <button class='button' type='submit'>
+        Sair do sofá!
+      </button>
+    </form>
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-6">
-      <p><%= t('user-adventure-step') %></p>
-      <p><%= t('user-what-truppie-is') %></p>
-      <p><%= t('user-truppie-possibilities') %></p>
-      <ul class="list-group spaced-down">
-        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('user-advantages-payment-step') %></li>
-        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('user-advantages-discover-step')%></li>
-        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('user-advantages-guide-contact-step')%></li>
-      </ul>
-      <p><%= t('user-advantages-conclusion') %></p>
-    </div>
-    <div class="col-xs-12 col-md-6">
-      <%= image_tag("screenshots/user-order-desktop.png", :alt => "Truppie", :class => "img-fluid") %>
-    </div>
-  </div>
-  <%= render partial: 'layouts/what_it_is' %>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="jumbotron">
-        <h2 class="display-5"><%= t('user-collect-experience-title')%></h2>
-        <p class="lead"><%= t('user-why-truppie-is-so-great')%></p>
-        <p><%= t('user-why-truppie-is-so-great-complement')%></p>
-        <p class="lead">
-          <%= link_to t('user-start-to-use-truppie'), root_path, class: 'btn btn-primary btn-lg' %>
-        </p>
+  <ul>
+    <li>
+      <div>
+        <h3>Denali</h3>
+        <h4>Alaska</h4>
       </div>
+      <!-- Image by Maureen [CC-BY-2.0 (http://creativecommons.org/licenses/by/2.0)], via Flickr, https://www.flickr.com/photos/amerune/9374725724 -->
+      <img alt='Denali, Alaska' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/denali_alaska.jpg'>
+    </li>
+    <li>
+      <div>
+        <h3>Mirror Lake</h3>
+        <h4>California</h4>
+      </div>
+      <!-- Image By chensiyuan (chensiyuan) [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC BY-SA 4.0-3.0-2.5-2.0-1.0 (http://creativecommons.org/licenses/by-sa/4.0-3.0-2.5-2.0-1.0)], via Wikimedia Commons, https://upload.wikimedia.org/wikipedia/commons/7/70/Yosemite_national_park_mirror_lake_2010u.JPG -->
+      <img alt='Mirror Lake, California' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/mirror-lake_california.jpg'>
+    </li>
+    <li>
+      <div>
+        <h3>Antelope Canyon</h3>
+        <h4>Arizona</h4>
+      </div>
+      <!-- Image By Moyan Brenn [CC-BY-2.0 (http://creativecommons.org/licenses/by/2.0)], via Flickr, https://www.flickr.com/photos/aigle_dore/5951674773 -->
+      <img alt='Antelope Canyon, Arizona' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/antelope-canyon_arizona.jpg'>
+    </li>
+    <li>
+      <div>
+        <h3>Key West</h3>
+        <h4>Florida</h4>
+      </div>
+      <!-- Image By Ricymar Photography [CC-BY-2.0 (http://creativecommons.org/licenses/by/2.0)], via Flickr, https://www.flickr.com/photos/ricardo_mangual/5749480168 -->
+      <img alt='Key West, Florida' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/key-west_florida.jpg'>
+    </li>
+    <li>
+      <div>
+        <h3>Saint Mary Lake</h3>
+        <h4>Montana</h4>
+      </div>
+      <!-- Image By Ricymar Photography [CC-BY-2.0 (http://creativecommons.org/licenses/by/2.0)], via Flickr, https://www.flickr.com/photos/ricardo_mangual/5749480168 -->
+      <img alt='Saint Mary Lake, Montana' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/saint-mary-lake_montana.jpg'>
+    </li>
+    <li>
+      <div>
+        <h3>Moab</h3>
+        <h4>Utah</h4>
+      </div>
+      <!-- Image By Gridge [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC BY-SA 4.0-3.0-2.5-2.0-1.0 (http://creativecommons.org/licenses/by-sa/4.0-3.0-2.5-2.0-1.0)], via Wikimedia Commons, https://upload.wikimedia.org/wikipedia/commons/0/06/Delicatearch1.jpg -->
+      <img alt='Moab, Utah' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/moab_utah.jpg'>
+    </li>
+    <li>
+      <div>
+        <h3>Waipio Valley</h3>
+        <h4>Hawaii</h4>
+      </div>
+      <!-- Image By Paul Bica [CC-BY-2.0 (http://creativecommons.org/licenses/by/2.0)], via Flickr, https://www.flickr.com/photos/dexxus/5652914929 -->
+      <img alt='Waipio Valley, Hawaii' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/waipio-valley_hawaii.jpg'>
+    </li>
+    <li>
+      <div>
+        <h3>Carlsbad Caverns</h3>
+        <h4>New Mexico</h4>
+      </div>
+      <!-- Image By Guinther [GFDL (http://www.gnu.org/copyleft/fdl.html) or CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/)], via Wikimedia Commons, https://upload.wikimedia.org/wikipedia/commons/d/dd/Carlsbad_Interior_Formations.jpg -->
+      <img alt='Carlsbad Caverns, New Mexico' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/carlsbad-caverns_new-mexico.jpg'>
+    </li>
+  </ul>
+</div>
+<div class='container' id='pricing'>
+  <article>
+    <div class="pull-left">
+      <h3>Tier 1</h3>
+      <img style="margin-right: 20px; margin-bottom: 20px;" class="pull-left" width="72" src="data:image/png;base64,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" />
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius adipisci, sed libero. Iste asperiores suscipit, consequatur debitis animi impedit numquam facilis iusto porro labore dolorem, maxime magni incidunt. Delectus, est!</p>
+      <p>Possimus deserunt nisi perferendis, consequuntur odio et aperiam, est, dicta dolor itaque sunt laborum, magni qui optio illum dolore laudantium similique harum. Eveniet quis, libero eligendi delectus repellendus repudiandae ipsum.</p>
+      <a class='button' href='#'>
+        <span>Learn More</span>
+      </a>
     </div>
-  </div>
+  </article>
+  <article>
+    <div class="pull-left">
+      <h3>Tier 1</h3>
+      <img style="margin-right: 20px; margin-bottom: 20px;" class="pull-left" width="72" src="data:image/png;base64,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" />
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius adipisci, sed libero. Iste asperiores suscipit, consequatur debitis animi impedit numquam facilis iusto porro labore dolorem, maxime magni incidunt. Delectus, est!</p>
+      <p>Possimus deserunt nisi perferendis, consequuntur odio et aperiam, est, dicta dolor itaque sunt laborum, magni qui optio illum dolore laudantium similique harum. Eveniet quis, libero eligendi delectus repellendus repudiandae ipsum.</p>
+      <a class='button' href='#'>
+        <span>Learn More</span>
+      </a>
+    </div>
+  </article>
+  <article>
+    <div class="pull-left">
+      <h3>Tier 1</h3>
+      <img style="margin-right: 20px; margin-bottom: 20px;" class="pull-left" width="72" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAJTElEQVR4Xu2dX2wcVxXGv3PX640TkqZRqAQNgkjQ1N6kPIDarO1dr9UoKAhQMbKEaIGnKuLBiNIWe42Dt9B4nSZtSvmjkgeU9AFQoXYAlSgmtLvr2AEVUEm8TolAygsUVSTYbpPGsedetEmb2uuZueud7M6M5+yj773nnvOd35x75+7smMCfQCtAgY6egwcDEHAIGAAGIOAKBDx8rgAMQMAVCHj4XAEYgIArEPDwuQIwAAFXIODhcwVgAG4oQMlkMhRwPQIRfjabNQCoYrAUi3U2iLXGQQk8IIA1gVAg6EFKXIbAkfDVdd+klp0dPwbwtaBrEsj4iX5ELTs+Pw1B6wIpQNCDlmqmWAGurQX8CaYCDEAw8/7ezt+qAkgpiztF/qwQBYQQpnd4lhVgbGSIzwhWSPKLYVhd6AzACkqyXSgMQEASbRUmA8AAmN7t8RIQEDC4AgQk0bwEBDzRDAADYKoALwEBB4MBYAD4LiDIDHAFCHL2+Sg44NlnABgAXgICzkDNAIj25h73qtaFgbY+O986OztDr0/PP+ZV/xWRHDs+9J1K/KsdAKm8Zx8xK2QSts84JJPJurn6DXOVCFyLMcWHdE6dOFpXyVwMAAAGYCk6N/3bwChXgEou0LLGcAXQyiTfBrAKEKalnivASqwASv6dIJ42BH59diDx+rae0VsljD0g8VBpuAzAygLAUAp7bltl7M+m2+dLQ4v25LIgalv4dx0ASKdF6/jpXm2hcamDBKnxkRf2VjL9CtsESgUSXyoMJH5hJUZTz2g/kUovC4BKlPXJGI8AIC8SRJ9BxmgI9AGlREwBzUriHiGwfhladhcyiSfs+ke78/sg8C0G4LoCXgDAkEK0nt3b+seliVPU1D3WRCRjRGiWkmIkjC2mmzlShwoDbbt1sER7RvMgFWcAPAKAUtg/OZhYdEXaXsHp8Q1ydm67IDRDUQwSdyuBsdsixmfM1vyFtralXr5TgiZLAdLuAXRU+bjd5Qogz12KqI+fT7dfqVTDzs7nQ5PRaKiQjl7V2djanR1WQty33LsAPgpeoFilPw0zPwiS50iFeiYG48O65Dltb0rldhPoWTM7ugrAR8FVA+C6YZL4q6qjdGFv/LdOE202vqk330WGfBpCCAZgsQIuLwGLnTGAVwSJ/smB1mM3BYS0Ek2z+YME+rqdPa4AS9Vx9bsAUqp4R9A/Mdg2UikIdz1yfI0RbvgZgM/pbDAAHgPgXXeUocZQR/2TA4k/6JJY2m52v29lgwHwKAA33FIqJ4j6z2QSuXJBiPaOfgVKHSmnvw4APgqu8iawnCQB6k+IbEyUc7tXtNfYl/uYMOhcOba1AJRjxKd9PLUJtNHwfGgudM/pAy1vLEfnaHf2DQjxft0YBsDDS4CUmAop1TzxRNtZXSJL25t6cr8hos/qxjEALgKgCC9A0X6o+QshCt1uKLWJCB8CxCaQ2qSAH1SyCSyGFE3legDKMADWCri7BEj5q8K+ZKcuQWbtdzz88sa6cF375GD8l1bjG7tzCSFIu3HUVQA+Cq7CJpAMmhDy8vbTBz51abkA3JkavSME9aKU2BhpMDa/mm6fMrMRe2i8Yap+fkYI2D4xqwOAj4KrAAAg/62IHp0caCse1pT9aUpl4wQcBcSGdwZ9t5BJ9FtWgVTuFQH6pN0EDICLewAoGoVCV2Ff/G86Cq5/nRt6FUDkRl8pZwSFPnJmMP4/s/FbU/lnFNDFAJgr4O4e4D2fDJD6CerDewrp5otWybqr7+QWw5CvLWkntdfq1z3R3vwXofBzBsDbALzr3QVS6JtYFT+ENMlSlz+R/vPqK7OXTfYM8k0D85tfy+y4UDqm8dtjHxbSOM8A+AOA617aPN7VmMpeFBC3mqxag4VMPGUWZjSV/RcgPmgFgW4PwEfBVdkE2lyTUkpBobvPDMb/UtormsqfBrBtyWiJt+bmjc3nnmz/b2nb1lT+RQV8umIAdJsTH7d7ZQ9gJuGpQibeUiwHCxvtkmn1fGFjT37s2jOEFh9tBfBxgnWuexkAgOirhYH4c4sA6M0/rxRMD4+klJfDRnjzwu8M3rltzFn9LKxomwEwWVCtyLi5zwTq+MR/ZiP1W/6R3j5T7PnRrt9FIqvX/BOCbrcZ+VQhk3i42B5N5R+ExFMQeJ+TTaDWSx938HYFuLYfpCcnBuOPRNOFepq98FMF3G+vt3xbAPdKSd+DoHvLyY2uArh9FCyBl8ZHhl8qJ5bl9vE8ABJyjkjsElI9roi2LzfAcvrrAHD7KJiAx06ODC36OVs5cZXTx/MAlBOE0z4MgHf3AE5zW9Z4BoAB8PQ7gngJKOs6rrwTV4CaVICc7avYKk+f85GFTJv9K+xcfkGEBPLjI0N555EutVCzTWA1nGebzhVgAJxr6GsLDICv0+fceQbAuYa+tsAA+Dp9zp1nAJxr6GsLDICv0+fceQbAuYa+tsAA+Dp9zp1nAJxr6GsLDICv0+fceQbAuYa+tsAA+Dp9zp1nAJxr6GsLywYgfPVi2NcRs/OLFLD6Z1iW7wlk/YKhAAMQjDxbRskAMAAdnv1HjwHPTU3C5wpQE5m9OwkD4N3c1MQzBqAmMnt3EgbAu7mpiWcMQE1k9u4kDIB3c1MTzxiAmsjs3UmoZUfHDATWetdF9qxaCkhgqlgBnoHmDZvVcoDtuq0AHaRdu3ZFpuWqfWSoL0vgFrdd4vmrr4AQYkopeXh6fbjX9vfy1XeFZ3BbAQbA7Qy4PD8D4HIC3J5+pQNAyWQy5ETkbDY772S818euaACcvvZNSmmcOnHU9r+QeD3BOv8YABuFGAAdPh5v5wqgTxBXAK4Aekr82oMrgD5zXAG4Augp8WsPrgD6zHEF4Aqgp8SvPbgC6DPHFYArgJ4Sv/bgCqDPHFcArgB6SvzagyuAPnNcAbgC6Cnxaw+uAPrM+aICxGKdDWKtcVBC3i8gbP83oD7kKveQeFMSjkTm1j2azR6+UuXZHJv3BQCtO79wSEE96DjaGhqQCj889fuhrhpOWdFUfgCAWnbedwkQDRVF6NYgqWbGTgx7/ilrfwCwo+MtCKx2K5eVzEuQ0ydHjq6vZGwtx/gBALTs7HgWwO5aCuN0LkXq++PHh7/h1E61x/sCgOImkNYaB0iqByBoXbVFcWK/eOVLosO3iCvdx44dm3ViqxZj/w9vzrTDpvnTBwAAAABJRU5ErkJggg==" />
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius adipisci, sed libero. Iste asperiores suscipit, consequatur debitis animi impedit numquam facilis iusto porro labore dolorem, maxime magni incidunt. Delectus, est!</p>
+      <p>Possimus deserunt nisi perferendis, consequuntur odio et aperiam, est, dicta dolor itaque sunt laborum, magni qui optio illum dolore laudantium similique harum. Eveniet quis, libero eligendi delectus repellendus repudiandae ipsum.</p>
+      <a class='button' href='#'>
+        <span>Learn More</span>
+      </a>
+    </div>
+  </article>
 </div>
