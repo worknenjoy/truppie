@@ -55,6 +55,10 @@ $overcast: #849EBF;
     color: lighten($navy, 20%);
   }
 
+  label.radio-inline {
+    display: inline-block;
+  }
+
   input[type="text"].default {
     padding-left: 15px;
     margin-bottom: 20px;
