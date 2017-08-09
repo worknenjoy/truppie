@@ -266,14 +266,15 @@ class ToursController < ApplicationController
     end
     
     current_cat = params[:tour][:category_id]
-    
+
     begin
       if current_cat
         cat = Category.find(current_cat)
         params[:tour][:category] = cat
       end
     rescue ActiveRecord::RecordNotFound => e
-      params[:tour][:category] = Category.create(name:current_cat)      
+      cat = Category.find_by_name(current_cat)
+      params[:tour][:category] = cat || Category.first_or_create(name:current_cat)
     end
     
     current_where = params[:tour][:where]
@@ -516,19 +517,8 @@ class ToursController < ApplicationController
             quantity: @amount
         }
 
-        puts "=> REQUEST"
-        puts PagSeguro::PaymentRequest::RequestSerializer.new(payment).to_params
 
         response = payment.register
-
-        puts
-        puts "=> RESPONSE"
-        puts response.inspect
-        puts response.response.body.inspect
-        puts response.url
-        puts response.code
-        puts response.created_at
-        puts response.errors.to_a
 
         if response.url
           if response.errors.any?

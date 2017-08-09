@@ -23,11 +23,14 @@ class OrganizersController < ApplicationController
 
   def guided_tour
     @guided_tour = @organizer.tours.new
+    @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
   end
 
   def edit_guided_tour
     @guided_tour = Tour.find(params[:tour])
     @organizer = Organizer.find(params[:id])
+    @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
+    @current_category_name = Category.find(@guided_tour.category_id).name rescue nil
   end
 
   # GET /organizers/1/edit
