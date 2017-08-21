@@ -53,6 +53,7 @@
  *= require schedule
  *= require user-list
  *= require date-range
+ *= require mountain-form.scss.erb
  */
 
 .full-width {

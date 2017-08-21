@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :backgrounds
   resources :collaborators
   resources :customers
   resources :tour_pictures

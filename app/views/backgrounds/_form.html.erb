@@ -1,0 +1,25 @@
+<%= form_for(@background) do |f| %>
+  <% if @background.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@background.errors.count, "error") %> prohibited this background from being saved:</h2>
+
+      <ul>
+      <% @background.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :paperclip %><br>
+    <%= f.file_field :picture %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -14,7 +14,7 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= yield (:body_class) %>">
 <%= yield %>
 <%= render 'layouts/footer' %>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&libraries=places"></script>

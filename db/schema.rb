@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625161809) do
+ActiveRecord::Schema.define(version: 20170821211206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20170625161809) do
 
   add_index "attractions_wheres", ["attraction_id", "where_id"], name: "index_attractions_wheres_on_attraction_id_and_where_id", using: :btree
   add_index "attractions_wheres", ["where_id", "attraction_id"], name: "index_attractions_wheres_on_where_id_and_attraction_id", using: :btree
+
+  create_table "backgrounds", force: :cascade do |t|
+    t.string   "name"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "bank_accounts", force: :cascade do |t|
     t.string   "bank_number"

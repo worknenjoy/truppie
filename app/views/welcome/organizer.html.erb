@@ -1,86 +1,194 @@
-<%= render 'layouts/navbar' %>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 wow fadeIn">
-      <div class="spaced-top" style="text-align: center">
-        <%= image_tag("icons-truppie-fill/icones_truppie-cultura.svg", :alt => "Truppie", width: 100) %>
-        <%= image_tag("icons-truppie-fill/icones_truppie-gastronomia.svg", :alt => "Truppie", width: 100) %>
-        <%= image_tag("icons-truppie-fill/icones_truppie-esportes-e-aventura.svg", :alt => "Truppie", width: 100) %>
-        <%= image_tag("icons-truppie-fill/icones_truppie-trilhas-e-travessias.svg", :alt => "Truppie", width: 100) %>
-        <%= image_tag("icons-truppie-fill/icones_truppie-familia.svg", :alt => "Truppie", width: 100) %>
-        <%= image_tag("icons-truppie-fill/icones_truppie-urbano.svg", :alt => "Truppie", width: 100) %>
-        <%= image_tag("icons-truppie-fill/icones_truppie-relax.svg", :alt => "Truppie", width: 100) %>
-        <%= image_tag("icons-truppie-fill/icones_truppie-geek.svg", :alt => "Truppie", width: 100) %>
-        <%= image_tag("icons-truppie-fill/icones_truppie-amigos.svg", :alt => "Truppie", width: 100) %>
-      </div>
-    </div>
-  </div>
-  <div class="row wow fadeIn">
-    <div class="col-xs-12">
+<% content_for :body_class, "mountain-form" %>
 
+<%= render 'layouts/navbar' %>
+<div class="container-mountain">
+  <div class="lbg">
+  </div>
+  <div class="lbg2">
+  </div>
+  <div class="lO">
+  </div>
+  <div class="lC">
+    <h1>Entre para a truppie</h1>
+    <h3>e gerencie suas reservas</h3>
+    <h5>de modo prático e direto com seus clientes</h5>
+    <div class="logo">
+      <img src="http://i203.photobucket.com/albums/aa55/blackcat_070/logo-01_zps10zmysak.png">
     </div>
   </div>
-  <div class="row wow fadeIn">
-    <div class="col-xs-12">
-      <div class="row">
-        <div class="col-xs-12 col-md-6">
-          <%= image_tag("screenshots/organizer-balance-desktop.png", :alt => "Truppie", :class => "img-fluid") %>
-        </div>
-        <div class="col-xs-12 col-md-6">
-          <%= image_tag("screenshots/organizer-balance.png", :alt => "Truppie", :class => "img-fluid") %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <p><%= t('offer-truppies-title-call') %></p>
-          <ul class="list-group spaced-down">
-            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-step') %></li>
-            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-limit-step') %></li>
-            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-final-step')%></li>
-          </ul>
-          <p><%= t('admin-payment-with-us-conclusion') %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="row cards">
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
-              <%= image_tag("mobile-friendly.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-              <p class="tagline emblem-font"><%= t('admin-from-anywhere-title') %>
-              </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-from-anywhere-content') %></p>
-          </div>
-        </div>
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
-              <picture>
-                <%= image_tag("secure-payment.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-              </picture>
-              <p class="tagline emblem-font"><%= t('admin-secure-payment-title') %>
-              </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-secure-payment-content') %></p>
-          </div>
-        </div>
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
-              <%= image_tag("facebook-share.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-              <p class="tagline emblem-font"><%= t('admin-share-event-title') %>
-              </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-share-event-content') %></p>
-          </div>
-        </div>
+  <form action="#" method="post">
+    <div class="rightSec" id="first">
+      <ul>
+        <li>
+          <label>
+            Full name
+          </label>
+          <input type="text" name="fname" autocomplete="off" required />
+        </li>
+
+        <li>
+          <label>
+            Email
+          </label>
+          <input type="email" name="email" autocomplete="off" required />
+        </li>
+        <li>
+          <label>
+            Password
+          </label>
+          <input type="password" name="password" autocomplete="off" required />
+        </li>
+        <li>
+          <label>
+            Re-type Password
+          </label>
+          <input type="password" name="password2" autocomplete="off" required />
+        </li>
+      </ul>
+      <div class="nav_link">
+        <a href="#" id="continue" style="float:right;">Continue</a>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class='col-xs-12'>
-      <%= render partial: 'layouts/subscribe' %>
+
+    <!-- Section 2 -->
+
+    <div class="rightSec" id="second" style="display:none">
+      <ul>
+        <li>
+          <label>
+            Phone Number
+          </label>
+          <input type="tel" name="phone" autocomlete="off" required/>
+        </li>
+        <li>
+          <label>
+            Location
+          </label>
+          <select type="province" name="Province" placeholder="Province" required>
+            <option value="">Province...</option>
+            <option value="Alberta">Alberta</option>
+            <option value="British Columbia">British Columbia</option>
+            <option value="Manitoba">Manitoba</option>
+            <option value="New Brunswick">New Brunswick</option>
+            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+            <option value="Nova Scotia">Nova Scotia</option>
+            <option value="Ontario">Ontario</option>
+            <option value="Prince Edward Island">Prince Edward Island</option>
+            <option value="Quebec">Quebec</option>
+            <option value="Saskatchewan">Saskatchewan</option>
+          </select>
+        </li>
+        <li>
+          <label>
+            Postal Code
+          </label>
+          <input type="text" name="postal_code" autocomlete="off" required/>
+        </li>
+        <li>
+          <label>
+            Date of Birth
+          </label>
+          <input type="date" name="dob" autocomlete="off" required/>
+        </li>
+      </ul>
+      <div class="nav_link">
+        <a href="#" id="prev">Previous</a>
+        <a href="#" id="continue2" style="float:right;">Continue</a>
+      </div>
     </div>
-  </div>
+
+    <!--- Secont 3 --->
+
+    <div class="rightSec" id="third" style="display:none">
+
+      <div class="gender">
+        <h3>
+          Gender
+        </h3>
+        <input type="radio" name="gender" autocomlete="off" id="male" value="male" required/>
+        <label id="gender_radio" for="male">Male</label>
+        <input type="radio" name="gender" autocomlete="off" id="female" value="female" required/>
+        <label id="gender_radio" for="female">Female</label>
+        <input type="radio" name="gender" autocomlete="off" id="other" value="other" required/>
+        <label id="gender_radio" for="other">Other</label>
+      </div>
+      <div class="interests">
+
+        <label>What are your interests</label>
+        <ul>
+          <li>
+            <input type="checkbox" name="interests" id="va" value="va">
+            <label for="va">Visual Arts</label>
+          </li>
+          <li>
+            <input type="checkbox" name="interests" id="st" value="st">
+            <label for="st">Skilled Trades</label>
+          </li>
+          <li>
+            <input type="checkbox" name="interests" id="ps" value="ps">
+            <label for="ps">Public Saftey</label>
+          </li>
+          <li>
+            <input type="checkbox" name="interests" id="pa" value="pa">
+            <label for="pa">Performing Arts</label>
+          </li>
+          <li>
+            <input type="checkbox" name="interests" id="ba" value="ba">
+            <label for="ba">Business</label>
+          </li>
+          <li>
+            <input type="checkbox" name="interests" id="es" value="es">
+            <label for="es">Engineering Science</label>
+          </li>
+          <li>
+            <input type="checkbox" name="interests" id="hs" value="hs">
+            <label for="hs">Health Science</label>
+          </li>
+          <li>
+            <input type="checkbox" name="interests" id="dm" value="dm">
+            <label for="dm">Digital Media</label>
+          </li>
+        </ul>
+
+      </div>
+      <div class="nav_link">
+        <a href="#" id="prev2">Previous</a>
+        <a href="#" id="continue3" style="float:right;">Continue</a>
+      </div>
+    </div>
+
+
+    <!-- Section 4 -->
+
+    <div class="rightSec" id="fourth" style="display:none">
+      <ul>
+        <li>
+          <label>What is your story?</label>
+        </li>
+        <textarea name="story"></textarea>
+      </ul>
+      <div class="nav_link">
+        <a href="#" id="prev3">Previous</a>
+        <a href="#" id="continue4" style="float:right;">Continue</a>
+      </div>
+    </div>
+    <div class="rightSec" id="fifth" style="display:none">
+      <div class="ty">
+        <h1>Thank you!</h1>
+        <h3>To finish your registeration, please click the button below.</h3>
+        <h5>Be patient while we process your application.</h5>
+        <button type="submit" value="submit">Finish</button>
+      </div>
+      <div class="nav_link">
+        <a href="#" id="prev4">Previous</a>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="progress_state">
+  <div class="dot" id="dot1"></div>
+  <div class="dot" id="dot2"></div>
+  <div class="dot" id="dot3"></div>
+  <div class="dot" id="dot4"></div>
+  <div class="dot" id="dot5"></div>
 </div>

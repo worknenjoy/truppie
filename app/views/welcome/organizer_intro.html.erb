@@ -1,0 +1,86 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 wow fadeIn">
+      <div class="spaced-top" style="text-align: center">
+        <%= image_tag("icons-truppie-fill/icones_truppie-cultura.svg", :alt => "Truppie", width: 100) %>
+        <%= image_tag("icons-truppie-fill/icones_truppie-gastronomia.svg", :alt => "Truppie", width: 100) %>
+        <%= image_tag("icons-truppie-fill/icones_truppie-esportes-e-aventura.svg", :alt => "Truppie", width: 100) %>
+        <%= image_tag("icons-truppie-fill/icones_truppie-trilhas-e-travessias.svg", :alt => "Truppie", width: 100) %>
+        <%= image_tag("icons-truppie-fill/icones_truppie-familia.svg", :alt => "Truppie", width: 100) %>
+        <%= image_tag("icons-truppie-fill/icones_truppie-urbano.svg", :alt => "Truppie", width: 100) %>
+        <%= image_tag("icons-truppie-fill/icones_truppie-relax.svg", :alt => "Truppie", width: 100) %>
+        <%= image_tag("icons-truppie-fill/icones_truppie-geek.svg", :alt => "Truppie", width: 100) %>
+        <%= image_tag("icons-truppie-fill/icones_truppie-amigos.svg", :alt => "Truppie", width: 100) %>
+      </div>
+    </div>
+  </div>
+  <div class="row wow fadeIn">
+    <div class="col-xs-12">
+
+    </div>
+  </div>
+  <div class="row wow fadeIn">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <%= image_tag("screenshots/organizer-balance-desktop.png", :alt => "Truppie", :class => "img-fluid") %>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <%= image_tag("screenshots/organizer-balance.png", :alt => "Truppie", :class => "img-fluid") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <p><%= t('offer-truppies-title-call') %></p>
+          <ul class="list-group spaced-down">
+            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-step') %></li>
+            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-limit-step') %></li>
+            <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t('admin-payment-with-us-final-step')%></li>
+          </ul>
+          <p><%= t('admin-payment-with-us-conclusion') %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row cards">
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <%= image_tag("mobile-friendly.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <p class="tagline emblem-font"><%= t('admin-from-anywhere-title') %>
+              </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-from-anywhere-content') %></p>
+          </div>
+        </div>
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <picture>
+                <%= image_tag("secure-payment.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              </picture>
+              <p class="tagline emblem-font"><%= t('admin-secure-payment-title') %>
+              </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-secure-payment-content') %></p>
+          </div>
+        </div>
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <%= image_tag("facebook-share.jpg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <p class="tagline emblem-font"><%= t('admin-share-event-title') %>
+              </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('admin-share-event-content') %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class='col-xs-12'>
+      <%= render partial: 'layouts/subscribe' %>
+    </div>
+  </div>
+</div>
