@@ -34,5 +34,6 @@
 //= require date-range
 //= require calendar-app
 //= require dash
+//= require mountain-form
 //= require main
 
