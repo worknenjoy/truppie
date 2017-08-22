@@ -7,7 +7,8 @@ class WelcomeController < ApplicationController
   end
   
   def organizer
-     @organizer = Organizer.where(:user => current_user).take
+     @organizer = Organizer.where(:user => current_user)
+     @new_organizer = Organizer.new
   end
   
   def logos

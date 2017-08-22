@@ -9,44 +9,51 @@
   <div class="lO">
   </div>
   <div class="lC">
-    <h1>Entre para a truppie</h1>
-    <h3>e gerencie suas reservas</h3>
-    <h5>de modo prático e direto com seus clientes</h5>
-    <div class="logo">
-      <img src="http://i203.photobucket.com/albums/aa55/blackcat_070/logo-01_zps10zmysak.png">
-    </div>
-  </div>
-  <form action="#" method="post">
-    <div class="rightSec" id="first">
-      <ul>
-        <li>
-          <label>
-            Full name
-          </label>
-          <input type="text" name="fname" autocomplete="off" required />
-        </li>
+    <h1><%= t('title-organizer-join-truppie') %></h1>
+    <p></p>
+    <h3 style="margin-bottom: 20px;"><%= t('desc-organizer-why-truppie') %></h3>
 
+    <%= link_to '#', id: 'import-from-facebook-action' , class: 'btn btn-primary btn-facebook btn-sm' do %>
+        <i class="fa fa-facebook"></i> <%= t('facebook-import-from-page') %>
+    <% end %>
+  </div>
+  <%= form_for @new_organizer, class: "", role: "form" do |f| %>
+    <div class="rightSec" id="first">
+      <% if @organizer.any? %>
+      <div class="spaced-down">
+          <p><%= t('organizer-from-this-user') %></p>
+          <ul>
+            <% @organizer.each do |o| %>
+                <li>
+                  <a class="nav-link" href="<%= organizers_path(o) %>"><%= o.name %></a>
+                </li>
+            <% end %>
+          </ul>
+      </div>
+      <% end %>
+      <ul class="spaced-top">
         <li>
           <label>
-            Email
+            <%= t('label-organizer-name') %>
           </label>
-          <input type="email" name="email" autocomplete="off" required />
+          <%= f.text_field :name %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
         </li>
         <li>
           <label>
-            Password
+            <%= t('label-organizer-email') %>
           </label>
-          <input type="password" name="password" autocomplete="off" required />
+          <%= f.text_field :email %>
         </li>
         <li>
           <label>
-            Re-type Password
+            <%= t('label-organizer-website') %>
           </label>
-          <input type="password" name="password2" autocomplete="off" required />
+          <%= f.text_field :website %>
         </li>
       </ul>
       <div class="nav_link">
-        <a href="#" id="continue" style="float:right;">Continue</a>
+        <a href="#" id="continue" style="float:right;"><%= t('label-organizer-continue') %></a>
       </div>
     </div>
 
@@ -56,44 +63,26 @@
       <ul>
         <li>
           <label>
-            Phone Number
+            <%= t('label-organizer-phone') %>
           </label>
-          <input type="tel" name="phone" autocomlete="off" required/>
+          <%= f.text_field :phone %>
         </li>
         <li>
           <label>
-            Location
+            <%= t('label-organizer-address-city') %>
           </label>
-          <select type="province" name="Province" placeholder="Province" required>
-            <option value="">Province...</option>
-            <option value="Alberta">Alberta</option>
-            <option value="British Columbia">British Columbia</option>
-            <option value="Manitoba">Manitoba</option>
-            <option value="New Brunswick">New Brunswick</option>
-            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-            <option value="Nova Scotia">Nova Scotia</option>
-            <option value="Ontario">Ontario</option>
-            <option value="Prince Edward Island">Prince Edward Island</option>
-            <option value="Quebec">Quebec</option>
-            <option value="Saskatchewan">Saskatchewan</option>
-          </select>
+          <%= f.text_field :city %>
         </li>
         <li>
           <label>
-            Postal Code
+            <%= t('label-organizer-picture') %>
           </label>
-          <input type="text" name="postal_code" autocomlete="off" required/>
-        </li>
-        <li>
-          <label>
-            Date of Birth
-          </label>
-          <input type="date" name="dob" autocomlete="off" required/>
+          <%= f.file_field :picture %>
         </li>
       </ul>
       <div class="nav_link">
-        <a href="#" id="prev">Previous</a>
-        <a href="#" id="continue2" style="float:right;">Continue</a>
+        <a href="#" id="prev"><%= t('label-organizer-previous') %></a>
+        <a href="#" id="continue2" style="float:right;"><%= t('label-organizer-continue') %></a>
       </div>
     </div>
 
@@ -101,59 +90,10 @@
 
     <div class="rightSec" id="third" style="display:none">
 
-      <div class="gender">
-        <h3>
-          Gender
-        </h3>
-        <input type="radio" name="gender" autocomlete="off" id="male" value="male" required/>
-        <label id="gender_radio" for="male">Male</label>
-        <input type="radio" name="gender" autocomlete="off" id="female" value="female" required/>
-        <label id="gender_radio" for="female">Female</label>
-        <input type="radio" name="gender" autocomlete="off" id="other" value="other" required/>
-        <label id="gender_radio" for="other">Other</label>
-      </div>
-      <div class="interests">
 
-        <label>What are your interests</label>
-        <ul>
-          <li>
-            <input type="checkbox" name="interests" id="va" value="va">
-            <label for="va">Visual Arts</label>
-          </li>
-          <li>
-            <input type="checkbox" name="interests" id="st" value="st">
-            <label for="st">Skilled Trades</label>
-          </li>
-          <li>
-            <input type="checkbox" name="interests" id="ps" value="ps">
-            <label for="ps">Public Saftey</label>
-          </li>
-          <li>
-            <input type="checkbox" name="interests" id="pa" value="pa">
-            <label for="pa">Performing Arts</label>
-          </li>
-          <li>
-            <input type="checkbox" name="interests" id="ba" value="ba">
-            <label for="ba">Business</label>
-          </li>
-          <li>
-            <input type="checkbox" name="interests" id="es" value="es">
-            <label for="es">Engineering Science</label>
-          </li>
-          <li>
-            <input type="checkbox" name="interests" id="hs" value="hs">
-            <label for="hs">Health Science</label>
-          </li>
-          <li>
-            <input type="checkbox" name="interests" id="dm" value="dm">
-            <label for="dm">Digital Media</label>
-          </li>
-        </ul>
-
-      </div>
       <div class="nav_link">
-        <a href="#" id="prev2">Previous</a>
-        <a href="#" id="continue3" style="float:right;">Continue</a>
+        <a href="#" id="prev2"><%= t('label-organizer-previous') %></a>
+        <a href="#" id="continue3" style="float:right;"><%= t('label-organizer-continue') %></a>
       </div>
     </div>
 
@@ -163,27 +103,28 @@
     <div class="rightSec" id="fourth" style="display:none">
       <ul>
         <li>
-          <label>What is your story?</label>
+          <label><%= t('label-organizer-about') %></label>
         </li>
-        <textarea name="story"></textarea>
+        <%= f.text_area :description %>
       </ul>
       <div class="nav_link">
-        <a href="#" id="prev3">Previous</a>
-        <a href="#" id="continue4" style="float:right;">Continue</a>
+        <a href="#" id="prev3"><%= t('label-organizer-previous') %></a>
+        <a href="#" id="continue4" style="float:right;"><%= t('label-organizer-continue') %></a>
       </div>
     </div>
     <div class="rightSec" id="fifth" style="display:none">
       <div class="ty">
-        <h1>Thank you!</h1>
-        <h3>To finish your registeration, please click the button below.</h3>
-        <h5>Be patient while we process your application.</h5>
-        <button type="submit" value="submit">Finish</button>
+        <h1><%= t('label-organizer-thanks') %></h1>
+        <h3><%= t('label-organizer-thanks-email') %></h3>
+        <h5><%= t('label-organizer-thanks-moderation') %></h5>
+        <button type="submit" value="submit"><%= t('label-organizer-finish') %></button>
+
       </div>
       <div class="nav_link">
-        <a href="#" id="prev4">Previous</a>
+        <a href="#" id="prev4"><%= t('label-organizer-previous') %></a>
       </div>
     </div>
-  </form>
+  <% end %>
 </div>
 <div class="progress_state">
   <div class="dot" id="dot1"></div>

@@ -18,7 +18,7 @@ class BackgroundsControllerTest < ActionController::TestCase
 
   test "should create background" do
     assert_difference('Background.count') do
-      post :create, background: { name: @background.name, paperclip: @background.paperclip }
+      post :create, background: { name: @background.name }
     end
 
     assert_redirected_to background_path(assigns(:background))
@@ -35,7 +35,7 @@ class BackgroundsControllerTest < ActionController::TestCase
   end
 
   test "should update background" do
-    patch :update, id: @background, background: { name: @background.name, paperclip: @background.paperclip }
+    patch :update, id: @background, background: { name: @background.name }
     assert_redirected_to background_path(assigns(:background))
   end
 
