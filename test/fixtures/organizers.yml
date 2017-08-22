@@ -36,7 +36,7 @@ mkt:
   rating: 3
   user: joana 
   where: placeone 
-  email: MyString
+  email: mail@foo.com
   website: MyString
   facebook: MyString
   twitter: MyString

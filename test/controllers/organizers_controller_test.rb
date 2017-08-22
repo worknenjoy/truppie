@@ -46,6 +46,28 @@
      assert_not ActionMailer::Base.deliveries.empty?
      assert_redirected_to organizer_path(assigns(:organizer))
    end
+
+   test "should create organizer basic" do
+     @organizer_basic = {
+         name: "Utópicos mundo afora",
+         email: "utopicos@gmail.com",
+         website: "http://website",
+         user_id: users(:alexandre).id
+     }
+     assert_difference('Organizer.count') do
+       post :create, organizer: @organizer_basic
+     end
+     assert_not ActionMailer::Base.deliveries.empty?
+     assert_redirected_to organizer_path(assigns(:organizer))
+   end
+
+   test "should not create empty organizer" do
+     @organizer_basic = {}
+     post :create, organizer: @organizer_basic
+     #assert ActionMailer::Base.deliveries.empty?
+     assert_equal flash[:notice], I18n.t('organizer-create-issue-message')
+     assert_redirected_to organizer_welcome_url
+   end
 # 
    test "should show organizer" do
      get :show, id: @organizer_ready.id

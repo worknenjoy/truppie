@@ -32,7 +32,7 @@ window.addEventListener("load", function () {
 
     // ======== SECTION 1 =============== //
 
-    function nextStep() {
+    function nextStep(e) {
         document.getElementById("first").style.display = "none";
         document.getElementById("second").style.display = "inline";
 
@@ -41,12 +41,13 @@ window.addEventListener("load", function () {
         document.getElementById("dot3").style.opacity = "0.3";
         document.getElementById("dot4").style.opacity = "0.3";
         document.getElementById("dot5").style.opacity = "0.3";
+        e.preventDefault();
 
     }
 
     // ======== SECTION 2 =============== //
 
-    function prevStep() {
+    function prevStep(e) {
         document.getElementById("second").style.display = "none";
         document.getElementById("first").style.display = "inline";
 
@@ -55,9 +56,10 @@ window.addEventListener("load", function () {
         document.getElementById("dot3").style.opacity = "0.3";
         document.getElementById("dot4").style.opacity = "0.3";
         document.getElementById("dot5").style.opacity = "0.3";
+        e.preventDefault();
     }
 
-    function nextStep2() {
+    function nextStep2(e) {
         document.getElementById("second").style.display = "none";
         document.getElementById("third").style.display = "inline";
 
@@ -66,13 +68,14 @@ window.addEventListener("load", function () {
         document.getElementById("dot3").style.opacity = "1";
         document.getElementById("dot4").style.opacity = "0.3";
         document.getElementById("dot5").style.opacity = "0.3";
+        e.preventDefault();
 
     }
 
 
     // ======== SECTION 3 =============== //
 
-    function prevStep2() {
+    function prevStep2(e) {
         document.getElementById("third").style.display = "none";
         document.getElementById("second").style.display = "inline";
 
@@ -81,9 +84,10 @@ window.addEventListener("load", function () {
         document.getElementById("dot3").style.opacity = "0.3";
         document.getElementById("dot4").style.opacity = "0.3";
         document.getElementById("dot5").style.opacity = "0.3";
+        e.preventDefault();
     }
 
-    function nextStep3() {
+    function nextStep3(e) {
         document.getElementById("third").style.display = "none";
         document.getElementById("fourth").style.display = "inline";
 
@@ -92,12 +96,13 @@ window.addEventListener("load", function () {
         document.getElementById("dot3").style.opacity = "0.3";
         document.getElementById("dot4").style.opacity = "1";
         document.getElementById("dot5").style.opacity = "0.3";
+        e.preventDefault();
 
     }
 
     // ======== SECTION 4 =============== //
 
-    function prevStep3() {
+    function prevStep3(e) {
         document.getElementById("fourth").style.display = "none";
         document.getElementById("third").style.display = "inline";
 
@@ -106,9 +111,10 @@ window.addEventListener("load", function () {
         document.getElementById("dot3").style.opacity = "1";
         document.getElementById("dot4").style.opacity = "0.3";
         document.getElementById("dot5").style.opacity = "0.3";
+        e.preventDefault();
     }
 
-    function nextStep4() {
+    function nextStep4(e) {
         document.getElementById("fourth").style.display = "none";
         document.getElementById("fifth").style.display = "inline";
 
@@ -117,12 +123,13 @@ window.addEventListener("load", function () {
         document.getElementById("dot3").style.opacity = "0.3";
         document.getElementById("dot4").style.opacity = "0.3";
         document.getElementById("dot5").style.opacity = "1";
+        e.preventDefault();
 
     }
 
     // ======== SECTION 5 =============== //
 
-    function prevStep4() {
+    function prevStep4(e) {
         document.getElementById("fifth").style.display = "none";
         document.getElementById("fourth").style.display = "inline";
 
@@ -131,6 +138,7 @@ window.addEventListener("load", function () {
         document.getElementById("dot3").style.opacity = "0.3";
         document.getElementById("dot4").style.opacity = "1";
         document.getElementById("dot5").style.opacity = "0.3";
+        e.preventDefault();
     }
 
 });
