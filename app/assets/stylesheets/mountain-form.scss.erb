@@ -8,12 +8,17 @@
 
 body.mountain-form {
   font-family: 'Roboto', sans-serif;
-  /*background: linear-gradient($brand-info-light, $brand-primary) url(<%= Background.order("RANDOM()").first.picture if Background.any? %>) no-repeat;*/
+  /*background: linear-gradient($brand-info-light, $brand-primary) url(
+<%= Background.order("RANDOM()").first.picture if Background.any? %> ) no-repeat;*/
   background: linear-gradient($brand-info, $brand-info-lighter);
   background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+
+  .bg-warning {
+    padding: 0.5rem;
+  }
 
   h1 {
     font-weight: 300;
@@ -53,317 +58,321 @@ body.mountain-form {
     -moz-box-shadow: 0px 12px 22px 0px rgba(0, 0, 0, 0.26);
     box-shadow: 0px 12px 22px 0px rgba(0, 0, 0, 0.26);
     animation: fadeIn 3s cubic-bezier(.46, -0.39, 1, 1), moveUp 2s cubic-bezier(.95, .02, .03, .96);
+
+    .lbg {
+      background: url(http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-275727.jpg);
+      background-size: 800px;
+      width: 50%;
+      float: left;
+      animation: moveLeft 60s linear infinite;
+    }
+
+    .lbg2 {
+      background: url(https://images.apple.com/v/your-verse/elevating-expedition/a/images/clouds_ascent_02.png);
+      background-size: 800px;
+      float: left;
+      opacity: 0.9;
+      animation: moveRight 60s linear infinite;
+    }
+
+    .lO {
+      background: #da4420;
+      opacity: 0.75;
+      animation: semi_trans 2s ease-in-out 1s;
+    }
+
+    .lbg2,
+    .lO,
+    .lC {
+      position: absolute;
+      width: 400px;
+      height: 500px;
+    }
+
+    .lC {
+      padding: 80px;
+      box-sizing: border-box;
+      color: white;
+      animation: fadeIn 3s cubic-bezier(.46, -0.39, 1, 1) 0.5s, moveUp 2s cubic-bezier(.95, .02, .03, .96) 0.7s;
+    }
+
+    .logo {
+      bottom: 80px;
+      position: absolute;
+    }
+
+    .logo img {
+      height: 25px;
+      display: inline;
+      animation: fadeIn 3s cubic-bezier(.46, -0.39, 1, 1) 1s;
+    }
+
+    .lbg,
+    .rightSec,
+    .lO {
+      padding: 25px;
+      box-sizing: border-box;
+      height: 500px;
+    }
+
+    .rightSec {
+      background: #fff;
+      width: 50%;
+      float: left;
+      padding: 30px 50px;
+    }
+
+    .rightSec ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    .rightSec label,
+    .rightSec li {
+      display: block;
+    }
+
+    .rightSec li {
+      margin: 10px 0 0 0;
+    }
+
+    .rightSec label {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #252323;
+      letter-spacing: 1px;
+    }
+
+    .rightSec input {
+      height: 40px;
+      margin: 5px 0 15px 0;
+      border: none;
+      border-bottom: 1px solid #e2e2e2;
+      font-size: 16px;
+      color: #676767;
+      transition: border-bottom 0.1s ease-in-out;
+      box-sizing: border-box;
+    }
+
+    .rightSec input:active,
+    .rightSec input:focus {
+      border-bottom: 4px solid rgba(248, 92, 55, 0.83);
+    }
+
+    .nav_link {
+      position: relative;
+      margin: 20px 0;
+    }
+
+    .nav_link a {
+      text-transform: uppercase;
+      color: #da4420;
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    select {
+      height: 40px;
+      width: 80%;
+      background: transparent;
+      color: #676767;
+      border: none;
+      border-bottom: 1px solid #e2e2e2;
+      font-size: 16px;
+      margin: 5px 0 15px 0;
+      -webkit-border-radius: 2px;
+      -webkit-appearance: none;
+    }
+
+    .gender {
+      height: 70px;
+      padding: 0;
+      width: 80%;
+    }
+
+    .gender h3 {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #c4c4c4;
+      letter-spacing: 1px;
+      margin: 13px 0;
+    }
+
+    #gender_radio {
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: none;
+      display: inline;
+      margin: 20px 10px 20px 0;
+      transition: color 0.10s ease-in-out;
+    }
+
+    .gender input[type="radio"] {
+      display: none;
+    }
+
+    .gender input + label:hover {
+      color: #e05a3a;
+    }
+
+    .gender input:checked + label {
+      color: #da4420;
+    }
+
+    .interests {
+      padding: 0;
+      width: 80%;
+    }
+
+    .interests li label {
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: none;
+      display: inline;
+      transition: color 0.10s ease-in-out;
+    }
+
+    .interests input[type="checkbox"] {
+      display: none;
+    }
+
+    .interests input + label:hover {
+      color: #e05a3a;
+    }
+
+    .interests input:checked + label {
+      color: #da4420;
+    }
+
+    textarea {
+      min-height: 300px;
+      max-height: 300px;
+      min-width: 250px;
+      max-width: 250px;
+      margin: 5px 0 0 0;
+      border: none;
+      font-size: 14px;
+      color: #676767;
+      background: #fafafa;
+      padding: 5px;
+      box-sizing: border-box;
+      transition: border-bottom 0.1s ease-in-out;
+    }
+
+    textarea:focus,
+    textarea:active {
+      border-bottom: 4px solid #da4420;
+    }
+
+    .ty {
+      color: #676767;
+      height: 308px;
+    }
+
+    button {
+      width: 130px;
+      height: 55px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      border: 5px solid white;
+      background: #e05a3a;
+      transition: background 0.2s ease-in-out, border 0.2s cubic-bezier(.69, 1.46, .46, 1.47);
+    }
+
+    button:hover {
+      background: #eb6d4f;
+      border: 2px solid white;
+    }
+
+    button:active {
+      background: #ff8a6f;
+      border: 4px solid white;
+      position: relative;
+    }
+
+    .progress_state {
+      width: 170px;
+      height: 50px;
+      margin: 0 auto;
+      animation: fadeIn 3s cubic-bezier(.38, -1.47, 1, 1);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      margin: 10px;
+      display: inline-block;
+      border-radius: 15px;
+      background: white;
+    }
+
+  }
+  /*===== Kerframes =====*/
+
+  @keyframes slideLeft {
+    0% {
+    }
+    100% {
+      margin-left: -400px;
+    }
   }
 
-  .lbg {
-    background: url(http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-275727.jpg);
-    background-size: 800px;
-    width: 50%;
-    float: left;
-    animation: moveLeft 60s linear infinite;
+  @keyframes fadeOut {
+    0% {
+    }
+    100% {
+      visibility: hidden;
+    }
   }
 
-  .lbg2 {
-    background: url(https://images.apple.com/v/your-verse/elevating-expedition/a/images/clouds_ascent_02.png);
-    background-size: 800px;
-    float: left;
-    opacity: 0.9;
-    animation: moveRight 60s linear infinite;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
-  .lO {
-    background: #da4420;
-    opacity: 0.75;
-    animation: semi_trans 2s ease-in-out 1s;
+  @keyframes moveUp {
+    0% {
+      margin-top: 100px;
+    }
+    100% {
+    }
   }
 
-  .lbg2,
-  .lO,
-  .lC {
-    position: absolute;
-    width: 400px;
-    height: 500px;
+  @keyframes semi_trans {
+    0% {
+      opacity: 1;
+    }
+    100% {
+    }
   }
 
-  .lC {
-    padding: 80px;
-    box-sizing: border-box;
-    color: white;
-    animation: fadeIn 3s cubic-bezier(.46, -0.39, 1, 1) 0.5s, moveUp 2s cubic-bezier(.95, .02, .03, .96) 0.7s;
+  @keyframes moveLeft {
+    0% {
+    }
+    50% {
+      background-position: -350px 0px;
+    }
+    100% {
+      background-position: 0px 0px;
+    }
   }
 
-  .logo {
-    bottom: 80px;
-    position: absolute;
-  }
-
-  .logo img {
-    height: 25px;
-    display: inline;
-    animation: fadeIn 3s cubic-bezier(.46, -0.39, 1, 1) 1s;
-  }
-
-  .lbg,
-  .rightSec,
-  .lO {
-    padding: 25px;
-    box-sizing: border-box;
-    height: 500px;
-  }
-
-  .rightSec {
-    background: #fff;
-    width: 50%;
-    float: left;
-    padding: 50px 80px;
-  }
-
-  .rightSec ul {
-    padding: 0;
-    margin: 0;
-  }
-
-  .rightSec label,
-  .rightSec li {
-    display: block;
-  }
-
-  .rightSec li {
-    margin: 10px 0 0 0;
-  }
-
-  .rightSec label {
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: 800;
-    color: #c4c4c4;
-    letter-spacing: 1px;
-  }
-
-  .rightSec input {
-    width: 80%;
-    height: 40px;
-    margin: 5px 0 15px 0;
-    border: none;
-    border-bottom: 1px solid #e2e2e2;
-    font-size: 16px;
-    color: #676767;
-    transition: border-bottom 0.1s ease-in-out;
-    box-sizing: border-box;
-  }
-
-  .rightSec input:active,
-  .rightSec input:focus {
-    border-bottom: 4px solid rgba(248, 92, 55, 0.83);
-  }
-
-  .nav_link {
-    position: relative;
-    margin: 20px 0;
-  }
-
-  .nav_link a {
-    text-transform: uppercase;
-    color: #da4420;
-    font-weight: 400;
-    font-size: 14px;
-  }
-
-  select {
-    height: 40px;
-    width: 80%;
-    background: transparent;
-    color: #676767;
-    border: none;
-    border-bottom: 1px solid #e2e2e2;
-    font-size: 16px;
-    margin: 5px 0 15px 0;
-    -webkit-border-radius: 2px;
-    -webkit-appearance: none;
-  }
-
-  .gender {
-    height: 70px;
-    padding: 0;
-    width: 80%;
-  }
-
-  .gender h3 {
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: 800;
-    color: #c4c4c4;
-    letter-spacing: 1px;
-    margin: 13px 0;
-  }
-
-  #gender_radio {
-    font-size: 13px;
-    font-weight: 400;
-    text-transform: none;
-    display: inline;
-    margin: 20px 10px 20px 0;
-    transition: color 0.10s ease-in-out;
-  }
-
-  .gender input[type="radio"] {
-    display: none;
-  }
-
-  .gender input + label:hover {
-    color: #e05a3a;
-  }
-
-  .gender input:checked + label {
-    color: #da4420;
-  }
-
-  .interests {
-    padding: 0;
-    width: 80%;
-  }
-
-  .interests li label {
-    font-size: 13px;
-    font-weight: 400;
-    text-transform: none;
-    display: inline;
-    transition: color 0.10s ease-in-out;
-  }
-
-  .interests input[type="checkbox"] {
-    display: none;
-  }
-
-  .interests input + label:hover {
-    color: #e05a3a;
-  }
-
-  .interests input:checked + label {
-    color: #da4420;
-  }
-
-  textarea {
-    min-height: 300px;
-    max-height: 300px;
-    min-width: 250px;
-    max-width: 250px;
-    margin: 5px 0 0 0;
-    border: none;
-    font-size: 14px;
-    color: #676767;
-    background: #fafafa;
-    padding: 5px;
-    box-sizing: border-box;
-    transition: border-bottom 0.1s ease-in-out;
-  }
-
-  textarea:focus,
-  textarea:active {
-    border-bottom: 4px solid #da4420;
-  }
-
-  .ty {
-    color: #676767;
-    height: 308px;
-  }
-
-  button {
-    width: 130px;
-    height: 55px;
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    border: 5px solid white;
-    background: #e05a3a;
-    transition: background 0.2s ease-in-out, border 0.2s cubic-bezier(.69, 1.46, .46, 1.47);
-  }
-
-  button:hover {
-    background: #eb6d4f;
-    border: 2px solid white;
-  }
-
-  button:active {
-    background: #ff8a6f;
-    border: 4px solid white;
-    position: relative;
-  }
-
-  .progress_state {
-    width: 170px;
-    height: 50px;
-    margin: 0 auto;
-    animation: fadeIn 3s cubic-bezier(.38, -1.47, 1, 1);
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    margin: 10px;
-    display: inline-block;
-    border-radius: 15px;
-    background: white;
-  }
-
-}
-/*===== Kerframes =====*/
-
-@keyframes slideLeft {
-  0% {}
-  100% {
-    margin-left: -400px;
-  }
-}
-
-@keyframes fadeOut {
-  0% {}
-  100% {
-    visibility: hidden;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes moveUp {
-  0% {
-    margin-top: 100px;
-  }
-  100% {}
-}
-
-@keyframes semi_trans {
-  0% {
-    opacity: 1;
-  }
-  100% {}
-}
-
-@keyframes moveLeft {
-  0% {}
-  50% {
-    background-position: -350px 0px;
-  }
-  100% {
-    background-position: 0px 0px;
-  }
-}
-
-@keyframes moveRight {
-  0% {
-    background-position: -650px 0px;
-  }
-  50% {
-    background-position: 0px 0px;
-  }
-  100% {
-    background-position: -650px 0px;
+  @keyframes moveRight {
+    0% {
+      background-position: -650px 0px;
+    }
+    50% {
+      background-position: 0px 0px;
+    }
+    100% {
+      background-position: -650px 0px;
+    }
   }
 }

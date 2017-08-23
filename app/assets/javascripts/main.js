@@ -1,3 +1,17 @@
+$.fn.extend({
+    animateCss: function (animationName, removeClass) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            if(removeClass){
+                $(this).removeClass('animated ' + animationName);
+            } else {
+                $(this).remove();
+            }
+        });
+        return this;
+    }
+});
+
 function is_touch_device() {
  return (('ontouchstart' in window)
       || (navigator.MaxTouchPoints > 0)
@@ -96,6 +110,11 @@ $(function(){
 	$('form').on('submit', function(){
 		$(this).find('input[type=submit]').attr('disabled', '');
 	});
+
+	$('.close-action').on('click', function(){
+	    $(this).parent().animateCss('fadeOutUp', false);
+        return false;
+    });
 	
 	localStorage.clear();
 	

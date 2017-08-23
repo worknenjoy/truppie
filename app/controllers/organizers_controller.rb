@@ -45,8 +45,8 @@ class OrganizersController < ApplicationController
     respond_to do |format|
       if @organizer.save
         format.html {
-          OrganizerMailer.notify(@organizer, "activate").deliver_now 
-          redirect_to @organizer, notice: 'Organizer was successfully created.' 
+          #OrganizerMailer.notify(@organizer, "activate").deliver_now
+          redirect_to @organizer, notice: I18n.t('organizer-create-success')
         }
         format.json { render :show, status: :created, location: @organizer }
       else
