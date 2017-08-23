@@ -1,6 +1,43 @@
 <% content_for :body_class, "mountain-form" %>
-
 <%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @organizer.any? %>
+        <div style="margin-top: 20px; margin-bottom: 20px">
+          <div class="bg-warning">
+            <%= t('title-introducing-accounts') %>
+          </div>
+        </div>
+        <% @organizer.each do |o| %>
+              <nav class="navbar navbar-light bg-faded spaced-down">
+                <%= link_to organizer_path(o), class: 'navbar-brand' do %>
+                    <i class="fa fa-map-o"></i> <%= o.name %>
+                <% end %>
+                <ul class="nav navbar-nav">
+                  <li class="nav-item">
+                    <%= link_to dashboard_organizer_path(o), class: 'nav-link' do %>
+                        <%= t('panel-label') %>
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to manage_organizer_path(o), class: 'nav-link' do %>
+                        <%= t('balance-label') %>
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to transfer_organizer_path(o), class: 'nav-link' do %>
+                        <%= t('transfer-label') %>
+                    <% end %>
+                  </li>
+                </ul>
+              </nav>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
 <div class="container-mountain">
   <div class="lbg">
   </div>
@@ -16,21 +53,18 @@
     <%= link_to '#', id: 'import-from-facebook-action' , class: 'btn btn-primary btn-facebook btn-sm' do %>
         <i class="fa fa-facebook"></i> <%= t('facebook-import-from-page') %>
     <% end %>
+    <div style="position:absolute; bottom: 0; left: 120px;">
+      <div class="progress_state">
+        <div class="dot" id="dot1"></div>
+        <div class="dot" id="dot2"></div>
+        <div class="dot" id="dot3"></div>
+        <div class="dot" id="dot4"></div>
+        <div class="dot" id="dot5"></div>
+      </div>
+    </div>
   </div>
   <%= form_for @new_organizer, class: "", role: "form" do |f| %>
     <div class="rightSec" id="first">
-      <% if @organizer.any? %>
-      <div class="spaced-down">
-          <p><%= t('organizer-from-this-user') %></p>
-          <ul>
-            <% @organizer.each do |o| %>
-                <li>
-                  <a class="nav-link" href="<%= organizers_path(o) %>"><%= o.name %></a>
-                </li>
-            <% end %>
-          </ul>
-      </div>
-      <% end %>
       <ul class="spaced-top">
         <li>
           <label>
@@ -90,6 +124,27 @@
 
     <div class="rightSec" id="third" style="display:none">
 
+      <ul>
+        <li>
+          <label>
+            <%= t('label-organizer-instagram') %>
+          </label>
+          <%= f.text_field :instagram %>
+        </li>
+        <li>
+          <label>
+            <%= t('label-organizer-facebook') %>
+          </label>
+          <%= f.text_field :facebook %>
+        </li>
+        <li>
+          <label>
+            <%= t('label-organizer-twitter') %>
+          </label>
+          <%= f.text_field :twitter %>
+        </li>
+      </ul>
+
 
       <div class="nav_link">
         <a href="#" id="prev2"><%= t('label-organizer-previous') %></a>
@@ -125,11 +180,4 @@
       </div>
     </div>
   <% end %>
-</div>
-<div class="progress_state">
-  <div class="dot" id="dot1"></div>
-  <div class="dot" id="dot2"></div>
-  <div class="dot" id="dot3"></div>
-  <div class="dot" id="dot4"></div>
-  <div class="dot" id="dot5"></div>
 </div>

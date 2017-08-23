@@ -51,8 +51,21 @@
   			</div>
   		</div>
   	</div>
-  	<% if @organizer.tours.publisheds.any? %>
     <div class="col-xs-12 col-md-8">
+      <% if is_organizer_admin %>
+          <div class="card card-block text-xs-center">
+            <button type="button" class="close close-action" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="card-title"><%= t('organizer-profile-intro') %></h3>
+            <p class="card-text"><%= t('organizer-profile-desc') %></p>
+            <p class="text-xs-center">
+              <%= image_tag("guide-atention.svg", :alt => "new truppie", :width => 200, :class => 'img-fluid center-block') %>
+            </p>
+            <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
+          </div>
+      <% end %>
+      <% if @organizer.tours.publisheds.any? %>
       <h3 class="light-heading" style="padding: 4px;">Truppies</h3>
       <% @organizer.tours.recents.each do |t| %>
       <style>
@@ -120,8 +133,8 @@
             </ul>
           </div>
         </div>
-      </div>
       <% end %>
+      </div>
     </div>
     <% end %>
   </div>
