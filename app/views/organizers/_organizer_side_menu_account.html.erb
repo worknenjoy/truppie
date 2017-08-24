@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-block card-organizer">
+    <div class="text-xs-center">
+      <h4 class="card-title spaced-down">
+        <%= render partial: 'layouts/organizer_picture', locals: { organizer: @organizer }%>
+        <strong><%= @organizer.name %> </strong>
+      </h4>
+      <p class="card-text spaced-down"><%= @organizer.description %></p>
+      <% if !@organizer.website.nil? %>
+          <%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
+              <i class="fa fa-external-link"></i> ir para seu website
+          <% end %>
+      <% end %>
+      <% if !@organizer.email.nil? %>
+          <a class="btn btn-primary-outline btn-sm" href="mailto:ola@truppie.com"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail pra gente</a> <br />
+      <% end %>
+    </div>
+  </div>
+</div>
+<ul class="list-group">
+  <li class="list-group-item">
+    <a href="<%= guided_tour_organizer_path(@organizer) %>">
+      <span class="label label-default label-pill pull-xs-right"><%= @organizer.tours.count %></span>
+      <%= t('organizer-basic-data') %>
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a href="<%= clients_organizer_path(@organizer) %>">
+      <span class="label label-default label-pill pull-xs-right"><%= @organizer.clients.count %></span>
+      <%= t('organizer-bank-data') %>
+    </a>
+  </li>
+  <!--
+  <li class="list-group-item">
+    <a href="<%= schedule_organizer_path(@organizer) %>">
+      <%= t('calendar') %>
+    </a>
+  </li>
+  -->
+</ul>

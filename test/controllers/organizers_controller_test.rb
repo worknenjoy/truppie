@@ -78,6 +78,27 @@
      get :edit, id: @organizer_ready.id
      assert_response :success
    end
+
+   test "should get account" do
+     get :account, id: @organizer_ready.id
+     assert_response :success
+   end
+
+   test "should get missing requirements to account" do
+     get :account, id: @organizer_ready.id
+     assert_equal assigns(:missing_info), {
+         marketplace: I18n.t("no-marketplace")
+     }
+   end
+
+   test "should get missing requirements after marketplace activated" do
+     account = @guide_mkt_validated.marketplace.activate
+     puts account.inspect
+
+     get :account, id: @guide_mkt_validated.id
+     assert_equal assigns(:missing_info), {}
+   end
+
 # 
    test "should update organizer" do
      patch :update, id: @organizer_ready.id, organizer: @organizer 
