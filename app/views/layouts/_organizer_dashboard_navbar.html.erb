@@ -18,6 +18,11 @@
             <%= t('transfer-label') %>
         <% end %>
       </li>
+      <li class="nav-item <%= "active" if current_page? action: 'account' %>">
+        <%= link_to account_organizer_path(@organizer), class: 'nav-link' do %>
+            <%= t('account-label') %>
+        <% end %>
+      </li>
     </ul>
     <% if @organizer.marketplace.try(:account_missing) %>
       <span class="navbar-text pull-right">
@@ -26,6 +31,7 @@
     <% else %>
       <span class="navbar-text pull-md-right">
         <span class="label label-pill label-danger"><%= t('no-verified-label') %></span>
+        <a href="#" class="btn btn-primary btn-sm"><%= t('organizer-profile-verify-action') %></a>
       </span>
     <% end %>
 </nav>
