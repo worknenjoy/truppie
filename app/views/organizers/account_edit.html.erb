@@ -1,0 +1,80 @@
+<%= render 'layouts/navbar' %>
+<div class="container manage-entries">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="manage-inspiration">
+        <%= render 'layouts/organizer_intro_block', locals: {organizer: @organizer} %>
+      </div>
+      <div class="manage-container">
+        <div class="manage-sidebar">
+          <%= render partial: 'organizer_side_menu_account' %>
+        </div>
+        <div class="manage-main">
+          <div class="">
+            <div class="card card-block text-xs-center">
+              <button type="button" class="close close-action" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h3 class="card-title"><%= t('hello-organizer-welcome-account-edit', organizer: @organizer.name) %></strong></h3>
+              <div class="card-text">
+                <p><%= t('organizer-account-welcome-account-edit-title') %></p>
+                <p><%= t('organizer-account-edit-desc') %></p>
+              </div>
+              <p class="text-xs-center">
+                <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'img-fluid center-block') %>
+              </p>
+              <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
+            </div>
+            <%= form_for @marketplace, class: "form", multipart: true, role: "form" do |f| %>
+              <fieldset class="form-group">
+                <%= f.label :person_name %>
+                <%= f.text_field :person_name, placeholder: t('marketplace-first-name-placeholder'), class: "form-control" %>
+                <%= f.hidden_field :organizer_id, value: @organizer.id %>
+              </fieldset>
+              <fieldset class="form-group">
+                <%= f.label :person_lastname %>
+                <%= f.text_field :person_lastname, placeholder: t('marketplace-second-name-placeholder'), class: "form-control" %>
+              </fieldset>
+                <fieldset class="form-group">
+                  <legend>Dados de endereço</legend>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <%= f.label :street %>
+                      <%= f.text_field :street, placeholder: "Rua", class: "form-control" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <%= f.label :complement %>
+                      <%= f.text_field :complement, placeholder: "Complemento", class: "form-control" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <%= f.label :zipcode %>
+                      <%= f.text_field :zipcode, placeholder: "CEP", class: "form-control" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <%= f.label :city %>
+                      <%= f.text_field :city, placeholder: "Cidade", class: "form-control" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <%= f.label :state %>
+                      <%= f.text_field :state, placeholder: "Estado", class: "form-control" %>
+                      <%= f.hidden_field :company_country, value: "BR" %>
+                    </div>
+                  </div>
+                </fieldset>
+              <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>

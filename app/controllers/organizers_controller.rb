@@ -1,8 +1,8 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :account]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :account, :account_edit]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :account]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :account, :account_edit]
   
   # GET /organizers
   # GET /organizers.json
@@ -121,6 +121,10 @@ class OrganizersController < ApplicationController
       }
     end
 
+  end
+
+  def account_edit
+    @marketplace = Marketplace.new
   end
 
   def import_events
