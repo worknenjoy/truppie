@@ -19,14 +19,14 @@
 </div>
 <ul class="list-group">
   <li class="list-group-item">
-    <a href="<%= guided_tour_organizer_path(@organizer) %>">
-      <span class="label label-default label-pill pull-xs-right"><%= @organizer.tours.count %></span>
-      <%= t('organizer-basic-data') %>
+    <a href="<%= account_edit_organizer_path(@organizer) %>">
+      <span class="label label-danger label-pill pull-xs-right"><%= "Não verificado" %></span>
+      <%= t('organizer-account-edit') %>
     </a>
   </li>
   <li class="list-group-item">
     <a href="<%= clients_organizer_path(@organizer) %>">
-      <span class="label label-default label-pill pull-xs-right"><%= @organizer.clients.count %></span>
+      <span class="label label-danger label-pill pull-xs-right"><%= "Não verificado" %></span>
       <%= t('organizer-bank-data') %>
     </a>
   </li>

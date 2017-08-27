@@ -764,3 +764,9 @@ pt-BR:
   label-organizer-finish: "Finalizar inscrição"
 
   no-verified-label: "Não verificado"
+
+  marketplace-first-name-placeholder: "Primeiro nome"
+  marketplace-second-name-placeholder: "Segundo nome"
+  marketplace-document-placeholder: "Número do CPF"
+  marketplace-datebirth-placeholder: "Data de nascimento (AAAA/DD/MM)"
+

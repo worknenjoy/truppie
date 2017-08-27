@@ -96,7 +96,7 @@
      puts account.inspect
 
      get :account, id: @guide_mkt_validated.id
-     assert_equal assigns(:missing_info), {}
+     assert_equal assigns(:missing_info).to_json, "{\"fields_needed\":[],\"due_by\":null,\"contacted\":false}"
    end
 
 # 
@@ -151,7 +151,12 @@
      assert_response :success
    end
 
-   
+   test "should direct organizer to account registration" do
+     get :account_edit, id: @organizer_ready.id
+     assert_not assigns(:marketplace)
+     assert_response :success
+   end
+
    test "should load the terms in the page" do
      get :tos_acceptance, id: @organizer_ready.id
      assert_response :success 
