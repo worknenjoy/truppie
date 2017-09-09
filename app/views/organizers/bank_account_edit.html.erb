@@ -27,19 +27,23 @@
               <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
             </div>
             <%= form_for @bank_account, class: "form", multipart: true, role: "form" do |f| %>
-              <fieldset class="form-group">
-                <%= f.label :bank_number %>
-                <%= f.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => f.object.bank_number  %>
+              <fieldset class="form-group <%= form_error(flash[:errors], :bank_number) %>">
+                <%= f.label :bank_number, class: "form-control-label" %>
+                <%= f.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => f.object.bank_number, class: "form-control #{form_field_error(flash[:errors], :bank_number)}"  %>
+                <%= error_message(flash[:errors], :bank_number) %>
+
                 <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
                 <%= f.hidden_field :organizer_id, value: @organizer.id %>
               </fieldset>
-              <fieldset class="form-group">
-                <%= f.label :agency_number %>
-                <%= f.text_field :agency_number, placeholder: "Número da agência", class: "form-control" %>
+              <fieldset class="form-group <%= form_error(flash[:errors], :agency_number) %>">
+                <%= f.label :agency_number, class: "form-control-label" %>
+                <%= f.text_field :agency_number, placeholder: t('bank-account-placeholder-agency-number'), class: "form-control #{form_field_error(flash[:errors], :agency_number)}" %>
+                <%= error_message(flash[:errors], :agency_number) %>
               </fieldset>
-              <fieldset class="form-group">
-                <%= f.label :account_number %>
-                <%= f.text_field :account_number, placeholder: "Número da conta (xxx-xxxx-x)", class: "form-control" %>
+              <fieldset class="form-group <%= form_error(flash[:errors], :account_number) %>">
+                <%= f.label :account_number, class: "form-control-label" %>
+                <%= f.text_field :account_number, placeholder: t('bank-account-placeholder-account-number'), class: "form-control #{form_field_error(flash[:errors], :account_number)}" %>
+                <%= error_message(flash[:errors], :account_number) %>
               </fieldset>
               <button type="submit" class="btn btn-primary pull-right">Submit</button>
             <% end %>

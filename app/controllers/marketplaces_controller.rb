@@ -47,7 +47,6 @@ class MarketplacesController < ApplicationController
       else
         format.html { 
           flash[:errors] = @marketplace.errors
-          #puts @marketplace.errors.inspect
           redirect_to :back, notice: t("marketplace-data-incorrect")
         }
         format.json { render json: @marketplace.errors, status: :unprocessable_entity }
