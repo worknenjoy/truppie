@@ -169,7 +169,6 @@
         <%= f.fields_for :bank_accounts, ([@marketplace.bank_accounts.build] if @marketplace.bank_accounts.empty?) do |ff| %>
         <fieldset class="form-group packages-set">
           <div class="form-group">
-              <p><%= bank_list["banks"][ff.object.bank_number] %>
               <div class="input-group">
                   <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
                   <%= ff.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => ff.object.bank_number  %>

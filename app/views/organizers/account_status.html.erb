@@ -1,0 +1,34 @@
+<%= render 'layouts/navbar' %>
+<div class="container manage-entries">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="manage-inspiration">
+        <%= render 'layouts/organizer_intro_block', locals: {organizer: @organizer} %>
+      </div>
+      <div class="manage-container">
+        <div class="manage-sidebar">
+          <%= render partial: 'organizer_side_menu_account' %>
+        </div>
+        <div class="manage-main">
+          <div class="">
+            <h3 class="text-xs-center spaced-default"><strong><%= t('organizer-account-status-title') %></strong></h3>
+            <p class="spaced-down"><%= t('organizer-missing-data-title') %></p>
+            <% if @account_missing %>
+            <ul class="list-group spaced-down">
+              <% @account_missing.each do |a| %>
+                <li class="list-group-item"><strong><%= a[:message] %></strong></li>
+              <% end %>
+            </ul>
+            <% end %>
+            <p class="text-xs-center">
+              <%= link_to account_edit_organizer_path(@organizer), class: 'btn btn-primary btn-lg' do %>
+                  <%= t('organizer-missing-account-info-solve') %> <i class="fa fa-plus"></i>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>

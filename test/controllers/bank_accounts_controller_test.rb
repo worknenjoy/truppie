@@ -27,12 +27,13 @@ class BankAccountsControllerTest < ActionController::TestCase
   end
 
   test "should create bank_account" do
-    skip("not creating because of bank number without no reason")
+    source = "http://test/organizers/#{@bank_account.marketplace.organizer.to_param}/bank_account_edit"
+    request.env["HTTP_REFERER"] = source
     assert_difference('BankAccount.count') do
       post :create, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }
     end
 
-    assert_redirected_to bank_account_path(assigns(:bank_account))
+    assert_redirected_to source
   end
 
   test "should show bank_account" do

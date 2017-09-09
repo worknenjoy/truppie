@@ -23,7 +23,7 @@ class MarketplaceMailerTest < ActionMailer::TestCase
 
      assert_not ActionMailer::Base.deliveries.empty?
      assert_equal ['ola@truppie.com'], mail.from
-     assert_equal ["MyString"], mail.to
+     assert_equal ["mail@foo.com"], mail.to
      assert_equal "Sua conta bancária foi cadastrada na Truppie com sucesso", mail.subject
    end
    
@@ -36,7 +36,7 @@ class MarketplaceMailerTest < ActionMailer::TestCase
 
      assert_not ActionMailer::Base.deliveries.empty?
      assert_equal ['ola@truppie.com'], mail.from
-     assert_equal ["MyString"], mail.to
+     assert_equal ["mail@foo.com"], mail.to
      assert_equal "Uma nova transferência para sua conta foi realizada", mail.subject
    end
    
@@ -49,7 +49,7 @@ class MarketplaceMailerTest < ActionMailer::TestCase
      
      assert_not ActionMailer::Base.deliveries.empty?
      assert_equal ["ola@truppie.com"], mail.from
-     assert_equal ["MyString"], mail.to
+     assert_equal ["mail@foo.com"], mail.to
      assert_equal "Sua carteira da Truppie foi atualizada com sucesso", mail.subject
      
    end
@@ -91,7 +91,7 @@ class MarketplaceMailerTest < ActionMailer::TestCase
      
      assert_not ActionMailer::Base.deliveries.empty?
      assert_equal ["ola@truppie.com"], mail.from
-     assert_equal ["MyString"], mail.to
+     assert_equal ["mail@foo.com"], mail.to
      assert_equal "Sua carteira da Truppie foi ativada com sucesso", mail.subject
      
    end

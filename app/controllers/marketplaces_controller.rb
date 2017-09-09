@@ -41,13 +41,14 @@ class MarketplacesController < ApplicationController
     respond_to do |format|
       if @marketplace.save
         format.html {
-          redirect_to @marketplace, notice: t('marketplace_controller_notice_two') 
+          redirect_to "/organizers/#{Organizer.find(marketplace_params[:organizer_id]).to_param}/account_status", notice: t('marketplace_controller_notice_two')
         }
         format.json { render :show, status: :created, location: @marketplace }
       else
         format.html { 
-          @errors = @marketplace.errors
-          render :new, notice: "#{@marketplace.errors.inspect}" 
+          flash[:errors] = @marketplace.errors
+          #puts @marketplace.errors.inspect
+          redirect_to :back, notice: t("marketplace-data-incorrect")
         }
         format.json { render json: @marketplace.errors, status: :unprocessable_entity }
       end

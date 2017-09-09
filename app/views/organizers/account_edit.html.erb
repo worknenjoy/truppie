@@ -1,4 +1,5 @@
 <%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
 <div class="container manage-entries">
   <div class="row">
     <div class="col-xs-12">
@@ -12,9 +13,6 @@
         <div class="manage-main">
           <div class="">
             <div class="card card-block text-xs-center">
-              <button type="button" class="close close-action" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
               <h3 class="card-title"><%= t('hello-organizer-welcome-account-edit', organizer: @organizer.name) %></strong></h3>
               <div class="card-text">
                 <p><%= t('organizer-account-welcome-account-edit-title') %></p>
@@ -26,6 +24,7 @@
               <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
             </div>
             <%= form_for @marketplace, class: "form", multipart: true, role: "form" do |f| %>
+              <%= flash[:errors] %>
               <fieldset class="form-group">
                 <%= f.label :person_name %>
                 <%= f.text_field :person_name, placeholder: t('marketplace-first-name-placeholder'), class: "form-control" %>
@@ -35,6 +34,10 @@
                 <%= f.label :person_lastname %>
                 <%= f.text_field :person_lastname, placeholder: t('marketplace-second-name-placeholder'), class: "form-control" %>
               </fieldset>
+                <fieldset class="form-group">
+                  <%= f.label :birthDate %>
+                  <%= f.text_field :birthDate, placeholder: t('marketplace-datebirth-placeholder'), class: "form-control" %>
+                </fieldset>
                 <fieldset class="form-group">
                   <legend>Dados de endereço</legend>
                   <div class="form-group">

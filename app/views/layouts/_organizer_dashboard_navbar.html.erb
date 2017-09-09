@@ -31,7 +31,9 @@
     <% else %>
       <span class="navbar-text pull-md-right">
         <span class="label label-pill label-danger"><%= t('no-verified-label') %></span>
-        <a href="#" class="btn btn-primary btn-sm"><%= t('organizer-profile-verify-action') %></a>
+        <%= link_to account_status_organizer_path(@organizer), class: 'btn btn-primary btn-sm' do %>
+            <%= t('organizer-profile-verify-action') %>
+        <% end %>
       </span>
     <% end %>
 </nav>

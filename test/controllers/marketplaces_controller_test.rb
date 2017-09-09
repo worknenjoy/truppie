@@ -26,11 +26,18 @@ class MarketplacesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should not create empty marketplace" do
+    post :create, marketplace: { birthDate: "", organizer_id: @marketplace.organizer_id, person_lastname: "", person_name: "", state: "", street: "", zipcode: "" }
+    assert_redirected_to "/organizers/#{Organizer.find(@marketplace.organizer_id).to_param}/account_edit"
+  end
+
   test "should create marketplace" do
+    assert_equal @marketplace.active, nil
     assert_difference('Marketplace.count') do
       post :create, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
     end
-    assert_redirected_to marketplace_path(assigns(:marketplace))
+    assert_redirected_to "/organizers/#{Organizer.find(@marketplace.organizer_id).to_param}/account_status"
+    assert_equal Marketplace.find(@marketplace.id).active, true
   end
 
   test "should show marketplace" do
