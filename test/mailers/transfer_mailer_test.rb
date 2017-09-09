@@ -23,7 +23,7 @@ class TransferMailerTest < ActionMailer::TestCase
     assert_not ActionMailer::Base.deliveries.empty?
     #assert_equal ActionMailer::Base.deliveries[0].html_part.to_s.include?('criada'), true
     assert_equal ["ola@truppie.com"], mail.from
-    assert_equal ["MyString"], mail.to
+    assert_equal ["mail@foo.com"], mail.to
     assert_equal "Uma nova transferência foi realizada", mail.subject
   end
 end

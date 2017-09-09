@@ -1,8 +1,8 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :account, :account_edit]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :account, :account_edit, :bank_account_edit, :account_status]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :account, :account_edit]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :account, :account_edit, :bank_account_edit, :account_status]
   
   # GET /organizers
   # GET /organizers.json
@@ -125,6 +125,25 @@ class OrganizersController < ApplicationController
 
   def account_edit
     @marketplace = Marketplace.new
+  end
+
+  def bank_account_edit
+    @marketplace = @organizer.marketplace
+    @bank_account = BankAccount.new
+  end
+
+  def account_status
+    if @organizer.try(:marketplace)
+      @account_missing = @organizer.marketplace.account_missing
+    else
+      @account_missing = [
+          {
+              name: "marketplace",
+              message: t('no-marketplace-label')
+          }
+      ]
+    end
+
   end
 
   def import_events

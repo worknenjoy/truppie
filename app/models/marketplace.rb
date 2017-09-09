@@ -15,6 +15,8 @@ class Marketplace < ActiveRecord::Base
     medium: '500x500>',
     large: '800x800>',
   }
+
+  validates_presence_of :person_name, :birthDate, :person_lastname, :street, :complement, :zipcode, :city, :state, :organizer, :allow_blank => false
   
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/

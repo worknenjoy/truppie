@@ -1,0 +1,52 @@
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<div class="container manage-entries">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="manage-inspiration">
+        <%= render 'layouts/organizer_intro_block', locals: {organizer: @organizer} %>
+      </div>
+      <div class="manage-container">
+        <div class="manage-sidebar">
+          <%= render partial: 'organizer_side_menu_account' %>
+        </div>
+        <div class="manage-main">
+          <div class="">
+            <div class="card card-block text-xs-center">
+              <button type="button" class="close close-action" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h3 class="card-title"><%= t('hello-organizer-welcome-account-edit', organizer: @organizer.name) %></strong></h3>
+              <div class="card-text">
+                <p><%= t('organizer-account-welcome-account-edit-title') %></p>
+                <p><%= t('organizer-account-edit-desc') %></p>
+              </div>
+              <p class="text-xs-center">
+                <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'img-fluid center-block') %>
+              </p>
+              <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
+            </div>
+            <%= form_for @bank_account, class: "form", multipart: true, role: "form" do |f| %>
+              <fieldset class="form-group">
+                <%= f.label :bank_number %>
+                <%= f.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => f.object.bank_number  %>
+                <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
+                <%= f.hidden_field :organizer_id, value: @organizer.id %>
+              </fieldset>
+              <fieldset class="form-group">
+                <%= f.label :agency_number %>
+                <%= f.text_field :agency_number, placeholder: "Número da agência", class: "form-control" %>
+              </fieldset>
+              <fieldset class="form-group">
+                <%= f.label :account_number %>
+                <%= f.text_field :account_number, placeholder: "Número da conta (xxx-xxxx-x)", class: "form-control" %>
+              </fieldset>
+              <button type="submit" class="btn btn-primary pull-right">Submit</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>

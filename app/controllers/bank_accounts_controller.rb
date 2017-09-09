@@ -65,10 +65,15 @@ class BankAccountsController < ApplicationController
 
     respond_to do |format|
       if @bank_account.save
-        format.html { redirect_to @bank_account, notice: 'Bank account was successfully created.' }
+        format.html {
+          redirect_to :back, notice: t('bank_account_controller_notice_two')
+        }
         format.json { render :show, status: :created, location: @bank_account }
       else
-        format.html { render :new }
+        format.html {
+          @errors = @bank_account.errors
+          redirect_to :back, notice: t("bank-account-data-incorrect")
+        }
         format.json { render json: @bank_account.errors, status: :unprocessable_entity }
       end
     end
