@@ -775,4 +775,5 @@ pt-BR:
   marketplace-city-placeholder: "ex: São Paulo"
   marketplace-state-placeholder: "ex: São Paulo"
 
-
+  bank-account-placeholder-agency-number: "ex: 2971"
+  bank-account-placeholder-account-number: "ex: 17598-5"

@@ -71,7 +71,7 @@ class BankAccountsController < ApplicationController
         format.json { render :show, status: :created, location: @bank_account }
       else
         format.html {
-          @errors = @bank_account.errors
+          flash[:errors] = @bank_account.errors
           redirect_to :back, notice: t("bank-account-data-incorrect")
         }
         format.json { render json: @bank_account.errors, status: :unprocessable_entity }
