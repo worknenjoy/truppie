@@ -20,13 +20,17 @@
 <ul class="list-group">
   <li class="list-group-item">
     <a href="<%= account_edit_organizer_path(@organizer) %>">
-      <span class="label label-danger label-pill pull-xs-right"><%= "Não verificado" %></span>
+      <% if @organizer.try(:marketplace).try(:is_active) %>
+      <span class="label label-success label-pill pull-xs-right"><%= t('verified_label') %></span>
+      <% else %>
+      <span class="label label-danger label-pill pull-xs-right"><%= t('not_verified_label') %></span>
+      <% end %>
       <%= t('organizer-account-edit') %>
     </a>
   </li>
   <li class="list-group-item">
     <a href="<%= bank_account_edit_organizer_path(@organizer) %>">
-      <span class="label label-danger label-pill pull-xs-right"><%= "Não verificado" %></span>
+      <span class="label label-danger label-pill pull-xs-right"><%= t('not_verified_label') %></span>
       <%= t('organizer-bank-data') %>
     </a>
   </li>

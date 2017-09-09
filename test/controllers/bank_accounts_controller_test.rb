@@ -47,6 +47,7 @@ class BankAccountsControllerTest < ActionController::TestCase
   end
 
   test "should update bank_account" do
+
     skip("some issue in update bank account")
     patch :update, id: @bank_account, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, type: @bank_account.type }
     assert_redirected_to bank_account_path(assigns(:bank_account))
