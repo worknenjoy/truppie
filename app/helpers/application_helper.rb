@@ -21,6 +21,30 @@ module ApplicationHelper
       "#{time_ago_in_words(t)} atrás"
     end
   end
+
+  def form_error(errors, error_field)
+    if !errors.nil? and errors.key?(error_field.to_s)
+      'has-danger'
+    else
+      ''
+    end
+  end
+
+  def form_field_error(errors, error_field)
+    if !errors.nil? and errors.key?(error_field.to_s)
+      'form-control-danger'
+    else
+      ''
+    end
+  end
+
+  def error_message(errors, error_field)
+    if !errors.nil? && errors.key?(error_field.to_s)
+      raw "<small class=\"text-help\">#{errors[error_field.to_s][0]}</small>"
+    else
+      ''
+    end
+  end
   
   def to_https(url)
     uri = URI.parse(url)

@@ -765,9 +765,14 @@ pt-BR:
 
   no-verified-label: "Não verificado"
 
-  marketplace-first-name-placeholder: "Primeiro nome"
-  marketplace-second-name-placeholder: "Segundo nome"
-  marketplace-document-placeholder: "Número do CPF"
-  marketplace-datebirth-placeholder: "Data de nascimento (AAAA/DD/MM)"
+  marketplace-first-name-placeholder: "ex: Primeiro nome"
+  marketplace-second-name-placeholder: "ex: Segundo nome"
+  marketplace-document-placeholder: "ex: Número do CPF"
+  marketplace-datebirth-placeholder: "ex: Data de nascimento (AAAA/DD/MM)"
+  marketplace-street-placeholder: "ex: Rua das Viagens"
+  marketplace-complement-placeholder: "ex: 303 apto 404"
+  marketplace-zipcode-placeholder: "ex: 3035-00"
+  marketplace-city-placeholder: "ex: São Paulo"
+  marketplace-state-placeholder: "ex: São Paulo"
 
 

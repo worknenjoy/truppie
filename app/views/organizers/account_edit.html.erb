@@ -24,52 +24,60 @@
               <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
             </div>
             <%= form_for @marketplace, class: "form", multipart: true, role: "form" do |f| %>
-              <%= flash[:errors] %>
-              <fieldset class="form-group">
-                <%= f.label :person_name %>
-                <%= f.text_field :person_name, placeholder: t('marketplace-first-name-placeholder'), class: "form-control" %>
+              <fieldset class="form-group <%= form_error(flash[:errors], :person_name) %>">
+                <%= f.label :person_name, class: "form-control-label" %>
+                <%= f.text_field :person_name, placeholder: t('marketplace-first-name-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>
+                <%= error_message(flash[:errors], :person_name) %>
+
                 <%= f.hidden_field :organizer_id, value: @organizer.id %>
               </fieldset>
-              <fieldset class="form-group">
-                <%= f.label :person_lastname %>
-                <%= f.text_field :person_lastname, placeholder: t('marketplace-second-name-placeholder'), class: "form-control" %>
+              <fieldset class="form-group <%= form_error(flash[:errors], :person_lastname) %>">
+                <%= f.label :person_lastname, class: "form-control-label" %>
+                <%= f.text_field :person_lastname, placeholder: t('marketplace-second-name-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>
+                <%= error_message(flash[:errors], :person_lastname) %>
               </fieldset>
-                <fieldset class="form-group">
-                  <%= f.label :birthDate %>
-                  <%= f.text_field :birthDate, placeholder: t('marketplace-datebirth-placeholder'), class: "form-control" %>
+                <fieldset class="form-group <%= form_error(flash[:errors], :birthDate) %>">
+                  <%= f.label :birthDate, class: "form-control-label" %>
+                  <%= f.text_field :birthDate, placeholder: t('marketplace-datebirth-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>
+                  <%= error_message(flash[:errors], :birthDate) %>
                 </fieldset>
                 <fieldset class="form-group">
                   <legend>Dados de endereço</legend>
-                  <div class="form-group">
+                  <div class="form-group <%= form_error(flash[:errors], :street) %>">
                     <div class="input-group">
-                      <%= f.label :street %>
-                      <%= f.text_field :street, placeholder: "Rua", class: "form-control" %>
+                      <%= f.label :street, class: "form-control-label" %>
+                      <%= f.text_field :street, placeholder: t('marketplace-street-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>
                     </div>
+                    <%= error_message(flash[:errors], :street) %>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group <%= form_error(flash[:errors], :complement) %>">
                     <div class="input-group">
-                      <%= f.label :complement %>
-                      <%= f.text_field :complement, placeholder: "Complemento", class: "form-control" %>
+                      <%= f.label :complement, class: "form-control-label" %>
+                      <%= f.text_field :complement, placeholder: t('marketplace-complement-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>
                     </div>
+                    <%= error_message(flash[:errors], :complement) %>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group <%= form_error(flash[:errors], :zipcode) %>">
                     <div class="input-group">
-                      <%= f.label :zipcode %>
-                      <%= f.text_field :zipcode, placeholder: "CEP", class: "form-control" %>
+                      <%= f.label :zipcode, class: "form-control-label" %>
+                      <%= f.text_field :zipcode, placeholder: t('marketplace-zipcode-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>
                     </div>
+                    <%= error_message(flash[:errors], :zipcode) %>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group <%= form_error(flash[:errors], :city) %>">
                     <div class="input-group">
-                      <%= f.label :city %>
-                      <%= f.text_field :city, placeholder: "Cidade", class: "form-control" %>
+                      <%= f.label :city, class: "form-control-label" %>
+                      <%= f.text_field :city, placeholder: t('marketplace-city-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>
                     </div>
+                    <%= error_message(flash[:errors], :city) %>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group <%= form_error(flash[:errors], :state) %>">
                     <div class="input-group">
-                      <%= f.label :state %>
-                      <%= f.text_field :state, placeholder: "Estado", class: "form-control" %>
+                      <%= f.label :state, class: "form-control-label" %>
+                      <%= f.text_field :state, placeholder: t('marketplace-state-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>
                       <%= f.hidden_field :company_country, value: "BR" %>
                     </div>
+                    <%= error_message(flash[:errors], :state) %>
                   </div>
                 </fieldset>
               <button type="submit" class="btn btn-primary pull-right">Submit</button>
