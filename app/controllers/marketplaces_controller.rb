@@ -41,7 +41,19 @@ class MarketplacesController < ApplicationController
     respond_to do |format|
       if @marketplace.save
         format.html {
-          redirect_to "/organizers/#{Organizer.find(marketplace_params[:organizer_id]).to_param}/account_status", notice: t('marketplace_controller_notice_two')
+          begin
+            account = @marketplace.activate
+            if account.id
+              @response = account
+              @marketplace.organizer.update_attributes(:market_place_active => true)
+              MarketplaceMailer.activate(@marketplace.organizer).deliver_now
+            end
+          rescue => e
+            flash[:errors] = { :remote => e.message }
+            @notice = t('marketplace_controller_notice_remote_account_fail')
+            ContactMailer.notify("Tentativa de criar uma conta remota no markeplace #{@marketplace.inspect}").deliver_now
+          end
+          redirect_to "/organizers/#{Organizer.find(marketplace_params[:organizer_id]).to_param}/account_status", notice: @notice or t('marketplace_controller_notice_two')
         }
         format.json { render :show, status: :created, location: @marketplace }
       else

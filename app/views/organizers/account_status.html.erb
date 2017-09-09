@@ -14,6 +14,7 @@
             <h3 class="text-xs-center spaced-default"><strong><%= t('organizer-account-status-title') %></strong></h3>
             <p class="spaced-down"><%= t('organizer-missing-data-title') %></p>
             <% if @account_missing %>
+            <%= @account_missing %>
             <ul class="list-group spaced-down">
               <% @account_missing.each do |a| %>
                 <li class="list-group-item"><strong><%= a[:message] %></strong></li>
