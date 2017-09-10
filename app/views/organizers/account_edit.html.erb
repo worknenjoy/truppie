@@ -12,18 +12,34 @@
         </div>
         <div class="manage-main">
           <div class="">
-            <div class="card card-block text-xs-center">
-              <h3 class="card-title"><%= t('hello-organizer-welcome-account-edit', organizer: @organizer.name) %></strong></h3>
-              <div class="card-text">
-                <p><%= t('organizer-account-welcome-account-edit-title') %></p>
-                <p><%= t('organizer-account-edit-desc') %></p>
-              </div>
-              <p class="text-xs-center">
-                <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'img-fluid center-block') %>
-              </p>
-              <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
-            </div>
             <%= form_for @marketplace, class: "form", multipart: true, role: "form" do |f| %>
+              <div class="card card-block text-xs-center">
+                <h3 class="card-title"><%= t('hello-organizer-welcome-account-edit', organizer: @organizer.name) %></strong></h3>
+                <div class="card-text">
+                  <p><%= t('organizer-account-welcome-account-edit-title') %></p>
+                  <p><%= t('organizer-account-edit-desc') %></p>
+                </div>
+                <div class="text-xs-center">
+                  <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'spaced-down') %>
+                </div>
+                <div class="file-upload">
+                  <% if @marketplace.photo.present? %>
+                      <%= image_tag(@marketplace.photo.url(:thumbnail), :alt => "user document picture", :class => "img-fluid center-block spaced-down") %>
+                  <% end %>
+                  <button class="file-upload-btn btn btn-info-outline btn-block spaced-down" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
+                  <div class="image-upload-wrap">
+                    <%= f.file_field :photo, class: "file-upload-input", accept: "image/*" %>
+                    <div class="drag-text">
+                      <h3><%= t('event-drag-drop-file') %></h3>
+                    </div>
+                  </div>
+                  <div class="file-upload-content">
+                    <div class="image-title-wrap">
+                      <button type="button" onclick="removeUpload()" class="remove-image btn btn-warning-outline space-top"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <fieldset class="form-group <%= form_error(flash[:errors], :person_name) %>">
                 <%= f.label :person_name, class: "form-control-label" %>
                 <%= f.text_field :person_name, placeholder: t('marketplace-first-name-placeholder'), class: "form-control #{form_field_error(flash[:errors], :state)}" %>

@@ -60,8 +60,8 @@ class Marketplace < ActiveRecord::Base
   end
   
   def document_picture 
-    if !self.document.nil?
-      self.document if self.document.present?
+    if self.photo.present?
+      self.document if self.retrieve_account.legal_entity.verification.document
     end
   end
   
@@ -137,12 +137,10 @@ class Marketplace < ActiveRecord::Base
               :purpose => "identity_document"
           }, {:stripe_account => self.account_id})
           account.legal_entity.verification.document = upload.id
-          puts upload.inspect
         rescue => e
           ContactMailer.notify("Houve uma tentativa de enviar a foto pois #{e.inspect}").deliver_now
         end
       end
-      
       account.save
       return account
     end
@@ -164,6 +162,7 @@ class Marketplace < ActiveRecord::Base
   
   def retrieve_account
     account = Stripe::Account.retrieve(self.account_id)
+    puts account.inspect
     return account
   end
   
