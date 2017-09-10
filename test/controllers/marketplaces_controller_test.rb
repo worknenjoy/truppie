@@ -38,7 +38,6 @@ class MarketplacesControllerTest < ActionController::TestCase
       post :create, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
     end
     assert flash[:notice] = I18n.t('marketplace_controller_notice_two')
-    assert_redirected_to "/organizers/#{Organizer.find(@marketplace.organizer_id).to_param}/account_status"
     assert_equal Marketplace.last.active, true
     assert_equal Marketplace.last.organizer.market_place_active, true
     assert_equal Marketplace.last.active, true
@@ -49,6 +48,8 @@ class MarketplacesControllerTest < ActionController::TestCase
         "id" => "test_acct_1",
         "token" => "sk_test_AmJhMTLPtY9JL4c6EG0"
     }
+    assert_equal Organizer.find(@marketplace.organizer_id).marketplace, Marketplace.last
+    assert_redirected_to "/organizers/#{Organizer.find(@marketplace.organizer_id).to_param}/account_status"
 
   end
 
