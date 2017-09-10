@@ -16,7 +16,7 @@ class Marketplace < ActiveRecord::Base
     large: '800x800>',
   }
 
-  validates_presence_of :person_name, :birthDate, :person_lastname, :street, :complement, :zipcode, :city, :state, :organizer, :allow_blank => false
+  validates_presence_of :person_name, :birthDate, :person_lastname, :document_number, :document_type, :street, :complement, :zipcode, :city, :state, :organizer, :allow_blank => false
   
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
@@ -98,13 +98,14 @@ class Marketplace < ActiveRecord::Base
       false  
     else
       account = Stripe::Account.retrieve(self.account_id)
-      account.business_url = self.organizer.website if account.business_url != self.organizer.website
+      account.business_url = self.organizer.website if account.business_url.nil?
       account.legal_entity.first_name = self.person_name if account.legal_entity.first_name != self.person_name
       account.legal_entity.last_name = self.person_lastname if account.legal_entity.last_name != self.person_lastname
       account.legal_entity.dob = self.dob if account.legal_entity.dob != self.dob
-      
+      account.legal_entity.personal_id_number = self.document_number
+
       account.legal_entity.personal_address.city = self.city if account.legal_entity.personal_address.city != self.city
-      account.legal_entity.personal_address.country = self.country if account.legal_entity.personal_address.country != self.country
+      account.legal_entity.personal_address.country = self.country
       account.legal_entity.personal_address.line1 = self.street if account.legal_entity.personal_address.line1 != self.street
       account.legal_entity.personal_address.line2 = self.complement if account.legal_entity.personal_address.line2 != self.complement
       account.legal_entity.personal_address.state = self.state if account.legal_entity.personal_address.state != self.state
@@ -126,7 +127,7 @@ class Marketplace < ActiveRecord::Base
         account.legal_entity.address.postal_code = self.company_zipcode if account.legal_entity.address.postal_code != self.company_zipcode
       end
       
-      account.product_description = self.organizer.description if account.product_description != self.organizer.description
+      account.product_description = self.organizer.description if account.product_description.nil?
       account.legal_entity.type = self.organizer_type if account.legal_entity.type != self.organizer_type
       
       if self.photo.present?
@@ -162,7 +163,7 @@ class Marketplace < ActiveRecord::Base
   end
   
   def retrieve_account
-    account = Stripe::Account.retrieve(self.account)
+    account = Stripe::Account.retrieve(self.account_id)
     return account
   end
   
@@ -256,6 +257,14 @@ class Marketplace < ActiveRecord::Base
       })
     end
     return account_missing_details
+  end
+
+  def account_full_verified
+    account_missing = self.account_missing
+    if account_missing[:fields_needed].empty?
+      true
+    end
+    false
   end
   
   def transfers

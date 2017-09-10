@@ -54,10 +54,11 @@ class MarketplacesController < ApplicationController
             end
           rescue => e
             flash[:errors] = { :remote => e.message }
+            puts e.inspect
             @notice = t('marketplace_controller_notice_remote_account_fail')
             ContactMailer.notify("Tentativa de criar uma conta remota no markeplace #{@marketplace.inspect} e o erro foi #{e.inspect}").deliver_now
           end
-          redirect_to "/organizers/#{Organizer.find(marketplace_params[:organizer_id]).to_param}/account_status", notice: @notice or t('marketplace_controller_notice_two')
+          redirect_to :back, notice: @notice or t('marketplace_controller_notice_two')
         }
         format.json { render :show, status: :created, location: @marketplace }
       else
@@ -75,10 +76,28 @@ class MarketplacesController < ApplicationController
   def update
     respond_to do |format|
       if @marketplace.update(marketplace_params)
-        format.html { redirect_to @marketplace, notice: t('marketplace_controller_notice_three') }
-        format.json { render :show, status: :ok, location: @marketplace }
+        format.html {
+          begin
+            account = @marketplace.update_account
+            if account.id
+              @response = account
+              puts @response.inspect
+              @organizer = Organizer.find(marketplace_params[:organizer_id])
+              @notice = t('marketplace-controller-notice-update')
+            end
+          rescue => e
+            flash[:errors] = { :remote => e.message }
+            puts e.inspect
+            @notice = t('marketplace_controller_notice_remote_account_fail')
+            ContactMailer.notify("Tentativa de atualizar uma conta remota no markeplace #{@marketplace.inspect} e o erro foi #{e.inspect}").deliver_now
+          end
+          redirect_to :back, notice: @notice
+        }
       else
-        format.html { render :edit }
+        format.html {
+          flash[:errors] = @marketplace.errors
+          redirect_to :back, notice: t('marketplace-controller-notice-update-fail')
+        }
         format.json { render json: @marketplace.errors, status: :unprocessable_entity }
       end
     end

@@ -1,9 +1,5 @@
 require 'test_helper'
-require 'minitest/mock'
-require 'minitest/unit'
 require 'stripe_mock'
-
-MiniTest::Unit.autorun
 
 class MarketplaceTest < ActiveSupport::TestCase
   setup do
@@ -119,7 +115,6 @@ class MarketplaceTest < ActiveSupport::TestCase
       @mkt_active.update_account     
     end
   end
-    
   
   test "get missing data" do
     account = @mkt_real_data.activate
@@ -158,6 +153,17 @@ class MarketplaceTest < ActiveSupport::TestCase
             message: I18n.t('account-missing-tos-acceptance.ip-message')
         },
     ]
+  end
+
+  test "check if the account is fully verified" do
+
+    mkt = @mkt_real_data
+
+    def mkt.account_missing
+      { disabled_reason: "fields_needed", due_by: nil, fields_needed: [ "external_account", "legal_entity.personal_id_number", "tos_acceptance.date", "tos_acceptance.ip" ] }
+    end
+
+    assert_equal mkt.account_full_verified, false
   end
 
   

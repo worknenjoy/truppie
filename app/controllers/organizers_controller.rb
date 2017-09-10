@@ -124,7 +124,11 @@ class OrganizersController < ApplicationController
   end
 
   def account_edit
-    @marketplace = Marketplace.new
+    if @organizer.try(:marketplace)
+      @marketplace = @organizer.marketplace
+    else
+      @marketplace = Marketplace.new
+    end
   end
 
   def bank_account_edit
@@ -175,16 +179,15 @@ class OrganizersController < ApplicationController
           user: @organizer.user
         })
         if @tour.save
-          flash[:success] = "evento importado com sucesso"
+          flash[:success] = I18n.t('import-event-notice-success')
         else
           puts "not saved"
           puts @tour.errors.inspect
-          flash[:error] = "não foi possivel importar o evento"
+          flash[:error] = I18n.t('import-event-notice-error')
         end
       end
     else
-      flash[:error] = "não foi possivel importar o evento"
-      redirect_to "/organizers/#{@organizer.to_param}/guided_tour"
+      redirect_to "/organizers/#{@organizer.to_param}/guided_tour", notice: I18n.t('import-event-notice')
       return
     end
     redirect_to "/organizers/#{@organizer.to_param}/edit_guided_tour/#{@tour.to_param}"
