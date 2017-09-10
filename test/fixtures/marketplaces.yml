@@ -7,6 +7,7 @@ one:
   person_name: MyString
   person_lastname: MyString
   document_type: MyString
+  document_number: MyString
   id_number: MyString
   id_type: MyString
   id_issuer: MyString

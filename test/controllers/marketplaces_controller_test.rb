@@ -34,8 +34,10 @@ class MarketplacesControllerTest < ActionController::TestCase
   end
 
   test "should create marketplace on database and remote" do
+    source = "http://test/organizers/#{@marketplace.organizer.to_param}/account_status"
+    request.env["HTTP_REFERER"] = source
     assert_difference('Marketplace.count') do
-      post :create, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
+      post :create, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, document_number: @marketplace.document_number, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
     end
     assert flash[:notice] = I18n.t('marketplace_controller_notice_two')
     assert_equal Marketplace.last.active, true
@@ -49,20 +51,43 @@ class MarketplacesControllerTest < ActionController::TestCase
         "token" => "sk_test_AmJhMTLPtY9JL4c6EG0"
     }
     assert_equal Organizer.find(@marketplace.organizer_id).marketplace, Marketplace.last
-    assert_redirected_to "/organizers/#{Organizer.find(@marketplace.organizer_id).to_param}/account_status"
-
+    assert_redirected_to source
   end
 
   test "should try to create a marketplace but fails to create the remote account" do
+    source = "http://test/organizers/#{@marketplace.organizer.to_param}/account_status"
+    request.env["HTTP_REFERER"] = source
     custom_error = Stripe::AuthenticationError.new("The comunication failed somehow", 401)
     StripeMock.prepare_error(custom_error, :new_account)
-    post :create, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
+    post :create, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, document_number: @marketplace.document_number, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
     assert_equal flash[:notice], I18n.t('marketplace_controller_notice_remote_account_fail')
     assert_equal flash[:errors], { remote: "The comunication failed somehow" }
     assert_equal assigns(:response), nil
     assert_equal Organizer.find(@marketplace.organizer_id).market_place_active, false
     assert_not ActionMailer::Base.deliveries.empty?
-    assert_redirected_to "/organizers/#{Organizer.find(@marketplace.organizer_id).to_param}/account_status"
+    assert_redirected_to source
+  end
+
+  test "should update marketplace on database and remote" do
+    source = "http://test/organizers/#{@marketplace.organizer.to_param}/account_status"
+    request.env["HTTP_REFERER"] = source
+    post :create, marketplace: { birthDate: @marketplace.birthDate, city: @marketplace.city, complement: @marketplace.complement, country: @marketplace.country, document_type: @marketplace.document_type, document_number: @marketplace.document_number, organizer_id: @marketplace.organizer_id, person_lastname: @marketplace.person_lastname, person_name: @marketplace.person_name, state: @marketplace.state, street: @marketplace.street, zipcode: @marketplace.zipcode }
+    put :update, id: Marketplace.last.id, marketplace: { document_number: '12345' }
+    assert flash[:notice] = I18n.t('marketplace-controller-notice-update')
+    assert_equal Marketplace.last.document_number, '12345'
+    assert_equal Marketplace.last.active, true
+    assert_equal Marketplace.last.organizer.market_place_active, true
+    assert_equal Marketplace.last.active, true
+    assert_equal Marketplace.last.is_active?, true
+    assert_equal Marketplace.last.token, "sk_test_AmJhMTLPtY9JL4c6EG0"
+    assert_equal Marketplace.last.account_id, "test_acct_1"
+    assert_equal Marketplace.last.auth_data, {
+        "id" => "test_acct_1",
+        "token" => "sk_test_AmJhMTLPtY9JL4c6EG0"
+    }
+    assert_equal Organizer.find(@marketplace.organizer_id).marketplace, Marketplace.last
+    assert_equal Marketplace.last.retrieve_account.id, "test_acct_1"
+    assert_redirected_to source
   end
 
   test "should show marketplace" do
