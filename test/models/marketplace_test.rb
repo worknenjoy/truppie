@@ -1,5 +1,9 @@
 require 'test_helper'
+require 'minitest/mock'
+require 'minitest/unit'
 require 'stripe_mock'
+
+MiniTest::Unit.autorun
 
 class MarketplaceTest < ActiveSupport::TestCase
   setup do
@@ -123,6 +127,39 @@ class MarketplaceTest < ActiveSupport::TestCase
     assert_equal account.email, 'organizer@mail.com'
     assert Marketplace.find(@mkt_real_data.id).account_missing, []
   end
+
+  test "get missing data when the marketplace is active and missing data" do
+
+    mkt = @mkt_real_data
+
+    def mkt.account_missing
+      { disabled_reason: "fields_needed", due_by: nil, fields_needed: [ "external_account", "legal_entity.personal_id_number", "tos_acceptance.date", "tos_acceptance.ip" ] }
+    end
+
+    assert_equal mkt.account_needed, [
+        {
+            name: "external_account",
+            label: I18n.t('account-missing-external-account-label'),
+            message: I18n.t('account-missing-external-account-message')
+        },
+        {
+            name: "legal_entity.personal_id_number",
+            label: I18n.t('account-missing-legal-entity.personal-id-number-label'),
+            message: I18n.t('account-missing-legal-entity.personal-id-number-message')
+        },
+        {
+            name: "tos_acceptance.date",
+            label: I18n.t('account-missing-tos-acceptance.date-label'),
+            message: I18n.t('account-missing-tos-acceptance.date-message')
+        },
+        {
+            name: "tos_acceptance.ip",
+            label: I18n.t('account-missing-tos-acceptance.ip-label'),
+            message: I18n.t('account-missing-tos-acceptance.ip-message')
+        },
+    ]
+  end
+
   
   test "deactivating a account not active" do
     try_to_deactivate = @mkt_real_data.deactivate

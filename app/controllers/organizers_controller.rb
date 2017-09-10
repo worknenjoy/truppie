@@ -134,11 +134,12 @@ class OrganizersController < ApplicationController
 
   def account_status
     if @organizer.try(:marketplace)
-      @account_missing = @organizer.marketplace.account_missing
+      @account_missing = @organizer.marketplace.account_needed
     else
       @account_missing = [
           {
               name: "marketplace",
+              label: t("marketplace-missing"),
               message: t('no-marketplace-label')
           }
       ]

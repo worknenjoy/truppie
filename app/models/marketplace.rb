@@ -242,6 +242,21 @@ class Marketplace < ActiveRecord::Base
       end
     end 
   end
+
+  def account_needed
+    account_missing = self.account_missing
+
+    account_missing_details = []
+
+    account_missing[:fields_needed].each do |f|
+      account_missing_details.push({
+        name: f,
+        label: I18n.t("account-missing-#{f.dasherize}-label"),
+        message: I18n.t("account-missing-#{f.dasherize}-message")
+      })
+    end
+    return account_missing_details
+  end
   
   def transfers
     transfer_history = Stripe::Transfer.list(limit: 10, destination: self.account_id)
