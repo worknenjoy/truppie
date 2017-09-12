@@ -32,7 +32,21 @@ class BankAccountsControllerTest < ActionController::TestCase
     assert_difference('BankAccount.count') do
       post :create, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }
     end
+    assert_redirected_to source
+  end
 
+  test "should create bank_account from a marketplace" do
+    source = "http://test/organizers/#{@bank_account.marketplace.organizer.to_param}/bank_account_edit"
+    request.env["HTTP_REFERER"] = source
+
+    @the_marketplace = marketplaces(:two)
+
+    assert_difference('BankAccount.count') do
+      post :create, {marketplace_id: @the_marketplace.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
+    end
+    assert_equal flash[:notice], I18n.t('bank_account_controller_notice_two')
+    assert_equal Marketplace.find(@the_marketplace.id).bank_accounts.size, 1
+    assert_equal Marketplace.find(@the_marketplace.id).bank_accounts.first.account_check_number, @bank_account.account_check_number
     assert_redirected_to source
   end
 

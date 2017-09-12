@@ -182,7 +182,7 @@ class OrganizersController < ApplicationController
           flash[:success] = I18n.t('import-event-notice-success')
         else
           puts "not saved"
-          puts @tour.errors.inspect
+          puts @tour.errors.inspectqclear
           flash[:error] = I18n.t('import-event-notice-error')
         end
       end

@@ -66,6 +66,11 @@ class BankAccountsController < ApplicationController
     respond_to do |format|
       if @bank_account.save
         format.html {
+          if !params[:marketplace_id].nil?
+            @marketplace = Marketplace.find(params[:marketplace_id])
+            @marketplace.bank_accounts << @bank_account
+            @bank_account.update_attributes({:marketplace => @marketplace })
+          end
           redirect_to :back, notice: t('bank_account_controller_notice_two')
         }
         format.json { render :show, status: :created, location: @bank_account }
