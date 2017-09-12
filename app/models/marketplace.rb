@@ -259,11 +259,15 @@ class Marketplace < ActiveRecord::Base
   end
 
   def account_full_verified
-    account_missing = self.account_missing
-    if account_missing[:fields_needed].empty?
-      true
+    begin
+      account_missing = self.account_missing
+      if account_missing[:fields_needed].empty?
+        return true
+      end
+      return false
+    rescue
+      return false
     end
-    false
   end
   
   def transfers
