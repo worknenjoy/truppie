@@ -1,5 +1,9 @@
 require 'test_helper'
 include Devise::TestHelpers
+require 'minitest/mock'
+require 'minitest/unit'
+
+MiniTest::Unit.autorun
 
 class BankAccountsControllerTest < ActionController::TestCase
   setup do
@@ -8,6 +12,7 @@ class BankAccountsControllerTest < ActionController::TestCase
     @stripe_helper = StripeMock.create_test_helper
     @bank_account = bank_accounts(:one)
     @registered_bank_account = bank_accounts(:registered)
+    @mkt_real_data = marketplaces(:real)
     ActionMailer::Base.deliveries.clear
   end
   
@@ -44,9 +49,51 @@ class BankAccountsControllerTest < ActionController::TestCase
     assert_difference('BankAccount.count') do
       post :create, {marketplace_id: @the_marketplace.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
     end
-    assert_equal flash[:notice], I18n.t('bank_account_controller_notice_two')
+
+    assert_equal flash[:notice], I18n.t('bank-account-data-incorrect')
     assert_equal Marketplace.find(@the_marketplace.id).bank_accounts.size, 1
     assert_equal Marketplace.find(@the_marketplace.id).bank_accounts.first.account_check_number, @bank_account.account_check_number
+    assert_redirected_to source
+  end
+
+  test "should not create bank_account remote if theres no active bank account" do
+    source = "http://test/organizers/#{@bank_account.marketplace.organizer.to_param}/bank_account_edit"
+    request.env["HTTP_REFERER"] = source
+
+    @mkt_real_data.activate
+
+    assert_difference('BankAccount.count') do
+      post :create, {marketplace_id: @mkt_real_data.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
+    end
+    assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.size, 1
+    assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.first.account_check_number, @bank_account.account_check_number
+
+    assert_equal flash[:notice], I18n.t("bank-account-data-incorrect")
+    assert_equal Marketplace.find(@mkt_real_data.id).registered_bank_account, []
+
+    assert_redirected_to source
+  end
+
+  test "should create a new bank_account remote" do
+    source = "http://test/organizers/#{@bank_account.marketplace.organizer.to_param}/bank_account_edit"
+    request.env["HTTP_REFERER"] = source
+
+    #mock = MiniTest::Mock.new
+
+    #Stripe::Account
+
+    account = @mkt_real_data.activate
+    
+    assert_difference('BankAccount.count') do
+      Stripe::Account.stub :retrieve, account do
+        post :create, {marketplace_id: @mkt_real_data.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
+        assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.size, 1
+        assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.first.account_check_number, @bank_account.account_check_number
+      end
+    end
+
+    assert_equal Marketplace.find(@mkt_real_data.id).registered_bank_account, []
+
     assert_redirected_to source
   end
 

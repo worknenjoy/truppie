@@ -66,11 +66,27 @@ class BankAccountsController < ApplicationController
     respond_to do |format|
       if @bank_account.save
         format.html {
-          if !params[:marketplace_id].nil?
-            @marketplace = Marketplace.find(params[:marketplace_id])
+          if bank_account_params[:marketplace_id]
+            @marketplace = Marketplace.find(bank_account_params[:marketplace_id])
             @marketplace.bank_accounts << @bank_account
             @bank_account.update_attributes({:marketplace => @marketplace })
+            bank_account_active = @bank_account.marketplace.bank_account_active
+            if bank_account_active
+              begin
+                bank_register_status = bank_account_active.marketplace.register_bank_account
+                puts 'bank register'
+                puts bank_register_status.inspect
+              rescue => e
+                ContactMailer.notify("Não foi possível registrar a conta bancária. Reason:#{e.inspect}, bank_account #{@bank_account.inspect}")
+                puts e.inspect
+                redirect_to :back, notice: t("bank-account-data-incorrect")
+                return
+              end
+            else
+              redirect_to :back, notice: t("bank-account-data-incorrect-not-active-account")
+            end
           end
+
           redirect_to :back, notice: t('bank_account_controller_notice_two')
         }
         format.json { render :show, status: :created, location: @bank_account }
@@ -116,6 +132,6 @@ class BankAccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bank_account_params
-      params.require(:bank_account).permit(:marketplace, :own_id, :bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :bank_type, :doc_type, :doc_number, :fullname, :active)
+      params.require(:bank_account).permit(:marketplace_id, :own_id, :bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :bank_type, :doc_type, :doc_number, :fullname, :active)
     end
 end

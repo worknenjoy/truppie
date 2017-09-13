@@ -26,6 +26,63 @@
               </p>
               <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
             </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <h4><%= t('card-active-label') %></h4>
+              </div>
+              <div class="col-xs-12">
+              <% @marketplace.bank_account_active.each do |b| %>
+                  <div class="col-xs-12">
+                    <div class="thumbnail">
+                      <div class="caption">
+                        <div class='col-lg-12'>
+                          <span class="glyphicon glyphicon-credit-card glyphicon-bold glyphicon-th-large"></span>
+                          <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
+                        </div>
+                        <div class='col-lg-12 well well-add-card'>
+                          <h4><%= b.try(:fullname) or t('fullname-empty') %></h4>
+                        </div>
+                        <div class='col-lg-12'>
+                          <p><%= b.bank_number or t('bank-number-empty') %></p>
+                          <p><%= b.account_number or t('bank-number-empty') %></p>
+                          <p class"text-muted"><%= b.bank_type or t('bank-number-empty') %></p>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card"><%= t('update-bank-account-label') %></button>
+                        <button type="button" class="btn btn-danger btn-xs btn-update btn-add-card"><%= t('verify-bank-account-label') %></button>
+                        <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                      </div>
+                    </div>
+                  </div>
+              <% end %>
+              <% @marketplace.bank_accounts.each do |b| %>
+              <div class="col-lg-12">
+                <h4><%= t('card-label') %></h4>
+              </div>
+              <div class="col-xs-12">
+                <div class="thumbnail">
+                  <div class="caption">
+                    <div class='col-lg-12'>
+                      <span class="glyphicon glyphicon-credit-card glyphicon-bold"></span>
+                      <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
+                    </div>
+                    <div class='col-lg-12 well well-add-card'>
+                      <h4><%= b.try(:fullname) or t('fullname-empty') %></h4>
+                    </div>
+                    <div class='col-lg-12'>
+                      <p><%= b.bank_number or t('bank-number-empty') %></p>
+                      <p><%= b.account_number or t('bank-number-empty') %></p>
+                      <p class"text-muted"><%= b.bank_type or t('bank-number-empty') %></p>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card"><%= t('update-bank-account-label') %></button>
+                    <button type="button" class="btn btn-danger btn-xs btn-update btn-add-card"><%= t('verify-bank-account-label') %></button>
+                    <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div><!-- End row -->
+            </div>
             <%= form_for @bank_account, class: "form", multipart: true, role: "form" do |f| %>
               <fieldset class="form-group <%= form_error(flash[:errors], :bank_number) %>">
                 <%= f.label :bank_number, class: "form-control-label" %>
@@ -34,6 +91,7 @@
 
                 <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
                 <%= f.hidden_field :organizer_id, value: @organizer.id %>
+                <%= f.hidden_field :active, value: true %>
               </fieldset>
               <fieldset class="form-group <%= form_error(flash[:errors], :agency_number) %>">
                 <%= f.label :agency_number, class: "form-control-label" %>
