@@ -61,7 +61,7 @@ class Marketplace < ActiveRecord::Base
   
   def document_picture 
     if self.photo.present?
-      self.document if self.retrieve_account.legal_entity.verification.document
+      self.try(:document) if self.retrieve_account.legal_entity.verification.document
     end
   end
   
@@ -162,7 +162,6 @@ class Marketplace < ActiveRecord::Base
   
   def retrieve_account
     account = Stripe::Account.retrieve(self.account_id)
-    puts account.inspect
     return account
   end
   
@@ -277,7 +276,7 @@ class Marketplace < ActiveRecord::Base
   end
   
   def bank_account_active
-    self.bank_accounts.where(:active => true).first 
+    self.bank_accounts.where(:active => true)
   end
   
   def bank_account
@@ -308,6 +307,8 @@ class Marketplace < ActiveRecord::Base
           return bank_accounts.data
         end
       rescue => e
+        puts "bank accounts"
+        puts e.inspect
         return e
       end
     end   
