@@ -3,7 +3,7 @@ include Devise::TestHelpers
 require 'minitest/mock'
 require 'minitest/unit'
 
-MiniTest::Unit.autorun
+MiniTest.autorun
 
 class BankAccountsControllerTest < ActionController::TestCase
   setup do
@@ -40,35 +40,19 @@ class BankAccountsControllerTest < ActionController::TestCase
     assert_redirected_to source
   end
 
-  test "should create bank_account from a marketplace" do
+  test "should create a new bank_account but fails remote" do
     source = "http://test/organizers/#{@bank_account.marketplace.organizer.to_param}/bank_account_edit"
     request.env["HTTP_REFERER"] = source
 
-    @the_marketplace = marketplaces(:two)
+    account = @mkt_real_data.activate
 
     assert_difference('BankAccount.count') do
-      post :create, {marketplace_id: @the_marketplace.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
+      Stripe::Account.stub :retrieve, account do
+        post :create, {marketplace_id: @mkt_real_data.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
+        assert_equal flash[:notice], I18n.t("bank-account-data-remote-incorrect")
+      end
     end
 
-    assert_equal flash[:notice], I18n.t('bank-account-data-incorrect')
-    assert_equal Marketplace.find(@the_marketplace.id).bank_accounts.size, 1
-    assert_equal Marketplace.find(@the_marketplace.id).bank_accounts.first.account_check_number, @bank_account.account_check_number
-    assert_redirected_to source
-  end
-
-  test "should not create bank_account remote if theres no active bank account" do
-    source = "http://test/organizers/#{@bank_account.marketplace.organizer.to_param}/bank_account_edit"
-    request.env["HTTP_REFERER"] = source
-
-    @mkt_real_data.activate
-
-    assert_difference('BankAccount.count') do
-      post :create, {marketplace_id: @mkt_real_data.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
-    end
-    assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.size, 1
-    assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.first.account_check_number, @bank_account.account_check_number
-
-    assert_equal flash[:notice], I18n.t("bank-account-data-incorrect")
     assert_equal Marketplace.find(@mkt_real_data.id).registered_bank_account, []
 
     assert_redirected_to source
@@ -78,21 +62,19 @@ class BankAccountsControllerTest < ActionController::TestCase
     source = "http://test/organizers/#{@bank_account.marketplace.organizer.to_param}/bank_account_edit"
     request.env["HTTP_REFERER"] = source
 
-    #mock = MiniTest::Mock.new
-
-    #Stripe::Account
-
     account = @mkt_real_data.activate
-    
+
     assert_difference('BankAccount.count') do
       Stripe::Account.stub :retrieve, account do
-        post :create, {marketplace_id: @mkt_real_data.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
-        assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.size, 1
-        assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.first.account_check_number, @bank_account.account_check_number
+        account.external_accounts.stub :create, [] do
+          post :create, {marketplace_id: @mkt_real_data.id, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, bank_type: @bank_account.bank_type }}
+          assert_equal flash[:notice], I18n.t("bank_account_controller_notice_two")
+          assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.size, 1
+          assert_equal Marketplace.find(@mkt_real_data.id).bank_accounts.first.account_check_number, @bank_account.account_check_number
+          assert_equal Marketplace.find(@mkt_real_data.id).registered_bank_account, []
+        end
       end
     end
-
-    assert_equal Marketplace.find(@mkt_real_data.id).registered_bank_account, []
 
     assert_redirected_to source
   end
@@ -107,11 +89,26 @@ class BankAccountsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update bank_account" do
+  test "should not update bank_account if theres incorrect data" do
+    source = "http://test/organizers/#{@mkt_real_data.organizer.to_param}/account_status"
+    request.env["HTTP_REFERER"] = source
 
-    skip("some issue in update bank account")
-    patch :update, id: @bank_account, bank_account: { account_check_number: @bank_account.account_check_number, account_number: @bank_account.account_number, active: @bank_account.active, agency_check_number: @bank_account.agency_check_number, agency_number: @bank_account.agency_number, bank_number: @bank_account.bank_number, doc_number: @bank_account.doc_number, doc_type: @bank_account.doc_type, fullname: @bank_account.fullname, type: @bank_account.type }
-    assert_redirected_to bank_account_path(assigns(:bank_account))
+    patch :update, id: @bank_account, bank_account: { account_check_number: nil, account_number: nil, agency_check_number: nil, agency_number: nil, bank_number: nil, doc_number: nil, doc_type: @bank_account.doc_type}
+    assert_equal flash[:notice], I18n.t('bank-account-updated-fail')
+    assert_equal flash[:errors].messages, {:bank_number=>["não pode ficar em branco"], :agency_number=>["não pode ficar em branco"], :account_number=>["não pode ficar em branco"]}
+    assert_redirected_to source
+  end
+
+  test "should update bank_account" do
+    source = "http://test/organizers/#{@mkt_real_data.organizer.to_param}/account_status"
+    request.env["HTTP_REFERER"] = source
+
+    patch :update, id: @bank_account, bank_account: { account_number: '2222'}
+    assert_equal BankAccount.find(@bank_account.id).account_number, '2222'
+
+    assert_equal flash[:notice], I18n.t('bank-account-sync-error')
+
+    assert_redirected_to source
   end
 
   test "should destroy bank_account" do

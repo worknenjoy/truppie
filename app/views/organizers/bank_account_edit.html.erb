@@ -28,34 +28,22 @@
             </div>
 
             <div class="row">
-              <div class="col-lg-12">
-                <h4><%= t('card-active-label') %></h4>
-              </div>
-              <div class="col-xs-12">
-              <% @marketplace.bank_account_active.each do |b| %>
-                  <div class="col-xs-12">
-                    <div class="thumbnail">
-                      <div class="caption">
-                        <div class='col-lg-12'>
-                          <span class="glyphicon glyphicon-credit-card glyphicon-bold glyphicon-th-large"></span>
-                          <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
-                        </div>
-                        <div class='col-lg-12 well well-add-card'>
-                          <h4><%= b.try(:fullname) or t('fullname-empty') %></h4>
-                        </div>
-                        <div class='col-lg-12'>
-                          <p><%= b.bank_number or t('bank-number-empty') %></p>
-                          <p><%= b.account_number or t('bank-number-empty') %></p>
-                          <p class"text-muted"><%= b.bank_type or t('bank-number-empty') %></p>
-                        </div>
-                        <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card"><%= t('update-bank-account-label') %></button>
-                        <button type="button" class="btn btn-danger btn-xs btn-update btn-add-card"><%= t('verify-bank-account-label') %></button>
-                        <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
-                      </div>
-                    </div>
-                  </div>
-              <% end %>
               <% @marketplace.bank_accounts.each do |b| %>
+              <div class="modal fade" id="bank-account-modal-<%= b.id %>">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title"><%= t('bank-account-edit-label') %></h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= render partial: 'organizers/bank_account_form', locals: {bank_account: b} %>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
               <div class="col-lg-12">
                 <h4><%= t('card-label') %></h4>
               </div>
@@ -63,17 +51,26 @@
                 <div class="thumbnail">
                   <div class="caption">
                     <div class='col-lg-12'>
-                      <span class="glyphicon glyphicon-credit-card glyphicon-bold"></span>
+                      <div class="text-success pull-left spaced-down-small">
+                        <span class="glyphicon glyphicon-credit-card"></span>
+                        <% if b.active %>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <%= t('active-label') %>
+                        <% end %>
+                      </div>
                       <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
                     </div>
                     <div class='col-lg-12 well well-add-card'>
                       <h4><%= b.try(:fullname) or t('fullname-empty') %></h4>
                     </div>
                     <div class='col-lg-12'>
-                      <p><%= b.bank_number or t('bank-number-empty') %></p>
-                      <p><%= b.account_number or t('bank-number-empty') %></p>
-                      <p class"text-muted"><%= b.bank_type or t('bank-number-empty') %></p>
+                      <p><%= b.try(:agency_number) or t('bank-number-empty') %></p>
+                      <p><%= b.try(:account_number) or t('bank-number-empty') %></p>
+                      <p class"text-muted"><%= b.try(:name) or t('bank-number-empty') %></p>
                     </div>
+                    <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-toggle="modal" data-target="#bank-account-modal-<%= b.id %>">
+                      <%= t('bank-account-edit-button') %>
+                    </button>
                     <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card"><%= t('update-bank-account-label') %></button>
                     <button type="button" class="btn btn-danger btn-xs btn-update btn-add-card"><%= t('verify-bank-account-label') %></button>
                     <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
@@ -83,28 +80,7 @@
               <% end %>
             </div><!-- End row -->
             </div>
-            <%= form_for @bank_account, class: "form", multipart: true, role: "form" do |f| %>
-              <fieldset class="form-group <%= form_error(flash[:errors], :bank_number) %>">
-                <%= f.label :bank_number, class: "form-control-label" %>
-                <%= f.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => f.object.bank_number, class: "form-control #{form_field_error(flash[:errors], :bank_number)}"  %>
-                <%= error_message(flash[:errors], :bank_number) %>
-
-                <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
-                <%= f.hidden_field :organizer_id, value: @organizer.id %>
-                <%= f.hidden_field :active, value: true %>
-              </fieldset>
-              <fieldset class="form-group <%= form_error(flash[:errors], :agency_number) %>">
-                <%= f.label :agency_number, class: "form-control-label" %>
-                <%= f.text_field :agency_number, placeholder: t('bank-account-placeholder-agency-number'), class: "form-control #{form_field_error(flash[:errors], :agency_number)}" %>
-                <%= error_message(flash[:errors], :agency_number) %>
-              </fieldset>
-              <fieldset class="form-group <%= form_error(flash[:errors], :account_number) %>">
-                <%= f.label :account_number, class: "form-control-label" %>
-                <%= f.text_field :account_number, placeholder: t('bank-account-placeholder-account-number'), class: "form-control #{form_field_error(flash[:errors], :account_number)}" %>
-                <%= error_message(flash[:errors], :account_number) %>
-              </fieldset>
-              <button type="submit" class="btn btn-primary pull-right">Submit</button>
-            <% end %>
+            <%= render partial: 'organizers/bank_account_form', locals: {bank_account: @bank_account} %>
           </div>
         </div>
       </div>

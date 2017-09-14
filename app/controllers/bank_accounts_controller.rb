@@ -66,27 +66,21 @@ class BankAccountsController < ApplicationController
     respond_to do |format|
       if @bank_account.save
         format.html {
-          if bank_account_params[:marketplace_id]
-            @marketplace = Marketplace.find(bank_account_params[:marketplace_id])
+          if params[:marketplace_id]
+            @marketplace = Marketplace.find(params[:marketplace_id])
             @marketplace.bank_accounts << @bank_account
             @bank_account.update_attributes({:marketplace => @marketplace })
-            bank_account_active = @bank_account.marketplace.bank_account_active
-            if bank_account_active
-              begin
-                bank_register_status = bank_account_active.marketplace.register_bank_account
-                puts 'bank register'
-                puts bank_register_status.inspect
-              rescue => e
-                ContactMailer.notify("Não foi possível registrar a conta bancária. Reason:#{e.inspect}, bank_account #{@bank_account.inspect}")
-                puts e.inspect
-                redirect_to :back, notice: t("bank-account-data-incorrect")
-                return
-              end
-            else
-              redirect_to :back, notice: t("bank-account-data-incorrect-not-active-account")
+            begin
+              bank_register_status = @bank_account.marketplace.register_bank_account
+              puts 'bank register'
+              puts bank_register_status.inspect
+            rescue => e
+              ContactMailer.notify("Não foi possível registrar a conta bancária. Reason:#{e.inspect}, bank_account #{@bank_account.inspect}")
+              puts e.inspect
+              redirect_to :back, notice: t("bank-account-data-remote-incorrect")
+              return
             end
           end
-
           redirect_to :back, notice: t('bank_account_controller_notice_two')
         }
         format.json { render :show, status: :created, location: @bank_account }
@@ -105,10 +99,40 @@ class BankAccountsController < ApplicationController
   def update
     respond_to do |format|
       if @bank_account.update(bank_account_params)
-        format.html { redirect_to @bank_account, notice: 'Bank account was successfully updated.' }
+        format.html {
+          begin
+            if @bank_account.own_id
+              @bank_account_sync = @bank_account.sync
+              if @bank_account_sync
+                @status_message = I18n.t('bank-account-sync-sucessfully')
+              else
+                @status_message = I18n.t('bank-account-sync-issue')
+              end
+            else
+              @bank_account_register = @bank_account.register
+              if @bank_account_register
+                @status_message = I18n.t('bank-account-register-sucessfully')
+              else
+                @status_message = I18n.t('bank-account-register-issue')
+              end
+            end
+          rescue ArgumentError => e
+            puts 'Missing id error'
+            puts e.inspect
+            @status_message = I18n.t('bank-account-sync-error-no-id')
+          rescue => e
+            puts 'bank account sync error'
+            puts e.inspect
+            @status_message = I18n.t('bank-account-sync-error')
+          end
+          redirect_to :back, notice: @status_message || t('bank-account-updated')
+        }
         format.json { render :show, status: :ok, location: @bank_account }
       else
-        format.html { render :edit }
+        format.html {
+          flash[:errors] = @bank_account.errors
+          redirect_to :back, notice: t('bank-account-updated-fail')
+        }
         format.json { render json: @bank_account.errors, status: :unprocessable_entity }
       end
     end
@@ -132,6 +156,6 @@ class BankAccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bank_account_params
-      params.require(:bank_account).permit(:marketplace_id, :own_id, :bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :bank_type, :doc_type, :doc_number, :fullname, :active)
+      params.require(:bank_account).permit(:marketplace, :marketplace_id, :own_id, :bank_number, :agency_number, :agency_check_number, :account_number, :account_check_number, :bank_type, :doc_type, :doc_number, :fullname, :active)
     end
 end
