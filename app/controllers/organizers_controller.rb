@@ -133,7 +133,6 @@ class OrganizersController < ApplicationController
 
   def bank_account_edit
     @marketplace = @organizer.marketplace
-    @bank_accounts = @marketplace.bank_accounts
     @bank_account = BankAccount.new
   end
 

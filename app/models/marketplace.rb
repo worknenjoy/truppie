@@ -276,7 +276,7 @@ class Marketplace < ActiveRecord::Base
   end
   
   def bank_account_active
-    self.bank_accounts.where(:active => true)
+    self.bank_accounts.where(:active => true).first
   end
   
   def bank_account

@@ -91,7 +91,7 @@ module ApplicationHelper
     status[s]
   end
   
-  def bank_list()
+  def bank_list
     YAML.load_file('config/banks.yml')
   end
   

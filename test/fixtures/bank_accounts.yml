@@ -27,7 +27,7 @@ two:
   active: false
 
 registered:
-  marketplace: one
+  marketplace: real
   own_id: foo
   bank_number: MyString
   agency_number: MyString
@@ -38,4 +38,4 @@ registered:
   doc_type: MyString
   doc_number: MyString
   fullname: MyString
-  active: false
+  active: true

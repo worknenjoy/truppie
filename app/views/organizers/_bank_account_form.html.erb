@@ -1,0 +1,34 @@
+<%= form_for bank_account, class: "form", multipart: true, role: "form" do |f| %>
+    <h4><%= t('new-bank-account-title') %></h4>
+    <label>
+      <%= f.check_box :active, class: "form-control" %>
+      <%= t('bank-account-form-active') %>
+    </label>
+    <fieldset class="form-group <%= form_error(flash[:errors], :bank_number) %>">
+      <%= f.label :bank_number, class: "form-control-label" %>
+      <%= f.select :bank_number, options_for_select(bank_list["banks"].map{|s|[s[1], s[0]]}), :selected => f.object.bank_number, class: "form-control #{form_field_error(flash[:errors], :bank_number)}"  %>
+      <%= error_message(flash[:errors], :bank_number) %>
+
+      <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
+      <%= f.hidden_field :organizer_id, value: @organizer.id %>
+      <%= f.hidden_field :active, value: true %>
+    </fieldset>
+    <fieldset class="form-group <%= form_error(flash[:errors], :fullname) %>">
+      <%= f.label :fullname, class: "form-control-label" %>
+      <%= f.text_field :fullname, placeholder: t('bank-account-placeholder-fullname'), class: "form-control #{form_field_error(flash[:errors], :fullname)}" %>
+      <%= error_message(flash[:errors], :fullname) %>
+    </fieldset>
+    <fieldset class="form-group <%= form_error(flash[:errors], :agency_number) %>">
+      <%= f.label :agency_number, class: "form-control-label" %>
+      <%= f.text_field :agency_number, placeholder: t('bank-account-placeholder-agency-number'), class: "form-control #{form_field_error(flash[:errors], :agency_number)}" %>
+      <%= error_message(flash[:errors], :agency_number) %>
+    </fieldset>
+    <fieldset class="form-group <%= form_error(flash[:errors], :account_number) %>">
+      <%= f.label :account_number, class: "form-control-label" %>
+      <%= f.text_field :account_number, placeholder: t('bank-account-placeholder-account-number'), class: "form-control #{form_field_error(flash[:errors], :account_number)}" %>
+      <%= error_message(flash[:errors], :account_number) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <button type="submit" class="btn btn-primary pull-right"><%= t('bank-account-action-save') %></button>
+    </fieldset>
+<% end %>
