@@ -112,11 +112,42 @@ class BankAccountsControllerTest < ActionController::TestCase
   end
 
   test "should destroy bank_account" do
-    assert_difference('BankAccount.count', -1) do
-      delete :destroy, id: @bank_account
+
+    source = "http://test/organizers/#{@mkt_real_data.organizer.to_param}/account_status"
+    request.env["HTTP_REFERER"] = source
+
+    account = @registered_bank_account.marketplace.activate
+    bank_account_mock = StripeMock::Data.mock_bank_account
+    bank_account_token = @stripe_helper.generate_bank_token(bank_account_mock)
+    bank_account = Stripe::BankAccount.new(external_account: bank_account_token)
+
+    Stripe::Account.stub :retrieve, account do
+      account.external_accounts.stub :retrieve, bank_account do
+        assert_difference('BankAccount.count', -1) do
+          delete :destroy, id: @registered_bank_account
+        end
+      end
     end
 
-    assert_redirected_to bank_accounts_path
+    assert_equal flash[:notice], I18n.t('bank-account-destroyed-successfully')
+
+    assert_redirected_to source
+  end
+
+  test "if fails the remote, do not destroy the local" do
+
+    source = "http://test/organizers/#{@mkt_real_data.organizer.to_param}/account_status"
+    request.env["HTTP_REFERER"] = source
+
+    Stripe::Account.stub :retrieve, 'error' do
+      assert_no_difference('BankAccount.count') do
+        delete :destroy, id: @registered_bank_account
+      end
+    end
+
+    assert_equal flash[:notice], I18n.t('bank-account-not-deleted')
+
+    assert_redirected_to source
   end
   
   test "should not activate bank_account with wrong data" do
