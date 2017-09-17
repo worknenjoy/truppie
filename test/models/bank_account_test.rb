@@ -41,8 +41,6 @@ class BankAccountTest < ActiveSupport::TestCase
     bank_account_token = @stripe_helper.generate_bank_token(bank_account_mock)
     bank_account = Stripe::BankAccount.new(external_account: bank_account_token)
 
-    puts Stripe::BankAccount.attr_internal
-
     #bank_account.metadata = []
 
     Stripe::Account.stub :retrieve, account do
@@ -53,5 +51,27 @@ class BankAccountTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test "bank account return the status of the remote bank account" do
+    account = @bank_account_registered.marketplace.activate
+    bank_account_mock = StripeMock::Data.mock_bank_account
+    bank_account_token = @stripe_helper.generate_bank_token(bank_account_mock)
+    bank_account = Stripe::BankAccount.new(external_account: bank_account_token)
+
+    def bank_account.status
+      "new"
+    end
+
+    #bank_account.metadata = []
+
+    Stripe::Account.stub :retrieve, account do
+      account.external_accounts.stub :retrieve, bank_account do
+        account.stub :save, bank_account do
+          assert_equal @bank_account_registered.status, "new"
+        end
+      end
+    end
+  end
+
 
 end

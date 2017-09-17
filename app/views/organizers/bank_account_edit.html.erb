@@ -50,7 +50,9 @@
                             <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
                         <% end %>
                       </div>
-                      <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
+                      <%= link_to b, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' } do %>
+                        <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
+                      <% end %>
                     </div>
                     <div class='col-lg-12 well well-add-card'>
                       <h4><%= b.try(:fullname) or t('fullname-empty') %></h4>
@@ -60,15 +62,35 @@
                       <p><%= b.try(:account_number) or t('bank-number-empty') %></p>
                       <p class"text-muted"><%= b.try(:name) or t('bank-number-empty') %></p>
                     </div>
-                    <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">
+                    <% if !b.is_registered? %>
+                    <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-toggle="modal" data-target="#modal-<%= b.id %>">
                       <%= t('bank-account-edit-button') %>
                     </button>
+                    <% end %>
                     <%= f.submit t('update-bank-account-label'), :class => "btn btn-primary btn-xs btn-update btn-add-card" %>
-                    <button type="button" class="btn btn-danger btn-xs btn-update btn-add-card"><%= t('verify-bank-account-label') %></button>
+                    <% if b.status == "new" %>
+                         <span class='glyphicon glyphicon-ok text-success pull-right icon-style'></span>
+                   <% else %>
                     <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                   <% end %>
                   </div>
                 </div>
               </div>
+              <% if !b.is_registered? %>
+              <div class="modal fade" tabindex="-1" role="dialog" id="modal-<%= b.id %>">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                      <%= render partial: 'organizers/bank_account_form', locals: {bank_account: b} %>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+             <% end %>
               <% end %>
               <% end %>
             </div><!-- End row -->

@@ -10,7 +10,7 @@ class BankAccount < ActiveRecord::Base
   def register
     account = self.from_account
     bank_account = account.external_accounts.create(external_account: self.bank_account_format)
-    if bank_account
+    if bank_account and bank_account.id
       update_attributes({
           :own_id => bank_account.id
       })
@@ -20,6 +20,18 @@ class BankAccount < ActiveRecord::Base
 
   def name
     ApplicationController.helpers.bank_list["banks"][self.bank_number]
+  end
+
+  def is_registered?
+    self.status == 'new'
+  end
+
+  def status
+    begin
+      self.fetch.status
+    rescue => e
+      e
+    end
   end
 
   def from_account

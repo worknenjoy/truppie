@@ -10,7 +10,6 @@
       <%= error_message(flash[:errors], :bank_number) %>
 
       <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
-      <%= f.hidden_field :organizer_id, value: @organizer.id %>
     </fieldset>
     <fieldset class="form-group <%= form_error(flash[:errors], :fullname) %>">
       <%= f.label :fullname, class: "form-control-label" %>

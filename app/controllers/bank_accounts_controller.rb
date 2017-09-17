@@ -66,12 +66,12 @@ class BankAccountsController < ApplicationController
     respond_to do |format|
       if @bank_account.save
         format.html {
-          if params[:marketplace_id]
-            @marketplace = Marketplace.find(params[:marketplace_id])
+          if bank_account_params[:marketplace_id]
+            @marketplace = Marketplace.find(bank_account_params[:marketplace_id])
             @marketplace.bank_accounts << @bank_account
             @bank_account.update_attributes({:marketplace => @marketplace })
             begin
-              bank_register_status = @bank_account.marketplace.register_bank_account
+              bank_register_status = @bank_account.register
               puts 'bank register'
               puts bank_register_status.inspect
             rescue => e
@@ -141,11 +141,26 @@ class BankAccountsController < ApplicationController
   # DELETE /bank_accounts/1
   # DELETE /bank_accounts/1.json
   def destroy
-    @bank_account.destroy
-    respond_to do |format|
-      format.html { redirect_to bank_accounts_url, notice: 'Bank account was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      respond_to do |format|
+        begin
+          @bank_account.fetch.delete()
+          format.html {
+            @bank_account.destroy
+            redirect_to :back, notice: I18n.t('bank-account-destroyed-successfully')
+          }
+          format.json { head :no_content }
+        rescue Stripe::InvalidRequestError => e
+          format.html {
+            puts e.inspect
+            redirect_to :back, notice: I18n.t('bank-account-not-deleted-default')
+          }
+        rescue => e
+          format.html {
+            puts e.inspect
+            redirect_to :back, notice: I18n.t('bank-account-not-deleted')
+          }
+        end
+      end
   end
 
   private
