@@ -41,6 +41,10 @@ class BankAccountTest < ActiveSupport::TestCase
     bank_account_token = @stripe_helper.generate_bank_token(bank_account_mock)
     bank_account = Stripe::BankAccount.new(external_account: bank_account_token)
 
+    puts Stripe::BankAccount.attr_internal
+
+    #bank_account.metadata = []
+
     Stripe::Account.stub :retrieve, account do
       account.external_accounts.stub :retrieve, bank_account do
         account.stub :save, bank_account do

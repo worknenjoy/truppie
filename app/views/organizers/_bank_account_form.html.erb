@@ -11,7 +11,6 @@
 
       <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
       <%= f.hidden_field :organizer_id, value: @organizer.id %>
-      <%= f.hidden_field :active, value: true %>
     </fieldset>
     <fieldset class="form-group <%= form_error(flash[:errors], :fullname) %>">
       <%= f.label :fullname, class: "form-control-label" %>
