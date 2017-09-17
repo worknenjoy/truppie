@@ -104,9 +104,9 @@ function readURL(input) {
 }
 
 $(function(){
-	
+
 	$('.dropdown-toggle').dropdown();
-	
+
 	$('form').on('submit', function(){
 		$(this).find('input[type=submit]').attr('disabled', '');
 	});
@@ -115,20 +115,20 @@ $(function(){
 	    $(this).parent().animateCss('fadeOutUp', false);
         return false;
     });
-	
+
 	localStorage.clear();
-	
+
 	$('#tour_included, #tour_nonincluded, #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
 		delimiter: ";"
 	});
-	
+
 	$('#add-packages').on('click', function(){
 		$('.packages-set').clone().insertBefore(this);
 		return false;
 	});
-	
+
 	$('.activate-tooltip').tooltip();
-	
+
 	var where = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -136,7 +136,7 @@ $(function(){
 	    url: '/wheres/index.json',
 	    filter: function(list) {
 	      return $.map(list, function(where) {
-	        return where; 
+	        return where;
     	  });
 	    }
 	  }
@@ -156,10 +156,10 @@ $(function(){
         }).end();
         count++;
         $('.new-packages-content:eq(0)').prepend(new_data);
-	  });	  
+	  });
 	  return false;
 	});
-	
+
 	$('.where-field').tagsinput({
 	  typeaheadjs: {
 	    name: 'where',
@@ -170,7 +170,7 @@ $(function(){
 	  delimiter: ';',
 	  maxTags: 1
 	});
-	
+
 	var tags = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -178,13 +178,13 @@ $(function(){
 	    url: '/tags/index.json',
 	    filter: function(list) {
 	      return $.map(list, function(tag) {
-	        return tag; 
+	        return tag;
     	  });
 	    }
 	  }
 	});
 	tags.initialize();
-	
+
 	$('#tour_tags').tagsinput({
 	  typeaheadjs: {
 	    name: 'tags',
@@ -194,7 +194,7 @@ $(function(){
 	  },
 	  delimiter: ';'
 	});
-	
+
 	var languages = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -202,13 +202,13 @@ $(function(){
 	    url: '/languages/index.json',
 	    filter: function(list) {
 	      return $.map(list, function(languages) {
-	        return languages; 
+	        return languages;
     	  });
 	    }
 	  }
 	});
 	languages.initialize();
-	
+
 	$('#tour_languages').tagsinput({
 	  typeaheadjs: {
 	    name: 'languages',
@@ -218,7 +218,7 @@ $(function(){
 	  },
 	  delimiter: ';'
 	});
-	
+
 	var organizers = new Bloodhound({
 	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 	  queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -226,13 +226,13 @@ $(function(){
 	    url: '/organizers.json',
 	    filter: function(list) {
 	      return $.map(list, function(organizers) {
-	        return organizers; 
+	        return organizers;
     	  });
 	    }
 	  }
 	});
 	organizers.initialize();
-	
+
 	$('.organizer-chooser').tagsinput({
 	  typeaheadjs: {
 	    name: 'organizers',
@@ -243,21 +243,21 @@ $(function(){
 	  delimiter: ';',
 	  maxTags: 1
 	});
-	
+
 	$('#reveal-new-cat').on('click', function(){
   		$('#new-cat').show();
   		return false;
   	});
-	
+
 	$(".criar-truppie").on('click', function(){
-		
+
 		if($('#new-cat').find('input')) {
 			var option = new Option($('#new-cat').find('input').val(), $('#new-cat').find('input').val());
 			$('#tour_category_id').find(":selected").removeAttr("selected");
 			$('#tour_category_id').append($(option).attr('selected', 'selected'));
 			$('#tour_category_id').trigger('change');
 		}
-		
+
 		$('#new_tour, .edit_tour').trigger('submit');
 		return false;
 	});
@@ -269,40 +269,40 @@ $(function(){
         $('#new_tour, .edit_tour').trigger('submit');
         return false;
     });
-	
+
 	$(".criar-guia").on('click', function(){
 		$('#new_organizer, .edit_organizer').trigger('submit');
 		return false;
 	});
-	
+
 	$(".create-marketplace").on('click', function(){
     $('#new_marketplace, .edit_marketplace').trigger('submit');
     return false;
   });
-	
-	
+
+
 	$('#carousel-intro').carousel();
-	
+
  	$('#carousel-intro').on('swiperight', function(e){
 		$('#carousel-intro').carousel('prev');
  	}).on('swipeleft', function(){
 		$('#carousel-intro').carousel('next');
  	});
- 	
+
  	$('.carousel-right').on('click',function(){
  		$('#carousel-intro').carousel('next');
  		return false;
  	});
- 	
+
  	$('.carousel-left').on('click',function(){
  		$('#carousel-intro').carousel('prev');
  		return false;
  	});
- 	
+
  	if(is_touch_device() && !is_desktop_screen()) {
  		$('.carousel-navigation').hide();
  	}
- 	
+
  	$('#carousel-intro')
 		.on('movestart', function(e) {
 		  // If the movestart is heading off in an upwards or downwards
@@ -312,7 +312,7 @@ $(function(){
 		    e.preventDefault();
 		  }
 	});
-	
+
 	$('a[href="#navbar-more-show"], .navbar-more-overlay').on('click', function(event) {
 		event.preventDefault();
 		$('body').toggleClass('navbar-more-show');
@@ -323,10 +323,10 @@ $(function(){
 		}
 		return false;
 	});
-	
+
 	function stripeResponseHandler(status, response) {
 	  var $form = $('#form-confirm-reservation');
-	  
+
 	  if(response.error) {
 	    $form.find('.alert').remove();
 	    $form.find('#confirm-reservation-button').before('<div class="dialog-alert alert alert-danger animated bounceIn"><strong>' + response.error.param + '</strong><br />' + response.error.message +  ' </div>');
@@ -337,35 +337,35 @@ $(function(){
       $form.get(0).submit();
 	  }
 	}
-	
+
 	$("#form-confirm-reservation").bind('submit', function() {
-	  
+
 	    $(this).find('#confirm-reservation-button').prop('disabled', true);
-	    
+
 	    Stripe.card.createToken($(this), stripeResponseHandler);
-	    
+
 	   return false;
 	  });
-	  
+
   	if($('.overall-alert').length) {
   		delayedAlert();
   		$('.close').on('click', function () {
   			$('.overall-alert').removeClass('slideInDown').addClass('fadeOutUp');
 		});
   	}
-  	
+
  	new WOW().init();
- 	
+
  	if($('.cc-package-options').length) {
  	  $('.cc-final-price span').text($('.cc-package-options').find(":checked").val());
  	  $('#cc-final-price').val($('.cc-package-options').find(":checked").val());
  	}
- 	
+
  	if($('.b-package-options').length) {
     $('.b-final-price span').text($('.b-package-options').find(":checked").val());
     $('#b-final-price').val($('.b-package-options').find(":checked").val());
-  }  
- 	
+  }
+
  	$('.cc-amount-output').bootstrapNumber({
     upClass: 'cc-plus',
     downClass: 'cc-minus',
@@ -374,7 +374,7 @@ $(function(){
     changeEl: 'cc-package-options',
     center: true
   });
-  
+
   $('.b-amount-output').bootstrapNumber({
     upClass: 'b-plus',
     downClass: 'b-minus',
@@ -383,7 +383,7 @@ $(function(){
     changeEl: 'b-package-options',
     center: true
   });
-  
+
   $('.payments .button').bind('click', function(){
     $('.payments .button').removeClass('active');
     $(this).addClass('active');
@@ -392,7 +392,7 @@ $(function(){
     $(tgt).show();
     return false;
   });
-  
+
   $('#birthdate').mask("99/99/9999");
 
 

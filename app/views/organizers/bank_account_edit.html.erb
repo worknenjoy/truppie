@@ -29,21 +29,7 @@
 
             <div class="row">
               <% @marketplace.bank_accounts.each do |b| %>
-              <div class="modal fade" id="bank-account-modal-<%= b.id %>">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      <h4 class="modal-title"><%= t('bank-account-edit-label') %></h4>
-                    </div>
-                    <div class="modal-body">
-                      <%= render partial: 'organizers/bank_account_form', locals: {bank_account: b} %>
-                    </div>
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div><!-- /.modal -->
+              <%= form_for b, class: "form", multipart: true, role: "form", method: :patch do |f| %>
               <div class="col-lg-12">
                 <h4><%= t('card-label') %></h4>
               </div>
@@ -53,9 +39,15 @@
                     <div class='col-lg-12'>
                       <div class="text-success pull-left spaced-down-small">
                         <span class="glyphicon glyphicon-credit-card"></span>
+                        <%= f.hidden_field :bank_account, value: b %>
                         <% if b.active %>
                             <span class="glyphicon glyphicon-ok"></span>
                             <%= t('active-label') %>
+                            <label><%= t('unactivate-label') %></label>
+                            <%= f.check_box :active %>
+                        <% else %>
+                            <%= f.check_box :active, class: "form-control" %>
+                            <%= f.hidden_field :marketplace_id, value: @marketplace.try(:id) %>
                         <% end %>
                       </div>
                       <span class="glyphicon glyphicon-trash pull-right text-primary"></span>
@@ -68,15 +60,16 @@
                       <p><%= b.try(:account_number) or t('bank-number-empty') %></p>
                       <p class"text-muted"><%= b.try(:name) or t('bank-number-empty') %></p>
                     </div>
-                    <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card" data-toggle="modal" data-target="#bank-account-modal-<%= b.id %>">
+                    <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card">
                       <%= t('bank-account-edit-button') %>
                     </button>
-                    <button type="button" class="btn btn-primary btn-xs btn-update btn-add-card"><%= t('update-bank-account-label') %></button>
+                    <%= f.submit t('update-bank-account-label'), :class => "btn btn-primary btn-xs btn-update btn-add-card" %>
                     <button type="button" class="btn btn-danger btn-xs btn-update btn-add-card"><%= t('verify-bank-account-label') %></button>
                     <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
                   </div>
                 </div>
               </div>
+              <% end %>
               <% end %>
             </div><!-- End row -->
             </div>

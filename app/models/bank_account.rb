@@ -33,8 +33,9 @@ class BankAccount < ActiveRecord::Base
   def sync
     if self.own_id
       bank_account = self.fetch
-      bank_account.account_holder_name = self.fullname
-      bank_account.routing_number = self.routing_number
+      bank_account.default_for_currency = self.active || false
+      #bank_account.metadata['id'] = self.id
+      #bank_account.metadata['marketplace'] = self.marketplace.id
       bank_account.save
       bank_account
     else
