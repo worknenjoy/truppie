@@ -103,7 +103,12 @@
                   <%= error_message(flash[:errors], :state) %>
                 </div>
               </fieldset>
-              <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              <div class="form-group <%= form_error(flash[:errors], :terms) %>">
+                <%= f.check_box :terms, class: "form-control #{form_field_error(flash[:errors], :terms)}" %>
+                <a href="https://stripe.com/br/legal#translation"><%= t('terms') %> </a>
+                <%= error_message(flash[:errors], :terms) %>
+              </div>
+              <button type="submit" class="btn btn-primary pull-right"><%= t('create-marketplace-action') %></button>
             <% end %>
           </div>
         </div>

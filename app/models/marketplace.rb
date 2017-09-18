@@ -16,7 +16,9 @@ class Marketplace < ActiveRecord::Base
     large: '800x800>',
   }
 
-  validates_presence_of :person_name, :birthDate, :person_lastname, :document_number, :document_type, :street, :complement, :zipcode, :city, :state, :organizer, :allow_blank => false
+  validates_presence_of :person_name, :terms, :birthDate, :person_lastname, :document_number, :document_type, :street, :complement, :zipcode, :city, :state, :organizer, :allow_blank => false
+
+  
   
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
@@ -366,6 +368,19 @@ class Marketplace < ActiveRecord::Base
       account.tos_acceptance.ip = ip
       account.save
       if account.tos_acceptance.ip == ip && account.tos_acceptance.date == date_now
+        return true
+      else
+        return false
+      end
+    end
+  end
+
+  def terms_accepted
+    if !self.is_active?
+      false
+    else
+      account = Stripe::Account.retrieve(self.account_id)
+      if !account.tos_acceptance.empty?
         return true
       else
         return false
