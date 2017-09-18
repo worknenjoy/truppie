@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821211206) do
+ActiveRecord::Schema.define(version: 20170918173451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 20170821211206) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "terms",                  default: false
   end
 
   add_index "marketplaces", ["bank_account_id"], name: "index_marketplaces_on_bank_account_id", using: :btree
