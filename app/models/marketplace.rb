@@ -19,7 +19,6 @@ class Marketplace < ActiveRecord::Base
   validates_presence_of :person_name, :terms, :birthDate, :person_lastname, :document_number, :document_type, :street, :complement, :zipcode, :city, :state, :organizer, :allow_blank => false
 
   
-  
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
   
