@@ -103,45 +103,60 @@ function readURL(input) {
     }
 }
 
-$(function(){
+$(function() {
 
-	$('.dropdown-toggle').dropdown();
+    $('.dropdown-toggle').dropdown();
 
-	$('form').on('submit', function(){
-		$(this).find('input[type=submit]').attr('disabled', '');
-	});
+    $('form').on('submit', function () {
+        $(this).find('input[type=submit]').attr('disabled', '');
+    });
 
-	$('.close-action').on('click', function(){
-	    $(this).parent().animateCss('fadeOutUp', false);
+    $('.close-action').on('click', function () {
+        $(this).parent().animateCss('fadeOutUp', false);
         return false;
     });
 
-	localStorage.clear();
+    localStorage.clear();
 
-	$('#tour_included, #tour_nonincluded, #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
-		delimiter: ";"
-	});
+    $('#tour_included, #tour_nonincluded, #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
+        delimiter: ";"
+    });
 
-	$('#add-packages').on('click', function(){
-		$('.packages-set').clone().insertBefore(this);
-		return false;
-	});
+    $('#add-packages').on('click', function () {
+        $('.packages-set').clone().insertBefore(this);
+        return false;
+    });
 
-	$('.activate-tooltip').tooltip();
+    $('.activate-tooltip').tooltip();
 
-	var where = new Bloodhound({
-	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-	  queryTokenizer: Bloodhound.tokenizers.whitespace,
-	  prefetch: {
-	    url: '/wheres/index.json',
-	    filter: function(list) {
-	      return $.map(list, function(where) {
-	        return where;
-    	  });
-	    }
-	  }
-	});
-	where.initialize();
+    if($('.where-field').length) {
+        var where = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            prefetch: {
+                url: '/wheres/index.json',
+                filter: function (list) {
+                    return $.map(list, function (where) {
+                        return where;
+                    });
+                }
+            }
+        });
+        where.initialize();
+
+        $('.where-field').tagsinput({
+            typeaheadjs: {
+                name: 'where',
+                displayKey: 'name',
+                valueKey: 'name',
+                source: where.ttAdapter()
+            },
+            delimiter: ';',
+            maxTags: 1
+        });
+
+    }
+
 	var count = $('.packages-set').length;
 	$('.add-packages').on('click', function(e){
 	  $('<div />').load('/packages/new', function(data){
@@ -160,89 +175,87 @@ $(function(){
 	  return false;
 	});
 
-	$('.where-field').tagsinput({
-	  typeaheadjs: {
-	    name: 'where',
-	    displayKey: 'name',
-	    valueKey: 'name',
-	    source: where.ttAdapter()
-	  },
-	  delimiter: ';',
-	  maxTags: 1
-	});
+	if($('#tour_tags').length) {
 
-	var tags = new Bloodhound({
-	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-	  queryTokenizer: Bloodhound.tokenizers.whitespace,
-	  prefetch: {
-	    url: '/tags/index.json',
-	    filter: function(list) {
-	      return $.map(list, function(tag) {
-	        return tag;
-    	  });
-	    }
-	  }
-	});
-	tags.initialize();
+        var tags = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            prefetch: {
+                url: '/tags/index.json',
+                filter: function (list) {
+                    return $.map(list, function (tag) {
+                        return tag;
+                    });
+                }
+            }
+        });
+        tags.initialize();
 
-	$('#tour_tags').tagsinput({
-	  typeaheadjs: {
-	    name: 'tags',
-	    displayKey: 'name',
-	    valueKey: 'name',
-	    source: tags.ttAdapter()
-	  },
-	  delimiter: ';'
-	});
+        $('#tour_tags').tagsinput({
+            typeaheadjs: {
+                name: 'tags',
+                displayKey: 'name',
+                valueKey: 'name',
+                source: tags.ttAdapter()
+            },
+            delimiter: ';'
+        });
+    }
 
-	var languages = new Bloodhound({
-	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-	  queryTokenizer: Bloodhound.tokenizers.whitespace,
-	  prefetch: {
-	    url: '/languages/index.json',
-	    filter: function(list) {
-	      return $.map(list, function(languages) {
-	        return languages;
-    	  });
-	    }
-	  }
-	});
-	languages.initialize();
+    if($('#tour_languages').length) {
 
-	$('#tour_languages').tagsinput({
-	  typeaheadjs: {
-	    name: 'languages',
-	    displayKey: 'name',
-	    valueKey: 'name',
-	    source: languages.ttAdapter()
-	  },
-	  delimiter: ';'
-	});
+        var languages = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            prefetch: {
+                url: '/languages/index.json',
+                filter: function (list) {
+                    return $.map(list, function (languages) {
+                        return languages;
+                    });
+                }
+            }
+        });
+        languages.initialize();
 
-	var organizers = new Bloodhound({
-	  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-	  queryTokenizer: Bloodhound.tokenizers.whitespace,
-	  prefetch: {
-	    url: '/organizers.json',
-	    filter: function(list) {
-	      return $.map(list, function(organizers) {
-	        return organizers;
-    	  });
-	    }
-	  }
-	});
-	organizers.initialize();
+        $('#tour_languages').tagsinput({
+            typeaheadjs: {
+                name: 'languages',
+                displayKey: 'name',
+                valueKey: 'name',
+                source: languages.ttAdapter()
+            },
+            delimiter: ';'
+        });
+    }
 
-	$('.organizer-chooser').tagsinput({
-	  typeaheadjs: {
-	    name: 'organizers',
-	    displayKey: 'name',
-	    valueKey: 'name',
-	    source: organizers.ttAdapter()
-	  },
-	  delimiter: ';',
-	  maxTags: 1
-	});
+    if($('.organizer-chooser').length) {
+
+        var organizers = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            prefetch: {
+                url: '/organizers.json',
+                filter: function (list) {
+                    return $.map(list, function (organizers) {
+                        return organizers;
+                    });
+                }
+            }
+        });
+        organizers.initialize();
+
+        $('.organizer-chooser').tagsinput({
+            typeaheadjs: {
+                name: 'organizers',
+                displayKey: 'name',
+                valueKey: 'name',
+                source: organizers.ttAdapter()
+            },
+            delimiter: ';',
+            maxTags: 1
+        });
+    }
 
 	$('#reveal-new-cat').on('click', function(){
   		$('#new-cat').show();

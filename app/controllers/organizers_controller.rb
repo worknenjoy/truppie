@@ -50,7 +50,10 @@ class OrganizersController < ApplicationController
         }
         format.json { render :show, status: :created, location: @organizer }
       else
-        format.html { redirect_to organizer_welcome_url, notice: I18n.t('organizer-create-issue-message')  }
+        format.html {
+          flash[:errors] = @organizer.errors
+          redirect_to organizer_welcome_url, notice: I18n.t('organizer-create-issue-message')
+        }
         format.json { render json: @organizer.errors, status: :unprocessable_entity }
       end
     end
