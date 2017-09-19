@@ -45,6 +45,14 @@ module ApplicationHelper
       ''
     end
   end
+
+  def error_message_text(errors, error_field)
+    if !errors.nil? && errors.key?(error_field.to_s)
+      raw "#{errors[error_field.to_s][0]}"
+    else
+      ''
+    end
+  end
   
   def to_https(url)
     uri = URI.parse(url)

@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
+  before_filter :store_current_location, :unless => :devise_controller?
+
+  def store_current_location
+    store_location_for(:user, request.url)
+  end
+
   def check_if_admin
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
 
@@ -45,5 +51,4 @@ class ApplicationController < ActionController::Base
       false
     end
   end
-
 end

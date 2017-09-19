@@ -366,3 +366,9 @@ h5 {
   font-size: 16px;
   color: $gray-dark;
 }
+
+.text-danger {
+  color: $brand-danger;
+  display: inline-block;
+  margin-bottom: 20px;
+}

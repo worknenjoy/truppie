@@ -50,8 +50,22 @@
     <p></p>
     <h3 style="margin-bottom: 20px;"><%= t('desc-organizer-why-truppie') %></h3>
 
-    <%= link_to '#', id: 'import-from-facebook-action' , class: 'btn btn-primary btn-facebook btn-sm' do %>
-        <i class="fa fa-facebook"></i> <%= t('facebook-import-from-page') %>
+    <% if user_signed_in? %>
+        <div class="row py-2">
+          <div class="col-sm-3 hidden-md-down">
+            <%= image_tag current_user.image, class: "img-circle" %>
+          </div>
+          <div class="col-sm-9">
+            <small><%= t('logged-as-label') %></small>
+            <p><%= current_user.name %></p>
+            <%= link_to t('logout-label'), destroy_user_session_url, class: "btn btn-primary btn-xs" %>
+          </div>
+        </div>
+        <!-- row end -->
+    <% else %>
+        <%= link_to omniauth_authorize_path(:user, 'facebook'), class: 'btn btn-social btn-facebook' do %>
+            <span class="fa fa-facebook"></span> <%= "Entrar com o #{OmniAuth::Utils.camelize('facebook')}" %>
+        <% end %>
     <% end %>
     <div style="position:absolute; bottom: 0; left: 120px;">
       <div class="progress_state">
@@ -71,13 +85,21 @@
             <%= t('label-organizer-name') %>
           </label>
           <%= f.text_field :name %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
+          <% if flash[:errors] and flash[:errors].key?('name') %>
+            <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+            <small class="text-danger"><%= error_message_text(flash[:errors], :name) %></small>
+          <% end %>
+          <%= f.hidden_field :user_id, value: current_user.try(:id) %>
         </li>
         <li>
           <label>
             <%= t('label-organizer-email') %>
           </label>
-          <%= f.text_field :email %>
+          <%= f.email_field :email %>
+          <% if flash[:errors] and flash[:errors].key?('email') %>
+              <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+              <small class="text-danger"><%= error_message_text(flash[:errors], :email) %></small>
+          <% end %>
         </li>
         <li>
           <label>
