@@ -484,7 +484,7 @@ $(function() {
                             $('#facebook_user_id').val(user_id);
                             $('.loading-events').fadeOut();
                         }).error(function (e) {
-                            console.log(e);
+                            //console.log(e);
                             $('#imported-events-container').html('<label class="label label-warning">Não foi possível exibir os eventos</label>');
                             $('.loading-events').fadeOut();
                         });

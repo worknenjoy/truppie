@@ -1,3 +1,4 @@
+<!--
 <hr />
 <div class="footer-container">
 	<div class="container footer">
@@ -22,4 +23,176 @@
 	    </div>
 	  </div>
 	</div>
+</div>
+-->
+<div class="footer">
+<footer class="mt-5">
+  <div class="container-fluid bg-faded mt-5">
+    <div class="container">
+      <div class="row py-3">
+        <!-- footer column 1 start -->
+        <div class="col-md-4">
+          <!-- row start -->
+          <div class="row py-2">
+            <div class="col-sm-3 hidden-md-down">
+              <a class="bg-circle bg-info" href="<%= faq_path %>">
+                <i class="fa fa-2x fa-fw fa-question" aria-hidden="true "></i>
+              </a>
+            </div>
+            <div class="col-sm-9">
+              <h4>FAQ</h4>
+              <p>
+              <%= link_to t('faq-link-label'), faq_path %>
+              </p>
+            </div>
+          </div>
+          <div class="row py-2">
+            <div class="col-sm-3 hidden-md-down">
+              <a class="bg-circle bg-info" href="<%= faq_path %>">
+                <i class="fa fa-2x fa-fw fa-book" aria-hidden="true "></i>
+              </a>
+            </div>
+            <div class="col-sm-9">
+              <h4>Manifesto</h4>
+              <p>
+              <%= link_to t('manifesto-link-label'), manifest_path %>
+              </p>
+            </div>
+          </div>
+          <!-- row end -->
+        </div>
+        <!-- footer column 1 end -->
+        <!-- footer column 2 start -->
+        <div class="col-md-4">
+          <!-- row start -->
+          <div class="row py-2">
+            <div class="col-sm-3 hidden-md-down">
+              <a class="bg-circle bg-info" href="#">
+                <i class="fa fa-2x fa-fw fa-wrench" aria-hidden="true "></i>
+              </a>
+            </div>
+            <div class="col-sm-9">
+              <h4><%= t('how-it-works-title') %></h4>
+              <p>
+              <%= link_to t('how-it-works-link'), how_it_works_path %>
+              </p>
+            </div>
+          </div>
+          <!-- row end -->
+          <!-- row start -->
+          <div class="row py-2">
+            <div class="col-sm-3 hidden-md-down">
+              <a class="bg-circle bg-info" href="#">
+                <i class="fa fa-2x fa-fw fa-bank" aria-hidden="true "></i>
+              </a>
+            </div>
+            <div class="col-sm-9">
+              <h4><%= t('privacy-link') %></h4>
+              <p>
+              <%= link_to t('privacy-label'), privacy_path %>
+              </p>
+            </div>
+          </div>
+          <!-- row end -->
+        </div>
+        <!-- footer column 2 end -->
+        <!-- footer column 3 start -->
+        <div class="col-md-4">
+          <!-- row starting  -->
+          <div class="row py-2">
+            <div class="col-sm-3 hidden-md-down">
+              <a class="bg-circle bg-danger" href="# ">
+                <i class="fa fa-2x fa-fw fa-file-pdf-o" aria-hidden="true "></i>
+              </a>
+            </div>
+            <div class="col-sm-9">
+              <h4><%= t('guide-manual-title') %></h4>
+              <p><a href="#"><%= t('guide-manual-link') %></a></p>
+            </div>
+          </div>
+          <!-- row ended -->
+          <!-- row starting  -->
+          <div class="row py-2">
+            <div class="col-sm-3 hidden-md-down">
+              <a class="bg-circle bg-info" href="https://twitter.com/ ">
+                <i class="fa fa-2x fa-fw fa-envelope" aria-hidden="true "></i>
+              </a>
+            </div>
+            <div class="col-sm-9">
+              <h4><%= t('contact-title') %></h4>
+              <p>
+                <%= link_to t('contact-link'), contacts_index_path %>
+              </p>
+            </div>
+          </div>
+          <!-- row ended -->
+        </div>
+        <!-- footer column 3 end -->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container-fluid bg-primary py-3">
+    <div class="container">
+      <div class="row py-3">
+        <div class="col-md-9">
+          <p class="text-white">
+            CNPJ 28.608.433/0001-43
+          </p>
+          <p class="text-white">
+            <small>
+              Alameda dos Colibris, 500
+              <br />
+              22640-338
+              <br />
+              BARRA DA TIJUCA
+              <br />
+              RIO DE JANEIRO - RJ
+            </small>
+          </p>
+          <p class="text-white spaced-top">
+            Copyright © Truppie 2016. All rights reserved.
+          </p>
+        </div>
+        <div class="col-md-3">
+          <div class="d-inline-block">
+            <div class="bg-circle-outline d-inline-block">
+              <a href="https://www.facebook.com/" class="text-white"><i class="fa fa-2x fa-fw fa-facebook"></i>
+              </a>
+            </div>
+
+            <div class="bg-circle-outline d-inline-block">
+              <a href="https://twitter.com/" class="text-white">
+                <i class="fa fa-2x fa-fw fa-angellist"></i></a>
+            </div>
+
+            <div class="bg-circle-outline d-inline-block">
+              <a href="https://www.linkedin.com/company/" class="text-white">
+                <i class="fa fa-2x fa-fw fa-github"></i></a>
+            </div>
+          </div>
+          <div class="d-inline-block footer-right-spacing">
+              <div><i class="fa fa-2x fa-cc-visa"></i></div>
+              <div><i class="fa fa-2x fa-cc-mastercard"></i></div>
+              <div><i class="fa fa-2x fa-cc-amex"></i></div>
+              <div><i class="fa fa-2x fa-cc-stripe"></i></div>
+          </div>
+          <div class="d-inline-block footer-right-spacing">
+            <div>
+              <%= link_to "http://www.stripe.com" do %>
+                  <%= image_tag("powered-by-stripe.png", width: 200, :alt => "Truppie", :class => "spaced-down img-fluid") %>
+              <% end %>
+            </div>
+            <div>
+              <%= link_to "http://www.stripe.com" do %>
+                  <%= image_tag("ssl-cert.svg", width: 200, :alt => "Truppie", :class => "img-fluid") %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 </div>

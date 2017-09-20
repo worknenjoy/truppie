@@ -12,25 +12,47 @@
         </div>
         <div class="manage-main">
           <h3>
-            Clientes
+            <%= t('clients-title') %>
           </h3>
+          <% if @organizer.clients.empty? %>
+              <p class="text-xs-center"><strong><%= t('hello-organizer-welcome', organizer: @organizer.name) %></strong></p>
+              <p class="text-xs-center"><%= t('organizer-account-intro-title') %></p>
+              <p class="text-xs-center"><%= t('organizer-account-intro-desc') %></p>
+              <p class="text-xs-center">
+                <%= image_tag("backpacker-self-traveler.svg", :alt => "new truppie", :width => 61, :class => 'img-fluid center-block') %>
+              </p>
+              <p class="text-xs-center">
+                <%= t('organizer-dashboard-desc') %>
+              </p>
+              <p class="text-xs-center">
+                <%= link_to guided_tour_organizer_path(@organizer), class: 'btn btn-primary btn-lg' do %>
+                    <%= t('organizer-add-account-data') %> <i class="fa fa-plus"></i>
+                <% end %>
+              </p>
+              <p class="text-xs-center">
+                <%= link_to guided_tour_organizer_path(@organizer), class: 'btn btn-primary btn-lg' do %>
+                    <%= t('organizer-add-tour') %> <i class="fa fa-plus"></i>
+                <% end %>
+              </p>
+          <% else %>
           <% @organizer.clients.each do |c| %>
-              <div class="media">
-                <a class="pull-left" href="#">
-                  <img class="media-object dp img-circle" src="<%= c.image %>" style="width: 80px;height:80px;">
-                </a>
-                <div class="media-body">
-                  <h4 class="media-heading"><%= c.name %></h4>
-                  <small> <%= "já entrou na truppie #{c.sign_in_count} vezes"  %></small>,
-                  <small><strong><%= "último acesso #{friendly_when(c.last_sign_in_at)}" %></strong></small>
-                  <div>
-                    <a><span class="label label-info">já fez <%= c.orders.count %> reservas</span></a>
-                    <a href="mailto:<%= c.email %>"><span class="label label-success">Enviar e-mail</span></a>
-                  </div>
-                  <hr style="margin:8px auto">
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object dp img-circle" src="<%= c.image %>" style="width: 80px;height:80px;">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading"><%= c.name %></h4>
+                <small> <%= "já entrou na truppie #{c.sign_in_count} vezes"  %></small>,
+                <small><strong><%= "último acesso #{friendly_when(c.last_sign_in_at)}" %></strong></small>
+                <div>
+                  <a><span class="label label-info">já fez <%= c.orders.count %> reservas</span></a>
+                  <a href="mailto:<%= c.email %>"><span class="label label-success">Enviar e-mail</span></a>
                 </div>
+                <hr style="margin:8px auto">
               </div>
-            <% end %>
+            </div>
+          <% end %>
+          <% end %>
           </div>
         </div>
       </div>

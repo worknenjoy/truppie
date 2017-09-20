@@ -22,6 +22,7 @@
  *= require user-page
  *= require bootstrap-ribbon
  *= require navbar
+ *= require footer
  *= require bootstrap-social  
  *= require bootstrap-order-table
  *= require bootsnipp-twitter-card
