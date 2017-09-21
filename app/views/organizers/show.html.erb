@@ -1,4 +1,5 @@
 <%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 spaced-top">
@@ -30,22 +31,22 @@
   					<div class="hovercard spaced-default">
   						<div class="bottom">
   							<% if !@organizer.instagram.nil? %>
-  		                    <a target="_blank" class="btn btn-info btn-instagram btn-sm" href="<%= @organizer.instagram %>">
-  		                        <i class="fa fa-instagram"></i> instagram
-  		                    </a>
-  		                    <% end %>
-  		                    <% if !@organizer.facebook.nil? %>
-  		                    <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher"
-  		                       href="<%= @organizer.facebook %>">
-  		                        <i class="fa fa-facebook"></i> facebook
-  		                    </a>
-  		                    <% end %>
-  		                    <% if !@organizer.twitter.nil? %>
-  		                    <a target="_blank" class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @organizer.twitter %>">
-  		                        <i class="fa fa-twitter"></i> twitter
-  		                    </a>
-  		                    <% end %>
-  		                </div>
+                <a target="_blank" class="btn btn-info btn-instagram btn-sm" href="<%= @organizer.instagram %>">
+                    <i class="fa fa-instagram"></i> instagram
+                </a>
+                <% end %>
+                <% if !@organizer.facebook.nil? %>
+                <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher"
+                   href="<%= @organizer.facebook %>">
+                    <i class="fa fa-facebook"></i> facebook
+                </a>
+                <% end %>
+                <% if !@organizer.twitter.nil? %>
+                <a target="_blank" class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @organizer.twitter %>">
+                    <i class="fa fa-twitter"></i> twitter
+                </a>
+                <% end %>
+              </div>
   					</div>
   				</div>
   			</div>
@@ -145,8 +146,8 @@
           </div>
         </div>
       <% end %>
+    <% end %>
       </div>
     </div>
-    <% end %>
   </div>
 </div>

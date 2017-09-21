@@ -20,6 +20,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 pt-BR:
+
+  metatag-keywords: "keywords"
+  metatag-description: "description"
+  metatag-subject: "subject"
+  metatag-language: "language"
+  metatag-abstract: "abstract"
+  metatag-topic: "topic"
+  metatag-summary: "summary"
+  metatag-author: "author"
+  metatag-classi: "classification"
+
   
   how-it-works-main-menu: "Sou Explorador"
   guides-main-menu: "Sou Guia"
@@ -780,3 +791,14 @@ pt-BR:
   bank-account-placeholder-fullname: "ex: José da Silva"
 
   update-bank-account-label: "atualizar conta"
+
+  organizer-name-label: "nome do seu negócio"
+  organizer-desc-label: "breve descrição do seu negócio"
+  organizer-email-label: "email do seu negócio"
+  organizer-website-label: "site do seu negócio"
+  organizer-facebook-label: "endereço do facebook do seu negócio"
+  organizer-twitter-label: "endereço do twitter do seu negócio"
+  organizer-instagram-label: "endereço do instagram do seu negócio"
+  organizer-phone-label: "telefone para contato do seu negócio"
+
+

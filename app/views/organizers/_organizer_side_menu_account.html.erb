@@ -19,8 +19,8 @@
 </div>
 <ul class="list-group">
   <li class="list-group-item">
-    <a href="<%= edit_organizer_path(@organizer) %>">
-      <% if @organizer.try(:full_profile) %>
+    <a href="<%= profile_edit_organizer_path(@organizer) %>">
+      <% if @organizer.verified? %>
           <span class="label label-success label-pill pull-xs-right"><%= t('verified_label') %></span>
       <% else %>
           <span class="label label-warning label-pill pull-xs-right"><%= t('incomplete_label') %></span>
@@ -40,12 +40,13 @@
   </li>
   <li class="list-group-item">
     <a href="<%= bank_account_edit_organizer_path(@organizer) %>">
-      <% if @organizer.marketplace.registered_bank_account %>
+      <% if @organizer.marketplace.try(:registered_bank_account) %>
         <span class="label label-success label-pill pull-xs-right"><%= t('verified_label') %></span>
       <% else %>
         <span class="label label-danger label-pill pull-xs-right"><%= t('not_verified_label') %></span>
       <% end %>
-      <%= t('organizer-bank-data') %>
+      <%= t('organizer-bank-data') %>clear
+
     </a>
   </li>
 </ul>

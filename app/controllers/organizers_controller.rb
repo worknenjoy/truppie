@@ -1,8 +1,8 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :account, :account_edit, :bank_account_edit, :account_status]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :account, :account_edit, :bank_account_edit, :account_status]
+  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status]
   
   # GET /organizers
   # GET /organizers.json
@@ -33,9 +33,16 @@ class OrganizersController < ApplicationController
     @current_category_name = Category.find(@guided_tour.category_id).name rescue nil
   end
 
+  def profile_edit
+
+  end
+
   # GET /organizers/1/edit
   def edit
+
   end
+
+
 
   # POST /organizers
   # POST /organizers.json
@@ -66,11 +73,14 @@ class OrganizersController < ApplicationController
       if @organizer.update(organizer_params)
         format.html { 
           #OrganizerMailer.notify(@organizer, "update").deliver_now
-          redirect_to @organizer, notice: 'Organizer was successfully updated.'
+          redirect_to organizer_path(@organizer), notice: I18n.t('organizer-update-sucessfully')
         }
         format.json { render :show, status: :ok, location: @organizer }
       else
-        format.html { render :edit }
+        format.html {
+          flash[:errors] = @organizer.errors
+          redirect_to :back, notice: I18n.t('organizer-update-error')
+        }
         format.json { render json: @organizer.errors, status: :unprocessable_entity }
       end
     end
@@ -115,7 +125,6 @@ class OrganizersController < ApplicationController
   end
 
   def account
-
     if @organizer.try(:marketplace)
       @missing_info = @organizer.marketplace.account_missing
     else
@@ -123,7 +132,6 @@ class OrganizersController < ApplicationController
           marketplace: t("no-marketplace")
       }
     end
-
   end
 
   def account_edit
@@ -190,6 +198,7 @@ class OrganizersController < ApplicationController
         end
       end
     else
+      flash[:error] = I18n.t('import-event-notice-error')
       redirect_to "/organizers/#{@organizer.to_param}/guided_tour", notice: I18n.t('import-event-notice')
       return
     end
