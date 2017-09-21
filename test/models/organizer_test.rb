@@ -56,6 +56,17 @@ class OrganizerTest < ActiveSupport::TestCase
    test "organizer should not have a balance if has no marketplace active" do
      assert_equal @mantiex.balance, false       
    end
+
+   test "organizer is missing some information needed" do
+     assert_equal @organizer.verified?, false
+     assert_equal @organizer.missing, ["cover", "fulldesc", "member_id", "instagram", "picture_file_name", "picture_content_type", "picture_file_size", "picture_updated_at", "active", "person_name", "person_lastname", "document_type", "document_number", "id_type", "id_number", "id_issuer", "id_issuerdate", "birthDate", "street", "street_number", "complement", "district", "zipcode", "city", "state", "country", "token", "account_id", "market_place_active", "marketplace_id", "status", "policy"]
+   end
+
+   test "organizer fill all information needed" do
+     @organizer.update_attributes({:fulldesc => 'some full desc', :instagram => 'the instagram', :picture_file_name => 'some picture file name'})
+     assert_equal @organizer.verified?, true
+     assert_equal @organizer.missing, ["cover", "member_id", "picture_content_type", "picture_file_size", "picture_updated_at", "active", "person_name", "person_lastname", "document_type", "document_number", "id_type", "id_number", "id_issuer", "id_issuerdate", "birthDate", "street", "street_number", "complement", "district", "zipcode", "city", "state", "country", "token", "account_id", "market_place_active", "marketplace_id", "status", "policy"]
+   end
    
    test "display just published organizers" do
      @organizer.status = 'P'
