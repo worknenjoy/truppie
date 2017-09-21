@@ -1,96 +1,98 @@
 <%= render 'layouts/navbar' %>
-<div class="form-signin">
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="card card-block card-transfer">
-                <%= render 'layouts/organizer_dashboard_navbar' %>
-                <% if @organizer.try(:marketplace) %>
-                <div class="card-body" style="overflow:hidden;">
-                    <h3 class="text-center spaced-down">
-                        Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
-                    </h3>
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <h3 class="spaced-top">Transferências</h3>
-                        <% if !@transfers.nil? and !@transfers.empty? %>
-                        <table class="rwd-table">
-                          <tr>
-                            <th>Forma de pagamento</th>
-                            <th>Status</th>
-                            <th>Data</th>
-                            <th>Valor</th>
-                          </tr>
-                          <% @transfers.data.each do |t| %>
-                          <tr>
-                            <td data-th="Tipo"><%= t.try(:source_type) %></td>
-                            <td data-th="Status"><strong><%= t.try(:status) %></strong></td>
-                            <td data-th="Data"><%= l(Time.at(t.try(:date)), format: '%d de %B de %Y as %Hh%M') %></td>
-                            <td data-th="Valor"><%= friendly_price(t.try(:amount)) %></td>
-                          </tr>
-                          <% end %>
-                        </table>
-                            <% else %>
-                              <p>Nenhuma transferência realizada</p>
+  <div class="container manage-entries">
+      <div class="row">
+          <div class="col-xs-12">
+            <div class="manage-inspiration">
+              <%= render 'layouts/organizer_intro_block', locals: {organizer: @organizer} %>
+            </div>
+            <div class="manage-container">
+              <div class="card card-block card-transfer">
+                  <% if @organizer.try(:marketplace) %>
+                  <div class="card-body" style="overflow:hidden;">
+                      <h3 class="text-center spaced-down">
+                          Gerenciamento de conta <small><%= link_to 'voltar para o guia', organizer_path(@organizer) %></small>
+                      </h3>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <h3 class="spaced-top">Transferências</h3>
+                          <% if !@transfers.nil? and !@transfers.empty? %>
+                          <table class="rwd-table">
+                            <tr>
+                              <th>Forma de pagamento</th>
+                              <th>Status</th>
+                              <th>Data</th>
+                              <th>Valor</th>
+                            </tr>
+                            <% @transfers.data.each do |t| %>
+                            <tr>
+                              <td data-th="Tipo"><%= t.try(:source_type) %></td>
+                              <td data-th="Status"><strong><%= t.try(:status) %></strong></td>
+                              <td data-th="Data"><%= l(Time.at(t.try(:date)), format: '%d de %B de %Y as %Hh%M') %></td>
+                              <td data-th="Valor"><%= friendly_price(t.try(:amount)) %></td>
+                            </tr>
                             <% end %>
-                      </div>
-                    </div>
-                    <div class="card" style="overflow: hidden">
-                      <div class="card-footer" style="overflow: hidden">
-                        <div class="col-xs-12 col-md-12">
-                          <small>disponível:</small> <span class="label label-success increase-font"><%= raw friendly_price(@balance[:available][0][:amount]) %></span>
-                          <small>pendente:</small> <span class="label label-warning increase-font"><%= raw friendly_price(@balance[:pending][0][:amount]) %></span>
+                          </table>
+                              <% else %>
+                                <p>Nenhuma transferência realizada</p>
+                              <% end %>
                         </div>
                       </div>
+                      <div class="card" style="overflow: hidden">
+                        <div class="card-footer" style="overflow: hidden">
+                          <div class="col-xs-12 col-md-12">
+                            <small>disponível:</small> <span class="label label-success increase-font"><%= raw friendly_price(@balance[:available][0][:amount]) %></span>
+                            <small>pendente:</small> <span class="label label-warning increase-font"><%= raw friendly_price(@balance[:pending][0][:amount]) %></span>
+                          </div>
+                        </div>
+                    </div>
+                  <% if !@bank_account.nil? %>
+                <% @bank_account.each do |m| %>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <h3 class="spaced-top">Conta</h3>
                   </div>
-                <% if !@bank_account.nil? %>
-              <% @bank_account.each do |m| %>
-              <div class="row">
-                <div class="col-xs-12">
-                  <h3 class="spaced-top">Conta</h3>
                 </div>
-              </div>
-                <div class="row bank-card bofa col-md-6">
-                  <div class="title col-sm-12">
-                    <i class="fa fa-credit-card"></i>
-                  </div>
-                  <div class="row content col-xs-12">
-                    <div class="info bofa col-xs-12">
-                      <p class="title">Banco</p>
-                      <p><%= bank_list()["banks"][m.try(:bank_number)] %></p>
+                  <div class="row bank-card bofa col-md-6">
+                    <div class="title col-sm-12">
+                      <i class="fa fa-credit-card"></i>
                     </div>
-                    <div class="info bofa col-sm-12">
-                      <div class="logo"></div>
+                    <div class="row content col-xs-12">
+                      <div class="info bofa col-xs-12">
+                        <p class="title">Banco</p>
+                        <p><%= bank_list()["banks"][m.try(:bank_number)] %></p>
+                      </div>
+                      <div class="info bofa col-sm-12">
+                        <div class="logo"></div>
+                      </div>
+                      <div class="info col-xs-12 col-md-6">
+                        <p class="title">Número da conta</p>
+                        <p><%= m.try(:account_number) %></p>
+                      </div>
+                      <div class="info col-xs-12 col-md-6">
+                        <p class="title">Nome</p>
+                        <p><%= m.try(:fullname) %></p>
+                      </div>
                     </div>
-                    <div class="info col-xs-12 col-md-6">
-                      <p class="title">Número da conta</p>
-                      <p><%= m.try(:account_number) %></p>
                     </div>
-                    <div class="info col-xs-12 col-md-6">
-                      <p class="title">Nome</p>
-                      <p><%= m.try(:fullname) %></p>
+                    <div class="col-xs-12 col-md-6">
+                      <p class="spaced-smallest"><strong>Informações sobre a transferência:</strong></p>
+                      <ul class="list-group spaced-down">
+                        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> Os pagamentos feitos pelo cartão de crédito levam 30 dias para serem transferidos diretamente para sua conta</li>
+                        <li class="list-group-item"><i class="fa fa-hand-o-right"></i> Os pagamentos são transferidos automaticamente e você é informado sobre cada transação realizada</li>
+                        <li class="list-group-item"><i class="fa fa-hand-o-right"></i>Se a transferência que consta na lista não entrou na sua conta, <%= link_to "entre em contato com a gente", contacts_index_path %></li>
+                      </ul>
                     </div>
-                  </div>
-                  </div>
-                  <div class="col-xs-12 col-md-6">
-                    <p class="spaced-smallest"><strong>Informações sobre a transferência:</strong></p>
-                    <ul class="list-group spaced-down">
-                      <li class="list-group-item"><i class="fa fa-hand-o-right"></i> Os pagamentos feitos pelo cartão de crédito levam 30 dias para serem transferidos diretamente para sua conta</li>
-                      <li class="list-group-item"><i class="fa fa-hand-o-right"></i> Os pagamentos são transferidos automaticamente e você é informado sobre cada transação realizada</li>
-                      <li class="list-group-item"><i class="fa fa-hand-o-right"></i>Se a transferência que consta na lista não entrou na sua conta, <%= link_to "entre em contato com a gente", contacts_index_path %></li>
-                    </ul>
-                  </div>
-                <% end %>  
-                <% end %>
-              </div>
+                  <% end %>
+                  <% end %>
+                </div>
+            </div>
+            <% else %>
+              <p>Você não tem uma conta associada, entre em contato com a gente enviando um e-mail para <a href="mailto:ola@truppie.com">ola@truppie.com</a> para ativá-la</p>
+            <% end %>
           </div>
-          <% else %>
-            <p>Você não tem uma conta associada, entre em contato com a gente enviando um e-mail para <a href="mailto:ola@truppie.com">ola@truppie.com</a> para ativá-la</p>
-          <% end %>
+          </div>
       </div>
-    </div>
-    </div>
-  </div>
-</div>
+  </div></div>
 <div id="fullscreen_bg" class="fullscreen_bg"></div>
-</div>
+  </div>
+

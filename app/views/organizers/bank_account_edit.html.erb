@@ -28,6 +28,7 @@
             </div>
 
             <div class="row">
+              <% if @marketplace.try(:bank_accounts) %>
               <% @marketplace.bank_accounts.each do |b| %>
               <%= form_for b, class: "form", multipart: true, role: "form", method: :patch do |f| %>
               <div class="col-lg-12">
@@ -93,6 +94,7 @@
              <% end %>
               <% end %>
               <% end %>
+            <% end %>
             </div><!-- End row -->
             </div>
             <%= render partial: 'organizers/bank_account_form', locals: {bank_account: @bank_account} %>

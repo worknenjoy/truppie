@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get 'dashboard', to: 'organizers#dashboard', as: 'dashboard'
       get 'account', to: 'organizers#account', as: 'account'
       get 'account_edit', to: 'organizers#account_edit', as: 'account_edit'
+      get 'profile_edit', to: 'organizers#profile_edit', as: 'profile_edit'
       get 'bank_account_edit', to: 'organizers#bank_account_edit', as: 'bank_account_edit'
       get 'account_status', to: 'organizers#account_status', as: 'account_status'
       get 'confirm_account', to: 'organizers#confirm_account', as: 'confirm_account'
