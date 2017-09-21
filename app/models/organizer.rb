@@ -54,6 +54,25 @@ class Organizer < ActiveRecord::Base
     clients_array.uniq
   end
 
+  def verified?
+    missing = self.missing.select { |a| true if (a == "fulldesc" or a == "instagram" or a == "picture_file_name") }
+    !missing.any?
+  end
+
+  def missing
+    missing = []
+    self.attributes.each do |a|
+      #puts a.inspect
+      if a[1].nil? or a[1].blank?
+        missing << a[0]
+      end
+    end
+    missing
+  end
+
+
+
+
 
     
 end
