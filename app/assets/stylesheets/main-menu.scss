@@ -50,7 +50,8 @@ nav.main-menu li:last-child a {
   border-right: 0;
 }
 nav.main-menu a:hover, nav.main-menu a:active {
-  background-color: #8c99a4;
+  background-color: lighten($navbar-dark-hover-color, 15%);
+  color: $navbar-light-active-color;
 }
 nav.main-menu a#pull {
   display: none;
