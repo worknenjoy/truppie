@@ -23,8 +23,8 @@
                     <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'spaced-down') %>
                   </div>
                   <div class="file-upload">
-                    <% if @organizer.picture.present? %>
-                        <%= image_tag(@marketplace.picture.url(:thumbnail), :alt => "user document picture", :class => "img-fluid center-block spaced-down") %>
+                    <% if f.object.picture.present? %>
+                        <%= image_tag(f.object.picture.url(:thumbnail), :alt => "user document picture", :class => "img-fluid center-block spaced-down") %>
                     <% end %>
                     <button class="file-upload-btn btn btn-info-outline btn-block spaced-down" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
                     <div class="image-upload-wrap">
