@@ -71,6 +71,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'fakeweb'
   gem 'mocha'
+  gem 'i18n-tasks', '~> 0.9.18'
 end
 
 group :development do

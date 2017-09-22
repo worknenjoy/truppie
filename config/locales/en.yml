@@ -1,420 +1,763 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
+---
 en:
-  tagline: "living adventures"
-  text-intro: "Truppie is a platform designed to facilitate your next trips and adventures, either for a day or for your vacation period, in your city or around the country. Truppie is a lifestyle; a new way to enjoy your time and enrich your existence. Find your next truppie in three simple steps:"
-  
-  first-caption: "OPEN YOUR MIND"
-  first-description: "Get off normal life for a while"
-  second-caption: "BE OFFLINE"
-  second-description: "Connect with nature, cultures and yourself"
-  third-caption: "ADD VALUE TO YOUR LIFE"
-  third-description: "Learn with experiences and evolve as a human being"
-  
-  balloom-heading: "Explore"
-  balloom-text: "What are you up to? Check out the available truppies"
-  
-  hands-heading: "Choose"
-  hands-text: "Check the details and confirm your presence with one click"
-  
-  shoes-heading: "Get ready"
-  shoes-text: "There's nothing to worry about - just get ready and enjoy the ride!"
-  
-  trupppie-title: "Sample title"
-  truppie-text: "Why exploring around with Truppie?"
-  
-  truppie-item: "Great local guides, fair prices"
-  truppie-second-item: "All the information you need in a single place"
-  truppie-third-item: "Easy and trustable payment"
-  
-  authors-title: "The Truppists"
-  laura-feature: "Biologist"
-  laura-second-feature: "Travel Blogger"
-  laura-third-feature: "Full time nerd and compulsive reader"
-  
-  alex-feature: "Web developer"
-  alex-second-feature: "Internet of things"
-  alex-third-feature: "Design interaction"
-  
-  meetings-title: "The office"
-  meetings-content: "Our meetings happen in offices like this - ok, only sometimes!"
-  
-  newsletter-title: "Stay tuned!"
-  newsletter-text: "Leave your e-mail to be notified about the first truppie:"
-  
-  
-  bank_controller_activation_msg_one: "The %{organizer} bank account was already activated"
-  bank_controller_activation_msg_status_one: "Danger"
-  bank_controller_activation_errors: "It already has an account associated"
-  bank_controller_activation_errors_two: "It was not possible to save the active account"
-  bank_controller_activation_msg_two: "Account successfully activated"
-  bank_controller_activation_msg_status_two: "Success"
-  bank_controller_activation_msg_three: "We could not activate the account"
-  bank_controller_activation_msg_four: "It was not possible to activate the account"
-  bank_controller_activation_msg_five: "We had a problem to activate this bank account"
-
-  contacts_controller_error: "You are missing the e-mail address and/or the message"
-  contacts_controller_succes: "Your message was successfully sent. We'll be contacting you soon"
-  contacts_controller_error_two: "It was not possible to send your e-mail. Please try again"
-
-  marketplace_controller_notice: "You do not have permission to access this page"
-  marketplace_controller_notice_two: "Marketplace was successfully created"
-  marketplace_controller_notice_three: "Marketplace was successfully updated"
-  marketplace_controller_notice_four: "Marketplace was successfully destroyed"
-  marketplace_controller_activation_message_one: "We successfully created an account in the marketplace for %{organizer}"
-  marketplace_controller_activation_message_two: "Marketplace %{organizer} was not created"
-  marketplace_controller_activation_message_three: "Marketplace %{organizer} is already active"
-  marketplace_controller_activation_message_four: "Marketplace %{organizer} could not be activated due to some problem in the Stripe API"
-  marketplace_controller_activation_message_five: "We successfully updated your %{organizer} account"
-  marketplace_controller_activation_message_six: "Marketplace %{organizer} was not updated"
-  marketplace_controller_activation_message_seven: "Marketplace %{organizer} is already active"
-  marketplace_controller_activation_message_eight: "Marketplace could not be updated due to some problem in the Stripe API"
-  marketplace_controller_errors_one: "There was a problem and the ID was not generated"
-  marketplace_controller_errors_two: "It is already active"
-  marketplace_controller_errors_three: "There was a problem and it didn't find your account"
-  marketplace_controller_errors_four: "It is already active"
-  
-  tours_controller_notice_one: "You do not have permission to access this page"
-  tours_controller_headline_msg: "It was not possible to confirm your reservation"
-  tours_controller_status_msg: "It was not possible to identify the date of birth"
-  tours_controller_errors_one: "Hey, you are already confirmed in this event, there's no need to book it again!"
-  tours_controller_desc: "Truppie %{title} by %{organizer}"
-  tours_controller_mailer_notify_one: "The user %{name} whose e-mail is %{email} tried something, the return was %{inspect}"
-  tours_controller_status_msg_two: "We had a problem while processing your payment with credit card"
-  tours_controller_status_msg_three: "We had a problem to confirm your booking; we'll contact you with further information"
-  tours_controller_confirm_headline_msg: "Your booking is confirmed for this truppie"
-  tours_controller_status_msg_four: "You will receive an e-mail concerning your payment processing"
-  tours_controller_status_msg_five: "The payment has not been confirmed"
-  tours_controller_mailer_notify_two: "The user %{name} whose e-mail is %{email} tried to pay and there was an error %{inspect}"
-  tours_controller_mailer_notify_three: "The user %{name} whose e-mail is %{email} tried to pay without providing the information"
-  tours_controller_status_msg_six: "You have not provided sufficient information for this payment"
-  tours_controller_status_msg_seven: "This event is sold out"
-  tours_controller_confirm_headline_msg_two: "Event successfully confirmed"
-  tours_controller_confirm_status_msg: "Thanks for booking this event"
-  tours_controller_unconfirm_success: "You are no longer confirmed in this event"
-  tours_controller_unconfirm_error: "There was a problem to confirm your withdrawal from this event"
-  tours_controller_create_notice_one: "Truppie successfully created"
-  tours_controller_create_notice_two: "The field %{error_one} %{error_two}"
-  tours_controller_update_notice: "Truppie successfully updated"
-  tours_controller_destroy_notice: "Tour was successfully destroyed."
-
-  contacts_views_index_h2: "Contact Truppie"
-  contacts_views_index_p: "If you prefer, you can e-mail us at"
-  contacts_views_index_a_title: "Send Truppie an e-mail directly"
-  contacts_views_index_label_one: "Name"
-  contacts_views_index_placeholder_one: "Your name"
-  contacts_views_index_label_two: "E-mail"
-  contacts_views_index_placeholder_two: "Your e-mail address is"
-  contacts_views_index_small: "Be cool, we will not share your personal information with anybody"
-  contacts_views_index_label_three: "Subject:"
-  contacts_views_index_label_four: "Message:"
-  contacts_views_index_placeholder_three: "Your Message"
-  contacts_views_submit: "Send"
-
-  tours_view_form_a_one: "Basic information" 
-  tours_view_form_a_two: "Descriptions"
-  tours_view_form_a_three: "Photo"
-  tours_view_form_a_four: "Guide"
-  tours_view_form_a_five: "Packages"
-  tours_view_form_placeholder_one: "Truppie title"
-  tours_view_form_placeholder_two: "Where? (Place name)"
-  tours_view_form_placeholder_three: "Address"
-  tours_view_form_placeholder_four: "Link (eg: Facebook)"
-  tours_view_form_placeholder_five: "Vacancies"
-  tours_view_form_placeholder_six: "Minimum"
-  tours_view_form_placeholder_seven: "Maximum"
-  tours_view_form_placeholder_eight: "Dificulty level"
-  tours_view_form_placeholder_nine: "It starts"
-  tours_view_form_placeholder_ten: "It ends"
-  tours_view_form_placeholder_eleven: "Price (eg: 30 for R$ 30,00)"
-  tours_view_form_placeholder_twelve: "Complete description"
-  tours_view_form_placeholder_thirteen: "What is included?"
-  tours_view_form_placeholder_fourteen: "What is NOT included?"
-  tours_view_form_placeholder_fifteen: "What to bring?"
-  tours_view_form_placeholder_sixteen: "Good to know"
-  tours_view_form_placeholder_seventeen: "What is the meeting point?"
-  tours_view_form_placeholder_eighteen: "Category name"
-  tours_view_form_placeholder_nineteen: "Tags"
-  tours_view_form_placeholder_twenty: "Languages spoken"
-  tours_view_form_placeholder_twentyone: "Organizer"
-  tours_view_form_placeholder_twentytwo: "Package name"
-  tours_view_form_placeholder_twentythree: "Package price"
-  tours_view_form_placeholder_twentyfour: "What is included in this package?"
-  tours_view_form_small: "For different packages, go to tab \"Pacotes\""
-  tours_view_form_include_blank_one: "Choose a category"
-  tours_view_form_a_six: "Add a category"
-  tours_view_form_span: "New category:"
-  tours_view_form_include_blank_two: "Choose a status"
-  tours_view_form_options_a: "Not published"
-  tours_view_form_options_b: "N"
-  tours_view_form_options_c: "Published"
-  tours_view_form_options_c: "P"
-  tours_view_form_p_one: "In order to link an organizer to this truppie, you must be member of this organization"
-  tours_view_form_p_two: "You can add packages with different prices (remind that, in this case, the price field in the other tab should remain blank)"
-  tours_view_form_link_one: "Add package"
-  tours_view_form_link_two: "Save truppie"
-  tours_view_form_a_seven: "Cancel"
-
-  navbar_partial_link_one: "Sign in / Log in"
-  navbar_partial_link_two: "My truppies"
-  navbar_partial_link_three: "Edit user"
-  navbar_partial_link_four: "Log out"
-
-  payment_type_partial_div_one: "Method of payment"
-  payment_type_partial_div_two: "Credit card"
-  payment_type_partial_div_three: "Boleto Bancário"
-
-  tours_view_confirm_li_one: "Start"
-  tours_view_confirm_li_two: "Confirmation"
-  tours_view_confirm_h4_one: "Truppie confirmation"
-  tours_view_confirm_p_one: "Check here the details to make sure everything is correct"
-  tours_view_confirm_strong_one: "Organized by:"
-  tours_view_confirm_strong_two: "Place:"
-  tours_view_confirm_strong_three: "Meeting point:"
-  tours_view_confirm_h4_two: "Your information for payment"
-  tours_view_confirm_small_one: "(credit card)"
-  tours_view_confirm_h4_three: "User information"
-  tours_view_confirm_small_two: "* The user information must be the same as the card holder's"
-  tours_view_confirm_label_one: "Complete name"
-  tours_view_confirm_placeholder_one: "Same name as on the credit card"
-  tours_view_confirm_label_two: "Date of birth"
-  tours_view_confirm_label_three: "Street"
-  tours_view_confirm_label_four: "Complement"
-  tours_view_confirm_label_five: "City"
-  tours_view_confirm_label_six: "State"
-  tours_view_confirm_label_seven: "Country"
-  tours_view_confirm_label_eight: "Zip Code"
-  tours_view_confirm_h4_four: "Information for payment"
-  tours_view_confirm_label_nine: "Card number"
-  tours_view_confirm_placeholder_two: "Valid card number"
-  tours_view_confirm_label_ten: "Expiration date"
-  tours_view_confirm_placeholder_three: "Month (two digits)"
-  tours_view_confirm_placeholder_four: "Year (two digits)"
-  tours_view_confirm_label_eleven: "Verification code"
-  tours_view_confirm_small_three: "Package"
-  tours_view_confirm_span_one: "Choose one package option:"
-  tours_view_confirm_label_twelve: "Quantity"
-  tours_view_confirm_h4_five: "Total:"
-  tours_view_confirm_strong_four: "%{name} policy:"
-  tours_view_confirm_h4_six: "Information for payment"
-  tours_view_confirm_small_four: "(boleto bancário)"
-  tours_view_confirm_span_two: "Choose one package option:"
-  tours_view_confirm_submit: "Confirm booking"
-
-  
-  tours_view_confirm_presence_p_one: "You can follow the status at"
-  tours_view_confirm_presence_link_one: "My truppies"  
-  tours_view_confirm_presence_link_two: "Go back to confirmation"
-  tours_view_confirm_presence_h3: "Find below your order information"
-  tours_view_confirm_presence_span_one: "Organizer"
-  tours_view_confirm_presence_span_two: "Status"
-  tours_view_confirm_presence_span_three: "Order code"
-  tours_view_confirm_presence_th_one: "Individual booking price"
-  tours_view_confirm_presence_th_two: "Quantity"
-  tours_view_confirm_presence_th_three: "Total"
-
-
-  confirm_eds_partial_h4: "Confirmed"
-  confirm_eds_partial_strong: "You"
-  confirm_eds_partial_span: "Booking(s)"
-  confirm_eds_partial_small: "Nobody has confirmed yet"
-  confirm_eds_partial_link: "Confirm yours"
-
-  tours_view_edit_h3: "Edit truppie or "
-  tours_view_edit_link: "see all truppies"
-
-  tours_view_index_h3: "All truppies already created"
-  tours_view_index_link_one: "Show"
-  tours_view_index_link_two: "Edit"
-  tours_view_index_link_three: "Delete"
-  tours_view_index_link_three_confirm: "Are you sure you want to delete this truppie?"
-  tours_view_index_link_four: "Create new truppie"
-
-  tours_view_new_h3: "Add truppie or "
-  tours_view_new_link: "see all truppies"
-
-  unconfirm_presence: "Your presence was successsfully unconfirmed"
-
-  tours_view_show_link_one: "Book"
-  tours_view_show_a_one: "See all the packages below"
-  tours_view_show_small_one: "In category"
-  tours_view_show_strong_one: "Without category"
-  tours_view_show_strong_two: "Guide:"
-  tours_view_show_link_two: "Go to their website"
-  tours_view_show_a_one: "Questions? Send an e-mail"
-  tours_view_show_strong_three: "Information:"
-  tours_view_show_li_one: " available vacancies"
-  tours_view_show_li_two: "There are no more vacancies"
-  tours_view_show_li_three: " people at minimum"
-  tours_view_show_li_four: " Starts "
-  tours_view_show_li_five: " Difficulty level"
-  tours_view_show_li_six: "The guide speaks"
-  tours_view_show_li_seven: "Follow the event on Facebook"
-  tours_view_show_link_three: "Book now"
-  tours_view_show_h4: "Photos"
-  tours_view_show_a_two: "Packages options"
-  tours_view_show_link_four: "I want the %{name}"
-  tours_view_show_strong_four: "About"
-  tours_view_show_strong_five: "What should you bring:"
-  tours_view_show_strong_six: "Good to know:"
-  tours_view_show_strong_seven: "Included:"
-  tours_view_show_strong_eight: "Not included:"
-  tours_view_show_strong_nine: "Meeting point:"
-  tours_view_show_strong_ten: "Attractions:"
-
-  welcome_view_defs_h3: "With faded secondary text"
-  welcome_view_defs_small: "With faded secondary text"
-  welcome_view_defs_p_1: "Proin rutrum tortor vitae elementum auctor. Etiam et est vel ipsum congue porta. Nullam vitae rhoncus nisi. Maecenas egestas metus sed dolor tincidunt accumsan. Etiam sed elit est. Donec dui augue, malesuada sed pharetra sit amet, dignissim laoreet justo. Curabitur eget congue lacus. Quisque hendrerit, ligula a vestibulum iaculis, lorem orci finibus justo, in vehicula diam massa ac lectus. Nullam eu lacus scelerisque, hendrerit arcu ut, volutpat lorem. Fusce congue congue nibh, at volutpat enim fermentum id. Etiam vehicula accumsan ullamcorper. Duis dapibus enim a sapien blandit facilisis. Aliquam elit quam, vulputate eu maximus porttitor, varius sed ipsum. Maecenas efficitur ex ut dui imperdiet, in fermentum augue interdum. Ut nisi risus, vehicula eu nisi quis, rhoncus lobortis quam. Integer fermentum ullamcorper lectus, at convallis neque laoreet et."
-  welcome_view_defs_p_2: "Aenean ornare nec mauris nec vulputate. Duis efficitur diam arcu, ut euismod nisi maximus et. Etiam sollicitudin lacinia elementum. Sed eget bibendum est. Nulla facilisi. Donec convallis metus eleifend tortor mattis condimentum. Integer ut felis pulvinar, euismod orci ac, pretium mauris. Nunc semper nunc sed lacus placerat semper vel nec sapien."
-  welcome_view_defs_p_3: "Cras accumsan dapibus pulvinar. Morbi at nulla a purus congue placerat. Proin luctus vitae ligula a vehicula. Curabitur in ex mauris. Quisque gravida dui ex, vitae pulvinar odio porttitor ac. Nunc sit amet imperdiet nunc. Aenean varius id elit ac gravida. Cras hendrerit porttitor nunc ut molestie. Sed a tincidunt orci, sed convallis ex. Quisque velit justo, convallis et ornare consequat, tincidunt sit amet dolor. Nullam sed elit a nunc laoreet rutrum. In eget dolor a massa dapibus pretium vitae non ligula. Fusce eu felis a ligula imperdiet varius et ut metus. Etiam a lacinia ligula, sit amet accumsan nibh."
-
-  welcome_view_faq_h3: "FAQ"
-  welcome_view_faq_small: "Check the answers to Frequently Asked Questions"
-  welcome_view_faq_strong_one: "Is Truppie a travel agency?"
-  welcome_view_faq_strong_two: "Why Truppie?"
-  welcome_view_faq_strong_three: "What is a truppie?"
-  welcome_view_faq_strong_four: "Does Truppie do truppies too?"
-  welcome_view_faq_strong_five: "What is the relation between Truppie and the guides?"
-  welcome_view_faq_strong_six: "Where is Truppie located?"
-  welcome_view_faq_strong_seven: "How do I book/pay a truppie that I have chosen?"
-  welcome_view_faq_strong_eight: "What if I'm no longer able to go or give up the event?"
-  welcome_view_faq_strong_nine: "Who should I refer to in case of questions about a specific truppie?"
-  welcome_view_faq_strong_ten: "Can I register myself as a guide on Truppie?"
-  welcome_view_faq_strong_eleven: "Can I book two truppies for the same day?"
-  welcome_view_faq_p_one: "No. We are a platform that connects guides (independent or from local travel agencies) to people who seek for tours, trips and other types of experiences."
-  welcome_view_faq_p_two: "Trip + Hippie + Troupe = Truppie <br /> A new concept of lifestyle and life philosophy."
-  welcome_view_faq_p_three: "Any type of adventure/trip/tour that brings a new, enriching and inspiring experience. Something that contributes to your development as a human being."
-  welcome_view_faq_p_four: "Not yet. Someday, who knows? In the meantime, it is merely the platform that supports the truppies organized by external guides."
-  welcome_view_faq_p_five: "Truppie is the platform which external guides use to create their own truppies. The guides are responsible for the information provided, booking confirmation, payment, number of vacancies, cancellation etc - all done via Truppie website. The guide is the ultimate responsible for the event."
-  welcome_view_faq_p_six: "For now, in Brazil, in the states of Rio de Janeiro, São Paulo and Minas Gerais. But we have plans to expand to other regions."
-  welcome_view_faq_p_seven: "On Truppie, you pay directly through the website with credit card. Once the payment is confirmed, your place is automatically reserved."
-  welcome_view_faq_p_eight: "Each guide has their own reimbursement policy. It will be clearly stated in the event before you complete the payment."
-  welcome_view_faq_p_nine: "The organizing guide is the person who knows best about their own truppie, so we recommend you contact them directly by e-mail or telephone (provided in the event page). Anyway, in case of any problems, Truppie will be glad to help too :) "
-  welcome_view_faq_p_ten: "If you are any kind of guide (travel, nature, adventure, photography, yoga etc), either working independently or in an agency, and - very important - if you feel synergy between our values, you are welcome to join Truppie as our guide!"
-  welcome_view_faq_p_eleven: "No. Once you commit with one guide, they are counting on your presence at their event. You cannot be in two places at the same time, right?"
-
-  welcome_view_how_h3: "How it works"
-  welcome_view_how_p_one: "Welcome to Truppie family! Have a better understanding of what is Truppie and how it works."
-  welcome_view_how_h4_one: "What it is"
-  welcome_view_how_p_two: "Truppie is a platform that connects people to many adventures."
-  welcome_view_how_h4_two: "What we do"
-  welcome_view_how_p_three: "Truppie came to take you out of normal life: school, work, bills, consumism, sedentary lifestyle, boredom, lack of purpose. Truppie is here to present you new possibilities of enjoying your time, feeding your soul and developing as a person. How? Having fun, discovering oneself, exploring new places, making new friends, living new experiences!"
-  welcome_view_how_p_four: "We want to show that life can be much more interesting when we prioritize what really makes a difference,  what enriches our soul. There resides the key to the true happiness - dettach from material goods, be present and see beauty in each and every moment."
-  welcome_view_how_p_five: "To sum up: Truppie does… truppies! Tours, trails, hikes, events, trips… for us, all kinds of adventures are called truppies. So, what is your truppie?"
-  welcome_view_how_p_six: "...our brain is capable of forming new synapses (connection between nerve cells) when stimulated by new factos? This is called neuroplasticity. That means that when we explore and live new situations, we are learning, and our brain, developing. And this is one of the greatest contributors to creativity. So, not only living new adventures is distracting and pleasurable, it is also healthy and productive!"
-  welcome_view_how_p_seven: "Truppie is made by people like you and me. It's people who love what they do on one side, and people who are in love with life on the other side. It's a lot of good energy all together!"
-  welcome_view_how_p_eight: "The Guide can be an independent professional, or linked to some local agency. They sign up on the platform Truppie, create a profile and create how many truppies as they want. The Guides registration goes through a verification, in order for us to assure the quality of the services providers."
-  welcome_view_how_p_nine: "The Explorer can be me, you, any person in search of a new experience. He/she signs up and also has a profile, with information about their preferences. The explorer finds their truppie, books and pays through the website."
-  welcome_view_how_p_ten: "Truppie is the platform that connects the Explorer in quest for their next adventure and the Guide who offers it. The Guide creates their own events (aka 'truppies') on our website, which in turn gives the Explorer all the information, support and orientation they need in order to book their tour."
-  welcome_view_how_p_eleven: "No bureaucracy, no difficulty, with transparency, from our hearts."
-  welcome_view_how_p_twelve: "The truppies are offered by the Guides registered in our platform; they provide all the necessary information so that the Explorer can book the tour straight from the website: date, place, duratino, price, pre-requisites, physical difficulty, required equipments, vacancies, etc."
-  welcome_view_how_p_thirteen: "If there are questions specifically about the event, the Explorer should contact the Guide. If it's a more general question (eg: about different truppies or guides), Truppie is always at your disposal."
-  welcome_view_how_p_fourteen: "Once the Explorer chooses their truppie, the payment is easily made on the website with credit card; and then, voilà, the truppie is booked!"
-  welcome_view_how_p_fifteen: "In case the Guide cancels the event, the Explorer has two options: 1) refund of 100%  or 2) leave the credit with the Guide to be used in a future truppie of their own choice."
-  welcome_view_how_p_sixteen: "Truppie gives the guides freedom to create and manage their own events; they are responsible for booking confirmation, payment, number of vacancies and cancellation. Even though the ultimate responsibility for the event resides with the organizing Guide, Truppie will help with whatever is possible in order to provide the Explorer with the best experience."
-  welcome_view_how_p_seventeen: "To sum up: whether you are a Guide or an Explorer, Truppie wants to make things easy for you, so that more people can have the best experiences of their lives! :)"
-  welcome_view_how_h5_one: "The Guide"
-  welcome_view_how_h5_two: "The Explorer"
-  welcome_view_how_h5_three: "The Truppie"
-  welcome_view_how_h5_four: "How we do"
-  welcome_view_how_h5_five: "Cancellation policy"
-  welcome_view_how_h5_six: "Responsibility"
-  welcome_view_how_h4_three: "Did you know that..."
-  welcome_view_how_h4_four: "Who does"
-  welcome_view_how_h4_five: "Ok, but who does what?"
-
-  welcome_view_index_div_one: " Next date"
-  welcome_view_index_small_one: "with"
-  welcome_view_index_small_two: "in "
-  welcome_view_index_a_one: "Book"
-  welcome_view_index_small_three: "Travessia Petrópolis - Teresópolis - RJ"
-  welcome_view_index_small_four: "Vale do Pati - BA"
-  welcome_view_index_small_five: "Pico do Papagaio, Aiuruoca - MG"
-  welcome_view_index_div_two: "If you are a guide..."
-  welcome_view_index_h4_one: "Let's become partners?"
-  welcome_view_index_p_one: "We facilitate the booking process with your clients and we announce your event, so you can focus on offering a remarkable experience!"
-  welcome_view_index_a_one: "Sign up for Truppie!"
-  welcome_view_index_a_two: "Download the guide manual"
-  welcome_view_index_h4_two: "Follow us on social media"
-  welcome_view_index_small_six: "Follow us on "
-  welcome_view_index_small_seven: " and stay tuned on news, tours and inspiration for you to get out of the routine!!"
-  welcome_view_index_h3_one: "Next truppies"
-  welcome_view_index_div_three: "Read more"
-  welcome_view_index_small_eight: "by"
-  welcome_view_index_span_one: "When?"
-  welcome_view_index_span_two: "Where?"
-  welcome_view_index_span_three: "What time?"
-  welcome_view_index_span_four: "vacancies"
-  welcome_view_index_span_five: " available vacancies"
-  welcome_view_index_span_six: "There are no more vacancies"
-  welcome_view_index_small_nine: "Don't worry, we don't like spam either"
-  welcome_view_index_a_three: "Laura Sette"
-  welcome_view_index_a_four: "Alexandre Magno"
-  welcome_view_index_div_four: "Tech geek"
-
-  guides_partial_h3_one: "Guide"
+  account-label: account
+  active-label: active
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'the validation fails: %{errors}'
+        restrict_dependent_destroy:
+          has_many: is not possible to exclude because you have %{record} dependent records
+          has_one: is not possible to exclude because you have %{record} dependent records
+  add-packages-desc: You can add more packages and one differenciate from another to offer food, accomodation etc.
+  add-packages-title: Add package
+  admin-from-anywhere-content: Administre seus eventos e reservas de qualquer lugar, a Truppie funciona em qualquer dispositivo
+  admin-from-anywhere-content: Manage your events and reservations from anywhere, Truppie is ready for mobile
+  admin-from-anywhere-title: We are mobile friendly
+  admin-payment-with-us-conclusion: 'Ah, there is other things to know:'
+  admin-payment-with-us-final-step: Ask for transfer to your account
+  admin-payment-with-us-limit-step: Keep notified about your reservations
+  admin-payment-with-us-step: Create and manage how many events you wish
+  admin-secure-payment-content: We use Stripe, one of the most efficient, fast and secure payment service
+  admin-secure-payment-title: We are secure
+  admin-share-event-content: We promote your events in our page
+  admin-share-event-title: Promote your event
+  after-create-truppie-account: How to?
+  alex-feature: Web developer
+  alex-second-feature: Internet of things
+  alex-third-feature: Design interaction
+  authors-title: The Truppists
+  balance-label: Reservations
+  balloom-heading: Exploring
+  balloom-text: What are you up to? Check out the available truppies
+  bank-account-action-save: Save banck account
+  bank-account-data-incorrect: Your bank account data is incorrect
+  bank-account-data-remote-incorrect: Your bank account data is not valid
+  bank-account-destroyed-successfully: Your bank account was removed successfully
+  bank-account-edit-button: Bank account edit
+  bank-account-form-active: Bank account active
+  bank-account-not-deleted: We couldnt delete your bank account
+  bank-account-not-deleted-default: We couldnt delete your default bank account
+  bank-account-placeholder-account-number: 'ex: 17598-5'
+  bank-account-placeholder-agency-number: 'ex: 2971'
+  bank-account-placeholder-fullname: 'ex: Joseph Jess Silva'
+  bank-account-register-issue: We had a issue to register your bank account
+  bank-account-register-sucessfully: Your bank account was registered successfully
+  bank-account-sync-error: We had a issue to register your bank account
+  bank-account-sync-error-no-id: Your bank account was not registered
+  bank-account-sync-issue: We could not register your bank account
+  bank-account-sync-sucessfully: Your bank account was registered successfully
+  bank-account-updated: Your bank account was updated sucessfully
+  bank-account-updated-fail: Your bank account update fails. Please verify is the data is correct
+  bank-number-empty: Bank-number-empty
+  bank_account_controller_notice_two: Your bank account was saved successfully
+  bank_controller_activation_errors: It already has an account associated
+  bank_controller_activation_errors_two: It was not possible to save the active account
+  bank_controller_activation_msg_five: We had a problem to activate this bank account
+  bank_controller_activation_msg_four: It was not possible to activate the account
+  bank_controller_activation_msg_one: The %{organizer} bank account was already activated
+  bank_controller_activation_msg_status_one: Danger
+  bank_controller_activation_msg_status_two: Success
+  bank_controller_activation_msg_three: We could not activate the account
+  bank_controller_activation_msg_two: Account successfully activated
+  calendar: Calendário de atividades
+  cancel: Cancelar
+  card-label: Card
+  change-date: Inserir data
+  clients-title: Your clients
+  close: Close
+  confirm_eds_partial_h4: Confirmed
+  confirm_eds_partial_link: Confirm yours
+  confirm_eds_partial_small: Nobody has confirmed yet
+  confirm_eds_partial_span: Booking(s)
+  confirm_eds_partial_strong: You
+  contact-link: Contact us and tell for us what your think
+  contact-main-menu: Contact
+  contact-title: Contact
+  contact-us-action-step: Contact us as a guide
+  contacts_controller_error: You are missing the e-mail address and/or the message
+  contacts_controller_error_two: It was not possible to send your e-mail. Please try again
+  contacts_controller_succes: Your message was successfully sent. We'll be contacting you soon
+  contacts_views_index_a_title: Send Truppie an e-mail directly
+  contacts_views_index_h2: Contact Truppie
+  contacts_views_index_label_four: 'Message:'
+  contacts_views_index_label_one: Name
+  contacts_views_index_label_three: 'Subject:'
+  contacts_views_index_label_two: E-mail
+  contacts_views_index_p: If you prefer, you can e-mail us at
+  contacts_views_index_placeholder_one: Your name
+  contacts_views_index_placeholder_three: Your Message
+  contacts_views_index_placeholder_two: Your e-mail address is
+  contacts_views_index_small: Be cool, we will not share your personal information with anybody
+  contacts_views_submit: Send
+  create-account-action-step: Create a account as an user
+  create-marketplace-action: Create account
+  create-truppie-account: Create a truppie account
+  date:
+    abbr_day_names: '["Mon", "Tue", "Wed", "Thu", "Sat", "Sun"]'
+    abbr_month_names: '[nil, "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]'
+    day_names: '["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]'
+    day_names_calendar: '["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]'
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
+    month_names: '[nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]'
+    order: "[:day, :month, :year]"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about one hour
+        other: "%{count} hours"
+      about_x_months:
+        one: about one month
+        other: "%{count} months"
+      about_x_years:
+        one: about one year
+        other: "about %{count} years"
+      almost_x_years:
+        one: almost one year
+        other: "almost %{count} years"
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: "less than %{count} minutes"
+      less_than_x_seconds:
+        one: less than one second
+        other: "less than %{count} seconds"
+      over_x_years:
+        one: over one year
+        other: "over %{count} years"
+      x_days:
+        one: one day
+        other: "%{count} days"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 month
+        other: "%{count} months"
+      x_seconds:
+        one: 1 second
+        other: "%{count} seconds"
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Second
+      year: Year
+  days: Days
+  departure-date: Departure
+  desc-organizer-why-truppie: Create your truppie account and manage your events and receive payments from your clients
+  enter-login: Create/access account
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: must be accepted
+      blank: "can't be blank"
+      confirmation: its not equal to %{attribute}
+      empty: empty field not allowed
+      equal_to: should be equal to %{count}
+      even: must be even
+      exclusion: this is not available
+      greater_than: it shouldnt be greater than %{count}
+      greater_than_or_equal_to: it shouldnt be greater or equal to %{count}
+      inclusion: is not included
+      invalid: is not valid
+      less_than: it should be less than %{count}
+      less_than_or_equal_to: it should be less or equal to %{count}
+      model_invalid: 'The validation fails: %{errors}'
+      not_a_number: is not a number
+      not_an_integer: is not a integer
+      odd: it should be odd
+      other_than: it should be other than %{count}
+      present: it should be blank
+      required: it should exist
+      taken: this was already taken
+      too_long:
+        one: "too long (max: 1 character)"
+        other: "to long (max: %{count} characters)"
+      too_short:
+        one: "too short (min: 1 character)"
+        other: "too short (min: %{count} characters)"
+      wrong_length:
+        one: wrong length (1 caracter)
+        other: wrong length (%{count} characters)
+    template:
+      body: 'Please, verify the following(s) fields(s):'
+      header:
+        one: 'No possible to save %{model}: 1 error'
+        other: 'No possible to save  %{model}: %{count} errors'
+  event-add-image: add image
+  event-call-end: end
+  event-call-start: "start"
+  event-date-title: tour date
+  event-desc-label: tour description
+  event-drag-drop-file: drop your image here
+  event-image-upload: upload your image
+  event-no-packages-message: "There's no package added"
+  event-packages-title: Packages included
+  event-remove-image-upload: Remove event image
+  event-title: Event title
+  events-next: Next tours
+  facebook-login: Signin with facebook
+  faq-link-label: Frequently asked questions
+  first-caption: OPEN YOUR MIND
+  first-description: Get off normal life for a while
+  for-you-on-truppie-title: 'Para você que está na truppie, acesse sua conta:'
+  fullname-empty: Your fullname is empty
+  guide-manual-link: Manual for the guide (Portuguese)
+  guide-manual-title: Guide manual
+  guides-main-menu: "I'm a guide"
   guides_partial_a_one: " Go to their website"
   guides_partial_a_two: " Questions? Send them an e-mail"
-
-  welcome_view_manifest_h3: "Manifesto"
-  welcome_view_manifest_p_one: "We don't want a normal life."
-  welcome_view_manifest_p_two: "We don't want to live in the automatic pilot."
-  welcome_view_manifest_p_three: "We don't want to live in a bubble."
-  welcome_view_manifest_p_four: "We don't want to accumulate material stuff."
-  welcome_view_manifest_p_five: "We want to live good things."
-  welcome_view_manifest_p_six: "We want human experiences."
-  welcome_view_manifest_p_seven: "We want contact with nature."
-  welcome_view_manifest_p_eight: "We want to see, hear, feel, try."
-  welcome_view_manifest_p_nine: "We want to know the world."
-  welcome_view_manifest_p_ten: "We want to expand our horizons."
-  welcome_view_manifest_p_eleven: "We want to get out of our comfort zones."
-  welcome_view_manifest_p_twelve: "We want to be more creative."
-  welcome_view_manifest_p_thirteen: "We want a meaning for what we do."
-  welcome_view_manifest_p_fourteen: "We want to connect to our troupe."
-  welcome_view_manifest_p_fifteen: "We want to value the good moments."
-  welcome_view_manifest_p_sixteen: "We want to live the present."
-  welcome_view_manifest_p_seventeen: "We want to expand our consciousness."
-
-  subscribe_partial_small: "Don't worry, we don't like spam either"
-
-  welcome_view_privacy_h3: "Privacy Policy"
-  welcome_view_privacy_h5_one: "Personal information"
-  welcome_view_privacy_h5_two: "Communication"
-  welcome_view_privacy_p_one: "When signing up at Truppie, the Explorer is asked to provide personal information, such as name, e-mail etc. Truppie doesn't share, sell or distribute these information in any manner. In any extraordinary situation where this type of information is needed, a previous authorization from the user will be requested."
-  welcome_view_privacy_p_two: "Truppie and/or the Guide may contact the Explorer by e-mail for: confirming their e-mail address after signing up in the platform; confirmaing the payment/booking of a tour; providing additional information about a tour booked by the Explorer; informing about the cancellation of a tour booked by the Explorer. <br /> Don't worry, we don't send spam!"
-
-
-  organizer_tours_label: "truppies"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  guides_partial_h3_one: Guide
+  hands-heading: Choose
+  hands-text: Check the details and confirm your presence with one click
+  hello-organizer-welcome: Hello %{organizer}
+  hello-organizer-welcome-account-edit: Welcome organizer, here you can edit your account
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  how-it-works-link: See how the Truppie works
+  how-it-works-main-menu: "I'm explorer"
+  how-it-works-title: How it works
+  import-event-action: Import events
+  import-event-desc: Choose the facebook events that you wish to import
+  import-event-label: import from facebook
+  import-event-notice: Import your event
+  import-event-notice-error: We have a issue to import your event
+  import-event-notice-success: Your event(s) was imported sucessfully
+  import-from-facebook-title: Import event from facebook
+  incomplete_label: Incomplete
+  label-organizer-about: About
+  label-organizer-address-city: City
+  label-organizer-continue: Continue
+  label-organizer-email: Email
+  label-organizer-facebook: Facebook
+  label-organizer-finish: Finish registration
+  label-organizer-instagram: Instagram
+  label-organizer-name: Name
+  label-organizer-phone: phone
+  label-organizer-picture: picture
+  label-organizer-previous: Previous
+  label-organizer-thanks: Thanks for register your account with us
+  label-organizer-thanks-email: Thanks for register
+  label-organizer-thanks-moderation: We are checking your information
+  label-organizer-twitter: Twitter
+  label-organizer-website: Website
+  laura-feature: Biologist
+  laura-second-feature: Travel Blogger
+  laura-third-feature: Full time nerd and compulsive reader
+  logged-as-label: Logged as
+  logout-label: Logout
+  manage-truppie-action: Manager
+  manifesto-link-label: Manifest about our Philosophy
+  marketplace-city-placeholder: 'ex: São Paulo'
+  marketplace-complement-placeholder: 'ex: 303 apto 404'
+  marketplace-controller-notice-update: Account updated
+  marketplace-controller-notice-update-fail: "There's a error to update your account"
+  marketplace-data-incorrect: Your account data is incorrect, please review and send again
+  marketplace-datebirth-placeholder: 'ex: birthdate (AAAA/DD/MM)'
+  marketplace-document-placeholder: 'ex: identification number'
+  marketplace-first-name-placeholder: 'ex: first name'
+  marketplace-missing: Account data missing
+  marketplace-second-name-placeholder: 'ex: Last name'
+  marketplace-state-placeholder: 'ex: São Paulo'
+  marketplace-street-placeholder: 'ex: Travel street'
+  marketplace-zipcode-placeholder: 'ex: 3035-00'
+  marketplace_controller_activation_message_eight: Marketplace could not be updated due to some problem in the Stripe API
+  marketplace_controller_activation_message_five: We successfully updated your %{organizer} account
+  marketplace_controller_activation_message_four: Marketplace %{organizer} could not be activated due to some problem in the Stripe API
+  marketplace_controller_activation_message_one: We successfully created an account in the marketplace for %{organizer}
+  marketplace_controller_activation_message_seven: Marketplace %{organizer} is already active
+  marketplace_controller_activation_message_six: Marketplace %{organizer} was not updated
+  marketplace_controller_activation_message_three: Marketplace %{organizer} is already active
+  marketplace_controller_activation_message_two: Marketplace %{organizer} was not created
+  marketplace_controller_errors: Marketplace controller errors
+  marketplace_controller_errors_four: It is already active
+  marketplace_controller_errors_one: There was a problem and the ID was not generated
+  marketplace_controller_errors_three: There was a problem and it didn't find your account
+  marketplace_controller_errors_two: It is already active
+  marketplace_controller_notice: You do not have permission to access this page
+  marketplace_controller_notice_four: Marketplace was successfully destroyed
+  marketplace_controller_notice_remote_account_fail: Marketplace controller notice remote account fail
+  marketplace_controller_notice_three: Marketplace was successfully updated
+  marketplace_controller_notice_two: Marketplace was successfully created
+  meetings-content: Our meetings happen in offices like this - ok, only sometimes!
+  meetings-title: The office
+  metatag-abstract: abstract
+  metatag-author: author
+  metatag-classi: classification
+  metatag-description: description
+  metatag-keywords: keywords
+  metatag-language: language
+  metatag-subject: subject
+  metatag-summary: summary
+  metatag-topic: topic
+  modal-packages-title: Gerenciamento de pacotes
+  navbar_partial_link_four: Log out
+  navbar_partial_link_one: Sign in / Log in
+  navbar_partial_link_three: Edit user
+  navbar_partial_link_two: My truppies
+  new-bank-account-title: New-bank-account-title
+  new-event-cancel: Cancelar
+  new-guided-tour-label: adicionar truppie
+  new-tour-label: Criação de uma nova truppie
+  newsletter-text: 'Leave your e-mail to be notified about the first truppie:'
+  newsletter-title: Stay tuned!
+  no-marketplace: no account
+  no-marketplace-label: no account
+  no-terms: no terms
+  no-verified-label: not verified
+  not_verified_label: not verified
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u %n"
+        precision: '2'
+        separator: ","
+        significant: Significant
+        strip_insignificant_zeros: Strip insignificant zeros
+        unit: R$
+    format:
+      delimiter: "."
+      precision: '3'
+      separator: ","
+      significant: Significant
+      strip_insignificant_zeros: Strip insignificant zeros
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: billion
+            other: billions
+          million:
+            one: million
+            other: millions
+          quadrillion:
+            one: one hundred million
+            other: for hundred millions
+          thousand: thousand
+          trillion:
+            one: trillion
+            other: trillions
+          unit: Unit
+      format:
+        delimiter: "."
+        precision: '2'
+        significant: 'true'
+        strip_insignificant_zeros: 'true'
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
+  offer-truppie-advantages: Why offer your adventures with us
+  offer-truppies-title-call: 'With Truppie, you can:'
+  or-label: or you can
+  organizer-access-step: Wait for us that we will create your profile
+  organizer-account-edit: Edit your account
+  organizer-account-edit-desc: Welcome to your account, here you can fill your data
+  organizer-account-intro-desc: You can check your data and after verified your events can be used by your clients
+  organizer-account-intro-title: Welcome to your account
+  organizer-account-status-title: Your account status
+  organizer-account-welcome-account-edit-title: Welcome to your account
+  organizer-add-account-data: Add account information
+  organizer-add-tour: Add tour
+  organizer-after-create-account-advantages: When you create your tours with Truppie, you can manage your reservations easily!
+  organizer-bank-data: Bank
+  organizer-clients-label: Clients
+  organizer-create-issue-message: We had problems to create your account
+  organizer-create-success: Your account was created sucessfully
+  organizer-dashboard-desc: Aqui, você tem acesso a criação da sua truppie, assim como atualização da sua conta
+  organizer-dashboard-desc: Here you have access to create your tours, as well update your account
+  organizer-desc-label: describe your business
+  organizer-email-label: email
+  organizer-external-refs-legend: Your contacts
+  organizer-facebook-label: facebook
+  organizer-instagram-label: instagram
+  organizer-interest-submit-action: I want to know more!
+  organizer-interested-text: Leave your e-mail that we will contact you
+  organizer-interested-title: You had some doubts about truppie?
+  organizer-missing-account-info-solve: Solve the missing data of your account
+  organizer-missing-data-title: Your data is missing
+  organizer-name-label: Name
+  organizer-new-package: Create packages
+  organizer-new-tour: Create a new tour
+  organizer-panel-welcome: Este é o seu painel da truppie, onde você poderá criar seus passeios
+  organizer-panel-welcome: This is your truppie panel, that you can create your tours
+  organizer-percent-label: Tax (%)
+  organizer-phone-label: Phone contact
+  organizer-profile-account: Profile
+  organizer-profile-account-action: Go to your profile
+  organizer-profile-account-desc: Description
+  organizer-profile-action: Profile
+  organizer-profile-desc: This is the description of your profile
+  organizer-profile-edit: Profile edit
+  organizer-profile-intro: Welcome to your profile
+  organizer-profile-verify-action: Verify profile
+  organizer-tours-label: Truppies
+  organizer-twitter-label: Twitter
+  organizer-update-error: We had a problem to update your account
+  organizer-update-sucessfully: Your account was updated successfully
+  organizer-website-label: Website
+  organizer-why-create-account-text: A Truppie quer te ajudar a criar a ferramenta ideal à sua necessidade!
+  organizer-why-create-account-text: We want to help to create the platform that suits your needs!
+  organizer_tours_label: truppies
+  panel-label: Truppies
+  payment_type_partial_div_one: Method of payment
+  payment_type_partial_div_three: Boleto Bancário
+  payment_type_partial_div_two: Credit card
+  privacy-label: Privacy
+  privacy-link: Access the terms of privacy
+  profile-access: Go to your profile
+  profile-access-truppie-account: With your profile you can
+  profile-access-truppie-account-share-step: Payment link with all information you need
+  profile-access-truppie-account-step: Manage your reservations, be notified and manage the payments
+  profile-access-truppie-account-transfer-step: Request transfer
+  return-date: Return
+  same-date: same day
+  save-and-publish: Save and publish
+  save-changes: Save changes
+  second-caption: BE OFFLINE
+  second-description: Connect with nature, cultures and yourself
+  select-date: select date
+  shoes-heading: Get ready
+  shoes-text: There's nothing to worry about - just get ready and enjoy the ride!
+  status_danger: danger
+  status_success: success
+  submit-external-payment: Split payment on credit card
+  subscribe_partial_small: Don't worry, we don't like spam either
+  support:
+    array:
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+  tagline: living adventures
+  terms: Terms
+  text-intro: 'Truppie is a platform designed to facilitate your next trips and adventures, either for a day or for your vacation period, in your city or around the country. Truppie is a lifestyle; a new way to enjoy your time and enrich your existence. Find your next truppie in three simple steps:'
+  third-caption: ADD VALUE TO YOUR LIFE
+  third-description: Learn with experiences and evolve as a human being
+  time:
+    am: Am
+    formats:
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      long: "%d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+    pm: Pm
+  title-introducing-accounts: This is your accounts
+  title-organizer-join-truppie: Join Truppie and have a account to manage your reservation payments
+  tour-category-label: What the subject of this tour
+  tours_controller_confirm_headline_msg: Your booking is confirmed for this truppie
+  tours_controller_confirm_headline_msg_two: Event successfully confirmed
+  tours_controller_confirm_status_msg: Thanks for booking this event
+  tours_controller_copy_error: There was a error to copy this event
+  tours_controller_copy_success: Event copied sucessfully
+  tours_controller_create_notice_one: Truppie successfully created
+  tours_controller_create_notice_two: The field %{error_one} %{error_two}
+  tours_controller_desc: Truppie %{title} by %{organizer}
+  tours_controller_destroy_notice: Tour was successfully destroyed.
+  tours_controller_destroy_notice_fail: We couldnt delete this event
+  tours_controller_errors_one: Hey, you are already confirmed in this event, there's no need to book it again!
+  tours_controller_headline_msg: It was not possible to confirm your reservation
+  tours_controller_mailer_notify_one: The user %{name} whose e-mail is %{email} tried something, the return was %{inspect}
+  tours_controller_mailer_notify_three: The user %{name} whose e-mail is %{email} tried to pay without providing the information
+  tours_controller_mailer_notify_two: The user %{name} whose e-mail is %{email} tried to pay and there was an error %{inspect}
+  tours_controller_notice_one: You do not have permission to access this page
+  tours_controller_status_msg: It was not possible to identify the date of birth
+  tours_controller_status_msg_five: The payment has not been confirmed
+  tours_controller_status_msg_four: You will receive an e-mail concerning your payment processing
+  tours_controller_status_msg_seven: This event is sold out
+  tours_controller_status_msg_six: You have not provided sufficient information for this payment
+  tours_controller_status_msg_three: We had a problem to confirm your booking; we'll contact you with further information
+  tours_controller_status_msg_two: We had a problem while processing your payment with credit card
+  tours_controller_unconfirm_error: There was a problem to confirm your withdrawal from this event
+  tours_controller_unconfirm_success: You are no longer confirmed in this event
+  tours_controller_update_notice: Truppie successfully updated
+  tours_view_confirm_h4_five: 'Total:'
+  tours_view_confirm_h4_four: Information for payment
+  tours_view_confirm_h4_one: Truppie confirmation
+  tours_view_confirm_h4_six: Information for payment
+  tours_view_confirm_h4_three: User information
+  tours_view_confirm_h4_two: Your information for payment
+  tours_view_confirm_label_eight: Zip Code
+  tours_view_confirm_label_eleven: Verification code
+  tours_view_confirm_label_five: City
+  tours_view_confirm_label_four: Complement
+  tours_view_confirm_label_nine: Card number
+  tours_view_confirm_label_one: Complete name
+  tours_view_confirm_label_seven: Country
+  tours_view_confirm_label_six: State
+  tours_view_confirm_label_ten: Expiration date
+  tours_view_confirm_label_three: Street
+  tours_view_confirm_label_twelve: Quantity
+  tours_view_confirm_label_two: Date of birth
+  tours_view_confirm_li_one: Start
+  tours_view_confirm_li_two: Confirmation
+  tours_view_confirm_p_one: Check here the details to make sure everything is correct
+  tours_view_confirm_placeholder_four: Year (two digits)
+  tours_view_confirm_placeholder_one: Same name as on the credit card
+  tours_view_confirm_placeholder_three: Month (two digits)
+  tours_view_confirm_placeholder_two: Valid card number
+  tours_view_confirm_presence_h3: Find below your order information
+  tours_view_confirm_presence_link_one: My truppies
+  tours_view_confirm_presence_link_two: Go back to confirmation
+  tours_view_confirm_presence_p_one: You can follow the status at
+  tours_view_confirm_presence_span_one: Organizer
+  tours_view_confirm_presence_span_three: Order code
+  tours_view_confirm_presence_span_two: Status
+  tours_view_confirm_presence_th_one: Individual booking price
+  tours_view_confirm_presence_th_three: Total
+  tours_view_confirm_presence_th_two: Quantity
+  tours_view_confirm_small_four: "(boleto bancário)"
+  tours_view_confirm_small_one: "(credit card)"
+  tours_view_confirm_small_three: Package
+  tours_view_confirm_small_two: "* The user information must be the same as the card holder's"
+  tours_view_confirm_span_one: 'Choose one package option:'
+  tours_view_confirm_span_two: 'Choose one package option:'
+  tours_view_confirm_strong_four: "%{name} policy:"
+  tours_view_confirm_strong_one: 'Organized by:'
+  tours_view_confirm_strong_three: 'Meeting point:'
+  tours_view_confirm_strong_two: 'Place:'
+  tours_view_confirm_submit: Confirm booking
+  tours_view_edit_h3: 'Edit truppie or '
+  tours_view_edit_link: see all truppies
+  tours_view_form_a_five: Packages
+  tours_view_form_a_four: Guide
+  tours_view_form_a_one: Basic information
+  tours_view_form_a_seven: Cancel
+  tours_view_form_a_six: Add a category
+  tours_view_form_a_three: Photo
+  tours_view_form_a_two: Descriptions
+  tours_view_form_include_blank_one: Choose a category
+  tours_view_form_include_blank_two: Choose a status
+  tours_view_form_link_one: Add package
+  tours_view_form_link_two: Save truppie
+  tours_view_form_options_a: Not published
+  tours_view_form_options_b: N
+  tours_view_form_options_c: P
+  tours_view_form_options_d: P
+  tours_view_form_p_colab: Colaborators
+  tours_view_form_p_one: In order to link an organizer to this truppie, you must be member of this organization
+  tours_view_form_p_two: You can add packages with different prices (remind that, in this case, the price field in the other tab should remain blank)
+  tours_view_form_placeholder_eight: Dificulty level
+  tours_view_form_placeholder_eighteen: Category name
+  tours_view_form_placeholder_eleven: 'Price (eg: 30 for R$ 30,00)'
+  tours_view_form_placeholder_fifteen: What to bring?
+  tours_view_form_placeholder_five: Vacancies
+  tours_view_form_placeholder_four: 'Link (eg: Facebook)'
+  tours_view_form_placeholder_fourteen: What is NOT included?
+  tours_view_form_placeholder_nine: It starts
+  tours_view_form_placeholder_nineteen: Tags
+  tours_view_form_placeholder_one: Truppie title
+  tours_view_form_placeholder_seven: Maximum
+  tours_view_form_placeholder_seventeen: What is the meeting point?
+  tours_view_form_placeholder_six: Minimum
+  tours_view_form_placeholder_sixteen: Good to know
+  tours_view_form_placeholder_ten: It ends
+  tours_view_form_placeholder_thirteen: What is included?
+  tours_view_form_placeholder_three: Address
+  tours_view_form_placeholder_twelve: Complete description
+  tours_view_form_placeholder_twenty: Languages spoken
+  tours_view_form_placeholder_twentyfour: What is included in this package?
+  tours_view_form_placeholder_twentyone: Organizer
+  tours_view_form_placeholder_twentythree: Package price
+  tours_view_form_placeholder_twentytwo: Package name
+  tours_view_form_placeholder_two: Where? (Place name)
+  tours_view_form_small: For different packages, go to tab "Pacotes"
+  tours_view_form_span: 'New category:'
+  tours_view_index_h3: All truppies already created
+  tours_view_index_link_four: Create new truppie
+  tours_view_index_link_one: Show
+  tours_view_index_link_three: Delete
+  tours_view_index_link_three_confirm: Are you sure you want to delete this truppie?
+  tours_view_index_link_two: Edit
+  tours_view_new_h3: 'Add truppie or '
+  tours_view_new_link: see all truppies
+  tours_view_show_a_one: Questions? Send an e-mail
+  tours_view_show_a_two: Packages options
+  tours_view_show_h4: Photos
+  tours_view_show_li_five: " Difficulty level"
+  tours_view_show_li_four: " Starts "
+  tours_view_show_li_one: " available vacancies"
+  tours_view_show_li_seven: Follow the event on Facebook
+  tours_view_show_li_six: The guide speaks
+  tours_view_show_li_three: " people at minimum"
+  tours_view_show_li_two: There are no more vacancies
+  tours_view_show_link_four: I want the %{name}
+  tours_view_show_link_one: Book
+  tours_view_show_link_three: Book now
+  tours_view_show_link_two: Go to their website
+  tours_view_show_small_one: In category
+  tours_view_show_strong_eight: 'Not included:'
+  tours_view_show_strong_five: 'What should you bring:'
+  tours_view_show_strong_four: About
+  tours_view_show_strong_nine: 'Meeting point:'
+  tours_view_show_strong_one: Without category
+  tours_view_show_strong_seven: 'Included:'
+  tours_view_show_strong_six: 'Good to know:'
+  tours_view_show_strong_ten: 'Attractions:'
+  tours_view_show_strong_three: 'Information:'
+  tours_view_show_strong_two: 'Guide:'
+  transfer-label: Transfers
+  transfer-truppie-action: Transfer
+  truppie-adventure-text: Move your body, flow your mind, get out of the routine
+  truppie-adventure-title: We need exercise
+  truppie-culture: Go inside nature
+  truppie-culture-text: Get out of the urban cities, explore the outdoors
+  truppie-item: Great local guides, fair prices
+  truppie-second-item: All the information you need in a single place
+  truppie-text: Why exploring around with Truppie?
+  truppie-third-item: Easy and trustable payment
+  truppie-title: Truppie-title
+  truppie-urban-text: Explore momentos de silêncio, paz e conexão com sua essência
+  truppie-urban-title: Take care of your spirit
+  trupppie-title: Sample title
+  unactivate-label: unactive
+  unconfirm_presence: Your presence was successsfully unconfirmed
+  update-bank-account-label: update account
+  update-organizer-action: Your account was updated
+  user-advantages-conclusion: Just relax and wait for the event begins
+  user-advantages-discover-step: Make your reservation and pay easily with your credit card
+  user-advantages-guide-contact-step: You will have support and orientation from the guide
+  user-advantages-payment-step: Discover new adventures with our guides
+  user-adventure-info: We are always looking for a new adventure for you
+  user-adventure-step: "We are stuck in the routine, and there is a world outside to be explored. It isn't? When did you adventure last time? Let's do it again!"
+  user-collect-experience-title: Collect new adventures
+  user-start-to-use-truppie: Look for my tours!
+  user-truppie-possibilities: 'You can:'
+  user-what-truppie-is: Truppie makes you closer to your next experience
+  user-why-truppie-is-so-great: 'We help you to connect to amazing experiences in a easy way, and you can focus what really cares: count the days to start the event!'
+  user-why-truppie-is-so-great-complement: Truppie is so great to you make reservation for your tour guides
+  verified-label: Verified account
+  verified_label: Verified account
+  want-offer-truppies-title: Você é guia e busca a melhor maneira de oferecer os seus passeios?
+  want-offer-truppies-title: "Are you a guide and you're looking a way to offer your tour guides"
+  welcome_view_defs_h3: With faded secondary text
+  welcome_view_defs_p_1: Proin rutrum tortor vitae elementum auctor. Etiam et est vel ipsum congue porta. Nullam vitae rhoncus nisi. Maecenas egestas metus sed dolor tincidunt accumsan. Etiam sed elit est. Donec dui augue, malesuada sed pharetra sit amet, dignissim laoreet justo. Curabitur eget congue lacus. Quisque hendrerit, ligula a vestibulum iaculis, lorem orci finibus justo, in vehicula diam massa ac lectus. Nullam eu lacus scelerisque, hendrerit arcu ut, volutpat lorem. Fusce congue congue nibh, at volutpat enim fermentum id. Etiam vehicula accumsan ullamcorper. Duis dapibus enim a sapien blandit facilisis. Aliquam elit quam, vulputate eu maximus porttitor, varius sed ipsum. Maecenas efficitur ex ut dui imperdiet, in fermentum augue interdum. Ut nisi risus, vehicula eu nisi quis, rhoncus lobortis quam. Integer fermentum ullamcorper lectus, at convallis neque laoreet et.
+  welcome_view_defs_p_2: Aenean ornare nec mauris nec vulputate. Duis efficitur diam arcu, ut euismod nisi maximus et. Etiam sollicitudin lacinia elementum. Sed eget bibendum est. Nulla facilisi. Donec convallis metus eleifend tortor mattis condimentum. Integer ut felis pulvinar, euismod orci ac, pretium mauris. Nunc semper nunc sed lacus placerat semper vel nec sapien.
+  welcome_view_defs_p_3: Cras accumsan dapibus pulvinar. Morbi at nulla a purus congue placerat. Proin luctus vitae ligula a vehicula. Curabitur in ex mauris. Quisque gravida dui ex, vitae pulvinar odio porttitor ac. Nunc sit amet imperdiet nunc. Aenean varius id elit ac gravida. Cras hendrerit porttitor nunc ut molestie. Sed a tincidunt orci, sed convallis ex. Quisque velit justo, convallis et ornare consequat, tincidunt sit amet dolor. Nullam sed elit a nunc laoreet rutrum. In eget dolor a massa dapibus pretium vitae non ligula. Fusce eu felis a ligula imperdiet varius et ut metus. Etiam a lacinia ligula, sit amet accumsan nibh.
+  welcome_view_defs_small: With faded secondary text
+  welcome_view_faq_h3: FAQ
+  welcome_view_faq_p_eight: Each guide has their own reimbursement policy. It will be clearly stated in the event before you complete the payment.
+  welcome_view_faq_p_eleven: No. Once you commit with one guide, they are counting on your presence at their event. You cannot be in two places at the same time, right?
+  welcome_view_faq_p_five: Truppie is the platform which external guides use to create their own truppies. The guides are responsible for the information provided, booking confirmation, payment, number of vacancies, cancellation etc - all done via Truppie website. The guide is the ultimate responsible for the event.
+  welcome_view_faq_p_four: Not yet. Someday, who knows? In the meantime, it is merely the platform that supports the truppies organized by external guides.
+  welcome_view_faq_p_nine: 'The organizing guide is the person who knows best about their own truppie, so we recommend you contact them directly by e-mail or telephone (provided in the event page). Anyway, in case of any problems, Truppie will be glad to help too :) '
+  welcome_view_faq_p_one: No. We are a platform that connects guides (independent or from local travel agencies) to people who seek for tours, trips and other types of experiences.
+  welcome_view_faq_p_seven: On Truppie, you pay directly through the website with credit card. Once the payment is confirmed, your place is automatically reserved.
+  welcome_view_faq_p_six: For now, in Brazil, in the states of Rio de Janeiro, São Paulo and Minas Gerais. But we have plans to expand to other regions.
+  welcome_view_faq_p_ten: If you are any kind of guide (travel, nature, adventure, photography, yoga etc), either working independently or in an agency, and - very important - if you feel synergy between our values, you are welcome to join Truppie as our guide!
+  welcome_view_faq_p_three: Any type of adventure/trip/tour that brings a new, enriching and inspiring experience. Something that contributes to your development as a human being.
+  welcome_view_faq_p_two: Trip + Hippie + Troupe = Truppie <br /> A new concept of lifestyle and life philosophy.
+  welcome_view_faq_small: Check the answers to Frequently Asked Questions
+  welcome_view_faq_strong_eight: What if I'm no longer able to go or give up the event?
+  welcome_view_faq_strong_eleven: Can I book two truppies for the same day?
+  welcome_view_faq_strong_five: What is the relation between Truppie and the guides?
+  welcome_view_faq_strong_four: Does Truppie do truppies too?
+  welcome_view_faq_strong_nine: Who should I refer to in case of questions about a specific truppie?
+  welcome_view_faq_strong_one: Is Truppie a travel agency?
+  welcome_view_faq_strong_seven: How do I book/pay a truppie that I have chosen?
+  welcome_view_faq_strong_six: Where is Truppie located?
+  welcome_view_faq_strong_ten: Can I register myself as a guide on Truppie?
+  welcome_view_faq_strong_three: What is a truppie?
+  welcome_view_faq_strong_two: Why Truppie?
+  welcome_view_how_h3: How it works
+  welcome_view_how_h4_five: Ok, but who does what?
+  welcome_view_how_h4_four: Who does
+  welcome_view_how_h4_one: What it is
+  welcome_view_how_h4_three: Did you know that...
+  welcome_view_how_h4_two: What we do
+  welcome_view_how_h5_five: Cancellation policy
+  welcome_view_how_h5_four: How we do
+  welcome_view_how_h5_one: The Guide
+  welcome_view_how_h5_six: Responsibility
+  welcome_view_how_h5_three: The Truppie
+  welcome_view_how_h5_two: The Explorer
+  welcome_view_how_p_eight: The Guide can be an independent professional, or linked to some local agency. They sign up on the platform Truppie, create a profile and create how many truppies as they want. The Guides registration goes through a verification, in order for us to assure the quality of the services providers.
+  welcome_view_how_p_eleven: No bureaucracy, no difficulty, with transparency, from our hearts.
+  welcome_view_how_p_fifteen: 'In case the Guide cancels the event, the Explorer has two options: 1) refund of 100%  or 2) leave the credit with the Guide to be used in a future truppie of their own choice.'
+  welcome_view_how_p_five: 'To sum up: Truppie does… truppies! Tours, trails, hikes, events, trips… for us, all kinds of adventures are called truppies. So, what is your truppie?'
+  welcome_view_how_p_four: We want to show that life can be much more interesting when we prioritize what really makes a difference,  what enriches our soul. There resides the key to the true happiness - dettach from material goods, be present and see beauty in each and every moment.
+  welcome_view_how_p_fourteen: Once the Explorer chooses their truppie, the payment is easily made on the website with credit card; and then, voilà, the truppie is booked!
+  welcome_view_how_p_nine: The Explorer can be me, you, any person in search of a new experience. He/she signs up and also has a profile, with information about their preferences. The explorer finds their truppie, books and pays through the website.
+  welcome_view_how_p_one: Welcome to Truppie family! Have a better understanding of what is Truppie and how it works.
+  welcome_view_how_p_seven: Truppie is made by people like you and me. It's people who love what they do on one side, and people who are in love with life on the other side. It's a lot of good energy all together!
+  welcome_view_how_p_seventeen: 'To sum up: whether you are a Guide or an Explorer, Truppie wants to make things easy for you, so that more people can have the best experiences of their lives! :)'
+  welcome_view_how_p_six: "...our brain is capable of forming new synapses (connection between nerve cells) when stimulated by new factos? This is called neuroplasticity. That means that when we explore and live new situations, we are learning, and our brain, developing. And this is one of the greatest contributors to creativity. So, not only living new adventures is distracting and pleasurable, it is also healthy and productive!"
+  welcome_view_how_p_sixteen: Truppie gives the guides freedom to create and manage their own events; they are responsible for booking confirmation, payment, number of vacancies and cancellation. Even though the ultimate responsibility for the event resides with the organizing Guide, Truppie will help with whatever is possible in order to provide the Explorer with the best experience.
+  welcome_view_how_p_ten: Truppie is the platform that connects the Explorer in quest for their next adventure and the Guide who offers it. The Guide creates their own events (aka 'truppies') on our website, which in turn gives the Explorer all the information, support and orientation they need in order to book their tour.
+  welcome_view_how_p_thirteen: 'If there are questions specifically about the event, the Explorer should contact the Guide. If it''s a more general question (eg: about different truppies or guides), Truppie is always at your disposal.'
+  welcome_view_how_p_three: 'Truppie came to take you out of normal life: school, work, bills, consumism, sedentary lifestyle, boredom, lack of purpose. Truppie is here to present you new possibilities of enjoying your time, feeding your soul and developing as a person. How? Having fun, discovering oneself, exploring new places, making new friends, living new experiences!'
+  welcome_view_how_p_twelve: 'The truppies are offered by the Guides registered in our platform; they provide all the necessary information so that the Explorer can book the tour straight from the website: date, place, duratino, price, pre-requisites, physical difficulty, required equipments, vacancies, etc.'
+  welcome_view_how_p_two: Truppie is a platform that connects people to many adventures.
+  welcome_view_index_a_four: Alexandre Magno
+  welcome_view_index_a_one: Sign up for Truppie!
+  welcome_view_index_a_three: Laura Sette
+  welcome_view_index_a_two: Download the guide manual
+  welcome_view_index_div_four: Tech geek
+  welcome_view_index_div_one: " Next date"
+  welcome_view_index_div_three: Read more
+  welcome_view_index_div_two: If you are a guide...
+  welcome_view_index_h3_one: Next truppies
+  welcome_view_index_h4_one: Let's become partners?
+  welcome_view_index_h4_two: Follow us on social media
+  welcome_view_index_p_one: We facilitate the booking process with your clients and we announce your event, so you can focus on offering a remarkable experience!
+  welcome_view_index_small_eight: by
+  welcome_view_index_small_five: Pico do Papagaio, Aiuruoca - MG
+  welcome_view_index_small_four: Vale do Pati - BA
+  welcome_view_index_small_nine: Don't worry, we don't like spam either
+  welcome_view_index_small_one: with
+  welcome_view_index_small_seven: " and stay tuned on news, tours and inspiration for you to get out of the routine!!"
+  welcome_view_index_small_six: 'Follow us on '
+  welcome_view_index_small_three: Travessia Petrópolis - Teresópolis - RJ
+  welcome_view_index_small_two: 'in '
+  welcome_view_index_span_five: " available vacancies"
+  welcome_view_index_span_four: vacancies
+  welcome_view_index_span_one: When?
+  welcome_view_index_span_six: There are no more vacancies
+  welcome_view_index_span_three: What time?
+  welcome_view_index_span_two: Where?
+  welcome_view_manifest_h3: Manifesto
+  welcome_view_manifest_p_eight: We want to see, hear, feel, try.
+  welcome_view_manifest_p_eleven: We want to get out of our comfort zones.
+  welcome_view_manifest_p_fifteen: We want to value the good moments.
+  welcome_view_manifest_p_five: We want to live good things.
+  welcome_view_manifest_p_four: We don't want to accumulate material stuff.
+  welcome_view_manifest_p_fourteen: We want to connect to our troupe.
+  welcome_view_manifest_p_nine: We want to know the world.
+  welcome_view_manifest_p_one: We don't want a normal life.
+  welcome_view_manifest_p_seven: We want contact with nature.
+  welcome_view_manifest_p_seventeen: We want to expand our consciousness.
+  welcome_view_manifest_p_six: We want human experiences.
+  welcome_view_manifest_p_sixteen: We want to live the present.
+  welcome_view_manifest_p_ten: We want to expand our horizons.
+  welcome_view_manifest_p_thirteen: We want a meaning for what we do.
+  welcome_view_manifest_p_three: We don't want to live in a bubble.
+  welcome_view_manifest_p_twelve: We want to be more creative.
+  welcome_view_manifest_p_two: We don't want to live in the automatic pilot.
+  welcome_view_privacy_h3: Privacy Policy
+  welcome_view_privacy_h5_one: Personal information
+  welcome_view_privacy_h5_two: Communication
+  welcome_view_privacy_p_one: When signing up at Truppie, the Explorer is asked to provide personal information, such as name, e-mail etc. Truppie doesn't share, sell or distribute these information in any manner. In any extraordinary situation where this type of information is needed, a previous authorization from the user will be requested.
+  welcome_view_privacy_p_two: 'Truppie and/or the Guide may contact the Explorer by e-mail for: confirming their e-mail address after signing up in the platform; confirmaing the payment/booking of a tour; providing additional information about a tour booked by the Explorer; informing about the cancellation of a tour booked by the Explorer. <br /> Don''t worry, we don''t send spam!'
