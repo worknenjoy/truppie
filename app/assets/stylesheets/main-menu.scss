@@ -50,11 +50,16 @@ nav.main-menu li:last-child a {
   border-right: 0;
 }
 nav.main-menu a:hover, nav.main-menu a:active {
-  background-color: lighten($navbar-dark-hover-color, 15%);
+  background-color: lighten($navbar-dark-hover-color, 35%);
   color: $navbar-light-active-color;
+  text-shadow: 1px 1px 0px lighten(#283744, 80%);
 }
 nav.main-menu a#pull {
   display: none;
+}
+
+.bg-primary-dark {
+  background: darken($brand-success, 20%);
 }
 
 /*Styles for screen 600px and lower*/
