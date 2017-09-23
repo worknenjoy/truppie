@@ -90,6 +90,7 @@
             <small class="text-danger"><%= error_message_text(flash[:errors], :name) %></small>
           <% end %>
           <%= f.hidden_field :user_id, value: current_user.try(:id) %>
+          <%= f.hidden_field :welcome, value: true %>
         </li>
         <li>
           <label>

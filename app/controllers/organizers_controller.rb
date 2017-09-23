@@ -2,7 +2,7 @@ class OrganizersController < ApplicationController
   include ApplicationHelper
   before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status]
+  before_filter :check_if_admin, only: [:index, :new, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status]
   
   # GET /organizers
   # GET /organizers.json
@@ -47,24 +47,44 @@ class OrganizersController < ApplicationController
   # POST /organizers
   # POST /organizers.json
   def create
-    @organizer = Organizer.new(organizer_params)
+    @organizer = Organizer.new(organizer_params.except!("welcome"))
 
     respond_to do |format|
       if @organizer.save
         format.html {
           #OrganizerMailer.notify(@organizer, "activate").deliver_now
-          redirect_to @organizer, notice: I18n.t('organizer-create-success')
+          redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
         }
         format.json { render :show, status: :created, location: @organizer }
       else
         format.html {
           flash[:errors] = @organizer.errors
-          redirect_to organizer_welcome_url, notice: I18n.t('organizer-create-issue-message')
+          redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
         }
         format.json { render json: @organizer.errors, status: :unprocessable_entity }
       end
     end
   end
+
+  def create_from_auth
+    if session[:organizer_welcome]
+      params = session[:organizer_welcome_params].except!("welcome")
+      params["user_id"] = current_user.id
+      @organizer = Organizer.new(params)
+
+      if @organizer.save
+        redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
+      else
+        flash[:errors] = @organizer.errors
+        puts 'errors from organizer'
+        puts @organizer.errors
+        redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
+      end
+    else
+      redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
+    end
+  end
+
 
   # PATCH/PUT /organizers/1
   # PATCH/PUT /organizers/1.json
@@ -73,7 +93,7 @@ class OrganizersController < ApplicationController
       if @organizer.update(organizer_params)
         format.html { 
           #OrganizerMailer.notify(@organizer, "update").deliver_now
-          redirect_to organizer_path(@organizer), notice: I18n.t('organizer-update-sucessfully')
+          redirect_to :back, notice: I18n.t('organizer-update-sucessfully')
         }
         format.json { render :show, status: :ok, location: @organizer }
       else

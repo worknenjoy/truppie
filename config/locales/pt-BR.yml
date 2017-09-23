@@ -265,7 +265,7 @@ pt-BR:
   hands-heading: Reserve
   hands-text: Verifique os detalhes e confirme sua presença
   hello-organizer-welcome: Olá %{organizer}
-  hello-organizer-welcome-account-edit: Hello-organizer-welcome-account-edit
+  hello-organizer-welcome-account-edit: Cadastro de conta bancária para recebimento
   helpers:
     select:
       prompt: Por favor selecione
@@ -284,7 +284,7 @@ pt-BR:
   import-event-notice-success: Os eventos foram importados com sucesso
   import-from-facebook-title: Importar eventos do facebook
   incomplete_label: incompleto
-  label-organizer-about: sobre
+  label-organizer-about: fale um pouco de você e o que você irá oferecer
   label-organizer-address-city: cidade
   label-organizer-continue: continuar
   label-organizer-email: email
@@ -354,7 +354,7 @@ pt-BR:
   navbar_partial_link_one: entrar / logar
   navbar_partial_link_three: Editar usuário
   navbar_partial_link_two: Minhas truppies
-  new-bank-account-title: New-bank-account-title
+  new-bank-account-title: Nova conta para pagamento
   new-event-cancel: Cancelar
   new-guided-tour-label: adicionar truppie
   new-tour-label: Criação de uma nova truppie
@@ -511,7 +511,7 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
-  title-introducing-accounts: esta é sua conta, com ela você pode gerenciar seus passeios
+  title-introducing-accounts: Esta são suas contas registradas na truppie
   title-organizer-join-truppie: entre para a truppie
   tour-category-label: E ai, qual é dessa truppie?
   tours_controller_confirm_headline_msg: Sua presença foi confirmada para a truppie
