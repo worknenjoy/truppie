@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   post 'redirect_external', to: 'orders#redirect_external'
   get 'new_webhook', to: 'orders#new_webhook'
   get 'redirect', to: 'marketplaces#redirect'
+
+  get 'organizers/create_from_auth', to: 'organizers#create_from_auth', as: 'create_from_auth'
   
   resources :organizers do
     member do
