@@ -15,7 +15,7 @@ class WheresController < ApplicationController
   end
 
   def show
-    @tours = Tour.where({:where => @where})
+    @tours = Tour.joins(:wheres).where(wheres: {place_id: @where.place_id})
   end
 
   # POST /backgrounds

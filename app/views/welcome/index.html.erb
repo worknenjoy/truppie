@@ -44,7 +44,9 @@
 			    <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
 			    	<strong><%= link_to(@tours.first.title, tour_path(@tours.first)) %></strong>
 			    	<small><%= t('welcome_view_index_small_one') %></small> <%= @tours.first.organizer.name %><br />
-			    	<small><%= t('welcome_view_index_small_two') %><strong><%= @tours.first.where.name %>, <%= @tours.first.where.state %></strong></small>
+            <% if @tours.first.wheres.any? %>
+			    	<small><%= t('welcome_view_index_small_two') %><strong><%= @tours.first.wheres.first.name %>, <%= @tours.first.wheres.first.state %></strong></small>
+            <% end %>
 		    	</div>
 			  </div>
 		  </div>
@@ -275,11 +277,11 @@
 								<span class="label label-info"><%= friendly_when(t.start) %></span>
 							</span>
 						</li>
-						<% if !t.where.name.blank? %>
+						<% if !t.wheres.any? %>
 						<li class="twPc-ArrangeSizeFit">
 							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_two') %></span>
 							<span class="twPc-StatValue">
-								<%= t.where.name %> 
+								<%= t.wheres.first.try(:name) %>
 							</span>
 						</li>
 						<% end %>

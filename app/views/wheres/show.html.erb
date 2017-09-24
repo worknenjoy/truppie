@@ -46,18 +46,25 @@
       <header class="b-section-header">
         <h2>Experiences</h2>
       </header>
-      <% if !@tour.nil? %>
-      <%= @tours.each do |t| %>
+      <% if @tours.any? %>
+      <% @tours.each do |t| %>
       <div class="b-teaser-articles">
         <article class="b-teaser-articles__article">
+          <% if t.picture.present? %>
           <figure>
-            <img class="b-post-main__figure--full-width" src="https://source.unsplash.com/Yd_0nFop2Bg/1000x600" alt="Beautiful Landscape">
+            <img class="b-post-main__figure--full-width" src="<%= t.picture.url(:large) %>" alt="<%= t.title %>">
           </figure>
+          <% end %>
           <div class="b-teaser-articles__article__content">
-            <h3>Kerid</h3>
+            <h3>
+              <%= link_to tour_path(t) do %>
+                <%= t.title %>
+              <% end %>
+            </h3>
             <div class="b-teaser-articles__article__content__excerpt">
-              <p>dictum ultrices mi libero ac odio. Mauris consectetur lacinia elit a rutrum. Duis at molestie risus, eu suscipit augue.</p>
+              <p><%= t.description %></p>
             </div>
+            <% if t.confirmeds.any? %>
             <div class="b-favourite-list">
               <span class="b-favourite-list__title">Favourited</span>
               <a class="b-favourite-list__profile" href="#">
@@ -70,6 +77,7 @@
                 <img src="https://randomuser.me/api/portraits/thumb/women/3.jpg" alt="profile image">
               </a>
             </div>
+            <% end %>
           </div>
         </article>
         <% end %>
@@ -89,5 +97,43 @@
         <% end %>
       </div>
     </div>
+  </section>
+  <section>
+    <div class="show-map" id="map"></div>
+    <script type="text/javascript">
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: {lat: 40.72, lng: -73.96}
+            });
+            var geocoder = new google.maps.Geocoder;
+            var infowindow = new google.maps.InfoWindow;
+
+            var placeId = "<%= @where.place_id %>";
+
+            geocoder.geocode({'placeId': placeId}, function (results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        map.setZoom(11);
+                        map.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location
+                        });
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+
+        window.onload = function(){
+            initMap();
+        };
+    </script>
   </section>
 </main>

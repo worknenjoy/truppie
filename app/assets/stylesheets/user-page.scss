@@ -200,7 +200,7 @@ a {
   }
 
   ul {
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     margin: 0;
     padding: 0;
     list-style: none;
@@ -253,6 +253,7 @@ a {
 
       img {
         position: relative;
+        height: 200px;
         z-index: -1;
       }
     }
