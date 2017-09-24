@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924145657) do
+ActiveRecord::Schema.define(version: 20170924214348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -460,7 +460,6 @@ ActiveRecord::Schema.define(version: 20170924145657) do
     t.integer  "minimum"
     t.integer  "maximum"
     t.integer  "difficulty"
-    t.integer  "where_id",                          null: false
     t.string   "address"
     t.integer  "user_id",                           null: false
     t.text     "included",             default: [],              array: true
@@ -496,7 +495,6 @@ ActiveRecord::Schema.define(version: 20170924145657) do
   add_index "tours", ["review_id"], name: "index_tours_on_review_id", using: :btree
   add_index "tours", ["tag_id"], name: "index_tours_on_tag_id", using: :btree
   add_index "tours", ["user_id"], name: "index_tours_on_user_id", using: :btree
-  add_index "tours", ["where_id"], name: "index_tours_on_where_id", using: :btree
 
   create_table "tours_wheres", id: false, force: :cascade do |t|
     t.integer "tour_id",  null: false
@@ -573,6 +571,5 @@ ActiveRecord::Schema.define(version: 20170924145657) do
   add_foreign_key "tours", "organizers"
   add_foreign_key "tours", "tags"
   add_foreign_key "tours", "users"
-  add_foreign_key "tours", "wheres"
   add_foreign_key "wheres", "backgrounds"
 end

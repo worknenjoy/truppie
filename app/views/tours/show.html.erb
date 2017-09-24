@@ -286,22 +286,60 @@
 			</div>
 		</div>
 	</div><!-- end container -->
-	  <% @tour.attractions.each do |attraction| %>
-	  <div class="row">
-		<div class="col-xs-12">
-			<h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_ten') %></strong></h4>				
-		</div>
-	  </div>	
-	  <div class="col-sm-6">
-	    <div class="card">
-		  <div class="card-block">
-		    <h4 class="card-title"><%= attraction.name %></h4>
-		  </div>
-		  <img src="<%= attraction.photo %>" alt="Card image" class="img-fluid">
-		  <div class="card-block">
-		    <p class="card-text"><%= attraction.text %></p>
-		  </div>
-		</div>
-	  </div>
-	  <% end %>
-	</div>
+  <% @tour.wheres.each do |w| %>
+      <div class="show-map" id="map"></div>
+      <script type="text/javascript">
+          function initMap() {
+              var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 8,
+                  center: {lat: 40.72, lng: -73.96}
+              });
+              var geocoder = new google.maps.Geocoder;
+              var infowindow = new google.maps.InfoWindow;
+
+              var placeId = "<%= w.place_id %>";
+
+              geocoder.geocode({'placeId': placeId}, function (results, status) {
+                  if (status === 'OK') {
+                      if (results[0]) {
+                          map.setZoom(11);
+                          map.setCenter(results[0].geometry.location);
+                          var marker = new google.maps.Marker({
+                              map: map,
+                              position: results[0].geometry.location
+                          });
+                          infowindow.setContent(results[0].formatted_address);
+                          infowindow.open(map, marker);
+                      } else {
+                          window.alert('No results found');
+                      }
+                  } else {
+                      window.alert('Geocoder failed due to: ' + status);
+                  }
+              });
+          }
+
+          window.onload = function(){
+            initMap();
+        };
+      </script>
+  <% end %>
+  <% @tour.attractions.each do |attraction| %>
+  <div class="row">
+  <div class="col-xs-12">
+    <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_ten') %></strong></h4>
+  </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+    <div class="card-block">
+      <h4 class="card-title"><%= attraction.name %></h4>
+    </div>
+    <img src="<%= attraction.photo %>" alt="Card image" class="img-fluid">
+    <div class="card-block">
+      <p class="card-text"><%= attraction.text %></p>
+    </div>
+  </div>
+  </div>
+  <% end %>
+</div>

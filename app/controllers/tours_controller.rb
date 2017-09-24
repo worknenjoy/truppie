@@ -277,22 +277,22 @@ class ToursController < ApplicationController
       params[:tour][:category] = cat || Category.first_or_create(name:current_cat)
     end
     
-    current_where = params[:tour][:where]
+    #current_where = params[:tour][:wheres_attributes][0]
 
-    if current_where
-      where_exist = Where.where({place_id: current_where[:place_id] })
-    else
-      where_exist = {}
-    end
+    #if current_where
+    #  where_exist = Where.where({place_id: current_where["0"][:place_id] })
+    #else
+    #  where_exist = {}
+    #end
 
-    if where_exist.any?
-      params[:tour][:where] = where_exist[0]
-    end
+    #if where_exist.any?
+    #  params[:tour][:wheres_attributes] = where_exist[0]
+    #end
     
     params[:tour][:attractions] = []
     params[:tour][:currency] = "BRL"
     
-    params.fetch(:tour, {}).permit(:title, :organizer_id, :status, {:packages => [:name, :value, :included]}, {:packages_attributes => [:name, :value, :included]}, {:where_attributes => [:name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :user_id, :picture, :link, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, {:included => []}, {:nonincluded => []}, {:take => []}, {:goodtoknow => []}, :meetingpoint, :category_id, {:category => [:name]}, {:tags => []}, {:languages => []}, :organizer, :user, {:attractions => []}, :currency).merge(params[:tour])
+    params.fetch(:tour, {}).permit(:title, :organizer_id, :status, {:packages => [:name, :value, :included]}, {:packages_attributes => [:name, :value, :included]}, {:where_attributes => [:name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :user_id, :picture, :link, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, {:included => []}, {:nonincluded => []}, {:take => []}, {:goodtoknow => []}, :meetingpoint, :category_id, :category, :tags, {:languages => []}, :organizer, :user, {:attractions => []}, :currency).merge(params[:tour])
   end
 
   def confirm_direct(params)
