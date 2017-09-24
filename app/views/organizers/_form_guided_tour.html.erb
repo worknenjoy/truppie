@@ -73,7 +73,7 @@
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
           <input type="text" name="search" placeholder="<%= t('tours_view_form_placeholder_two') %>" class="form-control places-input" />
-          <%= f.fields_for :where, @guided_tour.where do |ff| %>
+          <%= f.fields_for :wheres, (Array.new(1, @guided_tour.wheres.build) if @guided_tour.wheres.empty?) do |ff| %>
               <%= ff.hidden_field :name %>
               <%= ff.hidden_field :lat %>
               <%= ff.hidden_field :long %>

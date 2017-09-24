@@ -3,7 +3,7 @@ include ActionView::Helpers::DateHelper
 class Tour < ActiveRecord::Base
   
   belongs_to :organizer
-  belongs_to :where
+  has_and_belongs_to_many :wheres
   belongs_to :user
   belongs_to :category
   has_and_belongs_to_many :tags
@@ -22,9 +22,9 @@ class Tour < ActiveRecord::Base
 
   accepts_nested_attributes_for :organizer
 
-  accepts_nested_attributes_for :where, allow_destroy: true
+  accepts_nested_attributes_for :wheres, allow_destroy: true
   
-  validates_presence_of :title, :organizer, :where, :start, :end
+  validates_presence_of :title, :organizer, :wheres, :start, :end
 
   default_scope { where("removed IS NOT true") }
 
