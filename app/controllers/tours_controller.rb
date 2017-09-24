@@ -210,7 +210,7 @@ class ToursController < ApplicationController
       params[:tour][:languages] = langs
     end
     
-    pkg_attr = params[:tour][:packages_attributes]
+    pkg_attr = params[:tour][:packages]
     
     if !pkg_attr.nil?
       post_data = []
@@ -278,19 +278,21 @@ class ToursController < ApplicationController
     end
     
     current_where = params[:tour][:where]
-    
-    begin
-      where = Where.find(name:current_where)
-    rescue ActiveRecord::RecordNotFound => e
-      where = Where.create(name:current_where)
+
+    if current_where
+      where_exist = Where.where({place_id: current_where[:place_id] })
+    else
+      where_exist = {}
     end
-    
-    params[:tour][:where] = where
+
+    if where_exist.any?
+      params[:tour][:where] = where_exist[0]
+    end
     
     params[:tour][:attractions] = []
     params[:tour][:currency] = "BRL"
     
-    params.fetch(:tour, {}).permit(:title, :organizer, :where, :user, :picture, :link, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, :included, :nonincluded, :take, :goodtoknow, :meetingpoint, :category_id, :status, :tags, :languages, :organizer, :user, :attractions, :currency).merge(params[:tour])
+    params.fetch(:tour, {}).permit(:title, :organizer_id, :status, {:packages => [:name, :value, :included]}, {:packages_attributes => [:name, :value, :included]}, {:where_attributes => [:name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :user_id, :picture, :link, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, {:included => []}, {:nonincluded => []}, {:take => []}, {:goodtoknow => []}, :meetingpoint, :category_id, {:category => [:name]}, {:tags => []}, {:languages => []}, :organizer, :user, {:attractions => []}, :currency).merge(params[:tour])
   end
 
   def confirm_direct(params)

@@ -52,66 +52,179 @@
             console.log('country', places[0].address_components[2].short_name);
 
 
+            if (places.length == 0) {
+                return;
+            }
 
-            var name_field = $('#background_wheres_attributes_0_name');
+            var name_field = $('#background_wheres_attributes_0_name') || $('#tour_where_name');
             if(name_field) {
                 name_field.val(places[0].name);
             }
 
-            var lat_field = $('#background_wheres_attributes_0_lat');
+            var lat_field = $('#background_wheres_attributes_0_lat') || $('#tour_where_lat');
             if(lat_field) {
                 lat_field.val(places[0].geometry.location.lat());
             }
 
-            var long_field = $('#background_wheres_attributes_0_long');
+            var long_field = $('#background_wheres_attributes_0_long') || $('#tour_where_long');
             if(long_field) {
                 long_field.val(places[0].geometry.location.lng());
             }
 
-            var city_field = $('#background_wheres_attributes_0_city');
+            var city_field = $('#background_wheres_attributes_0_city') || $('#tour_where_city');
             if(city_field) {
                 city_field.val(places[0].address_components[0].short_name);
             }
 
-            var state_field = $('#background_wheres_attributes_0_state');
+            var state_field = $('#background_wheres_attributes_0_state') || $('#tour_where_state');
             if(state_field) {
                 state_field.val(places[0].address_components[1].short_name);
             }
 
-            var country_field = $('#background_wheres_attributes_0_country');
+            var country_field = $('#background_wheres_attributes_0_country') || $('#tour_where_country');
             if(country_field) {
                 country_field.val(places[0].address_components[2].short_name);
             }
 
-            var postal_code_field = $('#background_wheres_attributes_0_postal_code');
+            var postal_code_field = $('#background_wheres_attributes_0_postal_code') || $('#tour_where_postal_code');
             if(postal_code_field) {
                 postal_code_field.val(places[0].address_components[3].short_name);
             }
 
-            var address_field = $('#background_wheres_attributes_0_address');
+            var address_field = $('#background_wheres_attributes_0_address') || $('#tour_where_address');
             if(address_field) {
                 address_field.val(places[0].formatted_address);
             }
 
-            var url_field = $('#background_wheres_attributes_0_url');
+            var url_field = $('#background_wheres_attributes_0_url') || $('#tour_where_url');
             if(url_field) {
                 url_field.val(places[0].url);
             }
 
-            var google_id_field = $('#background_wheres_attributes_0_google_id');
+            var google_id_field = $('#background_wheres_attributes_0_google_id') || $('#tour_where_google_id');
             if(google_id_field) {
                 google_id_field.val(places[0].id);
             }
 
-            var place_id_field = $('#background_wheres_attributes_0_place_id');
+            var place_id_field = $('#background_wheres_attributes_0_place_id') || $('#tour_where_place_id');
+            if(place_id_field) {
+                place_id_field.val(places[0].place_id);
+            }
+
+            var name_field = $('#background_wheres_attributes_0_name') || $('#tour_where_name');
+            if(name_field) {
+                name_field.val(places[0].name);
+            }
+
+            var lat_field = $('#background_wheres_attributes_0_lat') || $('#tour_where_lat');
+            if(lat_field) {
+                lat_field.val(places[0].geometry.location.lat());
+            }
+
+            var long_field = $('#background_wheres_attributes_0_long') || $('#tour_where_long');
+            if(long_field) {
+                long_field.val(places[0].geometry.location.lng());
+            }
+
+            var city_field = $('#background_wheres_attributes_0_city') || $('#tour_where_city');
+            if(city_field) {
+                city_field.val(places[0].address_components[0].short_name);
+            }
+
+            var state_field = $('#background_wheres_attributes_0_state') || $('#tour_where_state');
+            if(state_field) {
+                state_field.val(places[0].address_components[1].short_name);
+            }
+
+            var country_field = $('#background_wheres_attributes_0_country') || $('#tour_where_country');
+            if(country_field) {
+                country_field.val(places[0].address_components[2].short_name);
+            }
+
+            var postal_code_field = $('#background_wheres_attributes_0_postal_code') || $('#tour_where_postal_code');
+            if(postal_code_field) {
+                postal_code_field.val(places[0].address_components[3].short_name);
+            }
+
+            var address_field = $('#background_wheres_attributes_0_address') || $('#tour_where_address');
+            if(address_field) {
+                address_field.val(places[0].formatted_address);
+            }
+
+            var url_field = $('#background_wheres_attributes_0_url') || $('#tour_where_url');
+            if(url_field) {
+                url_field.val(places[0].url);
+            }
+
+            var google_id_field = $('#background_wheres_attributes_0_google_id') || $('#tour_where_google_id');
+            if(google_id_field) {
+                google_id_field.val(places[0].id);
+            }
+
+            var place_id_field = $('#background_wheres_attributes_0_place_id') || $('#tour_where_place_id');
             if(place_id_field) {
                 place_id_field.val(places[0].place_id);
             }
 
 
-            if (places.length == 0) {
-                return;
+            // for tour signup
+
+            name_field = $('#tour_where_attributes_name');
+            if(name_field) {
+                name_field.val(places[0].name);
             }
+
+            lat_field = $('#tour_where_attributes_lat');
+            if(lat_field) {
+                lat_field.val(places[0].geometry.location.lat());
+            }
+
+            long_field = $('#tour_where_attributes_long');
+            if(long_field) {
+                long_field.val(places[0].geometry.location.lng());
+            }
+
+            city_field = $('#tour_where_attributes_city');
+            if(city_field) {
+                city_field.val(places[0].address_components[0].short_name);
+            }
+
+            state_field = $('#tour_where_attributes_state');
+            if(state_field) {
+                state_field.val(places[0].address_components[1].short_name);
+            }
+
+            country_field = $('#tour_where_attributes_country');
+            if(country_field) {
+                country_field.val(places[0].address_components[2].short_name);
+            }
+
+            postal_code_field = $('#tour_where_attributes_postal_code');
+            if(postal_code_field) {
+                postal_code_field.val(places[0].address_components[3].short_name);
+            }
+
+            address_field = $('#tour_where_attributes_address');
+            if(address_field) {
+                address_field.val(places[0].formatted_address);
+            }
+
+            url_field = $('#tour_where_attributes_url');
+            if(url_field) {
+                url_field.val(places[0].url);
+            }
+
+            google_id_field = $('#tour_where_attributes_google_id');
+            if(google_id_field) {
+                google_id_field.val(places[0].id);
+            }
+
+            place_id_field = $('#tour_where_attributes_place_id');
+            if(place_id_field) {
+                place_id_field.val(places[0].place_id);
+            }
+
+
 
             // Clear out the old markers.
             markers.forEach(function (marker) {
