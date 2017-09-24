@@ -27,11 +27,11 @@
     <% @backgrounds.each do |b| %>
     <li>
       <%= link_to where_path(b.wheres.first) do %>
-      <div>
-        <h3><%= b.name %></h3>
-        <h4><%= b.wheres.first.state %></h4>
-      </div>
-      <%= image_tag b.picture.url(:large) %>
+        <div>
+          <h3><%= b.name %></h3>
+          <h4><%= b.wheres.first.state %></h4>
+        </div>
+        <%= image_tag b.picture.url(:medium) %>
       <% end %>
     </li>
     <% end %>
