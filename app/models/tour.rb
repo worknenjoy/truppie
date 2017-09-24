@@ -21,13 +21,15 @@ class Tour < ActiveRecord::Base
   accepts_nested_attributes_for :collaborators, allow_destroy: true, reject_if: :all_blank
 
   accepts_nested_attributes_for :organizer
+
+  accepts_nested_attributes_for :where, allow_destroy: true
   
   validates_presence_of :title, :organizer, :where, :start, :end
 
   default_scope { where("removed IS NOT true") }
 
   validates_each :start, :end do |model, attr, value|
-    model.errors.add(attr, 'Must be a valid date') if value.nil?
+    model.errors.add(attr, I18n.t('errors.messages.invalid')) if value.nil?
   end
 
   #validates_each :value do |model, attr, value|
