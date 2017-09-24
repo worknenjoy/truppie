@@ -1,14 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @background.name %>
-</p>
-
-<p>
-  <strong>Paperclip:</strong>
-  <%= @background.picture %>
-</p>
-
-<%= link_to 'Edit', edit_background_path(@background) %> |
-<%= link_to 'Back', backgrounds_path %>
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<div class="container manage-entries">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= render 'form' %>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>

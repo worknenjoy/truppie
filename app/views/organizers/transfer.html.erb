@@ -87,7 +87,12 @@
                 </div>
             </div>
             <% else %>
-              <p>Você não tem uma conta associada, entre em contato com a gente enviando um e-mail para <a href="mailto:ola@truppie.com">ola@truppie.com</a> para ativá-la</p>
+              <p>
+                <%= t('no-transfer-possible') %>
+              </p>
+              <p>
+                <%= link_to t('organizer-profile-account-action'), account_edit_organizer_path(@organizer), class: "btn btn-primary" %>
+              </p>
             <% end %>
           </div>
           </div>

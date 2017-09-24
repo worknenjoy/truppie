@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   
   get 'tags/index'
   get 'languages/index'
-  get 'wheres/index'
+  #get 'wheres/index'
 
   get 'contacts/index'  
   post 'contacts/send_form'
@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'welcome/user', to: 'welcome#user', as: 'user_welcome'
 
   resources :orders
+
+  resources :wheres
   
   post 'webhook', to: 'orders#webhook'
   post 'webhook_external_payment', to: 'orders#webhook_external_payment'

@@ -28,10 +28,15 @@ class BackgroundsController < ApplicationController
 
     respond_to do |format|
       if @background.save
-        format.html { redirect_to @background, notice: 'Background was successfully created.' }
+        format.html {
+          redirect_to @background, notice: 'Background was successfully created.'
+        }
         format.json { render :show, status: :created, location: @background }
       else
-        format.html { render :new }
+        format.html {
+          flash[:errors] = @background.errors
+          redirect_to :back, notice: 'Error to create background'
+        }
         format.json { render json: @background.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +74,6 @@ class BackgroundsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def background_params
-      params.require(:background).permit(:name, :paperclip)
+      params.require(:background).permit(:name, :picture, {:wheres_attributes => [:name, :place_id, :background, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]})
     end
 end

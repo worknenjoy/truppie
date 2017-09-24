@@ -1,0 +1,28 @@
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Listing places</h1>
+      <%= link_to 'New Where', new_where_path %>
+      <div class="card-columns">
+        <% @wheres.each do |place| %>
+            <div class="card">
+              <img class="card-img-top img-fluid" src="" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title"><%= place.name %></h4>
+                <p class="card-text"></p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <%= link_to 'Show', place %>
+                <%= link_to 'Edit', edit_where_path(place) %>
+                <%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>
+
+

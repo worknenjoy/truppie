@@ -1,5 +1,77 @@
 class WheresController < ApplicationController
+
+  before_action :set_where, only: [:show, :edit, :update, :destroy]
+
   def index
     @wheres = Where.all
   end
+
+  def new
+    @where = Where.new
+  end
+
+  # GET /backgrounds/1/edit
+  def edit
+  end
+
+  def show
+    @tours = Tour.where({:where => @where})
+  end
+
+  # POST /backgrounds
+  # POST /backgrounds.json
+  def create
+    @where = Where.new(where_params)
+
+    respond_to do |format|
+      if @where.save
+        format.html {
+          redirect_to @where, notice: 'Background was successfully created.'
+        }
+        format.json { render :show, status: :created, location: @where }
+      else
+        format.html {
+          flash[:errors] = @where.errors
+          redirect_to :back, notice: 'Error to create background'
+        }
+        format.json { render json: @where.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /backgrounds/1
+  # PATCH/PUT /backgrounds/1.json
+  def update
+    respond_to do |format|
+      if @where.update(where_params)
+        format.html { redirect_to @where, notice: 'Background was successfully updated.' }
+        format.json { render :show, status: :ok, location: @where }
+      else
+        format.html { render :edit }
+        format.json { render json: @where.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /backgrounds/1
+  # DELETE /backgrounds/1.json
+  def destroy
+    @where.destroy
+    respond_to do |format|
+      format.html { redirect_to where_url, notice: 'Background was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+  def set_where
+    @where = Where.find(params[:id])
+  end
+
+  def where_params
+    params.require(:where).permit(:name, :background, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url, :place_id,
+      { :backgrounds_attributes => [:name, :picture] }
+    )
+  end
+
 end
