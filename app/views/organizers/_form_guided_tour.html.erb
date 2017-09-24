@@ -72,7 +72,20 @@
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
-          <%= f.text_field :where, value: (@guided_tour.where.name if @guided_tour.where.present?), placeholder: t('tours_view_form_placeholder_two'), class: "form-control places-input" %>
+          <input type="text" name="search" placeholder="<%= t('tours_view_form_placeholder_two') %>" class="form-control places-input" />
+          <%= f.fields_for :where, Where.new do |ff| %>
+              <%= ff.hidden_field :name %>
+              <%= ff.hidden_field :lat %>
+              <%= ff.hidden_field :long %>
+              <%= ff.hidden_field :city %>
+              <%= ff.hidden_field :state %>
+              <%= ff.hidden_field :country %>
+              <%= ff.hidden_field :postal_code %>
+              <%= ff.hidden_field :address %>
+              <%= ff.hidden_field :url %>
+              <%= ff.hidden_field :google_id %>
+              <%= ff.hidden_field :place_id %>
+          <% end %>
         </div>
         <div id="map"></div>
       </div>

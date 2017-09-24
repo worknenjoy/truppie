@@ -315,7 +315,7 @@ pt-BR:
   marketplace-datebirth-placeholder: 'ex: Data de nascimento (AAAA/DD/MM)'
   marketplace-document-placeholder: 'ex: Número do CPF'
   marketplace-first-name-placeholder: 'ex: Primeiro nome'
-  marketplace-missing: há dados para a conta que não foram fornecidos
+  marketplace-missing: Há dados pendentes para serem fornecidos para completar sua conta
   marketplace-second-name-placeholder: 'ex: Segundo nome'
   marketplace-state-placeholder: 'ex: São Paulo'
   marketplace-street-placeholder: 'ex: Rua das Viagens'
@@ -360,9 +360,10 @@ pt-BR:
   new-tour-label: Criação de uma nova truppie
   newsletter-text: Deixe seu e-mail para saber das novidades
   newsletter-title: Fique ligado!
-  no-marketplace: sem conta
-  no-marketplace-label: sem conta
+  no-marketplace: Dados da conta não cadastrados
+  no-marketplace-label: Sem conta cadastrada
   no-terms: não há termos
+  no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: Não verificado
   not_verified_label: Não verificado
   number:
@@ -436,7 +437,7 @@ pt-BR:
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
   organizer-bank-data: Banco
   organizer-clients-label: Clientes
-  organizer-create-issue-message: Tivemos algum problema para criar seu cadastro
+  organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
   organizer-create-success: Sua conta como guia foi criada com sucesso
   organizer-dashboard-desc: Aqui, você tem acesso a criação da sua truppie, assim como atualização da sua conta
   organizer-desc-label: breve descrição do seu negócio
@@ -447,7 +448,7 @@ pt-BR:
   organizer-interest-submit-action: Quero saber mais!
   organizer-interested-text: Deixe seu e-mail que entraremos em contato para ajudá-lo
   organizer-interested-title: Ficou com alguma dúvida sobre a Truppie?
-  organizer-missing-account-info-solve: resolver problemas de cadastro da conta
+  organizer-missing-account-info-solve: Fornecer dados para cadastro da conta
   organizer-missing-data-title: Dados incorretos ou incompletos para verificar sua conta
   organizer-name-label: nome do seu negócio
   organizer-new-package: Criar pacotes
@@ -455,11 +456,11 @@ pt-BR:
   organizer-panel-welcome: Este é o seu painel da truppie, onde você poderá criar seus passeios
   organizer-percent-label: Taxa (%)
   organizer-phone-label: telefone para contato do seu negócio
-  organizer-profile-account: Organizer-profile-account
+  organizer-profile-account: Seu perfil
   organizer-profile-account-action: ir para sua conta
-  organizer-profile-account-desc: sobre sua conta
+  organizer-profile-account-desc: Cadastre os dados da sua conta para que você possa receber os pagamentos realizados para suas reservas. Sua conta precisa estar verificada com os dados corretos para que você possa oferecer seus passeios
   organizer-profile-action: ir para o seu perfil
-  organizer-profile-desc: sobre seu negócio
+  organizer-profile-desc: Este é o seu perfil na Truppie. Atualize seu perfil para ter sua página completa e adicione seus passeios e eles irão aparecer aqui
   organizer-profile-edit: Perfil
   organizer-profile-intro: Este é o seu perfil
   organizer-profile-verify-action: verificar
@@ -481,6 +482,7 @@ pt-BR:
   profile-access-truppie-account-share-step: E ter um link de pagamento do evento com todas suas informações
   profile-access-truppie-account-step: Administrar suas reservas, quantidade de vagas e receber notificações
   profile-access-truppie-account-transfer-step: Solicitar transferências
+  place: Qual a localização?
   return-date: Retorno
   same-date: mesmo dia
   save-and-publish: Salvar e publicar

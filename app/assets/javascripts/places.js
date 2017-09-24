@@ -36,6 +36,78 @@
 
         searchBox.addListener("places_changed", function (e) {
             var places = searchBox.getPlaces();
+            console.log('places');
+            console.log(places);
+
+            console.log('place_id', places[0].place_id);
+            console.log('id', places[0].id);
+            console.log('formatted_address', places[0].formatted_address);
+            console.log('name', places[0].name);
+            console.log('url', places[0].url);
+
+            console.log('postal_code', places[0].address_components[3].short_name);
+
+            console.log('city', places[0].address_components[0].short_name);
+            console.log('state', places[0].address_components[1].short_name);
+            console.log('country', places[0].address_components[2].short_name);
+
+
+
+            var name_field = $('#background_wheres_attributes_0_name');
+            if(name_field) {
+                name_field.val(places[0].name);
+            }
+
+            var lat_field = $('#background_wheres_attributes_0_lat');
+            if(lat_field) {
+                lat_field.val(places[0].geometry.location.lat());
+            }
+
+            var long_field = $('#background_wheres_attributes_0_long');
+            if(long_field) {
+                long_field.val(places[0].geometry.location.lng());
+            }
+
+            var city_field = $('#background_wheres_attributes_0_city');
+            if(city_field) {
+                city_field.val(places[0].address_components[0].short_name);
+            }
+
+            var state_field = $('#background_wheres_attributes_0_state');
+            if(state_field) {
+                state_field.val(places[0].address_components[1].short_name);
+            }
+
+            var country_field = $('#background_wheres_attributes_0_country');
+            if(country_field) {
+                country_field.val(places[0].address_components[2].short_name);
+            }
+
+            var postal_code_field = $('#background_wheres_attributes_0_postal_code');
+            if(postal_code_field) {
+                postal_code_field.val(places[0].address_components[3].short_name);
+            }
+
+            var address_field = $('#background_wheres_attributes_0_address');
+            if(address_field) {
+                address_field.val(places[0].formatted_address);
+            }
+
+            var url_field = $('#background_wheres_attributes_0_url');
+            if(url_field) {
+                url_field.val(places[0].url);
+            }
+
+            var google_id_field = $('#background_wheres_attributes_0_google_id');
+            if(google_id_field) {
+                google_id_field.val(places[0].id);
+            }
+
+            var place_id_field = $('#background_wheres_attributes_0_place_id');
+            if(place_id_field) {
+                place_id_field.val(places[0].place_id);
+            }
+
 
             if (places.length == 0) {
                 return;
@@ -105,4 +177,13 @@
             map.setCenter(center);
         });
     }
+
+    var places_image_secondary = document.querySelectorAll('.places-image-secondary')[0];
+
+    if(places_image_secondary) {
+
+    }
+
+
+
 })();

@@ -10,6 +10,10 @@ class WelcomeController < ApplicationController
      @organizer = Organizer.where(:user => current_user)
      @new_organizer = Organizer.new
   end
+
+  def user
+    @backgrounds = Background.all
+  end
   
   def logos
     

@@ -63,7 +63,7 @@
             <p class="text-xs-center">
               <%= image_tag("guide-atention.svg", :width => 64, :alt => "new truppie", :class => 'img-fluid center-block') %>
             </p>
-            <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
+            <%= link_to t('organizer-profile-action'), profile_edit_organizer_path(@organizer), class: "btn btn-primary" %>
           </div>
           <div class="card card-block text-xs-center">
             <button type="button" class="close close-action" aria-label="Close">
@@ -74,7 +74,7 @@
             <p class="text-xs-center">
               <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'img-fluid center-block') %>
             </p>
-            <a href="#" class="btn btn-primary"><%= t('organizer-profile-account-action') %></a>
+            <%= link_to t('organizer-profile-account-action'), account_edit_organizer_path(@organizer), class: "btn btn-primary" %>
           </div>
       <% end %>
       <% if @organizer.tours.publisheds.any? %>

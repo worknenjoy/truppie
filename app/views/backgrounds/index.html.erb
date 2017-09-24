@@ -1,29 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Listing Backgrounds</h1>
+      <%= link_to 'New Background', new_background_path %>
+      <div class="card-group">
+        <% @backgrounds.each do |b| %>
+            <div class="card">
+              <img class="card-img-top" src="<%= b.picture if b.picture.present? %>" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title"><%= b.name %></h4>
+                <p class="card-text"></p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <%= link_to 'Show', b %>
+                <%= link_to 'Edit', edit_background_path(b) %>
+                <%= link_to 'Destroy', b, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>
 
-<h1>Listing Backgrounds</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Paperclip</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @backgrounds.each do |background| %>
-      <tr>
-        <td><%= background.name %></td>
-        <td><%= background.picture %></td>
-        <td><%= link_to 'Show', background %></td>
-        <td><%= link_to 'Edit', edit_background_path(background) %></td>
-        <td><%= link_to 'Destroy', background, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Background', new_background_path %>

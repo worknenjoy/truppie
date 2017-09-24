@@ -1,0 +1,63 @@
+<div class="manage-inspiration">
+
+</div>
+<%= form_for @where, class: "form", multipart: true, role: "form" do |f| %>
+    <div class="manage-container">
+      <div class="manage-sidebar">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
+            <input type="text" name="search" placeholder="<%= t('place') %>" class="form-control places-input" />
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :lat %>
+            <%= f.hidden_field :long %>
+            <%= f.hidden_field :city %>
+            <%= f.hidden_field :state %>
+            <%= f.hidden_field :country %>
+            <%= f.hidden_field :postal_code %>
+            <%= f.hidden_field :address %>
+            <%= f.hidden_field :url %>
+            <%= f.hidden_field :google_id %>
+            <%= f.hidden_field :place_id %>
+          </div>
+          <div id="map"></div>
+        </div>
+      </div>
+      <div class="manage-main">
+        <div class="">
+          <%= f.fields_for :backgrounds, (Array.new(1, @where.backgrounds.build) if @where.backgrounds.empty?) do |ff| %>
+              <div class="card card-block text-xs-center">
+                <div class="card-text">
+                  <p><%= t('organizer-background-title') %></p>
+                  <p><%= t('organizer-background-edit-desc') %></p>
+                </div>
+                <div class="text-xs-center">
+                  <%= image_tag("photo-meta.svg", :width => 64, :alt => "new truppie", :class => 'spaced-down') %>
+                </div>
+                <div class="file-upload">
+                  <button class="file-upload-btn btn btn-info-outline btn-block spaced-down" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
+                  <div class="image-upload-wrap">
+                    <%= ff.file_field :picture, class: "file-upload-input", accept: "image/*" %>
+                    <div class="drag-text">
+                      <h3><%= t('event-drag-drop-file') %></h3>
+                    </div>
+                  </div>
+                  <div class="file-upload-content">
+                    <div class="image-title-wrap">
+                      <button type="button" onclick="removeUpload()" class="remove-image btn btn-warning-outline space-top"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <fieldset class="form-group <%= form_error(flash[:errors], :name) %>">
+                <%= ff.label :name, class: "form-control-label" %>
+                <%= ff.text_field :name, placeholder: t('marketplace-first-name-placeholder'), class: "form-control #{form_field_error(flash[:errors], :person_name)}" %>
+                <%= error_message(flash[:errors], :name) %>
+              </fieldset>
+
+              <button type="submit" class="btn btn-primary pull-right"><%= t('create-background-action') %></button>
+              </div>
+              </div>
+          <% end %>
+          <% end %>
+</div>

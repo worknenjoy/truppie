@@ -43,7 +43,6 @@
  *= require file-upload
  *= require overlay
  *= require main-menu
- *= require showcase  
  *= require tours
  *= require dashboard 
  *= require image_gallery
@@ -55,6 +54,7 @@
  *= require user-list
  *= require date-range
  *= require my-card
+ *= require where-template
  *= require mountain-form.scss.erb
  */
 
