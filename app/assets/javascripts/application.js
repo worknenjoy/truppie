@@ -19,6 +19,7 @@
 //= require overlay
 //= require moment-with-locales
 //= require timepicker
+//= require lang-selector
 //= require wow
 //= require jquery.event.move
 //= require jquery.event.swipe

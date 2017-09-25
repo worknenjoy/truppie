@@ -1,0 +1,82 @@
+.language-container {
+  background: none;
+  position: relative;
+  width: 70px;
+}
+
+.language-container .ulList {
+  background: #fff;
+  border-radius: 2px;
+  border: 1px solid #e2dbdb;
+  font: 14px tahoma;
+  color: #2b2b2b;
+  line-height: 42px;
+  padding-left: 20px;
+  user-select: none;
+  cursor: pointer;
+  i {
+    margin-right: 10px;
+  }
+}
+
+.language-container .ulList .ulImg {
+  width: 30px;
+  height: 21px;
+  background: #f90;
+  float: left;
+  margin: 4px 4px 0 0;
+  border: 1px solid #dad6d6;
+  display: none
+}
+
+.language-container .ulList .fa-angle-down {
+  float: right;
+  font-size: 18px;
+  padding-right: 5px;
+  line-height: 42px
+}
+
+.language-container .liList {
+  width: 230px;
+  background: #f90;
+  user-select: none;
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 42px;
+  right: 0px;
+}
+
+.language-container .liList .li {
+
+  height: 30px;
+  background: #fff;
+  border-bottom: 1px solid #e2dbdb;
+  padding-left: 4px;
+  font: 14px tahoma;
+  color: #2b2b2b;
+  line-height: 27px
+}
+
+.language-container .liList .li:hover {
+  background: #3498db;
+  color: #fff;
+}
+
+
+.language-container .liList .li:hover img{
+  border: 1px solid #3498db
+}
+
+.language-container .liList .li {
+  display: block;
+}
+
+.language-container .liList .li .liImg {
+  width: 30px;
+  height: 21px;
+  background: #f90;
+  float: left;
+  margin: 4px 4px 0 0;
+  border: 1px solid #dad6d6
+}

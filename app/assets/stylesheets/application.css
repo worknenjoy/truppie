@@ -15,7 +15,8 @@
  *= require bootstrap-profile-card 
  *= require bootstrap-outline-bt 
  *= require image-card
- *= require bootstrap-notice 
+ *= require bootstrap-notice
+ *= require lang-selector
  *= require form-login 
  *= require date-view
  *= require event-list

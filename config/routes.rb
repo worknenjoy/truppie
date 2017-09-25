@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  
+
+  devise_for :users, :controllers => {
+      :registrations => "users/registrations",
+      :omniauth_callbacks => "users/omniauth_callbacks"
+  }
+
+  root 'welcome#index'
+
   resources :backgrounds
   resources :collaborators
   resources :customers
@@ -18,23 +25,23 @@ Rails.application.routes.draw do
     end
   end
   resources :translations
-  
+
   resources :packages
-  
+
   get 'tags/index'
   get 'languages/index'
   #get 'wheres/index'
 
-  get 'contacts/index'  
+  get 'contacts/index'
   post 'contacts/send_form'
-  
+
   get 'welcome/organizer', to: 'welcome#organizer', as: 'organizer_welcome'
   get 'welcome/user', to: 'welcome#user', as: 'user_welcome'
 
   resources :orders
 
   resources :wheres
-  
+
   post 'webhook', to: 'orders#webhook'
   post 'webhook_external_payment', to: 'orders#webhook_external_payment'
   post 'redirect_external', to: 'orders#redirect_external'
@@ -42,7 +49,7 @@ Rails.application.routes.draw do
   get 'redirect', to: 'marketplaces#redirect'
 
   get 'organizers/create_from_auth', to: 'organizers#create_from_auth', as: 'create_from_auth'
-  
+
   resources :organizers do
     member do
       get 'manage/(:tour)', to: 'organizers#manage', as: 'manage'
@@ -66,7 +73,7 @@ Rails.application.routes.draw do
       get 'edit_guided_tour/(:tour)', to: 'organizers#edit_guided_tour', as: 'edit_guided_tour'
     end
   end
-  
+
   resources :tours do
     member do
       get 'confirm/(:packagename)', to: 'tours#confirm', as: 'confirm'
@@ -76,14 +83,9 @@ Rails.application.routes.draw do
       post 'unconfirm_presence'
     end
   end
-  
+
   post 'subscribers/create'
-  
-  devise_for :users, :controllers => { 
-    :registrations => "users/registrations",
-    :omniauth_callbacks => "users/omniauth_callbacks"
-  }
-  
+
   #devise_scope :user do
   #  get 'orders_from_user', :to => 'devise/sessions#orders_from_user', :as => :orders_from_user
   #end
@@ -92,16 +94,15 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
-  
+
   get 'logos' => 'welcome#logos'
   get 'manifest' => 'welcome#manifest'
   get 'how_it_works' => 'welcome#how_it_works'
   get 'privacy' => 'welcome#privacy'
   get 'defs' => 'welcome#defs'
   get 'faq' => 'welcome#faq'
-  
-  
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

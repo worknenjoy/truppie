@@ -9,7 +9,7 @@
   		  <% end %>
   	  	<% end %>
   	  	</div>
-  	  	<div class="col-xs-12 col-md-8">
+  	  	<div class="col-xs-12 col-md-7">
   	  	  <nav class="clearfix main-menu xs-spaced-bottom">
             <ul class="clearfix">
               <li><%= link_to t('how-it-works-main-menu'), user_welcome_path %></li>
@@ -19,12 +19,13 @@
             <a href="#" id="pull">Menu</a>
           </nav>
     	  </div>
-    	  <div class="col-xs-12 col-md-2 center-xs">
+    	  <div class="col-xs-12 col-md-3 center-xs">
   		  <% if not user_signed_in? %>
   		  <%= link_to t('navbar_partial_link_one'), new_user_session_path, class: 'btn btn-secondary btn-sm pull-xs-right' %>
   		  <% else %>
     		  <div class="user-actions">
-      		  	<div class="dropdown pull-xs-righ">
+
+      		  	<div class="dropdown pull-xs-left">
         			  <a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="dropdown-user">
         			    <% if current_user.image %>
         			    <img src="<%= to_https(current_user.image) %>" alt="user" class="img-circle" width="30" />
@@ -34,10 +35,30 @@
         			  <div class="dropdown-menu" aria-labelledby="openuser">
         			  	<%= link_to t('navbar_partial_link_two'), orders_path, class: 'dropdown-item' %>
         			    <%= link_to t('navbar_partial_link_three'), edit_user_registration_path, class: 'dropdown-item' %>
+                  <% if is_organizer_admin %>
+                      <%= link_to t('navbar_partial_link_organizer'), organizer_welcome_path, class: 'dropdown-item' %>
+                  <% end %>
         			    <%= link_to t('navbar_partial_link_four'), destroy_user_session_path, class: 'dropdown-item' %>
         			  </div>
-      			 </div>
-  	       </div>
+              </div>
+            <div class="language-container pull-right">
+              <div class="ulList">
+                <img src="" class="ulImg" alt="">
+                <span class="ulTxt"><i class="fa fa-globe"></i></span>
+                <span class="fa fa-angle-down"></span>
+              </div>
+              <div class="liList">
+                <a href="<%= "#{request.path}?locale=pt-BR" %>" class="li" data-img="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/br.png">
+                  <img src="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/br.png" class="liImg">
+                  <span class="liTxt"><%= t('lang-brazil') %></span>
+                </a>
+                <a href="<%= "#{request.path}?locale=en" %>" class="li" data-img="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/en.png">
+                  <img src="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/us.png" class="liImg">
+                  <span class="liTxt"><%= t('lang-eua') %></span>
+                </a>
+              </div>
+            </div>
+           </div>
   	     </div>
     	</div>
     </div>
