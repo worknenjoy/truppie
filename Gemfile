@@ -65,13 +65,14 @@ gem 'rails_12factor', group: :production
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'i18n-tasks', '~> 0.9.18'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'database_cleaner'
   gem 'fakeweb'
   gem 'mocha'
-  gem 'i18n-tasks', '~> 0.9.18'
 end
 
 group :development do
