@@ -209,7 +209,7 @@ GEM
       paperclip (>= 2.5.0)
     parser (2.4.0.0)
       ast (~> 2.2)
-    pg (0.21.0)
+    pg (0.20.0)
     puma (3.10.0)
     rack (1.6.8)
     rack-test (0.6.3)
@@ -339,7 +339,7 @@ DEPENDENCIES
   pagseguro-oficial (~> 2.5.0)
   paperclip!
   paperclip-aws
-  pg (~> 0.15)
+  pg (= 0.20.0)
   puma
   rails (= 4.2.5.1)
   rails_12factor
