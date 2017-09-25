@@ -1,4 +1,26 @@
 <%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<% if is_organizer_admin %>
+  <div class="alert alert-warning" role="alert">
+    <div class="text-md-center">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="pull-left" style="width: 55%">
+    <i class="fa fa-info-circle"></i>
+    <%= t('tour-edit-bar-message') %> <br />
+    <small><%= t('side-note-edit-bar-message') %></small>
+    </div>
+    <div class="btn-toolbar pull-right" style="margin-right: 40px;">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="<%= edit_guided_tour_organizer_path(@tour.organizer, @tour) %>" class="btn btn-secondary"><%= t('tour-edit-label') %></a>
+        <a href="<%= guided_tour_organizer_path(@tour.organizer) %>" class="btn btn-secondary"><%= t('organizer-profile-account-action') %></a>
+        <a href="<%= account_edit_organizer_path(@tour.organizer) %>" class="btn btn-secondary"><%= t('tours_view_edit_link') %></a>
+      </div>
+    </div>
+    </div>
+  </div>
+<% end %>
 <div class="cover">
 	<div class="img-holder">
     <% if @tour.try(:photo) and !@tour.picture.exists? %>

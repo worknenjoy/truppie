@@ -77,6 +77,12 @@ class Tour < ActiveRecord::Base
     end
   end
 
+  def where
+    if self.wheres.present?
+      self.wheres.first
+    end
+  end
+
   def starttime
     Time.now
   end

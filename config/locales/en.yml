@@ -94,16 +94,59 @@ en:
   create-marketplace-action: Create account
   create-truppie-account: Create a truppie account
   date:
-    abbr_day_names: '["Mon", "Tue", "Wed", "Thu", "Sat", "Sun"]'
-    abbr_month_names: '[nil, "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]'
-    day_names: '["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]'
+    abbr_day_names:
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Sat
+      - Sun
+    abbr_month_names:
+      -
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - Mai
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Thursday
+      - Saturday
     day_names_calendar: '["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]'
     formats:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       short: "%d de %B"
-    month_names: '[nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]'
-    order: "[:day, :month, :year]"
+    month_names:
+      -
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    order:
+      - :day
+      - :month
+      - :year
   datetime:
     distance_in_words:
       about_x_hours:
@@ -466,7 +509,7 @@ en:
       short: "%d de %B, %H:%M"
     pm: Pm
   title-introducing-accounts: This is your accounts
-  title-organizer-join-truppie: Join Truppie and have a account to manage your reservation payments
+  title-organizer-join-truppie: Join Truppie
   tour-category-label: What the subject of this tour
   tours_controller_confirm_headline_msg: Your booking is confirmed for this truppie
   tours_controller_confirm_headline_msg_two: Event successfully confirmed

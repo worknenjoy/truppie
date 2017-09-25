@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   before_filter :store_current_location, :unless => :devise_controller?
+  before_filter :set_locale
+
+
 
   def store_current_location
     store_location_for(:user, request.url)
@@ -38,6 +41,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options(options = {})
+    { :locale => ((I18n.locale == I18n.default_locale) ? nil : I18n.locale) }
+  end
 
   def is_organizer_admin
     if user_signed_in?
