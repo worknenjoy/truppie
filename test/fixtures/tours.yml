@@ -14,7 +14,7 @@ morro:
   minimum: 
   maximum: 
   difficulty: 2
-  wheres: [placeone]
+  wheres: placeone
   address: MyString
   user: laura 
   included: []
@@ -44,7 +44,7 @@ gavea:
   minimum: 
   maximum: 
   difficulty: 2
-  wheres: [placeone]
+  wheres: placeone
   address: MyString
   user: laura 
   included: []
@@ -73,7 +73,7 @@ picomarins:
   minimum: 
   maximum: 
   difficulty: 2
-  wheres: [placeone]
+  wheres: placeone
   address: MyString
   user: laura 
   included: []
@@ -101,7 +101,7 @@ tour_mkt:
   minimum: 
   maximum: 
   difficulty: 2
-  wheres: [placeone]
+  wheres: placeone
   address: MyString
   user: laura 
   included: []
@@ -129,7 +129,7 @@ with_orders:
   minimum: 
   maximum: 
   difficulty: 2
-  wheres: [placeone]
+  wheres: placeone
   address: MyString
   user: laura 
   included: []

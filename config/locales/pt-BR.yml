@@ -90,6 +90,8 @@ pt-BR:
   contacts_views_index_small: Fique tranquilo, não compartilharemos seu e-mail com ninguém
   contacts_views_submit: Enviar
   create-account-action-step: Crie sua conta na Truppie como usuário
+  create-background-action: Create-background-action
+  create-experience-call-to-action: Create-experience-call-to-action
   create-marketplace-action: criar conta
   create-truppie-account: criar conta na truppie
   date:
@@ -300,11 +302,29 @@ pt-BR:
   label-organizer-thanks-moderation: Finalize sua inscrição e comece a gerenciar suas reservas e pagamentos pela truppie!
   label-organizer-twitter: twitter
   label-organizer-website: website
+  lang-brazil: Lang-brazil
+  lang-eua: Lang-eua
   laura-feature: 7 Cantos do Mundo
   laura-second-feature: Sempre atrás de uma trilha/aventura
   laura-third-feature: Nerd confessa e leitora compulsiva
   logged-as-label: logado como
   logout-label: sair
+  mail-hello-message: Olá %{organizer}
+  mail-hello-to-start: 'Para começar a usar a Truppie e oferecer seus passeios por nossa plataforma e passar a receber as reservas do seu cliente, você precisa seguir os seguintes passos:'
+  mail-hello-to-start-update: Sua conta foi atualizada. Verifique seu perfil para ver se sua conta se encontra verificada para receber os pagamentos das suas truppies
+  mail-organizer-see-profile: ver perfil
+  mail-organizer-share-description: Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!
+  mail-organizer-share-intro: compartilhe seu perfil com sua rede de contatos
+  mail-organizer-share-more-description: Quem sabe eles também se interessem pela sua aventura!
+  mail-organizer-share-title: Divulgue seu evento
+  mail-verify-account-description: Verificando sua conta você poderá realizar transferências
+  mail-verify-account-intro: Verifique sua conta na truppie e comece a divulgar seus eventos!
+  mail-verify-account-link: Verificar conta
+  mail-verify-account-title: Verifique sua conta
+  mail-welcome-account-created-message: Agora você tem uma conta de guia para criar seus passeios
+  mail-welcome-account-created-message-update: Seus dados foram atualizados na truppie
+  mail-welcome-account-title: sua conta como guia foi criada
+  mail-welcome-account-title-update: Sua conta foi atualizada!
   manage-truppie-action: gerenciar
   manifesto-link-label: Qual a filosofia por trás da truppie?
   marketplace-city-placeholder: 'ex: São Paulo'
@@ -352,6 +372,7 @@ pt-BR:
   modal-packages-title: Gerenciamento de pacotes
   navbar_partial_link_four: Sair
   navbar_partial_link_one: entrar / logar
+  navbar_partial_link_organizer: Editar suas contas
   navbar_partial_link_three: Editar usuário
   navbar_partial_link_two: Minhas truppies
   new-bank-account-title: Nova conta para pagamento
@@ -360,6 +381,7 @@ pt-BR:
   new-tour-label: Criação de uma nova truppie
   newsletter-text: Deixe seu e-mail para saber das novidades
   newsletter-title: Fique ligado!
+  no-experience-here-label: No-experience-here-label
   no-marketplace: Dados da conta não cadastrados
   no-marketplace-label: Sem conta cadastrada
   no-terms: não há termos
@@ -435,6 +457,8 @@ pt-BR:
   organizer-add-account-data: adicionar dados da sua conta
   organizer-add-tour: adicionar truppie
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
+  organizer-background-edit-desc: Organizer-background-edit-desc
+  organizer-background-title: Organizer-background-title
   organizer-bank-data: Banco
   organizer-clients-label: Clientes
   organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
@@ -475,6 +499,7 @@ pt-BR:
   payment_type_partial_div_one: Modo de pagamento
   payment_type_partial_div_three: Boleto Bancário
   payment_type_partial_div_two: Cartão de Crédito
+  place: Qual a localização?
   privacy-label: Termos de privacidade
   privacy-link: Privacidade
   profile-access: Acessar seu perfil
@@ -482,7 +507,6 @@ pt-BR:
   profile-access-truppie-account-share-step: E ter um link de pagamento do evento com todas suas informações
   profile-access-truppie-account-step: Administrar suas reservas, quantidade de vagas e receber notificações
   profile-access-truppie-account-transfer-step: Solicitar transferências
-  place: Qual a localização?
   return-date: Retorno
   same-date: mesmo dia
   save-and-publish: Salvar e publicar
@@ -492,6 +516,7 @@ pt-BR:
   select-date: selecionar data
   shoes-heading: Aproveite
   shoes-text: Não há com o que se preocupar - apenas prepare-se e aproveite o passeio!
+  side-note-edit-bar-message: Divulgue este link na divulgação do evento para que seu usuário possa reservar online
   status_danger: danger
   status_success: success
   submit-external-payment: Parcelar no cartão de crédito
@@ -516,6 +541,8 @@ pt-BR:
   title-introducing-accounts: Esta são suas contas registradas na truppie
   title-organizer-join-truppie: entre para a truppie
   tour-category-label: E ai, qual é dessa truppie?
+  tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
+  tour-edit-label: editar truppie
   tours_controller_confirm_headline_msg: Sua presença foi confirmada para a truppie
   tours_controller_confirm_headline_msg_two: Evento confirmado com sucesso
   tours_controller_confirm_status_msg: Obrigado por se inscrever neste evento
@@ -700,6 +727,7 @@ pt-BR:
   verified-label: Conta verificada
   verified_label: Conta verificada
   want-offer-truppies-title: Você é guia e busca a melhor maneira de oferecer os seus passeios?
+  welcome-places-title: Welcome-places-title
   welcome_view_defs_h3: With faded secondary text
   welcome_view_defs_p_1: Proin rutrum tortor vitae elementum auctor. Etiam et est vel ipsum congue porta. Nullam vitae rhoncus nisi. Maecenas egestas metus sed dolor tincidunt accumsan. Etiam sed elit est. Donec dui augue, malesuada sed pharetra sit amet, dignissim laoreet justo. Curabitur eget congue lacus. Quisque hendrerit, ligula a vestibulum iaculis, lorem orci finibus justo, in vehicula diam massa ac lectus. Nullam eu lacus scelerisque, hendrerit arcu ut, volutpat lorem. Fusce congue congue nibh, at volutpat enim fermentum id. Etiam vehicula accumsan ullamcorper. Duis dapibus enim a sapien blandit facilisis. Aliquam elit quam, vulputate eu maximus porttitor, varius sed ipsum. Maecenas efficitur ex ut dui imperdiet, in fermentum augue interdum. Ut nisi risus, vehicula eu nisi quis, rhoncus lobortis quam. Integer fermentum ullamcorper lectus, at convallis neque laoreet et.
   welcome_view_defs_p_2: Aenean ornare nec mauris nec vulputate. Duis efficitur diam arcu, ut euismod nisi maximus et. Etiam sollicitudin lacinia elementum. Sed eget bibendum est. Nulla facilisi. Donec convallis metus eleifend tortor mattis condimentum. Integer ut felis pulvinar, euismod orci ac, pretium mauris. Nunc semper nunc sed lacus placerat semper vel nec sapien.
@@ -808,7 +836,3 @@ pt-BR:
   welcome_view_privacy_h5_two: Comunicação
   welcome_view_privacy_p_one: Ao se cadastrar na plataforma Truppie, o usuário será solicitado fornecer informações pessoais, tais como nome, e-mail, dentre outros. A Truppie não vende, compartilha ou distribui de qualquer forma estas informações. Na eventualidade de uma situação extraordinária em que este tipo de informação se faça necessária - como por exemplo uma promoção ou campanha publicitária - será solicitada autorização prévia do usuário.
   welcome_view_privacy_p_two: 'A Truppie e/ou  o guia podem entrar em contato por e-mail com o usuário para: confirmar seu endereço de e-mail após cadastro na plataforma; confirmar o pagamento e reserva de um evento; fornecer informações adicionais sobre determinado evento reservado pelo usuário; informar sobre o cancelamento de um evento reservado pelo usuário. <br /> A Truppie não envia e-mails promocionais sem autorização prévia do usuário. Não somos desses que enviam spam, fique tranquilo!'
-
-  tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
-  tour-edit-label: editar truppie
-  side-note-edit-bar-message: Divulgue este link na divulgação do evento para que seu usuário possa reservar online

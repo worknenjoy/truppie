@@ -5,17 +5,16 @@
     <table border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td>
-          <h1>Seja bem vindo!</h1>
-          <p style="text-align: center;"><strong>sua conta como guia foi criada</strong></p>
-          <p>Olá <strong><%= @organizer.name %></strong>, você agora faz parte da nossa plataforma de aventuras!</p>
+          <h1><%= t('mail-welcome-account-title') %></h1>
+          <p style="text-align: center;"><strong><%= t('mail-welcome-account-created-message') %></strong></p>
+          <p><%= t('mail-hello-message', organizer: @organizer.name) %></p>
           <p>
-            Para começar a usar a Truppie e oferecer seus passeios por nossa plataforma e passar a receber as reservas do seu cliente,
-            você precisa seguir os seguintes passos:
+            <%= t('mail-hello-to-start') %>
           </p>
           <hr>
-          <h2>Aceite os termos</h2>
-          <p>Precisamos que você aceite nossos termos de uso, que diz que você está fornecendo os dados corretamente.</p>
-          <p>Precisamos disto para garantir sua segurança e firmar as responsabilidades que teremos de repassar os valores arrecadados.
+          <h2><%= t('mail-verify-account-title') %></h2>
+          <p><%= t('mail-verify-account-intro') %></p>
+          <p><%= t('mail-verify-account-description') %></p>
           </p>
           <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
             <tbody>
@@ -24,7 +23,7 @@
                   <table border="0" cellpadding="0" cellspacing="0">
                     <tbody>
                       <tr>
-                        <td> <a href="<%= tos_acceptance_organizer_url(@organizer) %>" target="_blank">Ver os termos e aceitar</a> </td>
+                        <td> <a href="<%= account_edit_organizer_url(@organizer) %>" target="_blank"><%= t('mail-verify-account-link') %></a> </td>
                       </tr>
                     </tbody>
                   </table>
@@ -33,10 +32,10 @@
             </tbody>
           </table>
           <hr>
-          <h2>Divulgue seu evento</h2>
-          <p>Divulgue seu evento e seja notificado das reservas</p>
-          <p>Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!</p>
-          <p>Quem sabe eles também se interessem pela sua aventura!</p>
+          <h2><%= t('mail-organizer-share-title') %></h2>
+          <p><%= t('mail-organizer-share-intro') %></p>
+          <p><%= t('mail-organizer-share-description') %></p>
+          <p><%= t('mail-organizer-share-more-description') %></p>
           <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
             <tbody>
               <tr>
@@ -44,7 +43,7 @@
                   <table border="0" cellpadding="0" cellspacing="0">
                     <tbody>
                       <tr>
-                        <td> <a href="http://www.facebook.com/truppie" target="_blank">Ver nossa página do Facebook</a> </td>
+                        <td> <a href="<%= organizer_url(@organizer) %>" target="_blank"><%= t('mail-organizer-see-profile') %></a> </td>
                       </tr>
                     </tbody>
                   </table>
@@ -64,49 +63,50 @@
     <table border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td>
-          <h1>Sua conta foi atualizada</h1>
-          <p style="text-align: center;"><strong>sua conta como guia foi atualizada</strong></p>
-          <p>Olá <strong><%= @organizer.name %></strong>, sua conta foi atualizada</p>
-          <p>Você já cadastrou seus dados para começar a receber pela Truppie?</p>
-          <p>Se ainda não o fez, basta seguir os passos:</p>
+          <h1><%= t('mail-welcome-account-title-update') %></h1>
+          <p style="text-align: center;"><strong><%= t('mail-welcome-account-created-message-update') %></strong></p>
+          <p><%= t('mail-hello-message', organizer: @organizer.name) %></p>
+          <p>
+            <%= t('mail-hello-to-start-update') %>
+          </p>
           <hr>
-          <h2>Aceite os termos</h2>
-          <p>Precisamos que você aceite nossos termos de uso, que diz que você está fornecendo os dados corretamente.</p>
-          <p>Precisamos disto para garantir sua segurança e firmar as responsabilidades que teremos de repassar os valores arrecadados.
+          <h2><%= t('mail-verify-account-title') %></h2>
+          <p><%= t('mail-verify-account-intro') %></p>
+          <p><%= t('mail-verify-account-description') %></p>
           </p>
           <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
             <tbody>
-              <tr>
-                <td align="left">
-                  <table border="0" cellpadding="0" cellspacing="0">
-                    <tbody>
-                      <tr>
-                        <td> <a href="<%= tos_acceptance_organizer_url(@organizer) %>" target="_blank">Ver os termos e aceitar</a> </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
+            <tr>
+              <td align="left">
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tbody>
+                  <tr>
+                    <td> <a href="<%= account_edit_organizer_url(@organizer) %>" target="_blank"><%= t('mail-verify-account-link') %></a> </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
             </tbody>
           </table>
           <hr>
-          <h2>Divulgue seu evento</h2>
-          <p>Divulgue seu evento e seja notificado das reservas</p>
-          <p>Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!</p>
-          <p>Quem sabe eles também se interessem pela sua aventura!</p>
+          <h2><%= t('mail-organizer-share-title') %></h2>
+          <p><%= t('mail-organizer-share-intro') %></p>
+          <p><%= t('mail-organizer-share-description') %></p>
+          <p><%= t('mail-organizer-share-more-description') %></p>
           <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
             <tbody>
-              <tr>
-                <td align="left">
-                  <table border="0" cellpadding="0" cellspacing="0">
-                    <tbody>
-                      <tr>
-                        <td> <a href="http://www.facebook.com/truppie" target="_blank">Ver nossa página do Facebook</a> </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
+            <tr>
+              <td align="left">
+                <table border="0" cellpadding="0" cellspacing="0">
+                  <tbody>
+                  <tr>
+                    <td> <a href="<%= organizer_url(@organizer) %>" target="_blank"><%= t('mail-organizer-see-profile') %></a> </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
             </tbody>
           </table>
         </td>
