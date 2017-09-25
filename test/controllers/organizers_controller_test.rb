@@ -1,9 +1,12 @@
  include Devise::TestHelpers
  require 'test_helper'
- require 'minitest/mock'
- require 'minitest/unit'
-
- MiniTest.autorun
+ begin
+   require 'minitest/mock'
+   require 'minitest/unit'
+   MiniTest.autorun
+ rescue LoadError => e
+   raise e unless ENV['RAILS_ENV'] == "production"
+ end
  
  class OrganizersControllerTest < ActionController::TestCase
    self.use_transactional_fixtures = true

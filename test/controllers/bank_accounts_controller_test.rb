@@ -1,9 +1,12 @@
 require 'test_helper'
 include Devise::TestHelpers
-require 'minitest/mock'
-require 'minitest/unit'
-
-MiniTest.autorun
+begin
+  require 'minitest/mock'
+  require 'minitest/unit'
+  MiniTest.autorun
+rescue LoadError => e
+  raise e unless ENV['RAILS_ENV'] == "production"
+end
 
 class BankAccountsControllerTest < ActionController::TestCase
   setup do
