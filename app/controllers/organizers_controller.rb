@@ -52,7 +52,7 @@ class OrganizersController < ApplicationController
     respond_to do |format|
       if @organizer.save
         format.html {
-          #OrganizerMailer.notify(@organizer, "activate").deliver_now
+          OrganizerMailer.notify(@organizer, "activate").deliver_now
           redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
         }
         format.json { render :show, status: :created, location: @organizer }
@@ -92,7 +92,7 @@ class OrganizersController < ApplicationController
     respond_to do |format|
       if @organizer.update(organizer_params)
         format.html { 
-          #OrganizerMailer.notify(@organizer, "update").deliver_now
+          OrganizerMailer.notify(@organizer, "update").deliver_now
           redirect_to :back, notice: I18n.t('organizer-update-sucessfully')
         }
         format.json { render :show, status: :ok, location: @organizer }

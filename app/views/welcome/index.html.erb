@@ -1,440 +1,399 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
 <div class="container-fluid">
-<div class="row">
-	<div class="col-xs-12 intro-grid">
-		<div class="logo-alt">
-			<%= image_tag("logos-02.svg", :alt => "Truppie") %>
-			<p class="tagline emblem-font"><%= t('tagline') %></p>
-		</div>
-		<div class="logo">
-			<%= image_tag("logos-05.svg", :alt => "Truppie") %>
-			<p class="tagline emblem-font"><%= t('tagline') %></p>
-		</div>
-	</div>
-	<div id="carousel-intro" class="carousel slide" data-ride="carousel">
-		<% if @tours.any? %>
-		<div class="card card-floating wow bounceIn">
-		  <div class="card-header">
-		    <i class="fa fa-calendar"></i> <%= t('welcome_view_index_div_one') %>
-		  </div>
-		  <div class="spaced-down">
-			  <div class="row">
-			  	<div class="col-xs-6 col-md-6">
-			    	<div class="floating-schedule">
-				    	<div class="pull-left date-body text-xs-center">
-				          <label for="" class="date-title">
-				          	<%= l(@tours.first.start, format: '%B') %>
-			          	  </label>
-				          <div class="date-content">
-				            <p class="dia">
-				            	<%= l(@tours.first.start, format: '%d') %>
-				            </p>
-				            <hr class="nomargin"/>
-				            <p class="nomargin">
-				            	<strong>
-				            		<%= l(@tours.first.start, format: '%A') %>
-			            		</strong>
-		            		</p>
-				            <p class="date-body-when nomargin"><strong><%= friendly_when(@tours.first.start) %></strong></p>
-				          </div>
-			         	</div>
-			        </div>
-			    </div>
-			    <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
-			    	<strong><%= link_to(@tours.first.title, tour_path(@tours.first)) %></strong>
-			    	<small><%= t('welcome_view_index_small_one') %></small> <%= @tours.first.organizer.name %><br />
-            <% if @tours.first.wheres.any? %>
-			    	<small><%= t('welcome_view_index_small_two') %><strong><%= @tours.first.wheres.first.name %>, <%= @tours.first.wheres.first.state %></strong></small>
-            <% end %>
-		    	</div>
-			  </div>
-		  </div>
-		  <div class="container-fluid">
-			  <div class="row">
-			  	<div class="col-xs-12">
-				  	<div class="spaced-down">
-				  		<a href="<%= tour_path(@tours.first) %>" class="btn btn-block btn-primary btn-sm"><%= t('welcome_view_index_a_one') %></a>
-				  	</div>
-			  	</div>
-			  </div>
-		  </div>
-		</div>
-		<% end %>
-		  <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		  </ol>
-  		  <div class="carousel-navigation">
- 	   		<a href="#" data-slide="next" role="buttom" class="carousel-right"><i class="fa fa-3x fa-chevron-right"></i></a>
- 	   		<a href="#" data-slide"prev" role="buttom" class="carousel-left"><i class="fa fa-3x fa-chevron-left"></i></a>
- 	   	  </div>
-		<div class="carousel-inner" role="listbox">
-		    <div class="carousel-item active">
-		      <picture>
-			      <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-2-small.jpg") %>">
-      			  <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-2-medium.jpg") %>">
-  				  <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
-  				  <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-2-default.jpg")) %>
-			  </picture>
-			  <div class="carousel-caption">
-			    <h3 class="secondary-font display-tagline"><%= t('second-caption') %></h3>
-			    <p class="lead emblem-font"><%= t('second-description') %></p>
-			  </div>
-			  <div class="top-note">
-			  	<small><%= t('welcome_view_index_small_three') %></small>
-			  </div>
-		    </div>
-		    <div class="carousel-item">
-		      <picture>
-	      		<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-small.jpg") %>">
-      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-medium.jpg") %>">
-  				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-full.jpg") %>">
-		      	<%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro.jpg")) %>
-		      </picture>
-			  <div class="carousel-caption">
-			    <h3 class="secondary-font display-tagline"><%= t('first-caption') %></h3>
-			    <p class="lead emblem-font"><%= t('first-description') %></p>
-			  </div>
-			  <div class="top-note">
-			  	<small><%= t('welcome_view_index_small_four') %></small>
-			  </div>
-		    </div>
-		    <div class="carousel-item">
-		      <picture>
-		      	<source media="(max-width: 360px)" srcset="<%= image_path("image-intro-3-small.jpg") %>">
-      			<source media="(max-width: 520px)" srcset="<%= image_path("image-intro-3-medium.jpg") %>">
-  				<source media="(max-width: 800px)" srcset="<%= image_path("image-intro-3-full.jpg") %>">
-				<%= image_tag("image-intro-3-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-3-default.jpg")) %>
-		      </picture>	
-		      
-			  <div class="carousel-caption">
-			    <h3 class="secondary-font display-tagline"><%= t('third-caption') %></h3>
-			    <p class="lead emblem-font"><%= t('third-description') %></p>
-			    </div>
-			    <div class="top-note">
-			  		<small><%= t('welcome_view_index_small_five') %></small>
-		  	  </div>
-		    </div>
-	  </div>
-   </div> 
-</div>
-<div class="container spaced-default intro-text">
-	<div classs="row">
-		<div class="col-xs-12">
-			<div class="text-intro">
-				<p class="tagline emblem-font"><%= t('text-intro') %></p>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="container intro-idea spaced-down">
-	<div class="container">
-		<div class="row cards">
-			<div class="col-sm-4 wow bounceIn">
-				<div class="card card-block text-xs-center">
-				  <h4 class="card-title main-color-font">
-				  	<%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-				  	<p class="tagline emblem-font"><%= t('balloom-heading') %>
-			  	  </h4>
-				  <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
-				</div>
-			</div>
-			<div class="col-sm-4 wow bounceIn">
-				<div class="card card-block text-xs-center">
-				  <h4 class="card-title main-color-font">
-				  	<picture>
-				  		<%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-				  	</picture>
-				  	<p class="tagline emblem-font"><%= t('hands-heading') %>
-			  	  </h4>
-				  <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
-				</div>
-			</div>
-			<div class="col-sm-4 wow bounceIn">
-				<div class="card card-block text-xs-center">
-				  <h4 class="card-title main-color-font">
-				  	<%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-				  	<p class="tagline emblem-font"><%= t('shoes-heading') %>
-			  	  </h4>
-				  <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
-<div class="intro-idea spaced-down bg-gray">
-<div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-6">
-      <div class="card">
+    <div class="col-xs-12 intro-grid">
+      <div class="logo-alt">
+        <%= image_tag("logos-02.svg", :alt => "Truppie") %>
+        <p class="tagline emblem-font"><%= t('tagline') %></p>
+      </div>
+      <div class="logo">
+        <%= image_tag("logos-05.svg", :alt => "Truppie") %>
+        <p class="tagline emblem-font"><%= t('tagline') %></p>
+      </div>
+    </div>
+    <div id="carousel-intro" class="carousel slide" data-ride="carousel">
+      <% if @tours.any? %>
+      <div class="card card-floating wow bounceIn">
         <div class="card-header">
-          <%= t('welcome_view_index_div_two') %>
+          <i class="fa fa-calendar"></i> <%= t('welcome_view_index_div_one') %>
         </div>
-        <div class="card-block text-center">
-          <h4 class="card-title"><%= t('welcome_view_index_h4_one') %></h4>
-          <p class="card-text"><%= t('welcome_view_index_p_one') %></p>
-          <a href="https://goo.gl/forms/7MVxQJfWtLSsMcUw1" class="btn btn-primary btn-block"><%= t('welcome_view_index_a_one') %></a><br />
-          <a href="https://drive.google.com/open?id=0B0EJ2VirMDNqcFlQS29Vb3ptMk90QnpDRzBMeWkyLUxIVDVr" class="btn btn-primary btn-block"> <%= t('welcome_view_index_a_two') %> </a>
+        <div class="spaced-down">
+          <div class="row">
+            <div class="col-xs-6 col-md-6">
+              <div class="floating-schedule">
+                <div class="pull-left date-body text-xs-center">
+                    <label for="" class="date-title">
+                      <%= l(@tours.first.start, format: '%B') %>
+                      </label>
+                    <div class="date-content">
+                      <p class="dia">
+                        <%= l(@tours.first.start, format: '%d') %>
+                      </p>
+                      <hr class="nomargin"/>
+                      <p class="nomargin">
+                        <strong>
+                          <%= l(@tours.first.start, format: '%A') %>
+                        </strong>
+                      </p>
+                      <p class="date-body-when nomargin"><strong><%= friendly_when(@tours.first.start) %></strong></p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
+              <strong><%= link_to(@tours.first.title, tour_path(@tours.first)) %></strong>
+              <small><%= t('welcome_view_index_small_one') %></small> <%= @tours.first.organizer.name %><br />
+              <% if @tours.first.wheres.any? %>
+              <small><%= t('welcome_view_index_small_two') %><strong><%= @tours.first.wheres.first.name %>, <%= @tours.first.wheres.first.state %></strong></small>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="spaced-down">
+                <a href="<%= tour_path(@tours.first) %>" class="btn btn-block btn-primary btn-sm"><%= t('welcome_view_index_a_one') %></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+          <div class="carousel-navigation">
+          <a href="#" data-slide="next" role="buttom" class="carousel-right"><i class="fa fa-3x fa-chevron-right"></i></a>
+          <a href="#" data-slide"prev" role="buttom" class="carousel-left"><i class="fa fa-3x fa-chevron-left"></i></a>
+          </div>
+      <div class="carousel-inner" role="listbox">
+          <div class="carousel-item active">
+            <picture>
+              <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-2-small.jpg") %>">
+                <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-2-medium.jpg") %>">
+              <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
+              <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-2-default.jpg")) %>
+          </picture>
+          <div class="carousel-caption">
+            <h3 class="secondary-font display-tagline"><%= t('second-caption') %></h3>
+            <p class="lead emblem-font"><%= t('second-description') %></p>
+          </div>
+          <div class="top-note">
+            <small><%= t('welcome_view_index_small_three') %></small>
+          </div>
+          </div>
+          <div class="carousel-item">
+            <picture>
+              <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-small.jpg") %>">
+              <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-medium.jpg") %>">
+            <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-full.jpg") %>">
+              <%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro.jpg")) %>
+            </picture>
+          <div class="carousel-caption">
+            <h3 class="secondary-font display-tagline"><%= t('first-caption') %></h3>
+            <p class="lead emblem-font"><%= t('first-description') %></p>
+          </div>
+          <div class="top-note">
+            <small><%= t('welcome_view_index_small_four') %></small>
+          </div>
+          </div>
+          <div class="carousel-item">
+            <picture>
+              <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-3-small.jpg") %>">
+              <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-3-medium.jpg") %>">
+            <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-3-full.jpg") %>">
+          <%= image_tag("image-intro-3-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-3-default.jpg")) %>
+            </picture>
+
+          <div class="carousel-caption">
+            <h3 class="secondary-font display-tagline"><%= t('third-caption') %></h3>
+            <p class="lead emblem-font"><%= t('third-description') %></p>
+            </div>
+            <div class="top-note">
+              <small><%= t('welcome_view_index_small_five') %></small>
+            </div>
+          </div>
+      </div>
+     </div>
+  </div>
+  <div class="container spaced-default intro-text">
+    <div classs="row">
+      <div class="col-xs-12">
+        <div class="text-intro">
+          <p class="tagline emblem-font"><%= t('text-intro') %></p>
         </div>
       </div>
     </div>
-    <div class="col-xs-12 col-md-6">
-        <div class="card">
-        <div class="card-header">
-          <h4><%= t('welcome_view_index_h4_two') %></h4>
-          <small><%= t('welcome_view_index_small_six') %><a href="http://www.facebook.com">Facebook</a><%= t('welcome_view_index_small_seven') %></small>
-        </div>
-        <div class="card-block">
-          <div id="fb-root"></div>
-          <div id="fb-root"></div>
-          <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.8&appId=1696667457284884";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));</script>
-          <div style="width: 100%">
-          <div class="fb-page" data-href="https://www.facebook.com/truppie" data-height="200" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/truppie" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/truppie">Truppie</a></blockquote></div>
+  </div>
+  <div class="container intro-idea spaced-down">
+    <div class="container">
+      <div class="row cards">
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <p class="tagline emblem-font"><%= t('balloom-heading') %>
+              </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
           </div>
         </div>
-      </div>   
-    </div>
-</div>  
-</div>
-	<div class="container">
-	  <% if @tours.any? %>
-		<div class="row">
-			<div class="col-xs-12">
-				<h3 class="light-heading" style="padding: 4px;"><%= t('welcome_view_index_h3_one') %></h3>
-			</div>
-		</div>
-		<% @tours.each do |t| %>
-		<style>
-			.twPc-div {
-				overflow: hidden;
-				position: relative;
-			}
-			<% if t.picture.present? %>
-			<%="#twPc-bg-#{t.id}" %> {
-				background-image: url('<%= t.picture.url(:large) %>');
-			}
-			<% elsif t.try(:photo) %>
-			<%="#twPc-bg-#{t.id}" %> {
-				background-image: url('<%= t.photo %>');
-			}
-			<% else %>
-			<%="#twPc-bg-#{t.id}" %> {
-				background-color: #F15A29;
-			}					
-			<% end %>
-		</style>
-		<div class="twPc-div spaced-down">
-		    <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
-		    	<div class="ribbon base"><span><%= raw t.price %></span></div>
-		    <% end %>
-			<div>
-				<div class="twPc-button">
-		            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
-					
-		            <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
-		            	<i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
-		            <% end %>
-		            <!-- Twitter Button -->   
-				</div>
-		
-				<%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
-					<% if t.organizer.picture.present? %>
-						<%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
-					<% else %>
-						<%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
-					<% end %>
-				<% end %>
-		
-				<div class="twPc-divUser spaced-down">
-					<div class="twPc-divName">
-						<%= link_to tour_path(t) do %>
-							<%= t.title %>
-						<% end %>
-					</div>
-					<span>
-						<%= link_to organizer_path(t.organizer) do %>
-						<small><%= t('welcome_view_index_small_eight') %> </small><strong><%= t.organizer.name %></strong>
-						<% end %>
-					</span>
-				</div>
-				<div class="twPc-divStats">
-					<ul class="twPc-Arrange">
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_one') %></span>
-							<span class="twPc-StatValue">
-								<%= l(t.start, format: '%d de %B / %Y') %>
-							</span>
-							<span class="twPc-StatValue">
-								<span class="label label-info"><%= friendly_when(t.start) %></span>
-							</span>
-						</li>
-						<% if !t.wheres.any? %>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_two') %></span>
-							<span class="twPc-StatValue">
-								<%= t.wheres.first.try(:name) %>
-							</span>
-						</li>
-						<% end %>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_three') %></span>
-							<span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
-						</li>
-						<div class="sized-1x">
-					    	<%= render partial: "layouts/confirmeds", locals: {tour: t} %>
-					    </div>
-						<li class="twPc-ArrangeSizeFit">
-							<span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_four') %></span>
-							<span class="twPc-StatValue">
-								<% if not t.soldout? %> 
-			            			<strong><%= t.available %></strong> <%= t('welcome_view_index_span_five') %>
-			            		<% else %>
-			            			<%= t('welcome_view_index_span_six') %>
-			            		<% end %>
-							</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<% end %>
-		<% end %>
-		<%= render partial: 'layouts/guides_list', locals: {guides: @organizers} %>
-	</div>
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-md-7">
-			<div class="spaced-smallest">
-				<div>
-					<!-- <h3 class="spaced emblem-font main-color-font"><%= t('truppie-title') %></h3> -->
-					<!-- <p class="lead emblem-font" style="color: #f1592a;"><%= t('truppie-text') %></p> -->
-					<%= image_tag("logo_truppie.svg", :alt => "Truppie",:width => 190, :class => "img-fluid ") %>
-				</div>
-				<ul class="list-group">
-				  <li class="list-group-item">
-				    <span class="pull-xs-right">
-				    	<i class="fa fa-2x fa-users"></i>
-				    </span>
-				    <%= t('truppie-item') %>
-				  </li>
-				  <li class="list-group-item">
-				    <span class="pull-xs-right">
-						<i class="fa fa-2x fa-street-view"></i>
-					</span>
-				    <%= t('truppie-second-item') %>
-				  </li>
-				  <li class="list-group-item">
-				    <span class="pull-xs-right">
-						<i class="fa fa-2x fa-ticket"></i>
-					</span>
-				    <%= t('truppie-third-item') %>
-				  </li>
-				</ul>
-			</div>
-		</div>
-		<div class="col-md-5">
-			<a name="warning"></a>
-        <div class="text-xs-center" style="margin-top: 60px;">
-	    		<div class="thumbnail center well well-small text-center spaced-down">
-	                <h4 class="main-color-font emblem-font"><%= t('newsletter-title') %></h4>
-	                
-	                <%= render 'layouts/flash' %>
-	                
-	                <p class="lead">
-	                	<%= t('newsletter-text') %>
-	                	<br />
-	                	<small><%= t('welcome_view_index_small_nine') %></small>
-	                </p>
-	                
-	                
-	  				<fieldset class="form-group">
-	  						<%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
-	  							<%= email_field(:subscriber, :email, :class => 'form-control spaced-down', :placeholder => 'O meu e-mail é') %>
-								<input type="submit" value="Inscreva-me!" class="btn btn-large btn btn-outlined btn-theme btn-lg" />
-							<% end %>
-					  </fieldset>
-	            </div>    
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <picture>
+                <%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              </picture>
+              <p class="tagline emblem-font"><%= t('hands-heading') %>
+              </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
+          </div>
         </div>
-		</div>
-	</div>
-	<div class="col-xs-12">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 spaced-default">
-					<h4 class="emblem-font main-color-font"><%= t('authors-title') %></h4>
-				</div>
-				<div class="row">
-		            <div class="card hovercard col-sm-6">
-	                	<div class="cardheader"></div>
-		                <div class="avatar">
-		                    <%= image_tag("laura.jpg", :alt => "Truppie", :width => '120', class: 'spaced-smallest') %><br />
-		                </div>
-		                <div class="info">
-		                    <div class="title">
-		                        <a target="_blank" href="http://www.7cantosdomundo.com.br"><%= t('welcome_view_index_a_three') %></a>
-		                    </div>
-		                    <div class="desc"><%= t('laura-feature') %></div>
-		                    <div class="desc"><%= t('laura-second-feature') %></div>
-		                    <div class="desc"><%= t('laura-third-feature') %></div>
-		                    <div class="desc"><a href="http://www.7cantosdomundo.com.br">7cantosdomundo.com.br</a></div>
-		                </div>
-		                <div class="bottom">
-		                    <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="https://twitter.com/7CantosdoMundo">
-		                        <i class="fa fa-twitter"></i>
-		                    </a>
-		                    <a class="btn btn-danger btn-sm" rel="publisher"
-		                       href="https://plus.google.com/+LauraSette7CantosdoMundo/posts">
-		                        <i class="fa fa-google-plus"></i>
-		                    </a>
-		                    <a class="btn btn-primary btn-sm btn-facebook" rel="publisher"
-		                       href="https://www.facebook.com/laurinha.sette">
-		                        <i class="fa fa-facebook"></i>
-		                    </a>
-		                </div>
-		            </div>
-		            <div class="card hovercard col-sm-6">
-		                <div class="cardheader-alt"></div>
-		                <div class="avatar">
-		                    <img alt="" src="https://secure.gravatar.com/avatar/3bb283ee62ca047885c15b839cc4f024?d=https%3A%2F%2Fi.vimeocdn.com%2Fportrait%2Fdefault-gray_300x300.png&s=300">
-		                </div>
-		                <div class="info">
-		                    <div class="title">
-		                        <a target="_blank" href="http://www.alexandremagno.net"><%= t('welcome_view_index_a_four') %></a>
-		                    </div>
-		                    <div class="desc"><%= t('alex-feature') %></div>
-		                    <div class="desc"><%= t('alex-second-feature') %></div>
-		                    <div class="desc"><%= t('welcome_view_index_div_four') %></div>
-		                    <div class="desc"><a href="http://www.alexandremagno.net">alexandremagno.net</a></div>
-		                </div>
-		                <div class="bottom">
-		                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/alexanmtz">
-		                        <i class="fa fa-twitter"></i>
-		                    </a>
-		                    <a class="btn btn-danger btn-sm" rel="publisher"
-		                       href="https://plus.google.com/105985612936824441325">
-		                        <i class="fa fa-google-plus"></i>
-		                    </a>
-		                    <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
-		                       href="https://facebook.com/alexandre.zimerer">
-		                        <i class="fa fa-facebook"></i>
-		                    </a>
-		                </div>
-		            </div>
-		
-		        </div>
-		
-			</div>
-		</div>
-	</div>
-</div>
+        <div class="col-sm-4 wow bounceIn">
+          <div class="card card-block text-xs-center">
+            <h4 class="card-title main-color-font">
+              <%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <p class="tagline emblem-font"><%= t('shoes-heading') %>
+              </h4>
+            <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="intro-idea spaced-down bg-gray">
+    <div class="container">
+      <% if @tours.any? %>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 class="light-heading" style="padding: 4px;"><%= t('welcome_view_index_h3_one') %></h3>
+        </div>
+      </div>
+      <% @tours.each do |t| %>
+      <style>
+        .twPc-div {
+          overflow: hidden;
+          position: relative;
+        }
+        <% if t.picture.present? %>
+        <%="#twPc-bg-#{t.id}" %> {
+          background-image: url('<%= t.picture.url(:large) %>');
+        }
+        <% elsif t.try(:photo) %>
+        <%="#twPc-bg-#{t.id}" %> {
+          background-image: url('<%= t.photo %>');
+        }
+        <% else %>
+        <%="#twPc-bg-#{t.id}" %> {
+          background-color: #F15A29;
+        }
+        <% end %>
+      </style>
+      <div class="twPc-div spaced-down">
+          <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+            <div class="ribbon base"><span><%= raw t.price %></span></div>
+          <% end %>
+        <div>
+          <div class="twPc-button">
+                  <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
 
+                  <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
+                    <i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
+                  <% end %>
+                  <!-- Twitter Button -->
+          </div>
+
+          <%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
+            <% if t.organizer.picture.present? %>
+              <%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+            <% else %>
+              <%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+            <% end %>
+          <% end %>
+
+          <div class="twPc-divUser spaced-down">
+            <div class="twPc-divName">
+              <%= link_to tour_path(t) do %>
+                <%= t.title %>
+              <% end %>
+            </div>
+            <span>
+              <%= link_to organizer_path(t.organizer) do %>
+              <small><%= t('welcome_view_index_small_eight') %> </small><strong><%= t.organizer.name %></strong>
+              <% end %>
+            </span>
+          </div>
+          <div class="twPc-divStats">
+            <ul class="twPc-Arrange">
+              <li class="twPc-ArrangeSizeFit">
+                <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_one') %></span>
+                <span class="twPc-StatValue">
+                  <%= l(t.start, format: '%d de %B / %Y') %>
+                </span>
+                <span class="twPc-StatValue">
+                  <span class="label label-info"><%= friendly_when(t.start) %></span>
+                </span>
+              </li>
+              <% if !t.wheres.any? %>
+              <li class="twPc-ArrangeSizeFit">
+                <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_two') %></span>
+                <span class="twPc-StatValue">
+                  <%= t.wheres.first.try(:name) %>
+                </span>
+              </li>
+              <% end %>
+              <li class="twPc-ArrangeSizeFit">
+                <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_three') %></span>
+                <span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
+              </li>
+              <div class="sized-1x">
+                  <%= render partial: "layouts/confirmeds", locals: {tour: t} %>
+                </div>
+              <li class="twPc-ArrangeSizeFit">
+                <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_four') %></span>
+                <span class="twPc-StatValue">
+                  <% if not t.soldout? %>
+                          <strong><%= t.available %></strong> <%= t('welcome_view_index_span_five') %>
+                        <% else %>
+                          <%= t('welcome_view_index_span_six') %>
+                        <% end %>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+      <%= render partial: 'layouts/guides_list', locals: {guides: @organizers} %>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="spaced-smallest">
+          <div>
+            <!-- <h3 class="spaced emblem-font main-color-font"><%= t('truppie-title') %></h3> -->
+            <!-- <p class="lead emblem-font" style="color: #f1592a;"><%= t('truppie-text') %></p> -->
+            <%= image_tag("logo_truppie.svg", :alt => "Truppie",:width => 190, :class => "img-fluid ") %>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <span class="pull-xs-right">
+                <i class="fa fa-2x fa-users"></i>
+              </span>
+              <%= t('truppie-item') %>
+            </li>
+            <li class="list-group-item">
+              <span class="pull-xs-right">
+              <i class="fa fa-2x fa-street-view"></i>
+            </span>
+              <%= t('truppie-second-item') %>
+            </li>
+            <li class="list-group-item">
+              <span class="pull-xs-right">
+              <i class="fa fa-2x fa-ticket"></i>
+            </span>
+              <%= t('truppie-third-item') %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <a name="warning"></a>
+          <div class="text-xs-center" style="margin-top: 60px;">
+            <div class="thumbnail center well well-small text-center spaced-down">
+                    <h4 class="main-color-font emblem-font"><%= t('newsletter-title') %></h4>
+
+                    <%= render 'layouts/flash' %>
+
+                    <p class="lead">
+                      <%= t('newsletter-text') %>
+                      <br />
+                      <small><%= t('welcome_view_index_small_nine') %></small>
+                    </p>
+
+
+              <fieldset class="form-group">
+                  <%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
+                    <%= email_field(:subscriber, :email, :class => 'form-control spaced-down', :placeholder => 'O meu e-mail é') %>
+                  <input type="submit" value="Inscreva-me!" class="btn btn-large btn btn-outlined btn-theme btn-lg" />
+                <% end %>
+              </fieldset>
+                </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 spaced-default">
+            <h4 class="emblem-font main-color-font"><%= t('authors-title') %></h4>
+          </div>
+          <div class="row">
+                  <div class="card hovercard col-sm-6">
+                      <div class="cardheader"></div>
+                      <div class="avatar">
+                          <%= image_tag("laura.jpg", :alt => "Truppie", :width => '120', class: 'spaced-smallest') %><br />
+                      </div>
+                      <div class="info">
+                          <div class="title">
+                              <a target="_blank" href="http://www.7cantosdomundo.com.br"><%= t('welcome_view_index_a_three') %></a>
+                          </div>
+                          <div class="desc"><%= t('laura-feature') %></div>
+                          <div class="desc"><%= t('laura-second-feature') %></div>
+                          <div class="desc"><%= t('laura-third-feature') %></div>
+                          <div class="desc"><a href="http://www.7cantosdomundo.com.br">7cantosdomundo.com.br</a></div>
+                      </div>
+                      <div class="bottom">
+                          <a class="btn btn-primary btn-twitter btn-twitter btn-sm" href="https://twitter.com/7CantosdoMundo">
+                              <i class="fa fa-twitter"></i>
+                          </a>
+                          <a class="btn btn-danger btn-sm" rel="publisher"
+                             href="https://plus.google.com/+LauraSette7CantosdoMundo/posts">
+                              <i class="fa fa-google-plus"></i>
+                          </a>
+                          <a class="btn btn-primary btn-sm btn-facebook" rel="publisher"
+                             href="https://www.facebook.com/laurinha.sette">
+                              <i class="fa fa-facebook"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="card hovercard col-sm-6">
+                      <div class="cardheader-alt"></div>
+                      <div class="avatar">
+                          <img alt="" src="https://secure.gravatar.com/avatar/3bb283ee62ca047885c15b839cc4f024?d=https%3A%2F%2Fi.vimeocdn.com%2Fportrait%2Fdefault-gray_300x300.png&s=300">
+                      </div>
+                      <div class="info">
+                          <div class="title">
+                              <a target="_blank" href="http://www.alexandremagno.net"><%= t('welcome_view_index_a_four') %></a>
+                          </div>
+                          <div class="desc"><%= t('alex-feature') %></div>
+                          <div class="desc"><%= t('alex-second-feature') %></div>
+                          <div class="desc"><%= t('welcome_view_index_div_four') %></div>
+                          <div class="desc"><a href="http://www.alexandremagno.net">alexandremagno.net</a></div>
+                      </div>
+                      <div class="bottom">
+                          <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/alexanmtz">
+                              <i class="fa fa-twitter"></i>
+                          </a>
+                          <a class="btn btn-danger btn-sm" rel="publisher"
+                             href="https://plus.google.com/105985612936824441325">
+                              <i class="fa fa-google-plus"></i>
+                          </a>
+                          <a class="btn btn-primary btn-facebook btn-sm" rel="publisher"
+                             href="https://facebook.com/alexandre.zimerer">
+                              <i class="fa fa-facebook"></i>
+                          </a>
+                      </div>
+                  </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</div>

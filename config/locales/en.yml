@@ -11,7 +11,6 @@ en:
           has_one: is not possible to exclude because you have %{record} dependent records
   add-packages-desc: You can add more packages and one differenciate from another to offer food, accomodation etc.
   add-packages-title: Add package
-  admin-from-anywhere-content: Administre seus eventos e reservas de qualquer lugar, a Truppie funciona em qualquer dispositivo
   admin-from-anywhere-content: Manage your events and reservations from anywhere, Truppie is ready for mobile
   admin-from-anywhere-title: We are mobile friendly
   admin-payment-with-us-conclusion: 'Ah, there is other things to know:'
@@ -91,62 +90,63 @@ en:
   contacts_views_index_small: Be cool, we will not share your personal information with anybody
   contacts_views_submit: Send
   create-account-action-step: Create a account as an user
+  create-background-action: Create-background-action
+  create-experience-call-to-action: Create-experience-call-to-action
   create-marketplace-action: Create account
   create-truppie-account: Create a truppie account
   date:
     abbr_day_names:
-      - Mon
-      - Tue
-      - Wed
-      - Thu
-      - Sat
-      - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Sat
+    - Sun
     abbr_month_names:
-      -
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - Mai
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-
+    - 
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - Mai
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
     day_names:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Thursday
-      - Saturday
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Thursday
+    - Saturday
     day_names_calendar: '["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]'
     formats:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       short: "%d de %B"
     month_names:
-      -
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+    - 
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
     order:
-      - :day
-      - :month
-      - :year
+    - :day
+    - :month
+    - :year
   datetime:
     distance_in_words:
       about_x_hours:
@@ -157,20 +157,20 @@ en:
         other: "%{count} months"
       about_x_years:
         one: about one year
-        other: "about %{count} years"
+        other: about %{count} years
       almost_x_years:
         one: almost one year
-        other: "almost %{count} years"
+        other: almost %{count} years
       half_a_minute: half a minute
       less_than_x_minutes:
         one: less than a minute
-        other: "less than %{count} minutes"
+        other: less than %{count} minutes
       less_than_x_seconds:
         one: less than one second
-        other: "less than %{count} seconds"
+        other: less than %{count} seconds
       over_x_years:
         one: over one year
-        other: "over %{count} years"
+        other: over %{count} years
       x_days:
         one: one day
         other: "%{count} days"
@@ -198,7 +198,7 @@ en:
     format: "%{attribute} %{message}"
     messages:
       accepted: must be accepted
-      blank: "can't be blank"
+      blank: can't be blank
       confirmation: its not equal to %{attribute}
       empty: empty field not allowed
       equal_to: should be equal to %{count}
@@ -219,11 +219,11 @@ en:
       required: it should exist
       taken: this was already taken
       too_long:
-        one: "too long (max: 1 character)"
-        other: "to long (max: %{count} characters)"
+        one: 'too long (max: 1 character)'
+        other: 'to long (max: %{count} characters)'
       too_short:
-        one: "too short (min: 1 character)"
-        other: "too short (min: %{count} characters)"
+        one: 'too short (min: 1 character)'
+        other: 'too short (min: %{count} characters)'
       wrong_length:
         one: wrong length (1 caracter)
         other: wrong length (%{count} characters)
@@ -234,12 +234,12 @@ en:
         other: 'No possible to save  %{model}: %{count} errors'
   event-add-image: add image
   event-call-end: end
-  event-call-start: "start"
+  event-call-start: start
   event-date-title: tour date
   event-desc-label: tour description
   event-drag-drop-file: drop your image here
   event-image-upload: upload your image
-  event-no-packages-message: "There's no package added"
+  event-no-packages-message: There's no package added
   event-packages-title: Packages included
   event-remove-image-upload: Remove event image
   event-title: Event title
@@ -252,7 +252,7 @@ en:
   fullname-empty: Your fullname is empty
   guide-manual-link: Manual for the guide (Portuguese)
   guide-manual-title: Guide manual
-  guides-main-menu: "I'm a guide"
+  guides-main-menu: I'm a guide
   guides_partial_a_one: " Go to their website"
   guides_partial_a_two: " Questions? Send them an e-mail"
   guides_partial_h3_one: Guide
@@ -268,7 +268,7 @@ en:
       submit: Save %{model}
       update: Update %{model}
   how-it-works-link: See how the Truppie works
-  how-it-works-main-menu: "I'm explorer"
+  how-it-works-main-menu: I'm explorer
   how-it-works-title: How it works
   import-event-action: Import events
   import-event-desc: Choose the facebook events that you wish to import
@@ -294,17 +294,35 @@ en:
   label-organizer-thanks-moderation: We are checking your information
   label-organizer-twitter: Twitter
   label-organizer-website: Website
+  lang-brazil: Lang-brazil
+  lang-eua: Lang-eua
   laura-feature: Biologist
   laura-second-feature: Travel Blogger
   laura-third-feature: Full time nerd and compulsive reader
   logged-as-label: Logged as
   logout-label: Logout
+  mail-hello-message: hello %{organizer}
+  mail-hello-to-start: Mail-hello-to-start
+  mail-hello-to-start-update: Mail-hello-to-start-update
+  mail-organizer-see-profile: Mail-organizer-see-profile
+  mail-organizer-share-description: Mail-organizer-share-description
+  mail-organizer-share-intro: Mail-organizer-share-intro
+  mail-organizer-share-more-description: Mail-organizer-share-more-description
+  mail-organizer-share-title: Mail-organizer-share-title
+  mail-verify-account-description: Mail-verify-account-description
+  mail-verify-account-intro: Mail-verify-account-intro
+  mail-verify-account-link: Mail-verify-account-link
+  mail-verify-account-title: Mail-verify-account-title
+  mail-welcome-account-created-message: Mail-welcome-account-created-message
+  mail-welcome-account-created-message-update: Mail-welcome-account-created-message-update
+  mail-welcome-account-title: Mail-welcome-account-title
+  mail-welcome-account-title-update: Mail-welcome-account-title-update
   manage-truppie-action: Manager
   manifesto-link-label: Manifest about our Philosophy
   marketplace-city-placeholder: 'ex: São Paulo'
   marketplace-complement-placeholder: 'ex: 303 apto 404'
   marketplace-controller-notice-update: Account updated
-  marketplace-controller-notice-update-fail: "There's a error to update your account"
+  marketplace-controller-notice-update-fail: There's a error to update your account
   marketplace-data-incorrect: Your account data is incorrect, please review and send again
   marketplace-datebirth-placeholder: 'ex: birthdate (AAAA/DD/MM)'
   marketplace-document-placeholder: 'ex: identification number'
@@ -346,6 +364,7 @@ en:
   modal-packages-title: Gerenciamento de pacotes
   navbar_partial_link_four: Log out
   navbar_partial_link_one: Sign in / Log in
+  navbar_partial_link_organizer: Edit your accounts
   navbar_partial_link_three: Edit user
   navbar_partial_link_two: My truppies
   new-bank-account-title: New-bank-account-title
@@ -354,9 +373,11 @@ en:
   new-tour-label: Criação de uma nova truppie
   newsletter-text: 'Leave your e-mail to be notified about the first truppie:'
   newsletter-title: Stay tuned!
+  no-experience-here-label: No-experience-here-label
   no-marketplace: no account
   no-marketplace-label: no account
   no-terms: no terms
+  no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: not verified
   not_verified_label: not verified
   number:
@@ -428,11 +449,12 @@ en:
   organizer-add-account-data: Add account information
   organizer-add-tour: Add tour
   organizer-after-create-account-advantages: When you create your tours with Truppie, you can manage your reservations easily!
+  organizer-background-edit-desc: Organizer-background-edit-desc
+  organizer-background-title: Organizer-background-title
   organizer-bank-data: Bank
   organizer-clients-label: Clients
   organizer-create-issue-message: We had problems to create your account
   organizer-create-success: Your account was created sucessfully
-  organizer-dashboard-desc: Aqui, você tem acesso a criação da sua truppie, assim como atualização da sua conta
   organizer-dashboard-desc: Here you have access to create your tours, as well update your account
   organizer-desc-label: describe your business
   organizer-email-label: email
@@ -447,7 +469,6 @@ en:
   organizer-name-label: Name
   organizer-new-package: Create packages
   organizer-new-tour: Create a new tour
-  organizer-panel-welcome: Este é o seu painel da truppie, onde você poderá criar seus passeios
   organizer-panel-welcome: This is your truppie panel, that you can create your tours
   organizer-percent-label: Tax (%)
   organizer-phone-label: Phone contact
@@ -464,13 +485,13 @@ en:
   organizer-update-error: We had a problem to update your account
   organizer-update-sucessfully: Your account was updated successfully
   organizer-website-label: Website
-  organizer-why-create-account-text: A Truppie quer te ajudar a criar a ferramenta ideal à sua necessidade!
   organizer-why-create-account-text: We want to help to create the platform that suits your needs!
   organizer_tours_label: truppies
   panel-label: Truppies
   payment_type_partial_div_one: Method of payment
   payment_type_partial_div_three: Boleto Bancário
   payment_type_partial_div_two: Credit card
+  place: Qual a localização?
   privacy-label: Privacy
   privacy-link: Access the terms of privacy
   profile-access: Go to your profile
@@ -487,6 +508,7 @@ en:
   select-date: select date
   shoes-heading: Get ready
   shoes-text: There's nothing to worry about - just get ready and enjoy the ride!
+  side-note-edit-bar-message: Divulgue este link na divulgação do evento para que seu usuário possa reservar online
   status_danger: danger
   status_success: success
   submit-external-payment: Split payment on credit card
@@ -511,6 +533,8 @@ en:
   title-introducing-accounts: This is your accounts
   title-organizer-join-truppie: Join Truppie
   tour-category-label: What the subject of this tour
+  tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
+  tour-edit-label: editar truppie
   tours_controller_confirm_headline_msg: Your booking is confirmed for this truppie
   tours_controller_confirm_headline_msg_two: Event successfully confirmed
   tours_controller_confirm_status_msg: Thanks for booking this event
@@ -685,7 +709,7 @@ en:
   user-advantages-guide-contact-step: You will have support and orientation from the guide
   user-advantages-payment-step: Discover new adventures with our guides
   user-adventure-info: We are always looking for a new adventure for you
-  user-adventure-step: "We are stuck in the routine, and there is a world outside to be explored. It isn't? When did you adventure last time? Let's do it again!"
+  user-adventure-step: We are stuck in the routine, and there is a world outside to be explored. It isn't? When did you adventure last time? Let's do it again!
   user-collect-experience-title: Collect new adventures
   user-start-to-use-truppie: Look for my tours!
   user-truppie-possibilities: 'You can:'
@@ -694,8 +718,8 @@ en:
   user-why-truppie-is-so-great-complement: Truppie is so great to you make reservation for your tour guides
   verified-label: Verified account
   verified_label: Verified account
-  want-offer-truppies-title: Você é guia e busca a melhor maneira de oferecer os seus passeios?
-  want-offer-truppies-title: "Are you a guide and you're looking a way to offer your tour guides"
+  want-offer-truppies-title: Are you a guide and you're looking a way to offer your tour guides
+  welcome-places-title: Welcome-places-title
   welcome_view_defs_h3: With faded secondary text
   welcome_view_defs_p_1: Proin rutrum tortor vitae elementum auctor. Etiam et est vel ipsum congue porta. Nullam vitae rhoncus nisi. Maecenas egestas metus sed dolor tincidunt accumsan. Etiam sed elit est. Donec dui augue, malesuada sed pharetra sit amet, dignissim laoreet justo. Curabitur eget congue lacus. Quisque hendrerit, ligula a vestibulum iaculis, lorem orci finibus justo, in vehicula diam massa ac lectus. Nullam eu lacus scelerisque, hendrerit arcu ut, volutpat lorem. Fusce congue congue nibh, at volutpat enim fermentum id. Etiam vehicula accumsan ullamcorper. Duis dapibus enim a sapien blandit facilisis. Aliquam elit quam, vulputate eu maximus porttitor, varius sed ipsum. Maecenas efficitur ex ut dui imperdiet, in fermentum augue interdum. Ut nisi risus, vehicula eu nisi quis, rhoncus lobortis quam. Integer fermentum ullamcorper lectus, at convallis neque laoreet et.
   welcome_view_defs_p_2: Aenean ornare nec mauris nec vulputate. Duis efficitur diam arcu, ut euismod nisi maximus et. Etiam sollicitudin lacinia elementum. Sed eget bibendum est. Nulla facilisi. Donec convallis metus eleifend tortor mattis condimentum. Integer ut felis pulvinar, euismod orci ac, pretium mauris. Nunc semper nunc sed lacus placerat semper vel nec sapien.
