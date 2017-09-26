@@ -22,7 +22,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use postgresql as the database for Active Record
-gem 'pg', '0.20.0'
+gem 'pg'
 gem 'thin'
 
 # Use jquery as the JavaScript library

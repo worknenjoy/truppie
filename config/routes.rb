@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => {
-      :registrations => "users/registrations",
-      :omniauth_callbacks => "users/omniauth_callbacks"
-  }
-
   root 'welcome#index'
 
   resources :backgrounds
@@ -85,6 +80,11 @@ Rails.application.routes.draw do
   end
 
   post 'subscribers/create'
+
+  devise_for :users, :controllers => {
+      :registrations => "users/registrations",
+      :omniauth_callbacks => "users/omniauth_callbacks"
+  }
 
   #devise_scope :user do
   #  get 'orders_from_user', :to => 'devise/sessions#orders_from_user', :as => :orders_from_user
