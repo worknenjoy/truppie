@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924145657) do
+ActiveRecord::Schema.define(version: 20170926153539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -284,7 +284,6 @@ ActiveRecord::Schema.define(version: 20170924145657) do
     t.integer  "member_id"
     t.integer  "rating"
     t.integer  "user_id",                              null: false
-    t.integer  "where_id"
     t.string   "email"
     t.string   "website"
     t.string   "facebook"
@@ -307,7 +306,6 @@ ActiveRecord::Schema.define(version: 20170924145657) do
   add_index "organizers", ["marketplace_id"], name: "index_organizers_on_marketplace_id", using: :btree
   add_index "organizers", ["member_id"], name: "index_organizers_on_member_id", using: :btree
   add_index "organizers", ["user_id"], name: "index_organizers_on_user_id", using: :btree
-  add_index "organizers", ["where_id"], name: "index_organizers_on_where_id", using: :btree
 
   create_table "organizers_wheres", id: false, force: :cascade do |t|
     t.integer "organizer_id", null: false
@@ -390,6 +388,16 @@ ActiveRecord::Schema.define(version: 20170924145657) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
     t.string   "email"
@@ -532,7 +540,6 @@ ActiveRecord::Schema.define(version: 20170924145657) do
   add_foreign_key "organizers", "marketplaces"
   add_foreign_key "organizers", "members"
   add_foreign_key "organizers", "users"
-  add_foreign_key "organizers", "wheres"
   add_foreign_key "payment_types", "marketplaces"
   add_foreign_key "reviews", "tours"
   add_foreign_key "reviews", "users"

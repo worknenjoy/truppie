@@ -1,10 +1,10 @@
 class Organizer < ActiveRecord::Base
   has_many :tours  
   has_and_belongs_to_many :members
+  has_and_belongs_to_many :wheres
   belongs_to :marketplace
   
   belongs_to :user
-  belongs_to :where
   
   scope :publisheds, -> { where(status: 'P') }
 
@@ -24,6 +24,8 @@ class Organizer < ActiveRecord::Base
   validates :name, uniqueness: true
 
   accepts_nested_attributes_for :tours, allow_destroy: true, reject_if: :all_blank
+
+  accepts_nested_attributes_for :wheres, allow_destroy: true, reject_if: :all_blank
 
   validates_presence_of :name, :email, :user, allow_blank: false
 
@@ -69,10 +71,4 @@ class Organizer < ActiveRecord::Base
     end
     missing
   end
-
-
-
-
-
-    
 end

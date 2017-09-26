@@ -9,7 +9,6 @@ class CreateOrganizers < ActiveRecord::Migration
       t.references :member, index: true
       t.integer :rating
       t.references :user, index: true, null: false
-      t.references :where, index: true
       t.string :email
       t.string :website
       t.string :facebook

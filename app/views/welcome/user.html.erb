@@ -22,6 +22,7 @@
     </form>
   </div>
   -->
+  <% if @backgrounds.present? %>
   <h4><%= t('welcome-places-title') %></h4>
   <ul>
     <% @backgrounds.each do |b| %>
@@ -36,6 +37,22 @@
     </li>
     <% end %>
   </ul>
+  <% else %>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="card card-block text-xs-center">
+              <img class="card-img-top" src="https://unsplash.it/g/700/200/?gravity=east" class="img-fluid">
+              <div class="card-block">
+                <h4 class="card-title"><%= t('no-places-title') %></h4>
+                <p class="card-text"><%= t('no-places-text') %></p>
+                <a href="<%= organizer_welcome_path %>" class="btn btn-primary"><%= t('no-places-action') %></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
 </div>
 <!--
 <div class='container' id='pricing'>

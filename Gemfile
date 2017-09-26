@@ -56,6 +56,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'activesupport-json_encoder'
+gem 'activerecord-session_store'
+
 gem 'pg', '~> 0.20'
 
 # Use ActiveModel has_secure_password

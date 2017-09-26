@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def store_current_location
     store_location_for(:user, request.url)
-    if request[:organizer] and request[:organizer]["welcome"] == "true"
+    if request[:organizer] and request[:organizer]["welcome"] == "true" and !current_user
       session[:organizer_welcome] = true
       session[:organizer_welcome_params] = request[:organizer]
       store_location_for(:user, '/organizers/create_from_auth')

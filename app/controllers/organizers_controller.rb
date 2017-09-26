@@ -53,12 +53,16 @@ class OrganizersController < ApplicationController
       if @organizer.save
         format.html {
           OrganizerMailer.notify(@organizer, "activate").deliver_now
+          session.delete(:organizer_welcome_params)
+          session.delete(:organizer_welcome)
           redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
         }
         format.json { render :show, status: :created, location: @organizer }
       else
         format.html {
           flash[:errors] = @organizer.errors
+          session.delete(:organizer_welcome_params)
+          session.delete(:organizer_welcome)
           redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
         }
         format.json { render json: @organizer.errors, status: :unprocessable_entity }
@@ -73,14 +77,20 @@ class OrganizersController < ApplicationController
       @organizer = Organizer.new(params)
 
       if @organizer.save
+        session.delete(:organizer_welcome_params)
+        session.delete(:organizer_welcome)
         redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
       else
         flash[:errors] = @organizer.errors
         puts 'errors from organizer'
         puts @organizer.errors
+        session.delete(:organizer_welcome_params)
+        session.delete(:organizer_welcome)
         redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
       end
     else
+      session.delete(:organizer_welcome_params)
+      session.delete(:organizer_welcome)
       redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
     end
   end
@@ -394,17 +404,8 @@ class OrganizersController < ApplicationController
         params[:organizer][:members] = members
       end
       
-      if params[:organizer][:policy] == "" or params[:organizer][:policy].nil?
-        params[:organizer][:policy] = []
-      else
-        included_to_array = params[:organizer][:policy].split(split_val)
-        included = []
-        included_to_array.each do |i|
-          included.push i
-        end
-        params[:organizer][:policy] = included
-      end
+
       
-      params.fetch(:organizer, {}).permit(:name, :marketplace_id, :description, :picture, :user_id, :where, :email, :website, :facebook, :twitter, :instagram, :phone, :status, :members, :policy).merge(params[:organizer])
+      params.fetch(:organizer, {}).permit(:welcome, {:members => []}, :policy, :name, :marketplace_id, :description, :picture, :user_id, {:wheres => []}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
     end
 end
