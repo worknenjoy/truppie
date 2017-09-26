@@ -14,7 +14,6 @@ class CreateTours < ActiveRecord::Migration
       t.integer :minimum
       t.integer :maximum
       t.integer :difficulty
-      t.references :where, index: true, null:false
       t.string :address
       t.references :user, index: true, null:false
       t.text :included, array: true, default: []
