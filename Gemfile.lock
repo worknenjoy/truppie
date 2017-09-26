@@ -339,7 +339,7 @@ DEPENDENCIES
   pagseguro-oficial (~> 2.5.0)
   paperclip!
   paperclip-aws
-  pg
+  pg (~> 0.20)
   puma
   rails (= 4.2.5.1)
   rails_12factor
