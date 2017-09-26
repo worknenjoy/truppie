@@ -82,4 +82,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  pool: 15
+  <<: *default
+  database: truppie_production
+  username: truppie
+  password: <%= ENV['TRUPPIE_DATABASE_PASSWORD'] %>
