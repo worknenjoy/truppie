@@ -77,16 +77,16 @@
                 <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-2-medium.jpg") %>">
               <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
               <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-2-default.jpg")) %>
-          </picture>
-          <div class="carousel-caption">
-            <h3 class="secondary-font display-tagline"><%= t('second-caption') %></h3>
-            <p class="lead emblem-font"><%= t('second-description') %></p>
+            </picture>
+            <div class="carousel-caption">
+              <h3 class="secondary-font display-tagline"><%= t('second-caption') %></h3>
+              <p class="lead emblem-font"><%= t('second-description') %></p>
+            </div>
+            <div class="top-note">
+              <small><%= t('welcome_view_index_small_three') %></small>
+            </div>
           </div>
-          <div class="top-note">
-            <small><%= t('welcome_view_index_small_three') %></small>
-          </div>
-          </div>
-          <div class="carousel-item">
+          <div class="carousel-item active">
             <picture>
               <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-small.jpg") %>">
               <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-medium.jpg") %>">
