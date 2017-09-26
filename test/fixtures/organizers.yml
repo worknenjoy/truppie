@@ -5,8 +5,7 @@ utopicos:
   description: Oferecendo passeios e outdoor lifestyle
   members: alex_member, laura_member
   rating: 3
-  user: joana 
-  where: placeone 
+  user: joana
   email: organizer@mail.com
   website: MyString
   facebook: MyString
@@ -20,8 +19,7 @@ mantiex:
   description: Oferecendo passeios e outdoor lifestyle
   members: alex_member, laura_member
   rating: 3
-  user: joana 
-  where: placeone 
+  user: joana
   email: MyString
   website: MyString
   facebook: MyString
@@ -34,8 +32,7 @@ mkt:
   description: Oferecendo passeios e outdoor lifestyle
   members: alex_member, laura_member
   rating: 3
-  user: joana 
-  where: placeone 
+  user: joana
   email: mail@foo.com
   website: MyString
   facebook: MyString
@@ -49,8 +46,7 @@ guide_mkt_validated:
   description: Oferecendo passeios e outdoor lifestyle
   members: alex_member, laura_member
   rating: 3
-  user: joana 
-  where: placeone 
+  user: joana
   email: example@email.com
   website: MyString
   facebook: MyString
