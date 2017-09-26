@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924214348) do
+ActiveRecord::Schema.define(version: 20170924145657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,10 +60,7 @@ ActiveRecord::Schema.define(version: 20170924214348) do
     t.datetime "picture_updated_at"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.integer  "where_id"
   end
-
-  add_index "backgrounds", ["where_id"], name: "index_backgrounds_on_where_id", using: :btree
 
   create_table "backgrounds_wheres", id: false, force: :cascade do |t|
     t.integer "background_id", null: false
@@ -300,26 +297,6 @@ ActiveRecord::Schema.define(version: 20170924214348) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.boolean  "active"
-    t.string   "person_name"
-    t.string   "person_lastname"
-    t.string   "document_type"
-    t.string   "document_number"
-    t.string   "id_type"
-    t.string   "id_number"
-    t.string   "id_issuer"
-    t.string   "id_issuerdate"
-    t.string   "birthDate"
-    t.string   "street"
-    t.string   "street_number"
-    t.string   "complement"
-    t.string   "district"
-    t.string   "zipcode"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "token"
-    t.string   "account_id"
     t.boolean  "market_place_active",  default: false
     t.integer  "marketplace_id"
     t.string   "status"
@@ -533,21 +510,17 @@ ActiveRecord::Schema.define(version: 20170924214348) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "place_id"
     t.string   "postal_code"
     t.string   "address"
     t.string   "google_id"
     t.string   "url"
-    t.integer  "background_id"
   end
-
-  add_index "wheres", ["background_id"], name: "index_wheres_on_background_id", using: :btree
 
   add_foreign_key "attractions", "languages"
   add_foreign_key "attractions", "quotes"
-  add_foreign_key "backgrounds", "wheres"
   add_foreign_key "bank_accounts", "marketplaces"
   add_foreign_key "collaborators", "marketplaces"
   add_foreign_key "confirmeds", "users"
@@ -571,5 +544,4 @@ ActiveRecord::Schema.define(version: 20170924214348) do
   add_foreign_key "tours", "organizers"
   add_foreign_key "tours", "tags"
   add_foreign_key "tours", "users"
-  add_foreign_key "wheres", "backgrounds"
 end
