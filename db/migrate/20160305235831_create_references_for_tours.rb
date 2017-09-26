@@ -1,7 +1,6 @@
 class CreateReferencesForTours < ActiveRecord::Migration
   def change
     add_foreign_key :tours, :organizers
-    add_foreign_key :tours, :wheres
     add_foreign_key :tours, :users
     add_foreign_key :tours, :tags
     add_foreign_key :tours, :categories
