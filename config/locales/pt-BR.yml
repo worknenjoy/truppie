@@ -381,12 +381,12 @@ pt-BR:
   new-tour-label: Criação de uma nova truppie
   newsletter-text: Deixe seu e-mail para saber das novidades
   newsletter-title: Fique ligado!
-  no-experience-here-label: No-experience-here-label
+  no-experience-here-label: Ainda não temos experiências para este local
   no-marketplace: Dados da conta não cadastrados
   no-marketplace-label: Sem conta cadastrada
-  no-places-action: No-places-action
-  no-places-text: No-places-text
-  no-places-title: No-places-title
+  no-places-action: Adicionar uma experiência deste local
+  no-places-text: Este lugar não tem nenhum passeio cadastrado
+  no-places-title: Não há experiências para este lugar
   no-terms: não há termos
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: Não verificado
