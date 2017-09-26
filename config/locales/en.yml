@@ -373,12 +373,12 @@ en:
   new-tour-label: Criação de uma nova truppie
   newsletter-text: 'Leave your e-mail to be notified about the first truppie:'
   newsletter-title: Stay tuned!
-  no-experience-here-label: No-experience-here-label
+  no-experience-here-label: There's no experience here
   no-marketplace: no account
   no-marketplace-label: no account
-  no-places-action: No-places-action
-  no-places-text: No-places-text
-  no-places-title: No-places-title
+  no-places-action: There's no experience registered yet for this place
+  no-places-text: We still don't have experience for this place
+  no-places-title: No experience for this place
   no-terms: no terms
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: not verified
