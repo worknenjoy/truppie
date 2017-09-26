@@ -302,21 +302,21 @@ en:
   logged-as-label: Logged as
   logout-label: Logout
   mail-hello-message: hello %{organizer}
-  mail-hello-to-start: Mail-hello-to-start
-  mail-hello-to-start-update: Mail-hello-to-start-update
-  mail-organizer-see-profile: Mail-organizer-see-profile
-  mail-organizer-share-description: Mail-organizer-share-description
-  mail-organizer-share-intro: Mail-organizer-share-intro
-  mail-organizer-share-more-description: Mail-organizer-share-more-description
-  mail-organizer-share-title: Mail-organizer-share-title
-  mail-verify-account-description: Mail-verify-account-description
-  mail-verify-account-intro: Mail-verify-account-intro
-  mail-verify-account-link: Mail-verify-account-link
-  mail-verify-account-title: Mail-verify-account-title
-  mail-welcome-account-created-message: Mail-welcome-account-created-message
-  mail-welcome-account-created-message-update: Mail-welcome-account-created-message-update
-  mail-welcome-account-title: Mail-welcome-account-title
-  mail-welcome-account-title-update: Mail-welcome-account-title-update
+  mail-hello-to-start: Hello, Your account is activated
+  mail-hello-to-start-update: Your account was updated
+  mail-organizer-see-profile: See your profile
+  mail-organizer-share-description: Sharing your profile to be discovered
+  mail-organizer-share-intro: You can share yor profile to offer your online reservations!
+  mail-organizer-share-more-description: Sharing your profile your clientes will know about the places to go
+  mail-organizer-share-title: Share profile
+  mail-verify-account-description: Verify your account
+  mail-verify-account-intro: You should verify your account to receive the reservation from your clientes
+  mail-verify-account-link: Verify account
+  mail-verify-account-title: Verifying your account to receive the payments
+  mail-welcome-account-created-message: Your account is ready!
+  mail-welcome-account-created-message-update: Your account was updated
+  mail-welcome-account-title: Welcome to your account
+  mail-welcome-account-title-update: Your account was updated
   manage-truppie-action: Manager
   manifesto-link-label: Manifest about our Philosophy
   marketplace-city-placeholder: 'ex: São Paulo'
@@ -722,7 +722,7 @@ en:
   verified-label: Verified account
   verified_label: Verified account
   want-offer-truppies-title: Are you a guide and you're looking a way to offer your tour guides
-  welcome-places-title: Welcome-places-title
+  welcome-places-title: Places to go
   welcome_view_defs_h3: With faded secondary text
   welcome_view_defs_p_1: Proin rutrum tortor vitae elementum auctor. Etiam et est vel ipsum congue porta. Nullam vitae rhoncus nisi. Maecenas egestas metus sed dolor tincidunt accumsan. Etiam sed elit est. Donec dui augue, malesuada sed pharetra sit amet, dignissim laoreet justo. Curabitur eget congue lacus. Quisque hendrerit, ligula a vestibulum iaculis, lorem orci finibus justo, in vehicula diam massa ac lectus. Nullam eu lacus scelerisque, hendrerit arcu ut, volutpat lorem. Fusce congue congue nibh, at volutpat enim fermentum id. Etiam vehicula accumsan ullamcorper. Duis dapibus enim a sapien blandit facilisis. Aliquam elit quam, vulputate eu maximus porttitor, varius sed ipsum. Maecenas efficitur ex ut dui imperdiet, in fermentum augue interdum. Ut nisi risus, vehicula eu nisi quis, rhoncus lobortis quam. Integer fermentum ullamcorper lectus, at convallis neque laoreet et.
   welcome_view_defs_p_2: Aenean ornare nec mauris nec vulputate. Duis efficitur diam arcu, ut euismod nisi maximus et. Etiam sollicitudin lacinia elementum. Sed eget bibendum est. Nulla facilisi. Donec convallis metus eleifend tortor mattis condimentum. Integer ut felis pulvinar, euismod orci ac, pretium mauris. Nunc semper nunc sed lacus placerat semper vel nec sapien.
