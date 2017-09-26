@@ -4,9 +4,9 @@
     	<div class="row">
     	  <div class="col-xs-12 col-md-2 brand-grid-container center-xs">
     		<% if !current_page?(root_url) %>
-  		  <%= link_to root_path, class: 'navbar-brand  pull-left' do %>
-  		  	<%= image_tag("logos-02.svg", :alt => "Truppie", :class => 'img-fluid', :width => 100) %>
-  		  <% end %>
+          <%= link_to root_path, class: 'navbar-brand  pull-left' do %>
+            <%= image_tag("logos-02.svg", :alt => "Truppie", :class => 'img-fluid', :width => 100) %>
+          <% end %>
   	  	<% end %>
   	  	</div>
   	  	<div class="col-xs-12 col-md-7">
@@ -20,48 +20,46 @@
           </nav>
     	  </div>
     	  <div class="col-xs-12 col-md-3 center-xs">
-  		  <% if not user_signed_in? %>
-  		  <%= link_to t('navbar_partial_link_one'), new_user_session_path, class: 'btn btn-secondary btn-sm pull-xs-right' %>
-  		  <% else %>
-    		  <div class="user-actions">
-
-      		  	<div class="dropdown pull-xs-left">
-        			  <a href="#" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" id="dropdown-user">
-        			    <% if current_user.image %>
-        			    <img src="<%= to_https(current_user.image) %>" alt="user" class="img-circle" width="30" />
-        			    <% end %>
-        			    <%= current_user.email.split('@')[0] %>
-        			  </a>
-        			  <div class="dropdown-menu" aria-labelledby="openuser">
-        			  	<%= link_to t('navbar_partial_link_two'), orders_path, class: 'dropdown-item' %>
-        			    <%= link_to t('navbar_partial_link_three'), edit_user_registration_path, class: 'dropdown-item' %>
-                  <% if is_organizer_admin %>
-                      <%= link_to t('navbar_partial_link_organizer'), organizer_welcome_path, class: 'dropdown-item' %>
-                  <% end %>
-        			    <%= link_to t('navbar_partial_link_four'), destroy_user_session_path, class: 'dropdown-item' %>
-        			  </div>
-              </div>
-            <div class="language-container pull-right">
-              <div class="ulList">
-                <img src="" class="ulImg" alt="">
-                <span class="ulTxt"><i class="fa fa-globe"></i></span>
-                <span class="fa fa-angle-down"></span>
-              </div>
-              <div class="liList">
-                <a href="<%= "#{request.path}?locale=pt-BR" %>" class="li" data-img="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/br.png">
-                  <img src="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/br.png" class="liImg">
-                  <span class="liTxt"><%= t('lang-brazil') %></span>
-                </a>
-                <a href="<%= "#{request.path}?locale=en" %>" class="li" data-img="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/en.png">
-                  <img src="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/us.png" class="liImg">
-                  <span class="liTxt"><%= t('lang-eua') %></span>
-                </a>
+    		  <div class="user-actions pull-left" style="width: 70%">
+            <% if not user_signed_in? %>
+                <%= link_to t('navbar_partial_link_one'), new_user_session_path, class: 'btn btn-secondary pull-right spaced-top-small' %>
+            <% else %>
+            <div class="dropdown">
+              <a href="#" class="btn btn-secondary pull-right spaced-top-small dropdown-toggle" data-toggle="dropdown" id="dropdown-user" style="padding: 3px;">
+                <% if current_user.image %>
+                <img src="<%= to_https(current_user.image) %>" alt="user" class="img-circle" width="30" />
+                <% end %>
+                <%= current_user.email.split('@')[0] %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="openuser">
+                <%= link_to t('navbar_partial_link_two'), orders_path, class: 'dropdown-item' %>
+                <%= link_to t('navbar_partial_link_three'), edit_user_registration_path, class: 'dropdown-item' %>
+                <% if is_organizer_admin %>
+                    <%= link_to t('navbar_partial_link_organizer'), organizer_welcome_path, class: 'dropdown-item' %>
+                <% end %>
+                <%= link_to t('navbar_partial_link_four'), destroy_user_session_path, class: 'dropdown-item' %>
               </div>
             </div>
-           </div>
-  	     </div>
-    	</div>
+            <% end %>
+        </div>
+        <div class="language-container pull-right">
+          <div class="ulList">
+            <img src="" class="ulImg" alt="">
+            <span class="ulTxt"><i class="fa fa-globe"></i></span>
+            <span class="fa fa-angle-down"></span>
+          </div>
+          <div class="liList">
+            <a href="<%= "#{request.path}?locale=pt-BR" %>" class="li" data-img="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/br.png">
+              <img src="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/br.png" class="liImg">
+              <span class="liTxt"><%= t('lang-brazil') %></span>
+            </a>
+            <a href="<%= "#{request.path}?locale=en" %>" class="li" data-img="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/en.png">
+              <img src="https://raw.githubusercontent.com/hjnilsson/country-flags/master/png250px/us.png" class="liImg">
+              <span class="liTxt"><%= t('lang-eua') %></span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    <% end %>
   </nav>
 </div>
