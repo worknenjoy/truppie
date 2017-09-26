@@ -1,9 +1,8 @@
 @import "bourbon";
-@import 'bootstrap/variables';
 
-$color1: $brand-info-lighter; // tan
-$color2: $brand-primary-lighter; // blue
-$color3: $brand-primary-lighter; // gold
+$color1: #EEEBE4; // tan
+$color2: #28415E; // blue
+$color3: #B79D55; // gold
 
 /* =================================
   Base Styles
@@ -200,6 +199,7 @@ a {
   }
 
   ul {
+    flex-wrap: wrap;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -252,7 +252,6 @@ a {
 
       img {
         position: relative;
-        height: 200px;
         z-index: -1;
       }
     }
@@ -313,4 +312,12 @@ a {
       margin-bottom: 0;
     }
   }
+}
+
+/* ---- Footer ---- */
+#main-footer {
+  background: #d9e4ea;
+  flex: 1;
+  padding: 2em 0;
+  text-align: center;
 }
