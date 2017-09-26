@@ -161,12 +161,16 @@
 			                <% if @tour.try(:difficulty) %>
 			                <li><i class="fa fa-heartbeat"></i> <%= t('tours_view_show_li_five') %> <strong><%= @tour.level %></strong> </li>
 			                <% end %>
-			                <li><i class="fa fa-map-marker"></i>  <strong> <%= @tour.address %></strong></li>
+                      <% if @tour.try(:address) %>
+                        <li><i class="fa fa-map-marker"></i>  <strong> <%= @tour.address %></strong></li>
+                      <% end %>
+                    <% if @tour.languages.present? %>
 			                <li>
 			                	<i class="fa fa-globe"></i>
 			                	<%= t('tours_view_show_li_six') %>
 			                	<strong><%= @tour.languages.map { |m| m.name }.join(', ') %></strong>
 		                	 </li>
+                    <% end %>
 		                	<% if @tour.try(:link) %>
 					    <% if !@tour.link.empty? %>
                       <li><a href="<%= @tour.link %>"><i class="fa fa-facebook-square"></i> <%= t('tours_view_show_li_seven') %></a></li>
