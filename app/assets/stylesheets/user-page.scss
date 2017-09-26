@@ -199,10 +199,11 @@ a {
   }
 
   ul {
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     margin: 0;
     padding: 0;
     list-style: none;
+    height: 210px;
 
     li {
       background: rgba(0,0,0,0.35);
