@@ -1,6 +1,6 @@
 ---
 pt-BR:
-  account-label: Conta
+  account-label: Dados pessoais
   active-label: ativa
   activerecord:
     errors:
@@ -462,7 +462,7 @@ pt-BR:
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
   organizer-background-edit-desc: Organizer-background-edit-desc
   organizer-background-title: Organizer-background-title
-  organizer-bank-data: Banco
+  organizer-bank-data: Conta bancária
   organizer-clients-label: Clientes
   organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
   organizer-create-success: Sua conta como guia foi criada com sucesso
