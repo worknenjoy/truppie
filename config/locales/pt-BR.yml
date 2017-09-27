@@ -267,7 +267,7 @@ pt-BR:
   hands-heading: Reserve
   hands-text: Verifique os detalhes e confirme sua presença
   hello-organizer-welcome: Olá, %{organizer}!
-  hello-organizer-welcome-account-edit: Cadastro de conta bancária para recebimento
+  hello-organizer-welcome-account-edit: Seu perfil
   helpers:
     select:
       prompt: Por favor selecione
@@ -452,11 +452,11 @@ pt-BR:
   or-label: ou você pode
   organizer-access-step: Aguarde nosso retorno, criaremos seu perfil!
   organizer-account-edit: Conta
-  organizer-account-edit-desc: aqui você pode editar os dados da sua conta
+  organizer-account-edit-desc: Não se esqueça de salvar!
   organizer-account-intro-desc: Esta é sua conta da Truppie.
   organizer-account-intro-title: Seja bem vindo!
   organizer-account-status-title: status da sua conta
-  organizer-account-welcome-account-edit-title: aqui você poderá editar sua conta
+  organizer-account-welcome-account-edit-title: Aqui você pode editar os dados do seu perfil.
   organizer-add-account-data: adicionar dados da sua conta
   organizer-add-tour: adicionar truppie
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
@@ -486,7 +486,7 @@ pt-BR:
   organizer-profile-account: Minha conta
   organizer-profile-account-action: Editar minha conta
   organizer-profile-account-desc: Cadastre a sua conta bancária e verifique-a para receber os pagamentos de seus passeios.
-  organizer-profile-action: Editar meu perfil
+  organizer-profile-action: Salvar
   organizer-profile-desc: Atualize seus dados e crie seus passeios
   organizer-profile-edit: Perfil
   organizer-profile-intro: Meu perfil
@@ -714,7 +714,7 @@ pt-BR:
   unactivate-label: desativar
   unconfirm_presence: você não está mais confirmado neste evento
   update-bank-account-label: atualizar conta
-  update-organizer-action: atualizar conta
+  update-organizer-action: Atualizar perfil
   user-advantages-conclusion: Assim, é só relaxar e aguardar o dia da sua truppie :)
   user-advantages-discover-step: Reservar e pagar de maneira fácil e rápida
   user-advantages-guide-contact-step: Ter todo o suporte e orientação do guia
