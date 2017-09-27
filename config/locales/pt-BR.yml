@@ -1,6 +1,6 @@
 ---
 pt-BR:
-  account-label: Dados pessoais
+  account-label: Minha conta
   active-label: ativa
   activerecord:
     errors:
@@ -29,7 +29,7 @@ pt-BR:
   balance-label: Reservas
   balloom-heading: Explore
   balloom-text: Do que você está a fim? Temos opções variadas!
-  bank-account-action-save: salvar conta bancária
+  bank-account-action-save: Salvar
   bank-account-data-incorrect: dados da conta incorretos
   bank-account-data-remote-incorrect: não foi possível salvar os dados da conta para registro
   bank-account-destroyed-successfully: esta conta foi devidamente removida
