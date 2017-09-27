@@ -309,7 +309,7 @@ pt-BR:
   laura-third-feature: Nerd confessa e leitora compulsiva
   logged-as-label: logado como
   logout-label: sair
-  mail-hello-message: Olá %{organizer}
+  mail-hello-message: Olá, %{organizer}!
   mail-hello-to-start: 'Para começar a usar a Truppie e oferecer seus passeios por nossa plataforma e passar a receber as reservas do seu cliente, você precisa seguir os seguintes passos:'
   mail-hello-to-start-update: Sua conta foi atualizada. Verifique seu perfil para ver se sua conta se encontra verificada para receber os pagamentos das suas truppies
   mail-organizer-see-profile: ver perfil
@@ -453,8 +453,8 @@ pt-BR:
   organizer-access-step: Aguarde nosso retorno, criaremos seu perfil!
   organizer-account-edit: Conta
   organizer-account-edit-desc: aqui você pode editar os dados da sua conta
-  organizer-account-intro-desc: bem-vindo a sua conta da truppie
-  organizer-account-intro-title: bem vindo a sua conta
+  organizer-account-intro-desc: Esta é sua conta da Truppie.
+  organizer-account-intro-title: Seja bem vindo!
   organizer-account-status-title: status da sua conta
   organizer-account-welcome-account-edit-title: aqui você poderá editar sua conta
   organizer-add-account-data: adicionar dados da sua conta
@@ -543,7 +543,7 @@ pt-BR:
     pm: ''
   title-introducing-accounts: Esta são suas contas registradas na truppie
   title-organizer-join-truppie: entre para a truppie
-  tour-category-label: E ai, qual é dessa truppie?
+  tour-category-label: E aí, qual é a dessa truppie?
   tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
   tour-edit-label: editar truppie
   tours_controller_confirm_headline_msg: Sua presença foi confirmada para a truppie
