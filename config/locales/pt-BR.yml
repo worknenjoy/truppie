@@ -92,7 +92,7 @@ pt-BR:
   create-account-action-step: Crie sua conta na Truppie como usuário
   create-background-action: Create-background-action
   create-experience-call-to-action: Create-experience-call-to-action
-  create-marketplace-action: criar conta
+  create-marketplace-action: Salvar
   create-truppie-account: criar conta na truppie
   date:
     abbr_day_names:
@@ -333,7 +333,7 @@ pt-BR:
   marketplace-controller-notice-update-fail: tivemos algum problema para atualizar sua conta. Verifique os dados e tente novamente
   marketplace-data-incorrect: dados da conta incorretos
   marketplace-datebirth-placeholder: 'ex: Data de nascimento (AAAA/DD/MM)'
-  marketplace-document-placeholder: 'ex: Número do CPF'
+  marketplace-document-placeholder: 'sem pontos, hífen ou espaço'
   marketplace-first-name-placeholder: 'ex: João'
   marketplace-missing: Há dados pendentes para serem fornecidos para completar sua conta
   marketplace-second-name-placeholder: 'ex: da Silva'
