@@ -266,7 +266,7 @@ pt-BR:
   guides_partial_h3_one: Guias
   hands-heading: Reserve
   hands-text: Verifique os detalhes e confirme sua presença
-  hello-organizer-welcome: Olá %{organizer}
+  hello-organizer-welcome: Olá, %{organizer}!
   hello-organizer-welcome-account-edit: Cadastro de conta bancária para recebimento
   helpers:
     select:
