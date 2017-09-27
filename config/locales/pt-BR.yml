@@ -451,7 +451,7 @@ pt-BR:
   offer-truppies-title-call: 'Com a Truppie, você pode:'
   or-label: ou você pode
   organizer-access-step: Aguarde nosso retorno, criaremos seu perfil!
-  organizer-account-edit: Conta
+  organizer-account-edit: Conta pessoal
   organizer-account-edit-desc: Não se esqueça de salvar!
   organizer-account-intro-desc: Esta é sua conta da Truppie.
   organizer-account-intro-title: Seja bem vindo!
@@ -462,7 +462,7 @@ pt-BR:
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
   organizer-background-edit-desc: Organizer-background-edit-desc
   organizer-background-title: Organizer-background-title
-  organizer-bank-data: Conta bancária
+  organizer-bank-data: Dados bancários
   organizer-clients-label: Clientes
   organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
   organizer-create-success: Sua conta como guia foi criada com sucesso
