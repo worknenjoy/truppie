@@ -466,7 +466,7 @@ pt-BR:
   organizer-clients-label: Clientes
   organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
   organizer-create-success: Sua conta como guia foi criada com sucesso
-  organizer-dashboard-desc: Aqui, você tem acesso a criação da sua truppie, assim como atualização da sua conta
+  organizer-dashboard-desc: Aqui, você pode criar as suas truppies (seus passeios) e atualizar os dados de sua conta.
   organizer-desc-label: breve descrição do seu negócio
   organizer-email-label: email do seu negócio
   organizer-external-refs-legend: Seus contatos
@@ -479,8 +479,8 @@ pt-BR:
   organizer-missing-data-title: Dados incorretos ou incompletos para verificar sua conta
   organizer-name-label: nome do seu negócio
   organizer-new-package: Criar pacotes
-  organizer-new-tour: criar uma truppie agora
-  organizer-panel-welcome: Este é o seu painel da truppie, onde você poderá criar seus passeios
+  organizer-new-tour: Criar uma truppie agora!
+  organizer-panel-welcome: Este é o seu painel de controle dentro da Truppie.
   organizer-percent-label: Taxa (%)
   organizer-phone-label: telefone para contato do seu negócio
   organizer-profile-account: Minha conta
