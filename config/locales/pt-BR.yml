@@ -302,8 +302,8 @@ pt-BR:
   label-organizer-thanks-moderation: Finalize sua inscrição e comece a gerenciar suas reservas e pagamentos pela truppie!
   label-organizer-twitter: twitter
   label-organizer-website: website
-  lang-brazil: Lang-brazil
-  lang-eua: Lang-eua
+  lang-brazil: Português (BR)
+  lang-eua: English
   laura-feature: 7 Cantos do Mundo
   laura-second-feature: Sempre atrás de uma trilha/aventura
   laura-third-feature: Nerd confessa e leitora compulsiva
@@ -334,12 +334,12 @@ pt-BR:
   marketplace-data-incorrect: dados da conta incorretos
   marketplace-datebirth-placeholder: 'ex: Data de nascimento (AAAA/DD/MM)'
   marketplace-document-placeholder: 'ex: Número do CPF'
-  marketplace-first-name-placeholder: 'ex: Primeiro nome'
+  marketplace-first-name-placeholder: 'ex: João'
   marketplace-missing: Há dados pendentes para serem fornecidos para completar sua conta
-  marketplace-second-name-placeholder: 'ex: Segundo nome'
+  marketplace-second-name-placeholder: 'ex: da Silva'
   marketplace-state-placeholder: 'ex: São Paulo'
   marketplace-street-placeholder: 'ex: Rua das Viagens'
-  marketplace-zipcode-placeholder: 'ex: 3035-00'
+  marketplace-zipcode-placeholder: 'ex: 00000-000'
   marketplace_controller_activation_message_eight: O Marketplace não pôde ser atualizado devido a problema na API do Stripe
   marketplace_controller_activation_message_five: Conseguimos com sucesso atualizar sua conta do %{organizer}
   marketplace_controller_activation_message_four: Marketplace %{organizer} não pôde ser ativado devido a problema na API do Stripe
@@ -483,13 +483,13 @@ pt-BR:
   organizer-panel-welcome: Este é o seu painel da truppie, onde você poderá criar seus passeios
   organizer-percent-label: Taxa (%)
   organizer-phone-label: telefone para contato do seu negócio
-  organizer-profile-account: Seu perfil
-  organizer-profile-account-action: ir para sua conta
-  organizer-profile-account-desc: Cadastre os dados da sua conta para que você possa receber os pagamentos realizados para suas reservas. Sua conta precisa estar verificada com os dados corretos para que você possa oferecer seus passeios
-  organizer-profile-action: ir para o seu perfil
-  organizer-profile-desc: Este é o seu perfil na Truppie. Atualize seu perfil para ter sua página completa e adicione seus passeios e eles irão aparecer aqui
+  organizer-profile-account: Minha conta
+  organizer-profile-account-action: Editar minha conta
+  organizer-profile-account-desc: Cadastre a sua conta bancária e verifique-a para receber os pagamentos de seus passeios.
+  organizer-profile-action: Editar meu perfil
+  organizer-profile-desc: Atualize seus dados e crie seus passeios
   organizer-profile-edit: Perfil
-  organizer-profile-intro: Este é o seu perfil
+  organizer-profile-intro: Meu perfil
   organizer-profile-verify-action: verificar
   organizer-tours-label: Truppies
   organizer-twitter-label: endereço do twitter do seu negócio
