@@ -1,6 +1,6 @@
 <% if organizer.picture.present? %>
 <div>
-  <%= image_tag organizer.picture.url(:square), height: 180, class: 'spaced-smallest img-circle' %>
+  <%= image_tag organizer.picture.url(:square), width: 220, class: 'spaced-smallest img-circle' %>
 </div>
 <% elsif organizer.try(:logo) %>
   <div>

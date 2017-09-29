@@ -8,5 +8,10 @@ class Where < ActiveRecord::Base
   accepts_nested_attributes_for :backgrounds, allow_destroy: true, reject_if: :all_blank
 
   validates_presence_of :name, allow_blank: false
+
+  def to_param
+    "#{id} #{title}".parameterize
+  end
+
   
 end
