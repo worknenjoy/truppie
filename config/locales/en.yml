@@ -352,16 +352,16 @@ en:
   marketplace_controller_notice_two: Marketplace was successfully created
   meetings-content: Our meetings happen in offices like this - ok, only sometimes!
   meetings-title: The office
-  metatag-abstract: abstract
-  metatag-author: author
-  metatag-classi: classification
-  metatag-description: description
-  metatag-keywords: keywords
-  metatag-language: language
-  metatag-subject: subject
-  metatag-summary: summary
-  metatag-topic: topic
-  modal-packages-title: Gerenciamento de pacotes
+  metatag-abstract: Truppie is a marketplace for tour guides, experiences and trips and destinations
+  metatag-author: Alexandre Magno and Laura Sette
+  metatag-classi: Travel
+  metatag-description: Truppie links user with guides and tour guides, experiencies and a way to explore cities and differents routes and activities offers by guides
+  metatag-keywords: travel, tourism, agency, trips, guides
+  metatag-language: en
+  metatag-subject: Travel
+  metatag-summary: Truppie is a platform to connect guides with adventurers
+  metatag-topic: Travel
+  modal-packages-title: Package Management
   navbar_partial_link_four: Log out
   navbar_partial_link_one: Sign in / Log in
   navbar_partial_link_organizer: Edit your accounts
