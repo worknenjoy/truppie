@@ -458,7 +458,7 @@ $(function() {
             //$('#loginbutton,#feedbutton').removeAttr('disabled');
             $('#import-from-facebook-action').on('click', function (e) {
                 var self = $(e.target);
-                var organizer_path = self.val();
+                var organizer_path = self.data('organizer');
                 FB.login(function (response) {
                     var token = response["authResponse"]["accessToken"];
                     var user_id = response["authResponse"]["userID"];

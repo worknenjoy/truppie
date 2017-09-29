@@ -103,10 +103,8 @@
           <% end %>
         </li>
         <li>
-          <label>
-            <%= t('label-organizer-website') %>
-          </label>
-          <%= f.text_field :website %>
+          <label><%= t('label-organizer-about') %></label>
+          <%= f.text_area :description, rows: 5 %>
         </li>
       </ul>
       <div class="nav_link">
@@ -190,13 +188,15 @@
       <ul>
         <li>
           <label>
+            <%= t('label-organizer-website') %>
+          </label>
+          <%= f.text_field :website %>
+        </li>
+        <li>
+          <label>
             <%= t('label-organizer-picture') %>
           </label>
           <%= f.file_field :picture %>
-        </li>
-        <li>
-          <label><%= t('label-organizer-about') %></label>
-          <%= f.text_area :description, rows: 10 %>
         </li>
       </ul>
       <div class="nav_link">
