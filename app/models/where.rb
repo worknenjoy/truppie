@@ -10,7 +10,7 @@ class Where < ActiveRecord::Base
   validates_presence_of :name, allow_blank: false
 
   def to_param
-    "#{id} #{title}".parameterize
+    "#{id} #{name}".parameterize
   end
 
   

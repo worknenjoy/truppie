@@ -25,7 +25,7 @@
       .flex-nav-item {
           flex: 0 0 auto;
           margin-right: 10px;
-          list-style-type: none;
+          list-style-type: none !important;
           width: 90%;
       }
       
