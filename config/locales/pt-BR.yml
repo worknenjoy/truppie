@@ -360,15 +360,15 @@ pt-BR:
   marketplace_controller_notice_two: Marketplace was successfully created.
   meetings-content: Our meetings happen in offices like this - ok, only sometimes!
   meetings-title: The office
-  metatag-abstract: abstract
-  metatag-author: author
-  metatag-classi: classification
-  metatag-description: description
-  metatag-keywords: keywords
-  metatag-language: language
-  metatag-subject: subject
-  metatag-summary: summary
-  metatag-topic: topic
+  metatag-abstract: Truppie é um marketplace de viagens, travessias, atividades e experiência por diversos lugares do Brasil
+  metatag-author: Alexandre Magno e Laura Sette
+  metatag-classi: Viagem e Turismo
+  metatag-description: Truppie é uma plataforma que conecta exploradores aos guias e roteiros que oferecem aventura e facilita suas descobertas sobre viagens de interesse
+  metatag-keywords: viagem, turismo, agências, guias, turismo, roteiros
+  metatag-language: br
+  metatag-subject: Viagem
+  metatag-summary: A Truppie é um marketplace de aventuras, viagens e roteiros
+  metatag-topic: Viagens
   modal-packages-title: Gerenciamento de pacotes
   navbar_partial_link_four: Sair
   navbar_partial_link_one: entrar / logar
