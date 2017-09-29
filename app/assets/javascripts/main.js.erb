@@ -449,13 +449,16 @@ $(function() {
 
     if($('#import-from-facebook-action').length) {
         $.ajaxSetup({cache: true});
+
         $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
             FB.init({
                 appId: '<%= Rails.application.secrets[:facebook_sdk] %>',
                 version: 'v2.5' // or v2.1, v2.2, v2.3, ...
             });
             //$('#loginbutton,#feedbutton').removeAttr('disabled');
-            $('#import-from-facebook-action').on('click', function () {
+            $('#import-from-facebook-action').on('click', function (e) {
+                var self = $(e.target);
+                var organizer_path = self.val();
                 FB.login(function (response) {
                     var token = response["authResponse"]["accessToken"];
                     var user_id = response["authResponse"]["userID"];
@@ -465,7 +468,7 @@ $(function() {
                     modal.on('shown.bs.modal', function () {
 
                         $('.loading-events').fadeIn();
-                        $.getJSON('/organizers/4-7-cantos-do-mundo/external_events.json?token=' + token + '&user_id=' + user_id, function (data, status, xhr) {
+                        $.getJSON(organizer_path + '/external_events.json?token=' + token + '&user_id=' + user_id, function (data, status, xhr) {
                             moment.locale('pt');
                             var tmpl = $('#event-list-template');
                             var list = {event: []};

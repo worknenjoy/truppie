@@ -16,7 +16,7 @@
             <%= t('new-tour-label') %>
             </div>
             <div class="pull-right">
-              <%= link_to '#', id: 'import-from-facebook-action' , class: 'btn btn-primary btn-facebook btn-sm pull-right' do %>
+              <%= link_to '#', id: 'import-from-facebook-action', class: 'btn btn-primary btn-facebook btn-sm pull-right', data: { organizer: organizer_path(@organizer)} do %>
                   <i class="fa fa-facebook"></i> <%= t('import-event-label') %>
               <% end %>
               <%= render partial: 'import_event_dialog' %>
