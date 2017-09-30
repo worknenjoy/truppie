@@ -195,7 +195,7 @@ var rangeCal = {
         // click
         $(main).on('click', 'tbody td', function(){ rangeCal.select(this, main); });
 
-        
+
 
 
         // button actions

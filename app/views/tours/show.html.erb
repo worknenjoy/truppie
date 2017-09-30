@@ -26,16 +26,18 @@
     <% if @tour.try(:photo) and !@tour.picture.exists? %>
       <%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
     <% elsif @tour.try(:picture) %>
-			<%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
+        <% if @tour.picture.present? %>
+            <%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
+        <% else %>
+            <div class="placeholder-truppie-image"></div>
+        <% end %>
 		<% else %>
 			<div class="placeholder-truppie-image"></div>
 		<% end %>
-
-        <div class="ribbon base" style="text-align: right">
-        	<span><%= raw @tour.price %></span>
-        	<%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
-    	</div>
-        
+    <div class="ribbon base" style="text-align: right">
+      <span><%= raw @tour.price %></span>
+      <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+    </div>
 	</div>
 	<div class="container">
 		<div class="row divider-default">

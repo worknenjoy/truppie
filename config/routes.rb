@@ -86,9 +86,7 @@ Rails.application.routes.draw do
       :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
-  #devise_scope :user do
-  #  get 'orders_from_user', :to => 'devise/sessions#orders_from_user', :as => :orders_from_user
-  #end
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
