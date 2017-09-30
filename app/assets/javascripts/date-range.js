@@ -195,15 +195,7 @@ var rangeCal = {
         // click
         $(main).on('click', 'tbody td', function(){ rangeCal.select(this, main); });
 
-        // hover + throttle
-        var hoverTimer = 30,
-            hoverId;
-
-        // should check if selection made
-        $(main).on('mouseenter', 'tbody td', function(){
-            clearTimeout(hoverId);
-            hoverId = setTimeout(rangeCal.hoverRange, hoverTimer, this);
-        })
+        
 
 
         // button actions
