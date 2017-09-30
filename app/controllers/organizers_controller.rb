@@ -205,6 +205,8 @@ class OrganizersController < ApplicationController
 
       @response.each do |r|
 
+        puts r.inspect
+
         @photo = JSON.load RestClient.get("https://graph.facebook.com/v2.9/#{r["id"]}/?fields=cover", :content_type => :json, :accept => :json, :authorization => "OAuth #{@token}")
 
         @tour = Tour.new({
@@ -213,7 +215,7 @@ class OrganizersController < ApplicationController
           end: r["end_time"] || r["start_time"],
           description: r["description"],
           organizer: @organizer,
-          wheres: [Where.create({:name => r["place"]["name"]})],
+          wheres: [Where.new({:name => r["place"]["name"], :lat => r["place"]["location"]["latitude"], :long => r["place"]["location"]["longitude"]})],
           value: 20,
           photo: @photo["cover"]["source"],
           link: "http://www.facebook.com/events/#{r["id"]}",
@@ -223,7 +225,7 @@ class OrganizersController < ApplicationController
           flash[:success] = I18n.t('import-event-notice-success')
         else
           puts "not saved"
-          puts @tour.errors.inspectqclear
+          puts @tour.errors.inspect
           flash[:error] = I18n.t('import-event-notice-error')
         end
       end
