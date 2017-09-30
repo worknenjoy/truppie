@@ -17,7 +17,9 @@
                 <h3 class="card-title"><%= t('hello-organizer-welcome-account-edit', organizer: @organizer.name) %></strong></h3>
                 <div class="card-text">
                   <p><%= t('organizer-account-welcome-account-edit-title') %></p>
-                  <p><%= t('organizer-account-edit-desc') %></p>
+                  <div class="alert alert-info" role="alert">
+                    <p><%= t('organizer-account-edit-desc') %></p>
+                  </div>
                 </div>
                 <div class="text-xs-center">
                   <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'spaced-down') %>
@@ -60,7 +62,7 @@
               </fieldset>
               <fieldset class="form-group <%= form_error(flash[:errors], :birthDate) %>">
                 <%= f.label :birthDate, class: "form-control-label" %>
-                <%= f.text_field :birthDate, placeholder: t('marketplace-datebirth-placeholder'), class: "form-control #{form_field_error(flash[:errors], :birthDate)}" %>
+                <%= f.text_field :birthDate, placeholder: t('marketplace-datebirth-placeholder'), class: "birthDate form-control #{form_field_error(flash[:errors], :birthDate)}" %>
                 <%= error_message(flash[:errors], :birthDate) %>
               </fieldset>
               <fieldset class="form-group">

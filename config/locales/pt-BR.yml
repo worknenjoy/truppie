@@ -1,6 +1,12 @@
 ---
 pt-BR:
   account-label: Minha conta
+  account-missing-legal-entity:
+    verification:
+      document-message: Não conseguimos verificar seu documento, você já enviou e atualizou sua conta?
+  account-missing-legal-entity:
+    verification:
+      document-label: Verificação do documento de identificação
   active-label: ativa
   activerecord:
     errors:
@@ -267,7 +273,8 @@ pt-BR:
   hands-heading: Reserve
   hands-text: Verifique os detalhes e confirme sua presença
   hello-organizer-welcome: Olá, %{organizer}!
-  hello-organizer-welcome-account-edit: Seu perfil
+  hello-organizer-welcome-account-edit: Sua conta
+  hello-organizer-welcome-profile-edit: Seu perfil
   helpers:
     select:
       prompt: Por favor selecione
@@ -332,8 +339,8 @@ pt-BR:
   marketplace-controller-notice-update: sua conta foi atualizada
   marketplace-controller-notice-update-fail: tivemos algum problema para atualizar sua conta. Verifique os dados e tente novamente
   marketplace-data-incorrect: dados da conta incorretos
-  marketplace-datebirth-placeholder: 'ex: Data de nascimento (AAAA/DD/MM)'
-  marketplace-document-placeholder: 'sem pontos, hífen ou espaço'
+  marketplace-datebirth-placeholder: 'ex: Data de nascimento (DD/MM/AAAA)'
+  marketplace-document-placeholder: sem pontos, hífen ou espaço
   marketplace-first-name-placeholder: 'ex: João'
   marketplace-missing: Há dados pendentes para serem fornecidos para completar sua conta
   marketplace-second-name-placeholder: 'ex: da Silva'
@@ -355,7 +362,7 @@ pt-BR:
   marketplace_controller_errors_two: Já se encontra ativo
   marketplace_controller_notice: Você não está autorizado a entrar nesta página
   marketplace_controller_notice_four: Marketplace was successfully destroyed.
-  marketplace_controller_notice_remote_account_fail: Marketplace controller notice remote account fail
+  marketplace_controller_notice_remote_account_fail: Tivemos algum problema para validar sua conta, entraremos em contato para ativá-la
   marketplace_controller_notice_three: Marketplace was successfully updated.
   marketplace_controller_notice_two: Marketplace was successfully created.
   meetings-content: Our meetings happen in offices like this - ok, only sometimes!
@@ -452,11 +459,11 @@ pt-BR:
   or-label: ou você pode
   organizer-access-step: Aguarde nosso retorno, criaremos seu perfil!
   organizer-account-edit: Conta pessoal
-  organizer-account-edit-desc: Não se esqueça de salvar!
+  organizer-account-edit-desc: Envie uma foto válida do seu documento para que possamos verificar sua conta e assim enviar os valores pagos pelas reservas
   organizer-account-intro-desc: Esta é sua conta da Truppie.
   organizer-account-intro-title: Seja bem vindo!
   organizer-account-status-title: status da sua conta
-  organizer-account-welcome-account-edit-title: Aqui você pode editar os dados do seu perfil.
+  organizer-account-welcome-account-edit-title: Atualize os dados da sua conta e com ela verificada poderemos enviar diretamente os valores das reservas dos seus clientes.
   organizer-add-account-data: adicionar dados da sua conta
   organizer-add-tour: adicionar truppie
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
@@ -489,8 +496,10 @@ pt-BR:
   organizer-profile-action: Editar seu perfil
   organizer-profile-desc: Atualize seus dados e crie seus passeios
   organizer-profile-edit: Perfil
+  organizer-profile-edit-desc: Você pode enviar uma foto do seu logo ou marca, ou uma foto sua para aparecer na página do seu perfil e ficar associada a seus passeios e para contato de interessados em saber mais sobre a atividade que você oferece.
   organizer-profile-intro: Meu perfil
   organizer-profile-verify-action: verificar
+  organizer-profile-welcome-account-edit-title: Aqui você pode atualizar os dados do seu perfil que aparece no site com seus passeios, e para que outros aventureiros possam te encontrar com facilidade.
   organizer-tours-label: Truppies
   organizer-twitter-label: endereço do twitter do seu negócio
   organizer-update-error: erro ao atualizar sua conta

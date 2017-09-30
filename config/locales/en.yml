@@ -2,6 +2,11 @@
 en:
   account-label: account
   active-label: active
+  account-missing-legal-entity:
+    verification:
+      document-message:
+        verification: We could not verify you document picture, are you sure that your send when you were setting your account details?
+        document-label: Document picture
   activerecord:
     errors:
       messages:
@@ -259,7 +264,8 @@ en:
   hands-heading: Choose
   hands-text: Check the details and confirm your presence with one click
   hello-organizer-welcome: Hello %{organizer}
-  hello-organizer-welcome-account-edit: Welcome organizer, here you can edit your account
+  hello-organizer-welcome-account-edit: Account edit
+  hello-organizer-welcome-profile-edit: Welcome to your profile
   helpers:
     select:
       prompt: Please select
@@ -324,7 +330,7 @@ en:
   marketplace-controller-notice-update: Account updated
   marketplace-controller-notice-update-fail: There's a error to update your account
   marketplace-data-incorrect: Your account data is incorrect, please review and send again
-  marketplace-datebirth-placeholder: 'ex: birthdate (AAAA/DD/MM)'
+  marketplace-datebirth-placeholder: 'ex: birthdate (AAAA/MM/DD)'
   marketplace-document-placeholder: 'ex: identification number'
   marketplace-first-name-placeholder: 'ex: first name'
   marketplace-missing: Account data missing
@@ -444,11 +450,11 @@ en:
   or-label: or you can
   organizer-access-step: Wait for us that we will create your profile
   organizer-account-edit: Edit your account
-  organizer-account-edit-desc: Welcome to your account, here you can fill your data
+  organizer-account-edit-desc: We need of a valid identification document in order to verify your account, please provide a valid document and send with the correct data.
   organizer-account-intro-desc: You can check your data and after verified your events can be used by your clients
-  organizer-account-intro-title: Welcome to your account
+  organizer-account-intro-title: This is your account that you can update your personal data. This is very important and necessary to verify your account and send payments.
   organizer-account-status-title: Your account status
-  organizer-account-welcome-account-edit-title: Welcome to your account
+  organizer-account-welcome-account-edit-title: This is your account that you can update your personal data. This is very important and necessary to verify your account and send payments.
   organizer-add-account-data: Add account information
   organizer-add-tour: Add tour
   organizer-after-create-account-advantages: When you create your tours with Truppie, you can manage your reservations easily!
@@ -481,8 +487,10 @@ en:
   organizer-profile-action: Profile
   organizer-profile-desc: This is the description of your profile
   organizer-profile-edit: Profile edit
+  organizer-profile-edit-desc: Send your picture that will be visible on your profile page and others people will see your brand
   organizer-profile-intro: Welcome to your profile
   organizer-profile-verify-action: Verify profile
+  organizer-profile-welcome-account-edit-title: This is your profile, here you can edit the information that appears in your profile page
   organizer-tours-label: Truppies
   organizer-twitter-label: Twitter
   organizer-update-error: We had a problem to update your account

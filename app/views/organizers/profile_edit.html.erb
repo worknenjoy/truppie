@@ -14,10 +14,12 @@
           <div class="">
             <%= form_for @organizer, class: "form", multipart: true, role: "form" do |f| %>
                 <div class="card card-block text-xs-center">
-                  <h3 class="card-title"><%= t('hello-organizer-welcome-account-edit', organizer: @organizer.name) %></strong></h3>
+                  <h3 class="card-title"><%= t('hello-organizer-welcome-profile-edit', organizer: @organizer.name) %></strong></h3>
                   <div class="card-text">
-                    <p><%= t('organizer-account-welcome-account-edit-title') %></p>
-                    <p><%= t('organizer-account-edit-desc') %></p>
+                    <p><%= t('organizer-profile-welcome-account-edit-title') %></p>
+                    <div class="alert alert-info" role="alert">
+                      <%= t('organizer-profile-edit-desc') %>
+                    </div>
                   </div>
                   <div class="text-xs-center">
                     <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'spaced-down') %>

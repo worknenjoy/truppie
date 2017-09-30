@@ -20,6 +20,21 @@ class MarketplaceTest < ActiveSupport::TestCase
   test "split phone into a object" do
      assert_equal @mkt_active.phone_object, {"countryCode"=>"55", "areaCode"=>"11", "number"=>"965213244"}
   end
+
+  test "date of birth" do
+    @mkt_active.update_attributes({ :birthDate => '1982-10-06'})
+    assert_equal @mkt_active.dob, {day: 6, month: 10, year: 1982}
+  end
+
+  test "date of birth in user format" do
+    @mkt_active.update_attributes({ :birthDate => '06-10-1982'})
+    assert_equal @mkt_active.dob, {day: 6, month: 10, year: 1982}
+  end
+
+  test "date of birth slash format" do
+    @mkt_active.update_attributes({ :birthDate => '06/10/1982'})
+    assert_equal @mkt_active.dob, {day: 6, month: 10, year: 1982}
+  end
   
   test "return bank data account" do
     assert_equal @mkt_active.account_info, {"email"=> {"address"=>"organizer@mail.com"}, "person"=>{"name"=>"MyString", "lastName"=>"MyString", "taxDocument"=>{"type"=>"MyString", "number"=>"MyString"}, "identityDocument"=>{"type"=>"MyString", "number"=>"MyString", "issuer"=>"MyString", "issueDate"=>"MyString"}, "birthDate"=>"2017-01-08", "phone"=>{"countryCode"=>"55", "areaCode"=>"11", "number"=>"965213244"}, "address"=>{"street"=>"MyString", "streetNumber"=>"MyString", "complement"=>"MyString", "district"=>"MyString", "zipcode"=>"MyString", "city"=>"MyString", "state"=>"MyString", "country"=>"MyString"}}, "businessSegment"=>{"id"=>"37"}, "site"=>"http://www.truppie.com", "type"=>"MERCHANT", "transparentAccount"=>"true"}
