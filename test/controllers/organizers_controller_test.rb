@@ -55,16 +55,11 @@
    end
 
    test "should create organizer basic" do
-     @organizer_basic = {
-         name: "Utópicos mundo afora",
-         email: "utopicos@gmail.com",
-         website: "http://website",
-         user_id: users(:alexandre).id
-     }
      assert_difference('Organizer.count') do
-       post :create, organizer: @organizer_basic
+       post :create, organizer: @organizer
      end
      assert_not ActionMailer::Base.deliveries.empty?
+     assert_equal flash[:notice], "Sua conta como guia foi criada com sucesso"
      assert_redirected_to organizer_path(assigns(:organizer))
    end
 

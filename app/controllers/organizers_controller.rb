@@ -209,23 +209,27 @@ class OrganizersController < ApplicationController
 
         @photo = JSON.load RestClient.get("https://graph.facebook.com/v2.9/#{r["id"]}/?fields=cover", :content_type => :json, :accept => :json, :authorization => "OAuth #{@token}")
 
-        @tour = Tour.new({
-          title: r["name"],
-          start: r["start_time"],
-          end: r["end_time"] || r["start_time"],
-          description: r["description"],
-          organizer: @organizer,
-          wheres: [Where.new({:name => r["place"]["name"], :lat => r["place"]["location"]["latitude"], :long => r["place"]["location"]["longitude"]})],
-          value: 20,
-          photo: @photo["cover"]["source"],
-          link: "http://www.facebook.com/events/#{r["id"]}",
-          user: @organizer.user
-        })
-        if @tour.save
-          flash[:success] = I18n.t('import-event-notice-success')
-        else
-          puts "not saved"
-          puts @tour.errors.inspect
+        begin
+          @tour = Tour.new({
+            title: r["name"],
+            start: r["start_time"],
+            end: r["end_time"] || r["start_time"],
+            description: r["description"],
+            organizer: @organizer,
+            wheres: [Where.new({:name => r["place"]["name"], :lat => r["place"]["location"]["latitude"], :long => r["place"]["location"]["longitude"]})],
+            value: 20,
+            photo: @photo["cover"]["source"],
+            link: "http://www.facebook.com/events/#{r["id"]}",
+            user: @organizer.user
+          })
+          if @tour.save
+            flash[:success] = I18n.t('import-event-notice-success')
+          else
+            puts "not saved"
+            puts @tour.errors.inspect
+            flash[:error] = I18n.t('import-event-notice-error')
+          end
+        rescue => e
           flash[:error] = I18n.t('import-event-notice-error')
         end
       end
