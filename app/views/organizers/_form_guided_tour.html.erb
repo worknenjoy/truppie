@@ -8,7 +8,7 @@
               <% @cats.each do |c| %>
               <label class="radio-inline">
                 <%= f.radio_button :category_id, c, checked: @current_category_name === c %>
-                <%= image_tag("icons-truppie-fill/icones_truppie-#{c.parameterize}", :alt => "Truppie", width: 80) %>
+                <%= image_tag("icons-truppie-fill/icones_truppie-#{c.parameterize}.svg", :alt => "Truppie", width: 80) %>
               </label>
               <% end %>
             </div>
