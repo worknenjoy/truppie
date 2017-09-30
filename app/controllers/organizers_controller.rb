@@ -213,7 +213,7 @@ class OrganizersController < ApplicationController
           end: r["end_time"] || r["start_time"],
           description: r["description"],
           organizer: @organizer,
-          where: Where.create({:name => r["place"]["name"]}),
+          wheres: [Where.create({:name => r["place"]["name"]})],
           value: 20,
           photo: @photo["cover"]["source"],
           link: "http://www.facebook.com/events/#{r["id"]}",

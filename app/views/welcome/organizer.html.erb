@@ -104,7 +104,11 @@
         </li>
         <li>
           <label><%= t('label-organizer-about') %></label>
-          <%= f.text_area :description, rows: 5 %>
+          <%= f.text_area :description, rows: 4 %>
+          <% if flash[:errors] and flash[:errors].key?('description') %>
+              <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+              <small class="text-danger"><%= error_message_text(flash[:errors], :description) %></small>
+          <% end %>
         </li>
       </ul>
       <div class="nav_link">
