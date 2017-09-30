@@ -32,16 +32,10 @@
       <%= f.hidden_field :status, class: 'tour-status' %>
 
       <div class="form-group">
-        <div style="width: 100%; text-align: center;" class="spaced-small">
+        <div style="width: 100%; text-align: center;" class="spaced-small file-upload-previous-container">
         <% if @guided_tour.picture.present? %>
-            <%= image_tag @guided_tour.picture.url(:media), class: 'img-fluid' %>
+            <%= image_tag @guided_tour.picture.url, class: 'img-fluid' %>
         <% end %>
-        </div>
-
-        <div style="width: 100%; text-align: center;" class="spaced-small">
-          <% if @guided_tour.photo.present? %>
-              <%= image_tag @guided_tour.photo, class: 'img-fluid' %>
-          <% end %>
         </div>
 
         <div class="file-upload">

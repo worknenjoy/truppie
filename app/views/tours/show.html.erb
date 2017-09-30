@@ -29,7 +29,29 @@
         <% if @tour.picture.present? %>
             <%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
         <% else %>
-            <div class="placeholder-truppie-image"></div>
+            <div class="placeholder-tour-image">
+              <div class="placeholder-tour-container">
+                <%= form_for @tour, multipart: true, role: "form" do |f| %>
+                  <div class="file-upload">
+                    <small style="display: inline-block; margin-bottom: 10px;" class="text-color-white"><%= t('no-photo-please-send-one') %></small>
+                    <div class="file-upload-btn-preview-container">
+                      <button class="file-upload-btn btn btn-primary-outline btn-lg" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
+                        <i class="fa fa-file-photo-o"></i> <%= t('tours_send_picture') %>
+                      </button>
+                      <button class="file-upload-btn-save btn btn-primary btn-lg hidden" type="submit">
+                        <i class="fa fa-save"></i> <%= t('save-changes') %>
+                      </button>
+                    </div>
+                    <%= f.file_field :picture, class: "file-upload-input", accept: "image/*" %>
+                    <div class="file-upload-content">
+                      <div class="image-title-wrap" style="padding: 20px 0;">
+                        <button type="button" onclick="removeUpload()" class="remove-image btn btn-primary-outline"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
         <% end %>
 		<% else %>
 			<div class="placeholder-truppie-image"></div>

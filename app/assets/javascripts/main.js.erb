@@ -69,6 +69,10 @@ function removeUpload() {
     $('.file-upload-input').replaceWith($('.file-upload-input').clone(true));
     $('.file-upload-content').hide();
     $('.image-upload-wrap').show();
+    $('.cover-tour-preview').hide();
+    $('.file-upload-btn-save').hide();
+    $('.file-upload-btn-preview-container').removeClass("btn-group");
+    $('.file-upload-previous-container').show();
 }
 
 function readURL(input) {
@@ -88,8 +92,16 @@ function readURL(input) {
 
             img.style.width = '100%';
 
+            $('.file-upload-previous-container').hide();
             $('.file-upload-content').append(img);
 
+            if($('.img-holder')) {
+                $(img).addClass("img-fluid img-fit symbol-big cover-tour-preview")
+                $('.img-holder').append(img);
+                $('.file-upload-btn-save').show();
+                $('.file-upload-btn-preview-container').addClass("btn-group");
+
+            }
 
             $('.file-upload-content').show();
 
@@ -109,6 +121,10 @@ $(function() {
 
     $('form').on('submit', function () {
         $(this).find('input[type=submit]').attr('disabled', '');
+    });
+
+    $('.file-upload-btn-save').on('click', function(){
+       $(this).parent().trigger('submit');
     });
 
     $('.close-action').on('click', function () {

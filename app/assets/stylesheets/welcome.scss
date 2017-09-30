@@ -248,11 +248,20 @@ h1, h2, h3, h4, h5, h6 {
   height: 400px;
 }
 
-.placeholder-truppie-image {
+.placeholder-tour-image {
   background: $brand-info;
   width: 100%;
   height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  .placeholder-tour-container {
+    max-width:50%;
+    text-align: center;
+  }
 }
+
 
 .pl-ziro { padding-left: 0px; }
 

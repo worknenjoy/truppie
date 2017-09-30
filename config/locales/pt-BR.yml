@@ -398,6 +398,8 @@ pt-BR:
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: Não verificado
   not_verified_label: Não verificado
+  tours_send_picture: Enviar foto
+  no-photo-please-send-one: Você não enviou nenhuma foto para este evento, envie uma foto para poder exibi-la aqui
   number:
     currency:
       format:

@@ -389,6 +389,8 @@ en:
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: not verified
   not_verified_label: not verified
+  tours_send_picture: Send picture
+  no-photo-please-send-one: No picture was sent, please send one to display in your event page
   number:
     currency:
       format:
