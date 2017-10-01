@@ -22,6 +22,8 @@ class Tour < ActiveRecord::Base
 
   accepts_nested_attributes_for :organizer
 
+  accepts_nested_attributes_for :category
+
   accepts_nested_attributes_for :wheres, allow_destroy: true
   
   validates_presence_of :title, :organizer, :wheres, :start, :end

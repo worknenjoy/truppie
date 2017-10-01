@@ -291,6 +291,16 @@ $(function() {
 		return false;
 	});
 
+	$(".edit_tour").on('submit', function(){
+      if($('.field-category-text').length && $('.field-category-radio')) {
+          var category_text_val = $('.field-category-text').val();
+          var category_radio_checked = $('.field-category-radio:checked');
+          if(category_text_val == "" || category_radio_checked.length) {
+              $('.field-category-text').val(category_radio_checked.val());
+          }
+      }
+  });
+
     $(".publish-truppie").on('click', function(){
 
         $('.tour-status').val('P');
@@ -512,4 +522,6 @@ $(function() {
             });
         });
     }
+
+
 });

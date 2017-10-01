@@ -205,7 +205,7 @@ class ToursController < ApplicationController
       langs_to_array = params[:tour][:languages].split(split_val)
       langs = []
       langs_to_array.each do |l|
-        langs.push Language.find_by_name(l)
+        langs.push Language.find_or_create_by(name: l)
       end
       params[:tour][:languages] = langs
     end
@@ -265,18 +265,6 @@ class ToursController < ApplicationController
       params[:tour][:goodtoknow] = goodtoknow
     end
     
-    current_cat = params[:tour][:category_id]
-
-    begin
-      if current_cat
-        cat = Category.find(current_cat)
-        params[:tour][:category] = cat
-      end
-    rescue ActiveRecord::RecordNotFound => e
-      cat = Category.find_by_name(current_cat)
-      params[:tour][:category] = cat || Category.first_or_create(name:current_cat)
-    end
-    
     #current_where = params[:tour][:wheres_attributes][0]
 
     #if current_where
@@ -288,6 +276,18 @@ class ToursController < ApplicationController
     #if where_exist.any?
     #  params[:tour][:wheres_attributes] = where_exist[0]
     #end
+
+    current_category = params[:tour][:category]
+
+    if current_category == "" or current_category.nil?
+      params[:tour][:category] = Category.find_or_create_by(name: 'Outras')
+    else
+      begin
+        params[:tour][:category] = Category.find(current_category)
+      rescue => e
+        params[:tour][:category] = Category.find_or_create_by(name: current_category)
+      end
+    end
     
     params[:tour][:attractions] = []
     params[:tour][:currency] = "BRL"

@@ -7,7 +7,7 @@
             <div class="col-xs-12">
               <% @cats.each do |c| %>
               <label class="radio-inline">
-                <%= f.radio_button :category_id, c, checked: @current_category_name === c %>
+                <%= f.radio_button :category, c, checked: @current_category_name === c, class: "field-category-radio" %>
                 <%= image_tag("icons-truppie-fill/icones_truppie-#{c.parameterize}.svg", :alt => "Truppie", width: 80) %>
               </label>
               <% end %>
@@ -16,7 +16,7 @@
             <div class="col-xs-12">
               <fieldset class="form-group">
                 <label for="exampleInputEmail1">Outra</label>
-                <%= f.text_field :category_id, value: @current_category_name, placeholder: 'Categoria', class: "form-control" %>
+                <%= f.text_field :category, value: @current_category_name, placeholder: t('tour-category-label'), class: "form-control field-category-text" %>
                 <small class="text-muted">diga uma categoria que não se encaixa nas demais e que mais se encaixa para sua truppie</small>
               </fieldset>
             </div>

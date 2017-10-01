@@ -279,6 +279,59 @@ class ToursControllerTest < ActionController::TestCase
      assert_equal Tour.last.category.name, "Nova"
    end
 
+  test "simulate a request for a new category from tour form" do
+    post :create, tour: {
+        "category"=>"Urbano",
+        "start"=>"2017-10-08 22:00:00 UTC",
+        "end"=>"2017-10-10 00:00:00 UTC",
+        "organizer_id"=>Organizer.last.id,
+        "user_id"=>User.last.id,
+        "title"=>"Testando o tempo",
+        "description"=>"<p>Tempo...</p>",
+        "wheres_attributes"=>{"0"=>{"name"=>"Restaurante Sem Tempo", "lat"=>"37.0209648", "long"=>"-7.930246699999998", "city"=>"Faro", "state"=>"Faro", "country"=>"PT", "postal_code"=>"8000-165", "address"=>"Praça da Paz, Edifício Coobital, 8000-165 Faro, Portugal", "url"=>"https://maps.google.com/?cid=16421635831987676297", "google_id"=>"cecd03e9b30a8c93a849f766098bd5352b5714a2", "place_id"=>"ChIJnzgXhMVSBQ0RiaRznMhe5eM"}},
+        "address"=>"",
+        "link"=>"",
+        "value"=>200
+    }
+    assert_equal Tour.last.category.name, "Urbano"
+  end
+
+  test "simulate a request for a empty category from tour form" do
+    post :create, tour: {
+        "category"=>"",
+        "start"=>"2017-10-08 22:00:00 UTC",
+        "end"=>"2017-10-10 00:00:00 UTC",
+        "organizer_id"=>Organizer.last.id,
+        "user_id"=>User.last.id,
+        "title"=>"Testando o tempo",
+        "description"=>"<p>Tempo...</p>",
+        "wheres_attributes"=>{"0"=>{"name"=>"Restaurante Sem Tempo", "lat"=>"37.0209648", "long"=>"-7.930246699999998", "city"=>"Faro", "state"=>"Faro", "country"=>"PT", "postal_code"=>"8000-165", "address"=>"Praça da Paz, Edifício Coobital, 8000-165 Faro, Portugal", "url"=>"https://maps.google.com/?cid=16421635831987676297", "google_id"=>"cecd03e9b30a8c93a849f766098bd5352b5714a2", "place_id"=>"ChIJnzgXhMVSBQ0RiaRznMhe5eM"}},
+        "address"=>"",
+        "link"=>"",
+        "value"=>200
+    }
+    assert_equal Tour.last.category.name, "Outras"
+  end
+
+  test "simulate a request for a defined category from tour form" do
+    assert_difference('Tour.count') do
+      post :create, tour: {
+          "category"=>Tour.last.category.id,
+          "start"=>"2017-10-08 22:00:00 UTC",
+          "end"=>"2017-10-10 00:00:00 UTC",
+          "organizer_id"=>Organizer.last.id,
+          "user_id"=>User.last.id,
+          "title"=>"Testando o tempo",
+          "description"=>"<p>Tempo...</p>",
+          "wheres_attributes"=>{"0"=>{"name"=>"Restaurante Sem Tempo", "lat"=>"37.0209648", "long"=>"-7.930246699999998", "city"=>"Faro", "state"=>"Faro", "country"=>"PT", "postal_code"=>"8000-165", "address"=>"Praça da Paz, Edifício Coobital, 8000-165 Faro, Portugal", "url"=>"https://maps.google.com/?cid=16421635831987676297", "google_id"=>"cecd03e9b30a8c93a849f766098bd5352b5714a2", "place_id"=>"ChIJnzgXhMVSBQ0RiaRznMhe5eM"}},
+          "address"=>"",
+          "link"=>"",
+          "value"=>200
+      }
+    end
+    assert_equal Tour.last.category.name, "Trekking"
+  end
+
 
    test "should create with packages" do
      skip("not working")
