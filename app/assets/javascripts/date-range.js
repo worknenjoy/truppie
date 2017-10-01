@@ -24,9 +24,9 @@ function updateDates(e) {
     var startDateRow = $('.sel1').attr('data-date');
 
     if(startDateRow) {
-        var startDate = new Date(startDateRow);
+        var startDate = moment.utc(new Date(startDateRow));
     } else {
-        var startDate = new Date($('.start-field').val());
+        var startDate = moment.utc(new Date($('.start-field').val()));
     }
 
     var startTime = $('#start_time').val();
@@ -36,17 +36,18 @@ function updateDates(e) {
     var startTimeMinutes = startTimeArray[1];
 
     if(startTimeHours > 0 && startTimeMinutes > 0) {
-        startDate.setHours(startTimeHours);
-        startDate.setMinutes(startTimeMinutes);
+        startDate.hours(startTimeHours);
+        startDate.minutes(startTimeMinutes);
     }
 
     var endDateRow = $('.sel2').attr('data-date');
 
     if(endDateRow) {
-        var endDate = new Date(endDateRow);
+        var endDate = moment.utc(new Date(endDateRow));
     } else {
-        var endDate = new Date($('.end-field').val());;
+        var endDate = moment.utc(new Date($('.end-field').val()));
     }
+
 
     var endTime = $('#end_time').val();
 
@@ -61,9 +62,10 @@ function updateDates(e) {
     }
 
     if(endTimeHours > 0 && endTimeMinutes > 0) {
-        endDate.setHours(endTimeHours);
-        endDate.setMinutes(endTimeMinutes);
+        endDate.hours(endTimeHours);
+        endDate.minutes(endTimeMinutes);
     }
+
 
 
     $('.start-field').val(startDate);

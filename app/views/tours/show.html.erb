@@ -38,7 +38,7 @@
                       <button class="file-upload-btn btn btn-primary-outline btn-lg" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
                         <i class="fa fa-file-photo-o"></i> <%= t('tours_send_picture') %>
                       </button>
-                      <button class="file-upload-btn-save btn btn-primary btn-lg hidden" type="submit">
+                      <button class="file-upload-btn-save btn btn-primary btn-lg hidden" type="button">
                         <i class="fa fa-save"></i> <%= t('save-changes') %>
                       </button>
                     </div>
@@ -182,10 +182,11 @@
 		            		<!--<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li> -->
 		            		<li><i class="fa fa-calendar"></i> <%= @tour.how_long %> </li>
 		            		<li><i class="fa fa-clock-o"></i> <%= t('tours_view_show_li_four') %> <%= l(@tour.start, format: '%d de %B / %Y') %> às <%= l(@tour.start, format: '%Hh%M') %> </li>
+                    <li><i class="fa fa-history"></i> <%= t('tours_view_show_li_finish') %> <%= l(@tour.end, format: '%d de %B / %Y') %> às <%= l(@tour.end, format: '%Hh%M') %> </li>
 			                <% if @tour.try(:difficulty) %>
 			                <li><i class="fa fa-heartbeat"></i> <%= t('tours_view_show_li_five') %> <strong><%= @tour.level %></strong> </li>
 			                <% end %>
-                      <% if @tour.try(:address) %>
+                      <% if @tour.try(:address) or !@tour.address.empty? %>
                         <li><i class="fa fa-map-marker"></i>  <strong> <%= @tour.address %></strong></li>
                       <% end %>
                     <% if @tour.languages.present? %>
