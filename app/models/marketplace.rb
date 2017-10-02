@@ -61,8 +61,8 @@ class Marketplace < ActiveRecord::Base
   end
   
   def document_picture 
-    if self.photo.present?
-      self.try(:document) if self.retrieve_account.legal_entity.verification.status == "verified"
+    if self.is_active? and self.photo.present?
+      self.retrieve_account.legal_entity.verification.status == "verified"
     end
   end
   
