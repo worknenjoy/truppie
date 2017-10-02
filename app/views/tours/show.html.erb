@@ -169,10 +169,11 @@
 					<div class="card-block">
 			            <ul class="list-unstyled tour-info">
 			            	<li>
-			            		<i class="fa fa-ticket"></i>
-			            		<% if not @tour.soldout? %> 
-			            			<strong><%= @tour.available %></strong> <%= t('tours_view_show_li_one') %>
+			            		<% if not @tour.soldout? or not @tour.available.empty? %>
+                          <i class="fa fa-ticket"></i>
+                          <strong><%= @tour.available %></strong> <%= t('tours_view_show_li_one') %>
 			            		<% else %>
+                          <i class="fa fa-ticket"></i>
 			            			<%= t('tours_view_show_li_two') %>
 			            		<% end %>
 		            		</li>
@@ -186,7 +187,7 @@
 			                <% if @tour.try(:difficulty) %>
 			                <li><i class="fa fa-heartbeat"></i> <%= t('tours_view_show_li_five') %> <strong><%= @tour.level %></strong> </li>
 			                <% end %>
-                      <% if @tour.try(:address) or !@tour.address.empty? %>
+                      <% if @tour.try(:address) and !@tour.address.empty? %>
                         <li><i class="fa fa-map-marker"></i>  <strong> <%= @tour.address %></strong></li>
                       <% end %>
                     <% if @tour.languages.present? %>

@@ -22,6 +22,7 @@ function updateDates(e) {
     var daysNumPicker = $('#daysNum').find('.r_days em').text();
 
     var startDateRow = $('.sel1').attr('data-date');
+    var endDateRow = $('.sel2').attr('data-date');
 
     if(startDateRow) {
         var startDate = moment.utc(new Date(startDateRow));
@@ -35,12 +36,12 @@ function updateDates(e) {
     var startTimeHours = startTimeArray[0];
     var startTimeMinutes = startTimeArray[1];
 
+
     if(startTimeHours > 0 && startTimeMinutes > 0) {
         startDate.hours(startTimeHours);
         startDate.minutes(startTimeMinutes);
     }
 
-    var endDateRow = $('.sel2').attr('data-date');
 
     if(endDateRow) {
         var endDate = moment.utc(new Date(endDateRow));
@@ -55,24 +56,15 @@ function updateDates(e) {
     var endTimeHours = endTimeArray[0];
     var endTimeMinutes = endTimeArray[1];
 
-    if(dateToText == 'mesmo dia') {
-        daysNumPicker = 0;
-        endDate = startDate;
-        $('.end-field').val(endDate);
-    }
-
     if(endTimeHours > 0 && endTimeMinutes > 0) {
         endDate.hours(endTimeHours);
         endDate.minutes(endTimeMinutes);
     }
 
-
-
     $('.start-field').val(startDate);
     $('.end-field').val(endDate);
 
     if(e.type !== "change") {
-
         $('#dateFromPicker').find('.r_date').text(dateFromText);
         $('#dateToPicker').find('.r_date').text(dateToText);
         $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
@@ -728,7 +720,7 @@ if($('.start-field').get(0)) {
 
     var endDateOut = $('.end-field').attr('data-date-end');
 
-    var startDateRow = currentStartDate.getFullYear() + '-' + (currentStartDate.getMonth() + 1) + '-' + currentStartDate.getDate();
+    var startDateRow = currentStartDate.getFullYear() + '-' + (currentStartDate.getMonth()) + '-' + currentStartDate.getDate();
 
     var startDateElement = $( 'td[data-date=' + startDateRow + ']');
     var calElement = $('#cal');
@@ -749,6 +741,10 @@ if($('.start-field').get(0)) {
     }
     
     $('#start_time, #end_time').bind('change', function(e){
+        updateDates(e);
+    });
+
+    $('form').bind('submit', function(e){
         updateDates(e);
     });
 }
