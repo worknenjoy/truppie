@@ -205,7 +205,7 @@ pt-BR:
       second: Segundo
       year: Ano
   days: Dias
-  departure-date: Saída
+  departure-date: Início
   desc-organizer-why-truppie: Crie uma conta na truppie para gerenciar de forma fácil suas reservas com os seus clientes
   enter-login: Criar/acessar minha conta
   errors:
@@ -522,7 +522,7 @@ pt-BR:
   profile-access-truppie-account-share-step: E ter um link de pagamento do evento com todas suas informações
   profile-access-truppie-account-step: Administrar suas reservas, quantidade de vagas e receber notificações
   profile-access-truppie-account-transfer-step: Solicitar transferências
-  return-date: Retorno
+  return-date: Término
   same-date: mesmo dia
   save-and-publish: Salvar e publicar
   save-changes: Salvar mudanças
