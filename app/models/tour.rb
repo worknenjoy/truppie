@@ -67,7 +67,8 @@ class Tour < ActiveRecord::Base
     #puts '------- attributes hash ----------'
     #puts attributes.inspect
   end
-  
+
+
   
   def how_long
     distance_words = distance_of_time_in_words(self.end - self.start)

@@ -37,11 +37,10 @@ function updateDates(e) {
     var startTimeMinutes = startTimeArray[1];
 
 
-    if(startTimeHours > 0 && startTimeMinutes > 0) {
+    if(startTimeHours >= 0 && startTimeMinutes >= 0) {
         startDate.hours(startTimeHours);
         startDate.minutes(startTimeMinutes);
     }
-
 
     if(endDateRow) {
         var endDate = moment.utc(new Date(endDateRow));
@@ -49,6 +48,10 @@ function updateDates(e) {
         var endDate = moment.utc(new Date($('.end-field').val()));
     }
 
+    if(dateToText == 'mesmo dia') {
+        daysNumPicker = 0;
+        endDate = startDate;
+    }
 
     var endTime = $('#end_time').val();
 
@@ -56,7 +59,7 @@ function updateDates(e) {
     var endTimeHours = endTimeArray[0];
     var endTimeMinutes = endTimeArray[1];
 
-    if(endTimeHours > 0 && endTimeMinutes > 0) {
+    if(endTimeHours >= 0 && endTimeMinutes >= 0) {
         endDate.hours(endTimeHours);
         endDate.minutes(endTimeMinutes);
     }
@@ -64,11 +67,11 @@ function updateDates(e) {
     $('.start-field').val(startDate);
     $('.end-field').val(endDate);
 
-    if(e.type !== "change") {
+    //if(e.type !== "change") {
         $('#dateFromPicker').find('.r_date').text(dateFromText);
         $('#dateToPicker').find('.r_date').text(dateToText);
         $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
-    }
+    //}
 }
 
 // small helpers
@@ -720,7 +723,7 @@ if($('.start-field').get(0)) {
 
     var endDateOut = $('.end-field').attr('data-date-end');
 
-    var startDateRow = currentStartDate.getFullYear() + '-' + (currentStartDate.getMonth()) + '-' + currentStartDate.getDate();
+    var startDateRow = currentStartDate.getFullYear() + '-' + currentStartDate.getDate() + '-' + currentStartDate.getMonth();
 
     var startDateElement = $( 'td[data-date=' + startDateRow + ']');
     var calElement = $('#cal');
@@ -740,12 +743,14 @@ if($('.start-field').get(0)) {
         $('#daysNumPicker').find('.r_days em').text(0);
     }
     
-    $('#start_time, #end_time').bind('change', function(e){
+    /*$('#start_time, #end_time').bind('change', function(e){
         updateDates(e);
+    });*/
+
+    $('form').bind('submit', function(e) {
+        updateDates(e);
+        //return false;
     });
 
-    $('form').bind('submit', function(e){
-        updateDates(e);
-    });
 }
 
