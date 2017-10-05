@@ -25,10 +25,12 @@ function updateDates(e) {
     var endDateRow = $('.sel2').attr('data-date');
 
     if(startDateRow) {
-        var startDate = moment.utc(new Date(startDateRow));
+        var startDate = moment(new Date(startDateRow));
     } else {
         var startDate = moment.utc(new Date($('.start-field').val()));
     }
+
+    console.log(startDate);
 
     var startTime = $('#start_time').val();
 
@@ -36,21 +38,28 @@ function updateDates(e) {
     var startTimeHours = startTimeArray[0];
     var startTimeMinutes = startTimeArray[1];
 
+    console.log(startTimeHours);
 
     if(startTimeHours >= 0 && startTimeMinutes >= 0) {
-        startDate.hours(startTimeHours);
-        startDate.minutes(startTimeMinutes);
+        startDate.set({'hour': startTimeHours, 'minute': startTimeMinutes});
     }
 
     if(endDateRow) {
-        var endDate = moment.utc(new Date(endDateRow));
+        var endDate = moment(new Date(endDateRow));
     } else {
         var endDate = moment.utc(new Date($('.end-field').val()));
     }
 
     if(dateToText == 'mesmo dia') {
         daysNumPicker = 0;
-        endDate = startDate;
+        endDate.set({
+            'year': startDate.get('year'),
+            'month': startDate.get('month'),
+            'date': startDate.get('date'),
+            'hour': startDate.get('hour'),
+            'minute': startDate.get('minute')
+        });
+        console.log(endDate);
     }
 
     var endTime = $('#end_time').val();
@@ -60,9 +69,11 @@ function updateDates(e) {
     var endTimeMinutes = endTimeArray[1];
 
     if(endTimeHours >= 0 && endTimeMinutes >= 0) {
-        endDate.hours(endTimeHours);
-        endDate.minutes(endTimeMinutes);
+        endDate.set({'hour': endTimeHours, 'minute': endTimeMinutes});
     }
+
+    console.log(startDate);
+    console.log(endDate);
 
     $('.start-field').val(startDate);
     $('.end-field').val(endDate);
