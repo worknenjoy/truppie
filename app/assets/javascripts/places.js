@@ -34,11 +34,20 @@
             searchBox.setBounds(map.getBounds());
         });
 
+        var current_place_name = document.getElementById('tour_wheres_attributes_0_name');
+
+        if(current_place_name) {
+            var current_place = document.getElementById('tour_wheres_attributes_0_name').value;
+            if(current_place) {
+                input.value = current_place;
+            }
+        }
+
         searchBox.addListener("places_changed", function (e) {
             var places = searchBox.getPlaces();
-            console.log('places');
-            console.log(places);
-            console.log(places[0].geometry.location)
+            //console.log('places');
+            //console.log(places);
+            //console.log(places[0].geometry.location)
 
             if (places.length == 0) {
                 return;
@@ -66,7 +75,12 @@
 
             var state_field = $('#background_wheres_attributes_0_state');
             if(state_field) {
-                state_field.val(places[0].address_components[1].short_name);
+                var state_field_component = places[0].address_components[1];
+                if(state_field_component) {
+                    state_field.val(state_field_component.short_name);
+                } else {
+                    state_field.val("");
+                }
             }
 
             var country_field = $('#background_wheres_attributes_0_country');
