@@ -276,6 +276,22 @@ pt-BR:
   hello-organizer-welcome-account-edit: Sua conta
   hello-organizer-welcome-profile-edit: Seu perfil
   helpers:
+    label:
+      marketplace:
+        person_name: Primeiro nome
+        person_lastname: Último nome
+        document_number: Número do documento de identificação
+        birthDate: Data de nascimento
+        street: Rua
+        complement: Complemento
+        zipcode: CEP
+        city: Cidade
+        state: Estado
+      bank_account:
+        fullname: Nome completo
+        bank_number: Banco
+        agency_number: Número da agência
+        account_number: Número da conta
     select:
       prompt: Por favor selecione
     submit:

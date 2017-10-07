@@ -351,7 +351,13 @@
 
               var placeId = "<%= w.place_id %>";
 
-              geocoder.geocode({'placeId': placeId}, function (results, status) {
+              <% if w.place_id.blank? %>
+                var place_object = {location: {lat: <%= w.try(:lat) %>, lng: <%= w.try(:long) %>}};
+              <% else %>
+                var place_object = {placeId: placeId };
+              <% end %>
+
+              geocoder.geocode(place_object, function (results, status) {
                   if (status === 'OK') {
                       if (results[0]) {
                           map.setZoom(11);
