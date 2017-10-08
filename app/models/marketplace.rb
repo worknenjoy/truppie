@@ -99,39 +99,106 @@ class Marketplace < ActiveRecord::Base
       false  
     else
       account = Stripe::Account.retrieve(self.account_id)
-      account.business_url = self.organizer.website if account.business_url.nil?
-      account.legal_entity.first_name = self.person_name if account.legal_entity.first_name != self.person_name
-      account.legal_entity.last_name = self.person_lastname if account.legal_entity.last_name != self.person_lastname
-      account.legal_entity.dob = self.dob if account.legal_entity.dob != self.dob
-      account.legal_entity.personal_id_number = self.document_number
 
-      account.legal_entity.personal_address.city = self.city if account.legal_entity.personal_address.city != self.city
-      account.legal_entity.personal_address.country = self.country
-      account.legal_entity.personal_address.line1 = self.street if account.legal_entity.personal_address.line1 != self.street
-      account.legal_entity.personal_address.line2 = self.complement if account.legal_entity.personal_address.line2 != self.complement
-      account.legal_entity.personal_address.state = self.state if account.legal_entity.personal_address.state != self.state
-      account.legal_entity.personal_address.postal_code = self.zipcode if account.legal_entity.personal_address.postal_code != self.zipcode
+      if account.business_url.nil? and self.organizer.website
+        account.business_url = self.organizer.website
+      end
+
+      if account.legal_entity.first_name != self.person_name
+        account.legal_entity.first_name = self.person_name
+      end
+
+      if account.legal_entity.last_name != self.person_lastname
+        account.legal_entity.last_name = self.person_lastname
+      end
+
+      if account.legal_entity.dob != self.dob
+        account.legal_entity.dob = self.dob
+      end
+
+      if self.document_number != account.legal_entity.personal_id_number
+        account.legal_entity.personal_id_number = self.document_number
+      end
+
+      if account.legal_entity.personal_address.city != self.city
+        account.legal_entity.personal_address.city = self.city
+      end
+
+      if self.country != account.legal_entity.personal_address.country
+        account.legal_entity.personal_address.country = self.country
+      end
+
+      if account.legal_entity.personal_address.line1 != self.street
+        account.legal_entity.personal_address.line1 = self.street
+      end
+
+      if account.legal_entity.personal_address.line2 != self.complement
+        account.legal_entity.personal_address.line2 = self.complement
+      end
+
+      if account.legal_entity.personal_address.state != self.state
+        account.legal_entity.personal_address.state = self.state
+      end
+
+      if account.legal_entity.personal_address.postal_code != self.zipcode
+        account.legal_entity.personal_address.postal_code = self.zipcode
+      end
       
       if self.organizer_type == 'individual'
-        account.legal_entity.address.city = self.city if account.legal_entity.address.city != self.city
-        account.legal_entity.address.country = self.country if account.legal_entity.address.country != self.country
-        account.legal_entity.address.line1 = self.street if account.legal_entity.address.line1 != self.street
-        account.legal_entity.address.line2 = self.complement if account.legal_entity.address.line2 != self.complement
-        account.legal_entity.address.state = self.state if account.legal_entity.address.state != self.state
-        account.legal_entity.address.postal_code = self.zipcode if account.legal_entity.address.postal_code != self.zipcode
+
+        if account.legal_entity.address.city != self.city
+        account.legal_entity.address.city = self.city
+        end
+
+        if account.legal_entity.address.country != self.country
+          account.legal_entity.address.country = self.country
+        end
+
+        if account.legal_entity.address.line1 != self.street
+          account.legal_entity.address.line1 = self.street
+        end
+
+        if account.legal_entity.address.line2 != self.complement
+          account.legal_entity.address.line2 = self.complement
+        end
+
+        if account.legal_entity.address.state != self.state
+          account.legal_entity.address.state = self.state
+        end
+
+        if account.legal_entity.address.postal_code != self.zipcode
+          account.legal_entity.address.postal_code = self.zipcode
+        end
       else
-        account.legal_entity.address.city = self.company_city if account.legal_entity.address.city != self.company_city
-        account.legal_entity.address.country = self.company_country if account.legal_entity.address.country != self.company_country
-        account.legal_entity.address.line1 = self.company_street if account.legal_entity.address.line1 != self.company_street
-        account.legal_entity.address.line2 = self.compcompany_complement if account.legal_entity.address.line2 != self.compcompany_complement
-        account.legal_entity.address.state = self.company_state if account.legal_entity.address.state != self.company_state
-        account.legal_entity.address.postal_code = self.company_zipcode if account.legal_entity.address.postal_code != self.company_zipcode
+        if account.legal_entity.address.city != self.company_city
+          account.legal_entity.address.city = self.company_city
+        end
+
+        if account.legal_entity.address.country != self.company_country
+          account.legal_entity.address.country = self.company_country
+        end
+
+        if account.legal_entity.address.line1 != self.company_street
+          account.legal_entity.address.line1 = self.company_street
+        end
+
+        if account.legal_entity.address.line2 != self.compcompany_complement
+          account.legal_entity.address.line2 = self.compcompany_complement
+        end
+
+        if account.legal_entity.address.state != self.company_state
+          account.legal_entity.address.state = self.company_state
+        end
+
+        if account.legal_entity.address.postal_code != self.company_zipcode
+          account.legal_entity.address.postal_code = self.company_zipcode
+        end
       end
       
       account.product_description = self.organizer.description if account.product_description.nil?
       account.legal_entity.type = self.organizer_type if account.legal_entity.type != self.organizer_type
       
-      if self.photo.present?
+      if self.photo.present? and self.photo != account.legal_entity.verification.document
         begin
           upload = Stripe::FileUpload.create({
               :file => open(photo.url),
