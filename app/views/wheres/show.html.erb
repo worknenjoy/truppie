@@ -62,7 +62,7 @@
               <% end %>
             </h3>
             <div class="b-teaser-articles__article__content__excerpt">
-              <p><%= t.description %></p>
+              <%= raw t.description %>
             </div>
             <% if t.confirmeds.any? %>
             <div class="b-favourite-list">
