@@ -4,13 +4,13 @@ module ApplicationHelper
   def flash_status(status)
     case status
     when 'error'
-      {:className => 'danger', :label => 'ops!'}
+      {:className => 'danger', :label => t('ops') }
     when 'notice'
-      {:className => 'info', :label => 'hey!'}
+      {:className => 'info', :label => t('hey')}
     when 'success'
-      {:className => 'success', :label => 'oba!'}
+      {:className => 'success', :label => t('oba')}
     else
-      {:className => 'info', :label => 'aviso'}
+      {:className => 'info', :label => t('aviso') }
     end
   end
   

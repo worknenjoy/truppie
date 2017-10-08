@@ -1,19 +1,33 @@
 ---
 en:
   account-label: account
-  active-label: active
   account-missing-legal-entity:
     verification:
+      document-label: Verificação do documento de identificação
       document-message:
-        verification: We could not verify you document picture, are you sure that your send when you were setting your account details?
         document-label: Document picture
+        verification: We could not verify you document picture, are you sure that your send when you were setting your account details?
+  active-label: active
   activerecord:
+    attributes:
+      organizer:
+        where.name: localização
+      where:
+        name: localização
     errors:
       messages:
         record_invalid: 'the validation fails: %{errors}'
         restrict_dependent_destroy:
           has_many: is not possible to exclude because you have %{record} dependent records
           has_one: is not possible to exclude because you have %{record} dependent records
+      models:
+        organizer:
+          where:
+            name: localização
+        where:
+          name: localização
+      wheres:
+        name: localização
   add-packages-desc: You can add more packages and one differenciate from another to offer food, accomodation etc.
   add-packages-title: Add package
   admin-from-anywhere-content: Manage your events and reservations from anywhere, Truppie is ready for mobile
@@ -31,6 +45,7 @@ en:
   alex-second-feature: Internet of things
   alex-third-feature: Design interaction
   authors-title: The Truppists
+  aviso: Aviso
   balance-label: Reservations
   balloom-heading: Exploring
   balloom-text: What are you up to? Check out the available truppies
@@ -267,12 +282,31 @@ en:
   hello-organizer-welcome-account-edit: Account edit
   hello-organizer-welcome-profile-edit: Welcome to your profile
   helpers:
+    label:
+      bank_account:
+        account_number: Número da conta
+        agency_number: Número da agência
+        bank_number: Banco
+        fullname: Nome completo
+      marketplace:
+        birthDate: Data de nascimento
+        city: Cidade
+        complement: Complemento
+        document_number: Número do documento de identificação
+        person_lastname: "Último nome"
+        person_name: Primeiro nome
+        state: Estado
+        street: Rua
+        zipcode: CEP
+      where:
+        name: localização
     select:
       prompt: Please select
     submit:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+  hey: Hey!
   how-it-works-link: See how the Truppie works
   how-it-works-main-menu: I'm explorer
   how-it-works-title: How it works
@@ -382,6 +416,7 @@ en:
   no-experience-here-label: There's no experience here
   no-marketplace: no account
   no-marketplace-label: no account
+  no-photo-please-send-one: No picture was sent, please send one to display in your event page
   no-places-action: There's no experience registered yet for this place
   no-places-text: We still don't have experience for this place
   no-places-title: No experience for this place
@@ -389,9 +424,6 @@ en:
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: not verified
   not_verified_label: not verified
-  tours_send_picture: Send picture
-  tours_view_show_li_finish: Finish at
-  no-photo-please-send-one: No picture was sent, please send one to display in your event page
   number:
     currency:
       format:
@@ -448,8 +480,10 @@ en:
     precision:
       format:
         delimiter: "."
+  oba: Great!
   offer-truppie-advantages: Why offer your adventures with us
   offer-truppies-title-call: 'With Truppie, you can:'
+  ops: Ops!
   or-label: or you can
   organizer-access-step: Wait for us that we will create your profile
   organizer-account-edit: Edit your account
@@ -575,6 +609,7 @@ en:
   tours_controller_unconfirm_error: There was a problem to confirm your withdrawal from this event
   tours_controller_unconfirm_success: You are no longer confirmed in this event
   tours_controller_update_notice: Truppie successfully updated
+  tours_send_picture: Send picture
   tours_view_confirm_h4_five: 'Total:'
   tours_view_confirm_h4_four: Information for payment
   tours_view_confirm_h4_one: Truppie confirmation
@@ -678,6 +713,7 @@ en:
   tours_view_show_a_one: Questions? Send an e-mail
   tours_view_show_a_two: Packages options
   tours_view_show_h4: Photos
+  tours_view_show_li_finish: Finish at
   tours_view_show_li_five: " Difficulty level"
   tours_view_show_li_four: " Starts "
   tours_view_show_li_one: " available vacancies"

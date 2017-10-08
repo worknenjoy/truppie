@@ -3,18 +3,31 @@ pt-BR:
   account-label: Minha conta
   account-missing-legal-entity:
     verification:
-      document-message: Não conseguimos verificar seu documento, você já enviou e atualizou sua conta?
-  account-missing-legal-entity:
-    verification:
       document-label: Verificação do documento de identificação
+      document-message:
+        document-label: Document picture
+        verification: We could not verify you document picture, are you sure that your send when you were setting your account details?
   active-label: ativa
   activerecord:
+    attributes:
+      organizer:
+        where.name: localização
+      where:
+        name: localização
     errors:
       messages:
-        record_invalid: 'A validação falhou: %{errors}'
+        record_invalid: 'the validation fails: %{errors}'
         restrict_dependent_destroy:
-          has_many: Não é possível excluir o registro pois existem %{record} dependentes
-          has_one: Não é possível excluir o registro pois existe um %{record} dependente
+          has_many: is not possible to exclude because you have %{record} dependent records
+          has_one: is not possible to exclude because you have %{record} dependent records
+      models:
+        organizer:
+          where:
+            name: localização
+        where:
+          name: localização
+      wheres:
+        name: localização
   add-packages-desc: Você pode adicionar mais de um preço por pacote, como alguns incluírem hospedagem, alimentação, etc
   add-packages-title: Adicionar pacote
   admin-from-anywhere-content: Administre seus eventos e reservas de qualquer lugar, a Truppie funciona em qualquer dispositivo
@@ -32,6 +45,7 @@ pt-BR:
   alex-second-feature: Internet das coisas
   alex-third-feature: Tech Geek
   authors-title: Os Truppistas
+  aviso: Aviso
   balance-label: Reservas
   balloom-heading: Explore
   balloom-text: Do que você está a fim? Temos opções variadas!
@@ -277,27 +291,30 @@ pt-BR:
   hello-organizer-welcome-profile-edit: Seu perfil
   helpers:
     label:
-      marketplace:
-        person_name: Primeiro nome
-        person_lastname: Último nome
-        document_number: Número do documento de identificação
-        birthDate: Data de nascimento
-        street: Rua
-        complement: Complemento
-        zipcode: CEP
-        city: Cidade
-        state: Estado
       bank_account:
-        fullname: Nome completo
-        bank_number: Banco
-        agency_number: Número da agência
         account_number: Número da conta
+        agency_number: Número da agência
+        bank_number: Banco
+        fullname: Nome completo
+      marketplace:
+        birthDate: Data de nascimento
+        city: Cidade
+        complement: Complemento
+        document_number: Número do documento de identificação
+        person_lastname: "Último nome"
+        person_name: Primeiro nome
+        state: Estado
+        street: Rua
+        zipcode: CEP
+      where:
+        name: localização
     select:
       prompt: Por favor selecione
     submit:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+  hey: Hey!
   how-it-works-link: Como funciona a truppie
   how-it-works-main-menu: Sou Explorador
   how-it-works-title: Como funciona?
@@ -407,6 +424,7 @@ pt-BR:
   no-experience-here-label: Ainda não temos experiências para este local
   no-marketplace: Dados da conta não cadastrados
   no-marketplace-label: Sem conta cadastrada
+  no-photo-please-send-one: Você não enviou nenhuma foto para este evento, envie uma foto para poder exibi-la aqui
   no-places-action: Adicionar uma experiência deste local
   no-places-text: Este lugar não tem nenhum passeio cadastrado
   no-places-title: Não há experiências para este lugar
@@ -414,9 +432,6 @@ pt-BR:
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: Não verificado
   not_verified_label: Não verificado
-  tours_send_picture: Enviar foto
-  tours_view_show_li_finish: Termina
-  no-photo-please-send-one: Você não enviou nenhuma foto para este evento, envie uma foto para poder exibi-la aqui
   number:
     currency:
       format:
@@ -473,8 +488,10 @@ pt-BR:
     precision:
       format:
         delimiter: "."
+  oba: Oba!
   offer-truppie-advantages: Por que oferecer suas aventuras pela nossa plataforma?
   offer-truppies-title-call: 'Com a Truppie, você pode:'
+  ops: Ops!
   or-label: ou você pode
   organizer-access-step: Aguarde nosso retorno, criaremos seu perfil!
   organizer-account-edit: Conta pessoal
@@ -600,6 +617,7 @@ pt-BR:
   tours_controller_unconfirm_error: Houve um problema para confirmar sua desistência neste evento
   tours_controller_unconfirm_success: Você não está mais confirmardo neste evento
   tours_controller_update_notice: Truppie atualizada com sucesso
+  tours_send_picture: Enviar foto
   tours_view_confirm_h4_five: 'Total:'
   tours_view_confirm_h4_four: Dados para pagamento
   tours_view_confirm_h4_one: Confirmação da truppie
@@ -703,6 +721,7 @@ pt-BR:
   tours_view_show_a_one: " dúvida? Envie um e-mail"
   tours_view_show_a_two: Opções de pacotes
   tours_view_show_h4: Fotos
+  tours_view_show_li_finish: Termina
   tours_view_show_li_five: " Nível "
   tours_view_show_li_four: " Começa "
   tours_view_show_li_one: vagas disponíveis

@@ -377,7 +377,7 @@ class Marketplace < ActiveRecord::Base
       rescue => e
         puts "bank accounts"
         puts e.inspect
-        return e
+        return false
       end
     end   
   end

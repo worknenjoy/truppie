@@ -61,6 +61,7 @@ class OrganizersController < ApplicationController
       else
         format.html {
           flash[:errors] = @organizer.errors
+          puts @organizer.errors.inspect
           session.delete(:organizer_welcome_params)
           session.delete(:organizer_welcome)
           redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
