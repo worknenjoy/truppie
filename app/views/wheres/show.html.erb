@@ -46,8 +46,8 @@
       <header class="b-section-header">
         <h2>Experiences</h2>
       </header>
-      <% if @tours.any? %>
-      <% @tours.each do |t| %>
+      <% if @tours.publisheds.any? %>
+      <% @tours.publisheds.each do |t| %>
       <div class="b-teaser-articles">
         <article class="b-teaser-articles__article">
           <% if t.picture.present? %>
