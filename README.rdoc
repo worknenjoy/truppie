@@ -52,8 +52,16 @@ We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/mas
 
 === RELEASE NOTES
 
-- 2.0.rc1 
-  - #1: Stripe as the main payment platform 
-  - Continuous Integration system with Heroku pipeline, Github and Travis CI
-  - SSL support   
+==== v2.0-rc1
+
+The Truppie platform open for guides registration.
+
+A version with guides registration, tour linked to places that has it's own landing page.
+
+So in this release is possible:
+- The guide create a simple account
+- The guide can create a account to link with bank account
+- The guide after has his account verified he can receive the transfers
+- A lot of bug fixes
+- Multi-language support 
 
