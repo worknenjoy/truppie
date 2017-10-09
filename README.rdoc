@@ -44,6 +44,14 @@ We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/mas
   
   To work with us as a developer, you need to work well with TDD and BDD.
   
+== For inform a bug
+  
+  With you want to give feedback about bugs, you can open a issue describing:
+  1. Which URL the bug happens
+  2. What you would tried to do (action perfomed)
+  2. Date and time
+  3. Error message (if any)
+  
 == Installing
 
 === Env variables to secure our working
