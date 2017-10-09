@@ -2,3 +2,7 @@
 .env
 .project
 tmp/
+.idea/
+log/
+public/
+truppie.iml
