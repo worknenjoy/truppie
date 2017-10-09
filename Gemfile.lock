@@ -111,6 +111,7 @@ GEM
       sass-rails (< 5.1)
       sprockets (< 4.0)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     crass (1.0.2)
     daemons (1.2.4)
     dante (0.2.0)
@@ -171,11 +172,16 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.6)
     jwt (1.5.6)
+    liquid (4.0.0)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
+    maily_herald (0.9.4)
+      liquid (> 2.6.1)
+      rails (> 3.2)
+      sidekiq
     metaclass (0.0.4)
     mime-types (2.6.2)
     mimemagic (0.3.0)
@@ -220,6 +226,8 @@ GEM
     pg (0.21.0)
     puma (3.10.0)
     rack (1.6.8)
+    rack-protection (2.0.0)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5.1)
@@ -277,6 +285,11 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sidekiq (5.0.4)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (~> 3.3, >= 3.3.3)
     spring (2.0.2)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -341,6 +354,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   json
+  maily_herald
   mime-types (= 2.6.2)
   mocha
   moip2 (~> 0.1.4)

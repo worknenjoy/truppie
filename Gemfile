@@ -11,6 +11,9 @@ gem 'puma'
 gem 'stripe'
 gem 'stripe-ruby-mock', :require => 'stripe_mock', :git => 'git://github.com/alexanmtz/stripe-ruby-mock.git', :branch => 'master'
 
+
+gem "maily_herald"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'compass-rails'
