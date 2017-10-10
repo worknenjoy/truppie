@@ -1,4 +1,4 @@
-# Bem vindo a Truppie devs
+# Bem vindo ao Truppie devs
  
 Aqui você poderá saber como contribuir com a plataforma.
 
