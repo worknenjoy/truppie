@@ -1,0 +1,7 @@
+- name: Um bug real
+  url: http://github.com/alexanmtz/truppie/issues
+  description: tentar corrigir um bug real
+
+- name: Outro bug real
+  url: http://github.com/alexanmtz/truppie/issues
+  description: tentar corrigir outro bug real
