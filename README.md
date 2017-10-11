@@ -6,4 +6,4 @@ Estamos construindo uma documentação e um guia passo a passo de como trabalhar
 e para que desenvolvedores possam assumir tarefas e desenvolver novas funcionalidades para a plataforma.
 
 
-#### seja notificado quando surgir novidades - http://dev.truppie.com
+#### seja notificado quando surgirem novas tarefas

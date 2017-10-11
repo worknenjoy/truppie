@@ -1,7 +1,11 @@
-- name: Um bug real
-  url: http://github.com/alexanmtz/truppie/issues
-  description: tentar corrigir um bug real
-
-- name: Outro bug real
-  url: http://github.com/alexanmtz/truppie/issues
-  description: tentar corrigir outro bug real
+- name: Cadastrar atividades em que o valor é sugerido pelo usuário
+  date: 11 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/19
+  description: "Quando o guia criar um passeio, e chegar no momento de escolher um valor ou entre pacotes, ele poder marcar um campo \"Sugerido pelo usuário no momento da reserva / Chosen by user\". A tradução deste campo para o inglês também deverá ser realizada."
+  requirements: Rails, jQuery, Bootstrap, TDD, Inglês básico
+  level: Médio
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/31457703-d9694a72-aebd-11e7-84b7-8096de24628f.png"
+  imagealt: "https://user-images.githubusercontent.com/88840/31456723-ed1a0d02-aeba-11e7-94b0-0a3c2a56136d.png"
+  validation: Pull Request aprovado
+  price: 350

@@ -39,87 +39,98 @@
     {{ content }}
 
     <!-- Begin MailChimp Signup Form -->
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+    <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+        /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    </style>
     <div id="mc_embed_signup">
-        <form action="//gardering.us9.list-manage.com/subscribe/post?u=5e42ed8d71c8269c0acfa701bb&amp;id=e12fb29ac2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <form action="https://gardering.us9.list-manage.com/subscribe/post?u=5e42ed8d71c8269c0acfa701b&amp;id=e12fb29ac2" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <div id="mc_embed_signup_scroll">
-
-                <div class="indicates-required"><span class="asterisk">*</span> campo obrigatório</div>
-                <div class="mc-field-group">
-                    <label for="mce-EMAIL">E-mail  <span class="asterisk">*</span>
-                    </label>
-                    <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="email">
-                </div>
-                <div id="mce-responses" class="clear">
-                    <div class="response" id="mce-error-response" style="display:none"></div>
-                    <div class="response" id="mce-success-response" style="display:none"></div>
-                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_5e42ed8d71c8269c0acfa701b_454966a133" tabindex="-1" value=""></div>
-                <div class="clear" style="text-align: center;">
-                    <input type="submit" value="enviar" name="subscribe" id="mc-embedded-subscribe" class="button ">
-                </div>
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Endereço de e-mail" required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_5e42ed8d71c8269c0acfa701b_e12fb29ac2" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Inscreva-se!" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
             </div>
         </form>
     </div>
+
+    <!--End mc_embed_signup-->
+
 
     <h1>Tarefas</h1>
 
     <ul>
         {% for issue in site.data.issues %}
-            <h2><a href="{{ issue.url }}">{{ issue.name }}</a></h2>
+            <span style="font-size: 11px; font-style: italic">adicionada em {{ issue.date }}</span>
+            <h2 style="margin-top: 4px;"><a target="_blank" href="{{ issue.url }}">{{ issue.name }}</a></h2>
+            <p>
+                <a target="_blank" href="{{ issue.url }}" title="Veja a issue no Github para começar a trabalhar nela"><img src="{{issue.imagealt}}" width="300" /></a>
+                <a target="_blank" href="{{ issue.url }}" title="Veja a issue no Github para começar a trabalhar nela"><img src="{{issue.image}}" width="300" /></a>
+            </p>
+            <h3><strong>Valor:</strong> R$ {{ issue.price }}</h3>
             <blockquote>
                 <p>{{ issue.description }}</p>
+                <p><a target="_blank" href="{{ issue.url }}">Saiba mais detalhes desta tarefa e inicie agora mesmo a contribuir para a Truppie!</a></p>
             </blockquote>
             <dl>
-                <dt>Name</dt>
-                <dd>Godzilla</dd>
-                <dt>Born</dt>
-                <dd>1952</dd>
-                <dt>Birthplace</dt>
-                <dd>Japan</dd>
-                <dt>Color</dt>
-                <dd>Green</dd>
+                <dt>Requisitos</dt>
+                <dd>{{ issue.requirements }}</dd>
+                <dt>Nível</dt>
+                <dd>{{ issue.level }}</dd>
+                <dt>Tecnologias</dt>
+                <dd>{{ issue.technology }}</dd>
+                <dt>Forma de validação para considerar como feito</dt>
+                <dd>
+                    {{ issue.validation }}
+                </dd>
+                <p>Saiba mais sobre os <a href="https://blog.da2k.com.br/2015/02/04/git-e-github-do-clone-ao-pull-request/" target="_blank">passos básicos para que você possa contribuir e trabalhar para a Truppie!</a></p>
             </dl>
-
-            <p>Inline code inside table cells should still be distinguishable.</p>
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Language</th>
-                    <th>Code</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Javascript</td>
-                    <td><code>var foo = "bar";</code></td>
-                </tr>
-                <tr>
-                    <td>Ruby</td>
-                    <td><code>foo = "bar"</code></td>
-                </tr>
-                </tbody>
-            </table>
-            <hr>
+            <hr />
         {% endfor %}
     </ul>
 
-    {% for repository in site.github.public_repositories %}
-        {% if repository.name == truppie %}
-            [{{ repository.name }}]({{ repository.html_url }})
-        {% endif %}
-    {% endfor %}
-
-
     <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
     <!--End mc_embed_signup-->
+
+    <h2>Nossas tecnologias</h2>
+
+    <img src="../assets/img/heroku.png" width="180" />
+
+    <img src="../assets/img/travis-ci.png" width="180" />
+
+    <img src="../assets/img/github.png" width="180" />
+
+    <img src="../assets/img/trello-logo.png" width="180" />
+
+    <img src="../assets/img/jquery-logo.jpg" width="180" />
+
+    <img src="../assets/img/rails-logo.png" width="180" />
+
+    <img src="../assets/img/bootstrap-logo.png" width="180" />
+
+    <div>
+        <p>Se você entende bem destas tecnologias, você pode contribuir com a <a href="http://truppie.com">Truppie</a></p>
+    </div>
 
     <footer class="site-footer">
         {% if site.github.is_project_page %}
         <span class="site-footer-owner"><a href="http://www.truppie.com">{{ site.github.repository_name }}</a> é mantida por <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
         {% endif %}
         <span class="site-footer-credits">A <a href="https://pages.github.com">Truppie</a> é plataforma que vende reservas para diversas atividades outdoor</span>
+        <p>CNPJ 28.608.433/0001-43</p>
+
+        <p>Alameda dos Colibris, 500 <br />
+        22640-338 <br />
+        BARRA DA TIJUCA <br />
+        RIO DE JANEIRO - RJ <br />
+        </p>
+        <p>
+        This is part of <a href="http://www.worknenjoy.com" target="_blank">Work 'n Enjoy</a>
+        </p>
+
+        <p>Copyright © Truppie 2016. All rights reserved.</p>
     </footer>
 </section>
 
