@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926153539) do
+ActiveRecord::Schema.define(version: 20171010191716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,57 @@ ActiveRecord::Schema.define(version: 20170926153539) do
 
   add_index "languages_tours", ["language_id", "tour_id"], name: "index_languages_tours_on_language_id_and_tour_id", using: :btree
   add_index "languages_tours", ["tour_id", "language_id"], name: "index_languages_tours_on_tour_id_and_language_id", using: :btree
+
+  create_table "maily_herald_dispatches", force: :cascade do |t|
+    t.string   "type",                                       null: false
+    t.integer  "sequence_id"
+    t.integer  "list_id",                                    null: false
+    t.text     "conditions"
+    t.text     "start_at"
+    t.string   "mailer_name"
+    t.string   "name",                                       null: false
+    t.string   "title"
+    t.string   "subject"
+    t.string   "from"
+    t.string   "state",                 default: "disabled"
+    t.text     "template"
+    t.integer  "absolute_delay"
+    t.integer  "period"
+    t.boolean  "override_subscription"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "maily_herald_dispatches", ["name"], name: "index_maily_herald_dispatches_on_name", unique: true, using: :btree
+
+  create_table "maily_herald_lists", force: :cascade do |t|
+    t.string "name",         null: false
+    t.string "title"
+    t.string "context_name"
+  end
+
+  create_table "maily_herald_logs", force: :cascade do |t|
+    t.integer  "entity_id",     null: false
+    t.string   "entity_type",   null: false
+    t.string   "entity_email"
+    t.integer  "mailing_id"
+    t.string   "status",        null: false
+    t.text     "data"
+    t.datetime "processing_at"
+  end
+
+  create_table "maily_herald_subscriptions", force: :cascade do |t|
+    t.integer  "entity_id",                    null: false
+    t.integer  "list_id",                      null: false
+    t.string   "entity_type",                  null: false
+    t.string   "token",                        null: false
+    t.text     "settings"
+    t.text     "data"
+    t.boolean  "active",       default: false, null: false
+    t.datetime "delivered_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "marketplaces", force: :cascade do |t|
     t.integer  "organizer_id"

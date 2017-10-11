@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  mount MailyHerald::Webui::Engine => "/maily_webui"
+
   resources :backgrounds
   resources :collaborators
   resources :customers

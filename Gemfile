@@ -13,6 +13,7 @@ gem 'stripe-ruby-mock', :require => 'stripe_mock', :git => 'git://github.com/ale
 
 
 gem "maily_herald"
+gem "maily_herald-webui"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
