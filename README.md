@@ -2,8 +2,7 @@
  
 O desenvolvimento da plataforma [http://truppie.com](http://truppie.com) é colaborativo.
 
-Estamos construindo uma documentação e um guia passo a passo de como trabalhar para a truppie de forma independente
-e para que desenvolvedores possam assumir tarefas e desenvolver novas funcionalidades para a plataforma.
+Estamos elaborando um guia com o passo a passo de como desenvolvedores podem trabalhar para a Truppie de forma independente, assumindo tarefas e desenvolvendo novas funcionalidades para a plataforma.
 
 
-#### seja notificado quando surgirem novas tarefas
+#### Seja notificado quando surgirem novas tarefas
