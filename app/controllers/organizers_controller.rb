@@ -23,6 +23,7 @@ class OrganizersController < ApplicationController
 
   def guided_tour
     @guided_tour = @organizer.tours.new
+    @opened = flash[:opened] || false
     @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
   end
 

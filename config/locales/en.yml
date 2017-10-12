@@ -588,8 +588,8 @@ en:
   tours_controller_confirm_status_msg: Thanks for booking this event
   tours_controller_copy_error: There was a error to copy this event
   tours_controller_copy_success: Event copied sucessfully
-  tours_controller_create_notice_one: Truppie successfully created
-  tours_controller_create_notice_two: The field %{error_one} %{error_two}
+  tours_controller_create_notice_one: Tour successfully created
+  tours_controller_create_notice_two: There was a problem to create your tour, please verify the fields and try again
   tours_controller_desc: Truppie %{title} by %{organizer}
   tours_controller_destroy_notice: Tour was successfully destroyed.
   tours_controller_destroy_notice_fail: We couldnt delete this event

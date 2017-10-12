@@ -106,9 +106,10 @@ class ToursController < ApplicationController
         format.json { render :show, status: :created, location: @tour }
       else
         format.html {
+          flash[:errors] = @tour.errors
+          flash[:opened] = true
           redirect_to guided_tour_organizer_path(tour_params[:organizer] || tour_params[:organizer_id]),
-          notice: t('tours_controller_create_notice_two',
-          error_one: @tour.errors.first[0], error_two: @tour.errors.first[1])
+                      notice: t('tours_controller_create_notice_two')
         }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end

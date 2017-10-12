@@ -1,5 +1,5 @@
 <%= form_for @guided_tour, class: "form form-signup criar-truppie", multipart: true, role: "form" do |f| %>
-    <div id="newEventForm" class="<%= 'hide' if @guided_tour.new_record? %>">
+    <div id="newEventForm" class="<%= 'hide' if @guided_tour.new_record? and !@opened %>">
       <div>
         <h4 class="text-xs-center spaced-down"><%= t('tour-category-label') %></h4>
         <div class="spaced-top" style="text-align: center">
@@ -24,12 +24,15 @@
           </div>
         </div>
       </div>
-      <label for="event-date"><%= t('event-date-title') %></label>
-      <%= render partial: 'calendar', locals: {f: f} %>
+      <div class="form-group <%= form_error(flash[:errors], :start) %>">
+        <label for="event-date"><%= t('event-date-title') %></label>
+        <%= render partial: 'calendar', locals: {f: f} %>
 
-      <%= f.hidden_field :start, class: 'start-field', 'data-date-start' => (l(f.object.start, format: '%d %B %Y') if f.object.start) %>
-      <%= f.hidden_field :end, class: 'end-field', 'data-date-end' => (l(f.object.end, format: '%d %B %Y') if f.object.end) %>
-      <%= f.hidden_field :status, class: 'tour-status' %>
+        <%= f.hidden_field :start, class: 'start-field', 'data-date-start' => (l(f.object.start, format: '%d %B %Y') if f.object.start) %>
+        <%= f.hidden_field :end, class: 'end-field', 'data-date-end' => (l(f.object.end, format: '%d %B %Y') if f.object.end) %>
+        <%= f.hidden_field :status, class: 'tour-status' %>
+        <%= error_message(flash[:errors], :start) %>
+      </div>
 
       <div class="form-group">
         <div style="width: 100%; text-align: center;" class="spaced-small file-upload-previous-container">
@@ -53,17 +56,21 @@
           </div>
         </div>
       </div>
-      <label for="event-title"><%= t('event-title') %></label>
-      <%= f.hidden_field :organizer_id, value: @organizer.id %>
-      <%= f.hidden_field :user_id, value: @organizer.user.id %>
-      <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control event-input default" %>
+      <div class="form-group <%= form_error(flash[:errors], :title) %>">
+        <label for="event-title"><%= t('event-title') %></label>
+        <%= f.hidden_field :organizer_id, value: @organizer.id %>
+        <%= f.hidden_field :user_id, value: @organizer.user.id %>
+        <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control event-input default" %>
+        <%= error_message(flash[:errors], :title) %>
+      </div>
+
       <label for="event-description"><%= t('event-desc-label') %></label>
       <div class="spaced-down">
         <div id="editor-container" class="stpaced-down">
         </div>
       </div>
       <%= f.text_area :description, placeholder: t('tours_view_form_placeholder_twelve'), class: "textarea hide" %>
-      <div class="form-group">
+      <div class="form-group <%= form_error(flash[:errors], "wheres.name") %>">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
           <input type="text" name="search" placeholder="<%= t('tours_view_form_placeholder_two') %>" class="form-control places-input" />
@@ -81,6 +88,7 @@
               <%= ff.hidden_field :place_id %>
           <% end %>
         </div>
+        <%= error_message(flash[:errors], "wheres.name") %>
         <div id="map"></div>
       </div>
       <div class="form-group">

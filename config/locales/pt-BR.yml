@@ -597,7 +597,7 @@ pt-BR:
   tours_controller_copy_error: Houve um erro ao tentar copiar o evento
   tours_controller_copy_success: Evento copiado com sucesso
   tours_controller_create_notice_one: Truppie criada com sucesso
-  tours_controller_create_notice_two: o campo %{error_one} %{error_two}
+  tours_controller_create_notice_two: Tivemos um problema para criar a sua atividade, por favor, verifique os dados marcados e tente novamente
   tours_controller_desc: Truppie %{title} por %{organizer}
   tours_controller_destroy_notice: Truppie removida com sucesso
   tours_controller_destroy_notice_fail: Não foi possível apagar a truppie

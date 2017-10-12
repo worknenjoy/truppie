@@ -1,4 +1,4 @@
-
+@import 'bootstrap/variables';
 
 
 // Color Variables
@@ -227,3 +227,23 @@ $overcast: #849EBF;
 }
 
 .hide { display: none; }
+
+#newEventForm {
+  .has-danger {
+    label {
+      color: $label-danger-bg;
+    }
+    input {
+      margin-bottom: 0 !important;
+      &.event-input {
+        border: 1px solid $alert-danger-border !important;
+      }
+      &::placeholder {
+        color: lighten($label-danger-bg, 20%) !important;
+      }
+    }
+    .fromTo {
+      background: lighten($brand-danger, 20%);
+    }
+  }
+}

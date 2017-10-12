@@ -129,10 +129,14 @@ class ToursControllerTest < ActionController::TestCase
   end
   
   test "should not create tour with organizer without a title" do
-     #skip("creating tour with empty data")
+      source = "http://test/organizers/#{@organizer}"
+      request.env["HTTP_REFERER"] = source
      post :create, tour: {organizer: Organizer.first.name}
-     assert_equal 'o campo title não pode ficar em branco', flash[:notice]
-     #assert_redirected_to tour_path(assigns(:tour))
+     assert_equal I18n.t('tours_controller_create_notice_two'), flash[:notice]
+     assert_equal 'não pode ficar em branco',
+         flash[:errors].messages[:title][0]
+     assert_equal flash[:opened], true
+     assert_redirected_to guided_tour_organizer_path(Organizer.first)
   end
   
   test "should not create tour with no organizer but with a title" do
