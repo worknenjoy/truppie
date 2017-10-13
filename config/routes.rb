@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :forms
+  resources :destinations
+  resources :comments
+  resources :guidebooks
   root 'welcome#index'
 
   mount MailyHerald::Webui::Engine => "/maily_webui"

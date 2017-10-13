@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Guidebooks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Rating</th>
+      <th>Value</th>
+      <th>Currency</th>
+      <th>Organizer</th>
+      <th>User</th>
+      <th>Privacy</th>
+      <th>Language</th>
+      <th>Review</th>
+      <th>Verified</th>
+      <th>Status</th>
+      <th>Form</th>
+      <th>Where</th>
+      <th>Packages</th>
+      <th>Picture</th>
+      <th>Tag</th>
+      <th>Category</th>
+      <th>Attraction</th>
+      <th>Included</th>
+      <th>Nonincluded</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @guidebooks.each do |guidebook| %>
+      <tr>
+        <td><%= guidebook.title %></td>
+        <td><%= link_to 'Show', guidebook %></td>
+        <td><%= link_to 'Edit', edit_guidebook_path(guidebook) %></td>
+        <td><%= link_to 'Destroy', guidebook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Guidebook', new_guidebook_path %>

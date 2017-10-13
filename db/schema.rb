@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010191716) do
+ActiveRecord::Schema.define(version: 20171013195617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,26 @@ ActiveRecord::Schema.define(version: 20171010191716) do
   add_index "collaborators_tours", ["collaborator_id", "tour_id"], name: "index_collaborators_tours_on_collaborator_id_and_tour_id", using: :btree
   add_index "collaborators_tours", ["tour_id", "collaborator_id"], name: "index_collaborators_tours_on_tour_id_and_collaborator_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.string   "title"
+    t.string   "comment"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "parent_id"
+  end
+
+  add_index "comments", ["parent_id"], name: "index_comments_on_parent_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "comments_guidebooks", id: false, force: :cascade do |t|
+    t.integer "comment_id",   null: false
+    t.integer "guidebook_id", null: false
+  end
+
+  add_index "comments_guidebooks", ["comment_id", "guidebook_id"], name: "index_comments_guidebooks_on_comment_id_and_guidebook_id", using: :btree
+  add_index "comments_guidebooks", ["guidebook_id", "comment_id"], name: "index_comments_guidebooks_on_guidebook_id_and_comment_id", using: :btree
+
   create_table "confirmeds", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
@@ -146,6 +166,79 @@ ActiveRecord::Schema.define(version: 20171010191716) do
   end
 
   add_index "customers", ["user_id"], name: "index_customers_on_user_id", using: :btree
+
+  create_table "destinations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "downloaded"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "destinations", ["user_id"], name: "index_destinations_on_user_id", using: :btree
+
+  create_table "forms", force: :cascade do |t|
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "guidebooks", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "rating"
+    t.integer  "value"
+    t.string   "currency"
+    t.integer  "organizer_id",                      null: false
+    t.integer  "user_id",                           null: false
+    t.string   "privacy"
+    t.string   "verified"
+    t.string   "status"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "category_id"
+    t.string   "included",             default: [],              array: true
+    t.string   "nonincluded",          default: [],              array: true
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "destination_id"
+    t.integer  "form_id"
+  end
+
+  add_index "guidebooks", ["category_id"], name: "index_guidebooks_on_category_id", using: :btree
+  add_index "guidebooks", ["destination_id"], name: "index_guidebooks_on_destination_id", using: :btree
+  add_index "guidebooks", ["form_id"], name: "index_guidebooks_on_form_id", using: :btree
+  add_index "guidebooks", ["organizer_id"], name: "index_guidebooks_on_organizer_id", using: :btree
+  add_index "guidebooks", ["user_id"], name: "index_guidebooks_on_user_id", using: :btree
+
+  create_table "guidebooks_packages", id: false, force: :cascade do |t|
+    t.integer "package_id",   null: false
+    t.integer "guidebook_id", null: false
+  end
+
+  add_index "guidebooks_packages", ["guidebook_id", "package_id"], name: "index_guidebooks_packages_on_guidebook_id_and_package_id", using: :btree
+  add_index "guidebooks_packages", ["package_id", "guidebook_id"], name: "index_guidebooks_packages_on_package_id_and_guidebook_id", using: :btree
+
+  create_table "guidebooks_tags", id: false, force: :cascade do |t|
+    t.integer "tag_id",       null: false
+    t.integer "guidebook_id", null: false
+  end
+
+  add_index "guidebooks_tags", ["guidebook_id", "tag_id"], name: "index_guidebooks_tags_on_guidebook_id_and_tag_id", using: :btree
+  add_index "guidebooks_tags", ["tag_id", "guidebook_id"], name: "index_guidebooks_tags_on_tag_id_and_guidebook_id", using: :btree
+
+  create_table "guidebooks_wheres", id: false, force: :cascade do |t|
+    t.integer "where_id",     null: false
+    t.integer "guidebook_id", null: false
+  end
+
+  add_index "guidebooks_wheres", ["guidebook_id", "where_id"], name: "index_guidebooks_wheres_on_guidebook_id_and_where_id", using: :btree
+  add_index "guidebooks_wheres", ["where_id", "guidebook_id"], name: "index_guidebooks_wheres_on_where_id_and_guidebook_id", using: :btree
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
@@ -383,6 +476,14 @@ ActiveRecord::Schema.define(version: 20171010191716) do
   add_index "packages_tours", ["package_id", "tour_id"], name: "index_packages_tours_on_package_id_and_tour_id", using: :btree
   add_index "packages_tours", ["tour_id", "package_id"], name: "index_packages_tours_on_tour_id_and_package_id", using: :btree
 
+  create_table "parents", force: :cascade do |t|
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "parents", ["comment_id"], name: "index_parents_on_comment_id", using: :btree
+
   create_table "payment_types", force: :cascade do |t|
     t.integer  "marketplace_id"
     t.string   "type_name"
@@ -582,8 +683,16 @@ ActiveRecord::Schema.define(version: 20171010191716) do
   add_foreign_key "attractions", "quotes"
   add_foreign_key "bank_accounts", "marketplaces"
   add_foreign_key "collaborators", "marketplaces"
+  add_foreign_key "comments", "parents"
+  add_foreign_key "comments", "users"
   add_foreign_key "confirmeds", "users"
   add_foreign_key "customers", "users"
+  add_foreign_key "destinations", "users"
+  add_foreign_key "guidebooks", "categories"
+  add_foreign_key "guidebooks", "destinations"
+  add_foreign_key "guidebooks", "forms"
+  add_foreign_key "guidebooks", "organizers"
+  add_foreign_key "guidebooks", "users"
   add_foreign_key "marketplaces", "bank_accounts"
   add_foreign_key "marketplaces", "organizers"
   add_foreign_key "members", "users"
@@ -591,6 +700,7 @@ ActiveRecord::Schema.define(version: 20171010191716) do
   add_foreign_key "organizers", "marketplaces"
   add_foreign_key "organizers", "members"
   add_foreign_key "organizers", "users"
+  add_foreign_key "parents", "comments"
   add_foreign_key "payment_types", "marketplaces"
   add_foreign_key "reviews", "tours"
   add_foreign_key "reviews", "users"
