@@ -22,6 +22,7 @@
  *= require event-list
  *= require user-page
  *= require bootstrap-ribbon
+ *= require bg
  *= require navbar
  *= require footer
  *= require bootstrap-social  
