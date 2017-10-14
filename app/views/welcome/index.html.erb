@@ -303,6 +303,24 @@
     </div>
   </div>
   <div class="container">
+    <% if @backgrounds.present? %>
+        <h4 style="margin-left: 40px;"><%= t('welcome-places-title') %></h4>
+        <ul>
+          <% @backgrounds.each do |b| %>
+              <li>
+                <%= link_to where_path(b.wheres.first) do %>
+                    <div>
+                      <h3><%= b.name %></h3>
+                      <h4><%= b.wheres.first.state %></h4>
+                    </div>
+                    <%= image_tag b.picture.url(:medium) %>
+                <% end %>
+              </li>
+          <% end %>
+        </ul>
+    <% end %>
+  </div>
+  <div class="container">
     <div class="col-xs-12">
       <div class="container">
         <div class="row">
