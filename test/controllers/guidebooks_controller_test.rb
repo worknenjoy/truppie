@@ -1,7 +1,10 @@
+include Devise::TestHelpers
 require 'test_helper'
+require 'json'
 
 class GuidebooksControllerTest < ActionController::TestCase
   setup do
+    sign_in users(:alexandre)
     @guidebook = guidebooks(:one)
   end
 

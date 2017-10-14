@@ -280,6 +280,22 @@ pt-BR:
   fullname-empty: Fullname-empty
   guide-manual-link: Manual do guia para a truppie
   guide-manual-title: Manual do guia
+  guidebook-admin-confirm-delete: Guidebook-admin-confirm-delete
+  guidebook-admin-link-all: Guidebook-admin-link-all
+  guidebook-admin-link-delete: Guidebook-admin-link-delete
+  guidebook-admin-link-edit: Guidebook-admin-link-edit
+  guidebook-admin-link-view: Guidebook-admin-link-view
+  guidebook-admin-new-header: Guidebook-admin-new-header
+  guidebook-admin-tab-desc: Guidebook-admin-tab-desc
+  guidebook-admin-tab-guide: Guidebook-admin-tab-guide
+  guidebook-admin-tab-home: Guidebook-admin-tab-home
+  guidebook-admin-tab-packages: Guidebook-admin-tab-packages
+  guidebook-admin-tab-picture: Guidebook-admin-tab-picture
+  guidebook-confirm-reservation-link: Guidebook-confirm-reservation-link
+  guidebook-languages-label: Guidebook-languages-label
+  guidebook-link-new: Guidebook-link-new
+  guidebook-reservation-action: Guidebook-reservation-action
+  guidebooks_view_index_h3: Guidebooks view index h3
   guides-main-menu: Sou Guia
   guides_partial_a_one: " entrar no site"
   guides_partial_a_two: " dúvida? Envie um e-mail"

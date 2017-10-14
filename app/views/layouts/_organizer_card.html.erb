@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="spaced-smallest"><i class="fa fa-map-o"></i> <strong><%= t('tours_view_show_strong_two') %></strong></h5>
+  </div>
+  <div class="card-block card-organizer">
+    <div class="text-xs-center">
+      <h4 class="card-title spaced-down">
+        <%= link_to organizer_path(organizer) do %>
+            <%= render partial: 'layouts/organizer_picture', locals: {organizer: organizer} %>
+            <strong><%= organizer.name %> </strong>
+        <% end %>
+      </h4>
+      <p class="card-text spaced-down"><%= organizer.description %></p>
+      <% if organizer.website %>
+          <%= link_to organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
+              <i class="fa fa-external-link"></i> <%= t('tours_view_show_link_two') %>
+          <% end %>
+      <% end %>
+      <% if organizer.email %>
+          <a class="btn btn-primary-outline btn-sm" href="mailto:<%= organizer.email %>"><i class="fa fa-envelope"></i> <%= t('tours_view_show_a_one') %></a> <br />
+      <% end %>
+      <div class="hovercard spaced-default">
+        <div class="bottom">
+          <% if organizer.instagram.present? %>
+              <a target="_blank" class="btn btn-info btn-instagram btn-sm" href="<%= organizer.instagram %>">
+                <i class="fa fa-instagram"></i> instagram
+              </a>
+          <% end %>
+          <% if organizer.facebook.present? %>
+              <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher"
+                 href="<%= organizer.facebook %>">
+                <i class="fa fa-facebook"></i> facebook
+              </a>
+          <% end %>
+          <% if organizer.twitter.present? %>
+              <a target="_blank" class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= organizer.twitter %>">
+                <i class="fa fa-twitter"></i>
+              </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

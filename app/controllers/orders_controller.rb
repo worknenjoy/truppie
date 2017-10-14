@@ -111,8 +111,6 @@ class OrdersController < ApplicationController
             @mail_second_line = "Uma transferência no valor de <strong>#{final_price_from_cents(@amount_to_transfer)}</strong> está em andamento para sua conta <br /> no banco #{@marketplace_organizer_bankname} de número ****#{@marketplace_organizer_banknumber}"
           end
 
-
-
           @status_data = {
               subject: @subject,
               mail_first_line: @mail_first_line,

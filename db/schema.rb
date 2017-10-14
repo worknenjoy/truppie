@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013195617) do
+ActiveRecord::Schema.define(version: 20171014124952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(version: 20171013195617) do
     t.datetime "updated_at",                        null: false
     t.integer  "destination_id"
     t.integer  "form_id"
+    t.string   "photo"
   end
 
   add_index "guidebooks", ["category_id"], name: "index_guidebooks_on_category_id", using: :btree
@@ -215,6 +216,14 @@ ActiveRecord::Schema.define(version: 20171013195617) do
   add_index "guidebooks", ["form_id"], name: "index_guidebooks_on_form_id", using: :btree
   add_index "guidebooks", ["organizer_id"], name: "index_guidebooks_on_organizer_id", using: :btree
   add_index "guidebooks", ["user_id"], name: "index_guidebooks_on_user_id", using: :btree
+
+  create_table "guidebooks_languages", id: false, force: :cascade do |t|
+    t.integer "language_id",  null: false
+    t.integer "guidebook_id", null: false
+  end
+
+  add_index "guidebooks_languages", ["guidebook_id", "language_id"], name: "index_guidebooks_languages_on_guidebook_id_and_language_id", using: :btree
+  add_index "guidebooks_languages", ["language_id", "guidebook_id"], name: "index_guidebooks_languages_on_language_id_and_guidebook_id", using: :btree
 
   create_table "guidebooks_packages", id: false, force: :cascade do |t|
     t.integer "package_id",   null: false

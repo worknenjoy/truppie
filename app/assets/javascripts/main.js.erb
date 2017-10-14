@@ -134,7 +134,7 @@ $(function() {
 
     localStorage.clear();
 
-    $('#tour_included, #tour_nonincluded, #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
+    $('#tour_included, #guidebook_included, #tour_nonincluded, #guidebook_nonincluded,  #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
         delimiter: ";"
     });
 
@@ -191,7 +191,7 @@ $(function() {
 	  return false;
 	});
 
-	if($('#tour_tags').length) {
+	if($('#tour_tags, #guidebook_tags').length) {
 
         var tags = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -207,7 +207,7 @@ $(function() {
         });
         tags.initialize();
 
-        $('#tour_tags').tagsinput({
+        $('#tour_tags, #guidebook_tags').tagsinput({
             typeaheadjs: {
                 name: 'tags',
                 displayKey: 'name',
@@ -218,7 +218,7 @@ $(function() {
         });
     }
 
-    if($('#tour_languages').length) {
+    if($('#tour_languages, #guidebook_languages').length) {
 
         var languages = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -234,7 +234,7 @@ $(function() {
         });
         languages.initialize();
 
-        $('#tour_languages').tagsinput({
+        $('#tour_languages, #guidebook_languages').tagsinput({
             typeaheadjs: {
                 name: 'languages',
                 displayKey: 'name',
@@ -287,7 +287,7 @@ $(function() {
 			$('#tour_category_id').trigger('change');
 		}
 
-		$('#new_tour, .edit_tour').trigger('submit');
+		$('#new_tour, .edit_tour, #new_guidebook, .edit_guidebook').trigger('submit');
 		return false;
 	});
 

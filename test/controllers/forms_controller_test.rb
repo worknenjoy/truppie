@@ -1,7 +1,10 @@
+include Devise::TestHelpers
 require 'test_helper'
+require 'json'
 
 class FormsControllerTest < ActionController::TestCase
   setup do
+    sign_in users(:alexandre)
     @form = forms(:one)
   end
 
