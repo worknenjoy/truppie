@@ -1,16 +1,3 @@
-- name: Cadastrar atividades em que o valor é sugerido pelo usuário
-  date: 11 de Outubro de 2017
-  url: https://github.com/alexanmtz/truppie/issues/19
-  description: "Quando o guia criar um passeio, e chegar no momento de escolher um valor ou entre pacotes, ele poder marcar um campo \"Sugerido pelo usuário no momento da reserva / Chosen by user\". A tradução deste campo para o inglês também deverá ser realizada."
-  requirements: Rails, jQuery, Bootstrap, TDD, Inglês básico
-  level: Médio
-  technology: Rails, jQuery, Bootstrap
-  image: "https://user-images.githubusercontent.com/88840/31457703-d9694a72-aebd-11e7-84b7-8096de24628f.png"
-  imagealt: "https://user-images.githubusercontent.com/88840/31456723-ed1a0d02-aeba-11e7-94b0-0a3c2a56136d.png"
-  validation: Pull Request aprovado
-  price: R$ 350
-  category: Melhoria
-  
 - name: Perfil de um guia cadastrado aparecer no Truppie Places
   date: 15 de Outubro de 2017
   url: https://github.com/alexanmtz/truppie/issues/22
@@ -35,6 +22,19 @@
   imagealt: "https://user-images.githubusercontent.com/88840/31586195-44e6aa52-b1ce-11e7-9a3b-04020ceb4746.png"
   validation: Pull Request aprovado.
   price: R$ 180
+  category: Melhoria
+  
+- name: Cadastrar atividades em que o valor é sugerido pelo usuário
+  date: 11 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/19
+  description: "Quando o guia criar um passeio, e chegar no momento de escolher um valor ou entre pacotes, ele poder marcar um campo \"Sugerido pelo usuário no momento da reserva / Chosen by user\". A tradução deste campo para o inglês também deverá ser realizada."
+  requirements: Rails, jQuery, Bootstrap, TDD, Inglês básico
+  level: Médio
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/31457703-d9694a72-aebd-11e7-84b7-8096de24628f.png"
+  imagealt: "https://user-images.githubusercontent.com/88840/31456723-ed1a0d02-aeba-11e7-94b0-0a3c2a56136d.png"
+  validation: Pull Request aprovado
+  price: R$ 350
   category: Melhoria
   
 
