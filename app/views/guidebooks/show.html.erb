@@ -115,8 +115,9 @@
             </h3>
           </div>
         </div>
+        <% @guidebook.packages.each_slice(2).each do |part| %>
         <div class="row text-xs-center">
-          <% @guidebook.packages.each do |p| %>
+            <% part.each do |p| %>
               <!-- item -->
               <div class="col-md-6">
                 <div class="card panel-pricing">
@@ -146,9 +147,9 @@
                 </div>
               </div>
               <!-- /item -->
-          <% end %>
-
+            <% end %>
         </div>
+        <% end %>
     <% end %>
     <div class="row">
       <% if !@guidebook.included.empty? %>
