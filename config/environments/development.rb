@@ -18,6 +18,8 @@ Rails.application.configure do
     user_name: Rails.application.secrets[:truppiemail_username],
     password: Rails.application.secrets[:truppiemail_password]
   }
+
+  config.action_controller.action_on_unpermitted_parameters = :raise
   
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

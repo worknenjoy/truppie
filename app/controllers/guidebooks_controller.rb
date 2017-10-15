@@ -165,6 +165,8 @@ class GuidebooksController < ApplicationController
 
       params[:guidebook][:currency] = "BRL"
 
-      params.fetch(:guidebook, {}).permit(:title, :category_id, :tags, :languages, :organizer, :user, :category, :status, {:packages_attributes => [:id, :name, :value, :included, :description, :percent]}, {:wheres_attributes => [:id, :name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :picture, :file, :value, :description, {:included => []}, {:nonincluded => []}, :currency).merge(params[:guidebook])
+      # unpermitted params error even with all params provided
+      #params.fetch(:guidebook, {}).permit!(:title, :category_id, :organizer, :user, {:tags => [:id, :name]}, {:languages => [:id, :name]}, {:category => [:id, :name]}, :status, {:packages_attributes => [:id, :name, :value, :included, :description, :percent]}, {:wheres_attributes => [:id, :name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :picture, :file, :value, :description, {:included => []}, {:nonincluded => []}, :currency).merge(params[:guidebook])
+      params.fetch(:guidebook, {}).permit!
     end
 end
