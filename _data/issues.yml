@@ -8,4 +8,34 @@
   image: "https://user-images.githubusercontent.com/88840/31457703-d9694a72-aebd-11e7-84b7-8096de24628f.png"
   imagealt: "https://user-images.githubusercontent.com/88840/31456723-ed1a0d02-aeba-11e7-94b0-0a3c2a56136d.png"
   validation: Pull Request aprovado
-  price: 350
+  price: R$ 350
+  category: Melhoria
+  
+- name: Perfil de um guia cadastrado aparecer no Truppie Places
+  date: 15 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/22
+  description: "Esta é uma tarefa bastante simples para quem está começando e quer se familiarizar com a plataforma, com um ambiente Rails e como contribuir com projetos no Github. Esta tarefa consiste em listar um Card do perfil de um guia (que já tem em várias partes do site, inclusive na principal) que foi cadastrado naquele local, ou seja, que ele oferece passeios de um determinado local."
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Iniciante
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/31586126-00807614-b1cd-11e7-8d5d-29267b61d09c.png"
+  imagealt: "https://user-images.githubusercontent.com/88840/31585689-6a5f84b4-b1c6-11e7-9230-1b2340b61d16.png"
+  validation: Pull Request aprovado. Esta tarefa é para iniciantes trabalharem com Rails e se familiarizarem com a plataforma
+  price: sem valor
+  category: Melhoria
+  
+- name: Um mapa listando as truppies cadastradas
+  date: 15 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/23
+  description: "Na seção http://explore.truppie.com/, logo após o título "Explore e experimente", exibir um mapa de largura completa do Google com os passeios cadastrados tour sendo exibidos em um balão."
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Médio
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/31585804-3b3f2d86-b1c8-11e7-82bd-e6758cfb9b48.jpg"
+  imagealt: "https://user-images.githubusercontent.com/88840/31586195-44e6aa52-b1ce-11e7-9a3b-04020ceb4746.png"
+  validation: Pull Request aprovado.
+  price: R$ 180
+  category: Melhoria
+  
+
+  
