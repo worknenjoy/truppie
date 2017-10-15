@@ -131,41 +131,71 @@ class OrdersController < ApplicationController
             order.update_attributes({:destination => @destination})
           end
           order_tour = Order.where(payment: @payment_id).joins(:tour).take
-          order_guide = Order.where(payment: @payment_id).joins(:guidebook).take
+          tour = order_tour.tour
           user = order.user
-          tour = order_tour.tour || order_guide.guidebook
           organizer = tour.organizer
         rescue => e
            CreditCardStatusMailer.status_message("Pagamento não encontrado. Webhook recebido #{request_raw_json}").deliver_now
            return :bad_request        
         end
-        
-        case @status
-        when "pending"
-            @status_class = "alert-success"
-            @subject = "Solicitação de reserva de uma truppie! :)"
-            @guide_template = "status_change_guide_waiting"
-            @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
-            @mail_second_line = "Estamos aguardando o pagamento do seu cartão junto a operadora e, assim que for aprovado, vamos te avisar, ok?"
-        when "succeeded"
-            @status_class = "alert-success" 
-            @subject = "Solicitação de reserva de uma truppie! :)"
-            @guide_template = "status_change_guide_authorized"
-            @mail_first_line = "Referente à solicitação de reserva da truppie <strong>#{tour.title}</strong> com o guia <strong>#{organizer.name}</strong>, <br />temos boas novas: o pagamento foi <strong>autorizado</strong> pela operadora de seu cartão e sua truppie está <strong>oficialmente reservada!</strong> Uhuul \o/ "
-            @mail_second_line = "Você está confirmado no evento. <br />Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>."
-        when "failed"
-            @status_class = "alert-danger"
-            @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
-            @guide_template = "status_change_guide_cancelled"
-            @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, por algum motivo, a operadora do cartão de crédito recusou o pagamento e sua truppie não pode ser reservada ainda."
-            @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
-        else
-            @status_class = "alert-warning"
-            @subject = "Não conseguimos obter o status junto a operadora"
-            @guide_template = "status_change_guide_cancelled"
-            @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, não tivemos uma atualização de status que pudéssemos indentificar."
-            @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
-        end 
+
+        if order_tour.any?
+          case @status
+            when "pending"
+              @status_class = "alert-success"
+              @subject = "Solicitação de reserva de uma truppie! :)"
+              @guide_template = "status_change_guide_waiting"
+              @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
+              @mail_second_line = "Estamos aguardando o pagamento do seu cartão junto a operadora e, assim que for aprovado, vamos te avisar, ok?"
+            when "succeeded"
+              @status_class = "alert-success"
+              @subject = "Solicitação de reserva de uma truppie! :)"
+              @guide_template = "status_change_guide_authorized"
+              @mail_first_line = "Referente à solicitação de reserva da truppie <strong>#{tour.title}</strong> com o guia <strong>#{organizer.name}</strong>, <br />temos boas novas: o pagamento foi <strong>autorizado</strong> pela operadora de seu cartão e sua truppie está <strong>oficialmente reservada!</strong> Uhuul \o/ "
+              @mail_second_line = "Você está confirmado no evento. <br />Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>."
+            when "failed"
+              @status_class = "alert-danger"
+              @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
+              @guide_template = "status_change_guide_cancelled"
+              @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, por algum motivo, a operadora do cartão de crédito recusou o pagamento e sua truppie não pode ser reservada ainda."
+              @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
+            else
+              @status_class = "alert-warning"
+              @subject = "Não conseguimos obter o status junto a operadora"
+              @guide_template = "status_change_guide_cancelled"
+              @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, não tivemos uma atualização de status que pudéssemos indentificar."
+              @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
+          end
+        end
+
+        if order_guidebook.any?
+          case @status
+            when "pending"
+              @status_class = "alert-success"
+              @subject = "Solicitação de reserva de uma truppie! :)"
+              @guide_template = "status_change_guide_waiting"
+              @mail_first_line = "Oba, que legal que você quer fazer a truppie #{tour.title} com o guia #{organizer.name}! :D"
+              @mail_second_line = "Estamos aguardando o pagamento do seu cartão junto a operadora e, assim que for aprovado, vamos te avisar, ok?"
+            when "succeeded"
+              @status_class = "alert-success"
+              @subject = "Solicitação de reserva de uma truppie! :)"
+              @guide_template = "status_change_guide_authorized"
+              @mail_first_line = "Referente à solicitação de reserva da truppie <strong>#{tour.title}</strong> com o guia <strong>#{organizer.name}</strong>, <br />temos boas novas: o pagamento foi <strong>autorizado</strong> pela operadora de seu cartão e sua truppie está <strong>oficialmente reservada!</strong> Uhuul \o/ "
+              @mail_second_line = "Você está confirmado no evento. <br />Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>."
+            when "failed"
+              @status_class = "alert-danger"
+              @subject = "Ops, tivemos um probleminha na reserva da sua truppie :/"
+              @guide_template = "status_change_guide_cancelled"
+              @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, por algum motivo, a operadora do cartão de crédito recusou o pagamento e sua truppie não pode ser reservada ainda."
+              @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
+            else
+              @status_class = "alert-warning"
+              @subject = "Não conseguimos obter o status junto a operadora"
+              @guide_template = "status_change_guide_cancelled"
+              @mail_first_line = "Referente à solicitação de reserva da truppie #{tour.title} com o guia #{organizer.name}, não tivemos uma atualização de status que pudéssemos indentificar."
+              @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
+          end
+        end
         
         is_in_the_history = order.status_history.include?(@status)
         
@@ -202,10 +232,10 @@ class OrdersController < ApplicationController
           puts 'O webhook tentou enviar uma notificação repetida'
         end
       else
-        CreditCardStatusMailer.status_message('erro ao tentar processar o request').deliver_now
+        CreditCardStatusMailer.status_message("erro ao tentar processar o request #{request_raw_json}").deliver_now
       end
     else
-      CreditCardStatusMailer.status_message('alguem postou no webhook sem os dados').deliver_now       
+      CreditCardStatusMailer.status_message("alguem postou no webhook sem os dados #{request_raw_json}").deliver_now
     end
     render layout: false
     return :success
