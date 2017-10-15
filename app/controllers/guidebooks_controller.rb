@@ -165,6 +165,6 @@ class GuidebooksController < ApplicationController
 
       params[:guidebook][:currency] = "BRL"
 
-      params.fetch(:guidebook, {}).permit(:title, :organizer_id, :status, {:packages => [:name, :value, :included]}, {:packages_attributes => [:name, :value, :included]}, {:where_attributes => [:name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :user_id, :picture, :file, :value, :description, {:included => []}, {:nonincluded => []}, :category_id, :category, :tags, {:languages => []}, :organizer, :user, :currency).merge(params[:guidebook])
+      params.fetch(:guidebook, {}).permit(:title, :category_id, :tags, :languages, :organizer, :user, :category, :status, {:packages_attributes => [:id, :name, :value, :included, :description, :percent]}, {:wheres_attributes => [:id, :name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :picture, :file, :value, :description, {:included => []}, {:nonincluded => []}, :currency).merge(params[:guidebook])
     end
 end
