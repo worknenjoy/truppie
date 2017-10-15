@@ -73,6 +73,26 @@ class GuidebooksController < ApplicationController
     end
   end
 
+
+  def confirm
+    @guidebook = Guidebook.find(params[:id])
+    @packagename = params[:packagename]
+
+    if @guidebook.value
+      @final_price = @guidebook.value
+    else
+      if params[:package]
+        @package = @guidebook.packages.find(params[:package])
+        @final_price = @package.value
+      elsif @packagename
+        @package = @guidebook.packages.find_by_name(@packagename)
+        @final_price = @package.value
+      else
+        @final_price = ""
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_guidebook

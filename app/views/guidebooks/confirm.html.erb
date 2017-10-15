@@ -11,7 +11,7 @@
 	        		<% end %>
 	        	</li>
 	            <li>
-	            	<%= link_to @tour.title, tour_path(@tour) %>
+	            	<%= link_to @guidebook.title, guidebook_path(@guidebook) %>
 	            </li>
 	            <li class="active"><%= t('tours_view_confirm_li_two') %></li>
 	        </ol>
@@ -20,22 +20,22 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="text-center">
-                        <%= @tour.title %>
+                        <%= @guidebook.title %>
                     </h5>
                 </div>
                 <ul class="list-group list-group-flush text-xs-center">
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i><%= l(@tour.start, format: '%A') %> <br/> <%= l(@tour.start, format: '%d de %B de %Y às %Hh%M') %><br/ ><strong><%= friendly_when(@tour.start) %></strong></li>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong><%= t('tours_view_confirm_strong_one') %></strong> <br/><%= @tour.organizer.name %></li>
-                    <% if @tour.wheres.any? %>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong><%= t('tours_view_confirm_strong_two') %></strong><br /><%= @tour.wheres.first.name %> - <%= @tour.where.city %> - <%= @tour.where.state %></li>
-                    <% end %>
-                    <% if @tour.meetingpoint %>
-                    	<li class="list-group-item"><i class="icon-ok text-danger"></i><strong><%= t('tours_view_confirm_strong_three') %></strong><br /><%= @tour.meetingpoint %></li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i>
+                      <small><%= t('confirm-guidebook-reserved-when') %></small> <br />
+                      <%= l(Time.now, format: '%A') %> <br/> <%= l(Time.now, format: '%d de %B de %Y às %Hh%M') %></strong>
+                    </li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong><%= t('tours_view_confirm_strong_one') %></strong> <br/><%= @guidebook.organizer.name %></li>
+                    <% if @guidebook.wheres.any? %>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><small><strong><%= t('guidebook-confirm-place') %></strong></small><br /><%= @guidebook.wheres.first.name %> - <%= @guidebook.wheres.first.city %> - <%= @guidebook.wheres.first.state %></li>
                     <% end %>
                 </ul>
             </div>
         </div>
-        <%= form_tag confirm_presence_tour_path, :method => 'post', id: 'form-confirm-reservation' do %>
+        <%= form_tag confirm_presence_guidebook_path, :method => 'post', id: 'form-confirm-reservation' do %>
         <% if @payment_type %>
         <div class="row">
           <%= render 'layouts/payment_type' %>          
@@ -154,10 +154,10 @@
                             <%= hidden_field_tag :value, @final_price %>
                             <%= hidden_field_tag :packagename, @packagename %>
                           <% else %>
-                              <% if @tour.packages.any? and !@tour.value %>
+                              <% if @guidebook.packages.any? and !@guidebook.value %>
                                 <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_span_one') %></span>
                                 <div class="cc-package-options">
-                                <% @tour.packages.each_with_index do |p, i| %>
+                                <% @guidebook.packages.each_with_index do |p, i| %>
                                 <label class="radio package-item-confirm">
                                   <% if i == 0 %>
                                   <%= radio_button_tag :value, p.value, selected: "selected" %>
@@ -194,7 +194,7 @@
                                 <label><%= t('tours_view_confirm_label_twelve') %></label>
                                   <div class="input-group">
                                     <div class="form-group">
-                                      <%= number_field_tag :amount, 1, class: 'form-control full-width cc-amount-output bfh-number', min: 1, max: @tour.availability  %>
+                                      <%= number_field_tag :amount, 1, class: 'form-control full-width cc-amount-output bfh-number', min: 1   %>
                                     </div>
                                   </div>
                                 </div>
@@ -226,11 +226,11 @@
   	            </div>
           	 </div>
           	 <div class="spaced-top">
-          	   <% if @tour.organizer.policy.any? %>
+          	   <% if @guidebook.organizer.policy.any? %>
           	     <div class="col-xs-12 col-md-12">
-                    <p class="spaced-smallest"><strong><%= t('tours_view_confirm_strong_four', name: @tour.organizer.name) %></strong></p>
+                    <p class="spaced-smallest"><strong><%= t('tours_view_confirm_strong_four', name: @guidebook.organizer.name) %></strong></p>
                     <ul class="list-group spaced-down">
-                      <% @tour.organizer.policy.each do |p| %>
+                      <% @guidebook.organizer.policy.each do |p| %>
                         <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= p %></li>
                       <% end %>
                     </ul>
@@ -257,10 +257,10 @@
                               <%= hidden_field_tag :value, @final_price %>
                               <%= hidden_field_tag :packagename, @packagename %>
                           <% else %>
-                              <% if @tour.packages.any? and !@tour.value %>
+                              <% if @guidebook.packages.any? and !@guidebook.value %>
                                   <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_span_one') %></span>
                                   <div class="b-package-options">
-                                    <% @tour.packages.each_with_index do |p, i| %>
+                                    <% @guidebook.packages.each_with_index do |p, i| %>
                                         <label class="radio package-item-confirm">
                                           <% if i == 0 %>
                                               <%= radio_button_tag :value, p.value, selected: "selected" %>
@@ -286,7 +286,7 @@
                                   <label><%= t('tours_view_confirm_label_twelve') %></label>
                                     <div class="input-group">
                                       <div class="form-group">
-                                        <%= number_field_tag :amount, 1, class: 'form-control full-width b-amount-output bfh-number', min: 1, max: @tour.availability  %>
+                                        <%= number_field_tag :amount, 1, class: 'form-control full-width b-amount-output bfh-number', min: 1  %>
                                       </div>
                                     </div>
                                   </div>

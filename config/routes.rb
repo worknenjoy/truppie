@@ -85,6 +85,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :guidebooks do
+    member do
+      get 'confirm/(:packagename)', to: 'guidebooks#confirm', as: 'confirm'
+      post 'confirm_presence'
+      get 'confirm_presence_alt'
+      post 'unconfirm_presence'
+    end
+  end
+
   post 'subscribers/create'
 
   devise_for :users, :controllers => {

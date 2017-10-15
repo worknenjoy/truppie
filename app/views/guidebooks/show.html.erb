@@ -13,7 +13,7 @@
         </div>
         <div class="btn-toolbar pull-right" style="margin-right: 40px;">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="<%= edit_guidebook_path(@guidebook.organizer, @guidebook) %>" class="btn btn-secondary"><%= t('tour-edit-label') %></a>
+            <a href="<%= edit_guidebook_path(@guidebook) %>" class="btn btn-secondary"><%= t('tour-edit-label') %></a>
             <a href="<%= account_edit_organizer_path(@guidebook.organizer) %>" class="btn btn-secondary"><%= t('organizer-profile-account-action') %></a>
             <a href="<%= guided_tour_organizer_path(@guidebook.organizer) %>" class="btn btn-secondary"><%= t('tours_view_edit_link') %></a>
           </div>
@@ -58,7 +58,7 @@
     <% end %>
     <div class="ribbon base" style="text-align: right">
       <span><%= raw @guidebook.price %></span>
-      <%= link_to t('guidebook-reservation-action'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+      <%= link_to t('guidebook-reservation-action'), confirm_guidebook_path, class: 'btn btn-primary btn-sm btn-block' %>
     </div>
   </div>
   <div class="container">
@@ -87,21 +87,22 @@
         <div class="card">
           <div class="card-header">
             <h5 class="spaced-smallest"><i class="fa fa-info-circle"></i> <strong><%= t('tours_view_show_strong_three') %></strong></h5>
-
           </div>
           <div class="card-block">
+            <h4><strong><%= t('tours_view_show_strong_four') %>:</strong></h4>
+            <p><%= raw @guidebook.description %></p>
             <ul class="list-unstyled tour-info">
               <% if @guidebook.languages.present? %>
                   <li>
                     <i class="fa fa-globe"></i>
-                    <%= t('guidebook-languages-label') %>
+                    <%= t('guidebook-languages-label') %>:
                     <strong><%= @guidebook.languages.map { |m| m.name }.join(', ') %></strong>
                   </li>
               <% end %>
             </ul>
           </div>
           <div class="card-footer">
-            <%= link_to t('guidebook-confirm-reservation-link'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
+            <%= link_to t('guidebook-confirm-reservation-link'), confirm_guidebook_path, class: 'btn btn-primary btn-lg btn-block' %>
           </div>
         </div>
       </div>
@@ -140,7 +141,7 @@
                     <% end %>
                   </div>
                   <div class="card-footer">
-                    <%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@guidebook.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
+                    <%= link_to t("tours_view_show_link_four",name: p.name), confirm_guidebook_path(@guidebook.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
                   </div>
                 </div>
               </div>
@@ -149,12 +150,6 @@
 
         </div>
     <% end %>
-    <div class="row">
-      <div class="col-xs-12">
-        <h4><strong><%= t('tours_view_show_strong_four') %></strong></h4>
-        <p><%= raw @guidebook.description %></p>
-      </div>
-    </div>
     <div class="row">
       <% if !@guidebook.included.empty? %>
           <div class="col-xs-12 col-md-6">
