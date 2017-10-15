@@ -125,7 +125,12 @@
                   </div>
                   <div>
                     <div class="panel-body text-xs-center">
-                      <p><strong><%= raw p.price %></strong></p>
+                      <p style="margin-bottom: 0;"><strong><%= raw p.price %></strong></p>
+                    </div>
+                    <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
+                      <% if !p.description.empty? %>
+                          <p><%= raw p.description %></p>
+                      <% end %>
                     </div>
                     <% if p.included.any? %>
                         <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
