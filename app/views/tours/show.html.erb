@@ -103,62 +103,7 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
-				<div class="card">
-					<div class="card-header">
-						<h5 class="spaced-smallest"><i class="fa fa-map-o"></i> <strong><%= t('tours_view_show_strong_two') %></strong></h5>
-					</div>
-					<div class="card-block card-organizer">
-						<div class="text-xs-center">
-							<h4 class="card-title spaced-down">
-								<%= render partial: 'layouts/organizer_picture', locals: {organizer: @tour.organizer} %>
-								<strong><%= @tour.organizer.name %> </strong>
-							</h4>
-						    <p class="card-text spaced-down"><%= @tour.organizer.description %></p>
-						    <% if @tour.organizer.website %>
-								<%= link_to @tour.organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
-									<i class="fa fa-external-link"></i> <%= t('tours_view_show_link_two') %>
-								<% end %>
-							<% end %>
-							<% if @tour.organizer.email %>
-							<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @tour.organizer.email %>"><i class="fa fa-envelope"></i> <%= t('tours_view_show_a_one') %></a> <br />
-							<% end %>
-							<div class="hovercard spaced-default">
-								<div class="bottom">
-									<% if @tour.organizer.instagram %>
-				                    <a target="_blank" class="btn btn-info btn-instagram btn-sm" href="<%= @tour.organizer.instagram %>">
-				                        <i class="fa fa-instagram"></i> instagram
-				                    </a>
-				                    <% end %>
-				                    <% if @tour.organizer.facebook %>
-				                    <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher"
-				                       href="<%= @tour.organizer.facebook %>">
-				                        <i class="fa fa-facebook"></i> facebook
-				                    </a>
-				                    <% end %>
-				                    <% if @tour.organizer.twitter %>
-				                    <a target="_blank" class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @tour.organizer.twitter %>">
-				                        <i class="fa fa-twitter"></i>
-				                    </a>
-				                    <% end %>
-				                </div>
-							</div>
-						</div>
-					</div>
-					<!-- 
-					<div class="card-footer text-muted" style="text-align: right;">
-    					<small><span class="label label-default spaced-smallest">Membros</span><br /></small>
-    					<% if @tour.organizer.user.image %>
-                			<img width="50" src="<%= @tour.organizer.user.image %>?type=normal" class=" pull-right avatar img-circle img-thumbnail" alt="avatar"><br/>
-                			<%= @tour.organizer.user.name %>
-            			<% else %>
-            				<small>
-            					<img width="50" src="https://avatars.io/instagram/username" class="avatar img-circle img-thumbnail" alt="avatar"><br/>
-            					<%= @tour.organizer.user.name %>
-            				</small>
-            				
-                		<% end %>
-					 </div> -->
-				</div>
+				<%= render partial: 'layouts/organizer_card', locals: {organizer: @tour.organizer} %>
 			</div>
 			<div class="col-xs-12 col-md-6">
 				<div class="card">

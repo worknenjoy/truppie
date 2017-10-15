@@ -116,10 +116,6 @@ class Marketplace < ActiveRecord::Base
         account.legal_entity.dob = self.dob
       end
 
-      if self.document_number != account.legal_entity.personal_id_number
-        account.legal_entity.personal_id_number = self.document_number
-      end
-
       if account.legal_entity.personal_address.city != self.city
         account.legal_entity.personal_address.city = self.city
       end
@@ -146,8 +142,12 @@ class Marketplace < ActiveRecord::Base
       
       if self.organizer_type == 'individual'
 
+        #if self.document_number != account.legal_entity.personal_id_number
+          #account.legal_entity.personal_id_number = self.document_number
+        #end
+
         if account.legal_entity.address.city != self.city
-        account.legal_entity.address.city = self.city
+          account.legal_entity.address.city = self.city
         end
 
         if account.legal_entity.address.country != self.country

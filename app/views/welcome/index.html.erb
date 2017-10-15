@@ -165,6 +165,36 @@
     </div>
   </div>
   </div>
+  <div class="paradise-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <a name="warning"></a>
+        <div class="text-xs-center" style="margin-top: 60px;">
+          <div class="thumbnail center well well-small text-center text- spaced-down ">
+            <h4 class="main-color-font emblem-font"><%= t('newsletter-title') %></h4>
+
+            <%= render 'layouts/flash' %>
+
+            <p class="lead">
+              <%= t('newsletter-text') %>
+              <br />
+              <small><%= t('welcome_view_index_small_nine') %></small>
+            </p>
+
+
+            <fieldset class="form-group">
+              <%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
+                  <%= email_field(:subscriber, :email, :class => 'form-control spaced-down', :placeholder => 'O meu e-mail é') %>
+                  <input type="submit" value="Inscreva-me!" class="btn btn-large btn btn-outlined btn-theme btn-lg" />
+              <% end %>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
   <div class="intro-idea spaced-down bg-gray">
     <div class="container">
       <% if @tours.any? %>
@@ -273,61 +303,24 @@
     </div>
   </div>
   <div class="container">
-    <div class="row">
-      <div class="col-md-7">
-        <div class="spaced-smallest">
-          <div>
-            <!-- <h3 class="spaced emblem-font main-color-font"><%= t('truppie-title') %></h3> -->
-            <!-- <p class="lead emblem-font" style="color: #f1592a;"><%= t('truppie-text') %></p> -->
-            <%= image_tag("logo_truppie.svg", :alt => "Truppie",:width => 190, :class => "img-fluid ") %>
-          </div>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <span class="pull-xs-right">
-                <i class="fa fa-2x fa-users"></i>
-              </span>
-              <%= t('truppie-item') %>
-            </li>
-            <li class="list-group-item">
-              <span class="pull-xs-right">
-              <i class="fa fa-2x fa-street-view"></i>
-            </span>
-              <%= t('truppie-second-item') %>
-            </li>
-            <li class="list-group-item">
-              <span class="pull-xs-right">
-              <i class="fa fa-2x fa-ticket"></i>
-            </span>
-              <%= t('truppie-third-item') %>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <a name="warning"></a>
-          <div class="text-xs-center" style="margin-top: 60px;">
-            <div class="thumbnail center well well-small text-center spaced-down">
-                    <h4 class="main-color-font emblem-font"><%= t('newsletter-title') %></h4>
-
-                    <%= render 'layouts/flash' %>
-
-                    <p class="lead">
-                      <%= t('newsletter-text') %>
-                      <br />
-                      <small><%= t('welcome_view_index_small_nine') %></small>
-                    </p>
-
-
-              <fieldset class="form-group">
-                  <%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
-                    <%= email_field(:subscriber, :email, :class => 'form-control spaced-down', :placeholder => 'O meu e-mail é') %>
-                  <input type="submit" value="Inscreva-me!" class="btn btn-large btn btn-outlined btn-theme btn-lg" />
+    <% if @backgrounds.present? %>
+        <h4 style="margin-left: 40px;"><%= t('welcome-places-title') %></h4>
+        <ul>
+          <% @backgrounds.each do |b| %>
+              <li>
+                <%= link_to where_path(b.wheres.first) do %>
+                    <div>
+                      <h3><%= b.name %></h3>
+                      <h4><%= b.wheres.first.state %></h4>
+                    </div>
+                    <%= image_tag b.picture.url(:medium) %>
                 <% end %>
-              </fieldset>
-                </div>
-          </div>
-      </div>
-    </div>
+              </li>
+          <% end %>
+        </ul>
+    <% end %>
+  </div>
+  <div class="container">
     <div class="col-xs-12">
       <div class="container">
         <div class="row">

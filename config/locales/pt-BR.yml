@@ -85,6 +85,7 @@ pt-BR:
   change-date: Inserir data
   clients-title: Seus clientes
   close: Fechar
+  confirm-guidebook-reserved-when: Confirm-guidebook-reserved-when
   confirm_eds_partial_h4: Confirmados
   confirm_eds_partial_link: Confirmar a sua
   confirm_eds_partial_small: 'Ninguem confirmou ainda. '
@@ -280,6 +281,26 @@ pt-BR:
   fullname-empty: Fullname-empty
   guide-manual-link: Manual do guia para a truppie
   guide-manual-title: Manual do guia
+  guidebook-admin-confirm-delete: Guidebook-admin-confirm-delete
+  guidebook-admin-edit-link: Guidebook-admin-edit-link
+  guidebook-admin-edit-title: Guidebook-admin-edit-title
+  guidebook-admin-link-all: All
+  guidebook-admin-link-delete: Delete
+  guidebook-admin-link-edit: Edit
+  guidebook-admin-link-view: View
+  guidebook-admin-new-header: Header
+  guidebook-admin-tab-desc: Description
+  guidebook-admin-tab-guide: Guide
+  guidebook-admin-tab-home: Home
+  guidebook-admin-tab-packages: Packages
+  guidebook-admin-tab-picture: Picture
+  guidebook-confirm-place: Guidebook-confirm-place
+  guidebook-confirm-reservation-link: Quero o meu roteiro agora!
+  guidebook-languages-label: Languages
+  guidebook-link-new: New
+  guidebook-reservation-action: Reservar
+  guidebooks-confirm-presence-message: A sua compra deste roteiro foi confirmada!
+  guidebooks_view_index_h3: Roterios
   guides-main-menu: Sou Guia
   guides_partial_a_one: " entrar no site"
   guides_partial_a_two: " dúvida? Envie um e-mail"
@@ -543,6 +564,7 @@ pt-BR:
   organizer-website-label: site do seu negócio
   organizer-why-create-account-text: A Truppie quer te ajudar a criar a ferramenta ideal à sua necessidade!
   organizer_tours_label: truppies
+  packages-description-label: Packages-description-label
   panel-label: Truppies
   payment_type_partial_div_one: Modo de pagamento
   payment_type_partial_div_three: Boleto Bancário

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  rating: 1
+  value: 1
+  currency: MyString
+  organizer: utopicos
+  user: alexandre
+  privacy: MyString
+  verified: MyString
+  status: MyString
+  wheres: [placeone]
+
+two:
+  title: MyString
+  description: MyString
+  rating: 1
+  value: 1
+  currency: MyString
+  organizer: utopicos
+  user: laura
+  privacy: MyString
+  verified: MyString
+  status: MyString
+  wheres: [placeone]

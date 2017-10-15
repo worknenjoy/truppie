@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :forms
+  resources :destinations
+  resources :comments
+  resources :guidebooks
   root 'welcome#index'
 
   mount MailyHerald::Webui::Engine => "/maily_webui"
@@ -75,6 +79,15 @@ Rails.application.routes.draw do
     member do
       get 'confirm/(:packagename)', to: 'tours#confirm', as: 'confirm'
       get 'copy_tour', to: 'tours#copy_tour', as: 'copy_tour'
+      post 'confirm_presence'
+      get 'confirm_presence_alt'
+      post 'unconfirm_presence'
+    end
+  end
+
+  resources :guidebooks do
+    member do
+      get 'confirm/(:packagename)', to: 'guidebooks#confirm', as: 'confirm'
       post 'confirm_presence'
       get 'confirm_presence_alt'
       post 'unconfirm_presence'

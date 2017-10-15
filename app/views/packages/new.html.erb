@@ -13,6 +13,10 @@
       </div>
   </div>
   <div class="form-group">
+    <label><%= t('packages-description-label') %></label>
+    <%= text_area_tag :description, nil, class: "form-control" %>
+  </div>
+  <div class="form-group">
       <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
           <%= text_field_tag :included, nil, placeholder: "O que inclui no pacote", class: "form-control  package-value" %>

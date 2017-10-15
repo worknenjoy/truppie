@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Forms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Guidebook</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forms.each do |form| %>
+      <tr>
+        <td><%= form.url %></td>
+        <td><%= link_to 'Show', form %></td>
+        <td><%= link_to 'Edit', edit_form_path(form) %></td>
+        <td><%= link_to 'Destroy', form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Form', new_form_path %>

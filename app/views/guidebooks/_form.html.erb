@@ -1,0 +1,191 @@
+<%= form_for @guidebook, class: "form form-signup", multipart: true, role: "form" do |f| %>
+    <ul class="nav nav-tabs spaced-down" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><%= t('guidebook-admin-tab-home') %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#desc" role="tab"><%= t('guidebook-admin-tab-desc') %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#foto" role="tab"><%= t('guidebook-admin-tab-picture') %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#guia" role="tab"><%= t('guidebook-admin-tab-guide') %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#packages" role="tab"><%= t('guidebook-admin-tab-packages') %></a>
+      </li>
+    </ul>
+    <div class="tab-content spaced-down">
+      <div class="tab-pane active" id="home" role="tabpanel">
+        <div class="form-group">
+          <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-newspaper-o"></span>
+                    </span>
+            <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
+            <input type="text" name="search" placeholder="<%= t('tours_view_form_placeholder_two') %>" class="form-control places-input" />
+            <%= f.fields_for :wheres, (Array.new(1, @guidebook.wheres.build) if @guidebook.wheres.empty?) do |ff| %>
+                <%= ff.hidden_field :name %>
+                <%= ff.hidden_field :lat %>
+                <%= ff.hidden_field :long %>
+                <%= ff.hidden_field :city %>
+                <%= ff.hidden_field :state %>
+                <%= ff.hidden_field :country %>
+                <%= ff.hidden_field :postal_code %>
+                <%= ff.hidden_field :address %>
+                <%= ff.hidden_field :url %>
+                <%= ff.hidden_field :google_id %>
+                <%= ff.hidden_field :place_id %>
+            <% end %>
+          </div>
+          <div id="map"></div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-ticket"></span></span>
+            <%= f.number_field :value, placeholder: t('tours_view_form_placeholder_eleven'), min: 0, class: "form-control" %>
+            <small><%= t('tours_view_form_small') %></small>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="desc" role="tabpanel">
+        <div class="form-group">
+          <%= f.text_area :description, placeholder: t('tours_view_form_placeholder_twelve'), class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-thumbs-up"></span></span>
+            <%= f.text_field :included, value: (@guidebook.included.join(';') if @guidebook.included.present?), placeholder: t('tours_view_form_placeholder_thirteen'), class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-thumbs-down"></span></span>
+            <%= f.text_field :nonincluded, value: (@guidebook.nonincluded.join(';') if @guidebook.nonincluded.present?), placeholder: t('tours_view_form_placeholder_fourteen'), class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-bookmark"></span></span>
+            <%= f.select :category_id, options_for_select(Category.all.map{|s|[s.name, s.id]}, (@guidebook.category_id if @guidebook.category_id.present?)), {class: "form-control", include_blank: t('tours_view_form_include_blank_one')} %>
+          </div>
+          <p><a href="#" id="reveal-new-cat"><%= t('tours_view_form_a_six') %></a></p>
+          <div class="input-group" id="new-cat" style="display:none">
+            <span class="input-group-addon"><%= t('tours_view_form_span') %></span>
+            <input type="text" placeholder= <%= t('tours_view_form_placeholder_eighteen') %> class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+            <%= f.select :status, options_for_select([[t('tours_view_form_options_a'), t('tours_view_form_options_b')],[t('tours_view_form_options_c'), t('tours_view_form_options_d')]], (@guidebook.status if @guidebook.status.present?)), {class: "form-control", include_blank: t('tours_view_form_include_blank_two')} %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-tags"></span></span>
+            <%= f.text_field :tags, value: (@guidebook.tags.map{ |t| t.name}.join(';') if @guidebook.tags.present?), placeholder: t('tours_view_form_placeholder_nineteen'), class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-globe"></span></span>
+            <%= f.text_field :languages, value: (@guidebook.languages.map{ |l| l.name}.join(';') if @guidebook.languages.present?), placeholder: t('tours_view_form_placeholder_twenty'), class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="foto" role="tabpanel">
+        <div class="form-group">
+          <label>Imagem</label>
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-photo"></span></span>
+            <%= f.file_field :picture, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <% unless @guidebook.nil? %>
+              <% if @guidebook.try(:picture) and @guidebook.picture.present? %>
+                  <%= image_tag @guidebook.picture.url(:thumbnail) %>
+              <% end %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <label>Arquivo PDF com o roteiro</label>
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-photo"></span></span>
+            <%= f.file_field :file, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <% unless @guidebook.nil? %>
+              <% if @guidebook.try(:file) and @guidebook.file.present? %>
+                  <%= image_tag @guidebook.file %>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane" id="guia" role="tabpanel">
+        <p><%=  t('tours_view_form_p_one') %></p>
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon"><span class="fa fa-map-o"></span></span>
+            <%= f.text_field :organizer, value: (@guidebook.organizer.name if @guidebook.organizer.present?), placeholder: t('tours_view_form_placeholder_twentyone'), class: "form-control organizer-chooser" %>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="packages" role="tabpanel">
+        <p><%=  t('tours_view_form_p_two') %></p>
+        <div class="form-group">
+          <div class="input-group">
+            <%= link_to t('tours_view_form_link_one'), new_package_path, class: 'add-packages' %>
+          </div>
+        </div>
+        <%= f.fields_for :packages, (Array.new(1, @guidebook.packages.build) if @guidebook.packages.empty?) do |ff| %>
+            <div class="new-packages-content">
+              <fieldset class="form-group packages-set">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                    <%= ff.text_field :name, placeholder: t('tours_view_form_placeholder_twentytwo'), class: "form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_twentythree'), class: "form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label><%= t('packages-description-label') %></label>
+                  <%= ff.text_area :description, class: "form-control" %>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                    <%= ff.number_field :percent, placeholder: t('organizer-percent-label'), max: 100, min: 1, :step => 0.01, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
+                    <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value" %>
+                  </div>
+                </div>
+
+              </fieldset>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="pull-right">
+      <a href="<%= new_tour_path %>" class="btn btn-lg btn-default" role="button" style="margin-right: 40px; margin-top: 10px;">
+        <%= t('tours_view_form_a_seven') %>
+      </a>
+      <%= link_to(t('tours_view_form_link_two'), "#", class: "btn btn-lg btn-primary criar-truppie") %>
+    </div>
+<% end %>

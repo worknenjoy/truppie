@@ -1,0 +1,41 @@
+<tr>
+  <td>
+    <% unless o.tour.picture.present? %>
+        <img src="<%= o.tour.photo %>" alt="<%= o.tour.title %>">
+    <% else %>
+        <img src="<%= o.tour.picture.url(:thumbnail) %>" alt="<%= o.tour.title %>">
+    <% end %>
+    <%= link_to o.tour.title, tour_path(o.tour), class: 'user-link' %>
+    <span class="user-subhead"><%= o.tour.organizer.name %></span>
+  </td>
+  <td><%= l(o.created_at, format: '%d de %B as %I:%M %p')  %></td>
+  <td class="text-center">
+    <%= raw(o.friendly_status(o.current_status)) %>
+  </td>
+  <td>
+    <%= o.payment %>
+  </td>
+  <td >
+    <% if !o.tour.value.nil? %>
+        <h5><%= raw final_price(raw o.tour.value) %></h5>
+    <% end %>
+    <% if o.tour.try(:packages) %>
+        <% o.tour.packages.each do |p| %>
+            <% if (p.value).to_i*100 == (o.price).to_i %>
+                <h5><%= raw final_price(p.value) %></h5>
+                Pacote <%= p.name %>
+            <% end %>
+        <% end %>
+    <% end %>
+  </td>
+  <td class="text-center">
+    <h3><%= o.amount %></h3>
+  </td>
+  <td class="text-center">
+    <% if o.final_price.nil? %>
+        <h4><%= raw final_price(o.price) %></h4>
+    <% else %>
+        <h4><%= raw final_price_from_cents(o.final_price) %></h4>
+    <% end %>
+  </td>
+</tr>

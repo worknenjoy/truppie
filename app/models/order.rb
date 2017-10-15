@@ -3,7 +3,10 @@ require 'rest_client'
 
 class Order < ActiveRecord::Base
   belongs_to :tour
+  belongs_to :guidebook
   belongs_to :user
+
+  scope :has_tours, lambda { where('tour_id >= ?', 0) }
   
   def to_param
     "#{id} #{self.payment}".parameterize
