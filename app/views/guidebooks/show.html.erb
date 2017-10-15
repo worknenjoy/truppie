@@ -128,7 +128,7 @@
                       <p style="margin-bottom: 0;"><strong><%= raw p.price %></strong></p>
                     </div>
                     <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
-                      <% if !p.description.empty? %>
+                      <% if !p.description.nil? and !p.description.empty? %>
                           <p><%= raw p.description %></p>
                       <% end %>
                     </div>

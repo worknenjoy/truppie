@@ -27,7 +27,7 @@
                     <li class="list-group-item"><i class="icon-ok text-danger"></i><%= l(@tour.start, format: '%A') %> <br/> <%= l(@tour.start, format: '%d de %B de %Y às %Hh%M') %><br/ ><strong><%= friendly_when(@tour.start) %></strong></li>
                     <li class="list-group-item"><i class="icon-ok text-danger"></i><strong><%= t('tours_view_confirm_strong_one') %></strong> <br/><%= @tour.organizer.name %></li>
                     <% if @tour.wheres.any? %>
-                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong><%= t('tours_view_confirm_strong_two') %></strong><br /><%= @tour.wheres.first.try(:name) %> - <%= @tour.where.first.try(:city) %> - <%= @tour.where.first.try(:state) %></li>
+                    <li class="list-group-item"><i class="icon-ok text-danger"></i><strong><%= t('tours_view_confirm_strong_two') %></strong><br /><%= @tour.wheres.try(:name) %> - <%= @tour.where.try(:city) %> - <%= @tour.where.try(:state) %></li>
                     <% end %>
                     <% if @tour.meetingpoint %>
                     	<li class="list-group-item"><i class="icon-ok text-danger"></i><strong><%= t('tours_view_confirm_strong_three') %></strong><br /><%= @tour.meetingpoint %></li>
