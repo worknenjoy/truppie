@@ -10,6 +10,7 @@
   validation: Pull Request aprovado. Esta tarefa é para iniciantes trabalharem com Rails e se familiarizarem com a plataforma
   price: sem valor
   category: Melhoria
+  status: Não iniciado
   
 - name: Um mapa listando as truppies cadastradas
   date: 15 de Outubro de 2017
@@ -23,6 +24,7 @@
   validation: Pull Request aprovado.
   price: R$ 180
   category: Melhoria
+  status: Não iniciado
   
 - name: Cadastrar atividades em que o valor é sugerido pelo usuário
   date: 11 de Outubro de 2017
@@ -36,6 +38,7 @@
   validation: Pull Request aprovado
   price: R$ 350
   category: Melhoria
+  status: em desenvolvimento
   
 
   
