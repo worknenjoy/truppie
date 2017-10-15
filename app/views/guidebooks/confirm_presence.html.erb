@@ -1,0 +1,68 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <div class="spaced-default spaced-default-full">
+        <div class="card card-inverse card-<%= @status %> text-xs-center">
+          <div class="card-block">
+            <blockquote class="card-blockquote">
+              <h4>
+                <p><%= @confirm_headline_message %></p>
+                <p><%= link_to @guidebook.title, guidebook_path(@guidebook) %></p>
+              </h4>
+              <footer>
+                <p><%= @confirm_status_message %></p>
+                <% if @status == "success" %>
+                    <p><%= t('tours_view_confirm_presence_p_one') %><%= link_to t('tours_view_confirm_presence_link_one'), orders_path %>. </p>
+                <% else %>
+                    <p><%= link_to t('tours_view_confirm_presence_link_two'), confirm_guidebook_path(@guidebook) %></p>
+                <% end %>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+        <% if @status == "success" %>
+            <h3 class="spaced-top"><%= t('tours_view_confirm_presence_h3') %></h3>
+            <div class="main-box no-header clearfix">
+              <div class="main-box-body clearfix">
+                <div class="table-responsive">
+                  <table class="table user-list">
+                    <thead>
+                    <tr>
+                      <th class="text-center"><span><%= t('tours_view_confirm_presence_span_one') %></span></th>
+                      <th class="text-center"><span><%= t('tours_view_confirm_presence_span_two') %></span></th>
+                      <th><span><%= t('tours_view_confirm_presence_span_three') %></span></th>
+                      <th><%= t('tours_view_confirm_presence_th_one') %></th>
+                      <th><%= t('tours_view_confirm_presence_th_two') %></th>
+                      <th><%= t('tours_view_confirm_presence_th_three') %></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td> <span class="user-subhead"><%= link_to @order.guidebook.organizer.name, organizer_path(@order.guidebook.organizer) %></span></td>
+                      <td class="text-center"> <%= raw(@order.friendly_status(@order.current_status)) %> </td>
+                      <td> <%= @order.payment %> </td>
+                      <td ><h3><%= raw final_price_from_cents(@guidebook.order.price) %></h3> <% if @order.guidebook.try(:packages) %>
+                            <% @order.guidebook.packages.each do |p| %>
+                                <% if p.value == @order.price %>
+                                    Pacote <%= p.name %>
+                                <% end %>
+                            <% end %>
+                        <% end %> </td>
+                      <td class="text-center">
+                        <h3><%= @amount %></h3>
+                      </td>
+                      <td class="text-center">
+                        <h3><%= raw final_price(@final_price) %></h3>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

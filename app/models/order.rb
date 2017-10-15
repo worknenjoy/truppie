@@ -3,6 +3,7 @@ require 'rest_client'
 
 class Order < ActiveRecord::Base
   belongs_to :tour
+  belongs_to :guidebook
   belongs_to :user
   
   def to_param

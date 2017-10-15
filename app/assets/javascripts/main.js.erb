@@ -192,8 +192,13 @@ $(function() {
 
     }
 
-	add_packages('tour');
-  add_packages('guidebook')
+  if($('.edit_tour, .new_tour').length) {
+      add_packages('tour');
+  }
+
+  if($('.edit_guidebook, .new_guidebook').length) {
+      add_packages('guidebook');
+  }
 
 	if($('#tour_tags, #guidebook_tags').length) {
 

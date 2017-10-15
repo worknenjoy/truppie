@@ -94,6 +94,139 @@ class GuidebooksController < ApplicationController
   end
 
   def confirm_presence
+    @guidebook = Guidebook.find(params[:id])
+    @value = params[:value].to_i
+    if params[:package]
+      @package = @guidebook.packages.find(params[:package])
+    elsif params[:packagename]
+      @package = @guidebook.packages.find_by_name(params[:packagename])
+    else
+      @package = nil
+    end
+
+    @payment_method = params[:method]
+
+    if params[:amount].nil? || params[:amount].empty?
+      @amount = 1
+    else
+      @amount = params[:amount].to_i
+    end
+
+    if params[:final_price].nil? || params[:final_price].empty?
+      @final_price = @value
+    else
+      @final_price = params[:final_price].to_i
+    end
+
+    begin
+      valid_birthdate = params[:birthdate].to_date
+    rescue => e
+      puts e.inspect
+      @confirm_headline_message = t("tours_controller_headline_msg")
+      @confirm_status_message = t("tours_controller_status_msg")
+      @status = t('status_danger')
+      return
+    end
+
+
+    if @tour.try(:description)
+      @desc = @guidebook.try(:description).first(250)
+    else
+      @desc = t('tours_controller_desc',title: @guidebook.title, organizer: @guidebook.organizer.name)
+    end
+
+    @organizer_percent = @guidebook.organizer.percent || 1
+    @guidebook_total_percent = 0.95 - (@organizer_percent/100.00)
+
+    @price_cents = (@final_price*100).to_i
+
+    @liquid = (@price_cents)*(@guidebook_total_percent)
+
+    @fees = {
+        :fee => (@price_cents - @liquid).round.to_i,
+        :liquid => @liquid.round.to_i,
+        :total => @price_cents
+    }
+
+    @new_charge = {
+        :currency => "brl",
+        :amount => @fees[:total],
+        :source => params[:token],
+        :description => @desc
+    }
+
+    if @guidebook.organizer.try(:marketplace)
+      if @guidebook.organizer.marketplace.try(:account_id)
+        @account_id = @guidebook.organizer.marketplace.account_id
+        @new_charge.store(:destination, {
+            :account => @account_id,
+            :amount => @fees[:liquid]
+        })
+      end
+    end
+
+    begin
+      @payment = Stripe::Charge.create(@new_charge)
+        #puts payment.inspect
+    rescue Stripe::CardError => e
+      puts e.inspect
+      #puts e.backtrace
+      ContactMailer.notify(t('tours_controller_mailer_notify_one', name: current_user.name, email: current_user.email, inspect: e.inspect)).deliver_now
+      @confirm_headline_message = t('tours_controller_headline_msg')
+      @confirm_status_message = t('tours_controller_status_msg_two')
+      @status = t('status_danger')
+      return
+    rescue => e
+      puts e.inspect
+      #puts e.backtrace
+      ContactMailer.notify(t('tours_controller_mailer_notify_one', name: current_user.name, email: current_user.email, inspect: e.inspect)).deliver_now
+      @confirm_headline_message = t('tours_controller_headline_msg')
+      @confirm_status_message = t('tours_controller_status_msg_three')
+      @status = t('status_danger')
+      return
+    end
+
+    if @payment.try(:status)
+
+      if @payment.try(:id)
+        @order = @tour.orders.create(
+            :source_id => @payment[:source][:id],
+            :own_id => "truppie_#{@guidebook.id}_#{current_user.id}",
+            :user => current_user,
+            :guidebook => @guidebook,
+            :status => @payment[:status],
+            :payment => @payment[:id],
+            :price => @value.to_i*100,
+            :amount => @amount,
+            :final_price => @price_cents,
+            :liquid => @fees[:liquid],
+            :fee => @fees[:fee],
+            :payment_method => @payment_method
+        )
+
+        begin
+          @guidebook.save()
+          @confirm_headline_message = t('tours_controller_confirm_headline_msg')
+          @confirm_status_message = t('tours_controller_status_msg_four')
+          @status = t('status_success')
+        rescue => e
+          puts e.inspect
+          @confirm_headline_message = t('tours_controller_headline_msg')
+          @confirm_status_message = e.message
+          @status = t('status_danger')
+        end
+      else
+        @confirm_headline_message = t('tours_controller_headline_msg')
+        @confirm_status_message = t('tours_controller_status_msg_five')
+        @status = t('status_danger')
+        ContactMailer.notify( t(tours_controller_mailer_notify_two , name: current_user.name, email: current_user.email, inspect: @payment.inspect)).deliver_now
+      end
+    else
+      @confirm_headline_message = t('tours_controller_headline_msg')
+      @confirm_status_message = t('tours_controller_status_msg_six')
+      @status = t('status_danger')
+      ContactMailer.notify(t('tours_controller_mailer_notify_three', name: current_user.name, email: current_user.email )).deliver_now
+    end
 
   end
 

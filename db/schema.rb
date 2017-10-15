@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171015155302) do
+ActiveRecord::Schema.define(version: 20171015191012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,14 @@ ActiveRecord::Schema.define(version: 20171015155302) do
 
   add_index "guidebooks_languages", ["guidebook_id", "language_id"], name: "index_guidebooks_languages_on_guidebook_id_and_language_id", using: :btree
   add_index "guidebooks_languages", ["language_id", "guidebook_id"], name: "index_guidebooks_languages_on_language_id_and_guidebook_id", using: :btree
+
+  create_table "guidebooks_orders", id: false, force: :cascade do |t|
+    t.integer "guidebook_id", null: false
+    t.integer "order_id",     null: false
+  end
+
+  add_index "guidebooks_orders", ["guidebook_id", "order_id"], name: "index_guidebooks_orders_on_guidebook_id_and_order_id", using: :btree
+  add_index "guidebooks_orders", ["order_id", "guidebook_id"], name: "index_guidebooks_orders_on_order_id_and_guidebook_id", using: :btree
 
   create_table "guidebooks_packages", id: false, force: :cascade do |t|
     t.integer "package_id",   null: false

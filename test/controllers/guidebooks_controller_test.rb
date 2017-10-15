@@ -4,8 +4,19 @@ require 'json'
 
 class GuidebooksControllerTest < ActionController::TestCase
   setup do
+    StripeMock.start
     sign_in users(:alexandre)
     @guidebook = guidebooks(:one)
+
+    @payment_data = {
+        id: @guidebook,
+        method: "CREDIT_CARD",
+        fullname: "Alexandre Magno Teles Zimerer",
+        birthdate: "10/10/1988",
+        value: @guidebook.value,
+        token: StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
+    }
+
   end
 
   test "should get index" do
@@ -43,7 +54,13 @@ class GuidebooksControllerTest < ActionController::TestCase
   end
 
   test "should confirm payment of a guidebook" do
-    post :confirm_presence, {"id"=> Guidebook.last, "method"=>"CREDIT_CARD", "fullname"=>"Alexandre Magno Teles Zimerer", "birthdate"=>"06/10/1982", "street"=>"X", "complement"=>"10", "city"=>"Rio de Janeiro", "state"=>"Rio de Janeiro", "country"=>"Brazil", "zipcode"=>"2001112-444", "number"=>"5555666677778884", "expiration_month"=>"05", "expiration_year"=>"18", "cvc"=>"123", "value"=>"300", "package"=>"1", "amount"=>"1", "final_price"=>"300", "token"=>"tok_1BDGkwHWrGpvLtXMY6d4ydNS"}
+    StripeMock.prepare_card_error(:card_declined)
+    post :confirm_presence, @payment_data
+    assert_equal Guidebook.find(@guidebook.id).orders.any?, false
+    assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
+    assert_equal assigns(:confirm_status_message), "Tivemos um problema ao processar seu cartão"
+    assert_equal assigns(:status), "danger"
+    assert_template "confirm_presence"
     assert_response :success
   end
 
