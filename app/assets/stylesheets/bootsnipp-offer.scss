@@ -31,4 +31,7 @@
   color: #777777;
   padding: 20px;
   margin: 0px;
+  .card-body {
+    min-height: 160px;
+  }
 }
