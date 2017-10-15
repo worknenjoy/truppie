@@ -27,7 +27,7 @@
 - name: Um mapa listando as truppies cadastradas
   date: 15 de Outubro de 2017
   url: https://github.com/alexanmtz/truppie/issues/23
-  description: "Na seção http://explore.truppie.com/, logo após o título "Explore e experimente", exibir um mapa de largura completa do Google com os passeios cadastrados tour sendo exibidos em um balão."
+  description: "Na seção http://explore.truppie.com/, logo após o título \"Explore e experimente\", exibir um mapa de largura completa do Google com os passeios cadastrados tour sendo exibidos em um balão."
   requirements: Rails, jQuery, Bootstrap, Inglês Básico
   level: Médio
   technology: Rails, jQuery, Bootstrap
