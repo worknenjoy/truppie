@@ -42,6 +42,11 @@ class GuidebooksControllerTest < ActionController::TestCase
     assert_redirected_to guidebook_path(assigns(:guidebook))
   end
 
+  test "should confirm payment of a guidebook" do
+    post :confirm_presence, {"id"=> Guidebook.last, "method"=>"CREDIT_CARD", "fullname"=>"Alexandre Magno Teles Zimerer", "birthdate"=>"06/10/1982", "street"=>"X", "complement"=>"10", "city"=>"Rio de Janeiro", "state"=>"Rio de Janeiro", "country"=>"Brazil", "zipcode"=>"2001112-444", "number"=>"5555666677778884", "expiration_month"=>"05", "expiration_year"=>"18", "cvc"=>"123", "value"=>"300", "package"=>"1", "amount"=>"1", "final_price"=>"300", "token"=>"tok_1BDGkwHWrGpvLtXMY6d4ydNS"}
+    assert_response :success
+  end
+
   test "should destroy guidebook" do
     skip('not destrying properly')
     assert_difference('Guidebook.count', -1) do

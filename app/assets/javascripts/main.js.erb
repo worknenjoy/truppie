@@ -115,6 +115,25 @@ function readURL(input) {
     }
 }
 
+function add_packages(type) {
+    var count = $('.packages-set').length;
+    $('.add-packages').on('click', function(e){
+        $('<div />').load('/packages/new', function(data){
+            var new_data = $(data).find('input').each(function(e){
+                $(this).attr('name', type + '[packages_attributes][' + count  +  '][' + this.id + ']');
+                if(this.id == 'included') {
+                    $(this).tagsinput({
+                        delimiter: ";"
+                    });
+                }
+            }).end();
+            count++;
+            $('.new-packages-content:eq(0)').prepend(new_data);
+        });
+        return false;
+    });
+}
+
 $(function() {
 
     $('.dropdown-toggle').dropdown();
@@ -173,23 +192,8 @@ $(function() {
 
     }
 
-	var count = $('.packages-set').length;
-	$('.add-packages').on('click', function(e){
-	  $('<div />').load('/packages/new', function(data){
-	     var new_data = $(data).find('input').each(function(e){
-          $(this).attr('name', 'tour[packages_attributes][' + count  +  '][' + this.id + ']');
-          console.log(this);
-          if(this.id == 'included') {
-            $(this).tagsinput({
-              delimiter: ";"
-            });
-          }
-        }).end();
-        count++;
-        $('.new-packages-content:eq(0)').prepend(new_data);
-	  });
-	  return false;
-	});
+	add_packages('tour');
+  add_packages('guidebook')
 
 	if($('#tour_tags, #guidebook_tags').length) {
 
@@ -285,6 +289,10 @@ $(function() {
 			$('#tour_category_id').find(":selected").removeAttr("selected");
 			$('#tour_category_id').append($(option).attr('selected', 'selected'));
 			$('#tour_category_id').trigger('change');
+
+      $('#guidebook_category_id').find(":selected").removeAttr("selected");
+      $('#guidebook_category_id').append($(option).attr('selected', 'selected'));
+      $('#guidebook_category_id').trigger('change');
 		}
 
 		$('#new_tour, .edit_tour, #new_guidebook, .edit_guidebook').trigger('submit');
