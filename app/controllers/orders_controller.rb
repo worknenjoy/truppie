@@ -117,7 +117,7 @@ class OrdersController < ApplicationController
               mail_second_line: @mail_second_line,
               status_class: @status_class
           }
-          transfer_mail = TransferMailer.transfered(@marketplace_organizer.organizer, @status_data).deliver_now
+          TransferMailer.transfered(@marketplace_organizer.organizer, @status_data).deliver_now
           return :success
 
         end
@@ -131,8 +131,9 @@ class OrdersController < ApplicationController
             order.update_attributes({:destination => @destination})
           end
           order_tour = Order.where(payment: @payment_id).joins(:tour).take
+          order_guide = Order.where(payment: @payment_id).joins(:guidebook).take
           user = order.user
-          tour = order_tour.tour
+          tour = order_tour.tour || order_guide.guidebook
           organizer = tour.organizer
         rescue => e
            CreditCardStatusMailer.status_message("Pagamento não encontrado. Webhook recebido #{request_raw_json}").deliver_now

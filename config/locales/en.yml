@@ -85,6 +85,7 @@ en:
   change-date: Inserir data
   clients-title: Your clients
   close: Close
+  confirm-guidebook-reserved-when: Confirm-guidebook-reserved-when
   confirm_eds_partial_h4: Confirmed
   confirm_eds_partial_link: Confirm yours
   confirm_eds_partial_small: Nobody has confirmed yet
@@ -273,6 +274,8 @@ en:
   guide-manual-link: Manual for the guide (Portuguese)
   guide-manual-title: Guide manual
   guidebook-admin-confirm-delete: Guidebook-admin-confirm-delete
+  guidebook-admin-edit-link: Guidebook-admin-edit-link
+  guidebook-admin-edit-title: Guidebook-admin-edit-title
   guidebook-admin-link-all: Guidebook-admin-link-all
   guidebook-admin-link-delete: Guidebook-admin-link-delete
   guidebook-admin-link-edit: Guidebook-admin-link-edit
@@ -283,10 +286,12 @@ en:
   guidebook-admin-tab-home: Guidebook-admin-tab-home
   guidebook-admin-tab-packages: Guidebook-admin-tab-packages
   guidebook-admin-tab-picture: Guidebook-admin-tab-picture
+  guidebook-confirm-place: Guidebook-confirm-place
   guidebook-confirm-reservation-link: Guidebook-confirm-reservation-link
   guidebook-languages-label: Guidebook-languages-label
   guidebook-link-new: Guidebook-link-new
   guidebook-reservation-action: Guidebook-reservation-action
+  guidebooks-confirm-presence-message: Guidebooks-confirm-presence-message
   guidebooks_view_index_h3: Guidebooks view index h3
   guides-main-menu: I'm a guide
   guides_partial_a_one: " Go to their website"
@@ -551,6 +556,7 @@ en:
   organizer-website-label: Website
   organizer-why-create-account-text: We want to help to create the platform that suits your needs!
   organizer_tours_label: truppies
+  packages-description-label: Packages-description-label
   panel-label: Truppies
   payment_type_partial_div_one: Method of payment
   payment_type_partial_div_three: Boleto Bancário

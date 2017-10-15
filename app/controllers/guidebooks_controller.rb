@@ -189,7 +189,7 @@ class GuidebooksController < ApplicationController
     if @payment.try(:status)
 
       if @payment.try(:id)
-        @order = @tour.orders.create(
+        @order = @guidebook.orders.create(
             :source_id => @payment[:source][:id],
             :own_id => "truppie_#{@guidebook.id}_#{current_user.id}",
             :user => current_user,
