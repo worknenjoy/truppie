@@ -25,12 +25,14 @@
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
 }
-.panel-pricing .panel-body {
-  background-color: #f0f0f0;
-  font-size: 40px;
-  color: #777777;
-  padding: 20px;
-  margin: 0px;
+.panel-pricing {
+  .panel-body {
+    background-color: #f0f0f0;
+    font-size: 40px;
+    color: #777777;
+    padding: 20px;
+    margin: 0px;
+  }
   .card-body {
     min-height: 160px;
   }
