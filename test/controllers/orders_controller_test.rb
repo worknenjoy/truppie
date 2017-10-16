@@ -198,8 +198,6 @@ class OrdersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
-
   test "should update order" do
     patch :update, id: @order, order: { discount: @order.discount, own_id: @order.own_id, price: @order.price, status: @order.status, tour_id: @order.tour_id, user_id: @order.user_id }
     assert_redirected_to order_path(assigns(:order))

@@ -130,13 +130,26 @@ class OrdersController < ApplicationController
           if @destination
             order.update_attributes({:destination => @destination})
           end
+
           order_tour = Order.where(payment: @payment_id).joins(:tour).take
-          tour = order_tour.tour
+          order_guidebook = Order.where(payment: @payment_id).joins(:guidebook).take
+
+          tour = order_tour.try(:tour)
+          guidebook = order_guidebook.try(:guidebook)
+
           user = order.user
           organizer = tour.organizer
         rescue => e
            CreditCardStatusMailer.status_message("Pagamento não encontrado. Webhook recebido #{request_raw_json}").deliver_now
+           puts "problemas para encontrar o pagamento"
+           puts e.inspect
            return :bad_request        
+        end
+
+
+        if guidebook.try(:id)
+          organizer_guidebook = guidebook.organizer
+          CreditCardStatusMailer.status_message("o usuário #{user.name} efetuou uma compra do roteiro #{guidebook.title} do #{organizer_guidebook.title} e o status da transação foi #{@status}").deliver_now
         end
 
 
