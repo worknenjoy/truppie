@@ -145,7 +145,6 @@ class OrdersController < ApplicationController
     def get_webhook_type(request_hook)
 
       @event = request_hook["type"]
-      @user_id = request_hook["user_id"]
 
       @event_types_charge = ["charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
       @event_types_transfer = ["transfer.created", "transfer.updated", "transfer.paid", "review.closed"]
@@ -168,13 +167,23 @@ class OrdersController < ApplicationController
     end
 
     def webhook_for_transfer(request_raw_json)
-      puts 'webhook for transfer'
-      puts request_raw_json.inspect
-      @transfer = request_raw_json["source_transaction"] || request_raw_json["data"]["object"]["source_transaction"]
+
       @event = request_raw_json["type"]
       @user_id = request_raw_json["user_id"]
 
+      @payment_id = request_raw_json["data"]["object"]["id"]
+      @status = request_raw_json["data"]["object"]["status"]
+      @destination = request_raw_json["data"]["object"]["destination_payment"]
+
+      @transfer = request_raw_json["source_transaction"] || request_raw_json["data"]["object"]["source_transaction"]
       @reviewed = request_raw_json["data"]["object"]["charge"]
+
+      if @transfer
+        @payment_id = @transfer
+        if @status == "paid"
+          @status = "succeeded"
+        end
+      end
 
       if @reviewed
         @payment_id = @reviewed
@@ -184,30 +193,9 @@ class OrdersController < ApplicationController
         end
       end
 
-      if @transfer
-        @payment_id = @transfer
-        if @status == "paid"
-          @status = "succeeded"
-        end
-      end
-
-      @payment_id = request_raw_json["data"]["object"]["id"]
-      @destination = request_raw_json["data"]["object"]["destination_payment"]
-
-      order = Order.where(payment: @payment_id).joins(:user).take
-      if !order.try(:status)
-        order.update_attributes({:status => @status})
-      end
-      if @destination
-        order.update_attributes({:destination => @destination})
-      end
-
       @amount_to_transfer = request_raw_json["data"]["object"]["amount"]
       @type_of_action = request_raw_json["data"]["object"]["object"]
       @transfer_status = request_raw_json["data"]["object"]["status"]
-
-      @destination = request_raw_json["data"]["object"]["destination_payment"]
-
 
       if @user_id && @type_of_action == 'transfer'
         @marketplace_organizer = Marketplace.where(:account_id => @user_id).first
@@ -243,6 +231,7 @@ class OrdersController < ApplicationController
         TransferMailer.transfered(@marketplace_organizer.organizer, @status_data).deliver_now
         return :success
       else
+        puts 'problemas com a transferencia'
         CreditCardStatusMailer.status_message("Não foi possível avisar o usuário da transferencia: #{request_raw_json.inspect}").deliver_now
       end
     end
@@ -265,16 +254,6 @@ class OrdersController < ApplicationController
         @payment_id = request_raw_json["data"]["object"]["id"]
         @status = request_raw_json["data"]["object"]["status"]
         @destination = request_raw_json["data"]["object"]["destination_payment"]
-
-        @reviewed = request_raw_json["data"]["object"]["charge"]
-
-        if @reviewed
-          @payment_id = @reviewed
-          @status = request_raw_json["data"]["object"]["reason"]
-          if @status == "approved"
-            @status = "succeeded"
-          end
-        end
 
         begin
           order = Order.where(payment: @payment_id).joins(:user).take

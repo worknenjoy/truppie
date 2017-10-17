@@ -310,7 +310,7 @@ class OrdersControllerTest < ActionController::TestCase
     #puts ActionMailer::Base.deliveries[1].html_part
     
     assert_not ActionMailer::Base.deliveries.empty?
-    assert_equal ActionMailer::Base.deliveries.length, 2 
+    assert_equal ActionMailer::Base.deliveries.length, 2
     
   end
   
