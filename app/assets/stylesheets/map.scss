@@ -5,3 +5,15 @@
   width: 100%;
   overflow: hidden;
 }
+
+#map_canvas {
+	display: flex;
+  padding: 1em 0;
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.googft-info-window span.checked {
+    color: orange;
+}
