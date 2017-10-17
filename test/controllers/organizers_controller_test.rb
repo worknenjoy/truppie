@@ -63,6 +63,16 @@
      assert_redirected_to organizer_path(assigns(:organizer))
    end
 
+   test "should use the same place if exist already" do
+     @organizer["where"]
+     assert_difference('Organizer.count') do
+       post :create, organizer: @organizer
+     end
+     assert_not ActionMailer::Base.deliveries.empty?
+     assert_equal flash[:notice], "Sua conta como guia foi criada com sucesso"
+     assert_redirected_to organizer_path(assigns(:organizer))
+   end
+
    test "should not create empty organizer" do
      @organizer_basic = {}
      post :create, organizer: @organizer_basic
@@ -188,6 +198,7 @@
    end
    
    test "should create with no members" do
+     skip('no members for now')
      @organizer["members"] = ""
      
      assert_difference('Organizer.count') do

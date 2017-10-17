@@ -1,16 +1,5 @@
 class WheresController < ApplicationController
   before_action :set_where, only: [:show, :edit, :update, :destroy]
-  before_filter :check_if_admin, only: [:new, :create, :update, :destroy]
-
-  def check_if_admin
-
-    allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
-
-    unless allowed_emails.include? current_user.email
-      flash[:notice] = t('tours_controller_notice_one')
-      redirect_to root_url
-    end
-  end
 
   def index
     @wheres = Where.all

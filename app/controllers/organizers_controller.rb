@@ -43,8 +43,6 @@ class OrganizersController < ApplicationController
 
   end
 
-
-
   # POST /organizers
   # POST /organizers.json
   def create
@@ -399,21 +397,6 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      split_val = ";"
-      
-      if params[:organizer][:members] == "" or params[:organizer][:members].nil?
-        params[:organizer][:members] = []
-      else
-        members_to_array = params[:organizer][:members].split(split_val)
-        members = []
-        members_to_array.each do |m|
-          members.push User.find_by_name(m)
-        end
-        params[:organizer][:members] = members
-      end
-      
-
-      
-      params.fetch(:organizer, {}).permit(:welcome, {:members => []}, :policy, :name, :marketplace_id, :description, :picture, :user_id, {:wheres => []}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
+      params.fetch(:organizer, {}).permit(:welcome, :policy, :name, :marketplace_id, :description, :picture, :user_id, {:wheres_attributes => [:id, :name, :lat, :long, :city, :state, :country, :postal_code, :address, :url, :google_id, :place_id]}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
     end
 end

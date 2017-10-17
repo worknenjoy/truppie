@@ -41,7 +41,6 @@
     website: 'http://www.utopicosmundoafora.com/',
     instagram: 'https://www.instagram.com/utopicosmundoafora/',
     facebook: 'https://www.facebook.com/utopicosmundoafora/',
-    where: @rio_city,
     logo: ActionController::Base.helpers.image_url("logo_utopicos.png")
 }
 
@@ -211,7 +210,7 @@
     twitter: '@mantiex',
     logo: ActionController::Base.helpers.image_url("logos/mantiex.png"),
     facebook: 'https://www.facebook.com/gomantiex',
-    where: @cachoeira_paulista_city
+    wheres: [@cachoeira_paulista_city]
 }
 
 @organizer_mantiex = Organizer.find_by_name("Mantiqueira Expedições") if Organizer.find_by_name("Mantiqueira Expedições").try(:update,@organizer_mantiex_data) || Organizer.create(@organizer_mantiex_data)
