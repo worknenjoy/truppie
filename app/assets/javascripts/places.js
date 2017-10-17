@@ -465,30 +465,33 @@
     }
 
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map_canvas"), {
-      zoom      : 10,
-      map       : map,
-      mapTypeId : google.maps.MapTypeId.ROADMAP,
-      disableDefaultUI : false,
-      center: {lat: -22.928749, lng: -43.1973497}
-    })
+    var input = document.getElementById("map_canvas");
+    if (input){
+      var map = new google.maps.Map(document.getElementById("map_canvas"), {
+        zoom      : 10,
+        map       : map,
+        mapTypeId : google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI : false,
+        center: {lat: -22.928749, lng: -43.1973497}
+      })
 
-    $.ajax({
-      url: '/tours',
-      type: 'GET',
-      dataType: 'json',
-      success: function(data){
-        console.log("Success");
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-          place_marker(map, data[i]);
-        }
-        
-      },
-      error: function(xhr, status, response) {
-        console.log(response);
-      } 
-    })    
+      $.ajax({
+        url: '/tours',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data){
+          console.log("Success");
+          console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            place_marker(map, data[i]);
+          }
+          
+        },
+        error: function(xhr, status, response) {
+          console.log(response);
+        } 
+      })
+    }    
   }
 
   function place_marker(map, tour){
