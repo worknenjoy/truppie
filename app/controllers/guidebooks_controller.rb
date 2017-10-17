@@ -152,7 +152,11 @@ class GuidebooksController < ApplicationController
         :currency => "brl",
         :amount => @fees[:total],
         :source => params[:token],
-        :description => @desc
+        :description => @desc,
+        :metadata => {
+            :type => 'guidebook',
+            :object_id => @guidebook.id
+        }
     }
 
     if @guidebook.organizer.try(:marketplace)

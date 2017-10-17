@@ -27,7 +27,6 @@ class OrdersControllerTest < ActionController::TestCase
             "description": "My First Test Charge (created for API docs)",
             "fraud_details": {},
             "livemode": false,
-            "metadata": {},
             "outcome": {
               "network_status":"approved_by_network",
               "reason":"denied",
@@ -43,6 +42,9 @@ class OrdersControllerTest < ActionController::TestCase
               "has_more": false,
               "total_count": 0,
               "url": "/v1/charges/ch_19qSuIBrSjgsps2DCXDNuqsD/refunds"
+            },
+            "metadata": {
+              "type": 'tour'
             },
             "source": {
               "id": "card_19qSqOBrSjgsps2DxBs2TaNd",
@@ -233,9 +235,11 @@ class OrdersControllerTest < ActionController::TestCase
   
   test "should receive a post with successfull parameters and try to find succesfull this order" do
     orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :payment => @payment, :user => User.last, :tour => Tour.last)
-    
     @request.env['RAW_POST_DATA'] = @post_params
+
     post :webhook, {}
+
+    assert_equal assigns(:webhook_type), 'charge_tour'
     assert_equal assigns(:event), "charge.succeeded"
     assert_not_nil assigns(:status_data)
     assert_response :success
@@ -243,6 +247,36 @@ class OrdersControllerTest < ActionController::TestCase
     #puts ActionMailer::Base.deliveries[0].html_part
     
     assert_not ActionMailer::Base.deliveries.empty?
+  end
+
+
+  test "should receive a post with successfull parameters and try to find succesfull this order for a guidebook" do
+
+    @post_params_guidebook = @post_params.deep_merge(
+       {
+           "data": {
+            "object": {
+              "metadata": {
+                "type": "guidebook"
+              }
+            }
+          }
+       }
+    )
+
+    #puts @post_params_guidebook.inspect
+    orders = Order.create(:status => 'succeeded', :price => 200, :final_price => 200, :payment => @payment, :user => User.last, :guidebook => Guidebook.last)
+
+    @request.env['RAW_POST_DATA'] = @post_params_guidebook
+    post :webhook, {}
+    assert_equal 'charge_guidebook', assigns(:webhook_type)
+    #assert_equal assigns(:event), "charge.succeeded"
+    #assert_not_nil assigns(:status_data)
+    #assert_response :success
+
+    #puts ActionMailer::Base.deliveries[0].html_part.inspect
+
+    #assert_not ActionMailer::Base.deliveries.empty?
   end
   
   test "should send the balance in each email confirmation send for the guide" do

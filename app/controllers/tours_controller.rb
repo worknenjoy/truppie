@@ -373,7 +373,11 @@ class ToursController < ApplicationController
             :currency => "brl",
             :amount => @fees[:total],
             :source => params[:token],
-            :description => @desc
+            :description => @desc,
+            :metadata => {
+                :type => 'tour',
+                :object_id =>  @tour.id
+            }
         }
 
         if @tour.organizer.try(:marketplace)
