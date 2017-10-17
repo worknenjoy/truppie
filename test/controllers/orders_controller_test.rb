@@ -270,13 +270,13 @@ class OrdersControllerTest < ActionController::TestCase
     @request.env['RAW_POST_DATA'] = @post_params_guidebook
     post :webhook, {}
     assert_equal 'charge_guidebook', assigns(:webhook_type)
-    #assert_equal assigns(:event), "charge.succeeded"
-    #assert_not_nil assigns(:status_data)
-    #assert_response :success
+    assert_equal assigns(:event), "charge.succeeded"
+    assert_not_nil assigns(:status_data)
+    assert_response :success
 
-    #puts ActionMailer::Base.deliveries[0].html_part.inspect
+    #puts ActionMailer::Base.deliveries[0].html_part
 
-    #assert_not ActionMailer::Base.deliveries.empty?
+    assert_not ActionMailer::Base.deliveries.empty?
   end
   
   test "should send the balance in each email confirmation send for the guide" do

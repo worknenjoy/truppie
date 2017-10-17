@@ -1,0 +1,57 @@
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>&nbsp;</td>
+    <td class="receipt-container">
+      <table class="receipt" border="0" cellpadding="0" cellspacing="0">
+        <tr class="receipt-subtle">
+          <td colspan="2" class="align-center">Reserva feita em <strong><%= l(order.created_at, format: '%d de %B as %I:%M %p')  %></strong></td>
+        </tr>
+        <tr>
+          <td>Valor</td>
+          <td class="receipt-figure"><%= raw final_price_from_cents(order.price) %></td>
+        </tr>
+        <% if order.guidebook.try(:packages) %>
+            <% order.guidebook.packages.each do |p| %>
+              <% if (p.value).to_i*100 == (order.price).to_i %>
+                <tr>
+                  <td>Pacote</td>
+                  <td class="receipt-figure"><%= p.name %></td>
+                </tr>
+              <% end %>                                                     
+            <% end %>
+         <% end %>
+        <tr>
+          <td>Reservas</td>
+          <td class="receipt-figure"><%= order.amount %></td>
+        </tr>
+        <% if order.final_price.nil? %>
+        <h4><%= raw final_price(order.price) %></h4>
+        <tr class="receipt-bold">
+          <td>Total</td>
+          <td class="receipt-figure"><%= raw final_price(order.price) %></td>
+        </tr>
+        <% else %>
+        <tr class="receipt-bold">
+          <td>Total</td>
+          <td class="receipt-figure"><%= raw final_price_from_cents(order.final_price) %></td>
+        </tr>
+        <% end %>
+      </table>
+      <h2 class="align-center">Detalhes do evento</h2>
+      <table class="receipt" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><h4><%= order.guidebook.title %></h4></td>
+          <td>
+            <strong>
+            <%= l(order.guidebook.updated_at, format: '%A') %> <br/> <%= l(order.guidebook.updated_at, format: '%d de %B de %Y às %Hh%M') %><br/ ><strong><%= friendly_when(order.guidebook.updated_at) %></strong>
+            </strong>
+            <%= order.guidebook.wheres.first.name %>
+        </tr>
+      </table>
+      <p>Para conferir o andamento do status a qualquer hora, acesse: <a href="http://www.truppie.com/orders">http://www.truppie.com/orders</a></p>
+      <p>Se tiver alguma dúvida, escreva pra gente: ola@truppie.com.</p> 
+      <p>Até mais!</p>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>

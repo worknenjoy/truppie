@@ -196,8 +196,129 @@ class OrdersController < ApplicationController
       TransferMailer.transfered(@marketplace_organizer.organizer, @status_data).deliver_now
     end
 
-    def webhook_for_guidebook(request_raw)
+    def webhook_for_guidebook(request_raw_json)
+      @event = request_raw_json["type"]
+      @user_id = request_raw_json["user_id"]
 
+      @event_types = ["stripe_account", "review.closed", "transfer.created", "transfer.updated", "transfer.paid", "charge.succeeded", "charge.pending", "charge.failed", "payment.created"]
+
+      if @event_types.include?(@event)
+
+        @payment_id = request_raw_json["data"]["object"]["id"]
+        @status = request_raw_json["data"]["object"]["status"]
+        @destination = request_raw_json["data"]["object"]["destination_payment"]
+
+        @transfer = request_raw_json["source_transaction"] || request_raw_json["data"]["object"]["source_transaction"]
+
+        @reviewed = request_raw_json["data"]["object"]["charge"]
+
+        if @transfer
+          @payment_id = @transfer
+          if @status == "paid"
+            @status = "succeeded"
+          end
+        end
+
+        if @reviewed
+          @payment_id = @reviewed
+          @status = request_raw_json["data"]["object"]["reason"]
+          if @status == "approved"
+            @status = "succeeded"
+          end
+        end
+
+        @amount_to_transfer = request_raw_json["data"]["object"]["amount"]
+        @type_of_action = request_raw_json["data"]["object"]["object"]
+        @transfer_status = request_raw_json["data"]["object"]["status"]
+
+        if @user_id && @type_of_action == 'transfer'
+          webhook_for_transfer(request_raw_json)
+          return :success
+        end
+
+        begin
+          order = Order.where(payment: @payment_id).joins(:user).take
+          if !order.try(:status)
+            order.update_attributes({:status => @status})
+          end
+          if @destination
+            order.update_attributes({:destination => @destination})
+          end
+
+          order_guidebook = Order.where(payment: @payment_id).joins(:guidebook).take
+          guidebook = order_guidebook.try(:guidebook)
+
+          user = order.user
+          organizer = guidebook.organizer
+        rescue => e
+          CreditCardStatusMailer.status_message("Pagamento não encontrado. Webhook recebido #{request_raw_json}").deliver_now
+          puts "problemas para encontrar o pagamento"
+          puts e.inspect
+          return :bad_request
+        end
+
+        case @status
+          when "pending"
+            @status_class = "alert-success"
+            @subject = "Solicitação de um roteiro! :)"
+            @guide_template = "status_change_guide_waiting"
+            @mail_first_line = "Oba, você acabou de adquirir um roteiro #{guidebook.title} com o guia #{organizer.name}! :D"
+            @mail_second_line = "Estamos aguardando o pagamento do seu cartão junto a operadora e, assim que for aprovado, vamos te avisar, ok?"
+          when "succeeded"
+            @status_class = "alert-success"
+            @subject = "Solicitação de um roteiro! :)"
+            @guide_template = "status_change_guide_authorized"
+            @mail_first_line = "Referente à solicitação de um roteiro da truppie <strong>#{guidebook.title}</strong> com o guia <strong>#{organizer.name}</strong>, <br />temos boas novas: o pagamento foi <strong>autorizado</strong> pela operadora de seu cartão e <strong>seu roteiro será enviado!</strong> Uhuul \o/ "
+            @mail_second_line = "Você está confirmado no evento. <br />Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>."
+          when "failed"
+            @status_class = "alert-danger"
+            @subject = "Ops, tivemos um probleminha na compra do seu roteiro na Truppie :/"
+            @guide_template = "status_change_guide_cancelled"
+            @mail_first_line = "Referente à solicitação de um roteiro da truppie #{guidebook.title} com o guia #{organizer.name}, por algum motivo, a operadora do cartão de crédito recusou o pagamento e sua truppie não pode ser reservada ainda."
+            @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
+          else
+            @status_class = "alert-warning"
+            @subject = "Não conseguimos obter o status junto a operadora"
+            @guide_template = "status_change_guide_cancelled"
+            @mail_first_line = "Referente à solicitação de seu roteiro na truppie #{guidebook.title} com o guia #{organizer.name}, não tivemos uma atualização de status que pudéssemos indentificar."
+            @mail_second_line = "Queira por gentileza verificar em seu banco se há algum tipo de bloqueio ou problema com o cartão, e nos escreva para vermos como resolver: ola@truppie.com."
+        end
+
+
+        is_in_the_history = order.status_history.include?(@status)
+
+        is_status_to_ignore = ['pending'].include?(@status)
+
+        if !is_in_the_history
+
+          order.status_history <<  @status
+
+          if order.save()
+            puts "Pedido de pagamento #{order.inspect} atualizado com sucesso"
+            CreditCardStatusMailer.status_message("Pedido de pagamento #{order.inspect} atualizado com sucesso").deliver_now
+          end
+          if !is_status_to_ignore
+            @status_data = {
+                subject: @subject,
+                mail_first_line: @mail_first_line,
+                mail_second_line: @mail_second_line,
+                status_class: @status_class,
+                guide: @guide_template
+            }
+            mail = CreditCardStatusMailer.status_change(@status_data, order, user, guidebook, organizer).deliver_now
+            guide_mail = CreditCardStatusMailer.guide_mail(@status_data, order, user, guidebook, organizer).deliver_now
+            if !mail
+              CreditCardStatusMailer.status_message('não foi possível enviar os e-mails aos usuários e guias').deliver_now
+            end
+          else
+            CreditCardStatusMailer.status_message("O usuario #{user.name} esta com o status #{@status}").deliver_now
+          end
+        else
+          puts 'O webhook tentou enviar uma notificação repetida'
+        end
+      else
+        CreditCardStatusMailer.status_message("erro ao tentar processar o request #{request_raw_json}").deliver_now
+      end
     end
 
     def webhook_for_tour(request_raw_json)
@@ -254,7 +375,6 @@ class OrdersController < ApplicationController
           order_guidebook = Order.where(payment: @payment_id).joins(:guidebook).take
 
           tour = order_tour.try(:tour)
-          guidebook = order_guidebook.try(:guidebook)
 
           user = order.user
           organizer = tour.organizer
@@ -264,13 +384,6 @@ class OrdersController < ApplicationController
           puts e.inspect
           return :bad_request
         end
-
-
-        if guidebook.try(:id)
-          organizer_guidebook = guidebook.organizer
-          CreditCardStatusMailer.status_message("o usuário #{user.name} efetuou uma compra do roteiro #{guidebook.title} do #{organizer_guidebook.title} e o status da transação foi #{@status}").deliver_now
-        end
-
 
         case @status
           when "pending"

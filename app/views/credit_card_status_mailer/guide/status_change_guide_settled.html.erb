@@ -11,7 +11,12 @@
 		</span>
 	</p>
 <% else %>
-	<%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
+		<% if @order.try(:guidebook) %>
+				<%= render partial: 'credit_card_status_mailer/order_table_guidebook', locals: {order: @order} %>
+		<% end %>
+		<% if @order.try(:tour) %>
+				<%= render partial: 'credit_card_status_mailer/order_table', locals: {order: @order} %>
+		<% end %>
 <% end %>
 
 <p>
