@@ -206,8 +206,6 @@ function set_places_info(target, places) {
         type: 'GET',
         dataType: 'json',
         success: function(data){
-          console.log("Success");
-          console.log(data);
           for (var i = 0; i < data.length; i++) {
             place_marker(map, data[i]);
           }
