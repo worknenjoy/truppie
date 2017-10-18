@@ -4,7 +4,7 @@ require 'json'
 
 class ToursControllerTest < ActionController::TestCase
   self.use_transactional_fixtures = true
-  
+
   setup do
     StripeMock.start
     @stripe_helper = StripeMock.create_test_helper
@@ -13,14 +13,14 @@ class ToursControllerTest < ActionController::TestCase
     @tour_marins = tours(:picomarins)
     @mkt = tours(:tour_mkt)
     @with_order_and_packages = tours(:with_orders)
-    
+
     @payment_data = {
       id: @tour,
       method: "CREDIT_CARD",
       fullname: "Alexandre Magno Teles Zimerer",
       birthdate: "10/10/1988",
       value: @tour.value,
-      token: StripeMock.generate_card_token(last4: "9191", exp_year: 1984) 
+      token: StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
     }
 
     @payment_data_external = {
@@ -40,7 +40,7 @@ class ToursControllerTest < ActionController::TestCase
         value: @tour.value,
         token: StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
     }
-    
+
     @basic_tour = {
       title: "A basic truppie",
       organizer: Organizer.first.name,
@@ -67,13 +67,23 @@ class ToursControllerTest < ActionController::TestCase
         packages_attributes: {"0"=>{"name"=>"Barato", "value"=>"10", "included"=>"barato;caro"}}
     }
 
+    @basic_tour_fair_price = {
+      title: "A basic truppie with fair price",
+      organizer_id: Organizer.last.id,
+      where_ids: [Where.last.id],
+      user_id: User.first.id,
+      start: Time.now,
+      end: Time.now,
+      value_chosen_by_user: true
+    }
+
     @basic_tour_with_collaborators = {
         title: "A basic truppie",
         organizer: Organizer.first.name,
         wheres: [Where.last],
         collaborators: [collaborators(:one)]
     }
-    
+
     @basic_empty_tour_with_empty = {
       title: "Another basic truppie",
       organizer: Organizer.first.name,
@@ -105,7 +115,7 @@ class ToursControllerTest < ActionController::TestCase
     }
 
   end
-  
+
   teardown do
     StripeMock.stop
   end
@@ -127,21 +137,21 @@ class ToursControllerTest < ActionController::TestCase
      assert_equal 'o campo title não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
   end
-  
+
   test "should not create tour with organizer without a title" do
      #skip("creating tour with empty data")
      post :create, tour: {organizer: Organizer.first.name}
      assert_equal 'o campo title não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
   end
-  
+
   test "should not create tour with no organizer but with a title" do
      skip("creating without organizer should not work")
      post :create, tour: {title: 'foo truppie title'}
      assert_equal 'o campo organizer não pode ficar em branco', flash[:notice]
      #assert_redirected_to tour_path(assigns(:tour))
   end
-  
+
   test "should create tour with success flash" do
      skip("creating tour with organizer")
      #puts @basic_tour.inspect
@@ -163,6 +173,11 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal 'Truppie criada com sucesso', flash[:notice]
   end
 
+  test "should create without price but with flag for allowing user to set 'fair price'" do
+    post :create, tour: @basic_tour_fair_price
+    assert_equal 'Truppie criada com sucesso', flash[:notice]
+  end
+
   test "should create tour with date" do
     skip("not working")
     @basic_tour[:start] = 'Mon May 15 2017 17:12:00 GMT+0200 (CEST)'
@@ -180,7 +195,7 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal 'Truppie criada com sucesso', flash[:notice]
     assert_equal Tour.last.start, 'Sat Jul 01 2017 19:21:00 GMT+0200 (CEST)'
   end
-  
+
   test "should create tour with basic data" do
      skip("creating tour with organizer")
      assert_difference('Tour.count') do
@@ -188,7 +203,7 @@ class ToursControllerTest < ActionController::TestCase
      end
      assert_redirected_to tour_path(assigns(:tour))
    end
-   
+
   test "should create tour with basic data with form empty sets" do
      skip("creating tour with organizer")
      assert_difference('Tour.count') do
@@ -204,78 +219,78 @@ class ToursControllerTest < ActionController::TestCase
     #assert_equal Tour.find(@tour.id).removed, true
     assert_redirected_to "/organizers/#{@tour.organizer.to_param}/guided_tour"
   end
-   
+
    test "should associate tags" do
      skip("creating tour with tags")
      @basic_empty_tour_with_empty["tags"] = "#{Tag.last.name};anothertag"
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.tags[0].name, "family"
      assert_equal Tour.last.tags[1].name, "anothertag"
      assert_equal Tag.last.name, "anothertag"
    end
-   
+
    test "should associate languages" do
      skip("creating tour with tags")
      @basic_empty_tour_with_empty["languages"] = "#{languages(:english).name};#{languages(:portuguese).name}"
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.languages[0].name, "english"
      assert_equal Tour.last.languages[1].name, "portuguese"
    end
-   
+
    test "should create includeds" do
      skip("creating tour with tags")
      @basic_empty_tour_with_empty["included"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.included[0], "almoco"
      assert_equal Tour.last.included[1], "jantar"
      assert_equal Tour.last.included[2], "cafe"
    end
-   
+
    test "should create nonincludeds" do
      skip("creating tour with tags")
      @basic_empty_tour_with_empty["nonincluded"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.nonincluded[0], "almoco"
      assert_equal Tour.last.nonincluded[1], "jantar"
      assert_equal Tour.last.nonincluded[2], "cafe"
    end
-   
+
    test "should create itens to take" do
      skip("creating tour with tags")
      @basic_empty_tour_with_empty["take"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.take[0], "almoco"
      assert_equal Tour.last.take[1], "jantar"
      assert_equal Tour.last.take[2], "cafe"
    end
-   
+
    test "should create itens good to know" do
      skip("creating tour with tags")
      @basic_empty_tour_with_empty["goodtoknow"] = "almoco;jantar;cafe"
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.goodtoknow[0], "almoco"
      assert_equal Tour.last.goodtoknow[1], "jantar"
      assert_equal Tour.last.goodtoknow[2], "cafe"
    end
-   
+
    test "should create with category" do
      #skip("creating tour with tags")
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.category.name, "Trekking"
    end
-   
+
    test "should create with new category" do
      skip("creating tour with cat")
      @basic_empty_tour_with_empty["category"] = "Nova"
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.category.name, "Nova"
    end
 
@@ -337,19 +352,19 @@ class ToursControllerTest < ActionController::TestCase
      skip("not working")
      @basic_empty_tour_with_empty["packages_attributes"] = {"0"=>{"name"=>"Barato", "value"=>"10", "included"=>"barato;caro"}}
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.packages.first.name, "Barato"
      assert_equal Tour.last.packages.first.included, ["barato", "caro"]
    end
-   
+
    test "should create truppie with a given start" do
      skip("creating tour with start")
      @basic_empty_tour_with_empty["start"] = "2016-02-02T11:00"
      post :create, tour: @basic_empty_tour_with_empty
-     
+
      assert_equal Tour.last.start, "2016-02-02T11:00"
    end
-   
+
    test "should create withe the current status non published for default" do
      skip("not working")
      post :create, tour: @basic_empty_tour_with_empty
@@ -386,7 +401,7 @@ class ToursControllerTest < ActionController::TestCase
     patch :update, id: @tour, tour: {  }
     assert_redirected_to tour_path(assigns(:tour))
   end
-  
+
   test "increment one more member" do
     skip("mock api call")
     @tour_confirmed_before = @tour.confirmeds.count
@@ -394,14 +409,14 @@ class ToursControllerTest < ActionController::TestCase
     @tour_confirmed_after = @tour.confirmeds.count
     assert_equal @tour_confirmed_before + 1, @tour_confirmed_after
   end
-  
+
   test "should go to confirm presence with confirming price default" do
     get :confirm, {id: @tour}
     assert(assigns(:final_price))
     assert_equal(assigns(:final_price), 40)
     #assert_equal(assigns(:package), 40)
   end
-  
+
   test "should go to confirm presence with confirming package name" do
     get :confirm, {id: @tour_marins, packagename: @tour_marins.packages.first.name}
     assert(assigns(:packagename))
@@ -416,15 +431,15 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal(assigns(:final_price), 320)
 
   end
-  
+
   #
   #  Confirm presence
   #
   #
-  
+
   test "should decline payment if has a card error" do
     StripeMock.prepare_card_error(:card_declined)
-    
+
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
     assert_equal assigns(:confirm_status_message), "Tivemos um problema ao processar seu cartão"
@@ -439,7 +454,7 @@ class ToursControllerTest < ActionController::TestCase
     custom_error = Stripe::StripeError.new('new_charge', "Please knock first.", 401)
 
     StripeMock.prepare_error(custom_error, :new_charge)
-    
+
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Não foi possível confirmar sua reserva"
     assert_equal assigns(:confirm_status_message), "Tivemos um problema para confirmar sua reserva, entraremos em contato para maiores informações"
@@ -448,7 +463,7 @@ class ToursControllerTest < ActionController::TestCase
     #assert_equal Tour.find(@tour.id), token
     assert_template "confirm_presence"
   end
-    
+
   test "should confirm presence" do
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
@@ -474,7 +489,7 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
     assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
     assert_equal assigns(:status), "success"
-    assert_equal assigns(:payment).destination.amount, 3760 
+    assert_equal assigns(:payment).destination.amount, 3760
 
     assert_equal Tour.find(@tour.id).orders.any?, true
     assert_equal Tour.find(@tour.id).orders.first.liquid, 3760
@@ -485,14 +500,14 @@ class ToursControllerTest < ActionController::TestCase
     #assert_equal Customer.last.email, 'example@foo.com'
     assert_template "confirm_presence"
   end
-  
+
   test "should not confirm again" do
     post :confirm_presence, @payment_data
     post :confirm_presence, @payment_data
     assert_equal "Hey, você já está confirmado neste evento, não é necessário reservar novamente!!", flash[:error]
     assert_redirected_to tour_path(assigns(:tour))
   end
-  
+
   test "should not confirm if soldout" do
     @tour.confirmeds.create(user: users(:laura))
     @tour.confirmeds.create(user: users(:ciclano))
@@ -502,7 +517,7 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal assigns(:confirm_status_message), "Este evento está esgotado"
     assert_redirected_to tour_path(assigns(:tour))
   end
-  
+
   test "should unconfirm" do
     @tour.confirmeds.create(user: users(:alexandre))
     @tour.update_attributes(:reserved => 2)
@@ -512,7 +527,7 @@ class ToursControllerTest < ActionController::TestCase
     assert_equal Tour.find(@tour.id).available, 3
     assert_redirected_to tour_path(assigns(:tour))
   end
-  
+
   test "should create a order with the given id and status" do
     post :confirm_presence, @payment_data
     assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
@@ -622,7 +637,7 @@ class ToursControllerTest < ActionController::TestCase
     assert_template "confirm_presence"
     assert_includes ["succeeded"], Order.last.status
   end
-  
+
   test "should create a order on stripe with destination account fees" do
     skip("migrate to stripe")
     @payment_data["id"] = @mkt

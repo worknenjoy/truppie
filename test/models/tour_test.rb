@@ -283,7 +283,7 @@ class TourTest < ActiveSupport::TestCase
 
   test "should be valid without setting value" do
     tour_fair_price = tours(:morro_fair_price)
-    assert_equal tour_fair_price.value, nil
-    assert_equal tour_fair_price.valid?, true
+    assert_nil tour_fair_price.value
+    assert tour_fair_price.valid?
   end
 end

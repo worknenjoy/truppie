@@ -123,7 +123,7 @@ en:
     - Sat
     - Sun
     abbr_month_names:
-    - 
+    -
     - Jan
     - Feb
     - Mar
@@ -150,7 +150,7 @@ en:
       long: "%d de %B de %Y"
       short: "%d de %B"
     month_names:
-    - 
+    -
     - January
     - February
     - March
@@ -700,6 +700,9 @@ en:
   tours_view_form_placeholder_twentythree: Package price
   tours_view_form_placeholder_twentytwo: Package name
   tours_view_form_placeholder_two: Where? (Place name)
+  tours_view_form_tooltip_content_one: With this option enabled, the user pays the price he thinks is fair for this activity
+  tours_view_value_suggested_by_user: Chosen by user
+  tours_view_fair_price_ribbon_value: A fair price for you!
   tours_view_form_small: For different packages, go to tab "Pacotes"
   tours_view_form_span: 'New category:'
   tours_view_index_h3: All truppies already created
