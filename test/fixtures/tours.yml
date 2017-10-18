@@ -5,173 +5,204 @@ morro:
   description: subida ao morro dois irmaos
   rating: 3
   value: 40
-  currency: BRL 
+  currency: BRL
   organizer: utopicos
   start: "2016-04-17 23:56:31"
   end: "2016-04-17 23:59:31"
   photo:
-  availability: 3 
-  minimum: 
-  maximum: 
+  availability: 3
+  minimum:
+  maximum:
   difficulty: 2
   wheres: placeone
   address: MyString
-  user: laura 
+  user: laura
   included: []
-  nonincluded: [] 
+  nonincluded: []
   category: trekking
   tags: family, geek, outdoor
   attractions: santatereza, corcovado
   privacy: MyString
   meetingpoint: MyString
   confirmeds:
-  languages: english, portuguese 
+  languages: english, portuguese
   reviews: boring, cool
   verified:
   status: 'P'
-    
+
+morro_fair_price:
+  title: Morro dois irmaos
+  description: subida ao morro dois irmaos. Pague o quanto você acha que e valido
+  rating: 3
+#  value: 40 Not needed
+  value_chosen_by_user: true
+  currency: BRL
+  organizer: utopicos
+  start: "2016-05-30 23:56:31"
+  end: "2016-06-12 23:59:31"
+  photo:
+  availability: 3
+  minimum:
+  maximum:
+  difficulty: 2
+  wheres: placeone
+  address: MyString
+  user: laura
+  included: []
+  nonincluded: []
+  category: trekking
+  tags: family, geek, outdoor
+  attractions: santatereza, corcovado
+  privacy: MyString
+  meetingpoint: MyString
+  confirmeds:
+  languages: english, portuguese
+  reviews: boring, cool
+  verified:
+  status: 'P'
+
 gavea:
   title: Subida a pedra da gavea
   description: subindo a pedra da gavea
   rating: 3
   value: 40
-  currency: BRL 
+  currency: BRL
   organizer: utopicos
   start: 2016-04-30 23:56:31
   end: 2016-04-30 02:59:31
   photo:
-  availability: 3 
-  minimum: 
-  maximum: 
+  availability: 3
+  minimum:
+  maximum:
   difficulty: 2
   wheres: placeone
   address: MyString
-  user: laura 
+  user: laura
   included: []
-  nonincluded: [] 
+  nonincluded: []
   category: trekking
   tags: family, geek, outdoor
   attractions: santatereza, corcovado
   privacy: MyString
   meetingpoint: MyString
   confirmeds:
-  languages: english, portuguese 
+  languages: english, portuguese
   reviews: boring, cool
   verified:
   status: 'P'
-    
+
 picomarins:
   title: Pico marins
   description: subindo do pico marins na mantiqueira
   rating: 3
-  currency: BRL 
+  currency: BRL
   organizer: mantiex
   start: 2016-06-18 06:00:00
   end: 2016-06-19 06:00:00
-  photo: 
-  availability: 3 
-  minimum: 
-  maximum: 
+  photo:
+  availability: 3
+  minimum:
+  maximum:
   difficulty: 2
   wheres: placeone
   address: MyString
-  user: laura 
+  user: laura
   included: []
-  nonincluded: [] 
+  nonincluded: []
   category: trekking
   tags: family, geek, outdoor
   privacy: MyString
   meetingpoint: MyString
   confirmeds:
-  languages: english, portuguese 
+  languages: english, portuguese
   reviews: boring, cool
-  packages: basico, completo 
+  packages: basico, completo
   status: 'P'
-  
+
 tour_mkt:
   title: tour with marketplace
   description: subindo do pico marins na mantiqueira
   rating: 3
-  currency: BRL 
+  currency: BRL
   organizer: mkt
   start: 2016-06-18 06:00:00
   end: 2016-06-19 06:00:00
-  photo: 
-  availability: 3 
-  minimum: 
-  maximum: 
+  photo:
+  availability: 3
+  minimum:
+  maximum:
   difficulty: 2
   wheres: placeone
   address: MyString
-  user: laura 
+  user: laura
   included: []
-  nonincluded: [] 
+  nonincluded: []
   category: trekking
   tags: family, geek, outdoor
   privacy: MyString
   meetingpoint: MyString
   confirmeds:
-  languages: english, portuguese 
+  languages: english, portuguese
   reviews: boring, cool
-  packages: basico, completo 
+  packages: basico, completo
   status: 'P'
-  
+
 with_orders:
   title: Tour with orders
   description: subindo do pico marins na mantiqueira
   rating: 3
-  currency: BRL 
+  currency: BRL
   organizer: mantiex
   start: 2016-06-18 06:00:00
   end: 2016-06-19 06:00:00
-  photo: 
-  availability: 3 
-  minimum: 
-  maximum: 
+  photo:
+  availability: 3
+  minimum:
+  maximum:
   difficulty: 2
   wheres: placeone
   address: MyString
-  user: laura 
+  user: laura
   included: []
-  nonincluded: [] 
+  nonincluded: []
   category: trekking
   tags: family, geek, outdoor
   privacy: MyString
   meetingpoint: MyString
   confirmeds:
-  languages: english, portuguese 
+  languages: english, portuguese
   reviews: boring, cool
-  packages: basico, completo 
+  packages: basico, completo
   status: 'P'
   orders: one, bol, two_reservation
 
 # two:
   # title: MyString
   # description: MyString
-  # rating: 
+  # rating:
   # value:
-  # currency: 
-  # organizer_id: 
+  # currency:
+  # organizer_id:
   # start: 2016-03-01 23:56:31
   # end: 2016-03-01 23:56:31
   # picture: MyString
-  # availability: 
-  # minimum: 
-  # maximum: 
-  # pictures_id: 
-  # difficulty: 
-  # where_id: 
+  # availability:
+  # minimum:
+  # maximum:
+  # pictures_id:
+  # difficulty:
+  # where_id:
   # address: MyString
-  # user: joana 
-  # included_id: 
-  # category_id: 
-  # tags_id: 
-  # attractions_id: 
+  # user: joana
+  # included_id:
+  # category_id:
+  # tags_id:
+  # attractions_id:
   # privacy: MyString
   # meetingpoint: MyString
-  # confirmed_id: 
-  # languages_id: 
+  # confirmed_id:
+  # languages_id:
   # reviews_id:
   # verified:
-  # nonincluded: 
-  # status:   
+  # nonincluded:
+  # status:
