@@ -17,9 +17,6 @@
   ],
   "buildpacks": [
     {
-      "url": "https://github.com/heroku/heroku-buildpack-redis.git"
-    },
-    {
       "url": "heroku/ruby"
     }
   ]
