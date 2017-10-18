@@ -132,6 +132,7 @@ class Tour < ActiveRecord::Base
 
   def price
     if !self.try(:value)
+      return I18n.t('tours_view_fair_price_ribbon_value') if value_chosen_by_user
       minor = 999999999
       if self.try(:packages) and !self.value
         self.packages.each do |p|
