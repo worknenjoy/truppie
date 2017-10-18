@@ -3,7 +3,6 @@ class WheresController < ApplicationController
   before_filter :check_if_admin, only: [:index, :edit]
 
   def check_if_admin
-
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
 
     unless allowed_emails.include? current_user.email
