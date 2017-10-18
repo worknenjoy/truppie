@@ -13,10 +13,6 @@
     "logentries",
     "papertrail",
     "heroku-postgresql",
-    "rediscloud",
-    "redistogo",
-    "heroku-redis",
-    "rollbar",
     "sendgrid"
   ],
   "buildpacks": [
