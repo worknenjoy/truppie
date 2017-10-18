@@ -153,7 +153,11 @@ $(function() {
 
     localStorage.clear();
 
-    $('#tour_included, #guidebook_included, #tour_nonincluded, #guidebook_nonincluded,  #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
+    $('#tour_included, #tour_nonincluded, #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
+        delimiter: ";"
+    });
+
+    $('#guidebook_included, #guidebook_nonincluded').tagsinput({
         delimiter: ";"
     });
 
@@ -225,62 +229,62 @@ $(function() {
             },
             delimiter: ';'
         });
-    }
+  }
 
-    if($('#tour_languages, #guidebook_languages').length) {
+  if($('#tour_languages, #guidebook_languages').length) {
 
-        var languages = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: {
-                url: '/languages/index.json',
-                filter: function (list) {
-                    return $.map(list, function (languages) {
-                        return languages;
-                    });
-                }
-            }
-        });
-        languages.initialize();
+      var languages = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          prefetch: {
+              url: '/languages/index.json',
+              filter: function (list) {
+                  return $.map(list, function (languages) {
+                      return languages;
+                  });
+              }
+          }
+      });
+      languages.initialize();
 
-        $('#tour_languages, #guidebook_languages').tagsinput({
-            typeaheadjs: {
-                name: 'languages',
-                displayKey: 'name',
-                valueKey: 'name',
-                source: languages.ttAdapter()
-            },
-            delimiter: ';'
-        });
-    }
+      $('#tour_languages, #guidebook_languages').tagsinput({
+          typeaheadjs: {
+              name: 'languages',
+              displayKey: 'name',
+              valueKey: 'name',
+              source: languages.ttAdapter()
+          },
+          delimiter: ';'
+      });
+  }
 
-    if($('.organizer-chooser').length) {
+  if($('.organizer-chooser').length) {
 
-        var organizers = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: {
-                url: '/organizers.json',
-                filter: function (list) {
-                    return $.map(list, function (organizers) {
-                        return organizers;
-                    });
-                }
-            }
-        });
-        organizers.initialize();
+      var organizers = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          prefetch: {
+              url: '/organizers.json',
+              filter: function (list) {
+                  return $.map(list, function (organizers) {
+                      return organizers;
+                  });
+              }
+          }
+      });
+      organizers.initialize();
 
-        $('.organizer-chooser').tagsinput({
-            typeaheadjs: {
-                name: 'organizers',
-                displayKey: 'name',
-                valueKey: 'name',
-                source: organizers.ttAdapter()
-            },
-            delimiter: ';',
-            maxTags: 1
-        });
-    }
+      $('.organizer-chooser').tagsinput({
+          typeaheadjs: {
+              name: 'organizers',
+              displayKey: 'name',
+              valueKey: 'name',
+              source: organizers.ttAdapter()
+          },
+          delimiter: ';',
+          maxTags: 1
+      });
+  }
 
 	$('#reveal-new-cat').on('click', function(){
   		$('#new-cat').show();
@@ -301,8 +305,8 @@ $(function() {
 		}
 
 		$('#new_tour, .edit_tour, #new_guidebook, .edit_guidebook').trigger('submit');
-		return false;
-	});
+    return false;
+  });
 
 	$(".edit_tour").on('submit', function(){
       if($('.field-category-text').length && $('.field-category-radio')) {
@@ -314,13 +318,11 @@ $(function() {
       }
   });
 
-    $(".publish-truppie").on('click', function(){
-
-        $('.tour-status').val('P');
-
-        $('#new_tour, .edit_tour').trigger('submit');
-        return false;
-    });
+  $(".publish-truppie").on('click', function(){
+      $('.tour-status').val('P');
+      $('#new_tour, .edit_tour').trigger('submit');
+      return false;
+  });
 
 	$(".criar-guia").on('click', function(){
 		$('#new_organizer, .edit_organizer').trigger('submit');
@@ -331,7 +333,6 @@ $(function() {
     $('#new_marketplace, .edit_marketplace').trigger('submit');
     return false;
   });
-
 
 	$('#carousel-intro').carousel();
 

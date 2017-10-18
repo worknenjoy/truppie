@@ -5,7 +5,8 @@ function extractFromAdress(components, type){
     return "";
 }
 
-function set_places_info(target, places) {
+function set_places_info(target, places, input) {
+
     if (places.length == 0) {
         return;
     }
@@ -68,10 +69,27 @@ function set_places_info(target, places) {
     }
 }
 
+function prefill_place(target, input) {
+    var current_place_name = document.getElementById(target + '_wheres_attributes_0_name');
+
+    if(current_place_name) {
+        var current_place = document.getElementById(target + '_wheres_attributes_0_name').value;
+        if(current_place) {
+            input.value = current_place;
+        }
+    }
+}
+
 (function() {
     "use strict";
 
     var input = document.querySelector(".places-input");
+
+    prefill_place('background', input);
+    prefill_place('organizer', input);
+    prefill_place('tour', input);
+    prefill_place('guidebook', input);
+
     if(input) {
         var mapdiv = document.getElementById('map');
         var map = new google.maps.Map(mapdiv, {
@@ -95,34 +113,17 @@ function set_places_info(target, places) {
             map.setCenter(center);
         }, true);
 
-        /*input.addEventListener('blur', function(){
-         mapdiv.style.display = 'none';
-         }, true);
-         */
-
         map.addListener('bounds_changed', function () {
             searchBox.setBounds(map.getBounds());
         });
 
-        var current_place_name = document.getElementById('tour_wheres_attributes_0_name');
-
-        if(current_place_name) {
-            var current_place = document.getElementById('tour_wheres_attributes_0_name').value;
-            if(current_place) {
-                input.value = current_place;
-            }
-        }
-
         searchBox.addListener("places_changed", function (e) {
             var places = searchBox.getPlaces();
-            //console.log('places');
-            //console.log(places);
-            //console.log(places[0].geometry.location)
 
-            set_places_info('background', places);
-            set_places_info('organizer', places);
-            set_places_info('tour', places);
-            set_places_info('guidebook', places);
+            set_places_info('background', places, input);
+            set_places_info('organizer', places, input);
+            set_places_info('tour', places, input);
+            set_places_info('guidebook', places, input);
 
 
             // Clear out the old markers.
@@ -160,6 +161,7 @@ function set_places_info(target, places) {
             });
 
             map.fitBounds(bounds);
+
         });
 
         if (resetBtn) {

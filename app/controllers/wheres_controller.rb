@@ -68,9 +68,10 @@ class WheresController < ApplicationController
   end
 
   def where_params
-    params.require(:where).permit(:name, :background, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url, :place_id,
-      { :backgrounds_attributes => [:name, :picture] }
-    )
+    #params.require(:where).permit(:name, :background, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url, :place_id,
+    #  { :backgrounds_attributes => [:name, :picture] }
+    #)
+    params.fetch(:where, {}).permit!
   end
 
 end

@@ -162,11 +162,14 @@
       </div>
 
       <div class="form-group row">
-        <div class="input-group col-xs-6">
+        <div class="input-group col-xs-6 <%= form_error(flash[:errors], :value) %>">
           <div class="input-group-addon">R$</div>
           <%= f.number_field :value, placeholder: 'valor unico', min: 1, class: "form-control text-xs-right" %>
           <div class="input-group-addon">.00</div>
         </div>
+        <span class="<%= form_error(flash[:errors], :value) %>">
+          <%= error_message(flash[:errors], :value) %>
+        </span>
         <div class="input-group col-xs-6">
           <small style="vertical-align: -webkit-baseline-middle;"><%= t('or-label') %></small>
           <%= link_to '#new-packages-modal', class: 'btn btn-info-outline btn-sm pull-right', data: {toggle: 'modal', target: '#new-packages-modal'} do %>
@@ -199,6 +202,10 @@
                             <span class="input-group-addon"><span class="fa fa-money"></span></span>
                             <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_twentythree'), class: "form-control", min: 1 %>
                           </div>
+                        </div>
+                        <div class="form-group">
+                          <label><%= t('packages-description-label') %></label>
+                          <%= ff.text_area :description, class: "form-control" %>
                         </div>
                         <div class="form-group">
                           <div class="input-group">

@@ -1,25 +1,22 @@
 class Guidebook < ActiveRecord::Base
   belongs_to :organizer
+  has_and_belongs_to_many :wheres
   belongs_to :user
   belongs_to :form
   belongs_to :category
   has_one :destination
   has_and_belongs_to_many :languages
   has_and_belongs_to_many :reviews
-  has_and_belongs_to_many :wheres
-  has_and_belongs_to_many :packages
-  has_and_belongs_to_many :wheres
+  has_and_belongs_to_many :packages, dependent: :destroy
   has_and_belongs_to_many :comments
   has_and_belongs_to_many :tags
 
   has_and_belongs_to_many :orders
 
-
-  accepts_nested_attributes_for :wheres
   accepts_nested_attributes_for :category
   accepts_nested_attributes_for :languages
-  accepts_nested_attributes_for :organizer
   accepts_nested_attributes_for :packages, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :wheres
 
   validates_presence_of :value, :if => Proc.new { |a| !a.packages.any? }
 

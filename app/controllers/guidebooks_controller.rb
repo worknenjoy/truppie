@@ -57,7 +57,10 @@ class GuidebooksController < ApplicationController
         format.html { redirect_to @guidebook, notice: 'Guidebook was successfully updated.' }
         format.json { render :show, status: :ok, location: @guidebook }
       else
-        format.html { render :edit }
+        format.html {
+          puts @guidebook.errors.inspect
+          render :edit
+        }
         format.json { render json: @guidebook.errors, status: :unprocessable_entity }
       end
     end
@@ -285,7 +288,7 @@ class GuidebooksController < ApplicationController
         post_data = []
         pkg_attr.each do |p|
           included_array = p[1]["included"].split(split_val)
-          post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], percent: p[1]["percent"], included: included_array)
+          post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], percent: p[1]["percent"], description: p[1]["description"], included: included_array)
         end
         params[:guidebook][:packages] = post_data
       end
@@ -327,7 +330,7 @@ class GuidebooksController < ApplicationController
       params[:guidebook][:currency] = "BRL"
 
       # unpermitted params error even with all params provided
-      #params.fetch(:guidebook, {}).permit!(:title, :category_id, :organizer, :user, {:tags => [:id, :name]}, {:languages => [:id, :name]}, {:category => [:id, :name]}, :status, {:packages_attributes => [:id, :name, :value, :included, :description, :percent]}, {:wheres_attributes => [:id, :name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :picture, :file, :value, :description, {:included => []}, {:nonincluded => []}, :currency).merge(params[:guidebook])
-      params.fetch(:guidebook, {}).permit!
+      #params.require(:guidebook).permit(:title, :currency, :picture, :organizer_id, :file, :value, :description, :status, :category_id, user: [:id, :name], organizer: [:id, :name], tags: [:id, :name], languages: [:id, :name], category: [:id, :name], packages_attributes: [:id, :name, :value, :description, :percent, :included], wheres_attributes: [:id, :name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url], included: [], nonincluded: []).merge(params[:guidebook])
+      params.require(:guidebook).permit!
     end
 end

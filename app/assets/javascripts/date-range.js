@@ -30,15 +30,11 @@ function updateDates(e) {
         var startDate = moment.utc(new Date($('.start-field').val()));
     }
 
-    console.log(startDate);
-
     var startTime = $('#start_time').val();
 
     var startTimeArray = startTime.split(':');
     var startTimeHours = startTimeArray[0];
     var startTimeMinutes = startTimeArray[1];
-
-    console.log(startTimeHours);
 
     if(startTimeHours >= 0 && startTimeMinutes >= 0) {
         startDate.set({'hour': startTimeHours, 'minute': startTimeMinutes});
@@ -59,7 +55,6 @@ function updateDates(e) {
             'hour': startDate.get('hour'),
             'minute': startDate.get('minute')
         });
-        console.log(endDate);
     }
 
     var endTime = $('#end_time').val();
@@ -71,9 +66,6 @@ function updateDates(e) {
     if(endTimeHours >= 0 && endTimeMinutes >= 0) {
         endDate.set({'hour': endTimeHours, 'minute': endTimeMinutes});
     }
-
-    console.log(startDate);
-    console.log(endDate);
 
     $('.start-field').val(startDate);
     $('.end-field').val(endDate);
@@ -754,14 +746,8 @@ if($('.start-field').get(0)) {
         $('#daysNumPicker').find('.r_days em').text(0);
     }
     
-    /*$('#start_time, #end_time').bind('change', function(e){
+    $('#start_time, #end_time').bind('change', function(e){
         updateDates(e);
-    });*/
-
-    $('form').bind('submit', function(e) {
-        updateDates(e);
-        //return false;
     });
-
 }
 

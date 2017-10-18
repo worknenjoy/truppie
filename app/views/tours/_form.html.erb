@@ -27,6 +27,7 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
+                  <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
                   <input type="text" name="search" placeholder="<%= t('tours_view_form_placeholder_two') %>" class="form-control places-input" />
                   <%= f.fields_for :wheres, (Array.new(1, @tour.wheres.build) if @tour.wheres.empty?) do |ff| %>
                       <%= ff.hidden_field :name %>
@@ -233,6 +234,10 @@
                         <span class="input-group-addon"><span class="fa fa-money"></span></span>
                         <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_twentythree'), class: "form-control" %>
                     </div>
+                </div>
+                <div class="form-group">
+                  <label><%= t('packages-description-label') %></label>
+                  <%= ff.text_area :description, class: "form-control" %>
                 </div>
                 <div class="form-group">
                   <div class="input-group">

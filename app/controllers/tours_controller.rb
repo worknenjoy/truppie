@@ -125,7 +125,12 @@ class ToursController < ApplicationController
         format.html { redirect_to @tour, notice: t('tours_controller_update_notice') }
         format.json { render :show, status: :ok, location: @tour }
       else
-        format.html { redirect_to edit_guided_tour_organizer_path(Organizer.find(tour_params[:organizer_id]), @tour), notice: t('tours_controller_create_notice_two',error_one: @tour.errors.first[0], error_two: @tour.errors.first[1]) }
+        format.html {
+          puts @tour.errors.inspect
+          flash[:errors] = @tour.errors
+          redirect_to :back,
+                      notice: t('tours_controller_create_notice_two')
+        }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
       end
     end
@@ -217,7 +222,7 @@ class ToursController < ApplicationController
       post_data = []
       pkg_attr.each do |p|
         included_array = p[1]["included"].split(split_val)
-        post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], percent: p[1]["percent"], included: included_array)
+        post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], percent: p[1]["percent"], description: p[1]["description"], included: included_array)
       end
       params[:tour][:packages] = post_data        
     end
@@ -293,7 +298,8 @@ class ToursController < ApplicationController
     params[:tour][:attractions] = []
     params[:tour][:currency] = "BRL"
     
-    params.fetch(:tour, {}).permit(:title, :organizer_id, :status, {:packages => [:name, :value, :included]}, {:packages_attributes => [:name, :value, :included]}, {:where_attributes => [:name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :user_id, :picture, :link, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, {:included => []}, {:nonincluded => []}, {:take => []}, {:goodtoknow => []}, :meetingpoint, :category_id, :category, :tags, {:languages => []}, :organizer, :user, {:attractions => []}, :currency).merge(params[:tour])
+    #params.fetch(:tour, {}).permit(:title, :organizer_id, :status, {:packages => [:name, :value, :included]}, {:packages_attributes => [:name, :value, :included]}, {:where_attributes => [:name, :place_id, :background_id, :lat, :long, :city, :state, :country, :postal_code, :address, :google_id, :url]}, :user_id, :picture, :link, :address, :availability, :minimum, :maximum, :difficulty, :start, :end, :value, :description, {:included => []}, {:nonincluded => []}, {:take => []}, {:goodtoknow => []}, :meetingpoint, :category_id, :category, :tags, {:languages => []}, :organizer, :user, {:attractions => []}, :currency).merge(params[:tour])
+    params.fetch(:tour, {}).permit!
   end
 
   def confirm_direct(params)
