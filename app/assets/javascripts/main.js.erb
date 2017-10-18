@@ -116,25 +116,47 @@ function readURL(input) {
 }
 
 function add_packages(type) {
-    var count = $('.packages-set').length;
-    $('.add-packages').on('click', function(e){
-        $('<div />').load('/packages/new', function(data){
-            var new_data = $(data).find('input').each(function(e){
-                $(this).attr('name', type + '[packages_attributes][' + count  +  '][' + this.id + ']');
-                if(this.id == 'included') {
-                    $(this).tagsinput({
-                        delimiter: ";"
-                    });
-                }
-            }).end();
-            count++;
-            $('.new-packages-content:eq(0)').prepend(new_data);
+  var count = $('.packages-set').length;
+  $('.add-packages').on('click', function(e){
+      $('<div />').load('/packages/new', function(data){
+          var new_data = $(data).find('input').each(function(e){
+              $(this).attr('name', type + '[packages_attributes][' + count  +  '][' + this.id + ']');
+              if(this.id == 'included') {
+                  $(this).tagsinput({
+                      delimiter: ";"
+                  });
+              }
+          }).end();
+          count++;
+          $('.new-packages-content:eq(0)').prepend(new_data);
+      });
+      return false;
+  });
+}
+
+function listenCheckToggle(inputCheckBox, toggableContainerElements){
+  if(inputCheckBox.length > 0 && toggableContainerElements.length > 0){
+    inputCheckBox.on('change', function(){
+      if($(this).is(':checked')){
+        toggableContainerElements.prop('disabled', true);
+        toggableContainerElements.unbind('click');
+        toggableContainerElements.addClass('disabled');
+      }else{
+        toggableContainerElements.removeClass('disabled');
+        toggableContainerElements.prop('disabled', false);
+        toggableContainerElements.bind('click', function(e){
+          e.preventDefault();
         });
-        return false;
-    });
+      }
+    }).change();
+  }
 }
 
 $(function() {
+    // Initialize any popover element with data-toggle popover
+    $('[data-toggle="popover"]').popover();
+
+    listenCheckToggle($('.input-checkbox-toggle'), $('.container-checkbox-toggle input, .container-checkbox-toggle a, .container-checkbox-toggle button'));
 
     $('.dropdown-toggle').dropdown();
 
