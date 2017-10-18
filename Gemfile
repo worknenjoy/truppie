@@ -17,6 +17,9 @@ gem 'thin'
 gem 'maily_herald'
 gem 'maily_herald-webui'
 
+# Chat
+gem "intercom-rails"
+
 # Authentication
 gem 'devise', '~> 3.2'
 gem 'omniauth'
