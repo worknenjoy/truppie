@@ -167,9 +167,10 @@
             <%= f.check_box :value_chosen_by_user, checked: @guided_tour.value_chosen_by_user?, class: 'input-checkbox-toggle' %>
             <%= f.label :value_chosen_by_user, t('tours_view_value_suggested_by_user') %>
           </div>
-          <%= button_tag type: 'button', class: 'btn btn-sm btn-info',
-            data: { toggle: 'popover', container: 'body', placement: 'top',
-            content: t('tours_view_form_tooltip_content_one'), trigger: 'focus' } do %>
+          <%= content_tag 'a', class: 'btn btn-sm btn-info', role: 'button', id: 'tour_tooltip',
+            data: { toggle: 'popover', container: 'body', placement: 'top', tabindex:'0',
+                    template: popover_template('tour_tooltip'),
+                    content: t('tours_view_form_tooltip_content_one') } do %>
             <i class="fa fa-question"></i>
           <% end %>
         </div>

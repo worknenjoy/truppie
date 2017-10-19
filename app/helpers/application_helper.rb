@@ -1,6 +1,10 @@
 module ApplicationHelper
   include ActionView::Helpers::NumberHelper
-  
+
+  def popover_template(trigger_elem_id)
+    '<div class="popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-title"></h3><button data-trigger-elem-id=' + trigger_elem_id + ' class="closepopover btn btn-danger btn-sm pull-right"><i class="fa fa-close"></i></button><div class="popover-content"></div></div>'
+  end
+
   def flash_status(status)
     case status
     when 'error'
@@ -13,7 +17,7 @@ module ApplicationHelper
       {:className => 'info', :label => t('aviso') }
     end
   end
-  
+
   def friendly_when(t)
     if t > Time.now
       "daqui a #{time_ago_in_words(t)}"
@@ -53,22 +57,22 @@ module ApplicationHelper
       ''
     end
   end
-  
+
   def to_https(url)
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     return http.get(uri.request_uri)
   end
-  
+
   def friendly_price(p)
-    if p > 0 
+    if p > 0
       number_to_currency(p.to_f/100, :unit => "R$")
     else
       number_to_currency(0, :unit => "R$", precision: 0)
     end
   end
-  
+
   def final_price(p)
     if p
       return "<small>R$</small><span>#{p}</span>"
@@ -76,7 +80,7 @@ module ApplicationHelper
       "<small> não conseguimos obter o preço </span>"
     end
   end
-  
+
   def final_price_from_cents(p)
     if p.to_i
       return "<small>R$</small><span>#{p/100}</span>"
@@ -84,12 +88,12 @@ module ApplicationHelper
       "<small> não conseguimos obter o preço </span>"
     end
   end
-  
+
   def raw_price(p)
     n = number_with_precision(p, precision: 2, separator: ',').to_s.gsub(',', '.').to_f*100
     n.to_i
   end
-  
+
   def transfer_status(s)
     status = {
       "REQUESTED" => "Solicitado",
@@ -98,17 +102,17 @@ module ApplicationHelper
     }
     status[s]
   end
-  
+
   def bank_list
     YAML.load_file('config/banks.yml')
   end
-  
+
   def to_https(url)
     uri = URI.parse(url)
     uri.scheme = "https"
     return uri.to_s
   end
-  
+
   def is_active(page)
     return current_page? action: page
   end
