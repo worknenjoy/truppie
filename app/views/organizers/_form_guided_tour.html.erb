@@ -169,8 +169,9 @@
           </div>
           <%= content_tag 'a', class: 'btn btn-sm btn-info', role: 'button', id: 'tour_tooltip', tabindex: 0,
             data: { toggle: 'popover', trigger: 'focus', container: 'body', placement: 'top',
-                    template: render('popover_template', trigger_elem_id: 'tour_tooltip'),
-                    content: t('tours_view_form_tooltip_content_one') } do %>
+                    template: render('popover_template'), html: true,
+                    content: t('tours_view_form_tooltip_content_one'),
+                    title: render('popover_template_title_content', trigger_elem_id: 'tour_tooltip') } do %>
             <i class="fa fa-question"></i>
           <% end %>
         </div>
