@@ -1,22 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "pt-BR" }}">
 {% include head.html %}
 <body>
 <section class="page-header">
-    <!--
-    <div style="width: 100%">
-        <div style="float: right">
-            <ul class="snip1226">
-              <li class="current"><a href="#" data-hover="Home">Home</a></li>
-              <li><a href="#" data-hover="About Us">About Us</a></li>
-              <li><a href="#" data-hover="Blog">Blog</a></li>
-              <li><a href="#" data-hover="Services">Services</a></li>
-              <li><a href="#" data-hover="Products">Products</a></li>
-              <li><a href="#" data-hover="Contact">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-    -->
+    {% include menu.html %}
     <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
     <h2 class="project-tagline">{{ site.description | default: site.github.project_tagline }}</h2>
     {% if site.github.is_project_page %}
@@ -68,31 +54,31 @@
 
     <ul>
         {% for issue in site.data.issues %}
-            <span style="font-size: 11px; font-style: italic">adicionada em {{ issue.date }}</span>
-            <h2 style="margin-top: 4px;"><a target="_blank" href="{{ issue.url }}">{{ issue.name }}</a></h2>
-            <p>
-                <a target="_blank" href="{{ issue.url }}" title="Veja a issue no Github para começar a trabalhar nela"><img src="{{issue.imagealt}}" width="300" /></a>
-                <a target="_blank" href="{{ issue.url }}" title="Veja a issue no Github para começar a trabalhar nela"><img src="{{issue.image}}" width="300" /></a>
-            </p>
-            <h3><strong>Valor:</strong> {{ issue.price }}</h3>
-            <blockquote>
-                <p>{{ issue.description }}</p>
-                <p><a target="_blank" href="{{ issue.url }}">Saiba mais detalhes desta tarefa e inicie agora mesmo a contribuir para a Truppie!</a></p>
-            </blockquote>
-            <dl>
-                <dt>Requisitos</dt>
-                <dd>{{ issue.requirements }}</dd>
-                <dt>Nível</dt>
-                <dd>{{ issue.level }}</dd>
-                <dt>Tecnologias</dt>
-                <dd>{{ issue.technology }}</dd>
-                <dt>Forma de validação para considerar como feito</dt>
-                <dd>
-                    {{ issue.validation }}
-                </dd>
-                <p>Saiba mais sobre os <a href="https://blog.da2k.com.br/2015/02/04/git-e-github-do-clone-ao-pull-request/" target="_blank">passos básicos para que você possa contribuir e trabalhar para a Truppie!</a></p>
-            </dl>
-            <hr />
+        <span style="font-size: 11px; font-style: italic">adicionada em {{ issue.date }}</span>
+        <h2 style="margin-top: 4px;"><a target="_blank" href="{{ issue.url }}">{{ issue.name }}</a></h2>
+        <p>
+            <a target="_blank" href="{{ issue.url }}" title="Veja a issue no Github para começar a trabalhar nela"><img src="{{issue.imagealt}}" width="300" /></a>
+            <a target="_blank" href="{{ issue.url }}" title="Veja a issue no Github para começar a trabalhar nela"><img src="{{issue.image}}" width="300" /></a>
+        </p>
+        <h3><strong>Valor:</strong> {{ issue.price }}</h3>
+        <blockquote>
+            <p>{{ issue.description }}</p>
+            <p><a target="_blank" href="{{ issue.url }}">Saiba mais detalhes desta tarefa e inicie agora mesmo a contribuir para a Truppie!</a></p>
+        </blockquote>
+        <dl>
+            <dt>Requisitos</dt>
+            <dd>{{ issue.requirements }}</dd>
+            <dt>Nível</dt>
+            <dd>{{ issue.level }}</dd>
+            <dt>Tecnologias</dt>
+            <dd>{{ issue.technology }}</dd>
+            <dt>Forma de validação para considerar como feito</dt>
+            <dd>
+                {{ issue.validation }}
+            </dd>
+            <p>Saiba mais sobre os <a href="https://blog.da2k.com.br/2015/02/04/git-e-github-do-clone-ao-pull-request/" target="_blank">passos básicos para que você possa contribuir e trabalhar para a Truppie!</a></p>
+        </dl>
+        <hr />
         {% endfor %}
     </ul>
 
@@ -121,6 +107,6 @@
 
     {% include footer.html %}
 
-<script src="https://arcchat.com/livechat/59e0e0dbed743ddd026bea23/59e0e0dbed743ddd026bea24" async></script>
+    <script src="https://arcchat.com/livechat/59e0e0dbed743ddd026bea23/59e0e0dbed743ddd026bea24" async></script>
 </body>
 </html>
