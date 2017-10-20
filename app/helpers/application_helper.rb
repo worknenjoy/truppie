@@ -1,10 +1,6 @@
 module ApplicationHelper
   include ActionView::Helpers::NumberHelper
 
-  def popover_template(trigger_elem_id)
-    '<div class="popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-title"></h3><button data-trigger-elem-id=' + trigger_elem_id + ' class="closepopover btn btn-danger btn-sm pull-right"><i class="fa fa-close"></i></button><div class="popover-content"></div></div>'
-  end
-
   def flash_status(status)
     case status
     when 'error'
