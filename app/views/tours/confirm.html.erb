@@ -170,8 +170,6 @@
                                 </label>
                                 <% end %>
                                 </div>
-                              <% elsif !@tour.value && @tour.value_chosen_by_user? %>
-                                <%  %>
                               <% else %>
                                 <%= hidden_field_tag :value, @tour.value %>
                               <% end %>
@@ -203,6 +201,7 @@
                               </div>
                             </div>
                           </div>
+                          <%= hidden_field_tag :token, '', id:'token' %>
                           <div class="col-xs-12 col-md-6">
                             <% if !@tour.value && @tour.value_chosen_by_user? %>
                               <div class="spaced-smallest">
@@ -210,7 +209,7 @@
                                   <label><%= t('tours_view_confirm_label_thirteen') %></label>
                                   <div class="input-group">
                                     <div class="input-group-addon">R$</div>
-                                    <%= number_field_tag :final_price, nil, class: 'form-control', min: 1  %>
+                                    <%= number_field_tag :final_price, nil, class: 'form-control', id:'cc-final-price', min: 1  %>
                                     <div class="input-group-addon">.00</div>
                                   </div>
                                 </div>
@@ -222,8 +221,7 @@
                                 </div>
                                 <div class="price mediafix">
                                   <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
-                                  <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' %>
-                                  <%= hidden_field_tag :token, '', id:'token' %>
+                                  <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' unless @tour.value_chosen_by_user? %>
                                 </div>
                             <% end %>
                           </div>
