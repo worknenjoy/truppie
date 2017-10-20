@@ -157,7 +157,7 @@ function closePopover(e){
   var closeBtn = $('button[data-trigger-elem-id=' + elem.attr('id') + ']');
   closeBtn.one('click', function(){
     elem.popover('dispose');
-    elem.popover({trigger: 'focus click'});
+    elem.popover();
     elem.on('shown.bs.popover', closePopover);
   })
 }
@@ -165,7 +165,7 @@ function closePopover(e){
 $(function() {
     // Initialize any popover element with data-toggle popover
     var popover_elements = $('[data-toggle="popover"]');
-    popover_elements.popover({trigger: 'focus click'});
+    popover_elements.popover();
     popover_elements.on('shown.bs.popover', closePopover);
 
     listenCheckToggle($('.input-checkbox-toggle'), $('.container-checkbox-toggle input, .container-checkbox-toggle a, .container-checkbox-toggle button'));
