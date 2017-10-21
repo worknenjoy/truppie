@@ -647,7 +647,7 @@ en:
   tours_view_confirm_label_seven: Country
   tours_view_confirm_label_six: State
   tours_view_confirm_label_ten: Expiration date
-  tours_view_confirm_label_thirteen: What is the fair price?
+  tours_view_confirm_label_thirteen: What is the fair price? (per reservation)
   tours_view_confirm_label_three: Street
   tours_view_confirm_label_twelve: Quantity
   tours_view_confirm_label_two: Date of birth

@@ -170,7 +170,7 @@
                                 </label>
                                 <% end %>
                                 </div>
-                              <% else %>
+                              <% elsif @tour.value && !@tour.value_chosen_by_user? %>
                                 <%= hidden_field_tag :value, @tour.value %>
                               <% end %>
                             <% end %>
@@ -204,12 +204,13 @@
                           <%= hidden_field_tag :token, '', id:'token' %>
                           <div class="col-xs-12 col-md-6">
                             <% if !@tour.value && @tour.value_chosen_by_user? %>
+                              <%= hidden_field_tag :value_chosen_by_user, true %>
                               <div class="spaced-smallest">
                                 <div class="form-group">
                                   <label><%= t('tours_view_confirm_label_thirteen') %></label>
                                   <div class="input-group">
                                     <div class="input-group-addon">R$</div>
-                                    <%= number_field_tag :final_price, nil, class: 'form-control', id:'cc-final-price', min: 1  %>
+                                    <%= number_field_tag :value, nil, class: 'form-control', id:'cc-final-price', min: 1  %>
                                     <div class="input-group-addon">.00</div>
                                   </div>
                                 </div>
