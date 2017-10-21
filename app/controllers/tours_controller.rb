@@ -321,10 +321,10 @@ class ToursController < ApplicationController
       @amount = params[:amount].to_i
     end
 
-    if params[:final_price].nil? || params[:final_price].empty?
-      @final_price = @value
+    if @value && params[:value_chosen_by_user]
+      @final_price = @amount * @value
     else
-      @final_price = params[:final_price].to_i
+      @final_price = params[:final_price].try(:to_i) || @value
     end
 
     begin
@@ -492,10 +492,10 @@ class ToursController < ApplicationController
       @amount = params[:amount].to_i
     end
 
-    if params[:final_price].nil? || params[:final_price].empty?
-      @final_price = @value
+    if @value && params[:value_chosen_by_user]
+      @final_price = @amount * @value
     else
-      @final_price = params[:final_price].to_i
+      @final_price = params[:final_price].try(:to_i) || @value
     end
 
     @price_cents = (@final_price*100).to_i
