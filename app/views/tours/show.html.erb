@@ -38,9 +38,9 @@
                       <button class="file-upload-btn btn btn-primary-outline btn-lg" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
                         <i class="fa fa-file-photo-o"></i> <%= t('tours_send_picture') %>
                       </button>
-                      <button class="file-upload-btn-save btn btn-primary btn-lg hidden" type="button">
+                      <%= button_tag(type: 'submit', class: 'file-upload-btn-save btn btn-primary btn-lg hidden') do %>
                         <i class="fa fa-save"></i> <%= t('save-changes') %>
-                      </button>
+                      <% end %>
                     </div>
                     <%= f.file_field :picture, class: "file-upload-input file-upload-no-drop", accept: "image/*" %>
                     <div class="file-upload-content">
