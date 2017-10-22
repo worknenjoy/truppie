@@ -16,15 +16,15 @@
               <button type="button" class="close close-action" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h3 class="card-title"><%= t('hello-organizer-welcome-account-edit', organizer: @organizer.name) %></strong></h3>
+              <h3 class="card-title"><%= t('hello-organizer-welcome-bankaccount-edit', organizer: @organizer.name) %></strong></h3>
               <div class="card-text">
-                <p><%= t('organizer-account-welcome-account-edit-title') %></p>
-                <p><%= t('organizer-account-edit-desc') %></p>
+                <p><%= t('organizer-account-welcome-bankaccount-edit-title') %></p>
+                <p><%= t('organizer-bankaccount-edit-desc') %></p>
               </div>
               <p class="text-xs-center">
                 <%= image_tag("guide-account.svg", :width => 64, :alt => "new truppie", :class => 'img-fluid center-block') %>
               </p>
-              <a href="#" class="btn btn-primary"><%= t('organizer-profile-action') %></a>
+              <%= link_to t('organizer-bankaccount-action'), account_edit_organizer_path(@organizer), class: "btn btn-primary" %>
             </div>
 
             <div class="row">

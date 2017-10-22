@@ -62,7 +62,7 @@
               </fieldset>
               <fieldset class="form-group <%= form_error(flash[:errors], :birthDate) %>">
                 <%= f.label :birthDate, class: "form-control-label" %>
-                <%= f.text_field :birthDate, placeholder: t('marketplace-datebirth-placeholder'), class: "birthDate form-control #{form_field_error(flash[:errors], :birthDate)}" %>
+                <%= f.text_field :birthDate, value: (l(f.object.birthDate, format: '%d/%m/%Y') if f.object.birthDate.present?), placeholder: t('marketplace-datebirth-placeholder'), class: "birthDate form-control #{form_field_error(flash[:errors], :birthDate)}" %>
                 <%= error_message(flash[:errors], :birthDate) %>
               </fieldset>
               <fieldset class="form-group">
