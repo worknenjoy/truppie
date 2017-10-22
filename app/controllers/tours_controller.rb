@@ -17,7 +17,11 @@ class ToursController < ApplicationController
 
   def scoped_index
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
-    @tours = allowed_emails.include?(current_user.email) ? Tour.all : Tour.publisheds
+    if current_user
+      @tours = allowed_emails.include?(current_user.email) ? Tour.all : Tour.publisheds
+    else
+      @tours = Tour.publisheds
+    end
   end
 
   def confirm
