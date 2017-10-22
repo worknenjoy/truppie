@@ -1,14 +1,9 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy, :copy_tour]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :destroy, :copy_tour]
-  skip_before_action :authenticate_user!, if: :not_json_request?
-
-  protected
-
-  def not_json_request?
-    !request.format.json?
-  end
+  before_filter :check_if_admin, only: [:new, :create, :update, :destroy, :copy_tour]
+  before_filter :scoped_index, only: [:index]
+  skip_before_action :authenticate_user!, if: :json_request?
   
   def check_if_admin
     
@@ -18,6 +13,11 @@ class ToursController < ApplicationController
       flash[:notice] = t('tours_controller_notice_one')
       redirect_to root_url
     end 
+  end
+
+  def scoped_index
+    allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
+    @tours = allowed_emails.include?(current_user.email) ? Tour.all : Tour.publisheds
   end
 
   def confirm
@@ -176,6 +176,11 @@ class ToursController < ApplicationController
       format.html { redirect_to "/organizers/#{@tour.organizer.to_param}/guided_tour", flash: {error: t('tours_controller_destroy_notice_fail')} }
       format.json { head :no_content }
     end
+  end
+
+  protected
+  def json_request?
+    request.format.json?
   end
   
   private
