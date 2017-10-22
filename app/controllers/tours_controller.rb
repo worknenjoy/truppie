@@ -2,12 +2,12 @@ class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy, :copy_tour]
   before_action :authenticate_user!, :except => [:show]
   before_filter :check_if_admin, only: [:index, :new, :create, :update, :destroy, :copy_tour]
-  skip_before_action :authenticate_user!, if: :json_request?
+  skip_before_action :authenticate_user!, if: :not_json_request?
 
   protected
 
-  def json_request?
-    request.format.json?
+  def not_json_request?
+    !request.format.json?
   end
   
   def check_if_admin
