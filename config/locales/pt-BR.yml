@@ -308,7 +308,8 @@ pt-BR:
   hands-heading: Reserve
   hands-text: Verifique os detalhes e confirme sua presença
   hello-organizer-welcome: Olá, %{organizer}!
-  hello-organizer-welcome-account-edit: Sua conta
+  hello-organizer-welcome-account-edit: Aqui você pode incluir suas contas bancárias para transferência
+  hello-organizer-welcome-bankaccount-edit: Contas bancárias
   hello-organizer-welcome-profile-edit: Seu perfil
   helpers:
     label:
@@ -521,12 +522,15 @@ pt-BR:
   organizer-account-intro-title: Seja bem vindo!
   organizer-account-status-title: status da sua conta
   organizer-account-welcome-account-edit-title: Atualize os dados da sua conta e com ela verificada poderemos enviar diretamente os valores das reservas dos seus clientes.
+  organizer-account-welcome-bankaccount-edit-title: Dados para cadastro da conta bancária para recebimento dos pagamentos feitos pelos seus clientes
   organizer-add-account-data: adicionar dados da sua conta
   organizer-add-tour: adicionar truppie
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
   organizer-background-edit-desc: Organizer-background-edit-desc
   organizer-background-title: Organizer-background-title
   organizer-bank-data: Dados bancários
+  organizer-bankaccount-action: Editar conta pessoal
+  organizer-bankaccount-edit-desc: Você precista estar com sua conta pessoal verificada para cadastrar a conta bancária e poder receber as transferências pelas reservas realizadas pelos seus clientes.
   organizer-clients-label: Clientes
   organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
   organizer-create-success: Sua conta como guia foi criada com sucesso

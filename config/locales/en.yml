@@ -301,6 +301,7 @@ en:
   hands-text: Check the details and confirm your presence with one click
   hello-organizer-welcome: Hello %{organizer}
   hello-organizer-welcome-account-edit: Account edit
+  hello-organizer-welcome-bankaccount-edit: Hello-organizer-welcome-bankaccount-edit
   hello-organizer-welcome-profile-edit: Welcome to your profile
   helpers:
     label:
@@ -513,12 +514,15 @@ en:
   organizer-account-intro-title: This is your account that you can update your personal data. This is very important and necessary to verify your account and send payments.
   organizer-account-status-title: Your account status
   organizer-account-welcome-account-edit-title: This is your account that you can update your personal data. This is very important and necessary to verify your account and send payments.
+  organizer-account-welcome-bankaccount-edit-title: Organizer-account-welcome-bankaccount-edit-title
   organizer-add-account-data: Add account information
   organizer-add-tour: Add tour
   organizer-after-create-account-advantages: When you create your tours with Truppie, you can manage your reservations easily!
   organizer-background-edit-desc: Organizer-background-edit-desc
   organizer-background-title: Organizer-background-title
   organizer-bank-data: Bank
+  organizer-bankaccount-action: Organizer-bankaccount-action
+  organizer-bankaccount-edit-desc: Organizer-bankaccount-edit-desc
   organizer-clients-label: Clients
   organizer-create-issue-message: We had problems to create your account
   organizer-create-success: Your account was created sucessfully
