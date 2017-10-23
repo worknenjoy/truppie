@@ -88,7 +88,7 @@ class ToursController < ApplicationController
   # GET /tours
   # GET /tours.json
   def index
-    @tours = Tour.publisheds
+    
   end
 
   # GET /tours/1
