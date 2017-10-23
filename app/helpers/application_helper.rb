@@ -100,7 +100,11 @@ module ApplicationHelper
   end
   
   def bank_list
-    YAML.load_file('config/banks.yml')
+    banks = YAML.load_file('config/banks.yml')
+    if Rails.env == "production"
+      banks.shift
+    end
+    banks
   end
   
   def to_https(url)
