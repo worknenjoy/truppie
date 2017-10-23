@@ -397,6 +397,12 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      params.fetch(:organizer, {}).permit(:welcome, :policy, :name, :marketplace_id, :description, :picture, :user_id, {:wheres_attributes => [:id, :name, :lat, :long, :city, :state, :country, :postal_code, :address, :url, :google_id, :place_id]}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
+
+      if params[:organizer][:members] == "" or params[:tour][:members].nil?
+        params[:organizer][:members] = []
+      end
+
+      #params.fetch(:organizer, {}).permit(:welcome, :policy, :name, :marketplace_id, :description, :picture, :user_id, :percent, :members, {:members_attributes => []}, {:wheres_attributes => [:id, :name, :lat, :long, :city, :state, :country, :postal_code, :address, :url, :google_id, :place_id]}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
+      params.fetch(:organizer, {}).permit!
     end
 end
