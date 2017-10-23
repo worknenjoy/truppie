@@ -152,6 +152,14 @@ function listenCheckToggle(inputCheckBox, toggableContainerElements){
   }
 }
 
+function updateTotalFairPrice(event){
+  amount_elem = $('input.cc-amount-output');
+  amountValue = amount_elem.val() % amount_elem.attr('max');
+  fair_price_value = $('input.fair-price-value').val();
+  $('input.cc-final-fair-price,.cc-final-fair-price span').html(
+    amountValue * fair_price_value);
+};
+
 function closePopover(e){
   var elem = $(e.delegateTarget);
   var closeBtn = $('button[data-trigger-elem-id=' + elem.attr('id') + ']');
@@ -443,20 +451,6 @@ $(function() {
 
  	new WOW().init();
 
-  function updateTotalFairPrice(event){
-    amount_elem = $('input.cc-amount-output');
-    amountValue = amount_elem.val() % amount_elem.attr('max');
-    fair_price_value = $('input.fair-price-value').val();
-    $('input.cc-final-fair-price,.cc-final-fair-price span').html(
-      amountValue * fair_price_value);
-  };
-
-  var final_fair_price_elem = $('input.cc-final-fair-price,.cc-final-fair-price span');
-  if(final_fair_price_elem.length){
-    $(document).on('input change', 'input.cc-amount-output,input.fair-price-value', updateTotalFairPrice);
-    $(document).on('click', '.amount-input-group .input-group-btn button', updateTotalFairPrice);
-  }
-
  	if($('.cc-package-options').length) {
  	  $('.cc-final-price span').text($('.cc-package-options').find(":checked").val());
  	  $('#cc-final-price').val($('.cc-package-options').find(":checked").val());
@@ -585,5 +579,13 @@ $(function() {
         });
     }
 
-
+  var final_fair_price_elem = $('input.cc-final-fair-price,.cc-final-fair-price span');
+  if(final_fair_price_elem.length > 0){
+    console.log("Fair price update total bindings");
+    $(document).bind('input change', 'input.cc-amount-output,input.fair-price-value', updateTotalFairPrice);
+    $(document).bind('click', '.amount-input-group .input-group-btn', updateTotalFairPrice);
+  }else{
+    $(document).unbind('input change', 'input.cc-amount-output,input.fair-price-value', updateTotalFairPrice);
+    $(document).unbind('click', '.amount-input-group .input-group-btn', updateTotalFairPrice);
+  }
 });
