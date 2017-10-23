@@ -76,12 +76,14 @@
                     <%= f.select :user_id, options_for_select(User.all.map{|s|[s.name, s.id]}, (@organizer.user_id if @organizer.user_id.present?)), {class: "form-control", include_blank: "Escolha o responsável pelo guia"} %>
                 </div>
             </div>
+            <!--
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
                     <%= f.text_field :members, value: (@organizer.members.name if @organizer.members.present?), placeholder: "Membros", class: "form-control" %>
                 </div>
             </div>
+            -->
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-eye"></span></span>
