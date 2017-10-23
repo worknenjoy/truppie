@@ -30,18 +30,18 @@
   					<% end %>
   					<div class="hovercard spaced-default">
   						<div class="bottom">
-  							<% if !@organizer.instagram.nil? %>
+  							<% if !@organizer.instagram.nil? and !@organizer.instagram.empty? %>
                 <a target="_blank" class="btn btn-info btn-instagram btn-sm" href="<%= @organizer.instagram %>">
                     <i class="fa fa-instagram"></i> instagram
                 </a>
                 <% end %>
-                <% if !@organizer.facebook.nil? %>
+                <% if !@organizer.facebook.nil? and !@organizer.facebook.empty? %>
                 <a target="_blank" class="btn btn-primary btn-facebook btn-sm" rel="publisher"
                    href="<%= @organizer.facebook %>">
                     <i class="fa fa-facebook"></i> facebook
                 </a>
                 <% end %>
-                <% if !@organizer.twitter.nil? %>
+                <% if !@organizer.twitter.nil? and !@organizer.twitter.empty? %>
                 <a target="_blank" class="btn btn-primary btn-twitter btn-twitter btn-sm" href="<%= @organizer.twitter %>">
                     <i class="fa fa-twitter"></i> twitter
                 </a>
