@@ -340,13 +340,13 @@ pt-BR:
   how-it-works-link: Como funciona a truppie
   how-it-works-main-menu: Sou Explorador
   how-it-works-title: Como funciona?
-  import-event-action: importar eventos
+  import-event-action: Importar eventos
   import-event-desc: Escolha os eventos do facebook que deseja importar para a Truppie
-  import-event-label: importar do facebook
+  import-event-label: Importar evento do Facebook
   import-event-notice: Os eventos foram importados para a truppie
   import-event-notice-error: Houve um erro na tentativa de importar os eventos
   import-event-notice-success: Os eventos foram importados com sucesso
-  import-from-facebook-title: Importar eventos do facebook
+  import-from-facebook-title: Importar evento do facebook
   incomplete_label: incompleto
   label-organizer-about: fale um pouco de você e o que você irá oferecer
   label-organizer-address-city: cidade
@@ -440,7 +440,7 @@ pt-BR:
   new-bank-account-title: Nova conta para pagamento
   new-event-cancel: Cancelar
   new-guided-tour-label: adicionar truppie
-  new-tour-label: Criação de uma nova truppie
+  new-tour-label: Minhas truppies
   newsletter-text: Deixe seu e-mail para saber das novidades
   newsletter-title: Fique ligado!
   no-experience-here-label: Ainda não temos experiências para este local
