@@ -101,8 +101,9 @@ module ApplicationHelper
   
   def bank_list
     banks = YAML.load_file('config/banks.yml')
+
     if Rails.env == "production"
-      banks.shift
+      banks["banks"].shift
     end
     banks
   end
