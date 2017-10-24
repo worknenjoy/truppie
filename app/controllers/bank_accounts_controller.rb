@@ -2,7 +2,6 @@ class BankAccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_bank_account, only: [:show, :edit, :update, :destroy, :activate]
   before_filter :check_if_super_admin, only: [:index, :new, :edit]
-  before_filter :check_if_organizer_admin, only: [:activate, :create, :update, :destroy]
 
   def activate
     if !@bank_account.own_id.nil?

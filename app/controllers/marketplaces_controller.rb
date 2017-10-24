@@ -3,7 +3,6 @@ class MarketplacesController < ApplicationController
   before_action :set_marketplace, only: [:show, :edit, :update, :destroy, :activate, :update_account, :request_external_payment_type_auth]
   before_action :authenticate_user!
   before_filter :check_if_super_admin, only: [:index, :new, :edit]
-  before_filter :check_if_organizer_admin, only: [:create, :update, :manage]
   skip_before_action :verify_authenticity_token
 
   # GET /marketplaces
