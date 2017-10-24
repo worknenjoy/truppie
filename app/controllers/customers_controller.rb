@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :destroy]
+  before_filter :check_if_super_admin, only: [:index, :new, :edit]
 
   def check_if_admin
 

@@ -15,8 +15,6 @@ class ApplicationController < ActionController::Base
   before_filter :store_current_location, :unless => :devise_controller?
   before_filter :set_locale
 
-
-
   def store_current_location
     store_location_for(:user, request.url)
     if request[:organizer] and request[:organizer]["welcome"] == "true" and !current_user
@@ -26,22 +24,32 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_if_super_admin
+    allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
+    unless allowed_emails.include? current_user.email
+      flash[:notice] = t('tours_controller_notice_one')
+      redirect_to root_url
+    end
+  end
+
   def check_if_admin
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
+    allowed_users = []
 
-    if params[:controller] == "organizers" and (params[:action] == "manage" or params[:action] == "tos_acceptance")
+    if params[:controller] == "organizers"
       organizer_id = params[:id]
-      allowed_emails.push Organizer.find(organizer_id).user.email
+      if organizer_id
+        allowed_users.push Organizer.find(organizer_id).user
+      end
     end
 
-    unless allowed_emails.include? current_user.email
+    unless allowed_emails.include? current_user.email or allowed_users.include? current_user
       flash[:notice] = "Você não está autorizado a entrar nesta página"
       redirect_to new_user_session_path
     end
   end
 
   private
-
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end

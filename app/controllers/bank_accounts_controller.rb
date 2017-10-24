@@ -1,7 +1,7 @@
 class BankAccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_bank_account, only: [:show, :edit, :update, :destroy, :activate]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :destroy]
+  before_filter :check_if_super_admin, only: [:index, :new, :edit]
 
   def check_if_admin
 

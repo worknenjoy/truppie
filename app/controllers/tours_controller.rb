@@ -1,19 +1,13 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy, :copy_tour]
+
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:new, :create, :update, :destroy, :copy_tour]
-  before_filter :scoped_index, only: [:index]
+  before_filter :check_if_super_admin, only: [:new, :edit, :index]
+  before_filter :check_if_admin, only: [:create, :update, :destroy]
+
   skip_before_action :authenticate_user!, if: :json_request?
-  
-  def check_if_admin
-    
-    allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
-    
-    unless allowed_emails.include? current_user.email
-      flash[:notice] = t('tours_controller_notice_one')
-      redirect_to root_url
-    end 
-  end
+
+  before_filter :scoped_index, only: [:index]
 
   def scoped_index
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
