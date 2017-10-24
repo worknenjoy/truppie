@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_filter :check_if_super_admin, only: [:index, :new, :edit]
 
   # GET /comments
   # GET /comments.json

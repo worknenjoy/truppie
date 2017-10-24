@@ -3,7 +3,7 @@ class ToursController < ApplicationController
 
   before_action :authenticate_user!, :except => [:show]
   before_filter :check_if_super_admin, only: [:new, :edit, :index]
-  before_filter :check_if_admin, only: [:create, :update, :destroy]
+  before_filter :check_if_organizer_admin, only: [:create, :update, :destroy]
 
   skip_before_action :authenticate_user!, if: :json_request?
 

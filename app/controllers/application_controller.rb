@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_if_admin
+  def check_if_organizer_admin
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
     allowed_users = []
 
