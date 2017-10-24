@@ -36,10 +36,24 @@ class ApplicationController < ActionController::Base
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
     allowed_users = []
 
-    if params[:controller] == "organizers"
+    if params[:controller] == "organizers" and params[:id]
       organizer_id = params[:id]
       if organizer_id
         allowed_users.push Organizer.find(organizer_id).user
+      end
+    end
+
+    if params[:controller] == "tours"
+      if params[:tour]
+        organizer_id = params[:tour][:organizer_id]
+        if organizer_id
+          allowed_users.push Organizer.find(organizer_id).user
+        end
+      else
+        tour_id = params[:id]
+        if tour_id
+          allowed_users.push Tour.find(tour_id).user
+        end
       end
     end
 
@@ -62,12 +76,30 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
 
-      if params[:controller] == "organizers" and params[:action] == "show"
+      allowed_users = []
+
+      if params[:controller] == "organizers"
         organizer_id = params[:id]
-        allowed_emails.push Organizer.find(organizer_id).user.email
+        if organizer_id
+          allowed_users.push Organizer.find(organizer_id).user
+        end
       end
 
-      unless allowed_emails.include? current_user.email
+      if params[:controller] == "tours"
+        if params[:tour]
+          organizer_id = params[:tour][:organizer_id]
+          if organizer_id
+            allowed_users.push Organizer.find(organizer_id).user
+          end
+        else
+          tour_id = params[:id]
+          if tour_id
+            allowed_users.push Tour.find(tour_id).user
+          end
+        end
+      end
+
+      unless allowed_emails.include? current_user.email or allowed_users.include? current_user
         return false
       end
       true

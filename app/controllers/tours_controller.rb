@@ -3,7 +3,7 @@ class ToursController < ApplicationController
 
   before_action :authenticate_user!, :except => [:show]
   before_filter :check_if_super_admin, only: [:new, :edit, :index]
-  before_filter :check_if_organizer_admin, only: [:create, :update, :destroy]
+  before_filter :check_if_organizer_admin, only: [:create, :update, :destroy, :copy_tour]
 
   skip_before_action :authenticate_user!, if: :json_request?
 
@@ -144,17 +144,28 @@ class ToursController < ApplicationController
   def copy_tour
     organizer = @tour.organizer
 
+    old_wheres = @tour.wheres
+    old_packages = @tour.packages
     old_tour = @tour
+
     new_tour = Tour.new(old_tour.attributes.merge({:title => "#{@tour.title} - copiado", :status => '', :id => ''}))
+
+    new_tour.wheres << old_wheres
+
+    if old_packages.present?
+      new_tour.packages << old_packages
+    end
 
     respond_to do |format|
       if new_tour.save
         format.html {
-          redirect_to "/organizers/#{organizer.to_param}/guided_tour", flash: {success: t('tours_controller_copy_success')}
+          redirect_to "/organizers/#{organizer.to_param}/guided_tour", flash: {notice: t('tours_controller_copy_success')}
         }
         format.json { render :copy_tour, status: :ok, location: @tour }
       else
         format.html {
+          puts 'copy tour error'
+          puts new_tour.errors.inspect
           redirect_to "/organizers/#{organizer.to_param}/guided_tour", flash: {notice: t('tours_controller_copy_error')}
         }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
