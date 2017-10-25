@@ -50,6 +50,9 @@ Rails.application.routes.draw do
   get 'redirect', to: 'marketplaces#redirect'
 
   get 'organizers/create_from_auth', to: 'organizers#create_from_auth', as: 'create_from_auth'
+  get 'organizers/invite', to: 'organizers#invite', as: 'invite'
+  get 'organizers/accept_invite/(:id)/(:token)', to: 'organizers#accept_invite', as: 'accept_invite'
+  post 'organizers/send_invite', to: 'organizers#send_invite', as: 'send_invite'
 
   resources :organizers do
     member do

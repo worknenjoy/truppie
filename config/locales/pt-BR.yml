@@ -263,7 +263,7 @@ pt-BR:
         other: 'Não foi possível gravar %{model}: %{count} erros'
   event-add-image: Adicionar imagem
   event-call-end: Fim
-  event-call-start: "Início"
+  event-call-start: Início
   event-date-title: Data da truppie
   event-desc-label: Descrição da truppie
   event-drag-drop-file: Ou solte a imagem do seu computador aqui
@@ -279,6 +279,8 @@ pt-BR:
   first-description: E a si mesmo. É tudo energia!
   for-you-on-truppie-title: 'Para você que está na truppie, acesse sua conta:'
   fullname-empty: Fullname-empty
+  guide-invite-fail: Guide-invite-fail
+  guide-invite-successfull: Guide-invite-successfull
   guide-manual-link: Manual do guia para a truppie
   guide-manual-title: Manual do guia
   guidebook-admin-confirm-delete: Guidebook-admin-confirm-delete
@@ -301,7 +303,7 @@ pt-BR:
   guidebook-reservation-action: Obter
   guidebooks-confirm-presence-message: A sua compra deste roteiro foi confirmada!
   guidebooks_view_index_h3: Roterios
-  guides-main-menu: Área do guia
+  guides-main-menu: "Área do guia"
   guides_partial_a_one: " Site"
   guides_partial_a_two: " Enviar um e-mail"
   guides_partial_h3_one: Guias
@@ -338,7 +340,7 @@ pt-BR:
       update: Atualizar %{model}
   hey: Hey!
   how-it-works-link: Como funciona a truppie
-  how-it-works-main-menu: Área do aventureiro
+  how-it-works-main-menu: "Área do aventureiro"
   how-it-works-title: Como funciona?
   import-event-action: Importar eventos
   import-event-desc: Escolha os eventos do facebook que deseja importar para a Truppie
@@ -374,6 +376,9 @@ pt-BR:
   mail-hello-message: Olá, %{organizer}!
   mail-hello-to-start: 'Para começar a usar a Truppie e oferecer seus passeios por nossa plataforma e passar a receber as reservas do seu cliente, você precisa seguir os seguintes passos:'
   mail-hello-to-start-update: Sua conta foi atualizada. Verifique seu perfil para ver se sua conta se encontra verificada para receber os pagamentos das suas truppies
+  mail-invite-guide-action-message: Criar sua conta
+  mail-invite-guide-call-message: Clicando no botão abaixo você criará uma conta associada ao seu perfil
+  mail-invite-guide-header-message: Você foi convidado para entrar na Truppie
   mail-organizer-see-profile: Ver perfil
   mail-organizer-share-description: Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!
   mail-organizer-share-intro: Compartilhe seu perfil com sua rede de contatos
@@ -553,7 +558,7 @@ pt-BR:
   organizer-phone-label: telefone para contato do seu negócio
   organizer-profile-account: Minha conta
   organizer-profile-account-action: Editar minha conta pessoal
-  organizer-profile-account-desc: "Cadastre seus dados pessoais e sua conta bancária para receber os pagamentos de seus passeios. IMPORTANTE: suas contas precisam estar com status de \"Verificada\" para que a transferência ocorra."
+  organizer-profile-account-desc: 'Cadastre seus dados pessoais e sua conta bancária para receber os pagamentos de seus passeios. IMPORTANTE: suas contas precisam estar com status de "Verificada" para que a transferência ocorra.'
   organizer-profile-action: Editar seu perfil
   organizer-profile-desc: Atualize seus dados e crie seus passeios
   organizer-profile-edit: Perfil
@@ -587,6 +592,7 @@ pt-BR:
   save-changes: Salvar mudanças
   second-caption: SAIA DA ZONA DE CONFORTO
   second-description: Fuja da rotina, faça algo novo!
+  see-all-guides-label: See-all-guides-label
   select-date: selecionar data
   shoes-heading: Aproveite
   shoes-text: Não há com o que se preocupar - apenas prepare-se e aproveite o passeio!

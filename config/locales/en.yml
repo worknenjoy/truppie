@@ -271,6 +271,8 @@ en:
   first-description: Get off normal life for a while
   for-you-on-truppie-title: 'Para você que está na truppie, acesse sua conta:'
   fullname-empty: Your fullname is empty
+  guide-invite-fail: Guide-invite-fail
+  guide-invite-successfull: Guide-invite-successfull
   guide-manual-link: Manual for the guide (Portuguese)
   guide-manual-title: Guide manual
   guidebook-admin-confirm-delete: Guidebook-admin-confirm-delete
@@ -366,6 +368,9 @@ en:
   mail-hello-message: hello %{organizer}
   mail-hello-to-start: Hello, Your account is activated
   mail-hello-to-start-update: Your account was updated
+  mail-invite-guide-action-message: Mail-invite-guide-action-message
+  mail-invite-guide-call-message: Mail-invite-guide-call-message
+  mail-invite-guide-header-message: Mail-invite-guide-header-message
   mail-organizer-see-profile: See your profile
   mail-organizer-share-description: Sharing your profile to be discovered
   mail-organizer-share-intro: You can share yor profile to offer your online reservations!
@@ -579,6 +584,7 @@ en:
   save-changes: Save changes
   second-caption: BE OFFLINE
   second-description: Connect with nature, cultures and yourself
+  see-all-guides-label: See-all-guides-label
   select-date: select date
   shoes-heading: Get ready
   shoes-text: There's nothing to worry about - just get ready and enjoy the ride!

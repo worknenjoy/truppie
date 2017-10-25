@@ -9,4 +9,8 @@ class OrganizerMailerPreview < ActionMailer::Preview
     OrganizerMailer.notify(Organizer.last, "update")
   end
 
+  def organizer_invite
+    OrganizerMailer.invite(Organizer.last)
+  end
+
 end
