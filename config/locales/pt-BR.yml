@@ -343,7 +343,7 @@ pt-BR:
   import-event-action: Importar eventos
   import-event-desc: Escolha os eventos do facebook que deseja importar para a Truppie
   import-event-label: Importar evento do Facebook
-  import-event-notice: Os eventos foram importados para a truppie
+  import-event-notice: Os eventos foram importados para a Truppie
   import-event-notice-error: Houve um erro na tentativa de importar os eventos
   import-event-notice-success: Os eventos foram importados com sucesso
   import-from-facebook-title: Importar evento do facebook
@@ -359,9 +359,9 @@ pt-BR:
   label-organizer-phone: Telefone
   label-organizer-picture: Foto (se tiver um logo, melhor ainda!) :)
   label-organizer-previous: Anterior
-  label-organizer-thanks: Pronto!
-  label-organizer-thanks-email: Obrigado por se cadastrar como nosso guia-parceiro!
-  label-organizer-thanks-moderation: Finalize sua inscrição e comece a gerenciar suas reservas e pagamentos pela Truppie!
+  label-organizer-thanks: Aee! \o/
+  label-organizer-thanks-email: Obrigado por se cadastrar como nosso guia-parceiro! :D
+  label-organizer-thanks-moderation: Finalize sua inscrição e comece a gerenciar suas reservas e pagamentos pela Truppie.
   label-organizer-twitter: Twitter
   label-organizer-website: Website
   lang-brazil: Português (BR)
@@ -374,9 +374,9 @@ pt-BR:
   mail-hello-message: Olá, %{organizer}!
   mail-hello-to-start: 'Para começar a usar a Truppie e oferecer seus passeios por nossa plataforma e passar a receber as reservas do seu cliente, você precisa seguir os seguintes passos:'
   mail-hello-to-start-update: Sua conta foi atualizada. Verifique seu perfil para ver se sua conta se encontra verificada para receber os pagamentos das suas truppies
-  mail-organizer-see-profile: ver perfil
+  mail-organizer-see-profile: Ver perfil
   mail-organizer-share-description: Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!
-  mail-organizer-share-intro: compartilhe seu perfil com sua rede de contatos
+  mail-organizer-share-intro: Compartilhe seu perfil com sua rede de contatos
   mail-organizer-share-more-description: Quem sabe eles também se interessem pela sua aventura!
   mail-organizer-share-title: Divulgue seu evento
   mail-verify-account-description: Verificando sua conta você poderá realizar transferências
@@ -517,13 +517,13 @@ pt-BR:
   or-label: ou você pode
   organizer-access-step: Aguarde nosso retorno, criaremos seu perfil!
   organizer-account-edit: Conta pessoal
-  organizer-account-edit-desc: Envie uma foto válida do seu documento para que possamos verificar sua conta e assim enviar os valores pagos pelas reservas
+  organizer-account-edit-desc: Envie uma foto válida do seu documento (RG/CPF/CNH) para que possamos verificar sua conta e, assim, enviar os pagamentos das reservas.
   organizer-account-intro-desc: Esta é sua conta da Truppie.
   organizer-account-intro-title: Seja bem vindo!
-  organizer-account-status-title: status da sua conta
-  organizer-account-welcome-account-edit-title: Atualize os dados da sua conta e com ela verificada poderemos enviar diretamente os valores das reservas dos seus clientes.
+  organizer-account-status-title: Status da sua conta
+  organizer-account-welcome-account-edit-title: Atualize os dados da sua conta. Após verificação, poderemos lhe enviar os pagamentos de seus passeios diretamente.
   organizer-account-welcome-bankaccount-edit-title: Dados para cadastro da conta bancária para recebimento dos pagamentos feitos pelos seus clientes
-  organizer-add-account-data: adicionar dados da sua conta
+  organizer-add-account-data: Adicionar dados da sua conta
   organizer-add-tour: adicionar truppie
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
   organizer-background-edit-desc: Organizer-background-edit-desc
@@ -536,7 +536,7 @@ pt-BR:
   organizer-create-success: Sua conta como guia foi criada com sucesso
   organizer-dashboard-desc: Aqui, você pode criar as suas truppies (seus passeios) e começar a movimentar o seu negócio :)
   organizer-desc-label: breve descrição do seu negócio
-  organizer-email-label: email do seu negócio
+  organizer-email-label: E-mail do seu negócio
   organizer-external-refs-legend: Seus contatos
   organizer-facebook-label: endereço do facebook do seu negócio
   organizer-instagram-label: endereço do instagram do seu negócio
@@ -613,7 +613,7 @@ pt-BR:
       short: "%d de %B, %H:%M"
     pm: ''
   title-introducing-accounts: Esta são suas contas registradas na truppie
-  title-organizer-join-truppie: Entre para a truppie!
+  title-organizer-join-truppie: Entre para a Truppie!
   tour-category-label: E aí, qual é a dessa truppie?
   tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
   tour-edit-label: editar truppie
