@@ -261,12 +261,12 @@ pt-BR:
       header:
         one: 'Não foi possível gravar %{model}: 1 erro'
         other: 'Não foi possível gravar %{model}: %{count} erros'
-  event-add-image: adicionar imagem
-  event-call-end: fim
-  event-call-start: "ínicio"
+  event-add-image: Adicionar imagem
+  event-call-end: Fim
+  event-call-start: "Início"
   event-date-title: Data da truppie
   event-desc-label: Descrição da truppie
-  event-drag-drop-file: ou solte a imagem do seu computador aqui
+  event-drag-drop-file: Ou solte a imagem do seu computador aqui
   event-image-upload: Event-image-upload
   event-no-packages-message: Não há ainda nenhum pacote adicionado
   event-packages-title: Pacotes já incluídos
@@ -308,7 +308,7 @@ pt-BR:
   hands-heading: Reserve
   hands-text: Verifique os detalhes e confirme sua presença
   hello-organizer-welcome: Olá, %{organizer}!
-  hello-organizer-welcome-account-edit: Adicione sua conta bancária para transferência
+  hello-organizer-welcome-account-edit: Conta pessoal
   hello-organizer-welcome-bankaccount-edit: Conta bancária
   hello-organizer-welcome-profile-edit: Seu perfil
   helpers:
@@ -517,11 +517,11 @@ pt-BR:
   or-label: ou você pode
   organizer-access-step: Aguarde nosso retorno, criaremos seu perfil!
   organizer-account-edit: Conta pessoal
-  organizer-account-edit-desc: Envie uma foto válida do seu documento (RG/CPF/CNH) para que possamos verificar sua conta e, assim, enviar os pagamentos das reservas.
+  organizer-account-edit-desc: Envie uma foto do seu documento (RG/CPF/CNH) para verificar sua conta.
   organizer-account-intro-desc: Esta é sua conta da Truppie.
   organizer-account-intro-title: Seja bem vindo!
   organizer-account-status-title: Status da sua conta
-  organizer-account-welcome-account-edit-title: Atualize os dados da sua conta. Após verificação, poderemos lhe enviar os pagamentos de seus passeios diretamente.
+  organizer-account-welcome-account-edit-title: Complete os campos abaixo com seus dados pessoais e envie uma foto do seu documento de identificação. Após a verificação, os pagamentos de seus passeios serão transferidos diretamente à sua conta bancária cadastrada.
   organizer-account-welcome-bankaccount-edit-title: Dados para cadastro da conta bancária para recebimento dos pagamentos feitos pelos seus clientes
   organizer-add-account-data: Adicionar dados da sua conta
   organizer-add-tour: adicionar truppie
@@ -552,8 +552,8 @@ pt-BR:
   organizer-percent-label: Taxa (%)
   organizer-phone-label: telefone para contato do seu negócio
   organizer-profile-account: Minha conta
-  organizer-profile-account-action: Editar minha conta
-  organizer-profile-account-desc: Cadastre a sua conta bancária e verifique-a para receber os pagamentos de seus passeios.
+  organizer-profile-account-action: Editar minha conta pessoal
+  organizer-profile-account-desc: Cadastre seus dados pessoais e sua conta bancária para receber os pagamentos de seus passeios. IMPORTANTE: suas contas precisam estar com status de "Verificada" para que a transferência ocorra.
   organizer-profile-action: Editar seu perfil
   organizer-profile-desc: Atualize seus dados e crie seus passeios
   organizer-profile-edit: Perfil
