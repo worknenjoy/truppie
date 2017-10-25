@@ -221,7 +221,7 @@ pt-BR:
       year: Ano
   days: Dias
   departure-date: Início
-  desc-organizer-why-truppie: Crie uma conta na truppie para gerenciar de forma fácil suas reservas com os seus clientes
+  desc-organizer-why-truppie: Crie uma conta na Truppie e gerencie suas reservas de forma fácil e segura!
   enter-login: Criar/acessar minha conta
   errors:
     format: "%{attribute} %{message}"
@@ -301,15 +301,15 @@ pt-BR:
   guidebook-reservation-action: Obter
   guidebooks-confirm-presence-message: A sua compra deste roteiro foi confirmada!
   guidebooks_view_index_h3: Roterios
-  guides-main-menu: Quero oferecer aventuras
+  guides-main-menu: Área do guia
   guides_partial_a_one: " entrar no site"
   guides_partial_a_two: " dúvida? Envie um e-mail"
   guides_partial_h3_one: Guias
   hands-heading: Reserve
   hands-text: Verifique os detalhes e confirme sua presença
   hello-organizer-welcome: Olá, %{organizer}!
-  hello-organizer-welcome-account-edit: Aqui você pode incluir suas contas bancárias para transferência
-  hello-organizer-welcome-bankaccount-edit: Contas bancárias
+  hello-organizer-welcome-account-edit: Adicione sua conta bancária para transferência
+  hello-organizer-welcome-bankaccount-edit: Conta bancária
   hello-organizer-welcome-profile-edit: Seu perfil
   helpers:
     label:
@@ -338,7 +338,7 @@ pt-BR:
       update: Atualizar %{model}
   hey: Hey!
   how-it-works-link: Como funciona a truppie
-  how-it-works-main-menu: Quero me aventurar
+  how-it-works-main-menu: Área do aventureiro
   how-it-works-title: Como funciona?
   import-event-action: Importar eventos
   import-event-desc: Escolha os eventos do facebook que deseja importar para a Truppie
@@ -348,22 +348,22 @@ pt-BR:
   import-event-notice-success: Os eventos foram importados com sucesso
   import-from-facebook-title: Importar evento do facebook
   incomplete_label: incompleto
-  label-organizer-about: fale um pouco de você e o que você irá oferecer
-  label-organizer-address-city: cidade
-  label-organizer-continue: continuar
-  label-organizer-email: email
-  label-organizer-facebook: facebook
-  label-organizer-finish: Finalizar inscrição
-  label-organizer-instagram: instagram
-  label-organizer-name: nome
-  label-organizer-phone: telefone
-  label-organizer-picture: foto
-  label-organizer-previous: anterior
-  label-organizer-thanks: obrigado
-  label-organizer-thanks-email: Obrigado por se cadastrar
-  label-organizer-thanks-moderation: Finalize sua inscrição e comece a gerenciar suas reservas e pagamentos pela truppie!
-  label-organizer-twitter: twitter
-  label-organizer-website: website
+  label-organizer-about: Fale um pouco de você e do seu negócio
+  label-organizer-address-city: Cidade
+  label-organizer-continue: Continuar
+  label-organizer-email: E-mail
+  label-organizer-facebook: Facebook
+  label-organizer-finish: Concluir
+  label-organizer-instagram: Instagram
+  label-organizer-name: Nome do seu negócio
+  label-organizer-phone: Telefone
+  label-organizer-picture: Foto (se tiver um logo, melhor ainda!) :)
+  label-organizer-previous: Anterior
+  label-organizer-thanks: Pronto!
+  label-organizer-thanks-email: Obrigado por se cadastrar como nosso guia-parceiro!
+  label-organizer-thanks-moderation: Finalize sua inscrição e comece a gerenciar suas reservas e pagamentos pela Truppie!
+  label-organizer-twitter: Twitter
+  label-organizer-website: Website
   lang-brazil: Português (BR)
   lang-eua: English
   laura-feature: Bióloga, blogueira, empreendedora criativa
@@ -558,7 +558,7 @@ pt-BR:
   organizer-profile-desc: Atualize seus dados e crie seus passeios
   organizer-profile-edit: Perfil
   organizer-profile-edit-desc: Você pode enviar uma foto do seu logo ou marca, ou uma foto sua para aparecer na página do seu perfil e ficar associada a seus passeios e para contato de interessados em saber mais sobre a atividade que você oferece.
-  organizer-profile-intro: Meu perfil
+  organizer-profile-intro: Meu perfil de guia
   organizer-profile-verify-action: verificar
   organizer-profile-welcome-account-edit-title: Aqui você pode atualizar os dados do seu perfil que aparece no site com seus passeios, e para que outros aventureiros possam te encontrar com facilidade.
   organizer-tours-label: Truppies
@@ -573,7 +573,7 @@ pt-BR:
   payment_type_partial_div_one: Modo de pagamento
   payment_type_partial_div_three: Boleto Bancário
   payment_type_partial_div_two: Cartão de Crédito
-  place: Qual a localização?
+  place: Onde você está baseado?
   privacy-label: Termos de privacidade
   privacy-link: Privacidade
   profile-access: Acessar seu perfil
@@ -604,7 +604,7 @@ pt-BR:
   terms: Eu aceito os termos para criar minha conta e receber pagamentos
   text-intro: 'Truppie é uma plataforma desenhada para facilitar as suas próximas viagens e aventuras. Truppie é um estilo de vida; uma nova maneira de aproveitar seu tempo e enriquecer sua existência. Encontre a sua próxima truppie em três simples passos:'
   third-caption: EXPANDA SUA CONSCIÊNCIA
-  third-description: Aprenda com experiências e evolua como ser humano
+  third-description: Aprenda com experiências e evolua como ser humano!
   time:
     am: ''
     formats:
@@ -613,7 +613,7 @@ pt-BR:
       short: "%d de %B, %H:%M"
     pm: ''
   title-introducing-accounts: Esta são suas contas registradas na truppie
-  title-organizer-join-truppie: entre para a truppie
+  title-organizer-join-truppie: Entre para a truppie!
   tour-category-label: E aí, qual é a dessa truppie?
   tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
   tour-edit-label: editar truppie
