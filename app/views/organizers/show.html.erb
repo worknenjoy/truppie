@@ -19,7 +19,7 @@
   						<%= render partial: 'layouts/organizer_picture', locals: { organizer: @organizer }%>
   						<strong><%= @organizer.name %> </strong>
   					</h4>
-  				    <p class="card-text spaced-down"><%= @organizer.description %></p>
+  				    <p class="card-text spaced-down"><%= raw @organizer.description %></p>
   				    <% if !@organizer.website.nil? %>
   						<%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
   							<i class="fa fa-external-link"></i> entrar no site
