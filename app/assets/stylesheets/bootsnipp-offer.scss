@@ -15,7 +15,7 @@
 }
 .panel-pricing .list-group-item {
   color: #777777;
-  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+  /*border-bottom: 1px solid rgba(250, 250, 250, 0.5);*/
 }
 .panel-pricing .list-group-item:last-child {
   border-bottom-right-radius: 0px;
@@ -34,6 +34,6 @@
     margin: 0px;
   }
   .card-body {
-    min-height: 160px;
+    min-height: 100px;
   }
 }

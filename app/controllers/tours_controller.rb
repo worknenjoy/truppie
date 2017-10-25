@@ -237,15 +237,17 @@ class ToursController < ApplicationController
       params[:tour][:languages] = langs
     end
     
-    pkg_attr = params[:tour][:packages]
-    
+    pkg_attr = params[:tour][:packages_attributes]
+
     if !pkg_attr.nil?
-      post_data = []
       pkg_attr.each do |p|
         included_array = p[1]["included"].split(split_val)
-        post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], percent: p[1]["percent"], description: p[1]["description"], included: included_array)
+        if included_array
+          params[:tour][:packages_attributes][p[0]][:included] = included_array
+        else
+          params[:tour][:packages_attributes][p[0]][:included] = []
+        end
       end
-      params[:tour][:packages] = post_data        
     end
     
     if params[:tour][:included] == "" or params[:tour][:included].nil?
