@@ -6,6 +6,7 @@ class ToursController < ApplicationController
   before_filter :check_if_organizer_admin, only: [:create, :update, :destroy, :copy_tour]
 
   skip_before_action :authenticate_user!, if: :json_request?
+  skip_before_action :check_if_super_admin, if: :json_request?, only: [:index]
 
   before_filter :scoped_index, only: [:index]
 
