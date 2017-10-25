@@ -301,7 +301,7 @@ pt-BR:
   guidebook-reservation-action: Obter
   guidebooks-confirm-presence-message: A sua compra deste roteiro foi confirmada!
   guidebooks_view_index_h3: Roterios
-  guides-main-menu: Sou Guia
+  guides-main-menu: Quero oferecer aventuras
   guides_partial_a_one: " entrar no site"
   guides_partial_a_two: " dúvida? Envie um e-mail"
   guides_partial_h3_one: Guias
@@ -338,7 +338,7 @@ pt-BR:
       update: Atualizar %{model}
   hey: Hey!
   how-it-works-link: Como funciona a truppie
-  how-it-works-main-menu: Sou Explorador
+  how-it-works-main-menu: Quero me aventurar
   how-it-works-title: Como funciona?
   import-event-action: Importar eventos
   import-event-desc: Escolha os eventos do facebook que deseja importar para a Truppie
