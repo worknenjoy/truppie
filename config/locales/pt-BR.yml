@@ -302,8 +302,8 @@ pt-BR:
   guidebooks-confirm-presence-message: A sua compra deste roteiro foi confirmada!
   guidebooks_view_index_h3: Roterios
   guides-main-menu: Área do guia
-  guides_partial_a_one: " entrar no site"
-  guides_partial_a_two: " dúvida? Envie um e-mail"
+  guides_partial_a_one: " Site"
+  guides_partial_a_two: " Enviar um e-mail"
   guides_partial_h3_one: Guias
   hands-heading: Reserve
   hands-text: Verifique os detalhes e confirme sua presença
@@ -612,7 +612,7 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
-  title-introducing-accounts: Esta são suas contas registradas na truppie
+  title-introducing-accounts: Este é o seu perfil de guia registrado na Truppie
   title-organizer-join-truppie: Entre para a Truppie!
   tour-category-label: E aí, qual é a dessa truppie?
   tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
@@ -744,7 +744,7 @@ pt-BR:
   tours_view_index_link_two: Editar
   tours_view_new_h3: 'Adicionar truppie ou '
   tours_view_new_link: ver todas as truppies
-  tours_view_show_a_one: " dúvida? Envie um e-mail"
+  tours_view_show_a_one: " Enviar um e-mail"
   tours_view_show_a_two: Opções de pacotes
   tours_view_show_h4: Fotos
   tours_view_show_li_finish: Termina
@@ -758,7 +758,7 @@ pt-BR:
   tours_view_show_link_four: Eu quero o %{name}
   tours_view_show_link_one: Reservar
   tours_view_show_link_three: Reservar agora
-  tours_view_show_link_two: " entrar no site"
+  tours_view_show_link_two: " Site"
   tours_view_show_small_one: 'na categoria '
   tours_view_show_strong_eight: 'O que não inclui:'
   tours_view_show_strong_five: 'O que levar:'
