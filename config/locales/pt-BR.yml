@@ -112,7 +112,7 @@ pt-BR:
   contacts_views_submit: Enviar
   create-account-action-step: Crie sua conta na Truppie como usuário
   create-background-action: Create-background-action
-  create-experience-call-to-action: Criar uma experiência
+  create-experience-call-to-action: Criar uma truppie
   create-marketplace-action: Salvar
   create-truppie-account: criar conta na truppie
   date:
@@ -443,13 +443,13 @@ pt-BR:
   new-tour-label: Minhas truppies
   newsletter-text: Deixe seu e-mail para saber das novidades
   newsletter-title: Fique ligado!
-  no-experience-here-label: Ainda não temos experiências para este local
+  no-experience-here-label: Ainda não temos truppies para este local :(
   no-marketplace: Dados da conta não cadastrados
   no-marketplace-label: Sem conta cadastrada
   no-photo-please-send-one: Você não enviou nenhuma foto para este evento, envie uma foto para poder exibi-la aqui
   no-places-action: Adicionar uma experiência deste local
   no-places-text: Este lugar não tem nenhum passeio cadastrado
-  no-places-title: Não há experiências para este lugar
+  no-places-title: Não há truppies para este lugar
   no-terms: não há termos
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: Não verificado
