@@ -37,30 +37,30 @@ class OrganizersController < ApplicationController
     if @organizer.try(:id)
       organizer_token = @organizer.try(:invite_token)
       if organizer_token == params[:token]
-        session[:organizer_invited] = true
-        @notice_message = "Logue com sua conta ou crie uma para ter acesso ao seu perfil"
-      else
-        @notice_message = "Convite inválido"
-      end
-    else
-      @notice_message = "Não foi possível encontrar o seu perfil de guia"
-    end
-    if not user_signed_in?
-      redirect_to new_user_session_path, :notice => @notice_message
-    else
-      if current_user == @organizer.user
-        ContactMailer.notify("mensagem para o guia que recebeu o convite: Você já está associado a este perfil de guia").deliver_now
-        redirect_to organizer_path(@organizer), :notice => "Você já está associado a este perfil de guia"
-      else
-        @organizer.user = current_user
-        if @organizer.save
-          ContactMailer.notify("mensagem para o guia que recebeu o convite: Sua conta de guia foi criada").deliver_now
-          redirect_to organizer_path(@organizer), :notice => "Sua conta de guia foi criada"
+        if not user_signed_in?
+          redirect_to new_user_session_path, :notice => @notice_message
         else
-          ContactMailer.notify("mensagem para o guia que recebeu o convite: Tivemos problema ao associar seu perfil").deliver_now
-          redirect_to organizer_path(@organizer), :notice => "Tivemos problema ao associar seu perfil"
+          if current_user == @organizer.user
+            ContactMailer.notify("mensagem para o guia que recebeu o convite: Você já está associado a este perfil de guia").deliver_now
+            redirect_to organizer_path(@organizer), :notice => "Você já está associado a este perfil de guia"
+          else
+            @organizer.user = current_user
+            if @organizer.save
+              ContactMailer.notify("mensagem para o guia que recebeu o convite: Sua conta de guia foi criada").deliver_now
+              redirect_to organizer_path(@organizer), :notice => "Sua conta de guia foi criada"
+            else
+              ContactMailer.notify("mensagem para o guia que recebeu o convite: Tivemos problema ao associar seu perfil").deliver_now
+              redirect_to organizer_path(@organizer), :notice => "Tivemos problema ao associar seu perfil"
+            end
+          end
         end
+      else
+        redirect_to root_path, :notice => "Convite inválido"
+        return
       end
+    else
+      redirect_to new_user_session_path, :notice => "Não foi possível encontrar o seu perfil de guia"
+      return
     end
   end
 

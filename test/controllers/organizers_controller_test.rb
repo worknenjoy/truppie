@@ -111,13 +111,20 @@
      assert_redirected_to invite_path
    end
 
-   test "should accepct a invite a guide" do
+   test "should accepct an invite to a guide" do
      @organizer = Organizer.last
      @organizer.update_attributes({:invite_token => '12345'})
      get :accept_invite, {id: @organizer.id, token: '12345'}
-     assert_equal session[:organizer_invited], true
      assert_equal flash[:notice], "Sua conta de guia foi criada"
      assert_redirected_to organizer_path(@organizer)
+   end
+
+   test "should not accepct an invalid invite a guide" do
+     @organizer = Organizer.last
+     @organizer.update_attributes({:invite_token => '123fafafafa45'})
+     get :accept_invite, {id: @organizer.id, token: '12345'}
+     assert_equal flash[:notice], "Convite inválido"
+     assert_redirected_to root_path
    end
 
    test "should get account" do
