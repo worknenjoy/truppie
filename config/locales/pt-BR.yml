@@ -87,8 +87,8 @@ pt-BR:
   close: Fechar
   confirm-guidebook-reserved-when: Confirm-guidebook-reserved-when
   confirm_eds_partial_h4: Confirmados
-  confirm_eds_partial_link: Confirmar a sua
-  confirm_eds_partial_small: 'Ninguem confirmou ainda. '
+  confirm_eds_partial_link: Garanta a sua vaga!
+  confirm_eds_partial_small: 'Ops, parece que ninguém reservou ainda. '
   confirm_eds_partial_span: " reserva(s)"
   confirm_eds_partial_strong: Você
   contact-link: Entre em contato com a gente
@@ -616,7 +616,7 @@ pt-BR:
   title-organizer-join-truppie: Entre para a Truppie!
   tour-category-label: E aí, qual é a dessa truppie?
   tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
-  tour-edit-label: editar truppie
+  tour-edit-label: Editar truppie
   tours_controller_confirm_headline_msg: Sua presença foi confirmada para a truppie
   tours_controller_confirm_headline_msg_two: Evento confirmado com sucesso
   tours_controller_confirm_status_msg: Obrigado por se inscrever neste evento
@@ -691,7 +691,7 @@ pt-BR:
   tours_view_confirm_strong_two: 'Local:'
   tours_view_confirm_submit: Confirmar Reserva
   tours_view_edit_h3: 'Editar truppie ou '
-  tours_view_edit_link: ver todas as truppies
+  tours_view_edit_link: Ver todas as truppies
   tours_view_form_a_five: Pacotes
   tours_view_form_a_four: Guia
   tours_view_form_a_one: Informações básicas
@@ -716,7 +716,7 @@ pt-BR:
   tours_view_form_placeholder_fifteen: O que levar?
   tours_view_form_placeholder_five: Vagas
   tours_view_form_placeholder_four: Link (ex facebook)
-  tours_view_form_placeholder_fourteen: O que não inclui?
+  tours_view_form_placeholder_fourteen: O que NÃO inclui?
   tours_view_form_placeholder_nine: Quando começa
   tours_view_form_placeholder_nineteen: Quais são as tags?
   tours_view_form_placeholder_one: Título da truppie
