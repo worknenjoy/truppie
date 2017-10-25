@@ -314,8 +314,8 @@ pt-BR:
   helpers:
     label:
       bank_account:
-        account_number: Número da conta
-        agency_number: Número da agência
+        account_number: Número da conta (com o dígito)
+        agency_number: Número da agência (sem o dígito)
         bank_number: Banco
         fullname: Nome completo
       marketplace:
