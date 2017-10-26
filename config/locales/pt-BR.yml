@@ -749,6 +749,9 @@ pt-BR:
   tours_view_form_placeholder_twentythree: Valor do pacote
   tours_view_form_placeholder_twentytwo: Nome do pacote
   tours_view_form_placeholder_two: Onde?
+  tours_view_form_tooltip_content_one: Com esta opção, o usuário pode fazer a reserva e pagar o preço que achar justo por esta atividade
+  tours_view_value_suggested_by_user: Valor sugerido pelo usuário no momento da reserva
+  tours_view_fair_price_ribbon_value: O que você achar justo!
   tours_view_form_small: Para pacotes diferentes de preços, vá na aba "Pacotes"
   tours_view_form_span: 'Nova Categoria:'
   tours_view_form_tooltip_content_account: Isto significa que sua conta precisa ainda de alguns dados para poder realizar a transferência diretamente. Por favor, verifique qual passo está incompleto e saiba quais são os passos necessários clicando em verificar aqui ao lado.
