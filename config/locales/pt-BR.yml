@@ -523,13 +523,13 @@ pt-BR:
   organizer-access-step: Aguarde nosso retorno, criaremos seu perfil!
   organizer-account-edit: Conta pessoal
   organizer-account-edit-desc: Envie uma foto do seu documento de identidade (RG ou CNH) para verificar sua conta.
-  organizer-account-intro-desc: Esta é sua conta da Truppie.
+  organizer-account-intro-desc: Esta é sua conta de guia na Truppie.
   organizer-account-intro-title: Seja bem vindo!
   organizer-account-status-title: Status da sua conta
   organizer-account-welcome-account-edit-title: Complete os campos abaixo com seus dados pessoais e envie uma foto do seu documento de identificação. Após a verificação, os pagamentos de seus passeios serão transferidos diretamente à sua conta bancária cadastrada.
   organizer-account-welcome-bankaccount-edit-title: Dados para cadastro da conta bancária para recebimento dos pagamentos feitos pelos seus clientes
   organizer-add-account-data: Adicionar dados da sua conta
-  organizer-add-tour: adicionar truppie
+  organizer-add-tour: Criar truppie
   organizer-after-create-account-advantages: Ao criar o seu perfil como guia na Truppie, você poderá gerenciar suas reservas de maneira fácil e rápida!
   organizer-background-edit-desc: Organizer-background-edit-desc
   organizer-background-title: Organizer-background-title
@@ -539,7 +539,7 @@ pt-BR:
   organizer-clients-label: Clientes
   organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
   organizer-create-success: Sua conta como guia foi criada com sucesso
-  organizer-dashboard-desc: Aqui, você pode criar as suas truppies (seus passeios) e começar a movimentar o seu negócio :)
+  organizer-dashboard-desc: Você já configurou a sua conta (dados pessoais e bancários) para poder receber os pagamentos? Com a sua conta verificada, você pode começar a criar as suas truppies (seus passeios) e movimentar o seu negócio :)
   organizer-desc-label: breve descrição do seu negócio
   organizer-email-label: E-mail do seu negócio
   organizer-external-refs-legend: Seus contatos
