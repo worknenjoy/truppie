@@ -38,7 +38,7 @@
         <%= form_tag confirm_presence_tour_path, :method => 'post', id: 'form-confirm-reservation' do %>
         <% if @payment_type %>
         <div class="row">
-          <%= render 'layouts/payment_type' %>          
+          <%= render 'layouts/payment_type' %>
         </div>
         <% end %>
         <div class="payment-tab" id="payment-creditcard">
@@ -106,7 +106,7 @@
                               </div>
                           </div>
                       </div>
-                  </div> 
+                  </div>
               </div>
           </div>
           <div class="col-md-8">
@@ -124,7 +124,7 @@
                                       <%= text_field_tag :number, nil, placeholder: t('tours_view_confirm_placeholder_two'), required: true, class: "form-control", data: { stripe: "number" } %>
                                       <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                                   </div>
-                              </div>                            
+                              </div>
                           </div>
                       </div>
                       <div class="row">
@@ -170,10 +170,10 @@
                                 </label>
                                 <% end %>
                                 </div>
-                              <% else %>
+                              <% elsif @tour.value && !@tour.value_chosen_by_user? %>
                                 <%= hidden_field_tag :value, @tour.value %>
                               <% end %>
-                            <% end %>                        
+                            <% end %>
                         </div>
                       </div>
                       <!--
@@ -190,7 +190,7 @@
                         <div class="col-xs-12 col-md-6">
                           <div class="spaced-smallest">
                             <div class="form-inline">
-                              <div class="form-group">
+                              <div class="form-group amount-input-group">
                                 <label><%= t('tours_view_confirm_label_twelve') %></label>
                                   <div class="input-group">
                                     <div class="form-group">
@@ -201,17 +201,43 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-md-6">
-                            <div style="margin-top: 20px;">
-                              <div class="price mediafix">
-                                <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
+                          <%= hidden_field_tag :token, '', id:'token' %>
+                          <div class="col-xs-12 col-md-6">
+                            <% if !@tour.value && @tour.value_chosen_by_user? %>
+                              <%= hidden_field_tag :value_chosen_by_user, true %>
+                              <div class="spaced-smallest">
+                                <div class="form-group">
+                                  <label><%= t('tours_view_confirm_label_thirteen') %></label>
+                                  <div class="input-group">
+                                    <div class="input-group-addon">R$</div>
+                                    <%= number_field_tag :value, 0, class: 'fair-price-value form-control', min: 1  %>
+                                    <div class="input-group-addon">.00</div>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="price mediafix">
-                                <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
-                                <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' %>
-                                <%= hidden_field_tag :token, '', id:'token' %>
+                              <div class="col-xs-12 col-md-offset-6 col-md-6">
+                                <div style="margin-top: 20px;">
+                                  <div class="price mediafix">
+                                    <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
+                                  </div>
+                                  <div class="price mediafix">
+                                    <!-- It gets updated with js (assets/js/main.js.erb) -->
+                                    <h3 class="cc-final-fair-price pull-right" style="font-size: 3em;"><%= raw final_price(0) %></h3>
+                                    <%= hidden_field_tag :final_price, 0, id:'cc-final-fair-price' %>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
+                            <% else %>
+                              <div style="margin-top: 20px;">
+                                <div class="price mediafix">
+                                  <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
+                                </div>
+                                <div class="price mediafix">
+                                  <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
+                                  <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' unless @tour.value_chosen_by_user? %>
+                                </div>
+                              </div>
+                            <% end %>
                           </div>
                       </div>
                   </div>
@@ -299,7 +325,7 @@
                                   <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
                                 </div>
                                 <div class="price mediafix">
-                                  <h3 class="b-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
+                                  <h3 class="b-final-price pull-right" style="font-size: 3em;"><%= raw "final_price(@final_price)" %></h3>
                                   <%= hidden_field_tag :final_price, @final_price, id:'b-final-price' %>
                                 </div>
                               </div>

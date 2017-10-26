@@ -103,6 +103,7 @@
 
 // Offset the popover to account for the popover arrow
 .popover-title {
+  overflow: hidden;
   padding: 8px 14px;
   margin: 0; // reset heading margin
   font-size: $font-size-base;
