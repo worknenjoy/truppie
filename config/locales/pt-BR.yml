@@ -92,19 +92,19 @@ pt-BR:
   confirm_eds_partial_span: " reserva(s)"
   confirm_eds_partial_strong: Você
   contact-link: Entre em contato com a gente
-  contact-main-menu: Contato
+  contact-main-menu: Fale conosco
   contact-title: Contato
   contact-us-action-step: Entre em contato com a gente informando que deseja ser guia
   contacts_controller_error: Faltou preencher o email e/ou a mensagem
   contacts_controller_error_two: Não foi possível enviar o seu e-mail. Tente novamente
   contacts_controller_succes: Sua mensagem foi enviada com sucesso, entraremos em contato em breve
   contacts_views_index_a_title: enviar um e-mail para a truppie diretamente
-  contacts_views_index_h2: Entre em contato com a Truppie
+  contacts_views_index_h2: Envie uma mensagem pelo formulário abaixo
   contacts_views_index_label_four: 'Mensagem:'
   contacts_views_index_label_one: Nome
   contacts_views_index_label_three: Assunto
   contacts_views_index_label_two: E-mail
-  contacts_views_index_p: Se preferir, você pode enviar um e-mail para
+  contacts_views_index_p: Ou envie um e-mail para
   contacts_views_index_placeholder_one: Seu nome
   contacts_views_index_placeholder_three: Sua mensagem
   contacts_views_index_placeholder_two: Seu e-mail é
@@ -438,8 +438,8 @@ pt-BR:
   metatag-topic: Viagens
   modal-packages-title: Gerenciamento de pacotes
   navbar_partial_link_four: Sair
-  navbar_partial_link_one: entrar / logar
-  navbar_partial_link_organizer: Editar suas contas
+  navbar_partial_link_one: Entrar
+  navbar_partial_link_organizer: Editar guia
   navbar_partial_link_three: Editar usuário
   navbar_partial_link_two: Minhas truppies
   new-bank-account-title: Nova conta para pagamento
