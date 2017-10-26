@@ -559,7 +559,7 @@ pt-BR:
   organizer-new-tour: Criar uma truppie agora!
   organizer-panel-welcome: Este é o seu painel de controle dentro da Truppie.
   organizer-percent-label: Taxa (%)
-  no-price-defined-message: Para esta atividade você paga o quanto você achar justo!
+  no-price-defined-message: O valor desta reserva é livre
   organizer-phone-label: telefone para contato do seu negócio
   organizer-profile-account: Minha conta
   organizer-profile-account-action: Editar minha conta pessoal
@@ -751,7 +751,7 @@ pt-BR:
   tours_view_form_placeholder_two: Onde?
   tours_view_form_small: Para pacotes diferentes de preços, vá na aba "Pacotes"
   tours_view_form_span: 'Nova Categoria:'
-  tours_view_form_tooltip_content_account: Isto significa que sua conta precisa ainda de alguns dados para poder realizar a transferência diretamente. Por favor, verifique qual passo está incompleto e saiba quais são os passos necessários indo em verificar.
+  tours_view_form_tooltip_content_account: Isto significa que sua conta precisa ainda de alguns dados para poder realizar a transferência diretamente. Por favor, verifique qual passo está incompleto e saiba quais são os passos necessários clicando em verificar aqui ao lado.
   tours_view_form_tooltip_content_one: Com esta opção, o usuário pode fazer a reserva e pagar o preço que achar justo por esta atividade
   tours_view_index_h3: Todas as truppies já criadas
   tours_view_index_link_four: Criar nova truppie

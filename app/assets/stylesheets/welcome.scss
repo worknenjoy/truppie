@@ -154,6 +154,20 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
+.abs-top-middle {
+  top: 40%;
+}
+
+.abs-closest-top {
+  top: 34%;
+}
+
+.ellipsis {
+  overflow-y: scroll;
+  height: 150px;
+  width: 100%;
+}
+
 .hidden {
   display: none;
 }

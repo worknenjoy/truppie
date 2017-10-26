@@ -34,7 +34,7 @@
         <%= link_to account_status_organizer_path(@organizer), class: 'btn btn-primary btn-xs' do %>
             <%= t('organizer-profile-verify-action') %>
         <% end %>
-        <%= content_tag 'a', class: 'btn btn-sm btn-info', role: 'button', id: 'tour_tooltip', tabindex: 0,
+        <%= content_tag 'a', class: 'btn btn-sm btn-warning', role: 'button', id: 'tour_tooltip', tabindex: 0,
                         data: { toggle: 'popover', trigger: 'focus', container: 'body', placement: 'left',
                                 template: render('popover_template'), html: true,
                                 content: t('tours_view_form_tooltip_content_account'),

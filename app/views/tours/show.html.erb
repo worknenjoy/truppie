@@ -42,7 +42,7 @@
                         <i class="fa fa-save"></i> <%= t('save-changes') %>
                       </button>
                     </div>
-                    <%= f.file_field :picture, class: "file-upload-input", accept: "image/*" %>
+                    <%= f.file_field :picture, class: "file-upload-input file-upload-no-drop", accept: "image/*" %>
                     <div class="file-upload-content">
                       <div class="image-title-wrap" style="padding: 20px 0;">
                         <button type="button" onclick="removeUpload()" class="remove-image btn btn-primary-outline"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
@@ -54,15 +54,15 @@
             </div>
         <% end %>
 		<% else %>
-			<div class="placeholder-truppie-image"></div>
+    <div class="placeholder-truppie-image"></div>
 		<% end %>
       <% if @tour.value_chosen_by_user %>
-        <div class="ribbon base" style="text-align: right">
+        <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
           <small><%= t('no-price-defined-message') %></small>
           <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block spaced-small' %>
         </div>
       <% else %>
-        <div class="ribbon base" style="text-align: right">
+        <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
           <span><%= raw @tour.price %></span>
           <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
         </div>

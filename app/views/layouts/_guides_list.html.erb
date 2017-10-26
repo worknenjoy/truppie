@@ -34,7 +34,7 @@
                   <strong><%= g.name %> </strong>              
               <% end %>
             </h4>
-              <p class="card-text spaced-down"><%= g.description %></p>
+              <p class="card-text spaced-down ellipsis"><%= g.description %></p>
               <% if g.website %>
               <%= link_to g.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
                 <i class="fa fa-external-link"></i> <%= t('guides_partial_a_one') %>
