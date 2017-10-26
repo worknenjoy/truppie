@@ -25,13 +25,13 @@
                 <%= t('organizer-dashboard-desc') %>
               </p>
               <p class="text-xs-center">
-                <%= link_to guided_tour_organizer_path(@organizer), class: 'btn btn-primary btn-lg' do %>
-                    <%= t('organizer-add-account-data') %> <i class="fa fa-plus"></i>
+                <%= link_to account_edit_organizer_path(@organizer), class: 'btn btn-primary btn-lg' do %>
+                    <%= t('organizer-add-account-data') %> <i class="fa fa-edit" style="margin-left: 5px;"></i>
                 <% end %>
               </p>
               <p class="text-xs-center">
                 <%= link_to guided_tour_organizer_path(@organizer), class: 'btn btn-primary btn-lg' do %>
-                    <%= t('organizer-add-tour') %> <i class="fa fa-plus"></i>
+                    <%= t('organizer-add-tour') %> <i class="fa fa-plus" style="margin-left: 5px;"></i>
                 <% end %>
               </p>
           <% else %>

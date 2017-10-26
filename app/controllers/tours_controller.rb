@@ -252,7 +252,7 @@ class ToursController < ApplicationController
 
     if !pkg_attr.nil?
       pkg_attr.each do |p|
-        included_array = p[1]["included"].split(split_val)
+        included_array = p[1]["included"].split(split_val) rescue nil
         if included_array
           params[:tour][:packages_attributes][p[0]][:included] = included_array
         else

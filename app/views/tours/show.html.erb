@@ -56,9 +56,17 @@
 		<% else %>
 			<div class="placeholder-truppie-image"></div>
 		<% end %>
-    <div class="ribbon base" style="text-align: right">
-      <span><%= raw @tour.price %></span>
-      <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+      <% if @tour.value_chosen_by_user %>
+        <div class="ribbon base" style="text-align: right">
+          <small><%= t('no-price-defined-message') %></small>
+          <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block spaced-small' %>
+        </div>
+      <% else %>
+        <div class="ribbon base" style="text-align: right">
+          <span><%= raw @tour.price %></span>
+          <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+        </div>
+      <% end %>
     </div>
 	</div>
 	<div class="container">
@@ -196,7 +204,7 @@
 		</div>
 		<div class="row text-xs-center">
 			<% @tour.packages.each do |p| %>
-	
+
 	<!-- item -->    
 	<div class="col-md-6">
                 <div class="card panel-pricing">

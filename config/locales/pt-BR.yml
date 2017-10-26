@@ -7,6 +7,8 @@ pt-BR:
       document-message:
         document-label: Document picture
         verification: We could not verify you document picture, are you sure that your send when you were setting your account details?
+  account-not-verified-label: Não verificada
+  account-verified-label: Verificada
   active-label: ativa
   activerecord:
     attributes:
@@ -57,6 +59,7 @@ pt-BR:
   bank-account-form-active: conta ativa
   bank-account-not-deleted: conta não removida
   bank-account-not-deleted-default: conta não removida por padrão
+  bank-account-not-verified-label: Não verificados
   bank-account-placeholder-account-number: 'ex: 17598-5'
   bank-account-placeholder-agency-number: 'ex: 2971'
   bank-account-placeholder-fullname: 'ex: José da Silva'
@@ -68,6 +71,7 @@ pt-BR:
   bank-account-sync-sucessfully: sua conta foi atualizada com sucesso
   bank-account-updated: conta bancária atualizada com sucesso
   bank-account-updated-fail: houve uma falha ao atualizar sua conta. Verifique os dados e tente novamente
+  bank-account-verified-label: Verificados
   bank-number-empty: nome do titular vazio
   bank_account_controller_notice_two: sua conta bancária foi cadastrada com sucesso
   bank_controller_activation_errors: já tem uma conta associada
@@ -100,7 +104,7 @@ pt-BR:
   contacts_controller_succes: Sua mensagem foi enviada com sucesso, entraremos em contato em breve
   contacts_views_index_a_title: enviar um e-mail para a truppie diretamente
   contacts_views_index_h2: Envie uma mensagem pelo formulário abaixo
-  contacts_views_index_label_four: 'Mensagem'
+  contacts_views_index_label_four: Mensagem
   contacts_views_index_label_one: Nome
   contacts_views_index_label_three: Assunto
   contacts_views_index_label_two: E-mail
@@ -555,6 +559,7 @@ pt-BR:
   organizer-new-tour: Criar uma truppie agora!
   organizer-panel-welcome: Este é o seu painel de controle dentro da Truppie.
   organizer-percent-label: Taxa (%)
+  no-price-defined-message: Para esta atividade você paga o quanto você achar justo!
   organizer-phone-label: telefone para contato do seu negócio
   organizer-profile-account: Minha conta
   organizer-profile-account-action: Editar minha conta pessoal
@@ -586,6 +591,8 @@ pt-BR:
   profile-access-truppie-account-share-step: E ter um link de pagamento do evento com todas suas informações
   profile-access-truppie-account-step: Administrar suas reservas, quantidade de vagas e receber notificações
   profile-access-truppie-account-transfer-step: Solicitar transferências
+  profile-incomplete-label: Incompleto
+  profile-verified-label: Verificado
   return-date: Término
   same-date: mesmo dia
   save-and-publish: Salvar e publicar
@@ -699,6 +706,7 @@ pt-BR:
   tours_view_confirm_submit: Confirmar Reserva
   tours_view_edit_h3: 'Editar truppie ou '
   tours_view_edit_link: Ver todas as truppies
+  tours_view_fair_price_ribbon_value: O que você achar justo!
   tours_view_form_a_five: Pacotes
   tours_view_form_a_four: Guia
   tours_view_form_a_one: Informações básicas
@@ -741,11 +749,10 @@ pt-BR:
   tours_view_form_placeholder_twentythree: Valor do pacote
   tours_view_form_placeholder_twentytwo: Nome do pacote
   tours_view_form_placeholder_two: Onde?
-  tours_view_form_tooltip_content_one: Com esta opção, o usuário pode fazer a reserva e pagar o preço que achar justo por esta atividade
-  tours_view_value_suggested_by_user: Valor sugerido pelo usuário no momento da reserva
-  tours_view_fair_price_ribbon_value: O que você achar justo!
   tours_view_form_small: Para pacotes diferentes de preços, vá na aba "Pacotes"
   tours_view_form_span: 'Nova Categoria:'
+  tours_view_form_tooltip_content_account: Isto significa que sua conta precisa ainda de alguns dados para poder realizar a transferência diretamente. Por favor, verifique qual passo está incompleto e saiba quais são os passos necessários indo em verificar.
+  tours_view_form_tooltip_content_one: Com esta opção, o usuário pode fazer a reserva e pagar o preço que achar justo por esta atividade
   tours_view_index_h3: Todas as truppies já criadas
   tours_view_index_link_four: Criar nova truppie
   tours_view_index_link_one: Exibir
@@ -780,6 +787,7 @@ pt-BR:
   tours_view_show_strong_ten: 'Atrações:'
   tours_view_show_strong_three: 'Informações:'
   tours_view_show_strong_two: 'Guia:'
+  tours_view_value_suggested_by_user: Valor sugerido pelo usuário no momento da reserva
   transfer-label: Transferências
   transfer-truppie-action: Transferir
   truppie-adventure-text: Mova seu corpo, oxigene sua mente, saia do óbvio

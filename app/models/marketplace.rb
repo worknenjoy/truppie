@@ -373,6 +373,8 @@ class Marketplace < ActiveRecord::Base
         bank_accounts = Stripe::Account.retrieve(self.account_id).external_accounts
         if bank_accounts.total_count
           return bank_accounts.data
+        else
+          return false
         end
       rescue => e
         puts "bank accounts"

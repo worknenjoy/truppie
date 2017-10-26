@@ -7,6 +7,8 @@ en:
       document-message:
         document-label: Document picture
         verification: We could not verify you document picture, are you sure that your send when you were setting your account details?
+  account-not-verified-label: Account-not-verified-label
+  account-verified-label: Account-verified-label
   active-label: active
   activerecord:
     attributes:
@@ -57,6 +59,7 @@ en:
   bank-account-form-active: Bank account active
   bank-account-not-deleted: We couldnt delete your bank account
   bank-account-not-deleted-default: We couldnt delete your default bank account
+  bank-account-not-verified-label: Bank-account-not-verified-label
   bank-account-placeholder-account-number: 'ex: 17598-5'
   bank-account-placeholder-agency-number: 'ex: 2971'
   bank-account-placeholder-fullname: 'ex: Joseph Jess Silva'
@@ -68,6 +71,7 @@ en:
   bank-account-sync-sucessfully: Your bank account was registered successfully
   bank-account-updated: Your bank account was updated sucessfully
   bank-account-updated-fail: Your bank account update fails. Please verify is the data is correct
+  bank-account-verified-label: Bank-account-verified-label
   bank-number-empty: Bank-number-empty
   bank_account_controller_notice_two: Your bank account was saved successfully
   bank_controller_activation_errors: It already has an account associated
@@ -124,7 +128,7 @@ en:
     - Sat
     - Sun
     abbr_month_names:
-    -
+    - 
     - Jan
     - Feb
     - Mar
@@ -151,7 +155,7 @@ en:
       long: "%d de %B de %Y"
       short: "%d de %B"
     month_names:
-    -
+    - 
     - January
     - February
     - March
@@ -578,6 +582,8 @@ en:
   profile-access-truppie-account-share-step: Payment link with all information you need
   profile-access-truppie-account-step: Manage your reservations, be notified and manage the payments
   profile-access-truppie-account-transfer-step: Request transfer
+  profile-incomplete-label: Profile-incomplete-label
+  profile-verified-label: Profile-verified-label
   return-date: Return
   same-date: same day
   save-and-publish: Save and publish
@@ -691,6 +697,7 @@ en:
   tours_view_confirm_submit: Confirm booking
   tours_view_edit_h3: 'Edit truppie or '
   tours_view_edit_link: see all truppies
+  tours_view_fair_price_ribbon_value: A fair price for you!
   tours_view_form_a_five: Packages
   tours_view_form_a_four: Guide
   tours_view_form_a_one: Basic information
@@ -733,11 +740,10 @@ en:
   tours_view_form_placeholder_twentythree: Package price
   tours_view_form_placeholder_twentytwo: Package name
   tours_view_form_placeholder_two: Where? (Place name)
-  tours_view_form_tooltip_content_one: With this option enabled, the user pays the price he thinks is fair for this activity
-  tours_view_value_suggested_by_user: Chosen by user
-  tours_view_fair_price_ribbon_value: A fair price for you!
   tours_view_form_small: For different packages, go to tab "Pacotes"
   tours_view_form_span: 'New category:'
+  tours_view_form_tooltip_content_account: Tours view form tooltip content account
+  tours_view_form_tooltip_content_one: With this option enabled, the user pays the price he thinks is fair for this activity
   tours_view_index_h3: All truppies already created
   tours_view_index_link_four: Create new truppie
   tours_view_index_link_one: Show
@@ -772,6 +778,7 @@ en:
   tours_view_show_strong_ten: 'Attractions:'
   tours_view_show_strong_three: 'Information:'
   tours_view_show_strong_two: 'Guide:'
+  tours_view_value_suggested_by_user: Chosen by user
   transfer-label: Transfers
   transfer-truppie-action: Transfer
   truppie-adventure-text: Move your body, flow your mind, get out of the routine

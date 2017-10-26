@@ -3,7 +3,7 @@
     <i class="fa fa-map-o"></i> <%= @organizer.name %>
   <% end %>
     <ul class="nav navbar-nav">
-      <li class="nav-item <%= "active" if current_page? action: 'dashboard' %>">
+      <li class="nav-item <%= "active" if (current_page? action: 'dashboard' or current_page? action: 'guided_tour')  %>">
         <%= link_to guided_tour_organizer_path(@organizer), class: 'nav-link' do %>
             <%= t('panel-label') %>
         <% end %>
@@ -34,6 +34,13 @@
         <%= link_to account_status_organizer_path(@organizer), class: 'btn btn-primary btn-xs' do %>
             <%= t('organizer-profile-verify-action') %>
         <% end %>
+        <%= content_tag 'a', class: 'btn btn-sm btn-info', role: 'button', id: 'tour_tooltip', tabindex: 0,
+                        data: { toggle: 'popover', trigger: 'focus', container: 'body', placement: 'left',
+                                template: render('popover_template'), html: true,
+                                content: t('tours_view_form_tooltip_content_account'),
+                                title: render('popover_template_title_content', trigger_elem_id: 'tour_tooltip') } do %>
+            <i class="fa fa-question"></i>
+          <% end %>
       </span>
     <% end %>
 </nav>
