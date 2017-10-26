@@ -91,7 +91,7 @@ pt-BR:
   confirm_eds_partial_small: 'Ops, parece que ninguém reservou ainda. '
   confirm_eds_partial_span: " reserva(s)"
   confirm_eds_partial_strong: Você
-  contact-link: Entre em contato com a gente
+  contact-link: Fale conosco
   contact-main-menu: Fale conosco
   contact-title: Contato
   contact-us-action-step: Entre em contato com a gente informando que deseja ser guia
@@ -100,7 +100,7 @@ pt-BR:
   contacts_controller_succes: Sua mensagem foi enviada com sucesso, entraremos em contato em breve
   contacts_views_index_a_title: enviar um e-mail para a truppie diretamente
   contacts_views_index_h2: Envie uma mensagem pelo formulário abaixo
-  contacts_views_index_label_four: 'Mensagem:'
+  contacts_views_index_label_four: 'Mensagem'
   contacts_views_index_label_one: Nome
   contacts_views_index_label_three: Assunto
   contacts_views_index_label_two: E-mail
@@ -274,14 +274,14 @@ pt-BR:
   event-title: Título da truppie
   events-next: Próximas truppies
   facebook-login: entrar com o facebook
-  faq-link-label: Perguntas e respostas frequentes
+  faq-link-label: Respostas a perguntas frequentes
   first-caption: CONECTE-SE À NATUREZA
   first-description: E a si mesmo. É tudo energia!
   for-you-on-truppie-title: 'Para você que está na truppie, acesse sua conta:'
   fullname-empty: Fullname-empty
   guide-invite-fail: Guide-invite-fail
   guide-invite-successfull: Guide-invite-successfull
-  guide-manual-link: Manual do guia para a truppie
+  guide-manual-link: Primeiros passos para o guia
   guide-manual-title: Manual do guia
   guidebook-admin-confirm-delete: Guidebook-admin-confirm-delete
   guidebook-admin-edit-link: Guidebook-admin-edit-link
@@ -339,7 +339,7 @@ pt-BR:
       submit: Salvar %{model}
       update: Atualizar %{model}
   hey: Hey!
-  how-it-works-link: Como funciona a truppie
+  how-it-works-link: Entenda melhor a Truppie
   how-it-works-main-menu: "Área do aventureiro"
   how-it-works-title: Como funciona?
   import-event-action: Importar eventos
@@ -393,7 +393,7 @@ pt-BR:
   mail-welcome-account-title: sua conta como guia foi criada
   mail-welcome-account-title-update: Sua conta foi atualizada!
   manage-truppie-action: gerenciar
-  manifesto-link-label: Qual a filosofia por trás da truppie?
+  manifesto-link-label: Em que acreditamos?
   marketplace-city-placeholder: 'ex: São Paulo'
   marketplace-complement-placeholder: 'ex: 303 apto 404'
   marketplace-controller-notice-update: sua conta foi atualizada
