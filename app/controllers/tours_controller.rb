@@ -1,10 +1,15 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy, :copy_tour]
+
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:new, :create, :update, :destroy, :copy_tour]
-  before_filter :scoped_index, only: [:index]
+  before_filter :check_if_super_admin, only: [:new, :edit, :index]
+  before_filter :check_if_organizer_admin, only: [:create, :update, :destroy, :copy_tour]
+
   skip_before_action :authenticate_user!, if: :json_request?
-  
+  skip_before_action :check_if_super_admin, if: :json_request?, only: [:index]
+
+  before_filter :scoped_index, only: [:index]
+
   def scoped_index
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
     if current_user
@@ -78,7 +83,7 @@ class ToursController < ApplicationController
   # GET /tours
   # GET /tours.json
   def index
-    @tours = Tour.publisheds
+    
   end
 
   # GET /tours/1
@@ -140,17 +145,28 @@ class ToursController < ApplicationController
   def copy_tour
     organizer = @tour.organizer
 
+    old_wheres = @tour.wheres
+    old_packages = @tour.packages
     old_tour = @tour
+
     new_tour = Tour.new(old_tour.attributes.merge({:title => "#{@tour.title} - copiado", :status => '', :id => ''}))
+
+    new_tour.wheres << old_wheres
+
+    if old_packages.present?
+      new_tour.packages << old_packages
+    end
 
     respond_to do |format|
       if new_tour.save
         format.html {
-          redirect_to "/organizers/#{organizer.to_param}/guided_tour", flash: {success: t('tours_controller_copy_success')}
+          redirect_to "/organizers/#{organizer.to_param}/guided_tour", flash: {notice: t('tours_controller_copy_success')}
         }
         format.json { render :copy_tour, status: :ok, location: @tour }
       else
         format.html {
+          puts 'copy tour error'
+          puts new_tour.errors.inspect
           redirect_to "/organizers/#{organizer.to_param}/guided_tour", flash: {notice: t('tours_controller_copy_error')}
         }
         format.json { render json: @tour.errors, status: :unprocessable_entity }
@@ -231,16 +247,18 @@ class ToursController < ApplicationController
       end
       params[:tour][:languages] = langs
     end
-
-    pkg_attr = params[:tour][:packages]
+    
+    pkg_attr = params[:tour][:packages_attributes]
 
     if !pkg_attr.nil?
-      post_data = []
       pkg_attr.each do |p|
         included_array = p[1]["included"].split(split_val)
-        post_data.push Package.create(name: p[1]["name"], value: p[1]["value"], percent: p[1]["percent"], description: p[1]["description"], included: included_array)
+        if included_array
+          params[:tour][:packages_attributes][p[0]][:included] = included_array
+        else
+          params[:tour][:packages_attributes][p[0]][:included] = []
+        end
       end
-      params[:tour][:packages] = post_data
     end
 
     if params[:tour][:included] == "" or params[:tour][:included].nil?

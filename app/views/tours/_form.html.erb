@@ -1,4 +1,6 @@
+<%= render partial: 'layouts/error_summary', locals: { errors: @organizer.try(:errors)} %>
 <%= form_for @tour, class: "form form-signup", multipart: true, role: "form" do |f| %>
+    <%= render partial: 'layouts/error_summary', locals: { errors: @tour.try(:errors)} %>
     <ul class="nav nav-tabs spaced-down" role="tablist">
 	  <li class="nav-item">
 	    <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><%= t('tours_view_form_a_one') %></a>

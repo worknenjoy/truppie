@@ -1,0 +1,14 @@
+<% if errors.present? %>
+    <div class="card card-inverse card-danger">
+      <div class="card-block">
+        <blockquote class="card-blockquote">
+          <h4>Tivemos um erro na tentativa de salvar salvar</h4>
+          <ul class="list-group spaced-down">
+            <% errors.messages.each do |attr, e| %>
+                <li class="list-group-item list-group-item-danger"><i class="fa fa-thumbs-o-down"></i> <%= attr %>: <%= e %></li>
+            <% end %>
+          </ul>
+        </blockquote>
+      </div>
+    </div>
+<% end %>

@@ -59,12 +59,12 @@ class Tour < ActiveRecord::Base
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
-
-  def packages_attributes=(attributes)
+  
+  #def packages_attributes=(attributes)
     # Process the attributes hash
     #puts '------- attributes hash ----------'
     #puts attributes.inspect
-  end
+  #end
 
 
 

@@ -1,17 +1,9 @@
 class GuidebooksController < ApplicationController
   before_action :set_guidebook, only: [:show, :edit, :update, :destroy]
+
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :create, :update, :destroy]
-
-  def check_if_admin
-
-    allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
-
-    unless allowed_emails.include? current_user.email
-      flash[:notice] = t('tours_controller_notice_one')
-      redirect_to root_url
-    end
-  end
+  before_filter :check_if_super_admin, only: [:index, :new, :edit]
+  before_filter :check_if_organizer_admin, only: [:create, :update, :destroy]
 
   # GET /guidebooks
   # GET /guidebooks.json

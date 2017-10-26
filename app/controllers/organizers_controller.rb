@@ -1,9 +1,10 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
   before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_admin, only: [:index, :new, :update, :manage, :transfer, :transfer_funds, :tos_acceptance, :external_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status]
-  
+  before_filter :check_if_organizer_admin, only: [:update, :manage, :transfer, :transfer_funds, :tos_acceptance, :tos_acceptance_confirm, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
+  before_filter :check_if_super_admin, only: [:index, :new, :edit, :invite, :send_invite]
+
   # GET /organizers
   # GET /organizers.json
   def index
@@ -14,6 +15,53 @@ class OrganizersController < ApplicationController
   # GET /organizers/1.json
   def show
 
+  end
+
+  def invite
+
+  end
+
+  def send_invite
+    @invited = Organizer.find(params[:invited])
+    if @invited
+      @invited.update_attributes({:invite_token => SecureRandom.urlsafe_base64})
+      OrganizerMailer.invite(@invited).deliver_now
+      redirect_to invite_path, :notice => I18n.t('guide-invite-successfull')
+    else
+      redirect_to invite_path, :notice => I18n.t('guide-invite-fail')
+    end
+  end
+
+  def accept_invite
+    @organizer = Organizer.find(params[:id])
+    if @organizer.try(:id)
+      organizer_token = @organizer.try(:invite_token)
+      if organizer_token == params[:token]
+        if not user_signed_in?
+          redirect_to new_user_session_path, :notice => @notice_message
+        else
+          if current_user == @organizer.user
+            ContactMailer.notify("mensagem para o guia que recebeu o convite: Você já está associado a este perfil de guia").deliver_now
+            redirect_to organizer_path(@organizer), :notice => "Você já está associado a este perfil de guia"
+          else
+            @organizer.user = current_user
+            if @organizer.save
+              ContactMailer.notify("mensagem para o guia que recebeu o convite: Sua conta de guia foi criada").deliver_now
+              redirect_to organizer_path(@organizer), :notice => "Sua conta de guia foi criada"
+            else
+              ContactMailer.notify("mensagem para o guia que recebeu o convite: Tivemos problema ao associar seu perfil").deliver_now
+              redirect_to organizer_path(@organizer), :notice => "Tivemos problema ao associar seu perfil"
+            end
+          end
+        end
+      else
+        redirect_to root_path, :notice => "Convite inválido"
+        return
+      end
+    else
+      redirect_to new_user_session_path, :notice => "Não foi possível encontrar o seu perfil de guia"
+      return
+    end
   end
 
   # GET /organizers/new
@@ -102,7 +150,7 @@ class OrganizersController < ApplicationController
     respond_to do |format|
       if @organizer.update(organizer_params)
         format.html { 
-          OrganizerMailer.notify(@organizer, "update").deliver_now
+          #OrganizerMailer.notify(@organizer, "update").deliver_now
           redirect_to :back, notice: I18n.t('organizer-update-sucessfully')
         }
         format.json { render :show, status: :ok, location: @organizer }
@@ -397,6 +445,7 @@ class OrganizersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organizer_params
-      params.fetch(:organizer, {}).permit(:welcome, :policy, :name, :marketplace_id, :description, :picture, :user_id, {:wheres_attributes => [:id, :name, :lat, :long, :city, :state, :country, :postal_code, :address, :url, :google_id, :place_id]}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
+      #params.fetch(:organizer, {}).permit(:welcome, :policy, :name, :marketplace_id, :description, :picture, :user_id, :percent, :members, {:members_attributes => []}, {:wheres_attributes => [:id, :name, :lat, :long, :city, :state, :country, :postal_code, :address, :url, :google_id, :place_id]}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
+      params.fetch(:organizer, {}).permit!
     end
 end

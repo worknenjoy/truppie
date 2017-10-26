@@ -1,17 +1,4 @@
-<% if @errors.present? %>
-  <div class="card card-inverse card-danger">
-    <div class="card-block">
-      <blockquote class="card-blockquote">
-        <h4>Tivemos um erro para salvar este marketplace</h4>
-        <ul class="list-group spaced-down">
-          <% @errors.messages.each do |attr, e| %>
-              <li class="list-group-item list-group-item-danger"><i class="fa fa-thumbs-o-down"></i> <%= attr %>: <%= e %></li>
-          <% end %>
-        </ul>
-      </blockquote>
-    </div>
-  </div>
-<% end %>
+<%= render partial: 'layouts/error_summary', locals: { errors: @marketplace.try(:errors)} %>
 <%= form_for @marketplace, class: "form form-signup", multipart: true, role: "form" do |f| %>
   <ul class="nav nav-tabs spaced-down" role="tablist">
     <li class="nav-item">

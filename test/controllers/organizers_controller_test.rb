@@ -96,6 +96,37 @@
      assert_response :success
    end
 
+   test "should invite a guide" do
+     get :invite
+     assert_response :success
+   end
+
+   test "should send invite to a guide" do
+     post :send_invite, {:invited => Organizer.last}
+     assert assigns(:invited), Organizer.last
+     assert_equal flash[:notice], I18n.t('guide-invite-successfull')
+     assert_not_nil Organizer.last.invite_token
+     assert_not ActionMailer::Base.deliveries.empty?
+     #puts ActionMailer::Base.deliveries[1].html_part
+     assert_redirected_to invite_path
+   end
+
+   test "should accepct an invite to a guide" do
+     @organizer = Organizer.last
+     @organizer.update_attributes({:invite_token => '12345'})
+     get :accept_invite, {id: @organizer.id, token: '12345'}
+     assert_equal flash[:notice], "Sua conta de guia foi criada"
+     assert_redirected_to organizer_path(@organizer)
+   end
+
+   test "should not accepct an invalid invite a guide" do
+     @organizer = Organizer.last
+     @organizer.update_attributes({:invite_token => '123fafafafa45'})
+     get :accept_invite, {id: @organizer.id, token: '12345'}
+     assert_equal flash[:notice], "Convite inválido"
+     assert_redirected_to root_path
+   end
+
    test "should get account" do
      get :account, id: @organizer_ready.id
      assert_response :success

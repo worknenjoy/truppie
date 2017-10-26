@@ -101,6 +101,12 @@
 				</div> 
 			</div>
 		</div>
+    <div class="row">
+      <div class="col-xs-12">
+        <h4><strong><%= t('tours_view_show_strong_four') %></strong></h4>
+        <p><%= raw @tour.description %></p>
+      </div>
+    </div>
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
 				<%= render partial: 'layouts/organizer_card', locals: {organizer: @tour.organizer} %>
@@ -201,8 +207,13 @@
                     <div class="panel-body text-xs-center">
                         <p><strong><%= raw p.price %></strong></p>
                     </div>
+                    <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
+                      <% if !p.description.nil? and !p.description.empty? %>
+                          <p><%= raw p.description %></p>
+                      <% end %>
+                    </div>
                     <% if p.included.any? %>
-                    <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
+                    <ul class="list-group text-xs-center" style="overflow-y: scroll; height: 150px">
                     	<% p.included.each do |i| %>
                         <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
                         <% end %>
@@ -219,12 +230,6 @@
 			
 		</div>
 		<% end %>
-		<div class="row">
-			<div class="col-xs-12">
-				<h4><strong><%= t('tours_view_show_strong_four') %></strong></h4>
-				<p><%= raw @tour.description %></p>
-			</div>
-		</div>
 		<div class="row">
 		  <% if !@tour.take.empty? %> 
 			<div class="col-xs-12 col-md-6">
