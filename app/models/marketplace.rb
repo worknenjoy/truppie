@@ -340,7 +340,8 @@ class Marketplace < ActiveRecord::Base
   def account_user_data_verified
     begin
       account_missing = self.account_missing
-      if account_missing[:fields_needed] and account_missing[:fields_needed].except!(:external_account).empty?
+      account_missing[:fields_needed].delete("external_account")
+      if account_missing[:fields_needed].empty?
         return true
       end
       return false
