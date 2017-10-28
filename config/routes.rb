@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   get 'new_webhook', to: 'orders#new_webhook'
   get 'redirect', to: 'marketplaces#redirect'
 
+  get 'flights/nearest_airports', to: 'flights#nearest_airports'
+
   get 'organizers/create_from_auth', to: 'organizers#create_from_auth', as: 'create_from_auth'
   get 'organizers/invite', to: 'organizers#invite', as: 'invite'
   get 'organizers/accept_invite/(:id)/(:token)', to: 'organizers#accept_invite', as: 'accept_invite'

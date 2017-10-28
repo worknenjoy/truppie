@@ -194,6 +194,7 @@ function prefill_place(target, input) {
 
   function initMap() {
     var input = document.getElementById("map_canvas");
+    var action_input = document.getElementById("places-input-action");
     if (input){
       var map = new google.maps.Map(document.getElementById("map_canvas"), {
         zoom      : 10,
@@ -217,7 +218,33 @@ function prefill_place(target, input) {
           console.log(response);
         } 
       })
-    }    
+    }
+    if(action_input) {
+        var searchBox = new google.maps.places.SearchBox(action_input);
+       $('.out-of-couch').bind('submit', function(e){
+           var places = searchBox.getPlaces();
+           var bounds = new google.maps.LatLngBounds();
+           places.forEach(function (place) {
+               var icon = {
+                   url: place.icon,
+                   size: new google.maps.Size(71, 71),
+                   origin: new google.maps.Point(0, 0),
+                   anchor: new google.maps.Point(17, 34),
+                   scaledSize: new google.maps.Size(25, 25)
+               };
+
+               if (place.geometry.viewport) {
+                   // Only geocodes have viewport.
+                   bounds.union(place.geometry.viewport);
+               } else {
+                   bounds.extend(place.geometry.location);
+               }
+           });
+
+           map.fitBounds(bounds);
+           return false;
+       })
+    }
   }
 
   function place_marker(map, tour){

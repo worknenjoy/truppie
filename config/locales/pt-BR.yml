@@ -463,6 +463,9 @@ pt-BR:
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: Não verificado
   not_verified_label: Não verificado
+  where-to-go-text: Sair do sofá!
+  intro-location-label: Diga um lugar, cidade, endereço ou país
+  explore-tagline: Procure por lugares e veja se tem truppies para onde você está indo
   number:
     currency:
       format:
