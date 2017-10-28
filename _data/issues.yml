@@ -1,3 +1,87 @@
+- name: Estimular o contato direto com os guias e valorizar o perfil
+  date: 28 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/31
+  description: "Esta mudança acrescenta novas funcionalidades no perfil do guia. Ela passa a ter o conceito de seguir e segmentar notificação dos usuários. Para isto, provavelmente será necessário acrescentar novos modelos (followers) que contém usuários. Os usuários precisam estarem logados para seguir, sendo assim, requisitar por login caso ele tente seguir sem estar logado."
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Médio
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/32136544-b912fa8e-bc0f-11e7-9c76-fb114e970c31.png"
+  imagealt: ""
+  validation: Pull Request aprovado
+  price: R$ 110
+  category: Melhoria
+  status: Nova
+  
+- name: Colocar contato de telefone no perfil do guia
+  date: 28 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/32
+  description: "Esta é uma tarefa simples para acrescentar o telefone do guia na página do perfil se ele estiver cadastrado este dado. Também aparecer o ícone do whatsapp que leva ele diretamente para o chat."
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Iniciante
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/32137036-e215a32e-bc18-11e7-88bd-4026517ff8c4.png"
+  imagealt: ""
+  validation: Pull Request aprovado
+  price: R$ 20
+  category: Melhoria
+  status: Nova
+  
+- name: Usuário poder mostrar interesse em eventos passados oferecidos pelos guias
+  date: 28 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/33
+  description: "Atualmente, na página do perfil do guia e na página inicial que mostra atividades as atividades listadas são as recentes. Nesta tarefa vamos fazer uma outra abordagem para permitir que guias saibam que um usuário tem interesse num evento que já passou."
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Médio
+  technology: Rails, jQuery, Bootstrap
+  image: ""
+  imagealt: ""
+  validation: Pull Request aprovado
+  price: R$ 60
+  category: Melhoria
+  status: Nova 
+  
+- name: Progresso de upload
+  date: 28 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/34
+  description: "Para todos os casos que temos para envio de imagens, o tempo de resposta é muito grande. Uma barra do browser existe o progresso do upload, mas nem sempre é claro para o usuário. Certificar-se que os botões de ação são desabilitados para o usuário não tentar submeter os dados mais de uma vez."
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Médio
+  technology: Rails, jQuery, Bootstrap
+  image: ""
+  imagealt: ""
+  validation: Pull Request aprovado
+  price: R$ 60
+  category: Melhoria
+  status: Nova
+  
+- name: Marcação de um passo a passo para orientar o guia a completar o cadastro
+  date: 28 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/35
+  description: "O processo de cadastro de um guia é um dos maiores desafios que enfrentamos para atrair os clientes a usarem a plataforma para oferecem seus passeios. Estamos criando um sistema que dá total autonomia a eles, sendo assim ele consegue preencher dados do seu perfil que será visto pelos seus clientes e cadastrar seus dados bancários e pessoais para poder receber diretamente na sua conta."
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Médio
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/32137441-4093fd22-bc20-11e7-86e4-96881cf6d1ed.png"
+  imagealt: ""
+  validation: Pull Request aprovado
+  price: R$ 90
+  category: Melhoria
+  status: Nova
+  
+- name: Data e hora do evento não salva corretamente
+  date: 28 de Outubro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/36
+  description: "O processo de cadastro de um guia é um dos maiores desafios que enfrentamos para atrair os clientes a usarem a plataforma para oferecem seus passeios. Estamos criando um sistema que dá total autonomia a eles, sendo assim ele consegue preencher dados do seu perfil que será visto pelos seus clientes e cadastrar seus dados bancários e pessoais para poder receber diretamente na sua conta."
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Médio
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/32137441-4093fd22-bc20-11e7-86e4-96881cf6d1ed.png"
+  imagealt: ""
+  validation: Pull Request aprovado
+  price: R$ 80
+  category: Melhoria
+  status: Em desenvolvimento
+  
 - name: Perfil de um guia cadastrado aparecer no Truppie Places
   date: 15 de Outubro de 2017
   url: https://github.com/alexanmtz/truppie/issues/22
@@ -10,7 +94,7 @@
   validation: Pull Request aprovado. Esta tarefa é para iniciantes trabalharem com Rails e se familiarizarem com a plataforma
   price: sem valor
   category: Melhoria
-  status: Não iniciado
+  status: Finalizado
   
 - name: Um mapa listando as truppies cadastradas
   date: 15 de Outubro de 2017
@@ -24,7 +108,7 @@
   validation: Pull Request aprovado.
   price: R$ 180
   category: Melhoria
-  status: Não iniciado
+  status: Finalizado
   
 - name: Cadastrar atividades em que o valor é sugerido pelo usuário
   date: 11 de Outubro de 2017
@@ -38,7 +122,7 @@
   validation: Pull Request aprovado
   price: R$ 350
   category: Melhoria
-  status: em desenvolvimento
+  status: Finalizado
   
 
   
