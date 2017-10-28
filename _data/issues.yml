@@ -56,7 +56,7 @@
   
 - name: Marcação de um passo a passo para orientar o guia a completar o cadastro
   date: 28 de Outubro de 2017
-  url: https://github.com/alexanmtz/truppie/issues/35
+  url: https://github.com/alexanmtz/truppie/issues/38
   description: "O processo de cadastro de um guia é um dos maiores desafios que enfrentamos para atrair os clientes a usarem a plataforma para oferecem seus passeios. Estamos criando um sistema que dá total autonomia a eles, sendo assim ele consegue preencher dados do seu perfil que será visto pelos seus clientes e cadastrar seus dados bancários e pessoais para poder receber diretamente na sua conta."
   requirements: Rails, jQuery, Bootstrap, Inglês Básico
   level: Médio
