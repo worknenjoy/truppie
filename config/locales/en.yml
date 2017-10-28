@@ -1,21 +1,21 @@
 ---
 en:
-  account-label: account
+  account-label: My Account
   account-missing-legal-entity:
     verification:
       document-label: Verificação do documento de identificação
       document-message:
         document-label: Document picture
         verification: We could not verify you document picture, are you sure that your send when you were setting your account details?
-  account-not-verified-label: Account-not-verified-label
-  account-verified-label: Account-verified-label
+  account-not-verified-label: Not verified
+  account-verified-label: Verified
   active-label: active
   activerecord:
     attributes:
       organizer:
-        where.name: localização
+        where.name: location
       where:
-        name: localização
+        name: location
     errors:
       messages:
         record_invalid: 'the validation fails: %{errors}'
@@ -25,108 +25,109 @@ en:
       models:
         organizer:
           where:
-            name: localização
+            name: location
         where:
-          name: localização
+          name: location
       wheres:
-        name: localização
-  add-packages-desc: You can add more packages and one differenciate from another to offer food, accomodation etc.
+        name: location
+  add-packages-desc: You can add several prices per package, allowing differentiation of accommodation, food, etc.
   add-packages-title: Add package
-  admin-from-anywhere-content: Manage your events and reservations from anywhere, Truppie is ready for mobile
+  admin-from-anywhere-content: Manage your events and reservations from anywhere, Truppie works on any device
   admin-from-anywhere-title: We are mobile friendly
-  admin-payment-with-us-conclusion: 'Ah, there is other things to know:'
-  admin-payment-with-us-final-step: Ask for transfer to your account
-  admin-payment-with-us-limit-step: Keep notified about your reservations
-  admin-payment-with-us-step: Create and manage how many events you wish
-  admin-secure-payment-content: We use Stripe, one of the most efficient, fast and secure payment service
-  admin-secure-payment-title: We are secure
-  admin-share-event-content: We promote your events in our page
-  admin-share-event-title: Promote your event
+  admin-payment-with-us-conclusion: 'Ah, there is other important things to know:'
+  admin-payment-with-us-final-step: Request transfer to your bank account
+  admin-payment-with-us-limit-step: See reservations and payments in real time
+  admin-payment-with-us-step: Create and manage many events as you want
+  admin-secure-payment-content: We use Stripe, a rock-solid payment gateway, to make all transactions in a safe manner
+  admin-secure-payment-title: Our transactions are safe
+  admin-share-event-content: We promote your events in our social media pages!
+  admin-share-event-title: We help promote your event
   after-create-truppie-account: How to?
   alex-feature: Web developer
   alex-second-feature: Internet of things
-  alex-third-feature: Design interaction
+  alex-third-feature: Tech Geek
   authors-title: The Truppists
-  aviso: Aviso
+  aviso: Notice
   balance-label: Reservations
-  balloom-heading: Exploring
-  balloom-text: What are you up to? Check out the available truppies
-  bank-account-action-save: Save banck account
-  bank-account-data-incorrect: Your bank account data is incorrect
-  bank-account-data-remote-incorrect: Your bank account data is not valid
-  bank-account-destroyed-successfully: Your bank account was removed successfully
-  bank-account-edit-button: Bank account edit
-  bank-account-form-active: Bank account active
-  bank-account-not-deleted: We couldnt delete your bank account
-  bank-account-not-deleted-default: We couldnt delete your default bank account
-  bank-account-not-verified-label: Bank-account-not-verified-label
+  balloom-heading: Explore
+  balloom-text: What are you up to? Check out the available truppies!
+  bank-account-action-save: Save
+  bank-account-data-incorrect: bank account data is incorrect
+  bank-account-data-remote-incorrect: we couldn't save your bank account
+  bank-account-destroyed-successfully: your bank account was successfully removed
+  bank-account-edit-button: edit bank account
+  bank-account-form-active: account active
+  bank-account-not-deleted: we couldn't delete your bank account
+  bank-account-not-deleted-default: we couldn't delete your default bank account
+  bank-account-not-verified-label: We couldn't verify
   bank-account-placeholder-account-number: 'ex: 17598-5'
   bank-account-placeholder-agency-number: 'ex: 2971'
-  bank-account-placeholder-fullname: 'ex: Joseph Jess Silva'
-  bank-account-register-issue: We had a issue to register your bank account
-  bank-account-register-sucessfully: Your bank account was registered successfully
-  bank-account-sync-error: We had a issue to register your bank account
-  bank-account-sync-error-no-id: Your bank account was not registered
-  bank-account-sync-issue: We could not register your bank account
-  bank-account-sync-sucessfully: Your bank account was registered successfully
-  bank-account-updated: Your bank account was updated sucessfully
-  bank-account-updated-fail: Your bank account update fails. Please verify is the data is correct
-  bank-account-verified-label: Bank-account-verified-label
-  bank-number-empty: Bank-number-empty
-  bank_account_controller_notice_two: Your bank account was saved successfully
-  bank_controller_activation_errors: It already has an account associated
-  bank_controller_activation_errors_two: It was not possible to save the active account
-  bank_controller_activation_msg_five: We had a problem to activate this bank account
-  bank_controller_activation_msg_four: It was not possible to activate the account
-  bank_controller_activation_msg_one: The %{organizer} bank account was already activated
-  bank_controller_activation_msg_status_one: Danger
-  bank_controller_activation_msg_status_two: Success
-  bank_controller_activation_msg_three: We could not activate the account
+  bank-account-placeholder-fullname: 'ex: John Doe'
+  bank-account-register-issue: 'ex: SSN'
+  bank-account-register-sucessfully: bank account successfully registered
+  bank-account-sync-error: error while updating your bank account
+  bank-account-sync-error-no-id: your bank account wasn't registered
+  bank-account-sync-issue: we had a problem while syncing your account
+  bank-account-sync-sucessfully: your bank account was successfully updated
+  bank-account-updated: bank account successfully updated
+  bank-account-updated-fail: we couldn't update your account. Verify the data and try again
+  bank-account-verified-label: Verified
+  bank-number-empty: holder name is empty
+  bank_account_controller_notice_two: your bank account was successfully saved
+  bank_controller_activation_errors: an associated account already exists
+  bank_controller_activation_errors_two: It wasn't possible to save the active account
+  bank_controller_activation_msg_five: We had a problem while activating this bank account
+  bank_controller_activation_msg_four: It wasn't possible to activate this account
+  bank_controller_activation_msg_one: The %{organizer}'s bank account was already activated
+  bank_controller_activation_msg_status_one: danger
+  bank_controller_activation_msg_status_two: success
+  bank_controller_activation_msg_three: We couldn't activate the account
   bank_controller_activation_msg_two: Account successfully activated
-  calendar: Calendário de atividades
-  cancel: Cancelar
-  card-label: Card
-  change-date: Inserir data
-  clients-title: Your clients
+  calendar: Activities calendar
+  cancel: Cancel
+  card-label: card
+  change-date: Insert date
+  clients-title: Your customers
   close: Close
   confirm-guidebook-reserved-when: Confirm-guidebook-reserved-when
   confirm_eds_partial_h4: Confirmed
-  confirm_eds_partial_link: Confirm yours
-  confirm_eds_partial_small: Nobody has confirmed yet
-  confirm_eds_partial_span: Booking(s)
+  confirm_eds_partial_link: Assure your vacancy!
+  confirm_eds_partial_small: 'Oops, seems like nobody booked it. '
+  confirm_eds_partial_span: booking(s)
   confirm_eds_partial_strong: You
-  contact-link: Contact us and tell for us what your think
-  contact-main-menu: Contact
+  contact-link: Contact Us
+  contact-main-menu: Contact Us
   contact-title: Contact
-  contact-us-action-step: Contact us as a guide
+  contact-us-action-step: Contact us informing you want to be a guide
   contacts_controller_error: You are missing the e-mail address and/or the message
-  contacts_controller_error_two: It was not possible to send your e-mail. Please try again
+  contacts_controller_error_two: It wasn't possible to send your message. Please try again
   contacts_controller_succes: Your message was successfully sent. We'll be contacting you soon
   contacts_views_index_a_title: Send Truppie an e-mail directly
-  contacts_views_index_h2: Contact Truppie
-  contacts_views_index_label_four: 'Message:'
+  contacts_views_index_h2: Send a message using the form below
+  contacts_views_index_label_four: Message
   contacts_views_index_label_one: Name
-  contacts_views_index_label_three: 'Subject:'
+  contacts_views_index_label_three: Subject
   contacts_views_index_label_two: E-mail
-  contacts_views_index_p: If you prefer, you can e-mail us at
+  contacts_views_index_p: Or send us an email at
   contacts_views_index_placeholder_one: Your name
-  contacts_views_index_placeholder_three: Your Message
+  contacts_views_index_placeholder_three: Your message
   contacts_views_index_placeholder_two: Your e-mail address is
-  contacts_views_index_small: Be cool, we will not share your personal information with anybody
+  contacts_views_index_small: Stay cool, we won't share your personal information with anybody else
   contacts_views_submit: Send
-  create-account-action-step: Create a account as an user
+  create-account-action-step: Create a Truppie account as user
   create-background-action: Create-background-action
-  create-experience-call-to-action: Create your experience
-  create-marketplace-action: Create account
-  create-truppie-account: Create a truppie account
+  create-experience-call-to-action: Create a truppie
+  create-marketplace-action: Save
+  create-truppie-account: create a truppie account
   date:
     abbr_day_names:
+    - Sun
     - Mon
     - Tue
     - Wed
     - Thu
+    - Fri
     - Sat
-    - Sun
     abbr_month_names:
     - 
     - Jan
@@ -149,11 +150,18 @@ en:
     - Thursday
     - Thursday
     - Saturday
-    day_names_calendar: '["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]'
+    day_names_calendar:
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    - Sunday
     formats:
-      default: "%d/%m/%Y"
-      long: "%d de %B de %Y"
-      short: "%d de %B"
+      default: "%m/%d/%Y"
+      long: "%d of %B of %Y"
+      short: "%d of %B"
     month_names:
     - 
     - January
@@ -217,8 +225,8 @@ en:
       year: Year
   days: Days
   departure-date: Departure
-  desc-organizer-why-truppie: Create your truppie account and manage your events and receive payments from your clients
-  enter-login: Create/access account
+  desc-organizer-why-truppie: Create your Truppie account and manage your events and bookings easily
+  enter-login: Create/access my account
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -257,77 +265,77 @@ en:
       header:
         one: 'No possible to save %{model}: 1 error'
         other: 'No possible to save  %{model}: %{count} errors'
-  event-add-image: add image
-  event-call-end: end
-  event-call-start: start
-  event-date-title: tour date
-  event-desc-label: tour description
-  event-drag-drop-file: drop your image here
+  event-add-image: Add image
+  event-call-end: End
+  event-call-start: Start
+  event-date-title: Truppie date
+  event-desc-label: Truppie description
+  event-drag-drop-file: Or drop your a image from your computer here
   event-image-upload: upload your image
-  event-no-packages-message: There's no package added
+  event-no-packages-message: There's no package added at this moment
   event-packages-title: Packages included
-  event-remove-image-upload: Remove event image
-  event-title: Event title
-  events-next: Next tours
-  facebook-login: Signin with facebook
+  event-remove-image-upload: remove event image
+  event-title: Truppie title
+  events-next: Next truppies
+  facebook-login: Sign in with Facebook
   faq-link-label: Frequently asked questions
-  first-caption: OPEN YOUR MIND
-  first-description: Get off normal life for a while
-  for-you-on-truppie-title: 'Para você que está na truppie, acesse sua conta:'
-  fullname-empty: Your fullname is empty
+  first-caption: CONNECT TO THE NATURE
+  first-description: And to yourself. It's all energy!
+  for-you-on-truppie-title: 'Already on Truppie? Access your account:'
+  fullname-empty: Your name is empty
   guide-invite-fail: Guide-invite-fail
   guide-invite-successfull: Guide-invite-successfull
-  guide-manual-link: Manual for the guide (Portuguese)
-  guide-manual-title: Guide manual
+  guide-manual-link: First steps to guides (Portuguese)
+  guide-manual-title: Guide's manual
   guidebook-admin-confirm-delete: Guidebook-admin-confirm-delete
   guidebook-admin-edit-link: Guidebook-admin-edit-link
   guidebook-admin-edit-title: Guidebook-admin-edit-title
-  guidebook-admin-link-all: Guidebook-admin-link-all
-  guidebook-admin-link-delete: Guidebook-admin-link-delete
-  guidebook-admin-link-edit: Guidebook-admin-link-edit
-  guidebook-admin-link-view: Guidebook-admin-link-view
-  guidebook-admin-new-header: Guidebook-admin-new-header
-  guidebook-admin-tab-desc: Guidebook-admin-tab-desc
-  guidebook-admin-tab-guide: Guidebook-admin-tab-guide
-  guidebook-admin-tab-home: Guidebook-admin-tab-home
-  guidebook-admin-tab-packages: Guidebook-admin-tab-packages
-  guidebook-admin-tab-picture: Guidebook-admin-tab-picture
+  guidebook-admin-link-all: All
+  guidebook-admin-link-delete: Delete
+  guidebook-admin-link-edit: Edit
+  guidebook-admin-link-view: View
+  guidebook-admin-new-header: Header
+  guidebook-admin-tab-desc: Description
+  guidebook-admin-tab-guide: Guide
+  guidebook-admin-tab-home: Home
+  guidebook-admin-tab-packages: Packages
+  guidebook-admin-tab-picture: Image
   guidebook-confirm-place: Guidebook-confirm-place
-  guidebook-confirm-reservation-link: Guidebook-confirm-reservation-link
-  guidebook-languages-label: Guidebook-languages-label
-  guidebook-link-new: Guidebook-link-new
-  guidebook-reservation-action: Guidebook-reservation-action
-  guidebooks-confirm-presence-message: Guidebooks-confirm-presence-message
-  guidebooks_view_index_h3: Guidebooks view index h3
-  guides-main-menu: I'm a guide
-  guides_partial_a_one: " Go to their website"
-  guides_partial_a_two: " Questions? Send them an e-mail"
+  guidebook-confirm-reservation-link: I want my itinerary now!
+  guidebook-languages-label: Languages
+  guidebook-link-new: New
+  guidebook-reservation-action: Get
+  guidebooks-confirm-presence-message: The purchase of this itinerary has been confirmed!
+  guidebooks_view_index_h3: Itineraries
+  guides-main-menu: "Guide's area"
+  guides_partial_a_one: " Site"
+  guides_partial_a_two: " Send an e-mail"
   guides_partial_h3_one: Guide
-  hands-heading: Choose
-  hands-text: Check the details and confirm your presence with one click
-  hello-organizer-welcome: Hello %{organizer}
-  hello-organizer-welcome-account-edit: Account edit
-  hello-organizer-welcome-bankaccount-edit: Hello-organizer-welcome-bankaccount-edit
-  hello-organizer-welcome-profile-edit: Welcome to your profile
+  hands-heading: Book
+  hands-text: Check the details and confirm your presence
+  hello-organizer-welcome: Hello, %{organizer}!
+  hello-organizer-welcome-account-edit: Personal account
+  hello-organizer-welcome-bankaccount-edit: Bank account
+  hello-organizer-welcome-profile-edit: Your profile
   helpers:
     label:
       bank_account:
-        account_number: Número da conta
-        agency_number: Número da agência
-        bank_number: Banco
-        fullname: Nome completo
+        account_number: Account number
+        agency_number: Branch number
+        bank_number: Bank
+        fullname: Full name
       marketplace:
-        birthDate: Data de nascimento
-        city: Cidade
-        complement: Complemento
-        document_number: Número do documento de identificação
-        person_lastname: "Último nome"
-        person_name: Primeiro nome
-        state: Estado
-        street: Rua
-        zipcode: CEP
+        birthDate: Birthdate
+        city: City
+        complement: Complement
+        document_number: SSN
+        person_lastname: "Lastname"
+        person_name: Firstname
+        state: State
+        street: Street
+        zipcode: ZIP Code
       where:
-        name: localização
+        name: location
     select:
       prompt: Please select
     submit:
@@ -335,8 +343,8 @@ en:
       submit: Save %{model}
       update: Update %{model}
   hey: Hey!
-  how-it-works-link: See how the Truppie works
-  how-it-works-main-menu: I'm explorer
+  how-it-works-link: See how Truppie works
+  how-it-works-main-menu: "Explorer's area"
   how-it-works-title: How it works
   import-event-action: Import events
   import-event-desc: Choose the facebook events that you wish to import
