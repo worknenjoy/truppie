@@ -60,6 +60,26 @@ We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/mas
 
 === RELEASE NOTES
 
+=== v2.0-beta
+
+This release we make the platform more stable and test with our first client.
+
+So we make the platform more independent to tour guide, as well as giving the admin more controll over the platform.
+
+We create a first prototype of our guidebook, that will support tour guides that can be send and selled for a user.
+
+So we make a lot of improvements including:
+
+- Invite guides in our e-mail marketing
+- Visualize tours better on admin interface from a list
+- Account and bank account issues to recognize a verified account
+- Value suggested by user (thanks to @hugohernani)
+- A lot of permission bugs and conflit between admin accounts
+- Truppies on maps to explore (thanks to 
+- Improve in Truppie places, but will deserve a release just for that
+- Release of http://dev.truppie.com using Githup Pages that makes a open source documentation acessible
+- Get our Truppie Devs members. We are almost 100!
+
 ==== v2.0-rc1
 
 The Truppie platform open for guides registration.
