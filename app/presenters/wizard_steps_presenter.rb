@@ -8,10 +8,11 @@ class WizardStepsPresenter < BasePresenter
     @done = done
   end
 
-  def self.steps(steps_limit)
+  def self.steps(steps_limit, organizer)
     @@wizard_step = 0
-    yield self
-    @@skip_active = @@activated = false
+    completely_verified = organizer.verified? && personal_account_verified(organizer) &&
+      organizer.marketplace.try(:registered_bank_account) && organizer.tours.any?
+    completely_verified ? '' : yield(self)
   end
 
   def self.render(step_name, step_link, done = false)
@@ -27,6 +28,11 @@ class WizardStepsPresenter < BasePresenter
   end
 
   private
+
+  def self.personal_account_verified(organizer)
+    organizer.try(:marketplace) && organizer.marketplace.is_active? &&
+      organizer.marketplace.account_user_data_verified
+  end
 
   def active_css
     return @@activated && !@@skip_active ? 'active' : ''
