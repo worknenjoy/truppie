@@ -1,8 +1,11 @@
 <div id="steps-container" class="row">
   <div id="steps" class="col-sm-6 col-sm-offset-3">
-    <div class="step" data-desc="Perfil" data-index='1'>1</div>
-    <div class="step" data-desc="Conta Pessoal" data-index='2'>2</div>
-    <div class="step active" data-desc="Dados Bancários" data-index='3'>3</div>
-    <div class="step" data-desc="Criar Truppie">4</div>
+    <% WizardStepsPresenter.steps(4) do |step| %>
+      <%= step.render('Perfil', profile_edit_organizer_path(organizer), organizer.verified?) %>
+      <%= step.render('Conta Pessoal', account_edit_organizer_path(organizer),
+        (organizer.try(:marketplace) and organizer.marketplace.is_active? and organizer.marketplace.account_user_data_verified)) %>
+      <%= step.render('Dados Bancários', 'www.google.com', organizer.marketplace.try(:registered_bank_account)) %>
+      <%= step.render('Criar Truppie', 'www.google.com', organizer.tours.any?) %>
+    <% end %>
   </div>
 </div>
