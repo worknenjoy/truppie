@@ -581,6 +581,12 @@ pt-BR:
   organizer-website-label: site do seu negócio
   organizer-why-create-account-text: A Truppie quer te ajudar a criar a ferramenta ideal à sua necessidade!
   organizer_tours_label: truppies
+  wizard_steps_profile: Perfil
+  wizard_steps_personal_account: Conta Pessoal
+  wizard_steps_bank_details: Dados Bancários
+  wizard_steps_create_truppie: Criar Truppie
+  wizard_steps_trigger_hide_text: Verificar mais tarde
+  wizard_steps_trigger_show_text: Verificar agora
   packages-description-label: Descrição do pacote
   panel-label: Truppies
   payment_type_partial_div_one: Modo de pagamento
