@@ -41,6 +41,4 @@ class WizardStepsPresenter < BasePresenter
   def done_css
     @done ? 'done' : ''
   end
-
-  attr_accessor :step, :name, :active_class, :done_class, :link, :active
 end
