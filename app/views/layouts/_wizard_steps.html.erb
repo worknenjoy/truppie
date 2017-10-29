@@ -1,15 +1,15 @@
 <% WizardStepsPresenter.steps(4, organizer) do |step| %>
   <div id="steps-container" class="row">
     <button id="wizard-steps-toggle" class="btn btn-sm btn-info col-sm-2 col-sm-offset-3" type="button" data-target='steps'
-      data-hide-text="Verificar mais tarde" data-show-text="Verificar agora">
-      Verificar mais tarde
+      data-hide-text="<%= t('wizard_steps_trigger_hide_text') %>" data-show-text="<%= t('wizard_steps_trigger_show_text') %>">
+      <%= t('wizard_steps_trigger_hide_text') %>
     </button>
     <div id="steps" class="col-sm-6 col-sm-offset-3">
-      <%= step.render('Perfil', profile_edit_organizer_path(organizer), organizer.verified?) %>
-      <%= step.render('Conta Pessoal', account_edit_organizer_path(organizer),
+      <%= step.render(t('wizard_steps_profile'), profile_edit_organizer_path(organizer), organizer.verified?) %>
+      <%= step.render(t('wizard_steps_personal_account'), account_edit_organizer_path(organizer),
         (organizer.try(:marketplace) and organizer.marketplace.is_active? and organizer.marketplace.account_user_data_verified)) %>
-      <%= step.render('Dados Bancários', 'www.google.com', organizer.marketplace.try(:registered_bank_account)) %>
-      <%= step.render('Criar Truppie', 'www.google.com', organizer.tours.any?) %>
+      <%= step.render(t('wizard_steps_bank_details'), 'www.google.com', organizer.marketplace.try(:registered_bank_account)) %>
+      <%= step.render(t('wizard_steps_create_truppie'), 'www.google.com', organizer.tours.any?) %>
     </div>
   </div>
 <% end %>
