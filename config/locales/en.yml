@@ -378,7 +378,7 @@ en:
   logged-as-label: logged as
   logout-label: logout
   mail-hello-message: Howdy, %{organizer}!
-  mail-hello-to-start: 'To start using Truppie, offer your tours through our platform and receive your customers's reservations, you need to follow these steps:'
+  mail-hello-to-start: "To start using Truppie, offer your tours through our platform and receive your customers's reservations, you need to follow these steps:"
   mail-hello-to-start-update: Your account was updated. Check your profile to view if your account is verified to receive the payments of your truppies
   mail-invite-guide-action-message: Create your account
   mail-invite-guide-call-message: By clicking on the button below, you will create an account associated with your profile
