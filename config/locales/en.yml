@@ -456,7 +456,7 @@ en:
   no-marketplace: Account data not registered
   no-marketplace-label: No account registered
   no-photo-please-send-one: You didn't upload any picture of this event, send one to show it here
-  no-places-action: Add experience from this place
+  no-places-action: Add a experience from this place
   no-places-text: This place doesn't have any tour registered
   no-places-title: No truppies for this place
   no-terms: there's no terms
@@ -464,7 +464,7 @@ en:
   no-verified-label: Not verified
   not_verified_label: Not verified
   where-to-go-text: Leave the couch!
-  intro-location-label: Say a place, city, address or country
+  intro-location-label: Type a place, city, address or country
   explore-tagline: Search for places and see if it has truppies where you're heading
   number:
     currency:
