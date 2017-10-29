@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   get 'contacts/index'
   post 'contacts/send_form'
+  post 'contacts/send_message'
 
   get 'welcome/organizer', to: 'welcome#organizer', as: 'organizer_welcome'
   get 'welcome/user', to: 'welcome#user', as: 'user_welcome'
@@ -106,7 +107,12 @@ Rails.application.routes.draw do
       :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
-  resources :users
+  resources :users do
+    member do
+      get 'follow', to: 'users#follow'
+      get 'unfollow', to: 'users#unfollow'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

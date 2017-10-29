@@ -1,0 +1,42 @@
+<!-- START MAIN CONTENT AREA -->
+<tr>
+  <td class="wrapper">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+          <h1><%= t('mail-welcome-account-title') %></h1>
+          <p style="text-align: center;"><strong><%= t('mail-organizer-new-follower-title') %></strong></p>
+          <p><%= t('mail-hello-message', organizer: @organizer.name) %></p>
+
+          <hr>
+          <p><%= t('mail-organizer-new-follower-body') %></p>
+          </p>
+          <hr>
+          <h2><%= t('mail-organizer-share-title') %></h2>
+          <p><%= t('mail-organizer-share-intro') %></p>
+          <p><%= t('mail-organizer-share-description') %></p>
+          <p><%= t('mail-organizer-share-more-description') %></p>
+          <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
+            <tbody>
+              <tr>
+                <td align="left">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td> <a href="<%= organizer_url(@organizer) %>" target="_blank"><%= t('mail-organizer-see-profile') %></a> </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+
+
+<!-- END MAIN CONTENT AREA -->
+

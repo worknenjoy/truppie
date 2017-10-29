@@ -108,6 +108,7 @@ class ToursController < ApplicationController
     @tour = Tour.new(tour_params)
     respond_to do |format|
       if @tour.save
+        OrganizerMailer.notify_followers(@tour).deliver_now if (@tour.status == "P")
         format.html { redirect_to @tour, notice: t('tours_controller_create_notice_one') }
         format.json { render :show, status: :created, location: @tour }
       else
@@ -128,6 +129,7 @@ class ToursController < ApplicationController
   def update
     respond_to do |format|
       if @tour.update(tour_params)
+        OrganizerMailer.notify_followers(@tour).deliver_now if (@tour.status == "P")
         format.html { redirect_to @tour, notice: t('tours_controller_update_notice') }
         format.json { render :show, status: :ok, location: @tour }
       else
