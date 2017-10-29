@@ -22,7 +22,7 @@ class WizardStepsPresenter < BasePresenter
   end
 
   def render_step
-    h.link_to link, class: "step #{active_css} #{done_css}", data: { desc: @name } do
+    h.link_to @link, class: "step #{active_css} #{done_css}", data: { desc: @name } do
       h.concat(!@@activated ? h.content_tag(:i, '', class: 'fa fa-check') : @step)
     end
   end
