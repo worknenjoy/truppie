@@ -11,7 +11,7 @@ class WizardStepsPresenter < BasePresenter
   def self.steps(steps_limit, organizer)
     @@wizard_step = 0
     completely_verified = organizer.verified? && personal_account_verified(organizer) &&
-      organizer.marketplace.try(:registered_bank_account) && organizer.tours.any?
+      organizer.marketplace.try(:bank_account_verified) && organizer.tours.any?
     completely_verified ? '' : yield(self)
   end
 

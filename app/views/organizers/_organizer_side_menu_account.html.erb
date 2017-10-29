@@ -40,7 +40,7 @@
   </li>
   <li class="list-group-item">
     <a href="<%= bank_account_edit_organizer_path(@organizer) %>">
-      <% if @organizer.marketplace.try(:registered_bank_account) %>
+      <% if @organizer.marketplace.try(:bank_account_verified) %>
         <span class="label label-success label-pill pull-xs-right"><%= t('bank-account-verified-label') %></span>
       <% else %>
         <span class="label label-danger label-pill pull-xs-right"><%= t('bank-account-not-verified-label') %></span>
