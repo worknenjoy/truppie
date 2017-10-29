@@ -37,5 +37,4 @@
 //= require calendar-app
 //= require dash
 //= require mountain-form
-//= require wizard_steps
 //= require main
