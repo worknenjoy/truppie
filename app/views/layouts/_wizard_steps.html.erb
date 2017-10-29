@@ -1,11 +1,15 @@
-<div id="steps-container" class="row">
-  <div id="steps" class="col-sm-6 col-sm-offset-3">
-    <% WizardStepsPresenter.steps(4) do |step| %>
+<% WizardStepsPresenter.steps(4, organizer) do |step| %>
+  <div id="steps-container" class="row">
+    <button id="wizard-steps-toggle" class="btn btn-sm btn-info col-sm-2 col-sm-offset-3" type="button" data-target='steps'
+      data-hide-text="Verificar mais tarde" data-show-text="Verificar agora">
+      Verificar mais tarde
+    </button>
+    <div id="steps" class="col-sm-6 col-sm-offset-3">
       <%= step.render('Perfil', profile_edit_organizer_path(organizer), organizer.verified?) %>
       <%= step.render('Conta Pessoal', account_edit_organizer_path(organizer),
         (organizer.try(:marketplace) and organizer.marketplace.is_active? and organizer.marketplace.account_user_data_verified)) %>
       <%= step.render('Dados Bancários', 'www.google.com', organizer.marketplace.try(:registered_bank_account)) %>
       <%= step.render('Criar Truppie', 'www.google.com', organizer.tours.any?) %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>
