@@ -1,0 +1,13 @@
+<% if !!user %>
+  <% unless user.following?(organizer) %>
+    <%= link_to follow_user_path(id: user.id, organizer_id: organizer.id), class: 'btn btn-primary-outline btn-sm', remote: true do %>
+        <i class="fa fa-user-plus"></i> <%= t('organizer_views_show_follow') %>
+    <% end %>
+  <% else %>
+  	<%= link_to unfollow_user_path(id: user.id, organizer_id: organizer.id), class: 'btn btn-primary-outline btn-sm', remote: true do %>
+        <i class="fa fa-user"></i> <%= t('organizer_views_show_following') %>
+    <% end %>
+  <% end %>
+<% else %>
+	<a class="btn btn-primary-outline btn-sm disabled" href="#"><i class="fa fa-user-plus"></i> <%= t('organizer_views_show_follow') %></a>
+<% end %>
