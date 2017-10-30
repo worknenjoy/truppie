@@ -79,15 +79,12 @@
               </a>
             </div>
             <% end %>
+            <% if t.organizer %>
+              <%= render partial: 'layouts/organizer_card', locals: {organizer: t.organizer} %>
+          <% end %>
           </div>
         </article>
 
-          <% if t.organizer %>
-            <%= link_to organizer_path(t.organizer) do %>
-              <%= render partial: 'layouts/organizer_card', locals: {organizer: t.organizer} %>
-            <% end %> 
-          <% end %>
-          
         <% end %>
         <% else %>
           <article class="b-teaser-articles__article">
