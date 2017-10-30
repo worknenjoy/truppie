@@ -576,6 +576,8 @@ pt-BR:
   organizer-profile-intro: Meu perfil de guia
   organizer-profile-verify-action: verificar
   organizer-profile-welcome-account-edit-title: Aqui você pode atualizar os dados do seu perfil que aparece no site com seus passeios, e para que outros aventureiros possam te encontrar com facilidade.
+  organizer-profile-share-intro: Introdução
+  organizer-profile-share-desc: Descrição
   organizer-tours-label: Truppies
   organizer-twitter-label: endereço do twitter do seu negócio
   organizer-update-error: erro ao atualizar sua conta
@@ -584,7 +586,7 @@ pt-BR:
   organizer-why-create-account-text: A Truppie quer te ajudar a criar a ferramenta ideal à sua necessidade!
   organizer_tours_label: truppies
   organizer_views_show_follow: Seguir
-  organizer_views_show_following: Seguindo
+  organizer_views_show_following: Deixar de Seguir
   organizer_views_show_send_message: Enviar Mensagem
   contact_organizer_message_modal_title: Mensagem
   contact_organizer_message_label_name: Nome

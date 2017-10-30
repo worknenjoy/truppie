@@ -29,11 +29,7 @@
   					<% end %>
   					<% if !@organizer.email.nil? %>
   					 <a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> 
-  					<% end %>
-            <span id="followButton">
-            <%= render partial: 'follow', locals: { organizer: @organizer, user: current_user } %>
-            </span>
-            <a class="btn btn-primary-outline btn-sm" href="" data-toggle="modal" data-target="#contactModal"><i class="fa fa-commenting"></i> <%= t('organizer_views_show_send_message') %></a> 
+  					<% end %> 
             <br />
   					<div class="hovercard spaced-default">
   						<div class="bottom">
@@ -60,6 +56,22 @@
   		</div>
   	</div>
     <div class="col-xs-12 col-md-8">
+      <% unless is_organizer_admin %>
+        <div class="card card-block text-xs-center">
+          <button type="button" class="close close-action" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="card-title"><%= t('organizer-profile-share-intro') %></h3>
+          <p class="card-text"><%= t('organizer-profile-share-desc') %></p>
+          <p class="text-xs-center">
+            <%= image_tag("icons/camping-icon.svg", :width => 64, :alt => "new truppie", :class => 'img-fluid center-block') %>
+          </p>
+          <span id="followButton">
+            <%= render partial: 'follow', locals: { organizer: @organizer, user: current_user } %>
+          </span>
+          <a class="btn btn-primary-outline btn-sm" href="" data-toggle="modal" data-target="#contactModal"><i class="fa fa-commenting"></i> <%= t('organizer_views_show_send_message') %></a>
+        </div>
+      <% end %>
       <% if is_organizer_admin %>
           <div class="card card-block text-xs-center">
             <button type="button" class="close close-action" aria-label="Close">
