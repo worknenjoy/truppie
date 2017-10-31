@@ -1,8 +1,6 @@
 {
   "name": "truppie",
   "description": "marketplace for adventures",
-  "scripts": {
-  },
   "env": {},
   "formation": {
   },
