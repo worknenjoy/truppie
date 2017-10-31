@@ -48,9 +48,10 @@
       </header>
       <% if @tours.publisheds.any? %>
       <% @tours.publisheds.each do |t| %>
+       
       <div class="b-teaser-articles">
         <article class="b-teaser-articles__article">
-          <% if t.picture.present? %>
+        <% if t.picture.present? %>
           <figure>
             <img class="b-post-main__figure--full-width" src="<%= t.picture.url(:large) %>" alt="<%= t.title %>">
           </figure>
@@ -78,8 +79,12 @@
               </a>
             </div>
             <% end %>
+            <% if t.organizer %>
+              <%= render partial: 'layouts/organizer_card', locals: {organizer: t.organizer} %>
+          <% end %>
           </div>
         </article>
+
         <% end %>
         <% else %>
           <article class="b-teaser-articles__article">
