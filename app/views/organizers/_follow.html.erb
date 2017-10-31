@@ -9,5 +9,7 @@
     <% end %>
   <% end %>
 <% else %>
-	<a class="btn btn-primary-outline btn-sm disabled" href="#"><i class="fa fa-user-plus"></i> <%= t('organizer_views_show_follow') %></a>
+  <%= link_to new_user_session_path(follow: true), class: 'btn btn-primary-outline btn-sm' do %>
+        <i class="fa fa-user-plus"></i> <%= t('organizer_views_show_follow') %>
+    <% end %>
 <% end %>
