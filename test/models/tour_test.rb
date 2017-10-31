@@ -7,6 +7,7 @@ class TourTest < ActiveSupport::TestCase
     @tour = tours(:morro)
     @tour_alt = tours(:gavea)
     @marins = tours(:picomarins)
+    Time.zone = "America/Sao_Paulo"
   end
 
   test "tours fixtures created" do
@@ -285,5 +286,12 @@ class TourTest < ActiveSupport::TestCase
     tour_fair_price = tours(:morro_fair_price)
     assert_nil tour_fair_price.value
     assert tour_fair_price.valid?
+  end
+
+  test 'tour start and end date should be converted to the current timezone' do
+    randomize_timezone!
+
+    assert_equal "2016-04-17 23:56:31 UTC", "#{Time.zone.parse(@tour.start.to_s).utc}"
+    assert_equal "2016-04-17 23:59:31 UTC", "#{Time.zone.parse(@tour.end.to_s).utc}"
   end
 end
