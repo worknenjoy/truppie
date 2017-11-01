@@ -1,2 +1,9 @@
 $("#flashMessages").html("<%= j render 'layouts/flash' %>");
 $('#contactModal').modal('hide');
+if($('.overall-alert').length) {
+	delayedAlert();
+	$('.close').on('click', function () {
+		$('.overall-alert').removeClass('slideInDown').addClass('fadeOutUp');
+	});
+	setTimeout(function(){$('.overall-alert').removeClass('slideInDown').addClass('fadeOutUp');}, 3000);
+}
