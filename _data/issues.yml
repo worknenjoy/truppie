@@ -1,3 +1,17 @@
+- name: Na página de adicionar truppie, os campos que aceitam tags submetem o formulário
+  date: 02 de Novembro de 2017
+  url: https://github.com/alexanmtz/truppie/issues/28
+  description: "Usamos o taginput (ótimo plugin para jQuery) para inserir tags de itens (como tags, o que inclui num evento etc), e ele funcionava bem até então. Agora, no momento em que os dados de um tour (que chamamos de truppie) é preenchido, as tags quando inseridas e pressionado Enter, o formulário é enviado. O plugin deveria evitar a submissão do formulário. Isto de fato acontece em outros lugares onde este campo está presente, como na adminstração de um tour (tours -> edit)"
+  requirements: Rails, jQuery, Bootstrap, Inglês Básico
+  level: Médio / Difícil
+  technology: Rails, jQuery, Bootstrap
+  image: "https://user-images.githubusercontent.com/88840/31743532-bb3132ba-b45b-11e7-806b-ea12027ab23b.png"
+  imagealt: ""
+  validation: Pull Request aprovado
+  price: R$ 60
+  category: Bug
+  status: Prioritária
+
 - name: Estimular o contato direto com os guias e valorizar o perfil
   date: 28 de Outubro de 2017
   url: https://github.com/alexanmtz/truppie/issues/31
