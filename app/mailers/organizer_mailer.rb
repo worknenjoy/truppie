@@ -84,7 +84,7 @@ class OrganizerMailer < ApplicationMailer
     @organizer.followers.each do |follower|
       @follower = follower
       mailer = "#{follower.email}"
-      subject = "Olá #{follower.name}, #{@organizer.name} adicionou o tour #{@tour.title}"
+      subject = "Olá #{follower.name}, #{@organizer.name} adicionou a truppie #{@tour.title}"
       mail(
         from: 'ola@truppie.com',
         subject: subject,
