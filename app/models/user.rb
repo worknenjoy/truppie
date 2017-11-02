@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   has_many :tours
   has_many :reviews
   has_many :orders
-  
+  has_many :follows, dependent: :destroy
+  has_many :following, through: :follows, source: :organizer
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
@@ -26,5 +28,17 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def follow(organizer)
+    following << organizer
+  end
+
+  def unfollow(organizer)
+    following.delete(organizer)
+  end
+
+  def following?(organizer)
+    following.include?(organizer)
   end
 end

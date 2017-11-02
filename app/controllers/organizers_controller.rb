@@ -14,7 +14,11 @@ class OrganizersController < ApplicationController
   # GET /organizers/1
   # GET /organizers/1.json
   def show
-
+    if !!session[:follow]
+      current_user.follow(@organizer)
+      OrganizerMailer.new_follower(@organizer, current_user).deliver_now
+      session[:follow] = nil
+    end
   end
 
   def invite

@@ -2,6 +2,10 @@ class Organizer < ActiveRecord::Base
   has_many :tours  
   has_and_belongs_to_many :members
   has_and_belongs_to_many :wheres
+
+  has_many :follows, dependent: :destroy
+  has_many :followers, through: :follows, source: :user
+
   belongs_to :marketplace
   
   belongs_to :user

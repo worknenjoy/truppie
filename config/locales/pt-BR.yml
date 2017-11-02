@@ -384,6 +384,7 @@ pt-BR:
   mail-invite-guide-call-message: Clicando no botão abaixo você criará uma conta associada ao seu perfil
   mail-invite-guide-header-message: Você foi convidado para entrar na Truppie
   mail-organizer-see-profile: Ver perfil
+  mail-organizer-see-tour: Ver Tour
   mail-organizer-share-description: Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!
   mail-organizer-share-intro: Compartilhe seu perfil com sua rede de contatos
   mail-organizer-share-more-description: Quem sabe eles também se interessem pela sua aventura!
@@ -396,6 +397,7 @@ pt-BR:
   mail-welcome-account-created-message-update: Seus dados foram atualizados na truppie
   mail-welcome-account-title: sua conta como guia foi criada
   mail-welcome-account-title-update: Sua conta foi atualizada!
+  mail-organizer-notify-followers-title: Novo Tour
   manage-truppie-action: gerenciar
   manifesto-link-label: Em que acreditamos?
   marketplace-city-placeholder: 'ex: São Paulo'
@@ -574,6 +576,8 @@ pt-BR:
   organizer-profile-intro: Meu perfil de guia
   organizer-profile-verify-action: verificar
   organizer-profile-welcome-account-edit-title: Aqui você pode atualizar os dados do seu perfil que aparece no site com seus passeios, e para que outros aventureiros possam te encontrar com facilidade.
+  organizer-profile-share-intro: Introdução
+  organizer-profile-share-desc: Descrição
   organizer-tours-label: Truppies
   organizer-twitter-label: endereço do twitter do seu negócio
   organizer-update-error: erro ao atualizar sua conta
@@ -581,6 +585,15 @@ pt-BR:
   organizer-website-label: site do seu negócio
   organizer-why-create-account-text: A Truppie quer te ajudar a criar a ferramenta ideal à sua necessidade!
   organizer_tours_label: truppies
+  organizer_views_show_follow: Seguir
+  organizer_views_show_following: Deixar de Seguir
+  organizer_views_show_send_message: Enviar Mensagem
+  contact_organizer_message_modal_title: Mensagem
+  contact_organizer_message_label_name: Nome
+  contact_organizer_message_placeholder_name: Seu nome
+  contact_organizer_message_label_body: Mensagem
+  contact_organizer_message_placeholder_body: Sua mensagem
+  contact_organizer_message_modal_submit: Enviar
   packages-description-label: Descrição do pacote
   panel-label: Truppies
   payment_type_partial_div_one: Modo de pagamento
