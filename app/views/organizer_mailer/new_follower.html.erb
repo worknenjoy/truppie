@@ -5,7 +5,7 @@
       <tr>
         <td>
           <h3><%= t('mail-organizer-new-follower-title') %></h3>
-          <p style="text-align: center;"><strong><%= t('mail-organizer-new-follower-who', @user.name, @user.email) %></strong></p>
+          <p style="text-align: center;"><strong><%= t('mail-organizer-new-follower-who', username: @user.name, useremail: @user.email) %></strong></p>
           <p><%= t('mail-hello-message', organizer: @organizer.name) %></p>
           <p><%= t('mail-organizer-new-follower-body') %></p>
           </p>
