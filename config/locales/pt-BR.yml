@@ -396,10 +396,10 @@ pt-BR:
   mail-welcome-account-created-message: Agora você tem uma conta de guia para criar seus passeios
   mail-welcome-account-created-message-update: Seus dados foram atualizados na truppie
   mail-welcome-account-title: Sua conta como guia foi criada
-  mail-organizer-follower-title: Você tem um novo seguidor! 
+  mail-organizer-new-follower-title: Você tem um novo seguidor! 
   mail-welcome-account-title-update: Sua conta foi atualizada!
   mail-organizer-notify-followers-title: Uma nova truppie criada para um guia que você está seguindo!
-  mail-organizer-new-follower-title: O usuário %{username} (%{useremail}) está te seguindo \o/
+  mail-organizer-new-follower-who: O usuário %{username} (%{useremail}) começou a te seguir \o/
   mail-organizer-new-follower-body: Agora ele ficará sabendo quando você criar uma nova atividade e tiver qualquer nova atualização!
   manage-truppie-action: gerenciar
   manifesto-link-label: Em que acreditamos?
