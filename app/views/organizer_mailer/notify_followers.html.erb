@@ -4,13 +4,14 @@
     <table border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td>
-          <h1><%= t('mail-organizer-notify-followers-title') %></h1>
           <p><%= t('mail-hello-message', organizer: @follower.name) %></p>
           <hr>
-          <h2><%= t('mail-organizer-share-title') %></h2>
-          <p><%= t('mail-organizer-share-intro') %></p>
-          <p><%= t('mail-organizer-share-description') %></p>
-          <p><%= t('mail-organizer-share-more-description') %></p>
+          <h3><%= t('mail-organizer-notify-followers-title') %></h3>
+          <hr />
+          <p><%= @tour.title %></p>
+          <div><%= raw @tour.description</div>
+          <p><%= t('starts-in') %> <%= l(@tour.start, format: '%d de %B / %Y') %></p>
+          <hr />
           <table border="0" cellpadding="0" cellspacing="0" class="btn btn-secondary">
             <tbody>
             <tr>
