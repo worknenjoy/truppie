@@ -399,7 +399,8 @@ pt-BR:
   mail-welcome-account-title: Sua conta como guia foi criada
   mail-organizer-new-follower-title: Você tem um novo seguidor! 
   mail-welcome-account-title-update: Sua conta foi atualizada!
-  mail-organizer-notify-followers-title: Uma nova truppie criada para um guia que você está seguindo!
+  mail-organizer-notify-followers-title: Uma nova truppie foi criada para um guia que você está seguindo!
+  starts-in: Começa
   mail-organizer-new-follower-who: O usuário %{username} (%{useremail}) começou a te seguir \o/
   mail-organizer-new-follower-body: Agora ele ficará sabendo quando você criar uma nova atividade e tiver qualquer nova atualização!
   manage-truppie-action: gerenciar
