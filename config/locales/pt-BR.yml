@@ -384,7 +384,7 @@ pt-BR:
   mail-invite-guide-call-message: Clicando no botão abaixo você criará uma conta associada ao seu perfil
   mail-invite-guide-header-message: Você foi convidado para entrar na Truppie
   mail-organizer-see-profile: Ver perfil
-  mail-organizer-see-tour: Ver Tour
+  mail-organizer-see-tour: Saber mais
   mail-organizer-share-description: Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!
   mail-organizer-share-intro: Compartilhe seu perfil com sua rede de contatos
   mail-organizer-share-more-description: Quem sabe eles também se interessem pela sua aventura!
@@ -397,7 +397,9 @@ pt-BR:
   mail-welcome-account-created-message-update: Seus dados foram atualizados na truppie
   mail-welcome-account-title: sua conta como guia foi criada
   mail-welcome-account-title-update: Sua conta foi atualizada!
-  mail-organizer-notify-followers-title: Novo Tour
+  mail-organizer-notify-followers-title: Uma nova truppie criada para um guia que você está seguindo!
+  mail-organizer-new-follower-title: Você está seguindo um novo guia
+  mail-organizer-new-follower-body: Agora você ficará sabendo quando ele criar uma nova atividade
   manage-truppie-action: gerenciar
   manifesto-link-label: Em que acreditamos?
   marketplace-city-placeholder: 'ex: São Paulo'
