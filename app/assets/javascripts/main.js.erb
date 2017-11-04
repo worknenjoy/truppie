@@ -269,7 +269,7 @@ $(function() {
                 valueKey: 'name',
                 source: tags.ttAdapter()
             },
-            delimiter: ';'
+            delimiter: ';',
         });
   }
 
@@ -296,6 +296,7 @@ $(function() {
               valueKey: 'name',
               source: languages.ttAdapter()
           },
+          cancelConfirmKeysOnEmpty: true,
           delimiter: ';'
       });
   }
