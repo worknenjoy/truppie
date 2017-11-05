@@ -7,18 +7,14 @@ class WizardStepsPresenterTest < ActiveSupport::TestCase
   end
 
   test "should yield the presenter class itself" do
-    @described_class.steps(4, @organizer){ |step| assert_equal @described_class, step }
+    @described_class.steps(@organizer){ |step| assert_instance_of @described_class, step }
   end
 
   test "should result formatted 'step' elements with 'Perfil' step name" do
-    result = @described_class.render('Perfil', 'www.google.com')
+    @described_class.steps(@organizer){ |step_instance|
+      result = step_instance.render(1, 'Perfil', 'www.google.com')
 
-    assert result.include?('Perfil')
-  end
-
-  test "should result formatted 'step' elements with 'done' class" do
-    result = @described_class.render('Perfil', 'www.google.com', true)
-
-    assert result.include?('done')
+      assert result.include?('Perfil')
+    }
   end
 end
