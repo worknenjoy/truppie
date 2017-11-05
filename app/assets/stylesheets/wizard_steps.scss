@@ -34,7 +34,6 @@ $disa: hsl(226,15%,53%);
   margin-top: 8px
 }
 .step:first-child {
-  line-height: 40px;
   margin-left: 20px;
 }
 .step:nth-child(n+2) {
@@ -43,7 +42,6 @@ $disa: hsl(226,15%,53%);
 }
 .step:nth-child(n+2):before {
   width: 75px;
-  height: 3px;
   display: block;
   background-color: $white;
   transform: translate(-95px, 21px);
