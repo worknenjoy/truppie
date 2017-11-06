@@ -21,7 +21,7 @@
     confirmKeys: [13],
     delimiter: ',',
     delimiterRegex: null,
-    cancelConfirmKeysOnEmpty: true,
+    cancelConfirmKeysOnEmpty: false,
     onTagExists: function(item, $tag) {
       $tag.hide().fadeIn();
     },
