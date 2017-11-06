@@ -397,7 +397,7 @@ pt-BR:
   mail-welcome-account-created-message: Agora você tem uma conta de guia para criar seus passeios
   mail-welcome-account-created-message-update: Seus dados foram atualizados na truppie
   mail-welcome-account-title: Sua conta como guia foi criada
-  mail-organizer-new-follower-title: Você tem um novo seguidor! 
+  mail-organizer-new-follower-title: Você tem um novo seguidor!
   mail-welcome-account-title-update: Sua conta foi atualizada!
   mail-organizer-notify-followers-title: Uma nova truppie foi criada para um guia que você está seguindo!
   starts-in: Começa
@@ -599,6 +599,13 @@ pt-BR:
   contact_organizer_message_label_body: Mensagem
   contact_organizer_message_placeholder_body: Sua mensagem
   contact_organizer_message_modal_submit: Enviar
+  wizard_steps_intro: Processo de cadastro
+  wizard_steps_profile: Perfil
+  wizard_steps_personal_account: Conta Pessoal
+  wizard_steps_bank_details: Dados Bancários
+  wizard_steps_create_truppie: Criar Truppie
+  wizard_steps_trigger_hide_text: Verificar mais tarde
+  wizard_steps_trigger_show_text: Verificar agora
   packages-description-label: Descrição do pacote
   panel-label: Truppies
   payment_type_partial_div_one: Modo de pagamento

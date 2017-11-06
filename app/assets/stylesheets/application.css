@@ -59,6 +59,7 @@
  *= require my-card
  *= require where-template
  *= require mountain-form.scss.erb
+ *= require wizard_steps
  */
 
 .full-width {
