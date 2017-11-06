@@ -13,6 +13,10 @@ $disa: hsl(226,15%,53%);
   font-family: 'Open Sans', sans-serif;
 }
 
+#steps a:hover{
+  text-decoration: none;
+}
+
 .relative-top-steps {
   position: absolute;
   top: 10px;
@@ -24,27 +28,29 @@ $disa: hsl(226,15%,53%);
   height: 40px;
   background-color: $white;
   display: inline-block;
-  border: 4px solid;
+  border: 1px solid;
   border-color: transparent;
   border-radius: 50%;
   color: $disa;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
   line-height: 35px;
   margin-top: 8px
 }
 .step:first-child {
+  line-height: 40px;
   margin-left: 20px;
 }
 .step:nth-child(n+2) {
   margin: 0 0 0 100px;
-  transform: translate(0, -4px);
+  transform: translate(0, -7px);
 }
 .step:nth-child(n+2):before {
   width: 75px;
   display: block;
+  height: 3px;
   background-color: $white;
-  transform: translate(-95px, 21px);
+  transform: translate(-95px, 16px);
   content: '';
 }
 .step:after {
