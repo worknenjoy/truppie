@@ -103,7 +103,7 @@ class OrganizersController < ApplicationController
     respond_to do |format|
       if @organizer.save
         format.html {
-          OrganizerMailer.notify(@organizer, "activate").deliver_now
+          # OrganizerMailer.notify(@organizer, "activate").deliver_now
           session.delete(:organizer_welcome_params)
           session.delete(:organizer_welcome)
           redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
