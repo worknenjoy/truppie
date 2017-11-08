@@ -218,7 +218,7 @@
       </div>
     <% end %>
 
-		<% if @tour.packages.any? and !@tour.value %>
+	<% if @tour.packages.any? and !@tour.value %>
 		<div class="row">
 			<div class="col-xs-12">
 				<h3 class="spaced-default">
@@ -226,58 +226,57 @@
 				</h3>
 			</div>
 		</div>
+		<% @tour.packages.each do |p| %>
 		<div class="row text-xs-center">
-			<% @tour.packages.each do |p| %>
+			<!-- item -->    
+			<div class="col-md-6">
+				<div class="card panel-pricing">
+				    <div class="card-header card-info" style="color: white;">
+					<h3><%= p.name %></h3>
+				    </div>
+				    <div>
+				    <div class="panel-body text-xs-center">
+					<p><strong><%= raw p.price %></strong></p>
+				    </div>
+				    <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
+				      <% if !p.description.nil? and !p.description.empty? %>
+					  <p><%= raw p.description %></p>
+				      <% end %>
+				    </div>
+				    <% if p.included.any? %>
+				    <ul class="list-group text-xs-center" style="overflow-y: scroll; height: 150px">
+					<% p.included.each do |i| %>
+					<li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
+					<% end %>
+				    </ul>
+				    <% end %>
+				    </div>
+				    <div class="card-footer">
+					<%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
+				    </div>
+				</div>
 
-	<!-- item -->    
-	<div class="col-md-6">
-                <div class="card panel-pricing">
-                    <div class="card-header card-info" style="color: white;">
-                        <h3><%= p.name %></h3>
-                    </div>
-                    <div>
-                    <div class="panel-body text-xs-center">
-                        <p><strong><%= raw p.price %></strong></p>
-                    </div>
-                    <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
-                      <% if !p.description.nil? and !p.description.empty? %>
-                          <p><%= raw p.description %></p>
-                      <% end %>
-                    </div>
-                    <% if p.included.any? %>
-                    <ul class="list-group text-xs-center" style="overflow-y: scroll; height: 150px">
-                    	<% p.included.each do |i| %>
-                        <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
-                        <% end %>
-                    </ul>
-                    <% end %>
-                    </div>
-                    <div class="card-footer">
-                    	<%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
-                    </div>
-                </div>
+				<% if p.included.any? %>
+				  <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
+				    <% p.included.each do |i| %>
+				      <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
+				    <% end %>
+				  </ul>
+				<% end %>
+			      </div>
 
-                <% if p.included.any? %>
-                  <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
-                    <% p.included.each do |i| %>
-                      <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
-                    <% end %>
-                  </ul>
-                <% end %>
-              </div>
+			      <div class="card-footer">
+				<%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
+			      </div>
+			    </div>
+			  </div>
+			  <!-- /item -->
+	</div>
+	<% end %>
+	<% end %>
 
-              <div class="card-footer">
-                <%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
-              </div>
-            </div>
-          </div>
-          <!-- /item -->
-        <% end %>
-      </div>
-		<% end %>
-
-		<div class="row">
-		  <% if !@tour.take.empty? %> 
+	<div class="row">
+  	<% if !@tour.take.empty? %> 
         <div class="col-xs-12 col-md-6">
           <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_five') %></strong></h4>
           <ul class="list-group spaced-down">
