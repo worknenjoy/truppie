@@ -234,8 +234,8 @@
 				    <div class="card-header card-info" style="color: white;">
 					<h3><%= p.name %></h3>
 				    </div>
-				    <div>
-				    <div class="panel-body text-xs-center">
+			    	<div>
+				<div class="panel-body text-xs-center">
 					<p><strong><%= raw p.price %></strong></p>
 				    </div>
 				    <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
@@ -255,23 +255,8 @@
 					<%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
 				    </div>
 				</div>
-
-				<% if p.included.any? %>
-				  <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
-				    <% p.included.each do |i| %>
-				      <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
-				    <% end %>
-				  </ul>
-				<% end %>
-			      </div>
-
-			      <div class="card-footer">
-				<%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
-			      </div>
-			    </div>
-			  </div>
+		  	</div>
 			  <!-- /item -->
-	</div>
 	<% end %>
 	<% end %>
 
