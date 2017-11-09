@@ -146,6 +146,7 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    google_timezone (0.0.5)
     haml (5.0.3)
       temple (>= 0.8.0)
       tilt
@@ -370,6 +371,7 @@ DEPENDENCIES
   dotenv-rails
   fakeredis
   fakeweb
+  google_timezone
   i18n-tasks (~> 0.9.18)
   intercom-rails
   jbuilder (~> 2.0)
@@ -404,4 +406,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.16.0
+   1.15.4
