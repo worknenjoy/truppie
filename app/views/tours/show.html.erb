@@ -33,6 +33,8 @@
         <% if @tour.picture.present? %>
             <%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
         <% else %>
+		
+	<% if is_organizer_admin %>
             <div class="placeholder-tour-image">
               <div class="placeholder-tour-container">
                 <%= form_for @tour, multipart: true, role: "form" do |f| %>
@@ -58,6 +60,7 @@
             <% end %>
           </div>
         </div>
+	<% end %>
       <% end %>
 		<% else %>
     <div class="placeholder-truppie-image"></div>
