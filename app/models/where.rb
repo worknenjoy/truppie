@@ -18,6 +18,10 @@ class Where < ActiveRecord::Base
     "#{id} #{name}".parameterize
   end
 
+  def defined_time_zone
+    self.time_zone || Time.current.zone
+  end
+
   private
 
   def set_time_zone
