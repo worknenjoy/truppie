@@ -11,11 +11,4 @@ class ActiveSupport::TestCase
   fixtures :all
   
   # Add more helper methods to be used by all tests here...
-  def randomize_timezone!
-    offsets = ActiveSupport::TimeZone.all.group_by(&:formatted_offset)
-    zones = offsets[offsets.keys.sample]
-    Time.zone = zones.sample
-
-    puts "Current random time zone: #{Time.zone}. Time zone name: #{Time.zone.name.inspect}"
-  end
 end
