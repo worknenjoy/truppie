@@ -28,6 +28,8 @@ class Tour < ActiveRecord::Base
 
   default_scope { where("removed IS NOT true") }
 
+  delegate :defined_time_zone, to: :where
+
   validates_each :start, :end do |model, attr, value|
     model.errors.add(attr, I18n.t('errors.messages.invalid')) if value.nil?
   end
@@ -85,11 +87,11 @@ class Tour < ActiveRecord::Base
   end
 
   def formatted_start
-    start.in_time_zone(self.where_time_zone)
+    start.in_time_zone(defined_time_zone)
   end
 
   def formatted_end
-    self.end.in_time_zone(self.where_time_zone)
+    self.end.in_time_zone(defined_time_zone)
   end
 
   def starttime
