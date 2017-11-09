@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171029123111) do
+ActiveRecord::Schema.define(version: 20171108235125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -706,7 +706,10 @@ ActiveRecord::Schema.define(version: 20171029123111) do
     t.string   "address"
     t.string   "google_id"
     t.string   "url"
+    t.string   "time_zone"
   end
+
+  add_index "wheres", ["time_zone"], name: "index_wheres_on_time_zone", using: :btree
 
   add_foreign_key "attractions", "languages"
   add_foreign_key "attractions", "quotes"

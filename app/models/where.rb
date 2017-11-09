@@ -11,9 +11,18 @@ class Where < ActiveRecord::Base
 
   validates_presence_of :name, allow_blank: false
 
+  before_save :set_time_zone
+
+
   def to_param
     "#{id} #{name}".parameterize
   end
 
-  
+  private
+
+  def set_time_zone
+    if self.lat && self.long
+      self.time_zone = GoogleTimezone.fetch(self.lat, self.long).time_zone_id
+    end
+  end
 end

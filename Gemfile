@@ -48,6 +48,7 @@ gem 'activerecord-session_store'
 gem 'mime-types', '2.6.2'
 gem 'time_diff'
 gem 'timecop'
+gem 'google_timezone'
 
 group :production do
   gem 'rails_12factor'
