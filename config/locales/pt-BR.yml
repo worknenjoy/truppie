@@ -404,7 +404,7 @@ pt-BR:
   starts-in: Começa
   mail-organizer-new-follower-who: O usuário %{username} (%{useremail}) começou a te seguir \o/
   mail-organizer-new-follower-body: Agora ele ficará sabendo quando você criar uma nova atividade e tiver qualquer nova atualização!
-  mail-organizer-interest-who: O usuário %{username} (%{useremail}) mostrou interesse no tour %{tourname}  \o/
+  mail-organizer-interest-who: O usuário %{username} (%{useremail}) mostrou interesse na truppie %{tourname}  \o/
   mail-organizer-interest-body: Ele gostaria de realizar esta atividade que já passou. Você pode entrar em contato com ele para informá-lo dos próximos e saber se ele tem interesse em outra atividade que você oferece similar.
   manage-truppie-action: gerenciar
   manifesto-link-label: Em que acreditamos?
