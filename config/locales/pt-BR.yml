@@ -398,11 +398,14 @@ pt-BR:
   mail-welcome-account-created-message-update: Seus dados foram atualizados na truppie
   mail-welcome-account-title: Sua conta como guia foi criada
   mail-organizer-new-follower-title: Você tem um novo seguidor!
+  mail-organizer-interest-title: Alguem mostrou interesse em um Tour passado!
   mail-welcome-account-title-update: Sua conta foi atualizada!
   mail-organizer-notify-followers-title: Uma nova truppie foi criada para um guia que você está seguindo!
   starts-in: Começa
   mail-organizer-new-follower-who: O usuário %{username} (%{useremail}) começou a te seguir \o/
   mail-organizer-new-follower-body: Agora ele ficará sabendo quando você criar uma nova atividade e tiver qualquer nova atualização!
+  mail-organizer-interest-who: O usuário %{username} (%{useremail}) mostrou interesse no tour %{tourname}  \o/
+  mail-organizer-interest-body: Voce pode entrar em contato com ele.
   manage-truppie-action: gerenciar
   manifesto-link-label: Em que acreditamos?
   marketplace-city-placeholder: 'ex: São Paulo'
@@ -684,6 +687,8 @@ pt-BR:
   tours_controller_unconfirm_error: Houve um problema para confirmar sua desistência neste evento
   tours_controller_unconfirm_success: Você não está mais confirmardo neste evento
   tours_controller_update_notice: Truppie atualizada com sucesso
+  tours_controller_interest_error: Não foi possível registrar seu interesse. Tente novamente
+  tours_controller_interest_succes: Seu interesse foi encaminhado para o Organizador
   tours_send_picture: Enviar foto
   tours_view_confirm_h4_five: 'Total:'
   tours_view_confirm_h4_four: Dados para pagamento
@@ -815,6 +820,7 @@ pt-BR:
   tours_view_show_strong_ten: 'Atrações:'
   tours_view_show_strong_three: 'Informações:'
   tours_view_show_strong_two: 'Guia:'
+  tours_view_show_link_interest: 'Mostrar Interesse'
   tours_view_value_suggested_by_user: Valor sugerido pelo usuário no momento da reserva
   transfer-label: Transferências
   transfer-truppie-action: Transferir
@@ -917,6 +923,7 @@ pt-BR:
   welcome_view_index_div_three: " Saber mais"
   welcome_view_index_div_two: Se você é guia...
   welcome_view_index_h3_one: Próximas truppies
+  welcome_view_index_h3_past_tours: Truppies Passadas
   welcome_view_index_h4_one: Vamos ser parceiros?
   welcome_view_index_h4_two: Siga-nos nas redes sociais!
   welcome_view_index_p_one: A gente divulga seu evento, facilita a reserva para seus clientes, e você pode focar em oferecer um passeio inesquecível!

@@ -118,4 +118,27 @@ class OrganizerMailer < ApplicationMailer
     )
   end
 
+  def interest(tour, user)
+    @tour = tour
+    @organizer = @tour.organizer
+    @user = user
+    @copy_mailers = "ola@truppie.com,#{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
+    mailers = "#{@organizer.email}"
+    subject = "Olá #{@organizer.name}, o usuário #{@user.name} mostrou interesse no tour #{@tour.title}"
+
+    attachments['logo-transparent.png'] = File.read(Rails.root.join('app/assets/images/logo-transparent.png'))
+    attachments['organizer-welcome.png'] = File.read(Rails.root.join('app/assets/images/organizer-welcome.jpg'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
+
+    mail(
+        from: 'ola@truppie.com',
+        subject: subject,
+        to: mailers,
+        bcc: @copy_mailers,
+        template_name: 'interest',
+        template_path: 'organizer_mailer'
+    )
+  end
+
 end

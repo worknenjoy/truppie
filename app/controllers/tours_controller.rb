@@ -46,6 +46,19 @@ class ToursController < ApplicationController
 
   end
 
+  def show_interest
+    @tour = Tour.find(params[:id])
+    unless !!@tour
+      flash[:error] = t('tours_controller_interest_error')
+    else
+      if OrganizerMailer.interest(@tour, current_user).deliver_now
+        flash[:success] = t('tours_controller_interest_succes')
+      else
+        flash[:error] = t('tours_controller_interest_error') 
+      end
+    end
+  end
+
   def confirm_presence
     @payment_type = params[:payment_type]
     if @payment_type == 'external'

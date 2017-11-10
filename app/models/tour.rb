@@ -198,4 +198,8 @@ class Tour < ActiveRecord::Base
     end
   end
 
+  def past?
+    self.start < DateTime.now
+  end
+
 end
