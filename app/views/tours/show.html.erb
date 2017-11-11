@@ -164,8 +164,8 @@
 
               <!--<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li> -->
               <li><i class="fa fa-calendar"></i> <%= @tour.how_long %> </li>
-              <li><i class="fa fa-clock-o"></i> <%= t('tours_view_show_li_four') %> <%= l(@tour.start, format: '%d de %B / %Y') %> às <%= l(@tour.start, format: '%Hh%M') %> </li>
-              <li><i class="fa fa-history"></i> <%= t('tours_view_show_li_finish') %> <%= l(@tour.end, format: '%d de %B / %Y') %> às <%= l(@tour.end, format: '%Hh%M') %> </li>
+              <li><i class="fa fa-clock-o"></i> <%= t('tours_view_show_li_four') %> <%= l(@tour.formatted_start, format: '%d de %B / %Y') %> às <%= l(@tour.formatted_start, format: '%Hh%M') %> </li>
+              <li><i class="fa fa-history"></i> <%= t('tours_view_show_li_finish') %> <%= l(@tour.formatted_end, format: '%d de %B / %Y') %> às <%= l(@tour.formatted_end, format: '%Hh%M') %> </li>
 
               <% if @tour.try(:difficulty) %>
                 <li><i class="fa fa-heartbeat"></i> <%= t('tours_view_show_li_five') %> <strong><%= @tour.level %></strong> </li>
