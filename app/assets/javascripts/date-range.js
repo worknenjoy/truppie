@@ -747,5 +747,13 @@ if($('.start-field').get(0)) {
     $('#start_time, #end_time, .places-input').bind('change', function(e){
         updateDates(e);
     });
+
+    $('.places-input').bind('focus', function(e){
+        updateDates(e);
+    });
+
+    $('.places-input').bind('blur', function(e){
+        updateDates(e);
+    });
 }
 
