@@ -276,13 +276,16 @@ class OrganizersController < ApplicationController
           })
           if @tour.save
             flash[:success] = I18n.t('import-event-notice-success')
+            redirect_to "/organizers/#{@organizer.to_param}/edit_guided_tour/#{@tour.to_param}"
           else
             puts "not saved"
             puts @tour.errors.inspect
             flash[:error] = I18n.t('import-event-notice-error')
+            redirect_to "/organizers/#{@organizer.to_param}/guided_tour"
           end
         rescue => e
           flash[:error] = I18n.t('import-event-notice-error')
+          redirect_to "/organizers/#{@organizer.to_param}/guided_tour"
         end
       end
     else
@@ -290,7 +293,6 @@ class OrganizersController < ApplicationController
       redirect_to "/organizers/#{@organizer.to_param}/guided_tour", notice: I18n.t('import-event-notice')
       return
     end
-    redirect_to "/organizers/#{@organizer.to_param}/edit_guided_tour/#{@tour.to_param}"
   end
 
   def external_events
