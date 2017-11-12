@@ -12,11 +12,8 @@
 
 'use strict';
 
-function dateToUTC(date) {
-    return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
-};
-
 function updateDates(e) {
+    var timezone = $('#tour_wheres_attributes_0_time_zone').val();
     var dateFromText = $('#dateFrom').find('.r_date').text();
     var dateToText = $('#dateTo').find('.r_date').text();
     var daysNumPicker = $('#daysNum').find('.r_days em').text();
@@ -25,9 +22,9 @@ function updateDates(e) {
     var endDateRow = $('.sel2').attr('data-date');
 
     if(startDateRow) {
-        var startDate = moment(new Date(startDateRow));
+        var startDate = moment.tz(new Date(startDateRow), timezone);
     } else {
-        var startDate = moment.utc(new Date($('.start-field').val()));
+        var startDate = moment.tz(new Date($('.start-field').val()), timezone);
     }
 
     var startTime = $('#start_time').val();
@@ -41,9 +38,9 @@ function updateDates(e) {
     }
 
     if(endDateRow) {
-        var endDate = moment(new Date(endDateRow));
+        var endDate = moment.tz(new Date(endDateRow), timezone);
     } else {
-        var endDate = moment.utc(new Date($('.end-field').val()));
+        var endDate = moment.tz(new Date($('.end-field').val()), timezone);
     }
 
     if(dateToText == 'mesmo dia') {
@@ -719,14 +716,15 @@ if($('#dateField').get(0)) {
 
 
 if($('.start-field').get(0)) {
-    var currentStartDate = new Date($('.start-field').val());
-    var currentEndDate = new Date($('.end-field').val());
+    var timezone = $('#tour_wheres_attributes_0_time_zone').val();
+    var currentStartDate = moment.utc(new Date($('.start-field').val()), timezone);
+    var currentEndDate = moment.utc(new Date($('.end-field').val()), timezone);
 
     var startDateOut = $('.start-field').attr('data-date-start');
 
     var endDateOut = $('.end-field').attr('data-date-end');
 
-    var startDateRow = currentStartDate.getFullYear() + '-' + currentStartDate.getDate() + '-' + currentStartDate.getMonth();
+    var startDateRow = currentStartDate.year() + '-' + currentStartDate.date() + '-' + currentStartDate.month();
 
     var startDateElement = $( 'td[data-date=' + startDateRow + ']');
     var calElement = $('#cal');
@@ -746,7 +744,7 @@ if($('.start-field').get(0)) {
         $('#daysNumPicker').find('.r_days em').text(0);
     }
     
-    $('#start_time, #end_time').bind('change', function(e){
+    $('#start_time, #end_time, .places-input').bind('change', function(e){
         updateDates(e);
     });
 }

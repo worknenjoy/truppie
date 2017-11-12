@@ -19,6 +19,7 @@
 //= require jsrender
 //= require overlay
 //= require moment-with-locales
+//= require moment-timezone-with-data
 //= require timepicker
 //= require lang-selector
 //= require wow
