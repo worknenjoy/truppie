@@ -87,11 +87,13 @@ class Tour < ActiveRecord::Base
   end
 
   def formatted_start
-    start.in_time_zone(defined_time_zone)
+    #self.start.in_time_zone(defined_time_zone)
+    self.start
   end
 
   def formatted_end
-    self.end.in_time_zone(defined_time_zone)
+    #self.end.in_time_zone(defined_time_zone)
+    self.end
   end
 
   def starttime
