@@ -1,0 +1,26 @@
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"><%= t('contact_organizer_message_modal_title') %></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag contacts_send_message_path, :method => 'post', remote: true do %>
+          <%= hidden_field_tag :organizer_id, @organizer.id %>
+          <fieldset class="form-group">
+            <label for="exampleInputEmail1"><%= t('contact_organizer_message_label_name') %></label>
+            <%= text_field_tag :name, current_user.try(:name), placeholder: t('contact_organizer_message_placeholder_name'), class: "form-control" %>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="exampleTextarea"><%= t('contact_organizer_message_label_body') %></label>
+            <%= text_area_tag(:body, nil, class: "form-control", rows: "5", placeholder: t('contact_organizer_message_placeholder_body')) %>
+          </fieldset>
+          <%= submit_tag t('contact_organizer_message_modal_submit'), class: 'btn btn-success btn-lg pull-xs-right' %>
+        <% end %>
+      </div>
+        <br>
+        <br>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<% WizardStepsPresenter.steps(organizer) do |step| %>
+<div class="card">
+  <div id="steps-container" class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <p class="text-sm-center">
+        <small><%= t('wizard_steps_intro') %></small>
+      </p>
+    </div>
+    <div id="steps" class="col-sm-6 col-sm-offset-3">
+      <%= step.render(1, t('wizard_steps_profile'), profile_edit_organizer_path(organizer)) %>
+      <%= step.render(2, t('wizard_steps_personal_account'), account_edit_organizer_path(organizer)) %>
+      <%= step.render(3, t('wizard_steps_bank_details'), bank_account_edit_organizer_path(organizer)) %>
+      <%= step.render(4, t('wizard_steps_create_truppie'), guided_tour_organizer_path(organizer)) %>
+    </div>
+    <p class="relative-top-steps">
+      <button id="wizard-steps-toggle" class="btn btn-link btn-sm" type="button" data-target="steps"
+              data-hide-text="<%= t('wizard_steps_trigger_hide_text') %>" data-show-text="<%= t('wizard_steps_trigger_show_text') %>">
+        <%= t('wizard_steps_trigger_hide_text') %>
+      </button>
+    </p>
+  </div>
+</div>  
+<% end %>

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   get 'contacts/index'
   post 'contacts/send_form'
+  post 'contacts/send_message'
 
   get 'welcome/organizer', to: 'welcome#organizer', as: 'organizer_welcome'
   get 'welcome/user', to: 'welcome#user', as: 'user_welcome'
@@ -87,6 +88,7 @@ Rails.application.routes.draw do
       post 'confirm_presence'
       get 'confirm_presence_alt'
       post 'unconfirm_presence'
+      get 'show_interest', to: 'tours#show_interest'
     end
   end
 
@@ -103,10 +105,16 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {
       :registrations => "users/registrations",
-      :omniauth_callbacks => "users/omniauth_callbacks"
+      :omniauth_callbacks => "users/omniauth_callbacks",
+      :sessions => "users/sessions"
   }
 
-  resources :users
+  resources :users do
+    member do
+      get 'follow', to: 'users#follow'
+      get 'unfollow', to: 'users#unfollow'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

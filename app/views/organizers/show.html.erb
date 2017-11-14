@@ -1,10 +1,11 @@
 <%= render 'layouts/navbar' %>
-<%= render 'layouts/flash' %>
+<div id="flashMessages"><%= render 'layouts/flash' %></div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 spaced-top">
       <% if is_organizer_admin %>
          <%= render partial: 'layouts/organizer_dashboard_navbar', locals: { organizer: @organizer } %>
+         <%= render 'layouts/wizard_steps', organizer: @organizer %>
       <% else %>
         <h5 class="spaced-smallest"><i class="fa fa-map-o"></i> <strong>Guia:</strong></h5>
       <% end %>
@@ -22,14 +23,15 @@
   				    <p class="card-text spaced-down ellipsis">
                 <%= raw @organizer.description %>
               </p>
-  				    <% if !@organizer.website.nil? %>
+  				  <% if !@organizer.website.nil? %>
   						<%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
   							<i class="fa fa-external-link"></i> entrar no site
   						<% end %>
   					<% end %>
   					<% if !@organizer.email.nil? %>
-  					<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
-  					<% end %>
+  					 <a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> 
+  					<% end %> 
+            <br />
   					<div class="hovercard spaced-default">
   						<div class="bottom">
   							<% if !@organizer.instagram.nil? and !@organizer.instagram.empty? %>
@@ -55,6 +57,22 @@
   		</div>
   	</div>
     <div class="col-xs-12 col-md-8">
+      <% unless is_organizer_admin %>
+        <div class="card card-block text-xs-center">
+          <button type="button" class="close close-action" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="card-title"><%= t('organizer-profile-share-intro') %></h3>
+          <p class="card-text"><%= t('organizer-profile-share-desc') %></p>
+          <p class="text-xs-center">
+            <%= image_tag("icons/camping-icon.svg", :width => 128, :alt => "new truppie", :class => 'img-fluid center-block') %>
+          </p>
+          <span id="followButton">
+            <%= render partial: 'follow', locals: { organizer: @organizer, user: current_user } %>
+          </span>
+          <a class="btn btn-primary-outline btn-sm" href="" data-toggle="modal" data-target="#contactModal"><i class="fa fa-commenting"></i> <%= t('organizer_views_show_send_message') %></a>
+        </div>
+      <% end %>
       <% if is_organizer_admin %>
           <div class="card card-block text-xs-center">
             <button type="button" class="close close-action" aria-label="Close">
@@ -98,7 +116,7 @@
         <% else %>
         <%="#twPc-bg-#{t.id}" %> {
           background-color: #F15A29;
-        }         
+        }
         <% end %>
       </style>
       <div class="twPc-div spaced-down">
@@ -113,13 +131,13 @@
         <div>
           <div class="twPc-button">
                   <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
-            
+
                   <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
                     <i class="fa fa-ticket"></i> Saber mais
                   <% end %>
-                  <!-- Twitter Button -->   
+                  <!-- Twitter Button -->
           </div>
-      
+
           <div class="twPc-divStats" style="width: 80%">
             <ul class="twPc-Arrange">
               <li class="twPc-ArrangeSizeFit">
@@ -135,7 +153,7 @@
               <li class="twPc-ArrangeSizeFit">
                 <span class="twPc-StatLabel twPc-block">Onde?</span>
                 <span class="twPc-StatValue">
-                  <%= t.where.name %> 
+                  <%= t.where.name %>
                 </span>
               </li>
               <% end %>
@@ -143,7 +161,7 @@
                 <span class="twPc-StatLabel twPc-block">Que horas?</span>
                 <span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
               </li>
-              
+
             </ul>
           </div>
         </div>
@@ -153,3 +171,4 @@
     </div>
   </div>
 </div>
+<%= render partial: 'contact_modal' %>

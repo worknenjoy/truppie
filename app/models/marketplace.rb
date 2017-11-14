@@ -349,6 +349,18 @@ class Marketplace < ActiveRecord::Base
       return false
     end
   end
+
+  def bank_account_verified
+    begin
+      account_missing = self.account_missing
+      if !account_missing[:fields_needed].include?("external_account")
+        return true
+      end
+      return false
+    rescue
+      return false
+    end
+  end
   
   def transfers
     transfer_history = Stripe::Transfer.list(limit: 10, destination: self.account_id)

@@ -14,7 +14,11 @@ class OrganizersController < ApplicationController
   # GET /organizers/1
   # GET /organizers/1.json
   def show
-
+    if !!session[:follow]
+      current_user.follow(@organizer)
+      OrganizerMailer.new_follower(@organizer, current_user).deliver_now
+      session[:follow] = nil
+    end
   end
 
   def invite
@@ -99,7 +103,7 @@ class OrganizersController < ApplicationController
     respond_to do |format|
       if @organizer.save
         format.html {
-          OrganizerMailer.notify(@organizer, "activate").deliver_now
+          # OrganizerMailer.notify(@organizer, "activate").deliver_now
           session.delete(:organizer_welcome_params)
           session.delete(:organizer_welcome)
           redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
@@ -272,13 +276,16 @@ class OrganizersController < ApplicationController
           })
           if @tour.save
             flash[:success] = I18n.t('import-event-notice-success')
+            redirect_to "/organizers/#{@organizer.to_param}/edit_guided_tour/#{@tour.to_param}"
           else
             puts "not saved"
             puts @tour.errors.inspect
             flash[:error] = I18n.t('import-event-notice-error')
+            redirect_to "/organizers/#{@organizer.to_param}/guided_tour"
           end
         rescue => e
           flash[:error] = I18n.t('import-event-notice-error')
+          redirect_to "/organizers/#{@organizer.to_param}/guided_tour"
         end
       end
     else
@@ -286,7 +293,6 @@ class OrganizersController < ApplicationController
       redirect_to "/organizers/#{@organizer.to_param}/guided_tour", notice: I18n.t('import-event-notice')
       return
     end
-    redirect_to "/organizers/#{@organizer.to_param}/edit_guided_tour/#{@tour.to_param}"
   end
 
   def external_events

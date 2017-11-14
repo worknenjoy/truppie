@@ -12,11 +12,7 @@
 
 'use strict';
 
-function dateToUTC(date) {
-    return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
-};
-
-function updateDates(e) {
+function updateDates() {
     var dateFromText = $('#dateFrom').find('.r_date').text();
     var dateToText = $('#dateTo').find('.r_date').text();
     var daysNumPicker = $('#daysNum').find('.r_days em').text();
@@ -25,7 +21,7 @@ function updateDates(e) {
     var endDateRow = $('.sel2').attr('data-date');
 
     if(startDateRow) {
-        var startDate = moment(new Date(startDateRow));
+        var startDate = moment.utc(new Date(startDateRow));
     } else {
         var startDate = moment.utc(new Date($('.start-field').val()));
     }
@@ -41,7 +37,7 @@ function updateDates(e) {
     }
 
     if(endDateRow) {
-        var endDate = moment(new Date(endDateRow));
+        var endDate = moment.utc(new Date(endDateRow));
     } else {
         var endDate = moment.utc(new Date($('.end-field').val()));
     }
@@ -70,11 +66,11 @@ function updateDates(e) {
     $('.start-field').val(startDate);
     $('.end-field').val(endDate);
 
-    //if(e.type !== "change") {
-        $('#dateFromPicker').find('.r_date').text(dateFromText);
-        $('#dateToPicker').find('.r_date').text(dateToText);
-        $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
-    //}
+
+    $('#dateFromPicker').find('.r_date').text(dateFromText);
+    $('#dateToPicker').find('.r_date').text(dateToText);
+    $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
+
 }
 
 // small helpers
@@ -719,14 +715,14 @@ if($('#dateField').get(0)) {
 
 
 if($('.start-field').get(0)) {
-    var currentStartDate = new Date($('.start-field').val());
-    var currentEndDate = new Date($('.end-field').val());
+    var currentStartDate = moment.utc(new Date($('.start-field').val()));
+    var currentEndDate = moment.utc(new Date($('.end-field').val()));
 
     var startDateOut = $('.start-field').attr('data-date-start');
 
     var endDateOut = $('.end-field').attr('data-date-end');
 
-    var startDateRow = currentStartDate.getFullYear() + '-' + currentStartDate.getDate() + '-' + currentStartDate.getMonth();
+    var startDateRow = currentStartDate.year() + '-' + currentStartDate.date() + '-' + currentStartDate.month();
 
     var startDateElement = $( 'td[data-date=' + startDateRow + ']');
     var calElement = $('#cal');
@@ -746,8 +742,20 @@ if($('.start-field').get(0)) {
         $('#daysNumPicker').find('.r_days em').text(0);
     }
     
-    $('#start_time, #end_time').bind('change', function(e){
-        updateDates(e);
+    $('#start_time, #end_time, .places-input').bind('change', function(e){
+        updateDates();
+    });
+
+    $('.places-input').bind('focus', function(e){
+        updateDates();
+    });
+
+    $('.places-input').bind('blur', function(e){
+        updateDates();
+    });
+
+    $('.new_tour, .edit_tour').bind('submit', function(e){
+        updateDates();
     });
 }
 

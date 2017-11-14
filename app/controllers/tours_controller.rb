@@ -46,6 +46,19 @@ class ToursController < ApplicationController
 
   end
 
+  def show_interest
+    @tour = Tour.find(params[:id])
+    unless !!@tour
+      flash[:error] = t('tours_controller_interest_error')
+    else
+      if OrganizerMailer.interest(@tour, current_user).deliver_now
+        flash[:success] = t('tours_controller_interest_succes')
+      else
+        flash[:error] = t('tours_controller_interest_error') 
+      end
+    end
+  end
+
   def confirm_presence
     @payment_type = params[:payment_type]
     if @payment_type == 'external'
@@ -108,6 +121,7 @@ class ToursController < ApplicationController
     @tour = Tour.new(tour_params)
     respond_to do |format|
       if @tour.save
+        OrganizerMailer.notify_followers(@tour).deliver_now if (@tour.status == "P")
         format.html { redirect_to @tour, notice: t('tours_controller_create_notice_one') }
         format.json { render :show, status: :created, location: @tour }
       else
@@ -128,6 +142,7 @@ class ToursController < ApplicationController
   def update
     respond_to do |format|
       if @tour.update(tour_params)
+        OrganizerMailer.notify_followers(@tour).deliver_now if (@tour.status == "P")
         format.html { redirect_to @tour, notice: t('tours_controller_update_notice') }
         format.json { render :show, status: :ok, location: @tour }
       else
@@ -206,7 +221,7 @@ class ToursController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_tour
-    @tour = Tour.find(params[:id])
+    @tour = Tour.includes(:wheres).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -384,18 +384,28 @@ pt-BR:
   mail-invite-guide-call-message: Clicando no botão abaixo você criará uma conta associada ao seu perfil
   mail-invite-guide-header-message: Você foi convidado para entrar na Truppie
   mail-organizer-see-profile: Ver perfil
+  mail-organizer-see-tour: Saber mais
   mail-organizer-share-description: Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!
   mail-organizer-share-intro: Compartilhe seu perfil com sua rede de contatos
   mail-organizer-share-more-description: Quem sabe eles também se interessem pela sua aventura!
   mail-organizer-share-title: Divulgue seu evento
+  mail-organizer-profile-share-title: Divulgue seu perfil
   mail-verify-account-description: Verificando sua conta você poderá realizar transferências
   mail-verify-account-intro: Verifique sua conta na truppie e comece a divulgar seus eventos!
   mail-verify-account-link: Verificar conta
   mail-verify-account-title: Verifique sua conta
   mail-welcome-account-created-message: Agora você tem uma conta de guia para criar seus passeios
   mail-welcome-account-created-message-update: Seus dados foram atualizados na truppie
-  mail-welcome-account-title: sua conta como guia foi criada
+  mail-welcome-account-title: Sua conta como guia foi criada
+  mail-organizer-new-follower-title: Você tem um novo seguidor!
+  mail-organizer-interest-title: Alguem mostrou interesse em uma truppie já realizada!
   mail-welcome-account-title-update: Sua conta foi atualizada!
+  mail-organizer-notify-followers-title: Uma nova truppie foi criada para um guia que você está seguindo!
+  starts-in: Começa
+  mail-organizer-new-follower-who: O usuário %{username} (%{useremail}) começou a te seguir \o/
+  mail-organizer-new-follower-body: Agora ele ficará sabendo quando você criar uma nova atividade e tiver qualquer nova atualização!
+  mail-organizer-interest-who: O usuário %{username} (%{useremail}) mostrou interesse na truppie %{tourname}  \o/
+  mail-organizer-interest-body: Ele gostaria de realizar esta atividade que já passou. Você pode entrar em contato com ele para informá-lo dos próximos e saber se ele tem interesse em outra atividade que você oferece similar.
   manage-truppie-action: gerenciar
   manifesto-link-label: Em que acreditamos?
   marketplace-city-placeholder: 'ex: São Paulo'
@@ -574,6 +584,8 @@ pt-BR:
   organizer-profile-intro: Meu perfil de guia
   organizer-profile-verify-action: verificar
   organizer-profile-welcome-account-edit-title: Aqui você pode atualizar os dados do seu perfil que aparece no site com seus passeios, e para que outros aventureiros possam te encontrar com facilidade.
+  organizer-profile-share-intro: Bem vindo ao perfil do guia!
+  organizer-profile-share-desc: Aqui você pode interagir com ele enviando uma mensagem diretamente, acessar seu site e perfis nas redes sociais e segui-lo, e com isso ficar sabendo quando ele tiver uma nova atividade.
   organizer-tours-label: Truppies
   organizer-twitter-label: endereço do twitter do seu negócio
   organizer-update-error: erro ao atualizar sua conta
@@ -581,6 +593,22 @@ pt-BR:
   organizer-website-label: site do seu negócio
   organizer-why-create-account-text: A Truppie quer te ajudar a criar a ferramenta ideal à sua necessidade!
   organizer_tours_label: truppies
+  organizer_views_show_follow: Seguir
+  organizer_views_show_following: Deixar de Seguir
+  organizer_views_show_send_message: Enviar Mensagem
+  contact_organizer_message_modal_title: Mensagem
+  contact_organizer_message_label_name: Nome
+  contact_organizer_message_placeholder_name: Seu nome
+  contact_organizer_message_label_body: Mensagem
+  contact_organizer_message_placeholder_body: Sua mensagem
+  contact_organizer_message_modal_submit: Enviar
+  wizard_steps_intro: Processo de cadastro
+  wizard_steps_profile: Perfil
+  wizard_steps_personal_account: Conta Pessoal
+  wizard_steps_bank_details: Dados Bancários
+  wizard_steps_create_truppie: Criar Truppie
+  wizard_steps_trigger_hide_text: Verificar mais tarde
+  wizard_steps_trigger_show_text: Verificar agora
   packages-description-label: Descrição do pacote
   panel-label: Truppies
   payment_type_partial_div_one: Modo de pagamento
@@ -659,6 +687,8 @@ pt-BR:
   tours_controller_unconfirm_error: Houve um problema para confirmar sua desistência neste evento
   tours_controller_unconfirm_success: Você não está mais confirmardo neste evento
   tours_controller_update_notice: Truppie atualizada com sucesso
+  tours_controller_interest_error: Não foi possível registrar seu interesse. Tente novamente
+  tours_controller_interest_succes: Seu interesse foi encaminhado para o Organizador
   tours_send_picture: Enviar foto
   tours_view_confirm_h4_five: 'Total:'
   tours_view_confirm_h4_four: Dados para pagamento
@@ -790,6 +820,7 @@ pt-BR:
   tours_view_show_strong_ten: 'Atrações:'
   tours_view_show_strong_three: 'Informações:'
   tours_view_show_strong_two: 'Guia:'
+  tours_view_show_link_interest: 'Tenho interesse'
   tours_view_value_suggested_by_user: Valor sugerido pelo usuário no momento da reserva
   transfer-label: Transferências
   transfer-truppie-action: Transferir
@@ -892,6 +923,7 @@ pt-BR:
   welcome_view_index_div_three: " Saber mais"
   welcome_view_index_div_two: Se você é guia...
   welcome_view_index_h3_one: Próximas truppies
+  welcome_view_index_h3_past_tours: Truppies Passadas
   welcome_view_index_h4_one: Vamos ser parceiros?
   welcome_view_index_h4_two: Siga-nos nas redes sociais!
   welcome_view_index_p_one: A gente divulga seu evento, facilita a reserva para seus clientes, e você pode focar em oferecer um passeio inesquecível!

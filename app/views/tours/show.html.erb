@@ -1,5 +1,5 @@
 <%= render 'layouts/navbar' %>
-<%= render 'layouts/flash' %>
+<div id="flashMessagesTour"><%= render 'layouts/flash' %></div>
 
 <% if is_organizer_admin %>
   <div class="alert alert-warning" role="alert">
@@ -33,6 +33,8 @@
         <% if @tour.picture.present? %>
             <%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
         <% else %>
+		
+	<% if is_organizer_admin %>
             <div class="placeholder-tour-image">
               <div class="placeholder-tour-container">
                 <%= form_for @tour, multipart: true, role: "form" do |f| %>
@@ -58,6 +60,7 @@
             <% end %>
           </div>
         </div>
+	<% end %>
       <% end %>
 		<% else %>
     <div class="placeholder-truppie-image"></div>
@@ -70,7 +73,11 @@
       <% else %>
         <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
           <span><%= raw @tour.price %></span>
-          <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+          <% unless @tour.past? %>
+              <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+            <% else %>
+              <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: true %>
+            <% end %>
         </div>
       <% end %>
     </div>
@@ -157,8 +164,8 @@
 
               <!--<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li> -->
               <li><i class="fa fa-calendar"></i> <%= @tour.how_long %> </li>
-              <li><i class="fa fa-clock-o"></i> <%= t('tours_view_show_li_four') %> <%= l(@tour.start, format: '%d de %B / %Y') %> às <%= l(@tour.start, format: '%Hh%M') %> </li>
-              <li><i class="fa fa-history"></i> <%= t('tours_view_show_li_finish') %> <%= l(@tour.end, format: '%d de %B / %Y') %> às <%= l(@tour.end, format: '%Hh%M') %> </li>
+              <li><i class="fa fa-clock-o"></i> <%= t('tours_view_show_li_four') %> <%= l(@tour.formatted_start, format: '%d de %B / %Y') %> às <%= l(@tour.formatted_start, format: '%Hh%M') %> </li>
+              <li><i class="fa fa-history"></i> <%= t('tours_view_show_li_finish') %> <%= l(@tour.formatted_end, format: '%d de %B / %Y') %> às <%= l(@tour.formatted_end, format: '%Hh%M') %> </li>
 
               <% if @tour.try(:difficulty) %>
                 <li><i class="fa fa-heartbeat"></i> <%= t('tours_view_show_li_five') %> <strong><%= @tour.level %></strong> </li>
@@ -192,7 +199,11 @@
                     </div>
                   </div>
             </div> -->
-            <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
+            <% unless @tour.past? %>
+              <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
+            <% else %>
+              <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: true %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -218,66 +229,55 @@
       </div>
     <% end %>
 
-		<% if @tour.packages.any? and !@tour.value %>
-		<div class="row">
-			<div class="col-xs-12">
-				<h3 class="spaced-default">
-					<a name="packages"><%= t('tours_view_show_a_two') %></a>
-				</h3>
-			</div>
-		</div>
-		<div class="row text-xs-center">
-			<% @tour.packages.each do |p| %>
+    <% unless @tour.past? %>
 
-	<!-- item -->    
-	<div class="col-md-6">
-                <div class="card panel-pricing">
-                    <div class="card-header card-info" style="color: white;">
-                        <h3><%= p.name %></h3>
-                    </div>
-                    <div>
-                    <div class="panel-body text-xs-center">
-                        <p><strong><%= raw p.price %></strong></p>
-                    </div>
-                    <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
-                      <% if !p.description.nil? and !p.description.empty? %>
-                          <p><%= raw p.description %></p>
-                      <% end %>
-                    </div>
-                    <% if p.included.any? %>
-                    <ul class="list-group text-xs-center" style="overflow-y: scroll; height: 150px">
-                    	<% p.included.each do |i| %>
-                        <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
-                        <% end %>
-                    </ul>
-                    <% end %>
-                    </div>
-                    <div class="card-footer">
-                    	<%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
-                    </div>
-                </div>
-
-                <% if p.included.any? %>
-                  <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
-                    <% p.included.each do |i| %>
-                      <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
-                    <% end %>
-                  </ul>
-                <% end %>
-              </div>
-
-              <div class="card-footer">
-                <%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
-              </div>
-            </div>
+  		<% if @tour.packages.any? and !@tour.value %>
+    		<div class="row">
+    			<div class="col-xs-12">
+    				<h3 class="spaced-default">
+    					<a name="packages"><%= t('tours_view_show_a_two') %></a>
+    				</h3>
+    			</div>
+    		</div>
+    		<% @tour.packages.each_slice(2) do |part| %>
+      		<div class="row text-xs-center">
+      			<% part.each do |p| %>
+        			<!-- item -->    
+        			<div class="col-md-6">
+        				<div class="card panel-pricing">
+        				    <div class="card-header card-info" style="color: white;">
+        					     <h3><%= p.name %></h3>
+        				    </div>
+        			  <div>
+        				<div class="panel-body text-xs-center">
+        					<p><strong><%= raw p.price %></strong></p>
+        				    </div>
+        				    <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
+        				      <% if !p.description.nil? and !p.description.empty? %>
+        					       <p><%= raw p.description %></p>
+        				      <% end %>
+        				    </div>
+        				    <% if p.included.any? %>
+          				    <ul class="list-group text-xs-center" style="overflow-y: scroll; height: 150px">
+              					<% p.included.each do |i| %>
+              					<li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
+              					<% end %>
+          				    </ul>
+        				    <% end %>
+        				    </div>
+        				    <div class="card-footer">
+        					     <%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
+        				    </div>
+        				</div>
+        		  	</div>
+        			  <!-- /item -->
+            <% end %>
           </div>
-          <!-- /item -->
         <% end %>
-      </div>
-		<% end %>
-
-		<div class="row">
-		  <% if !@tour.take.empty? %> 
+      <% end %>
+    <% end %>
+	<div class="row">
+  	<% if !@tour.take.empty? %> 
         <div class="col-xs-12 col-md-6">
           <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_five') %></strong></h4>
           <ul class="list-group spaced-down">

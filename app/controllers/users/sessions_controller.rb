@@ -3,7 +3,8 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
    def new
-     super
+    session[:follow] = true if !!params[:follow]
+    super
    end
 
   # POST /resource/sign_in

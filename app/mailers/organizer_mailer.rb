@@ -72,4 +72,73 @@ class OrganizerMailer < ApplicationMailer
     )
   end
 
+  def notify_followers(tour)
+    @tour = tour
+    @organizer = @tour.organizer
+    @copy_mailers = "ola@truppie.com,#{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
+    attachments['logo-transparent.png'] = File.read(Rails.root.join('app/assets/images/logo-transparent.png'))
+    attachments['organizer-welcome.png'] = File.read(Rails.root.join('app/assets/images/organizer-welcome.jpg'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
+
+    @organizer.followers.each do |follower|
+      @follower = follower
+      mailer = "#{follower.email}"
+      subject = "Olá #{follower.name}, #{@organizer.name} adicionou a truppie #{@tour.title}"
+      mail(
+        from: 'ola@truppie.com',
+        subject: subject,
+        to: mailer,
+        bcc: @copy_mailers,
+        template_name: 'notify_followers',
+        template_path: 'organizer_mailer'
+    )
+    end
+  end
+
+  def new_follower(organizer, user)
+    @organizer = organizer
+    @user = user
+    @copy_mailers = "ola@truppie.com,#{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
+    mailers = "#{organizer.email}"
+    subject = "Olá #{organizer.name}, o usuário #{@user.name} começou a te seguir"
+
+    attachments['logo-transparent.png'] = File.read(Rails.root.join('app/assets/images/logo-transparent.png'))
+    attachments['organizer-welcome.png'] = File.read(Rails.root.join('app/assets/images/organizer-welcome.jpg'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
+
+    mail(
+        from: 'ola@truppie.com',
+        subject: subject,
+        to: mailers,
+        bcc: @copy_mailers,
+        template_name: 'new_follower',
+        template_path: 'organizer_mailer'
+    )
+  end
+
+  def interest(tour, user)
+    @tour = tour
+    @organizer = @tour.organizer
+    @user = user
+    @copy_mailers = "ola@truppie.com,#{Rails.application.secrets[:admin_email]},#{Rails.application.secrets[:admin_email_alt]}"
+    mailers = "#{@organizer.email}"
+    subject = "Olá #{@organizer.name}, o usuário #{@user.name} mostrou interesse no tour #{@tour.title}"
+
+    attachments['logo-transparent.png'] = File.read(Rails.root.join('app/assets/images/logo-transparent.png'))
+    attachments['organizer-welcome.png'] = File.read(Rails.root.join('app/assets/images/organizer-welcome.jpg'))
+    attachments['facebook_mail.png'] = File.read(Rails.root.join('app/assets/images/facebook_mail.png'))
+    attachments['instagram_mail.png'] = File.read(Rails.root.join('app/assets/images/instagram_mail.png'))
+
+    mail(
+        from: 'ola@truppie.com',
+        subject: subject,
+        to: mailers,
+        bcc: @copy_mailers,
+        template_name: 'interest',
+        template_path: 'organizer_mailer'
+    )
+  end
+
 end
