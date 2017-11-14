@@ -12,8 +12,7 @@
 
 'use strict';
 
-function updateDates(e) {
-    var timezone = $('#tour_wheres_attributes_0_time_zone').val();
+function updateDates() {
     var dateFromText = $('#dateFrom').find('.r_date').text();
     var dateToText = $('#dateTo').find('.r_date').text();
     var daysNumPicker = $('#daysNum').find('.r_days em').text();
@@ -22,9 +21,9 @@ function updateDates(e) {
     var endDateRow = $('.sel2').attr('data-date');
 
     if(startDateRow) {
-        var startDate = moment.tz(new Date(startDateRow), timezone);
+        var startDate = moment.utc(new Date(startDateRow));
     } else {
-        var startDate = moment.tz(new Date($('.start-field').val()), timezone);
+        var startDate = moment.utc(new Date($('.start-field').val()));
     }
 
     var startTime = $('#start_time').val();
@@ -38,9 +37,9 @@ function updateDates(e) {
     }
 
     if(endDateRow) {
-        var endDate = moment.tz(new Date(endDateRow), timezone);
+        var endDate = moment.utc(new Date(endDateRow));
     } else {
-        var endDate = moment.tz(new Date($('.end-field').val()), timezone);
+        var endDate = moment.utc(new Date($('.end-field').val()));
     }
 
     if(dateToText == 'mesmo dia') {
@@ -67,11 +66,11 @@ function updateDates(e) {
     $('.start-field').val(startDate);
     $('.end-field').val(endDate);
 
-    //if(e.type !== "change") {
-        $('#dateFromPicker').find('.r_date').text(dateFromText);
-        $('#dateToPicker').find('.r_date').text(dateToText);
-        $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
-    //}
+
+    $('#dateFromPicker').find('.r_date').text(dateFromText);
+    $('#dateToPicker').find('.r_date').text(dateToText);
+    $('#daysNumPicker').find('.r_days em').text(daysNumPicker);
+
 }
 
 // small helpers
@@ -716,9 +715,8 @@ if($('#dateField').get(0)) {
 
 
 if($('.start-field').get(0)) {
-    var timezone = $('#tour_wheres_attributes_0_time_zone').val();
-    var currentStartDate = moment.utc(new Date($('.start-field').val()), timezone);
-    var currentEndDate = moment.utc(new Date($('.end-field').val()), timezone);
+    var currentStartDate = moment.utc(new Date($('.start-field').val()));
+    var currentEndDate = moment.utc(new Date($('.end-field').val()));
 
     var startDateOut = $('.start-field').attr('data-date-start');
 
@@ -745,15 +743,19 @@ if($('.start-field').get(0)) {
     }
     
     $('#start_time, #end_time, .places-input').bind('change', function(e){
-        updateDates(e);
+        updateDates();
     });
 
     $('.places-input').bind('focus', function(e){
-        updateDates(e);
+        updateDates();
     });
 
     $('.places-input').bind('blur', function(e){
-        updateDates(e);
+        updateDates();
+    });
+
+    $('.new_tour, .edit_tour').bind('submit', function(e){
+        updateDates();
     });
 }
 

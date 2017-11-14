@@ -67,6 +67,11 @@ function set_places_info(target, places, input) {
     if(place_id_field) {
         place_id_field.val(places[0].place_id);
     }
+
+    var utc_offset_field = $('#' + target + '_wheres_attributes_0_utc_offset');
+    if(utc_offset_field) {
+        utc_offset_field.val(places[0].utc_offset);
+    }
 }
 
 function prefill_place(target, input) {
