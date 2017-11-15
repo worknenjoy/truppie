@@ -39,6 +39,5 @@
 //= require dash
 //= require mountain-form
 //= require wizard_steps
-//= require jquery.ajax.progress.js
 //= require progress_upload
 //= require main
