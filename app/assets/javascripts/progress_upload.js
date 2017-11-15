@@ -1,15 +1,10 @@
-function supportAjaxUploadWithProgress() {
-  return supportFileAPI() && supportAjaxUploadProgressEvents() && supportFormData();
+function supportAjaxFormDataUpload() {
+  return supportFileAPI() && supportFormData();
   // Is the File API supported?
   function supportFileAPI() {
     var fi = document.createElement('INPUT');
     fi.type = 'file';
     return 'files' in fi;
-  };
-
-  function supportAjaxUploadProgressEvents() {
-    var xhr = new XMLHttpRequest();
-    return !! (xhr && ('upload' in xhr) && ('onprogress' in xhr.upload));
   };
 
   function supportFormData() {
@@ -35,7 +30,7 @@ function makeAjaxRequest(formData, uri) {
   jqXHR_request = $.ajax({
     url: uri,
     data: formData,
-    dataType: 'html',
+    dataType: 'html', // Since turbolinks is set the server returns a script response. It won't be used though.
     type: "POST",
     async: false,
     contentType: false,
@@ -56,7 +51,7 @@ function makeAjaxRequest(formData, uri) {
 }
 
 $(document).ready(function() {
-  if (supportAjaxUploadWithProgress()) {
+  if (supportAjaxFormDataUpload()) {
     // Disable turbolinks
     sync_ajax_form_elements = $("form[data-ajax-sync='true']");
     console.log(sync_ajax_form_elements);
