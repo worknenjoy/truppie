@@ -39,8 +39,7 @@ function makeAjaxRequest(formData, uri) {
     contentType: false,
     processData: false,
     beforeSend: function(jqXHR, options){
-      jqXHRLoadingElem.show('fast');
-      // # TODO Disable any other actions
+      jqXHRLoadingElem.show();
     },
     error: function(jqXHR, textStatus, errorThrown){
       console.log("Something happened when requesting " + uri);

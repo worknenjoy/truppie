@@ -33,11 +33,11 @@
         <% if @tour.picture.present? %>
             <%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
         <% else %>
-		
+
 	<% if is_organizer_admin %>
             <div class="placeholder-tour-image">
               <div class="placeholder-tour-container">
-                <%= form_for @tour, multipart: true, role: "form" do |f| %>
+                <%= form_for @tour, multipart: true, role: "form", data: {ajax_sync: true} do |f| %>
                   <div class="file-upload">
                     <small style="display: inline-block; margin-bottom: 10px;" class="text-color-white"><%= t('no-photo-please-send-one') %></small>
                     <div class="file-upload-btn-preview-container">
@@ -120,13 +120,13 @@
 						<small  style="display:block; text-align: right"><%= t('tours_view_show_small_one') %><strong class="text-danger"><%= @tour.try(:category).try(:name) || t('tours_view_show_strong_one') %></strong></small>
 
 						<div class="spaced-smallest pull-xs-right" style="display:block; text-align: right">
-							<small>tags:</small> 
+							<small>tags:</small>
 							<% @tour.tags.each do |tag| %>
 								 <span class="tags label label-info"><%= tag.name %></span>
 							<% end %>
 						</div>
 					</div>
-				</div> 
+				</div>
 			</div>
 		</div>
     <div class="row">
@@ -242,7 +242,7 @@
     		<% @tour.packages.each_slice(2) do |part| %>
       		<div class="row text-xs-center">
       			<% part.each do |p| %>
-        			<!-- item -->    
+        			<!-- item -->
         			<div class="col-md-6">
         				<div class="card panel-pricing">
         				    <div class="card-header card-info" style="color: white;">
@@ -277,7 +277,7 @@
       <% end %>
     <% end %>
 	<div class="row">
-  	<% if !@tour.take.empty? %> 
+  	<% if !@tour.take.empty? %>
         <div class="col-xs-12 col-md-6">
           <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_five') %></strong></h4>
           <ul class="list-group spaced-down">
@@ -288,7 +288,7 @@
         </div>
 			<% end %>
 
-			<% if !@tour.goodtoknow.empty? %>  
+			<% if !@tour.goodtoknow.empty? %>
         <div class="col-xs-12 col-md-6">
           <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_six') %></strong></h4>
           <ul class="list-group spaced-down">
@@ -312,7 +312,7 @@
         </div>
 			<% end %>
 
-			<% if !@tour.nonincluded.empty? %> 
+			<% if !@tour.nonincluded.empty? %>
         <div class="col-xs-12 col-md-6">
           <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_eight') %></strong></h4>
           <ul class="list-group spaced-down">
