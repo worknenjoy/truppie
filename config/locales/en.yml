@@ -1,5 +1,6 @@
 ---
 en:
+  track_loading_message: Loading
   account-label: My Account
   account-missing-legal-entity:
     verification:
