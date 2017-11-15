@@ -27,25 +27,32 @@ function initFullFormAjaxUpload(form_selector) {
 }
 
 function makeAjaxRequest(formData, uri) {
-  jqXHR_request = $.ajax({
+  var jqXHRLoadingElem = $('.track-loading');
+  var jqXHR_request = $.ajax({
     url: uri,
     data: formData,
-    dataType: 'html', // Since turbolinks is set the server returns a script response. It won't be used though.
+    // Since turbolinks is set the server returns a script response. It won't be used though.
+    // Setting to html and ignoring it instead.
+    dataType: 'html',
     type: "POST",
-    async: false,
+    async: true,
     contentType: false,
     processData: false,
     beforeSend: function(jqXHR, options){
-      console.log("TODO Upload started");
+      jqXHRLoadingElem.show('fast');
+      // # TODO Disable any other actions
     },
     error: function(jqXHR, textStatus, errorThrown){
-      console.log("Something happened");
+      console.log("Something happened when requesting " + uri);
     },
     success: function(data, status, jqXHR){
       url = jqXHR.getResponseHeader('Location');
       if(url){
         window.location = url
       }
+    },
+    complete: function(jqXHR, status){
+      jqXHRLoadingElem.hide();
     }
   })
 }
@@ -54,7 +61,6 @@ $(document).ready(function() {
   if (supportAjaxFormDataUpload()) {
     // Disable turbolinks
     sync_ajax_form_elements = $("form[data-ajax-sync='true']");
-    console.log(sync_ajax_form_elements);
 
     // Init the Ajax form submission on each element with data-ajax-sync attr
     initFullFormAjaxUpload(sync_ajax_form_elements);
