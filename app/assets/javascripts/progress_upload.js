@@ -31,24 +31,13 @@ function makeAjaxRequest(formData, uri) {
   var jqXHR_request = $.ajax({
     url: uri,
     data: formData,
-    // Since turbolinks is set the server returns a script response. It won't be used though.
-    // Setting to html and ignoring it instead.
-    dataType: 'html',
+    dataType: 'script',
     type: "POST",
     async: true,
     contentType: false,
     processData: false,
     beforeSend: function(jqXHR, options){
       jqXHRLoadingElem.show();
-    },
-    error: function(jqXHR, textStatus, errorThrown){
-      console.log("Something happened when requesting " + uri);
-    },
-    success: function(data, status, jqXHR){
-      url = jqXHR.getResponseHeader('Location');
-      if(url){
-        window.location = url
-      }
     },
     complete: function(jqXHR, status){
       jqXHRLoadingElem.hide();
