@@ -18,7 +18,7 @@ No momento queremos estimular o acesso as atividades no Brasil, mas também faze
 
 Nossa viso vai alm também. Queremos virar refência em serviços de viagem, usando o Amadeus para disponibilizar todo planejamento de viagem
 
----
++++
 
 Como vamos fazer isso?
 
