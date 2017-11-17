@@ -257,12 +257,13 @@ class ToursController < ApplicationController
       params[:tour][:languages] = []
     else
       langs_to_array = params[:tour][:languages].split(split_val)
-      langs = []
+      lang_ids = []
       langs_to_array.each do |l|
-        langs.push Language.find_or_create_by(name: l)
+        lang_ids.push Language.find_or_create_by(name: l).try(:id)
       end
-      params[:tour][:languages] = langs
+      params[:tour][:language_ids] = lang_ids
     end
+    params[:tour].delete(:languages)
 
     pkg_attr = params[:tour][:packages_attributes]
 
