@@ -54,7 +54,7 @@ class ToursController < ApplicationController
       if OrganizerMailer.interest(@tour, current_user).deliver_now
         flash[:success] = t('tours_controller_interest_succes')
       else
-        flash[:error] = t('tours_controller_interest_error') 
+        flash[:error] = t('tours_controller_interest_error')
       end
     end
   end
@@ -96,7 +96,7 @@ class ToursController < ApplicationController
   # GET /tours
   # GET /tours.json
   def index
-    
+
   end
 
   # GET /tours/1
@@ -207,7 +207,7 @@ class ToursController < ApplicationController
   def json_request?
     request.format.json?
   end
-  
+
   def check_if_admin
 
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
@@ -217,7 +217,7 @@ class ToursController < ApplicationController
       redirect_to root_url
     end
   end
-  
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_tour
@@ -227,7 +227,7 @@ class ToursController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def tour_params
 
-    split_val = ";"
+    split_val = /[,;.]+/
     organizer = params[:tour][:organizer_id] || params[:tour][:organizer]
 
 
@@ -262,7 +262,7 @@ class ToursController < ApplicationController
       end
       params[:tour][:languages] = langs
     end
-    
+
     pkg_attr = params[:tour][:packages_attributes]
 
     if !pkg_attr.nil?
