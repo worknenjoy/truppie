@@ -2,7 +2,7 @@ function supportAjaxFormDataUpload() {
   return supportFileAPI() && supportFormData();
   // Is the File API supported?
   function supportFileAPI() {
-    var fi = document.createElement('INPUT');
+    var fi = document.createElement('input');
     fi.type = 'file';
     return 'files' in fi;
   };
