@@ -244,24 +244,18 @@ class ToursController < ApplicationController
     if params[:tour][:tags] == "" or params[:tour][:tags].nil?
       params[:tour][:tag_ids] = []
     else
-      tags_to_array = params[:tour][:tags].split(split_val)
-      tag_ids = []
-      tags_to_array.each do |t|
-        tag_ids.push Tag.find_or_create_by(name: t).try(:id)
-      end
-      params[:tour][:tag_ids] = tag_ids.compact
+      params[:tour][:tag_ids] = params[:tour][:tags]
+        .split(split_val)
+        .map{|t| Tag.find_or_create_by(name: t).try(:id) }.compact
     end
     params[:tour].delete(:tags)
 
     if params[:tour][:languages] == "" or params[:tour][:languages].nil?
       params[:tour][:languages] = []
     else
-      langs_to_array = params[:tour][:languages].split(split_val)
-      lang_ids = []
-      langs_to_array.each do |l|
-        lang_ids.push Language.find_or_create_by(name: l).try(:id)
-      end
-      params[:tour][:language_ids] = lang_ids
+      params[:tour][:language_ids] = params[:tour][:languages]
+        .split(split_val)
+        .map{|l| Language.find_or_create_by(name: l).try(:id) }.compact
     end
     params[:tour].delete(:languages)
 
