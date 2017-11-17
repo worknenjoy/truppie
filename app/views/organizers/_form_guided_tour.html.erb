@@ -122,25 +122,25 @@
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-thumbs-up"></span></span>
-          <%= f.text_field :included, value: (@guided_tour.included.join(';') if @guided_tour.included.present?), placeholder: t('tours_view_form_placeholder_thirteen'), class: "form-control" %>
+          <%= f.text_field :included, value: (@guided_tour.included.join(';') if @guided_tour.included.present?), placeholder: t('tours_view_form_placeholder_thirteen'), class: "form-control tour-taggable" %>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-thumbs-down"></span></span>
-          <%= f.text_field :nonincluded, value: (@guided_tour.nonincluded.join(';') if @guided_tour.nonincluded.present?), placeholder: t('tours_view_form_placeholder_fourteen'), class: "form-control" %>
+          <%= f.text_field :nonincluded, value: (@guided_tour.nonincluded.join(';') if @guided_tour.nonincluded.present?), placeholder: t('tours_view_form_placeholder_fourteen'), class: "form-control tour-taggable" %>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-book"></span></span>
-          <%= f.text_field :take, placeholder: t('tours_view_form_placeholder_fifteen'), value: (@guided_tour.take.join(';') if @guided_tour.take.present?), class: "form-control" %>
+          <%= f.text_field :take, placeholder: t('tours_view_form_placeholder_fifteen'), value: (@guided_tour.take.join(';') if @guided_tour.take.present?), class: "form-control tour-taggable" %>
         </div>
       </div>
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-info-circle"></span></span>
-          <%= f.text_field :goodtoknow, value: (@guided_tour.goodtoknow.join(';') if @guided_tour.goodtoknow.present?), placeholder: t('tours_view_form_placeholder_sixteen'), class: "form-control" %>
+          <%= f.text_field :goodtoknow, value: (@guided_tour.goodtoknow.join(';') if @guided_tour.goodtoknow.present?), placeholder: t('tours_view_form_placeholder_sixteen'), class: "form-control tour-taggable" %>
         </div>
       </div>
       <div class="form-group">
@@ -153,7 +153,7 @@
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><span class="fa fa-tags"></span></span>
-          <%= f.text_field :tags, value: (@guided_tour.tags.map{ |t| t.name}.join(';') if @guided_tour.tags.present?), placeholder: t('tours_view_form_placeholder_nineteen'), class: "form-control" %>
+          <%= f.text_field :tags, value: (@guided_tour.tags.map{ |t| t.name}.join(';') if @guided_tour.tags.present?), placeholder: t('tours_view_form_placeholder_nineteen'), class: "form-control tour-taggable" %>
         </div>
       </div>
       <div class="form-group">
@@ -228,7 +228,7 @@
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
-                            <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value" %>
+                            <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value tour-taggable" %>
                           </div>
                         </div>
                       </fieldset>
