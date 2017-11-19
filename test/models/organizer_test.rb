@@ -57,11 +57,6 @@ class OrganizerTest < ActiveSupport::TestCase
      assert_equal @mantiex.balance, false       
    end
 
-   test "organizer is missing some information needed" do
-     assert_equal @organizer.verified?, false
-     assert_equal @organizer.missing[0], "cover"
-   end
-
    test "organizer fill all information needed" do
      @organizer.update_attributes({:fulldesc => 'some full desc', :instagram => 'the instagram', :picture_file_name => 'some picture file name'})
      assert_equal @organizer.verified?, true
