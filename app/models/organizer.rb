@@ -61,7 +61,7 @@ class Organizer < ActiveRecord::Base
   end
 
   def verified?
-    missing = self.missing.select { |a| true if (a == "description" or a == "instagram" or a == "facebook" or a == "phone") }
+    missing = self.missing.select { |a| true if (a == "description") }
     !missing.any?
   end
 
