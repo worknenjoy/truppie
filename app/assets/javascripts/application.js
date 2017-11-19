@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require places
 //= require mma
 //= require modernizr-custom
@@ -39,4 +40,5 @@
 //= require dash
 //= require mountain-form
 //= require wizard_steps
+//= require progress_upload
 //= require main

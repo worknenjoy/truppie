@@ -77,7 +77,7 @@
       </div>
     </div>
   </div>
-  <%= form_for @new_organizer, role: "form", multipart: true do |f| %>
+  <%= form_for @new_organizer, role: "form", multipart: true, data: {ajax_sync: true} do |f| %>
     <div class="rightSec" id="first">
       <ul class="spaced-top">
         <li>

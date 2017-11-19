@@ -1,5 +1,6 @@
 ---
 pt-BR:
+  track_loading_message: Carregando
   account-label: Minha conta
   account-missing-legal-entity:
     verification:
