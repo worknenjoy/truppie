@@ -1,4 +1,4 @@
-<%= form_for @guided_tour, class: "form form-signup criar-truppie", multipart: true, role: "form" do |f| %>
+<%= form_for @guided_tour, class: "form form-signup criar-truppie", multipart: true, role: "form", data: {ajax_sync: true} do |f| %>
     <div id="newEventForm" class="<%= 'hide' if @guided_tour.new_record? and !@opened %>">
       <div>
         <h4 class="text-xs-center spaced-down"><%= t('tour-category-label') %></h4>
