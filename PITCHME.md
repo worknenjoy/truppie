@@ -6,6 +6,8 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 *O que é*
 
+[](https://www.iconfinder.com/icons/2162465/2616635/128/raster?token=1511215843-IrOkcRd5MSJvSdkiY8nOLAhLSWxC4uzD-wK2LEygOifbbTbsgkUa%2BeNGczjc%3D)
+
 A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de Truppie. Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e roteiros, ajudando no seu planejamento e tudo que você precisa para planejar seu destino.
 
 ---
@@ -19,6 +21,16 @@ A gente tenta conecta-lo com guias e roteiros para que você conheça diversas a
 *Onde?*
 
 No momento queremos estimular o acesso as atividades no Brasil, mas também fazer com que Brasileiros tenham acesso a roteiros no exterior, feito sob medida para você.
+
+---
+
+*Quem faz a Truppie?*
+
+A Truppie foi desenvolvida por [Laura Sette](http://7cantosdomundo.com.br) e [Alexandre Magno](http://www.alexandremagno.net), e conta com uma equipe de colaboradores
+
+---
+
+Mayna Thais e Wharley Ornelas, em Belo Horizonte
 
 ---
 
