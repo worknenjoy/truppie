@@ -6,13 +6,13 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 *O que é*
 
-A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de Truppie e tem diversas atividades.
+A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de Truppie. Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e roteiros, ajudando no seu planejamento e tudo que você precisa para planejar seu destino.
 
 ---
 
 *Como?*
 
-A gente tenta conectar guias, nerds viajantes, roteiros e fazer com que chegue até você diversas atividades.
+A gente tenta conecta-lo com guias e roteiros para que você conheça diversas atividades do seu interesse e descobrir novas, seja na sua cidade ou onde você pretende viajar.
 
 ---
 
@@ -24,7 +24,11 @@ No momento queremos estimular o acesso as atividades no Brasil, mas também faze
 
 *Visão além*
 
-Alias, nossa visãoo vai além. Queremos virar refência em serviços de viagem, usando o [Amadeus](https://sandbox.amadeus.com/) para disponibilizar todo planejamento de viagem e oferecer passagens mais baratas e dicas de hospedagem, criando uma experiência completa.
+Alias, nossa visãoo vai além. Queremos virar refência em serviços de viagem!
+
+---
+
+Usando o [Amadeus](https://sandbox.amadeus.com/) para disponibilizar todo planejamento de viagem e oferecer passagens mais baratas e dicas de hospedagem, criando uma experiência completa.
 
 ---
 
