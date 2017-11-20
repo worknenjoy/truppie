@@ -38,9 +38,12 @@ Uma plataforma para os guias de viagem
 
 ---
 
-Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferramentas práticas para gerenciar o pré, durante e pós atividade, seja ela atividades curtas ou que necessitam de um planejamento maior. Temos a plataforma ideal que dá toda autonomia para gerenciar a parte de reserva, com transferência direta para sua conta e ainda conta com nossa divulgação
+Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferramentas práticas para gerenciar o pré, durante e pós atividade, seja ela atividades curtas ou que necessitam de um planejamento maior.
 
 ---
+
+Temos a plataforma ideal que dá toda autonomia para gerenciar a parte de reserva, com transferência direta para sua conta e ainda conta com nossa divulgação
+
 
 
 
