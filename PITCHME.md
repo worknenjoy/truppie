@@ -62,6 +62,15 @@ Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferra
 
 Temos a plataforma ideal que dá toda autonomia para gerenciar a parte de reserva, com transferência direta para sua conta e ainda conta com nossa divulgação
 
+---
+
+*Truppie Places*
+
+Com o Truppie Places, usuários encontram diversos serviços, guias e roteiros, além de informações relevante sobre o local. É uma página também que pretende entregar conteúdo relevante, para ser achado em pesquisas do Google quando os destinos forem procurados
+
+---
+
+
 
 
 
