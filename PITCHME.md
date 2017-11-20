@@ -12,6 +12,8 @@ A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de Truppie.
 
 ---
 
+![sign](https://user-images.githubusercontent.com/88840/33044320-ca356ec8-ce48-11e7-8c90-3a2c7c65f8f5.png)
+
 *Como?*
 
 A gente tenta conecta-lo com guias e roteiros para que você conheça diversas atividades do seu interesse e descobrir novas, seja na sua cidade ou onde você pretende viajar.
