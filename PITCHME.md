@@ -22,9 +22,9 @@ No momento queremos estimular o acesso as atividades no Brasil, mas também faze
 
 ---
 
-*Visão almém*
+*Visão além*
 
-Alias, nossa visãoo vai além. Queremos virar refência em serviços de viagem, usando o Amadeus para disponibilizar todo planejamento de viagem e oferecer passagens mais baratas e dicas de hospedagem, criando uma experiência completa.
+Alias, nossa visãoo vai além. Queremos virar refência em serviços de viagem, usando o [Amadeus](https://sandbox.amadeus.com/) para disponibilizar todo planejamento de viagem e oferecer passagens mais baratas e dicas de hospedagem, criando uma experiência completa.
 
 ---
 
