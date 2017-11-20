@@ -4,9 +4,9 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 ---
 
-*O que é*
-
 ![map](https://user-images.githubusercontent.com/88840/33044206-49ffd9e6-ce48-11e7-9cf7-3109d4eb9312.png)
+
+*O que é*
 
 A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de Truppie. Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e roteiros, ajudando no seu planejamento e tudo que você precisa para planejar seu destino.
 
