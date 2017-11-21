@@ -10,7 +10,8 @@ class WelcomeController < ApplicationController
   
   def index
     @tours = Tour.publisheds
-    @next_tours = Tour.recents
+    @next_tour = Tour.recents.first
+    @next_tours = Tour.publisheds.nexts
     @past_tours = Tour.publisheds.past
     @organizers = Organizer.publisheds.order(created_at: :asc)
   end
