@@ -13,7 +13,7 @@
       </div>
     </div>
     <div id="carousel-intro" class="carousel slide" data-ride="carousel">
-      <% if @next_tour.any? %>
+      <% if @next_tour %>
       <div class="card card-floating wow bounceIn">
         <div class="card-header">
           <i class="fa fa-calendar"></i> <%= t('welcome_view_index_div_one') %>
