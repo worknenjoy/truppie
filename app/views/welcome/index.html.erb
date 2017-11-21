@@ -13,7 +13,7 @@
       </div>
     </div>
     <div id="carousel-intro" class="carousel slide" data-ride="carousel">
-      <% if @next_tours.any? %>
+      <% if @next_tour.any? %>
       <div class="card card-floating wow bounceIn">
         <div class="card-header">
           <i class="fa fa-calendar"></i> <%= t('welcome_view_index_div_one') %>
@@ -24,28 +24,28 @@
               <div class="floating-schedule">
                 <div class="pull-left date-body text-xs-center">
                     <label for="" class="date-title">
-                      <%= l(@tours.first.start, format: '%B') %>
+                      <%= l(@next_tour.start, format: '%B') %>
                       </label>
                     <div class="date-content">
                       <p class="dia">
-                        <%= l(@tours.first.start, format: '%d') %>
+                        <%= l(@next_tour.start, format: '%d') %>
                       </p>
                       <hr class="nomargin"/>
                       <p class="nomargin">
                         <strong>
-                          <%= l(@tours.first.start, format: '%A') %>
+                          <%= l(@next_tour.start, format: '%A') %>
                         </strong>
                       </p>
-                      <p class="date-body-when nomargin"><strong><%= friendly_when(@tours.first.start) %></strong></p>
+                      <p class="date-body-when nomargin"><strong><%= friendly_when(@next_tour.start) %></strong></p>
                     </div>
                   </div>
                 </div>
             </div>
             <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
-              <strong><%= link_to(@tours.first.title, tour_path(@tours.first)) %></strong>
-              <small><%= t('welcome_view_index_small_one') %></small> <%= @tours.first.organizer.name %><br />
+              <strong><%= link_to(@next_tour.title, tour_path(@next_tour)) %></strong>
+              <small><%= t('welcome_view_index_small_one') %></small> <%= @next_tour.organizer.name %><br />
               <% if @tours.first.wheres.any? %>
-              <small><%= t('welcome_view_index_small_two') %><strong><%= @tours.first.wheres.first.name %>, <%= @tours.first.wheres.first.state %></strong></small>
+              <small><%= t('welcome_view_index_small_two') %><strong><%= @next_tour.wheres.first.name %>, <%= @next_tour.wheres.first.state %></strong></small>
               <% end %>
             </div>
           </div>
@@ -54,7 +54,7 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="spaced-down">
-                <a href="<%= tour_path(@tours.first) %>" class="btn btn-block btn-primary btn-sm"><%= t('welcome_view_index_a_one') %></a>
+                <a href="<%= tour_path(@next_tour) %>" class="btn btn-block btn-primary btn-sm"><%= t('welcome_view_index_a_one') %></a>
               </div>
             </div>
           </div>
