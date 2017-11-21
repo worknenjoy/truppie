@@ -61,6 +61,7 @@
  *= require mountain-form.scss.erb
  *= require wizard_steps
  *= require track_loading
+ *= require text-change
  */
 
 .full-width {
