@@ -54,7 +54,7 @@ class ToursController < ApplicationController
       if OrganizerMailer.interest(@tour, current_user).deliver_now
         flash[:success] = t('tours_controller_interest_succes')
       else
-        flash[:error] = t('tours_controller_interest_error') 
+        flash[:error] = t('tours_controller_interest_error')
       end
     end
   end
@@ -96,7 +96,7 @@ class ToursController < ApplicationController
   # GET /tours
   # GET /tours.json
   def index
-    
+
   end
 
   # GET /tours/1
@@ -207,7 +207,7 @@ class ToursController < ApplicationController
   def json_request?
     request.format.json?
   end
-  
+
   def check_if_admin
 
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
@@ -217,7 +217,7 @@ class ToursController < ApplicationController
       redirect_to root_url
     end
   end
-  
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_tour
@@ -227,7 +227,7 @@ class ToursController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def tour_params
 
-    split_val = ";"
+    split_val = /[,;.]+/
     organizer = params[:tour][:organizer_id] || params[:tour][:organizer]
 
 
@@ -242,27 +242,23 @@ class ToursController < ApplicationController
     end
 
     if params[:tour][:tags] == "" or params[:tour][:tags].nil?
-      params[:tour][:tags] = []
+      params[:tour][:tag_ids] = []
     else
-      tags_to_array = params[:tour][:tags].split(split_val)
-      tags = []
-      tags_to_array.each do |t|
-        tags.push Tag.find_or_create_by(name: t)
-      end
-      params[:tour][:tags] = tags
+      params[:tour][:tag_ids] = params[:tour][:tags]
+        .split(split_val)
+        .map{|t| Tag.find_or_create_by(name: t).try(:id) }.compact
     end
+    params[:tour].delete(:tags)
 
     if params[:tour][:languages] == "" or params[:tour][:languages].nil?
       params[:tour][:languages] = []
     else
-      langs_to_array = params[:tour][:languages].split(split_val)
-      langs = []
-      langs_to_array.each do |l|
-        langs.push Language.find_or_create_by(name: l)
-      end
-      params[:tour][:languages] = langs
+      params[:tour][:language_ids] = params[:tour][:languages]
+        .split(split_val)
+        .map{|l| Language.find_or_create_by(name: l).try(:id) }.compact
     end
-    
+    params[:tour].delete(:languages)
+
     pkg_attr = params[:tour][:packages_attributes]
 
     if !pkg_attr.nil?
