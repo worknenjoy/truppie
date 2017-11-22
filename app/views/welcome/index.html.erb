@@ -11,21 +11,21 @@
         <%= image_tag("logos-05.svg", :alt => "Truppie") %>
         <p class="tagline emblem-font"><%= t('tagline') %></p>
       </div>
+      <div class="content">
+        <div class="content__container">
+          <p class="content__container__text">
+            Quero ir para
+          </p>
+          <ul class="content__container__list">
+            <li class="content__container__list__item">Dinamarca</li>
+            <li class="content__container__list__item">Ilhabela</li>
+            <li class="content__container__list__item">Chapada Diamantina</li>
+            <li class="content__container__list__item">o Rio de Janeiro</li>
+          </ul>
+        </div>
+      </div>
       <div id="tours" style="padding-top: 3em;">
         <div class='container'>
-          <div class="content">
-            <div class="content__container">
-              <p class="content__container__text">
-                Quero ir para
-              </p>
-              <ul class="content__container__list">
-                <li class="content__container__list__item">Dinamarca</li>
-                <li class="content__container__list__item">Ilhabela</li>
-                <li class="content__container__list__item">Chapada Diamantina</li>
-                <li class="content__container__list__item">Rio de Janeiro</li>
-              </ul>
-            </div>
-          </div>
           <form action="#" class="out-of-couch">
             <input id="places-input-action" placeholder="<%= t('intro-location-label') %>" type="text">
             <button class='button' type='submit'>
