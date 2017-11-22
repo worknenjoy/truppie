@@ -11,7 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
-/public/*
+# /public/*
 config/my_secrets.yml
 .env
 .idea/
