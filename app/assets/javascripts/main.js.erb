@@ -195,12 +195,24 @@ $(function() {
 
     localStorage.clear();
 
-    $('#tour_included, #tour_nonincluded, #tour_take, #organizer_policy, #tour_goodtoknow, .package-value').tagsinput({
-        delimiter: ";"
+    getKeyCodes = function(charList){
+      codes = [];
+      $.each(charList, function (index, char) {
+        codes.push(char.charCodeAt(0));
+      });
+      return codes;
+    }
+
+    $('.tour-taggable, #organizer_policy').tagsinput({
+      confirmKeys: getKeyCodes([',',';','.']),
+      delimiterRegex: /[,;.]+/,
+      trimValue: true
     });
 
     $('#guidebook_included, #guidebook_nonincluded').tagsinput({
-        delimiter: ";"
+      confirmKeys: getKeyCodes([',',';','.']),
+      delimiterRegex: /[,;.]+/,
+      trimValue: true
     });
 
     $('#add-packages').on('click', function () {
