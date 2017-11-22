@@ -7,11 +7,12 @@
   transform: translate(-50%, 86%);
   height: 160px;
   overflow:hidden;
+  width: 41%;
+  color: $brand-primary;
 
   font-family: 'Lato', sans-serif;
   font-size: 24px;
   line-height: 40px;
-  color: $brand-danger;
 
   &__container {
     font-weight: 600;
@@ -23,11 +24,12 @@
       display: inline;
       float: left;
       margin: 0;
+      margin-right: 50px;
     }
 
     &__list {
       margin-top: 0;
-      padding-left: 110px;
+      padding-left: 150px;
       text-align: left;
       list-style: none;
 
@@ -41,6 +43,7 @@
       &__item {
         line-height:40px;
         margin:0;
+        color: $brand-primary-darker;
       }
     }
   }
