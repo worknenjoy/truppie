@@ -57,7 +57,7 @@
                                     <small><%= t('tours_view_confirm_small_two') %></small>
                                   </div>
                                   <div class="form-group">
-                                    <%= hidden_field_tag :id, @tour %>
+                                    <%= hidden_field_tag :id, @guidebook %>
                                     <%= hidden_field_tag :method, "CREDIT_CARD" %>
                                     <label for="fullname"><%= t('tours_view_confirm_label_one') %></label>
                                     <%= text_field_tag :fullname, nil, placeholder: t('tours_view_confirm_placeholder_one'), required: true, class: "form-control" %>
@@ -277,7 +277,7 @@
                                     <% end %>
                                   </div>
                               <% else %>
-                                  <%= hidden_field_tag :value, @tour.value %>
+                                  <%= hidden_field_tag :value, @guidebook.value %>
                               <% end %>
                           <% end %>
                         </div>
