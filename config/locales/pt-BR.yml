@@ -712,7 +712,7 @@ pt-BR:
   tours_view_confirm_label_two: Data de nascimento
   tours_view_confirm_li_one: " Início"
   tours_view_confirm_li_two: Confirmação
-  tours_view_confirm_p_one: Confira aqui os detalhes para ter certeza de que está tudo certinho:
+  tours_view_confirm_p_one: "Confira aqui os detalhes para ter certeza de que está tudo certinho: "
   tours_view_confirm_placeholder_four: Ano (dois dígitos)
   tours_view_confirm_placeholder_one: Mesmo do cartão de crédito
   tours_view_confirm_placeholder_three: Mês (dois dígitos)
