@@ -16,3 +16,4 @@ config/my_secrets.yml
 .env
 .idea/
 truppie.iml
+public/system/
