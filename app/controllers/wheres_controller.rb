@@ -1,5 +1,6 @@
 class WheresController < ApplicationController
   before_action :set_where, only: [:show, :edit, :update, :destroy]
+  before_filter :check_if_super_admin, only: [:index, :edit]
 
   def index
     @wheres = Where.all
