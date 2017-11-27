@@ -171,7 +171,7 @@
                                     <% end %>
                                     </div>
                                   <% else %>
-                                    <%= hidden_field_tag :value, @tour.value %>
+                                    <%= hidden_field_tag :value, @guidebook.value %>
                                   <% end %>
                                 <% end %>
                             </div>
@@ -243,7 +243,7 @@
           </div>
         </div>
         <% end %>
-        <%= form_tag confirm_presence_tour_path, :method => 'post' do %>
+        <%= form_tag confirm_presence_guidebook_path, :method => 'post' do %>
           <div class="payment-tab hidden" id="payment-external">
             <%= hidden_field_tag :payment_type, @payment_type %>
             <%= hidden_field_tag :method, "CREDIT_CARD" %>
