@@ -90,7 +90,7 @@ pt-BR:
   change-date: Inserir data
   clients-title: Seus clientes
   close: Fechar
-  confirm-guidebook-reserved-when: Confirm-guidebook-reserved-when
+  confirm-guidebook-reserved-when: Reservado em
   confirm_eds_partial_h4: Confirmados
   confirm_eds_partial_link: Garanta a sua vaga!
   confirm_eds_partial_small: 'Ops, parece que ninguém reservou ainda. '
@@ -301,7 +301,7 @@ pt-BR:
   guidebook-admin-tab-home: Home
   guidebook-admin-tab-packages: Pacotes
   guidebook-admin-tab-picture: Imagem
-  guidebook-confirm-place: Guidebook-confirm-place
+  guidebook-confirm-place: Local da reserva
   guidebook-confirm-reservation-link: Quero o meu roteiro agora!
   guidebook-languages-label: Languages
   guidebook-link-new: New
