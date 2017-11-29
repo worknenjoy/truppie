@@ -6,3 +6,6 @@ rvm:
   - 2.2.3
 services:
   - postgresqli
+notifications:
+  email:
+    - laurinha.sette@gmail.com
