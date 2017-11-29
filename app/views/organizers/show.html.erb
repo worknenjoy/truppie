@@ -50,6 +50,12 @@
                     <i class="fa fa-twitter"></i> twitter
                 </a>
                 <% end %>
+
+                <% if @organizer.phone? %>
+                  <a class="btn btn-success btn-sm" onclick="open_whatsapp_chat(<%= @organizer.phone %>)">
+                    <i class="fa fa-whatsapp"></i> <%= @organizer.phone %>
+                  </a>
+                <% end %>
               </div>
   					</div>
   				</div>
