@@ -1,0 +1,102 @@
+<style>
+  .twPc-div {
+    overflow: hidden;
+    position: relative;
+  }
+  <% if t.picture.present? %>
+  <%="#twPc-bg-#{t.id}" %> {
+    background-image: url('<%= t.picture.url(:large) %>');
+  }
+  <% elsif t.try(:photo) %>
+  <%="#twPc-bg-#{t.id}" %> {
+    background-image: url('<%= t.photo %>');
+  }
+  <% else %>
+  <%="#twPc-bg-#{t.id}" %> {
+    background-color: #F15A29;
+  }
+  <% end %>
+</style>
+<div class="twPc-div spaced-down">
+  <% if t.value_chosen_by_user %>
+      <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+          <div class="ribbon base">
+            <span><small><%= t('no-price-defined-message') %></small></span>
+          </div>
+      <% end %>
+  <% else %>
+      <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+          <div class="ribbon base"><span><%= raw t.price %></span></div>
+      <% end %>
+  <% end %>
+
+  <div>
+    <div class="twPc-button">
+      <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+
+      <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
+          <i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
+      <% end %>
+      <!-- Twitter Button -->
+    </div>
+
+    <%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
+        <% if t.organizer.picture.present? %>
+            <%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+        <% else %>
+            <%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+        <% end %>
+    <% end %>
+
+    <div class="twPc-divUser spaced-down">
+      <div class="twPc-divName">
+        <%= link_to tour_path(t) do %>
+            <%= t.title %>
+        <% end %>
+      </div>
+      <span>
+              <%= link_to organizer_path(t.organizer) do %>
+              <small><%= t('welcome_view_index_small_eight') %> </small><strong><%= t.organizer.name %></strong>
+              <% end %>
+            </span>
+    </div>
+    <div class="twPc-divStats">
+      <ul class="twPc-Arrange">
+        <li class="twPc-ArrangeSizeFit">
+          <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_one') %></span>
+          <span class="twPc-StatValue">
+                  <%= l(t.start, format: '%d de %B / %Y') %>
+                </span>
+          <span class="twPc-StatValue">
+                  <span class="label label-info"><%= friendly_when(t.start) %></span>
+                </span>
+        </li>
+        <% if !t.wheres.any? %>
+            <li class="twPc-ArrangeSizeFit">
+              <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_two') %></span>
+              <span class="twPc-StatValue">
+                  <%= t.wheres.first.try(:name) %>
+                </span>
+            </li>
+        <% end %>
+        <li class="twPc-ArrangeSizeFit">
+          <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_three') %></span>
+          <span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
+        </li>
+        <div class="sized-1x">
+          <%= render partial: "layouts/confirmeds", locals: {tour: t} %>
+        </div>
+        <li class="twPc-ArrangeSizeFit">
+          <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_four') %></span>
+          <span class="twPc-StatValue">
+                  <% if not t.soldout? %>
+                          <strong><%= t.available %></strong> <%= t('welcome_view_index_span_five') %>
+                        <% else %>
+                          <%= t('welcome_view_index_span_six') %>
+                        <% end %>
+                </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
