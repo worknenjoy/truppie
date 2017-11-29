@@ -42,3 +42,4 @@
 //= require wizard_steps
 //= require progress_upload
 //= require main
+//= require whatsapp_chat
