@@ -1,8 +1,7 @@
 class GuidebooksController < ApplicationController
   before_action :set_guidebook, only: [:show, :edit, :update, :destroy]
 
-  before_action :authenticate_user!, :except => [:show]
-  before_filter :check_if_super_admin, only: [:index, :new, :edit]
+  before_action :authenticate_user!, :except => [:show, :index]
   before_filter :check_if_organizer_admin, only: [:create, :update, :destroy]
 
   # GET /guidebooks
