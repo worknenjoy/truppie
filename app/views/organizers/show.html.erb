@@ -104,10 +104,16 @@
           </div>
       <% end %>
       <% if @organizer.tours.publisheds.any? %>
-      <h3 class="light-heading" style="padding: 4px;">Truppies</h3>
-      <% @organizer.tours.recents.each do |t| %>
-            <%= render partial: 'layouts/tour_list', locals: { t: t } %>
+        <h3 class="light-heading" style="padding: 4px;"><%= t('tours-title') %></h3>
+        <% @organizer.tours.recents.each do |t| %>
+          <%= render partial: 'layouts/tour_list', locals: { t: t } %>
+        <% end %>
       <% end %>
+      <% if @organizer.guidebooks.publisheds.any? %>
+          <h3 class="light-heading" style="padding: 4px;"><%= t('guidebooks-name') %></h3>
+          <% @organizer.guidebooks.publisheds.each do |g| %>
+              <%= render partial: 'layouts/guidebook_list', locals: { t: g } %>
+          <% end %>
       <% end %>
       </div>
     </div>

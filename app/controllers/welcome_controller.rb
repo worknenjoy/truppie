@@ -14,6 +14,7 @@ class WelcomeController < ApplicationController
     @next_tours = Tour.publisheds.nexts
     @past_tours = Tour.publisheds.past
     @organizers = Organizer.publisheds.order(created_at: :asc)
+    @guidebooks = Guidebook.publisheds
   end
   
   def organizer
