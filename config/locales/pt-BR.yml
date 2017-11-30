@@ -51,7 +51,7 @@ pt-BR:
   aviso: Aviso
   balance-label: Reservas
   balloom-heading: Tours guiados
-  balloom-text: escolha guias com seguranca
+  balloom-text: Escolha guias com seguranca
   bank-account-action-save: Salvar
   bank-account-data-incorrect: dados da conta incorretos
   bank-account-data-remote-incorrect: não foi possível salvar os dados da conta para registro
@@ -634,8 +634,8 @@ pt-BR:
   second-description: Fuja da rotina, faça algo novo!
   see-all-guides-label: See-all-guides-label
   select-date: selecionar data
-  shoes-heading: Lugares
-  shoes-text: Explore lugares e encontre serviços
+  shoes-heading: Explore lugares
+  shoes-text: Busque por lugares e encontre serviços
   side-note-edit-bar-message: Divulgue este link na divulgação do evento para que seu usuário possa reservar online
   status_danger: danger
   status_success: success
