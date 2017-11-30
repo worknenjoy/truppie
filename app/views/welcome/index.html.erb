@@ -17,10 +17,10 @@
             Quero ir para
           </p>
           <ul class="content__container__list">
-            <li class="content__container__list__item">Dinamarca</li>
-            <li class="content__container__list__item">Ilhabela</li>
-            <li class="content__container__list__item">Chapada Diamantina</li>
-            <li class="content__container__list__item">o Rio de Janeiro</li>
+            <li class="content__container__list__item"><a href="#">Dinamarca</a></li>
+            <li class="content__container__list__item"><a href="#">Ilhabela</a></li>
+            <li class="content__container__list__item"><a href="#">Chapada Diamantina</a></li>
+            <li class="content__container__list__item"><a href="#">o Rio de Janeiro</a></li>
           </ul>
         </div>
       </div>
@@ -55,29 +55,33 @@
         <div class="col-sm-4 wow bounceIn">
           <div class="card card-block text-xs-center">
             <h4 class="card-title main-color-font">
-              <%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-              <p class="tagline emblem-font"><%= t('balloom-heading') %>
-              </h4>
+              <%= link_to '#' do %>
+                <%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+                <span class="tagline emblem-font"><%= t('balloom-heading') %></span>
+              <% end %>
+            </h4>
             <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
           </div>
         </div>
         <div class="col-sm-4 wow bounceIn">
           <div class="card card-block text-xs-center">
             <h4 class="card-title main-color-font">
-              <picture>
-                <%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-              </picture>
-              <p class="tagline emblem-font"><%= t('hands-heading') %>
-              </h4>
+              <%= link_to '#' do %>
+              <%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+                  <span class="tagline emblem-font"><%= t('hands-heading') %></span>
+              <% end %>
+            </h4>
             <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
           </div>
         </div>
         <div class="col-sm-4 wow bounceIn">
           <div class="card card-block text-xs-center">
             <h4 class="card-title main-color-font">
-              <%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-              <p class="tagline emblem-font"><%= t('shoes-heading') %>
-              </h4>
+              <%= link_to '#' do %>
+                <%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+                <p class="tagline emblem-font"><%= t('shoes-heading') %>
+              <% end %>
+            </h4>
             <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
           </div>
         </div>
