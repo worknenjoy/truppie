@@ -39,7 +39,7 @@ Conectamos você com guias e roteiros para que você conheça diversas atividade
 
 *Onde?*
 
-https://user-images.githubusercontent.com/88840/33442072-61f42b02-d5db-11e7-8cdb-1342ac7a1852.png
+![Brazil](https://user-images.githubusercontent.com/88840/33442072-61f42b02-d5db-11e7-8cdb-1342ac7a1852.png)
 
 No momento queremos estimular o acesso as atividades no Brasil, mas também fazer com que Brasileiros tenham acesso a roteiros no exterior, feito sob medida para você.
 
