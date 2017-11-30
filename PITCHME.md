@@ -17,9 +17,10 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 * [Guias](http://guia.truppie.com)
 * Roteiros personalizados 
 * [Truppie places](https://truppie.com/welcome/user)
+* O que temos no Mercado
 * O que temos agora?
 * Aonde queremos chegar
-* Como a Truppie é desenvolvida - [Truppie devs] (http://dev.truppie.com)
+* Como chegaremos - [Truppie devs] (http://dev.truppie.com)
 * Como vamos captar clientes
 
 ---
@@ -28,7 +29,7 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 *O que é*
 
-A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de *truppies*. 
+A Truppie é um marketplace de trips, roteiros e afins, que chamamos de *truppies*. 
 
 ---
 
