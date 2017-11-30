@@ -16,6 +16,12 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 * Nossa visão
 * [Guias](http://guia.truppie.com)
 * Roteiros personalizados 
+
+
+---
+
+*O que iremos abordar*
+
 * [Truppie places](https://truppie.com/welcome/user)
 * O que temos no Mercado
 * O que temos agora?
@@ -109,7 +115,11 @@ O Truppie places é um local que pretende entregar conteúdo relevante, para ser
 
 ---
 
+*Desenvolvimento*
 
+@fa[code-fork]
+
+---
 
 
 
