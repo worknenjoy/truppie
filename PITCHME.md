@@ -4,7 +4,16 @@
 
 ![Logo](https://truppie.com/assets/logo-flat-8815ef3639e143731f00922704c9fa09d5fc311e5433207cf6e8ca136d4edf32.png)
 
-Somos a Truppie, uma startup remota que coloca você conectado com diversas atividades, oferecidas por guias que vão lhe fornecer uma experência única!
+Somos a Truppie, uma startup remota que coloca você conectado com diversas atividades e roteiros, oferecidas por guias e viajantes que vão lhe fornecer uma experência única!
+
+---
+
+*O que iremos abordar*
+
+* O que é a Truppie
+* Como fazemos
+* Onde atuamos
+* Nossa visão
 
 ---
 
@@ -12,7 +21,7 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 *O que é*
 
-A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de Truppie. 
+A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de *truppies*. 
 
 ---
 
@@ -24,11 +33,13 @@ Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços o
 
 *Como?*
 
-A gente tenta conecta-lo com guias e roteiros para que você conheça diversas atividades do seu interesse e descobrir novas, seja na sua cidade ou onde você pretende viajar.
+Conectamos você com guias e roteiros para que você conheça diversas atividades do seu interesse, seja na sua cidade ou onde você pretende viajar.
 
 ---
 
 *Onde?*
+
+https://user-images.githubusercontent.com/88840/33442072-61f42b02-d5db-11e7-8cdb-1342ac7a1852.png
 
 No momento queremos estimular o acesso as atividades no Brasil, mas também fazer com que Brasileiros tenham acesso a roteiros no exterior, feito sob medida para você.
 
@@ -44,9 +55,9 @@ Mayna Thais e Wharley Ornelas, em Belo Horizonte
 
 ---
 
-*Visão além*
+*Visão além do alcance*
 
-Alias, nossa visãoo vai além. Queremos virar refência em serviços de viagem!
+A nossa visãoo vai além. Queremos virar refência em serviços de viagem!
 
 ---
 
