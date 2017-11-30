@@ -12,7 +12,11 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 *O que é*
 
-A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de Truppie. Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e roteiros, ajudando no seu planejamento e tudo que você precisa para planejar seu destino.
+A Truppie é uma plataforma de trips, roteiros e afins, que chamamos de Truppie. 
+
+---
+
+Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e roteiros, ajudando no seu planejamento e tudo que você precisa para planejar seu destino.
 
 ---
 
@@ -60,7 +64,7 @@ Uma plataforma para os guias de viagem
 
 ---
 
-Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferramentas práticas para gerenciar o pré, durante e pós atividade, seja ela atividades curtas ou que necessitam de um planejamento maior.
+Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferramentas práticas para gerenciar o pré, durante e pós atividade
 
 ---
 
@@ -70,7 +74,11 @@ Temos a plataforma ideal que dá toda autonomia para gerenciar a parte de reserv
 
 *Truppie Places*
 
-Com o Truppie Places, usuários encontram diversos serviços, guias e roteiros, além de informações relevante sobre o local. É uma página também que pretende entregar conteúdo relevante, para ser achado em pesquisas do Google quando os destinos forem procurados
+Com o Truppie Places, usuários encontram diversos serviços, guias e roteiros, além de informações relevante sobre o local. 
+
+---
+
+O Truppie places é um local que pretende entregar conteúdo relevante, para ser achado em pesquisas do Google quando os destinos forem procurados
 
 ---
 
