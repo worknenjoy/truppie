@@ -50,8 +50,8 @@ pt-BR:
   authors-title: Os Truppistas
   aviso: Aviso
   balance-label: Reservas
-  balloom-heading: Explore
-  balloom-text: Do que você está a fim? Temos opções variadas!
+  balloom-heading: Tours guiados
+  balloom-text: escolha guias com seguranca
   bank-account-action-save: Salvar
   bank-account-data-incorrect: dados da conta incorretos
   bank-account-data-remote-incorrect: não foi possível salvar os dados da conta para registro
@@ -97,7 +97,7 @@ pt-BR:
   confirm_eds_partial_span: " reserva(s)"
   confirm_eds_partial_strong: Você
   contact-link: Fale conosco
-  contact-main-menu: Fale conosco
+  contact-main-menu: Entre em contato
   contact-title: Contato
   contact-us-action-step: Entre em contato com a gente informando que deseja ser guia
   contacts_controller_error: Faltou preencher o email e/ou a mensagem
@@ -266,6 +266,7 @@ pt-BR:
       header:
         one: 'Não foi possível gravar %{model}: 1 erro'
         other: 'Não foi possível gravar %{model}: %{count} erros'
+  nomad-main-menu: Trabalhe conosco
   event-add-image: Adicionar imagem
   event-call-end: Fim
   event-call-start: Início
@@ -312,8 +313,8 @@ pt-BR:
   guides_partial_a_one: " Site"
   guides_partial_a_two: " Enviar um e-mail"
   guides_partial_h3_one: Guias
-  hands-heading: Reserve
-  hands-text: Verifique os detalhes e confirme sua presença
+  hands-heading: Roteiros personalizados
+  hands-text: Roteiros feitos sob medida para você
   hello-organizer-welcome: Olá, %{organizer}!
   hello-organizer-welcome-account-edit: Conta pessoal
   hello-organizer-welcome-bankaccount-edit: Conta bancária
@@ -474,7 +475,7 @@ pt-BR:
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: Não verificado
   not_verified_label: Não verificado
-  where-to-go-text: Sair do sofá!
+  where-to-go-text: quero ir!
   intro-location-label: Diga um lugar, cidade, endereço ou país
   explore-tagline: Procure por lugares e veja se tem truppies por lá!
   number:
@@ -633,8 +634,8 @@ pt-BR:
   second-description: Fuja da rotina, faça algo novo!
   see-all-guides-label: See-all-guides-label
   select-date: selecionar data
-  shoes-heading: Aproveite
-  shoes-text: Não há com o que se preocupar - apenas prepare-se e aproveite o passeio!
+  shoes-heading: Lugares
+  shoes-text: Explore lugares e encontre serviços
   side-note-edit-bar-message: Divulgue este link na divulgação do evento para que seu usuário possa reservar online
   status_danger: danger
   status_success: success
