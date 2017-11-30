@@ -26,7 +26,7 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 * O que temos no Mercado
 * O que temos agora?
 * Aonde queremos chegar
-* Como chegaremos - [Truppie devs] (http://dev.truppie.com)
+* Como chegaremos - [Truppie devs](http://dev.truppie.com)
 * Como vamos captar clientes
 
 ---
@@ -47,7 +47,7 @@ Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços o
 
 *Como?*
 
-Conectamos você com guias e roteiros para que você conheça diversas atividades do seu interesse, seja na sua cidade ou onde você pretende viajar.
+Conectamos usuários a guias e roteiros para que você conheça diversas atividades do seu interesse, seja na sua cidade ou onde você pretende viajar.
 
 ---
 
