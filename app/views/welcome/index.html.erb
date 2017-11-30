@@ -55,7 +55,7 @@
         <div class="col-sm-4 wow bounceIn">
           <div class="card card-block text-xs-center">
             <h4 class="card-title main-color-font">
-              <%= link_to '#' do %>
+              <%= link_to organizers_path do %>
                 <%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
                 <span class="tagline emblem-font"><%= t('balloom-heading') %></span>
               <% end %>
@@ -66,7 +66,7 @@
         <div class="col-sm-4 wow bounceIn">
           <div class="card card-block text-xs-center">
             <h4 class="card-title main-color-font">
-              <%= link_to '#' do %>
+              <%= link_to guidebooks_path do %>
               <%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
                   <span class="tagline emblem-font"><%= t('hands-heading') %></span>
               <% end %>
@@ -77,7 +77,7 @@
         <div class="col-sm-4 wow bounceIn">
           <div class="card card-block text-xs-center">
             <h4 class="card-title main-color-font">
-              <%= link_to '#' do %>
+              <%= link_to user_welcome_path do %>
                 <%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
                 <p class="tagline emblem-font"><%= t('shoes-heading') %>
               <% end %>
@@ -342,9 +342,12 @@
         </div>
       </div>
       <% end %>
-
-
-
+      <% end %>
+      <% if @guidebooks.publisheds.any? %>
+          <h3 class="light-heading" style="padding: 4px;"><%= t('guidebooks-name') %></h3>
+          <% @guidebooks.publisheds.each do |g| %>
+              <%= render partial: 'layouts/guidebook_list', locals: { t: g } %>
+          <% end %>
       <% end %>
       <%= render partial: 'layouts/guides_list', locals: {guides: @organizers} %>
     </div>
