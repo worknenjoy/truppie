@@ -14,6 +14,13 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 * Como fazemos
 * Onde atuamos
 * Nossa visão
+* [Guias](http://guia.truppie.com)
+* Roteiros personalizados 
+* [Truppie places](https://truppie.com/welcome/user)
+* O que temos agora?
+* Aonde queremos chegar
+* Como a Truppie é desenvolvida - [Truppie devs] (http://dev.truppie.com)
+* Como vamos captar clientes
 
 ---
 
@@ -71,7 +78,7 @@ Queremos fazer isto através de nosso site, canais nas redes sociais e muito e-m
 
 *O que vem Primeiro?*
 
-Uma plataforma para os guias de viagem
+Uma plataforma para os guias de viagem oferecerem suas atividades
 
 ---
 
@@ -79,7 +86,15 @@ Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferra
 
 ---
 
-Temos a plataforma ideal que dá toda autonomia para gerenciar a parte de reserva, com transferência direta para sua conta e ainda conta com nossa divulgação
+Uma plataforma para quem produz roteiros personalizados
+
+---
+
+Com o tempo também percebemos que poderíamos atuar na venda de roteiros personalizados
+
+---
+
+Temos a plataforma ideal que dá toda autonomia para quem oferece o serviço gerenciar a parte de reserva, com transferência direta para sua conta e ainda conta com nossa divulgação
 
 ---
 
