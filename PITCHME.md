@@ -1,3 +1,5 @@
+---?video=https://truppie.com/logo-animated-orange.mp4
+
 ![Logo](https://truppie.com/assets/logo-flat-8815ef3639e143731f00922704c9fa09d5fc311e5433207cf6e8ca136d4edf32.png)
 
 Somos a Truppie, uma startup remota que coloca você conectado com diversas atividades, oferecidas por guias que vão lhe fornecer uma experência única!
