@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114181205) do
+ActiveRecord::Schema.define(version: 20171130212657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,8 +195,8 @@ ActiveRecord::Schema.define(version: 20171114181205) do
     t.integer  "rating"
     t.integer  "value"
     t.string   "currency"
-    t.integer  "organizer_id",                      null: false
-    t.integer  "user_id",                           null: false
+    t.integer  "organizer_id",                         null: false
+    t.integer  "user_id",                              null: false
     t.string   "privacy"
     t.string   "verified"
     t.string   "status"
@@ -209,13 +209,14 @@ ActiveRecord::Schema.define(version: 20171114181205) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.integer  "category_id"
-    t.string   "included",             default: [],              array: true
-    t.string   "nonincluded",          default: [],              array: true
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "included",             default: [],                 array: true
+    t.string   "nonincluded",          default: [],                 array: true
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "destination_id"
     t.integer  "form_id"
     t.string   "photo"
+    t.boolean  "value_chosen_by_user", default: false
   end
 
   add_index "guidebooks", ["category_id"], name: "index_guidebooks_on_category_id", using: :btree
