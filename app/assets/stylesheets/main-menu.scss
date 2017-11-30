@@ -34,14 +34,14 @@ nav.main-menu li {
 nav.main-menu a {
   color: #fff;
   display: inline-block;
-  width: 200px;
+  width: 140px;
   text-align: center;
   text-decoration: none;
   line-height: 40px;
   text-shadow: 1px 1px 0px #283744;
 }
 nav.main-menu li a {
-  border-right: 1px solid $gray-lightest;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
