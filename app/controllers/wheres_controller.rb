@@ -15,6 +15,7 @@ class WheresController < ApplicationController
 
   def show
     @tours = Tour.joins(:wheres).where(wheres: {place_id: @where.place_id})
+    @guidebooks = Guidebook.joins(:wheres).where(wheres: {place_id: @where.place_id})
   end
 
   # POST /backgrounds
@@ -59,6 +60,18 @@ class WheresController < ApplicationController
     respond_to do |format|
       format.html { redirect_to where_url, notice: 'Background was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def place
+    puts params[:place_id]
+    @placeid = params[:place_id]
+    @client = GooglePlaces::Client.new('AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A')
+    @place = @client.spot(@placeid)
+    @where = Where.where({:place_id => @placeid}).first
+    if @where.present?
+      @tours = Tour.joins(:wheres).where(wheres: {place_id: @where.place_id})
+      @guidebooks = Guidebook.joins(:wheres).where(wheres: {place_id: @where.place_id})
     end
   end
 

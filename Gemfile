@@ -49,6 +49,7 @@ gem 'mime-types', '2.6.2'
 gem 'time_diff'
 gem 'timecop'
 gem 'google_timezone'
+gem 'google_places'
 
 group :production do
   gem 'rails_12factor'
