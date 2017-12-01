@@ -26,8 +26,9 @@
       </div>
       <div id="tours" style="padding-top: 3em;">
         <div class='container'>
-          <form action="#" class="out-of-couch">
+          <form action="<%= places_path %>" class="search-place">
             <input id="places-input-action" placeholder="<%= t('intro-location-label') %>" type="text">
+            <input type="hidden" name="place_id" id="place_id" />
             <button class='button' type='submit'>
               <%= t('where-to-go-text') %>
             </button>
