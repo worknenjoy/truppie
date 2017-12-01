@@ -31,6 +31,22 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 ---
 
+*Desafios*
+
+* Guias e roteiros com sites próprios
+* Chegar até os guias
+* Entregar valor além do site que eles possuem
+* Confiança
+
+---
+
+*Nossas referências*
+
+* Fiverr
+* 
+
+---
+
 ![map](https://user-images.githubusercontent.com/88840/33044206-49ffd9e6-ce48-11e7-9cf7-3109d4eb9312.png)
 
 *O que é*
