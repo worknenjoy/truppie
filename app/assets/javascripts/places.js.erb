@@ -200,6 +200,7 @@ function prefill_place(target, input) {
   function initMap() {
     var input = document.getElementById("map_canvas");
     var action_input = document.getElementById("places-input-action");
+
     if (input){
       var map = new google.maps.Map(document.getElementById("map_canvas"), {
         zoom      : 10,
@@ -223,9 +224,31 @@ function prefill_place(target, input) {
           console.log(response);
         } 
       })
+
+      $.ajax({
+          url: '/guidebooks',
+          type: 'GET',
+          dataType: 'json',
+          success: function(data){
+              for (var i = 0; i < data.length; i++) {
+                  place_marker(map, data[i], "guidebook");
+              }
+
+          },
+          error: function(xhr, status, response) {
+              console.log(response);
+          }
+      })
+
     }
     if(action_input) {
         var searchBox = new google.maps.places.SearchBox(action_input);
+
+        $('.search-place').bind('submit', function(){
+            var places = searchBox.getPlaces();
+            $('#place_id').val(places[0].place_id);
+        });
+
        $('.out-of-couch').bind('submit', function(e){
            var places = searchBox.getPlaces();
            var bounds = new google.maps.LatLngBounds();
@@ -252,15 +275,23 @@ function prefill_place(target, input) {
     }
   }
 
-  function place_marker(map, tour){
+  function place_marker(map, tour, type){
     var mapMarkerAwesome = mapMarkerAwesomeFactory(true);
     var geocoder = new google.maps.Geocoder;
-    var placeId = tour.where.place_id;
-    var tourLat = parseFloat(tour.where.lat);
-    var tourLng = parseFloat(tour.where.long);
-    var mapIcon = {
+    var placeId = tour["wheres"][0]["place_id"];
+    var tourLat = parseFloat(tour["wheres"][0]["lat"]);
+    var tourLng = parseFloat(tour["wheres"][0]["long"]);
+
+    var mapIconTour = {
       url: mapMarkerAwesome('fa-ticket'),
       origin: new google.maps.Point(0, 0)
+    }
+
+    if(type === "guidebook") {
+        mapIconTour = {
+            url: mapMarkerAwesome('fa-book'),
+            origin: new google.maps.Point(0, 0)
+        }
     }
 
 
@@ -279,8 +310,7 @@ function prefill_place(target, input) {
         "<img src='" + tour.thumbnail + "' style='width: 100px; vertical-align: top; margin-right: .5em' />" + 
         "</div>" +
         "<div class='col-md-8'>" +
-        "<h5 style='color: #c1390d'>" + tour.price + "</h5>" + 
-        "<p>" + tour.address + "</p>" +
+        "<h5 style='color: #c1390d'>" + tour.price + "</h5>" +
         "<p>" + rating_stars(tour.rating) + "</p>" +
         "</div>" +
         "</div>" +
@@ -300,7 +330,7 @@ function prefill_place(target, input) {
                 map.setCenter(results[0].geometry.location);
                 var marker = new google.maps.Marker({
                     map: map,
-                    icon: mapIcon,
+                    icon: mapIconTour,
                     position: results[0].geometry.location
                 });
                 var infowindow = new google.maps.InfoWindow({ content : info_content });
