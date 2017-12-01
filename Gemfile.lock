@@ -146,6 +146,8 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    google_places (1.0.0)
+      httparty (>= 0.13.1)
     google_timezone (0.0.5)
     haml (5.0.3)
       temple (>= 0.8.0)
@@ -371,6 +373,7 @@ DEPENDENCIES
   dotenv-rails
   fakeredis
   fakeweb
+  google_places
   google_timezone
   i18n-tasks (~> 0.9.18)
   intercom-rails
