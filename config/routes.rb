@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   get 'tags/index'
   get 'languages/index'
-  #get 'wheres/index'
+  get 'places', to: 'wheres#place', as: 'places'
 
   get 'contacts/index'
   post 'contacts/send_form'
