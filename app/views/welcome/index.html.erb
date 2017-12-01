@@ -23,12 +23,12 @@
           </ul>
         </div>
       </div>
-      <div id="tours" style="padding-top: 3em;">
-        <div class="container">
+      <div id="tours" style="padding-top: 3em; position: relative; z-index: 10000;">
+        <div class='container'>
           <form action="<%= places_path %>" class="search-place">
             <input id="places-input-action" placeholder="<%= t('intro-location-label') %>" type="text">
             <input type="hidden" name="place_id" id="place_id" />
-            <button class="button" type="submit">
+            <button class='button' type='submit'>
               <%= t('where-to-go-text') %>
             </button>
           </form>

@@ -1,5 +1,7 @@
 ---
 pt-BR:
+  track_loading_message: Carregando
+  where-to-go-title: Onde você gostaria de ir?
   account-label: Minha conta
   account-missing-legal-entity:
     verification:
