@@ -1,9 +1,9 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
   before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
-  before_action :authenticate_user!, :except => [:show]
+  before_action :authenticate_user!, :except => [:show, :index]
   before_filter :check_if_organizer_admin, only: [:update, :manage, :transfer, :transfer_funds, :tos_acceptance, :tos_acceptance_confirm, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
-  before_filter :check_if_super_admin, only: [:index, :new, :edit, :invite, :send_invite]
+  before_filter :check_if_super_admin, only: [:new, :edit, :invite, :send_invite]
 
   # GET /organizers
   # GET /organizers.json
