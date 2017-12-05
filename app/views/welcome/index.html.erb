@@ -49,48 +49,48 @@
           </div>
      </div>
   </div>
-  </div>
-  <div class="container intro-idea spaced-down">
-    <div class="container">
-      <div class="row cards">
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
-              <%= link_to organizers_path do %>
-                <%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-                <span class="tagline emblem-font"><%= t('balloom-heading') %></span>
-              <% end %>
-            </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
-          </div>
+</div>
+<div class="container intro-idea spaced-down">
+  <div class="container">
+    <div class="row cards">
+      <div class="col-sm-4 wow bounceIn">
+        <div class="card card-block text-xs-center">
+          <h4 class="card-title main-color-font">
+            <%= link_to organizers_path do %>
+              <%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <span class="tagline emblem-font"><%= t('balloom-heading') %></span>
+            <% end %>
+          </h4>
+          <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
         </div>
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
-              <%= link_to guidebooks_path do %>
-              <%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-                  <span class="tagline emblem-font"><%= t('hands-heading') %></span>
-              <% end %>
-            </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
-          </div>
+      </div>
+      <div class="col-sm-4 wow bounceIn">
+        <div class="card card-block text-xs-center">
+          <h4 class="card-title main-color-font">
+            <%= link_to guidebooks_path do %>
+            <%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+                <span class="tagline emblem-font"><%= t('hands-heading') %></span>
+            <% end %>
+          </h4>
+          <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
         </div>
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
-              <%= link_to user_welcome_path do %>
-                <%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-                <p class="tagline emblem-font"><%= t('shoes-heading') %>
-              <% end %>
-            </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
-          </div>
+      </div>
+      <div class="col-sm-4 wow bounceIn">
+        <div class="card card-block text-xs-center">
+          <h4 class="card-title main-color-font">
+            <%= link_to user_welcome_path do %>
+              <%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <p class="tagline emblem-font"><%= t('shoes-heading') %>
+            <% end %>
+          </h4>
+          <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
         </div>
       </div>
     </div>
   </div>
   </div>
-  <div class="paradise-bg">
+</div>
+<div class="paradise-bg">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -98,16 +98,12 @@
         <div class="text-xs-center" style="margin-top: 60px;">
           <div class="thumbnail center well well-small text-center text- spaced-down ">
             <h4 class="main-color-font emblem-font"><%= t('newsletter-title') %></h4>
-
             <%= render 'layouts/flash' %>
-
             <p class="lead">
               <%= t('newsletter-text') %>
               <br />
               <small><%= t('welcome_view_index_small_nine') %></small>
             </p>
-
-
             <fieldset class="form-group">
               <%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
                   <%= email_field(:subscriber, :email, :class => 'form-control spaced-down', :placeholder => 'O meu e-mail é') %>

@@ -3,35 +3,35 @@
 <% if @where and @where.backgrounds.any? %>
 <header class="l-header" style="background-image: url('<%= @where.backgrounds.first.picture.url(:large) %>')">
 <% else %>
-<header class="l-header" style="background-size: cover; background-image: url('https://maps.googleapis.com/maps/api/place/photo?sensor=false&maxwidth=3000&maxheight=3000&key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&photoreference=<%= @place.photos[0].photo_reference %>')">
+<header class="l-header" style="background-size: cover; background-image: linear-gradient(
+    rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.8)
+    ), url('https://maps.googleapis.com/maps/api/place/photo?sensor=false&maxwidth=3000&maxheight=3000&key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&photoreference=<%= @place.photos[0].photo_reference %>')">
 <% end %>
   <nav class="b-primary-nav l-container" role="navigation">
-    <div class="b-logo" style="margin-top: 250px;">
-
+    <div class="b-logo">
       <h2 class="text-color-white"><%= @where.try(:name) or @place.name %></h2>
     </div>
-
     <ul class="b-primary-nav__list">
-      <li class="b-primary-nav__list__item"><a href="">Experiências</a></li>
-      <li class="b-primary-nav__list__item"><a href="">Roteiros</a></li>
-      <li class="b-primary-nav__list__item"><a href="">Informações</a></li>
+      <li class="b-primary-nav__list__item"><a href=""><%= t('places-experiences-label') %></a></li>
+      <li class="b-primary-nav__list__item"><a href=""><%= t('places-guidebooks-label') %></a></li>
+      <li class="b-primary-nav__list__item"><a href=""><%= t('places-information-label') %></a></li>
     </ul>
-
   </nav>
 </header>
 
 <main role="main">
   <header class="b-post-header l-container">
-    <div class="b-post-header__category"><%= @where.try(:address) %></div>
-    <time class="b-post-header__date" datetime="2017-02-21T13:18:13.595Z"><%= @where.try(:updated_at) %></time>
-    <h1 class="b-post-header__heading"><%= @where.try(:name) %></h1>
+    <div class="b-post-header__category"><%= @place.try(:name) %></div>
+    <time class="b-post-header__date" datetime="2017-02-21T13:18:13.595Z"><%= @place.try(:formatted_address) %></time>
+    <h1 class="b-post-header__heading"><%= @place.reviews[0].text %></h1>
   </header>
-  <!--
+
   <section class="b-post-main l-container">
     <div class="b-post-main__intro">
       <div class="b-post-main__col">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus urna ac laoreet finibus. Etiam aliquam odio nec posuere facilisis. Curabitur aliquet quam eu nunc facilisis posuere. Nulla tincidunt lorem in tincidunt feugiat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc tristique, lorem ut porttitor facilisis, nibh libero rutrum dolor, dictum ultrices mi libero ac odio. Mauris consectetur lacinia elit a rutrum. Duis at molestie risus, eu suscipit augue.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
       <div class="b-post-main__col">
@@ -41,9 +41,8 @@
       </div>
     </div>
     <figure class="b-post-main__figure">
-      <img class="b-post-main__figure--full-width" src="https://source.unsplash.com/Yd_0nFop2Bg/1200x400" alt="Beautiful Landscape">
+      <img class="b-post-main__figure--full-width" src="https://maps.googleapis.com/maps/api/place/photo?sensor=false&maxwidth=1200&maxheight=400&key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&photoreference=<%= @place.photos[1].photo_reference %>" alt="Beautiful Landscape">
     </figure>
-    -->
   </section>
   <section>
     <div>
