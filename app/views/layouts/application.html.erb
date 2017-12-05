@@ -31,7 +31,7 @@
 <%= render 'layouts/track_loading' %>
 <%= yield %>
 <%= render 'layouts/footer' %>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&libraries=places&language=br"></script>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <% if Rails.env == "production"  %>
 <script>

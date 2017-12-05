@@ -246,7 +246,11 @@ function prefill_place(target, input) {
 
         $('.search-place').bind('submit', function(){
             var places = searchBox.getPlaces();
-            $('#place_id').val(places[0].place_id);
+            if(places) {
+                $('#place_id').val(places[0].place_id);
+                return true;
+            }
+            return false;
         });
 
        $('.out-of-couch').bind('submit', function(e){
