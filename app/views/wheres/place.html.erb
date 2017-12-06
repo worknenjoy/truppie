@@ -22,11 +22,20 @@
 
 <main role="main">
   <header class="b-post-header l-container">
-    <div class="b-post-header__category"><%= @place.try(:name) %></div>
-    <time class="b-post-header__date" datetime="2017-02-21T13:18:13.595Z"><%= @place.try(:formatted_address) %></time>
-    <h1 class="b-post-header__heading"><%= @place.reviews[0].text %></h1>
+    <time class="b-post-header__date" datetime="2017-02-21T13:18:13.595Z">
+      <%= @where.try(:name) or @place.name %> fica na <%= @place.try(:formatted_address) %>
+    </time>
+    <% if @place.reviews.any? %>
+    <h1 class="b-post-header__heading">
+      <%= @place.reviews[0].text %>
+    </h1>
+    <% end %>
+    <% if @place.reviews.any? %>
+    <div class="b-post-header__category">
+      na opinião de <strong><%= @place.reviews[0].author_name %></strong>
+    </div>
+    <% end %>
   </header>
-
   <section class="b-post-main l-container">
     <div class="b-post-main__intro">
       <div class="b-post-main__col">
