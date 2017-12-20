@@ -51,10 +51,18 @@
                       <small><span class="label label-info">não publicado</span></small>
                   <% end %>
                   <h4>
-                    <%= t.title %>
+                    <%= link_to tour_path(t) do %>
+                        <%= t.title %>
+                    <% end %>
                   </h4>
 
                   <ul class="editTools">
+                    <li>
+                      <%= link_to tour_path(t) do %>
+                          <i class="fa fa-newspaper-o"></i>
+                          <small>visualizar</small>
+                      <% end %>
+                    </li>
                     <li>
                       <%= link_to edit_guided_tour_organizer_path(t.organizer, t) do %>
                       <i class="fa fa-pencil-square-o"></i>
@@ -102,10 +110,18 @@
                           <small><span class="label label-info">não publicado</span></small>
                       <% end %>
                       <h4>
+                        <%= link_to tour_path(t) do %>
                         <%= t.title %>
+                        <% end %>
                       </h4>
 
                       <ul class="editTools">
+                        <li>
+                        <%= link_to tour_path(t) do %>
+                            <i class="fa fa-newspaper-o"></i>
+                            <small>visualizar</small>
+                        <% end %>
+                        </li>
                         <li>
                           <%= link_to edit_guided_tour_organizer_path(t.organizer, t) do %>
                               <i class="fa fa-pencil-square-o"></i>

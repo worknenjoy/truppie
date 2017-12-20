@@ -5,6 +5,9 @@
       &.no-scroll {
         overflow: hidden;
       }
+      .btn {
+        white-space: normal;
+      }
       .flex-scroll {
         display: inline-block;
         display: flex;
@@ -237,15 +240,14 @@
       z-index: 1;
       margin: 0 auto;
       img {
-         width: 300px;
-         margin-bottom: -20px;
+
       }
       .tagline {
         font-size: 1em;
         color: white;
       }
       p {
-        margin-top: -10px;
+        margin-top: -60px;
       }
       
     }

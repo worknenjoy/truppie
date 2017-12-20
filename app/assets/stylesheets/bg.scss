@@ -1,5 +1,7 @@
 .paradise-bg {
   background: asset-url('landscapes/mirror.jpg') center;
+  background-size: cover;
+  padding: 20px 0;
   .container {
     background: rgba(255, 255, 255, 0.6);
     padding: 0px 100px;

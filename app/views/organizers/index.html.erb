@@ -1,2 +1,12 @@
-<%= render 'layouts/flash' %>
-<%= render 'layouts/list_objects', locals: { object: @organizers} %>
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <div style="margin-top: 40px">
+      <% if @organizers.any? %>
+          <%= render partial: 'layouts/guides_list', locals: {guides: @organizers} %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

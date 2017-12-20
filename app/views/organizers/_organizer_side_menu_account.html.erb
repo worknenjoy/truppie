@@ -21,29 +21,29 @@
   <li class="list-group-item">
     <a href="<%= profile_edit_organizer_path(@organizer) %>">
       <% if @organizer.verified? %>
-          <span class="label label-success label-pill pull-xs-right"><%= t('verified_label') %></span>
+          <span class="label label-success label-pill pull-xs-right"><%= t('profile-verified-label') %></span>
       <% else %>
-          <span class="label label-warning label-pill pull-xs-right"><%= t('incomplete_label') %></span>
+          <span class="label label-warning label-pill pull-xs-right"><%= t('profile-incomplete-label') %></span>
       <% end %>
       <%= t('organizer-profile-edit') %>
     </a>
   </li>
   <li class="list-group-item">
     <a href="<%= account_edit_organizer_path(@organizer) %>">
-      <% if @organizer.try(:marketplace) and @organizer.marketplace.is_active? and @organizer.marketplace.photo.present? and @organizer.try(:marketplace).try(:document_picture) %>
-      <span class="label label-success label-pill pull-xs-right"><%= t('verified_label') %></span>
+      <% if @organizer.try(:marketplace) and @organizer.marketplace.is_active? and @organizer.marketplace.account_user_data_verified %>
+      <span class="label label-success label-pill pull-xs-right"><%= t('account-verified-label') %></span>
       <% else %>
-      <span class="label label-danger label-pill pull-xs-right"><%= t('not_verified_label') %></span>
+      <span class="label label-danger label-pill pull-xs-right"><%= t('account-not-verified-label') %></span>
       <% end %>
       <%= t('organizer-account-edit') %>
     </a>
   </li>
   <li class="list-group-item">
     <a href="<%= bank_account_edit_organizer_path(@organizer) %>">
-      <% if @organizer.marketplace.try(:registered_bank_account) %>
-        <span class="label label-success label-pill pull-xs-right"><%= t('verified_label') %></span>
+      <% if @organizer.marketplace.try(:bank_account_verified) %>
+        <span class="label label-success label-pill pull-xs-right"><%= t('bank-account-verified-label') %></span>
       <% else %>
-        <span class="label label-danger label-pill pull-xs-right"><%= t('not_verified_label') %></span>
+        <span class="label label-danger label-pill pull-xs-right"><%= t('bank-account-not-verified-label') %></span>
       <% end %>
       <%= t('organizer-bank-data') %>
 

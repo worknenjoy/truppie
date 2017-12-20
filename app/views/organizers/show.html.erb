@@ -1,10 +1,11 @@
 <%= render 'layouts/navbar' %>
-<%= render 'layouts/flash' %>
+<div id="flashMessages"><%= render 'layouts/flash' %></div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 spaced-top">
       <% if is_organizer_admin %>
          <%= render partial: 'layouts/organizer_dashboard_navbar', locals: { organizer: @organizer } %>
+         <%= render 'layouts/wizard_steps', organizer: @organizer %>
       <% else %>
         <h5 class="spaced-smallest"><i class="fa fa-map-o"></i> <strong>Guia:</strong></h5>
       <% end %>
@@ -19,15 +20,18 @@
   						<%= render partial: 'layouts/organizer_picture', locals: { organizer: @organizer }%>
   						<strong><%= @organizer.name %> </strong>
   					</h4>
-  				    <p class="card-text spaced-down"><%= raw @organizer.description %></p>
-  				    <% if !@organizer.website.nil? %>
+  				    <p class="card-text spaced-down ellipsis">
+                <%= raw @organizer.description %>
+              </p>
+  				  <% if !@organizer.website.nil? %>
   						<%= link_to @organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
   							<i class="fa fa-external-link"></i> entrar no site
   						<% end %>
   					<% end %>
   					<% if !@organizer.email.nil? %>
-  					<a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> <br />
-  					<% end %>
+  					 <a class="btn btn-primary-outline btn-sm" href="mailto:<%= @organizer.email %>"><i class="fa fa-envelope"></i> dúvida? Envie um e-mail</a> 
+  					<% end %> 
+            <br />
   					<div class="hovercard spaced-default">
   						<div class="bottom">
   							<% if !@organizer.instagram.nil? and !@organizer.instagram.empty? %>
@@ -46,6 +50,12 @@
                     <i class="fa fa-twitter"></i> twitter
                 </a>
                 <% end %>
+
+                <% if @organizer.phone? %>
+                  <a class="btn btn-success btn-sm" onclick="open_whatsapp_chat(<%= @organizer.phone %>)">
+                    <i class="fa fa-whatsapp"></i> <%= @organizer.phone %>
+                  </a>
+                <% end %>
               </div>
   					</div>
   				</div>
@@ -53,6 +63,22 @@
   		</div>
   	</div>
     <div class="col-xs-12 col-md-8">
+      <% unless is_organizer_admin %>
+        <div class="card card-block text-xs-center">
+          <button type="button" class="close close-action" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="card-title"><%= t('organizer-profile-share-intro') %></h3>
+          <p class="card-text"><%= t('organizer-profile-share-desc') %></p>
+          <p class="text-xs-center">
+            <%= image_tag("icons/camping-icon.svg", :width => 128, :alt => "new truppie", :class => 'img-fluid center-block') %>
+          </p>
+          <span id="followButton">
+            <%= render partial: 'follow', locals: { organizer: @organizer, user: current_user } %>
+          </span>
+          <a class="btn btn-primary-outline btn-sm" href="" data-toggle="modal" data-target="#contactModal"><i class="fa fa-commenting"></i> <%= t('organizer_views_show_send_message') %></a>
+        </div>
+      <% end %>
       <% if is_organizer_admin %>
           <div class="card card-block text-xs-center">
             <button type="button" class="close close-action" aria-label="Close">
@@ -78,76 +104,19 @@
           </div>
       <% end %>
       <% if @organizer.tours.publisheds.any? %>
-      <h3 class="light-heading" style="padding: 4px;">Truppies</h3>
-      <% @organizer.tours.recents.each do |t| %>
-      <style>
-        .twPc-div {
-          overflow: hidden;
-          position: relative;
-        }
-        <% if t.picture.present? %>
-        <%="#twPc-bg-#{t.id}" %> {
-          background-image: url('<%= t.picture.url(:large) %>');
-        }
-        <% elsif t.try(:photo) %>
-        <%="#twPc-bg-#{t.id}" %> {
-          background-image: url('<%= t.photo %>');
-        }
-        <% else %>
-        <%="#twPc-bg-#{t.id}" %> {
-          background-color: #F15A29;
-        }         
+        <h3 class="light-heading" style="padding: 4px;"><%= t('tours-title') %></h3>
+        <% @organizer.tours.recents.each do |t| %>
+          <%= render partial: 'layouts/tour_list', locals: { t: t } %>
         <% end %>
-      </style>
-      <div class="twPc-div spaced-down">
-          <h3 class="text-overlay-organizer">
-              <%= link_to tour_path(t) do %>
-                    <%= t.title %>
-              <% end %>
-            </h3>
-          <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
-            <div class="ribbon base"><span><%= raw t.price %></span></div>
-          <% end %>
-        <div>
-          <div class="twPc-button">
-                  <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
-            
-                  <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
-                    <i class="fa fa-ticket"></i> Saber mais
-                  <% end %>
-                  <!-- Twitter Button -->   
-          </div>
-      
-          <div class="twPc-divStats" style="width: 80%">
-            <ul class="twPc-Arrange">
-              <li class="twPc-ArrangeSizeFit">
-                <span class="twPc-StatLabel twPc-block">Quando?</span>
-                <span class="twPc-StatValue">
-                  <%= l(t.start, format: '%d de %B / %Y') %>
-                </span>
-                <span class="twPc-StatValue">
-                  <span class="label label-info"><%= friendly_when(t.start) %></span>
-                </span>
-              </li>
-              <% if !t.where.name.blank? %>
-              <li class="twPc-ArrangeSizeFit">
-                <span class="twPc-StatLabel twPc-block">Onde?</span>
-                <span class="twPc-StatValue">
-                  <%= t.where.name %> 
-                </span>
-              </li>
-              <% end %>
-              <li class="twPc-ArrangeSizeFit">
-                <span class="twPc-StatLabel twPc-block">Que horas?</span>
-                <span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
-              </li>
-              
-            </ul>
-          </div>
-        </div>
       <% end %>
-    <% end %>
+      <% if @organizer.guidebooks.publisheds.any? %>
+          <h3 class="light-heading" style="padding: 4px;"><%= t('guidebooks-name') %></h3>
+          <% @organizer.guidebooks.publisheds.each do |g| %>
+              <%= render partial: 'layouts/guidebook_list', locals: { t: g } %>
+          <% end %>
+      <% end %>
       </div>
     </div>
   </div>
 </div>
+<%= render partial: 'contact_modal' %>

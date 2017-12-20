@@ -1,75 +1,42 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
-<div class="container-fluid">
-  <div class="row">
+<div>
+  <div>
     <div class="col-xs-12 intro-grid">
       <div class="logo-alt">
-        <%= image_tag("logos-02.svg", :alt => "Truppie") %>
+        <%= image_tag("truppie_logo_animated_noloop.gif", width: 400, :alt => "Truppie") %>
         <p class="tagline emblem-font"><%= t('tagline') %></p>
       </div>
       <div class="logo">
-        <%= image_tag("logos-05.svg", :alt => "Truppie") %>
+        <%= image_tag("truppie_logo_animated_noloop_mobile.gif", :alt => "Truppie") %>
         <p class="tagline emblem-font"><%= t('tagline') %></p>
       </div>
-    </div>
-    <div id="carousel-intro" class="carousel slide" data-ride="carousel">
-      <% if @tours.any? %>
-      <div class="card card-floating wow bounceIn">
-        <div class="card-header">
-          <i class="fa fa-calendar"></i> <%= t('welcome_view_index_div_one') %>
-        </div>
-        <div class="spaced-down">
-          <div class="row">
-            <div class="col-xs-6 col-md-6">
-              <div class="floating-schedule">
-                <div class="pull-left date-body text-xs-center">
-                    <label for="" class="date-title">
-                      <%= l(@tours.first.start, format: '%B') %>
-                      </label>
-                    <div class="date-content">
-                      <p class="dia">
-                        <%= l(@tours.first.start, format: '%d') %>
-                      </p>
-                      <hr class="nomargin"/>
-                      <p class="nomargin">
-                        <strong>
-                          <%= l(@tours.first.start, format: '%A') %>
-                        </strong>
-                      </p>
-                      <p class="date-body-when nomargin"><strong><%= friendly_when(@tours.first.start) %></strong></p>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-md-6" style="margin-top: 15px; margin-left: -20px; padding-left: 0;">
-              <strong><%= link_to(@tours.first.title, tour_path(@tours.first)) %></strong>
-              <small><%= t('welcome_view_index_small_one') %></small> <%= @tours.first.organizer.name %><br />
-              <% if @tours.first.wheres.any? %>
-              <small><%= t('welcome_view_index_small_two') %><strong><%= @tours.first.wheres.first.name %>, <%= @tours.first.wheres.first.state %></strong></small>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="spaced-down">
-                <a href="<%= tour_path(@tours.first) %>" class="btn btn-block btn-primary btn-sm"><%= t('welcome_view_index_a_one') %></a>
-              </div>
-            </div>
-          </div>
+      <div class="content" style="display:none;">
+        <div class="content__container">
+          <p class="content__container__text">
+            Quero ir para
+          </p>
+          <ul class="content__container__list">
+            <li class="content__container__list__item"><a href="#">Dinamarca</a></li>
+            <li class="content__container__list__item"><a href="#">Ilhabela</a></li>
+            <li class="content__container__list__item"><a href="#">Chapada Diamantina</a></li>
+            <li class="content__container__list__item"><a href="#">o Rio de Janeiro</a></li>
+          </ul>
         </div>
       </div>
-      <% end %>
-        <ol class="carousel-indicators">
-          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        </ol>
-          <div class="carousel-navigation">
-          <a href="#" data-slide="next" role="buttom" class="carousel-right"><i class="fa fa-3x fa-chevron-right"></i></a>
-          <a href="#" data-slide"prev" role="buttom" class="carousel-left"><i class="fa fa-3x fa-chevron-left"></i></a>
-          </div>
+      <div id="tours" style="display: none; padding-top: 3em; position: relative; z-index: 10000;">
+        <div class='container'>
+          <form action="<%= places_path %>" class="search-place">
+            <input id="places-input-action" placeholder="<%= t('intro-location-label') %>" type="text">
+            <input type="hidden" name="place_id" id="place_id" />
+            <button class='button' type='submit'>
+              <%= t('where-to-go-text') %>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div id="carousel-intro" class="carousel slide" data-ride="carousel" style="height: 350px; z-index: -1;">
       <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
             <picture>
@@ -78,94 +45,52 @@
               <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-2-full.jpg") %>">
               <%= image_tag("image-intro-2-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-2-default.jpg")) %>
             </picture>
-            <div class="carousel-caption">
-              <h3 class="secondary-font display-tagline"><%= t('second-caption') %></h3>
-              <p class="lead emblem-font"><%= t('second-description') %></p>
-            </div>
-            <div class="top-note">
-              <small><%= t('welcome_view_index_small_three') %></small>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <picture>
-              <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-small.jpg") %>">
-              <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-medium.jpg") %>">
-            <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-full.jpg") %>">
-              <%= image_tag("image-intro.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro.jpg")) %>
-            </picture>
-          <div class="carousel-caption">
-            <h3 class="secondary-font display-tagline"><%= t('first-caption') %></h3>
-            <p class="lead emblem-font"><%= t('first-description') %></p>
-          </div>
-          <div class="top-note">
-            <small><%= t('welcome_view_index_small_four') %></small>
-          </div>
-          </div>
-          <div class="carousel-item">
-            <picture>
-              <source media="(max-width: 360px)" srcset="<%= image_path("image-intro-3-small.jpg") %>">
-              <source media="(max-width: 520px)" srcset="<%= image_path("image-intro-3-medium.jpg") %>">
-            <source media="(max-width: 800px)" srcset="<%= image_path("image-intro-3-full.jpg") %>">
-          <%= image_tag("image-intro-3-default.jpg", :alt => "Truppie", :class => "img-fluid", :srcset => image_url("image-intro-3-default.jpg")) %>
-            </picture>
 
-          <div class="carousel-caption">
-            <h3 class="secondary-font display-tagline"><%= t('third-caption') %></h3>
-            <p class="lead emblem-font"><%= t('third-description') %></p>
-            </div>
-            <div class="top-note">
-              <small><%= t('welcome_view_index_small_five') %></small>
-            </div>
           </div>
-      </div>
      </div>
   </div>
-  <div class="container spaced-default intro-text">
-    <div classs="row">
-      <div class="col-xs-12">
-        <div class="text-intro">
-          <p class="tagline emblem-font"><%= t('text-intro') %></p>
+</div>
+<div class="container intro-idea spaced-down">
+  <div class="container">
+    <div class="row cards">
+      <div class="col-sm-4 wow bounceIn">
+        <div class="card card-block text-xs-center">
+          <h4 class="card-title main-color-font">
+            <%= link_to organizers_path do %>
+              <%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+              <span class="tagline emblem-font"><%= t('balloom-heading') %></span>
+            <% end %>
+          </h4>
+          <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="container intro-idea spaced-down">
-    <div class="container">
-      <div class="row cards">
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
-              <%= image_tag("logos-10.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-              <p class="tagline emblem-font"><%= t('balloom-heading') %>
-              </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('balloom-text') %></p>
-          </div>
+      <div class="col-sm-4 wow bounceIn">
+        <div class="card card-block text-xs-center">
+          <h4 class="card-title main-color-font">
+            <%= link_to guidebooks_path do %>
+            <%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
+                <span class="tagline emblem-font"><%= t('hands-heading') %></span>
+            <% end %>
+          </h4>
+          <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
         </div>
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
-              <picture>
-                <%= image_tag("logos-11.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
-              </picture>
-              <p class="tagline emblem-font"><%= t('hands-heading') %>
-              </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('hands-text') %></p>
-          </div>
-        </div>
-        <div class="col-sm-4 wow bounceIn">
-          <div class="card card-block text-xs-center">
-            <h4 class="card-title main-color-font">
+      </div>
+      <div class="col-sm-4 wow bounceIn">
+        <div class="card card-block text-xs-center">
+          <h4 class="card-title main-color-font">
+            <%= link_to user_welcome_path do %>
               <%= image_tag("logos-12.svg", :alt => "Truppie", :class => "img-fluid symbol-big") %>
               <p class="tagline emblem-font"><%= t('shoes-heading') %>
-              </h4>
-            <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
-          </div>
+            <% end %>
+          </h4>
+          <p class="card-text"><p class="tagline emblem-font"><%= t('shoes-text') %></p>
         </div>
       </div>
     </div>
   </div>
   </div>
-  <div class="paradise-bg">
+</div>
+<div class="paradise-bg">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -173,16 +98,12 @@
         <div class="text-xs-center" style="margin-top: 60px;">
           <div class="thumbnail center well well-small text-center text- spaced-down ">
             <h4 class="main-color-font emblem-font"><%= t('newsletter-title') %></h4>
-
             <%= render 'layouts/flash' %>
-
             <p class="lead">
               <%= t('newsletter-text') %>
               <br />
               <small><%= t('welcome_view_index_small_nine') %></small>
             </p>
-
-
             <fieldset class="form-group">
               <%= form_tag({controller: "subscribers", action: "create"}, method: "post") do %>
                   <%= email_field(:subscriber, :email, :class => 'form-control spaced-down', :placeholder => 'O meu e-mail é') %>
@@ -197,13 +118,13 @@
   </div>
   <div class="intro-idea spaced-down bg-gray">
     <div class="container">
-      <% if @tours.any? %>
+      <% if @next_tours.any? %>
       <div class="row">
         <div class="col-xs-12">
           <h3 class="light-heading" style="padding: 4px;"><%= t('welcome_view_index_h3_one') %></h3>
         </div>
       </div>
-      <% @tours.each do |t| %>
+      <% @next_tours.each do |t| %>
       <style>
         .twPc-div {
           overflow: hidden;
@@ -224,18 +145,27 @@
         <% end %>
       </style>
       <div class="twPc-div spaced-down">
-          <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
-            <div class="ribbon base"><span><%= raw t.price %></span></div>
-          <% end %>
-        <div>
-          <div class="twPc-button">
-                  <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+        <% if t.value_chosen_by_user %>
+            <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+                <div class="ribbon base">
+                  <span><small><%= t('no-price-defined-message') %></small></span>
+                </div>
+            <% end %>
+        <% else %>
+            <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+                <div class="ribbon base"><span><%= raw t.price %></span></div>
+            <% end %>
+        <% end %>
 
-                  <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
-                    <i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
-                  <% end %>
-                  <!-- Twitter Button -->
-          </div>
+      <div>
+      <div class="twPc-button">
+              <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+
+              <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
+                <i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
+              <% end %>
+              <!-- Twitter Button -->
+      </div>
 
           <%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
             <% if t.organizer.picture.present? %>
@@ -298,6 +228,123 @@
         </div>
       </div>
       <% end %>
+      <% end %>
+      <% if @past_tours.any? %>
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 class="light-heading" style="padding: 4px;"><%= t('welcome_view_index_h3_past_tours') %></h3>
+        </div>
+      </div>
+      <% @past_tours.each do |t| %>
+      <style>
+        .twPc-div {
+          overflow: hidden;
+          position: relative;
+        }
+        <% if t.picture.present? %>
+        <%="#twPc-bg-#{t.id}" %> {
+          background-image: url('<%= t.picture.url(:large) %>');
+        }
+        <% elsif t.try(:photo) %>
+        <%="#twPc-bg-#{t.id}" %> {
+          background-image: url('<%= t.photo %>');
+        }
+        <% else %>
+        <%="#twPc-bg-#{t.id}" %> {
+          background-color: #F15A29;
+        }
+        <% end %>
+      </style>
+      <div class="twPc-div spaced-down">
+        <% if t.value_chosen_by_user %>
+            <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+                <div class="ribbon base">
+                  <span><small><%= t('no-price-defined-message') %></small></span>
+                </div>
+            <% end %>
+        <% else %>
+            <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+                <div class="ribbon base"><span><%= raw t.price %></span></div>
+            <% end %>
+        <% end %>
+
+      <div>
+      <div class="twPc-button">
+              <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+
+              <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
+                <i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
+              <% end %>
+              <!-- Twitter Button -->
+      </div>
+
+          <%= link_to(organizer_path(t.organizer), :class => 'twPc-avatarLink') do %>
+            <% if t.organizer.picture.present? %>
+              <%= image_tag(t.organizer.picture(:thumbnail), :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+            <% else %>
+              <%= image_tag(t.organizer.logo, :alt => t.organizer.name, class: 'twPc-avatarImg') %><br />
+            <% end %>
+          <% end %>
+
+          <div class="twPc-divUser spaced-down">
+            <div class="twPc-divName">
+              <%= link_to tour_path(t) do %>
+                <%= t.title %>
+              <% end %>
+            </div>
+            <span>
+              <%= link_to organizer_path(t.organizer) do %>
+              <small><%= t('welcome_view_index_small_eight') %> </small><strong><%= t.organizer.name %></strong>
+              <% end %>
+            </span>
+          </div>
+          <div class="twPc-divStats">
+            <ul class="twPc-Arrange">
+              <li class="twPc-ArrangeSizeFit">
+                <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_one') %></span>
+                <span class="twPc-StatValue">
+                  <%= l(t.start, format: '%d de %B / %Y') %>
+                </span>
+                <span class="twPc-StatValue">
+                  <span class="label label-info"><%= friendly_when(t.start) %></span>
+                </span>
+              </li>
+              <% if !t.wheres.any? %>
+              <li class="twPc-ArrangeSizeFit">
+                <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_two') %></span>
+                <span class="twPc-StatValue">
+                  <%= t.wheres.first.try(:name) %>
+                </span>
+              </li>
+              <% end %>
+              <li class="twPc-ArrangeSizeFit">
+                <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_three') %></span>
+                <span class="twPc-StatValue"><%= l(t.start, format: '%Hh%M') %></span>
+              </li>
+              <div class="sized-1x">
+                  <%= render partial: "layouts/confirmeds", locals: {tour: t} %>
+                </div>
+              <li class="twPc-ArrangeSizeFit">
+                <span class="twPc-StatLabel twPc-block"><%= t('welcome_view_index_span_four') %></span>
+                <span class="twPc-StatValue">
+                  <% if not t.soldout? %>
+                          <strong><%= t.available %></strong> <%= t('welcome_view_index_span_five') %>
+                        <% else %>
+                          <%= t('welcome_view_index_span_six') %>
+                        <% end %>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+      <% if @guidebooks.publisheds.any? %>
+          <h3 class="light-heading" style="padding: 4px;"><%= t('guidebooks-name') %></h3>
+          <% @guidebooks.publisheds.each do |g| %>
+              <%= render partial: 'layouts/guidebook_list', locals: { t: g } %>
+          <% end %>
       <% end %>
       <%= render partial: 'layouts/guides_list', locals: {guides: @organizers} %>
     </div>

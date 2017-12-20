@@ -44,44 +44,74 @@
   <section>
     <div>
       <header class="b-section-header">
-        <h2>Experiences</h2>
+        <h2><%= t('tours-title-places-label') %></h2>
       </header>
-      <% if @tours.publisheds.any? %>
-      <% @tours.publisheds.each do |t| %>
-      <div class="b-teaser-articles">
-        <article class="b-teaser-articles__article">
-          <% if t.picture.present? %>
-          <figure>
-            <img class="b-post-main__figure--full-width" src="<%= t.picture.url(:large) %>" alt="<%= t.title %>">
-          </figure>
+      <% if @tours.publisheds.any? || @guidebooks.publisheds.any? %>
+          <% @tours.publisheds.each do |t| %>
+
+              <div class="b-teaser-articles">
+                <article class="b-teaser-articles__article">
+                  <% if t.picture.present? %>
+                      <figure>
+                        <img class="b-post-main__figure--full-width" src="<%= t.picture.url(:large) %>" alt="<%= t.title %>">
+                      </figure>
+                  <% end %>
+                  <div class="b-teaser-articles__article__content">
+                    <h3>
+                      <%= link_to tour_path(t) do %>
+                          <%= t.title %>
+                      <% end %>
+                    </h3>
+                    <div class="b-teaser-articles__article__content__excerpt">
+                      <%= raw t.description %>
+                    </div>
+                    <% if t.confirmeds.any? %>
+                        <div class="b-favourite-list">
+                          <span class="b-favourite-list__title">Favourited</span>
+                          <a class="b-favourite-list__profile" href="#">
+                            <img src="https://randomuser.me/api/portraits/thumb/men/1.jpg" alt="profile image">
+                          </a>
+                          <a class="b-favourite-list__profile" href="#">
+                            <img src="https://randomuser.me/api/portraits/thumb/men/4.jpg" alt="profile image">
+                          </a>
+                          <a class="b-favourite-list__profile" href="#">
+                            <img src="https://randomuser.me/api/portraits/thumb/women/3.jpg" alt="profile image">
+                          </a>
+                        </div>
+                    <% end %>
+                    <% if t.organizer %>
+                        <%= render partial: 'layouts/organizer_card', locals: {organizer: t.organizer} %>
+                    <% end %>
+                  </div>
+                </article>
+
           <% end %>
-          <div class="b-teaser-articles__article__content">
-            <h3>
-              <%= link_to tour_path(t) do %>
-                <%= t.title %>
-              <% end %>
-            </h3>
-            <div class="b-teaser-articles__article__content__excerpt">
-              <%= raw t.description %>
-            </div>
-            <% if t.confirmeds.any? %>
-            <div class="b-favourite-list">
-              <span class="b-favourite-list__title">Favourited</span>
-              <a class="b-favourite-list__profile" href="#">
-                <img src="https://randomuser.me/api/portraits/thumb/men/1.jpg" alt="profile image">
-              </a>
-              <a class="b-favourite-list__profile" href="#">
-                <img src="https://randomuser.me/api/portraits/thumb/men/4.jpg" alt="profile image">
-              </a>
-              <a class="b-favourite-list__profile" href="#">
-                <img src="https://randomuser.me/api/portraits/thumb/women/3.jpg" alt="profile image">
-              </a>
-            </div>
-            <% end %>
-          </div>
-        </article>
-        <% end %>
-        <% else %>
+          <% @guidebooks.publisheds.each do |t| %>
+
+              <div class="b-teaser-articles">
+                <article class="b-teaser-articles__article">
+                  <% if t.picture.present? %>
+                      <figure>
+                        <img class="b-post-main__figure--full-width" src="<%= t.picture.url(:large) %>" alt="<%= t.title %>">
+                      </figure>
+                  <% end %>
+                  <div class="b-teaser-articles__article__content">
+                    <h3>
+                      <%= link_to tour_path(t) do %>
+                          <%= t.title %>
+                      <% end %>
+                    </h3>
+                    <div class="b-teaser-articles__article__content__excerpt">
+                      <%= raw t.description %>
+                    </div>
+                    <% if t.organizer %>
+                        <%= render partial: 'layouts/organizer_card', locals: {organizer: t.organizer} %>
+                    <% end %>
+                  </div>
+                </article>
+
+          <% end %>
+      <% else %>
           <article class="b-teaser-articles__article">
             <div class="b-teaser-articles__article__content">
               <div class="b-teaser-articles__article__content__excerpt">
@@ -94,9 +124,9 @@
               </div>
             </div>
           </article>
-        <% end %>
+      <% end %>
       </div>
-    </div>
+      </div>
   </section>
   <section>
     <div class="show-map" id="map"></div>

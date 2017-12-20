@@ -53,7 +53,7 @@
     <% if user_signed_in? %>
         <div class="row py-2">
           <div class="col-sm-3 hidden-md-down">
-            <%= image_tag current_user.image, class: "img-circle" %>
+            <%= image_tag current_user.image, class: "img-circle", width: "50" %>
           </div>
           <div class="col-sm-9">
             <small><%= t('logged-as-label') %></small>

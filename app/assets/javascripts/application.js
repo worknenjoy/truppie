@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require places
 //= require mma
 //= require modernizr-custom
@@ -19,6 +20,7 @@
 //= require jsrender
 //= require overlay
 //= require moment-with-locales
+//= require moment-timezone-with-data
 //= require timepicker
 //= require lang-selector
 //= require wow
@@ -37,5 +39,7 @@
 //= require calendar-app
 //= require dash
 //= require mountain-form
+//= require wizard_steps
+//= require progress_upload
 //= require main
-
+//= require whatsapp_chat

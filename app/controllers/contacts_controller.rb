@@ -17,4 +17,16 @@ class ContactsController < ApplicationController
     end
     redirect_to contacts_index_path
   end
+
+  def send_message
+    if params[:body].empty? 
+      flash[:error] = t('contacts_controller_error')
+    else
+      if ContactMailer.send_message(params).deliver_now
+        flash[:success] = t('contacts_controller_succes')
+      else
+         flash[:error] = t('contacts_controller_error_two') 
+      end
+    end
+  end
 end

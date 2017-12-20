@@ -1,33 +1,18 @@
 <%= render 'layouts/navbar' %>
-<div id='intro'>
-  <div class='cta container'>
-    <!--
-    <img alt='Splash' class='splash' src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/adventure-splash.svg'>
-    -->
-    <p class="symbol-font" style="font-size: 2em; margin: 0">abcdefghijpq lmnopqrwsxz</p>
-    <h1 class="emblem-font">Explore e experimente</h1>
-    <p class="symbol-font" style="font-size: 2em; margin: 0">abcdefghijpq lmnopqrwsxz</p>
-    <p><%= t('user-adventure-info') %></p>
-    <!--
-    <%= link_to new_user_session_path, class: 'button' do %>
-        <span>Comece a se aventurar</span>
-    <% end %>
-    -->
-  </div>
-</div>
-<div id='map_canvas'></div>
-<div id='tours'>
-  <!--
+<div id="tours">
   <div class='container'>
-    <h2>Onde você gostaria de ir?</h2>
-    <form action='#'>
-      <input id='location' placeholder='Location' type='text'>
+    <h2>
+      <%= t('where-to-go-title') %>
+    </h2>
+    <small class="text-gray-dark" style="display:block; text-align: center"><%= t('explore-tagline') %></small>
+    <form action="#" class="out-of-couch">
+      <input id="places-input-action" placeholder="<%= t('intro-location-label') %>" type="text">
       <button class='button' type='submit'>
-        Sair do sofá!
+        <%= t('where-to-go-text') %>
       </button>
     </form>
   </div>
-  -->
+  <div id="map_canvas"></div>
   <% if @backgrounds.present? %>
   <h4 style="margin-left: 40px;"><%= t('welcome-places-title') %></h4>
   <ul>

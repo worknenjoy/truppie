@@ -18,6 +18,8 @@ class Guidebook < ActiveRecord::Base
   accepts_nested_attributes_for :packages, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :wheres
 
+  scope :publisheds, -> { where(status: 'P') }
+
   validates_presence_of :value, :if => Proc.new { |a| !a.packages.any? }
 
   validates_presence_of :title, :organizer, :user

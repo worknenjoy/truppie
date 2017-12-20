@@ -1,0 +1,2 @@
+logo : public/logo.png
+theme-override : public/PITCHME.css

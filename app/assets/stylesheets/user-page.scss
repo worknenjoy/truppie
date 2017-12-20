@@ -1,38 +1,15 @@
 @import "bourbon";
+@import 'bootstrap/variables';
 
-$color1: #EEEBE4; // tan
-$color2: #28415E; // blue
-$color3: #B79D55; // gold
+$color1: $brand-primary-lighter; // tan
+$color2: $brand-primary; // blue
+$color3: $brand-danger; // gold
 
 /* =================================
   Base Styles
 ==================================== */
 * {
   @include box-sizing(border-box);
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Lato', sans-serif;
-  color: #3a3a3a;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  vertical-align: bottom;
-}
-
-a {
-  text-decoration: none;
-}
-
-.container {
-  margin: 0 auto;
-  width: 90%;
-  max-width: 1170px;
 }
 
 .button {
@@ -123,11 +100,11 @@ a {
       display: flex;
       align-items: center;
       padding: 10px 30px;
-      box-shadow: inset 0 0 0 2px $color3;
+      box-shadow: inset 0 0 0 2px $color1;
       color: $color2;
       &:hover, &:focus {
         background: $color3;
-        color: #fff;
+        color: $color1;
       }
     }
   }
@@ -135,7 +112,7 @@ a {
 
 /* ---- Tours ---- */
 #tours {
-  padding-top: 4em;
+  padding-top: 2em;
 
   h2 {
     margin: 0;
@@ -148,7 +125,7 @@ a {
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 0 auto;
-    padding: 4em 0;
+    padding: 1em 0;
     max-width: 600px;
 
     @media (min-width: 500px) {
@@ -181,10 +158,10 @@ a {
 
     .button {
       border: 0;
-      box-shadow: inset 0 0 0 2px #879090;
-      color: #494f4f;
+      box-shadow: inset 0 0 0 2px $color1;
+      color: $color2;
       &:hover, &:focus {
-        background: #879090;
+        background: $color2;
         color: #fff;
       }
 

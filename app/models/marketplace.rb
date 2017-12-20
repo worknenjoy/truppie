@@ -337,6 +337,31 @@ class Marketplace < ActiveRecord::Base
     end
   end
   
+  def account_user_data_verified
+    begin
+      account_missing = self.account_missing
+      account_missing[:fields_needed].delete("external_account")
+      if account_missing[:fields_needed].empty?
+        return true
+      end
+      return false
+    rescue
+      return false
+    end
+  end
+
+  def bank_account_verified
+    begin
+      account_missing = self.account_missing
+      if !account_missing[:fields_needed].include?("external_account")
+        return true
+      end
+      return false
+    rescue
+      return false
+    end
+  end
+  
   def transfers
     transfer_history = Stripe::Transfer.list(limit: 10, destination: self.account_id)
     #puts transfer_history.inspect
@@ -373,6 +398,8 @@ class Marketplace < ActiveRecord::Base
         bank_accounts = Stripe::Account.retrieve(self.account_id).external_accounts
         if bank_accounts.total_count
           return bank_accounts.data
+        else
+          return false
         end
       rescue => e
         puts "bank accounts"

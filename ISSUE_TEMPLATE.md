@@ -52,3 +52,11 @@ Critério de aceitação:
 Se precisar de qualquer ajuda ou tiver qualquer dúvida basta comentar aqui que as dúvidas poderão ser respondidas por qualquer pessoa da comunidade ou quem contribui com o projeto e principalmente eu 👍 
 
 Se quiser se familiarizar com o funcionamento de projetos de software livre, tem este [excelente guia do Tableless](https://tableless.com.br/contribuindo-em-projetos-open-source-com-o-github/)
+
+### Como ter um pull request aceito e integrado da forma correta no projeto
+
+Para que seu Pull Request seja aceito sem maiores problemas e integrado diretamente para que possa ir para produção você deve sempre estar integrado com o master do projeto, **sempre usando rebase como padrão**.
+
+Se tiver dúvidas como fazer isto dá uma olhada aqui [neste post](http://www.arruda.blog.br/programacao/dicas-de-git-integrando-um-branch-no-master-rebase-ou-merge/)
+
+Se precisar de qualquer ajuda ou tiver qualquer dúvida basta comentar aqui que as dúvidas poderão ser respondidas por qualquer pessoa da comunidade ou quem contribui com o projeto e principalmente eu 👍 o 

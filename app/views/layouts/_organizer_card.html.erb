@@ -10,7 +10,7 @@
             <strong><%= organizer.name %> </strong>
         <% end %>
       </h4>
-      <p class="card-text spaced-down"><%= organizer.description %></p>
+      <p class="card-text ellipsis spaced-down"><%= organizer.description %></p>
       <% if organizer.website %>
           <%= link_to organizer.website, class: 'btn btn-primary-outline btn-sm', target: "_blank" do %>
               <i class="fa fa-external-link"></i> <%= t('tours_view_show_link_two') %>

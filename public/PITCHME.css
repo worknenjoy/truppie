@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,latin-ext");
+
+@font-face {
+  font-family: 'Sunshine';
+  src: font-url('HelloSunshine_ornaments.otf');
+}
+
+@font-face {
+  font-family: 'HelloSunshine';
+  src: font-url("HelloSunshine.otf");
+}
+
+@font-face {
+  font-family: 'HelloSunshineMarker';
+  src: font-url("HelloSunshineMarker.otf");
+}
+
+@font-face {
+  font-family: 'Nevis';
+  src: font-url("nevis.otf");
+}
+
+@font-face {
+  font-family: 'Nevis-Bold';
+  src: font-url("nevis-alt.otf");
+}
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: font-url("MuseoSans_500.otf");
+}
+
+@font-face {
+  font-family: 'Quicksand Bold';
+  font-family: font-url('QuicksandBold.otf');
+}
+
+@font-face {
+  font-family: 'league';
+  font-family: font-url('leaguegothic-condensed-regular-webfont.ttf');
+}
+
+body {
+  font-family: 'Lato', 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'MuseoSans', 'Open Sans', sans-serif;
+  font-weight: bold;
+}
+
+.reveal section img {
+  border: 0;
+  box-shadow: none;
+}

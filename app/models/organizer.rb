@@ -1,7 +1,12 @@
 class Organizer < ActiveRecord::Base
-  has_many :tours  
+  has_many :tours
+  has_many :guidebooks
   has_and_belongs_to_many :members
   has_and_belongs_to_many :wheres
+
+  has_many :follows, dependent: :destroy
+  has_many :followers, through: :follows, source: :user
+
   belongs_to :marketplace
   
   belongs_to :user
@@ -57,7 +62,7 @@ class Organizer < ActiveRecord::Base
   end
 
   def verified?
-    missing = self.missing.select { |a| true if (a == "description" or a == "instagram" or a == "facebook" or a == "phone") }
+    missing = self.missing.select { |a| true if (a == "description") }
     !missing.any?
   end
 

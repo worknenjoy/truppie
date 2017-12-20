@@ -1,30 +1,13 @@
 <%= render 'layouts/navbar' %>
-<%= render 'layouts/flash' %>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <h3 class="spaced-smallest"><%= t('guidebooks_view_index_h3') %></h3>
-
-      <table class="table user-list spaced-down">
-        <thead>
-        <tr>
-          <th colspan="3"></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <% @guidebooks.each do |guidebook| %>
-            <tr>
-              <td><%= guidebook.title %></td>
-              <td><%= link_to t('guidebook-admin-link-view'), guidebook %></td>
-              <td><%= link_to t('guidebook-admin-link-edit'), edit_guidebook_path(guidebook) %></td>
-              <td><%= link_to t('guidebook-admin-link-delete'), guidebook, method: :delete, data: { confirm: t('guidebook-admin-confirm-delete') } %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
-
-      <%= link_to t('guidebook-link-new'), new_guidebook_path, class: 'btn btn-primary pull-right' %>
+    <div class="col-xs-12 col-md-12">
+      <% if @guidebooks.any? %>
+          <h3 class="light-heading" style="padding: 4px; margin-top: 30px;">Roteiros personalizados</h3>
+          <% @guidebooks.publisheds.each do |g| %>
+              <%= render partial: 'layouts/guidebook_list', locals: { t: g } %>
+          <% end %>
+      <% end %>
     </div>
   </div>
 </div>

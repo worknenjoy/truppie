@@ -14,6 +14,7 @@
             <ul class="clearfix">
               <li><%= link_to t('how-it-works-main-menu'), user_welcome_path %></li>
               <li><%= link_to t('guides-main-menu'), organizer_welcome_path %></li>
+              <li><%= link_to t('nomad-main-menu'), "http://dev.truppie.com" %></li>
               <li><%= link_to t('contact-main-menu'), contacts_index_path %></li>
             </ul>
             <a href="#" id="pull">Menu</a>
@@ -22,10 +23,10 @@
     	  <div class="col-xs-12 col-md-3 center-xs">
     		  <div class="user-actions pull-left" style="width: 70%">
             <% if not user_signed_in? %>
-                <%= link_to t('navbar_partial_link_one'), new_user_session_path, class: 'btn btn-secondary pull-right spaced-top-small' %>
+                <%= link_to t('navbar_partial_link_one'), new_user_session_path, class: 'btn btn-secondary pull-right' %>
             <% else %>
             <div class="dropdown">
-              <a href="#" class="btn btn-secondary pull-right spaced-top-small dropdown-toggle" data-toggle="dropdown" id="dropdown-user" style="padding: 3px;">
+              <a href="#" class="btn btn-secondary pull-right dropdown-toggle" data-toggle="dropdown" id="dropdown-user" style="padding: 3px;">
                 <% if current_user.image %>
                 <img src="<%= to_https(current_user.image) %>" alt="user" class="img-circle" width="30" />
                 <% end %>

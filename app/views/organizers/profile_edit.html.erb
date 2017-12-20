@@ -12,7 +12,7 @@
         </div>
         <div class="manage-main">
           <div class="">
-            <%= form_for @organizer, class: "form", multipart: true, role: "form" do |f| %>
+            <%= form_for @organizer, class: "form", multipart: true, role: "form", data: {ajax_sync: true} do |f| %>
                 <div class="card card-block text-xs-center">
                   <h3 class="card-title"><%= t('hello-organizer-welcome-profile-edit', organizer: @organizer.name) %></strong></h3>
                   <div class="card-text">

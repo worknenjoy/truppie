@@ -1,8 +1,6 @@
 {
   "name": "truppie",
   "description": "marketplace for adventures",
-  "scripts": {
-  },
   "env": {},
   "formation": {
   },
@@ -12,10 +10,14 @@
   "addons": [
     "logentries",
     "papertrail",
+    "heroku-redis",
     "heroku-postgresql",
     "sendgrid"
   ],
   "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-redis.git"
+    },
     {
       "url": "heroku/ruby"
     }
