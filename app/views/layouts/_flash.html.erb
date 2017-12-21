@@ -1,7 +1,7 @@
-<% if flash.key?(:error) or flash.key?(:notice) or flash.key?(:success) %>
-  <div class="overall-alert animated slideInDown text-xs-center">
-    <% flash.each do |k| %>
-      <% if k[0] == 'notice' or k[0] == 'error' or k[0] == 'success' %>
+<% if flash.key?(:error) or flash.key?(:notice) or flash.key?(:alert) %>
+<div class="overall-alert animated slideInDown text-xs-center">
+	<% flash.each do |k| %>
+      <% if k[0] == 'notice' or k[0] == 'error' or k[0] == 'alert' %>
         <div class="alert alert-success alert-<%= flash_status(k[0])[:className] %>" role="alert">
           <button type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
