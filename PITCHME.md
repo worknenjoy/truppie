@@ -81,7 +81,7 @@ A Truppie foi desenvolvida por [Laura Sette](http://7cantosdomundo.com.br) e [Al
 
 ---
 
-https://user-images.githubusercontent.com/88840/34281612-f4eaddee-e6a6-11e7-8f9e-7c6e102068a5.png
+![Collaborators](https://user-images.githubusercontent.com/88840/34281612-f4eaddee-e6a6-11e7-8f9e-7c6e102068a5.png)
 
 ---
 
