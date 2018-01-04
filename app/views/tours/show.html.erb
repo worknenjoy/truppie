@@ -30,58 +30,58 @@
     <% if @tour.try(:photo) and !@tour.picture.exists? %>
       <%= image_tag(@tour.photo, :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
     <% elsif @tour.try(:picture) %>
-        <% if @tour.picture.present? %>
-            <%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
-        <% else %>
-
-	<% if is_organizer_admin %>
-            <div class="placeholder-tour-image">
-              <div class="placeholder-tour-container">
-                <%= form_for @tour, multipart: true, role: "form", data: {ajax_sync: true} do |f| %>
-                  <div class="file-upload">
-                    <small style="display: inline-block; margin-bottom: 10px;" class="text-color-white"><%= t('no-photo-please-send-one') %></small>
-                    <div class="file-upload-btn-preview-container">
-                      <button class="file-upload-btn btn btn-primary-outline btn-lg" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
-                        <i class="fa fa-file-photo-o"></i> <%= t('tours_send_picture') %>
-                      </button>
-                      <%= button_tag(type: 'submit', class: 'file-upload-btn-save btn btn-primary btn-lg hidden') do %>
-                        <i class="fa fa-save"></i> <%= t('save-changes') %>
-                      <% end %>
-                    </div>
-                    <%= f.file_field :picture, class: "file-upload-input file-upload-no-drop", accept: "image/*" %>
-                    <div class="file-upload-content">
-                      <div class="image-title-wrap" style="padding: 20px 0;">
-                        <button type="button" onclick="removeUpload()" class="remove-image btn btn-primary-outline"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
-                      </div>
+      <% if @tour.picture.present? %>
+          <%= image_tag @tour.picture.url(:large), :alt => "Truppie", :class => "img-fluid img-fit symbol-big" %>
+      <% else %>
+        <% if is_organizer_admin %>
+          <div class="placeholder-tour-image">
+            <div class="placeholder-tour-container">
+              <%= form_for @tour, multipart: true, role: "form", data: {ajax_sync: true} do |f| %>
+                <div class="file-upload">
+                  <small style="display: inline-block; margin-bottom: 10px;" class="text-color-white"><%= t('no-photo-please-send-one') %></small>
+                  <div class="file-upload-btn-preview-container">
+                    <button class="file-upload-btn btn btn-primary-outline btn-lg" type="button" onclick="$('.file-upload-input').trigger( 'click' )">
+                      <i class="fa fa-file-photo-o"></i> <%= t('tours_send_picture') %>
+                    </button>
+                    <%= button_tag(type: 'submit', class: 'file-upload-btn-save btn btn-primary btn-lg hidden') do %>
+                      <i class="fa fa-save"></i> <%= t('save-changes') %>
+                    <% end %>
+                  </div>
+                  <%= f.file_field :picture, class: "file-upload-input file-upload-no-drop", accept: "image/*" %>
+                  <div class="file-upload-content">
+                    <div class="image-title-wrap" style="padding: 20px 0;">
+                      <button type="button" onclick="removeUpload()" class="remove-image btn btn-primary-outline"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
                     </div>
                   </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
-        </div>
-	<% end %>
+        <% end %>
       <% end %>
 		<% else %>
-    <div class="placeholder-truppie-image"></div>
+      <div class="placeholder-truppie-image"></div>
 		<% end %>
-      <% if @tour.value_chosen_by_user %>
-        <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
-          <small><%= t('no-price-defined-message') %></small>
-          <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block spaced-small' %>
-        </div>
-      <% else %>
-        <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
-          <span><%= raw @tour.price %></span>
-          <% unless @tour.past? %>
-              <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
-            <% else %>
-              <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: true %>
-            <% end %>
-        </div>
-      <% end %>
-    </div>
-	</div>
+    <% if @tour.value_chosen_by_user %>
+      <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
+        <small><%= t('no-price-defined-message') %></small>
+        <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block spaced-small' %>
+      </div>
+    <% else %>
+      <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
+        <span><%= raw @tour.price %></span>
+        <% if @tour.past? %>
+          <% if user_signed_in? %>
+            <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: true %>
+          <% else %>
+            <%= link_to t('tours_view_show_link_interest'), user_session_path, class: 'btn btn-primary btn-lg btn-block' %>
+          <% end %>
+        <% else %>
+          <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
 	<div class="container">
 		<div class="row divider-default">

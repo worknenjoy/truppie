@@ -52,7 +52,7 @@ class ToursController < ApplicationController
       flash[:error] = t('tours_controller_interest_error')
     else
       if OrganizerMailer.interest(@tour, current_user).deliver_now
-        flash[:success] = t('tours_controller_interest_succes')
+        flash[:notice] = t('tours_controller_interest_succes')
       else
         flash[:error] = t('tours_controller_interest_error')
       end
