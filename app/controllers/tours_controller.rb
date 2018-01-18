@@ -47,15 +47,21 @@ class ToursController < ApplicationController
   end
 
   def show_interest
-    @tour = Tour.find(params[:id])
-    unless !!@tour
-      flash[:error] = t('tours_controller_interest_error')
-    else
-      if OrganizerMailer.interest(@tour, current_user).deliver_now
-        flash[:notice] = t('tours_controller_interest_succes')
-      else
+    respond_to do |format|
+      @tour = Tour.find(params[:id])
+
+      unless !!@tour
         flash[:error] = t('tours_controller_interest_error')
+      else
+        if OrganizerMailer.interest(@tour, current_user).deliver_now
+          flash[:notice] = t('tours_controller_interest_succes')
+        else
+          flash[:error] = t('tours_controller_interest_error')
+        end
       end
+
+      format.html { redirect_to url_for(:tour) }
+      format.js
     end
   end
 

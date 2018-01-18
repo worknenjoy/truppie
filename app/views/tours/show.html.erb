@@ -71,11 +71,7 @@
       <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
         <span><%= raw @tour.price %></span>
         <% if @tour.past? %>
-          <% if user_signed_in? %>
-            <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: true %>
-          <% else %>
-            <%= link_to t('tours_view_show_link_interest'), user_session_path, class: 'btn btn-primary btn-lg btn-block' %>
-          <% end %>
+          <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: user_signed_in? %>
         <% else %>
           <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
         <% end %>
@@ -199,10 +195,10 @@
                     </div>
                   </div>
             </div> -->
-            <% unless @tour.past? %>
-              <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
+            <% if @tour.past? %>
+              <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: user_signed_in? %>
             <% else %>
-              <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: true %>
+              <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
             <% end %>
           </div>
         </div>
