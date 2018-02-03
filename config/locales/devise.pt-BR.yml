@@ -55,6 +55,7 @@ pt-BR:
       expired: "expirou, por favor, solicite uma nova"
       not_found: "não encontrado"
       not_locked: "não foi bloqueado"
+      email_not_found: "Email não encontrado. Por favor, informe um email válido ou crie uma nova conta."
       not_saved:
         one: "Não foi possível salvar %{resource}: 1 erro"
         other: "Não foi possível salvar %{resource}: %{count} erros."
