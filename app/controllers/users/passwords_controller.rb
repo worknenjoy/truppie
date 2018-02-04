@@ -7,8 +7,6 @@ class Users::PasswordsController < Devise::PasswordsController
 
     if resource.errors.present?
       flash[:notice] = t('errors.messages.email_not_found')
-      #  - translation missing: pt-BR.devise.errors.messages.email_not_found
-
     end
 
     if successfully_sent?(resource)
