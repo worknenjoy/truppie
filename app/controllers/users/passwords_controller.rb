@@ -1,17 +1,23 @@
 class Users::PasswordsController < Devise::PasswordsController
-  
-  def resource_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-  private :resource_params
-  
-  # GET /resource/password/new
-  # def new
-  #   super
-  # end
 
   # POST /resource/password
-  # def create
+  def create
+    self.resource = resource_class.send_reset_password_instructions(resource_params)
+    yield resource if block_given?
+
+    if resource.errors.present?
+      flash[:notice] = t('errors.messages.email_not_found')
+    end
+
+    if successfully_sent?(resource)
+      respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
+    else
+      respond_with(resource)
+    end
+  end
+
+  # GET /resource/password/new
+  # def new
   #   super
   # end
 
@@ -35,4 +41,9 @@ class Users::PasswordsController < Devise::PasswordsController
   # def after_sending_reset_password_instructions_path_for(resource_name)
   #   super(resource_name)
   # end
+
+  def resource_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+  private :resource_params
 end
