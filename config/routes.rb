@@ -104,9 +104,10 @@ Rails.application.routes.draw do
   post 'subscribers/create'
 
   devise_for :users, :controllers => {
-      :registrations => "users/registrations",
-      :omniauth_callbacks => "users/omniauth_callbacks",
-      :sessions => "users/sessions"
+    :passwords => "users/passwords",
+    :registrations => "users/registrations",
+    :omniauth_callbacks => "users/omniauth_callbacks",
+    :sessions => "users/sessions"
   }
 
   resources :users do
