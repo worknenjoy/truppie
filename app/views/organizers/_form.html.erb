@@ -91,6 +91,15 @@
                     <%= f.select :status, options_for_select([['Não Publicado', 'N'],['Publicado', 'P']], (@organizer.status if @organizer.status.present?)), {class: "form-control", include_blank: "Escolha um status"} %>
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="fa fa-eye"></span></span>
+                    <%=f.label :mail_notification%>
+                    <%= f.check_box :mail_notification %>
+                </div>
+            </div>
+
     	</div>
     	<div class="tab-pane" id="foto" role="tabpanel">
     		<div class="form-group">

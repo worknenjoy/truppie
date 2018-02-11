@@ -106,9 +106,14 @@ class OrganizersController < ApplicationController
           # OrganizerMailer.notify(@organizer, "activate").deliver_now
           session.delete(:organizer_welcome_params)
           session.delete(:organizer_welcome)
+                    
           redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
+
         }
         format.json { render :show, status: :created, location: @organizer }
+        if @organizer.mail_notification
+          ContactMailer.notify("mensagem para o guia que recebeu o convite: Sua conta de guia foi criada").deliver_now
+        end
       else
         format.html {
           flash[:errors] = @organizer.errors
