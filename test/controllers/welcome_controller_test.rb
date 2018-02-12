@@ -8,7 +8,7 @@ class WelcomeControllerTest < ActionController::TestCase
   setup do
     sign_in users(:alexandre)
 
-    set_organizer = {
+    @set_organizer = {
        name: "Utópicos mundo afora",
        description: "uma agencia utopica",
        email: "utopicos@gmail.com",
@@ -19,12 +19,16 @@ class WelcomeControllerTest < ActionController::TestCase
        phone: "a phone",
        user_id: users(:alexandre).id
      }
-
-     @organizer = Organizer.create!(set_organizer)
   end
-
+    
   test 'when a guide is online redirect to profile guide page' do
+    @organizer = Organizer.create!(@set_organizer)
     get :organizer
     assert_redirected_to profile_edit_organizer_path(@organizer)
+  end
+
+  test 'when a guide is not admin displays new organizer form' do
+    get :organizer
+    assert_response :success
   end
 end
