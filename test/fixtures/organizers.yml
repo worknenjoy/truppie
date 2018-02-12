@@ -38,7 +38,7 @@ mkt:
   facebook: MyString
   twitter: MyString
   logo: logo_utopicos.png
-  mail_notification: true 
+  mail_notification: false 
 
 guide_mkt_validated:
   name: Marketplace valid
