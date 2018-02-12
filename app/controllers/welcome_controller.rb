@@ -22,7 +22,7 @@ class WelcomeController < ApplicationController
     if @organizer
       redirect_to profile_edit_organizer_path(@organizer)
     else
-      @new_organizer = Organizer.new
+      redirect_to new_organizer_path
     end
   end
 
