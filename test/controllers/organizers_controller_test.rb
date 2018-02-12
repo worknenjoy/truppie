@@ -412,5 +412,5 @@
      assert ActionMailer::Base.deliveries.empty?
      assert_equal flash[:notice], "Sua conta como guia foi criada com sucesso"
      assert_redirected_to organizer_path(assigns(:organizer))
-   
+   end
  end
