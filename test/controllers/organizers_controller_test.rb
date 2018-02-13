@@ -64,7 +64,6 @@
    end
   
   test "should not send notification to organizer if disable" do
-     @organizer = Organizer.last
      @organizer.update_attributes(:mail_notification => false)
      #assert_not ActionMailer::Base.deliveries.empty?
      
