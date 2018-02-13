@@ -26,6 +26,7 @@
        twitter: "a twitter",
        instagram: "a instagram",
        phone: "a phone",
+       mail_notification: true,
        user_id: users(:alexandre).id
      }
      
@@ -64,7 +65,7 @@
    end
   
   test "should not send notification to organizer if disable" do
-     @organizer[:mail_notification] = false    
+     @organizer["mail_notification"] = false    
      assert_difference('Organizer.count') do
        post :create, organizer: @organizer
      end
