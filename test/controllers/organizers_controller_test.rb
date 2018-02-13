@@ -26,10 +26,8 @@
        twitter: "a twitter",
        instagram: "a instagram",
        phone: "a phone",
-       mail_notification: true,
        user_id: users(:alexandre).id
      }
-     
    end
    
    teardown do
