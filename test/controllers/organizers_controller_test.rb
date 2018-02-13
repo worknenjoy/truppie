@@ -58,15 +58,13 @@
      assert_difference('Organizer.count') do
        post :create, organizer: @organizer
      end
-     #assert_not ActionMailer::Base.deliveries.empty?
+     assert_not ActionMailer::Base.deliveries.empty?
      assert_equal flash[:notice], "Sua conta como guia foi criada com sucesso"
      assert_redirected_to organizer_path(assigns(:organizer))
    end
   
   test "should not send notification to organizer if disable" do
-     @organizer.update_attributes(:mail_notification => false)
-     #assert_not ActionMailer::Base.deliveries.empty?
-     
+     @organizer[:mail_notification] = false    
      assert_difference('Organizer.count') do
        post :create, organizer: @organizer
      end
