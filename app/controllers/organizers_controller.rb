@@ -105,15 +105,15 @@ class OrganizersController < ApplicationController
         format.html {
           session.delete(:organizer_welcome_params)
           session.delete(:organizer_welcome)
-                    
+          if @organizer.mail_notification
+            ContactMailer.notify("Uma nova conta de guia foi criada").deliver_now
+            OrganizerMailer.notify(@organizer, "activate").deliver_now
+          end         
           redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
 
         }
         format.json { render :show, status: :created, location: @organizer }
-        if @organizer.mail_notification
-          ContactMailer.notify("Uma nova conta de guia foi criada").deliver_now
-          OrganizerMailer.notify(@organizer, "activate").deliver_now
-        end
+       
       else
         format.html {
           flash[:errors] = @organizer.errors
