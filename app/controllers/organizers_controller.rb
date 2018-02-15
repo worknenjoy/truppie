@@ -99,6 +99,8 @@ class OrganizersController < ApplicationController
   # POST /organizers.json
   def create
     @organizer = Organizer.new(organizer_params.except!("welcome"))
+    puts 'new organizer'
+    puts @organizer.inspect
 
     respond_to do |format|
       if @organizer.save
