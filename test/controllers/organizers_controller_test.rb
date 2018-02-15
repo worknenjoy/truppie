@@ -28,6 +28,19 @@
        phone: "a phone",
        user_id: users(:alexandre).id
      }
+    
+     @other_organizer = {
+       name: "Utópicos mundo afora",
+       description: "uma agencia utopica",
+       email: "utopicos@gmail.com",
+       website: "http://website",
+       facebook: "a facebook",
+       twitter: "a twitter",
+       instagram: "a instagram",
+       phone: "a phone",
+       mail_notification: "false"
+       user_id: users(:alexandre).id
+     }
    end
    
    teardown do
@@ -63,9 +76,8 @@
    end
   
   test "should not send notification to organizer if disable" do
-     @organizer["mail_notification"] = false    
      assert_difference('Organizer.count') do
-       post :create, organizer: @organizer
+       post :create, organizer: @other_organizer
      end
      assert ActionMailer::Base.deliveries.empty?
      assert_equal flash[:notice], "Sua conta como guia foi criada com sucesso"
