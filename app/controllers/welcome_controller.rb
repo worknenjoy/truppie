@@ -18,8 +18,12 @@ class WelcomeController < ApplicationController
   end
   
   def organizer
-     @organizer = Organizer.where(:user => current_user)
-     @new_organizer = Organizer.new
+    @organizer = Organizer.find_by(user_id: current_user.id)
+    if @organizer
+      redirect_to profile_edit_organizer_path(@organizer)
+    else
+      @new_organizer = Organizer.new
+    end
   end
 
   def user
