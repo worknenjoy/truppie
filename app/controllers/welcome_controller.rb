@@ -18,9 +18,13 @@ class WelcomeController < ApplicationController
   end
   
   def organizer
-    @organizer = Organizer.find_by(user_id: current_user.id)
-    if @organizer
-      redirect_to profile_edit_organizer_path(@organizer)
+    if current_user
+      @organizer = Organizer.find_by(user_id: current_user.id)
+      if @organizer
+        redirect_to profile_edit_organizer_path(@organizer)
+      else
+        @new_organizer = Organizer.new
+      end
     else
       @new_organizer = Organizer.new
     end
