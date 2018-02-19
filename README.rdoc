@@ -62,7 +62,8 @@ https://user-images.githubusercontent.com/88840/37486877-1c8dc84a-2890-11e8-8e1f
 
 === Env variables to secure our working
   
-  When you have the project installed, you can request the development env variables.
+    - Postgres 9.4.5
+    - When you have the project installed, you can request the development env variables.
 
 === RELEASE NOTES
 
