@@ -16,6 +16,10 @@ A Truppie oferece um marketplace de trips, roteiros e afins, que chamamos de *tr
 
 ---
 
+![hiking essentials](https://user-images.githubusercontent.com/88840/36444962-ff385d98-167c-11e8-8657-a296aa58d25c.png)
+
+---
+
 Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e por quem elabora roteiros e oferece serviços de viagem, ajudando no seu planejamento e tudo que você precisa quando for planejar seu destino.
 
 ---
