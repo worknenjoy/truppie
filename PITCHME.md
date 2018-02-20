@@ -14,9 +14,7 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 A Truppie oferece um marketplace de trips, roteiros e afins, que chamamos de *truppies*. 
 
----
-
-![hiking essentials](https://user-images.githubusercontent.com/88840/36444962-ff385d98-167c-11e8-8657-a296aa58d25c.png)
+---?image=https://user-images.githubusercontent.com/88840/36444962-ff385d98-167c-11e8-8657-a296aa58d25c.png
 
 ---
 
