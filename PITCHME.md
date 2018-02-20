@@ -10,7 +10,7 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 ![map](https://user-images.githubusercontent.com/88840/33044206-49ffd9e6-ce48-11e7-9cf7-3109d4eb9312.png)
 
-*O que ela oferece?*
+**O que ela oferece?**
 
 A Truppie oferece um marketplace de trips, roteiros e afins, que chamamos de *truppies*. 
 
@@ -22,13 +22,13 @@ Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços o
 
 ![sign](https://user-images.githubusercontent.com/88840/33044320-ca356ec8-ce48-11e7-8c90-3a2c7c65f8f5.png)
 
-*Como?*
+**Como?**
 
 Conectamos usuários a guias e roteiros para que você conheça diversas atividades do seu interesse, seja na sua cidade ou onde você pretende viajar e esteja sempre conectado com novas aventuras de seu interesse.
 
 ---
 
-*Onde?*
+**Onde?**
 
 ![Brazil](https://user-images.githubusercontent.com/88840/33442072-61f42b02-d5db-11e7-8cdb-1342ac7a1852.png)
 
@@ -36,7 +36,7 @@ No momento queremos estimular o acesso as atividades no Brasil, e também fazer 
 
 ---
 
-*Quem faz a Truppie?*
+**Quem faz a Truppie?**
 
 A Truppie foi construída por [Laura Sette](http://7cantosdomundo.com.br) e [Alexandre Magno](http://www.alexandremagno.net), e conta com uma equipe de colaboradores
 
@@ -55,11 +55,34 @@ Fale de você (e mencione seu papel de produto e cliente)
 ---
 
 
-*Alguns dos colaboradores*
+**Alguns dos colaboradores**
 
 ![Collaborators](https://user-images.githubusercontent.com/88840/34281612-f4eaddee-e6a6-11e7-8f9e-7c6e102068a5.png)
 
 Veja todos que contribuiram no [Truppie Devs](http://dev.truppie.com/contrib.html)
+
+---
+
+**O que temos agora?**
+
+***Para os guias***
+
+* Cadastro completo do perfil do guia
+* Página do perfil
+* Cadastro de eventos para guias
+* Importar eventos do facebook
+* Página do evento com possibilidade de reserva
+* Notificações para o cliente do status da reserva
+
+---
+
+**O que temos agora?**
+
+***Para os usuários***
+
+* Reserva fácil de eventos pelo cartão de crédito
+* Possibilidade de devolução respeitando a política dos guias
+* Seguir um guia para saber de novos roteiros
 
 ---
 
@@ -77,7 +100,7 @@ Queremos fazer isto através de nosso site, canais nas redes sociais e com e-mai
 
 ---
 
-*O que construímos até agora?*
+**O que construímos até agora?**
 
 Uma plataforma para os guias de viagem oferecerem suas atividades
 
@@ -87,7 +110,7 @@ Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferra
 
 ---
 
-*E o que mais?*
+**E o que mais?**
 
 Uma plataforma para quem produz roteiros personalizados
 
@@ -101,7 +124,7 @@ Temos a plataforma ideal que dá toda autonomia para quem oferece o serviço pod
 
 ---
 
-*Desenvolvimento*
+**Desenvolvimento**
 
 @fa[code-fork]
 
@@ -109,7 +132,7 @@ Temos uma estrutura de desenvolvimento remota. Todo o código da Truppie é Open
 
 ---
 
-*Fluxo de trabalho*
+**Fluxo de trabalho**
 
 @fa[clone]
 
@@ -117,7 +140,7 @@ O projeto é gerenciado pelos fundadores no Trello, escolhemos a prioridade e en
 
 ---
 
-*Desenvolvimento colaborativo*
+**Desenvolvimento colaborativo**
 
 @fa[github]
 
@@ -129,7 +152,7 @@ Cada código passa por nossa revisão e vai para uma área de teste para validar
 
 ---
 
-*Tarefas realizadas*
+**Tarefas realizadas**
 
 @fa[sitemap]
 
@@ -137,7 +160,7 @@ Cada código passa por nossa revisão e vai para uma área de teste para validar
 
 ---
 
-*Usuários que passaram pela Truppie*
+**Usuários que passaram pela Truppie**
 
 @fa[users]
 
@@ -145,7 +168,7 @@ Cada código passa por nossa revisão e vai para uma área de teste para validar
 
 ---
 
-*Guias cadastrados*
+**Guias cadastrados**
 
 @fa[user]
 
@@ -153,7 +176,7 @@ Cada código passa por nossa revisão e vai para uma área de teste para validar
 
 ---
 
-*Valor processado em reservas*
+**Valor processado em reservas**
 
 @fa[card]
 
@@ -161,7 +184,7 @@ R$ 9.000,00
 
 ---
 
-*O que queremos*
+**O que queremos**
 
 Queremos investimento para continuar o trabalho e investir no marketing para atrair novos clientes
 
@@ -171,22 +194,27 @@ Estamos há mais de dois anos validando o negócio e descobrindo novas oportunid
 
 ---
 
-*Onde queremos investir?*
+**Onde queremos investir?**
 
 Transformar a Truppie numa experiência completa para guias e roteiros personalizados
 
 ---
 
-*Onde queremos investir?*
+**Onde queremos investir?**
 
 Investir em robôs para captar guias e automatizar convites e estímulo para usarem o site e de fato cadastrarem atividades
 
 ---
 
-*Onde queremos investir?*
+**Onde queremos investir?**
 
 Flexibilizar o pagamento
 Atualmente somos beta users do [Stripe](http://www.stripe.com) no Brasil (isento de taxas) e queremos usar o [Pagar.me](pagar.me) para oferecer pagamento parcelado
 
+---
 
 
+**Onde queremos investir?**
+
+***SEO***
+Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgânica
