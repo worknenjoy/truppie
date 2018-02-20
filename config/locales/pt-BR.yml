@@ -366,7 +366,7 @@ pt-BR:
   label-organizer-instagram: Instagram
   label-organizer-name: Nome do seu negócio
   label-organizer-phone: Telefone
-  label-organizer-picture: Foto (se tiver um logo, melhor ainda!) :)
+  label-organizer-picture: "Foto (se tiver um logo, melhor ainda!) :)"
   label-organizer-previous: Anterior
   label-organizer-thanks: Aee! \o/
   label-organizer-thanks-email: Obrigado por se cadastrar como nosso guia-parceiro! :D
@@ -559,7 +559,7 @@ pt-BR:
   organizer-clients-label: Clientes
   organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
   organizer-create-success: Sua conta como guia foi criada com sucesso
-  organizer-dashboard-desc: Você já configurou a sua conta (dados pessoais e bancários) para poder receber os pagamentos? Com a sua conta verificada, você pode começar a criar as suas truppies (seus passeios) e movimentar o seu negócio :)
+  organizer-dashboard-desc: "Você já configurou a sua conta (dados pessoais e bancários) para poder receber os pagamentos? Com a sua conta verificada, você pode começar a criar as suas truppies (seus passeios) e movimentar o seu negócio :)"
   organizer-desc-label: breve descrição do seu negócio
   organizer-email-label: E-mail do seu negócio
   organizer-external-refs-legend: Seus contatos
@@ -910,7 +910,7 @@ pt-BR:
   welcome_view_how_p_fourteen: Após escolher sua truppie, o explorador realiza o pagamento de maneira fácil e segura, com cartão de crédito, pelo próprio site - nada de abrir outra página ou pedir logins extras em sistemas externos. Uma vez confirmado o pagamento, pronto! Sua truppie está reservada!
   welcome_view_how_p_nine: O explorador pode ser eu, você, qualquer pessoa em busca de uma nova aventura! Ele pode navegar pelos perfis dos guias ou pela página de lugares para encontrar o seu passeio (sua truppie) de preferência. Ele solicita reserva e faz o pagamento pelo próprio site.
   welcome_view_how_p_one: Entenda melhor o que é a Truppie e como ela funciona.
-  welcome_view_how_p_seven: Truppie é um conceito que inventamos. Uma nova filosofia de vida! Trip + Hippie + Trupe = Truppie Na nossa plataforma, o guia oferece passeios/roteiros/tours/experiências - como queira chamar. Nós chamamos de truppies! :) truppie: s.f. qualquer tipo de aventura/evento/passeio, seja uma trilha para uma cachoeira, um passeio no centro histórico de uma cidade, um roteiro gastronômico ou um acampamento de vários dias no meio do mato. É uma experiência única e enriquecedora.
+  welcome_view_how_p_seven: "Truppie é um conceito que inventamos. Uma nova filosofia de vida! Trip + Hippie + Trupe = Truppie Na nossa plataforma, o guia oferece passeios/roteiros/tours/experiências - como queira chamar. Nós chamamos de truppies! :) truppie: s.f. qualquer tipo de aventura/evento/passeio, seja uma trilha para uma cachoeira, um passeio no centro histórico de uma cidade, um roteiro gastronômico ou um acampamento de vários dias no meio do mato. É uma experiência única e enriquecedora."
   welcome_view_how_p_seventeen: 'Resumindo: seja você guia ou explorador, a Truppie quer facilitar as coisas pra você, para que mais e mais pessoas possam ter as melhores experiências da suas vidas! :)'
   welcome_view_how_p_six: "Facilitar a vida de guias de turismo e aventura, e incentivar pessoas a se aventurarem na natureza e mundo afora!"
   welcome_view_how_p_sixteen: A Truppie dá espaço aos guias criarem e administrarem seus próprios eventos; são eles eles os responsáveis pelas confirmações de reserva, pagamento, informação do número de vagas e cancelamento. Ainda que a responsabilidade última pelo evento seja do guia organizador, a Truppie ajudará no que for possível a fim de proporcionar a melhor experiência ao explorador.
