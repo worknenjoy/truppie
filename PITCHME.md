@@ -16,10 +16,16 @@ A Truppie oferece um marketplace de trips, roteiros e afins, que chamamos de *tr
 
 ---?image=https://user-images.githubusercontent.com/88840/36449074-f5036ffe-1689-11e8-84b3-a9d80f20c4f6.png
 
+---
 
 ---?image=https://user-images.githubusercontent.com/88840/36450164-551e5946-168d-11e8-8b63-ef16de9e27e3.JPG
 
 Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e por quem elabora roteiros e oferece serviços de viagem, ajudando no seu planejamento e tudo que você precisa quando for planejar seu destino.
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36498176-d4155ed8-173d-11e8-9d35-eea44956ddfa.JPG
+Temos a solução!
 
 ---
 
