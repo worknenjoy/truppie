@@ -24,9 +24,43 @@ A Truppie oferece um marketplace de trips, roteiros e afins, que chamamos de *tr
 </span>
 ---
 
----?image=https://user-images.githubusercontent.com/88840/36498176-d4155ed8-173d-11e8-9d35-eea44956ddfa.JPG
+Nosso trello
 
-Temos a solução!
+---
+
+Fluxo de uma tarefa resolvida
+
+---
+
+Release Plan
+
+---
+
+Fiverr
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508612-7d970424-175d-11e8-8b47-afb1a55c0abb.png
+---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
+---?image=https://user-images.githubusercontent.com/88840/36508614-7dd84d26-175d-11e8-9c4b-5dd76a499d3b.png
+---?image=https://user-images.githubusercontent.com/88840/36508615-7df46aec-175d-11e8-938a-2025954307c8.png
+---?image=https://user-images.githubusercontent.com/88840/36508616-7e186cee-175d-11e8-893a-068d6e2bc1e9.png
+---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
+---?image=https://user-images.githubusercontent.com/88840/36508619-7e685a2e-175d-11e8-96f6-abcb7fc8c045.png
+---?image=https://user-images.githubusercontent.com/88840/36508621-7ea487c4-175d-11e8-9622-3d34871635d6.png
+---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
+---?image=https://user-images.githubusercontent.com/88840/36508624-7f6747fa-175d-11e8-9e62-908043f837d5.png
+---?image=https://user-images.githubusercontent.com/88840/36508625-7ff40852-175d-11e8-9918-4fb54eeee00e.png
+---?image=https://user-images.githubusercontent.com/88840/36508627-80805b18-175d-11e8-80d7-4658a7972cbe.png
+---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
+---?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
+---?image=https://user-images.githubusercontent.com/88840/36508632-81fd53e2-175d-11e8-8b9d-9cd6f1ef960f.png
+---?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
+---?image=https://user-images.githubusercontent.com/88840/36508634-83264828-175d-11e8-858f-de23d74648b2.png
+---?image=https://user-images.githubusercontent.com/88840/36508635-83b7e3e6-175d-11e8-8c15-2dbaa02ce098.png
+---?image=https://user-images.githubusercontent.com/88840/36508637-84491046-175d-11e8-92ef-852ecd875ee8.png
+---?image=https://user-images.githubusercontent.com/88840/36508638-84db4254-175d-11e8-9b3a-f33bd6d288c5.png
+
 
 ---
 
