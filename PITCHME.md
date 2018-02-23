@@ -16,10 +16,51 @@ A Truppie oferece um marketplace de trips, roteiros e afins, que chamamos de *tr
 
 ---?image=https://user-images.githubusercontent.com/88840/36449074-f5036ffe-1689-11e8-84b3-a9d80f20c4f6.png
 
+---
 
 ---?image=https://user-images.githubusercontent.com/88840/36450164-551e5946-168d-11e8-8b63-ef16de9e27e3.JPG
 
-Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e por quem elabora roteiros e oferece serviços de viagem, ajudando no seu planejamento e tudo que você precisa quando for planejar seu destino.
+<span style="font-family: Helvetica Neue; font-weight: bold; color:white">Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e por quem elabora roteiros e oferece serviços de viagem, ajudando no seu planejamento e tudo que você precisa quando for planejar seu destino.
+</span>
+---
+
+Nosso trello
+
+---
+
+Fluxo de uma tarefa resolvida
+
+---
+
+Release Plan
+
+---
+
+Fiverr
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508612-7d970424-175d-11e8-8b47-afb1a55c0abb.png
+---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
+---?image=https://user-images.githubusercontent.com/88840/36508614-7dd84d26-175d-11e8-9c4b-5dd76a499d3b.png
+---?image=https://user-images.githubusercontent.com/88840/36508615-7df46aec-175d-11e8-938a-2025954307c8.png
+---?image=https://user-images.githubusercontent.com/88840/36508616-7e186cee-175d-11e8-893a-068d6e2bc1e9.png
+---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
+---?image=https://user-images.githubusercontent.com/88840/36508619-7e685a2e-175d-11e8-96f6-abcb7fc8c045.png
+---?image=https://user-images.githubusercontent.com/88840/36508621-7ea487c4-175d-11e8-9622-3d34871635d6.png
+---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
+---?image=https://user-images.githubusercontent.com/88840/36508624-7f6747fa-175d-11e8-9e62-908043f837d5.png
+---?image=https://user-images.githubusercontent.com/88840/36508625-7ff40852-175d-11e8-9918-4fb54eeee00e.png
+---?image=https://user-images.githubusercontent.com/88840/36508627-80805b18-175d-11e8-80d7-4658a7972cbe.png
+---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
+---?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
+---?image=https://user-images.githubusercontent.com/88840/36508632-81fd53e2-175d-11e8-8b9d-9cd6f1ef960f.png
+---?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
+---?image=https://user-images.githubusercontent.com/88840/36508634-83264828-175d-11e8-858f-de23d74648b2.png
+---?image=https://user-images.githubusercontent.com/88840/36508635-83b7e3e6-175d-11e8-8c15-2dbaa02ce098.png
+---?image=https://user-images.githubusercontent.com/88840/36508637-84491046-175d-11e8-92ef-852ecd875ee8.png
+---?image=https://user-images.githubusercontent.com/88840/36508638-84db4254-175d-11e8-9b3a-f33bd6d288c5.png
+
 
 ---
 
@@ -221,3 +262,67 @@ Atualmente somos beta users do [Stripe](http://www.stripe.com) no Brasil (isento
 
 ***SEO***
 Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgânica
+
+## Presentations Using Charts
+## Feature Demonstration
+
+---
+
+### Tips!
+
+- Powered by excellent <a href="https://github.com/rajgoel/reveal.js-plugins/tree/master/chart" target="_blank">Charts Plugin</a>
+- Simply enable `charts` property in your `PITCHME.yaml`
+- Press `F` to go fullscreen!
+
+---
+
+<canvas data-chart="line">
+<!-- 
+{
+ "data": {
+  "labels": ["January"," February"," March"," April"," May"," June"," July"],
+  "datasets": [
+   {
+    "data":[65,59,80,81,56,55,40],
+    "label":"My first dataset","backgroundColor":"rgba(20,220,220,.8)"
+   },
+   {
+    "data":[28,48,40,19,86,27,90],
+    "label":"My second dataset","backgroundColor":"rgba(220,120,120,.8)"
+   }
+  ]
+ }, 
+ "options": { "responsive": "true" }
+}
+-->
+</canvas>
+
+---
+
+<canvas class="stretch" data-chart="bar">
+My first dataset, 65, 59, 80, 81, 56, 55, 40
+<!-- This is a comment that will be ignored -->
+My second dataset, 28, 48, 40, 19, 86, 27, 90
+<!-- 
+{ 
+ "data" : {
+  "labels" : ["Enero", "Febrero", "Marzo", "Avril", "Mayo", "Junio", "Julio"], 
+  "datasets" : [{ "borderColor": "#0f0", "borderDash": ["5","10"] }, { "borderColor": "#0ff" } ]
+ }
+}
+-->
+</canvas>
+
+---
+
+<canvas data-chart="bubble">
+Month, January, February, March, April, May, June, July
+My first dataset, 65, 59, 80, 81, 56, 55, 40
+My second dataset, 28, 48, 40, 19, 86, 27, 90
+</canvas>
+
+---
+
+### Learn By Example
+#### View The <a target="_blank" href="https://github.com/gitpitch/feature-demo/blob/charts/PITCHME.md">Presentation Markdown</a>
+
