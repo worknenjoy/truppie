@@ -364,7 +364,7 @@ DEPENDENCIES
   activerecord-session_store
   activesupport-json_encoder
   aws-sdk (< 2.0)
-  bourbon
+  bourbon (= 4.3.4)
   byebug
   coffee-rails (~> 4.1.0)
   compass-rails
