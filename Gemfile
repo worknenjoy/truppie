@@ -37,7 +37,7 @@ gem 'paperclip-aws'
 
 # Utilities
 gem 'redis'
-gem 'bourbon'
+gem 'bourbon', '4.3.4'
 gem 'rest-client'
 gem 'json'
 gem 'fakeredis'
