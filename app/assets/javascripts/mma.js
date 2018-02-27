@@ -3437,4 +3437,3 @@ var mapMarkerAwesomeFactory = (function (dataURI) {
 });
 if (typeof module == 'object')
     module.exports = mapMarkerAwesomeFactory;
-//# sourceMappingURL=mma.js.map
