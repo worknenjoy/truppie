@@ -1,12 +1,12 @@
 window.addEventListener("load", function () {
-    $(document).on("click", "#continue", nextStep);
-    $(document).on("click", "#continue2", nextStep2);
-    $(document).on("click", "#continue3", nextStep3);
-    $(document).on("click", "#continue4", nextStep4);
-    $(document).on("click", "#prev", prevStep);
-    $(document).on("click", "#prev2", prevStep2);
-    $(document).on("click", "#prev3", prevStep3);
-    $(document).on("click", "#prev4", prevStep4);
+    $(document).on("click", ".container-mountain #continue", nextStep);
+    $(document).on("click", ".container-mountain #continue2", nextStep2);
+    $(document).on("click", ".container-mountain #continue3", nextStep3);
+    $(document).on("click", ".container-mountain #continue4", nextStep4);
+    $(document).on("click", ".container-mountain #prev", prevStep);
+    $(document).on("click", ".container-mountain #prev2", prevStep2);
+    $(document).on("click", ".container-mountain #prev3", prevStep3);
+    $(document).on("click", ".container-mountain #prev4", prevStep4);
 
     // ======== SECTION 1 =============== //
 
