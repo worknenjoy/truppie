@@ -1,27 +1,33 @@
 class Users::RegistrationsController < Devise::RegistrationsController
- #before_filter :configure_sign_up_params, only: [:create]
- #before_filter :configure_account_update_params, only: [:update]
+  before_filter :validate_create, only: [:create]
+
+  def validate_create
+    temp_user = User.new(sign_up_params)
+    if !temp_user.valid?
+      flash[:notice] = temp_user.errors.full_messages.join('. ')
+    end
+  end
 
   private
 
   def sign_up_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-  
+
   def account_update_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-  
+
   protected
+
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
 
-  protected
   def after_update_path_for(resource)
     edit_user_registration_path(resource)
   end
-  
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -41,7 +47,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def update
   #   super
   # end
-  
+
   # DELETE /resource
   #def destroy
    #  super
