@@ -76,6 +76,7 @@
    end
   
   test "should not send notification to organizer if disable" do
+     ActionMailer::Base.deliveries.clear
      assert_difference('Organizer.count') do
        post :create, organizer: @other_organizer
      end
