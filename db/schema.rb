@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130212657) do
+ActiveRecord::Schema.define(version: 20180116235218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -473,6 +473,7 @@ ActiveRecord::Schema.define(version: 20171130212657) do
     t.string   "policy",               default: [],                 array: true
     t.integer  "percent",              default: 3
     t.string   "invite_token"
+    t.boolean  "mail_notification"
   end
 
   add_index "organizers", ["marketplace_id"], name: "index_organizers_on_marketplace_id", using: :btree

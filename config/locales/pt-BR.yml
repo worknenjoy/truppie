@@ -16,6 +16,7 @@ pt-BR:
     attributes:
       organizer:
         where.name: localização
+        mail_notification: Notificar por e-mail?
       where:
         name: localização
     errors:
