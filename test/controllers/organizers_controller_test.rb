@@ -38,7 +38,7 @@
        twitter: "a twitter",
        instagram: "a instagram",
        phone: "a phone",
-       mail_notification: "false"
+       mail_notification: "false",
        user_id: users(:alexandre).id
      }
    end
