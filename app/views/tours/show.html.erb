@@ -339,8 +339,15 @@
   <% @tour.wheres.each do |w| %>
     <div class="show-map" id="map"></div>
     <script type="text/javascript">
+    window.addEventListener("turbolinks:load", function () {
       function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map_element = document.getElementById('map');
+
+        if(!map_element){
+          return;
+        }
+
+        var map = new google.maps.Map(map_element, {
             zoom: 8,
             center: {lat: 40.72, lng: -73.96}
         });
@@ -350,7 +357,7 @@
         var placeId = "<%= w.place_id %>";
 
         <% if w.place_id.blank? %>
-          var place_object = {location: {lat: <%= w.try(:lat) %>, lng: <%= w.try(:long) %>}};
+          var place_object = {location: {lat: <%= w.try(:lat) || '40.72' %>, lng: <%= w.try(:long) || '-73.96' %>}};
         <% else %>
           var place_object = {placeId: placeId };
         <% end %>
@@ -377,9 +384,8 @@
         });
       }
 
-      window.onload = function(){
-        initMap();
-      };
+      initMap();
+      });
     </script>
   <% end %>
 
