@@ -1,3 +1,4 @@
+window.addEventListener("turbolinks:load", function () {
 function extractFromAdress(components, type){
     for (var i=0; i<components.length; i++)
         for (var j=0; j<components[i].types.length; j++)
@@ -218,11 +219,11 @@ function prefill_place(target, input) {
           for (var i = 0; i < data.length; i++) {
             place_marker(map, data[i]);
           }
-          
+
         },
         error: function(xhr, status, response) {
           console.log(response);
-        } 
+        }
       })
 
       $.ajax({
@@ -311,7 +312,7 @@ function prefill_place(target, input) {
       var info_content = "<div class='googft-info-window' style='width: 400px; height: 13em; overflow-y: auto;'>" +
         "<div class='row' style='margin-left: 0rem; margin-right: 0rem;'>" +
         "<div class='col-md-4'>" +
-        "<img src='" + tour.thumbnail + "' style='width: 100px; vertical-align: top; margin-right: .5em' />" + 
+        "<img src='" + tour.thumbnail + "' style='width: 100px; vertical-align: top; margin-right: .5em' />" +
         "</div>" +
         "<div class='col-md-8'>" +
         "<h5 style='color: #c1390d'>" + tour.price + "</h5>" +
@@ -339,7 +340,7 @@ function prefill_place(target, input) {
                 });
                 var infowindow = new google.maps.InfoWindow({ content : info_content });
 
-                marker.addListener('click', function() { 
+                marker.addListener('click', function() {
                   infowindow.open(map, marker);
                 })
             }
@@ -361,7 +362,7 @@ function prefill_place(target, input) {
     }
 
     for (var i = 0; i < ratingDiff; i++) {
-      ratingStarsString += "<span class='fa fa-star'></span>";   
+      ratingStarsString += "<span class='fa fa-star'></span>";
     }
 
     return ratingStarsString;
@@ -369,3 +370,4 @@ function prefill_place(target, input) {
 
   initMap();
 })();
+});
