@@ -1,62 +1,62 @@
-### Como chegar no cenário descrito
+### How to reproduze the user scenario
 
- - exemplo de que passos são necessários para chegar no passo descrito
+ - Necessary steps to achieve the user context
 
-## Como realizar esta mudança
+### Design or screenshot attached
 
-### Parte 1: exemplo de onde ir para de fato executar a mudança
+ - Get a design with the feature or a screenshot to reproduce the scenario
 
-### Parte 2: outro passo para realizá-la
+## Instructions of how to made the change proposal
 
-Critério de aceitação:
+Acceptance criteria
 
 - [ ] Em forma de tarefas para entender melhor os critérios de aceitação (que potencialmente podem se tornar testes automatizados)
+- [ ] Tasks with the acceptance criteria (That maybe turn into automated tests)
 
-### Considerações sobre a plataforma:
+### Platform:
 
-- O que é usado na plataforma
+- Whats is used on the platform
 
-### Requisitos para rodar a plataforma
+### Requirements to run the project
 
 - Ruby
 - Postgres
-- Se tornar administrador no sistema
-(para isto, basta criar um arquivo .env com os campos:
+- Be adminstrator
+You need to create the `.env` file:
 
 ```
- ADMIN_EMAIL=seuemail 
- ADMIN_EMAIL_ALT=outroemail
+ ADMIN_EMAIL=youremail
+ ADMIN_EMAIL_ALT=othermail
 ```
 
-### Como realizar esta tarefa
+### How to work on this task
 
-1. Comente aqui manifestando o interesse em realizar esta tarefa, que entrarei em contato para obter os detalhes para realizar o pagamento
-2. [Faça um fork do projeto](http://desenvolvimentoparaweb.com/miscelanea/como-fazer-fork-de-um-projeto-no-github/)
-3. Faça um `clone` do projeto para o seu ambiente local
+1. Make a comment here
+2. You will be invited and be assign to the task
+2. [Fork the project](https://help.github.com/articles/fork-a-repo/)
+3. Clone the repo with `git clone` and run `rails s` to start the project
 
-`rake test` (rodar os testes automatizados)
+`rake test` (run tests and make sure is green)
 
-`rails db:migrate` (Rodar as `migrations` para o banco de dados)
+`rails db:migrate` (Run the `migrations` for the database)
 
 `rails s` (Rodar o projeto)
 
-4. Realize as modificações como descrito nesta Issue
-5. [Enviar um Pull Request](https://blog.da2k.com.br/2015/02/04/git-e-github-do-clone-ao-pull-request/)
-6. Certificar-se de que as modificações [passaram nos testes automatizados](https://blog.da2k.com.br/2015/02/04/git-e-github-do-clone-ao-pull-request/)
-7. Um novo **ambiente para testes** será criado para validação das modificações com a nossa equipe
-8. Receber os comentários e feedbacks sobre modificações
-9. Enviar quaisquer modificações necessárias até ser aprovado
-10. Você ganha então um 👍 
-10. Quando o _Pull Request_ for finalizado, o **pagamento é enviado**
+4. Make the necessary changes to this issue
+5. [Send a pull request](https://help.github.com/articles/about-pull-requests/)
+6. Verify if your changes didn't break the [automated tests](http://guides.rubyonrails.org/testing.html)
+7. A new **application** will be created to be validated
+8. You will receive feedback from team members
+9. You will send changes until is approved
+10. You get a approve 👍 
+10. When the _Pull Request_ is merged, if is a paid task, the **payment is send**
 
-Se precisar de qualquer ajuda ou tiver qualquer dúvida basta comentar aqui que as dúvidas poderão ser respondidas por qualquer pessoa da comunidade ou quem contribui com o projeto e principalmente eu 👍 
+If you have any doubt or need help just comment and you will be supported
 
-Se quiser se familiarizar com o funcionamento de projetos de software livre, tem este [excelente guia do Tableless](https://tableless.com.br/contribuindo-em-projetos-open-source-com-o-github/)
 
-### Como ter um pull request aceito e integrado da forma correta no projeto
+### How to avoid issues when send the pull request
 
 Para que seu Pull Request seja aceito sem maiores problemas e integrado diretamente para que possa ir para produção você deve sempre estar integrado com o master do projeto, **sempre usando rebase como padrão**.
+You should be always up to date to the upstream master and use ***always rebase as default***
 
-Se tiver dúvidas como fazer isto dá uma olhada aqui [neste post](http://www.arruda.blog.br/programacao/dicas-de-git-integrando-um-branch-no-master-rebase-ou-merge/)
-
-Se precisar de qualquer ajuda ou tiver qualquer dúvida basta comentar aqui que as dúvidas poderão ser respondidas por qualquer pessoa da comunidade ou quem contribui com o projeto e principalmente eu 👍 o 
+If you have doubts about it see [this post](http://www.arruda.blog.br/programacao/dicas-de-git-integrando-um-branch-no-master-rebase-ou-merge/)
