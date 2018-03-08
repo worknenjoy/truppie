@@ -88,7 +88,10 @@
           <% if flash[:errors] and flash[:errors].key?('name') %>
             <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
             <small class="text-danger"><%= error_message_text(flash[:errors], :name) %></small>
+          <% else%>
+            <span class="required">*</span>
           <% end %>
+
           <%= f.hidden_field :user_id, value: current_user.try(:id) %>
           <%= f.hidden_field :welcome, value: true %>
         </li>
@@ -100,6 +103,8 @@
           <% if flash[:errors] and flash[:errors].key?('email') %>
               <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
               <small class="text-danger"><%= error_message_text(flash[:errors], :email) %></small>
+          <% else%>
+              <span class="required">*</span>
           <% end %>
         </li>
         <li>
@@ -110,6 +115,8 @@
           <% if flash[:errors] and flash[:errors].key?('website') %>
               <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
               <small class="text-danger"><%= error_message_text(flash[:errors], :website) %></small>
+          <% else%>
+              <span class="required">*</span>
           <% end %>
         </li>
         <li>
@@ -118,13 +125,19 @@
           <% if flash[:errors] and flash[:errors].key?('description') %>
               <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
               <small class="text-danger"><%= error_message_text(flash[:errors], :description) %></small>
+          <% else%>
+              <span class="required">*</span>
           <% end %>
         </li>
       </ul>
       <div class="nav_link">
         <a href="#" id="continue" style="float:right;"><%= t('label-organizer-continue') %></a>
       </div>
+      <% if flash[:errors].nil? %>
+        <div class="required_fields_message">* <%= t('label-organizer-required-fields-messsage') %></div>
+      <% end %>
     </div>
+
 
     <!-- Section 2 -->
 
