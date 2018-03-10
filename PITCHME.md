@@ -28,6 +28,10 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 </span>
 ---
 
+Começar a história
+
+---
+
 Nosso trello
 
 ---
