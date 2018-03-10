@@ -40,17 +40,18 @@
 }
 
 @font-face {
-  font-family: 'league';
+  font-family: 'League';
   font-family: font-url('leaguegothic-condensed-regular-webfont.ttf');
 }
 
 body {
-  font-family: 'Lato', 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   background: #fda43f;
+  color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'MuseoSans', 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: bold;
 }
 
