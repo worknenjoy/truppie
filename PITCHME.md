@@ -4,7 +4,7 @@
 
 ---
 
-<span style="background: #7A1953; padding: 20px; display: block;">O que é a Truppie</span>
+<span style="padding: 20px; display: block; color: #42205F">O que é a Truppie</span>
 
 Somos uma startup 100% remota que coloca você conectado com diversas atividades e roteiros para facilitar sua aventura
 
