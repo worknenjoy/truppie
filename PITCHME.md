@@ -4,9 +4,9 @@
 
 ---
 
-![Logo](https://truppie.com/assets/logo-flat-8815ef3639e143731f00922704c9fa09d5fc311e5433207cf6e8ca136d4edf32.png)
+<span style="background: black; padding: 20px; position: relative; top: 20px; left: 0">O que é a Truppie</span>
 
-A [Truppie](http://www.truppie.com) é uma startup remota que coloca você conectado com diversas atividades e roteiros para facilitar sua aventura
+Somos uma startup 100% remota que coloca você conectado com diversas atividades e roteiros para facilitar sua aventura
 
 ---
 
