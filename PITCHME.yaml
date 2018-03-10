@@ -1,4 +1,4 @@
 theme-override : public/PITCHME.css
 background-size : cover
-background-color : #FBB040;
+background-color : #fda440;
 charts : true
