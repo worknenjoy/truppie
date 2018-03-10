@@ -1,4 +1,3 @@
-theme : moon
 theme-override : public/PITCHME.css
 background-size : cover
 background-color : #FBB040;
