@@ -1,5 +1,7 @@
 ---?video=https://truppie.com/logo-animated-orange.mp4
 
+--?image=https://user-images.githubusercontent.com/88840/37236466-2fa60294-2408-11e8-8484-863e5c94441d.png
+
 ---
 
 ![Logo](https://truppie.com/assets/logo-flat-8815ef3639e143731f00922704c9fa09d5fc311e5433207cf6e8ca136d4edf32.png)
