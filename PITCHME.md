@@ -1,6 +1,6 @@
 ---?video=https://truppie.com/logo-animated-orange.mp4
 
----?image=https://user-images.githubusercontent.com/88840/37236466-2fa60294-2408-11e8-8484-863e5c94441d.png&size=contain
+---?image=https://user-images.githubusercontent.com/88840/37236466-2fa60294-2408-11e8-8484-863e5c94441d.png&size=auto
 
 ---
 
