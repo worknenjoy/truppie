@@ -46,8 +46,12 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background: #fda43f;
+  background-color: #FBB040;
   color: white;
+}
+
+.slide-background {
+  background-color: #FBB040;
 }
 
 h1, h2, h3, h4, h5, h6 {
