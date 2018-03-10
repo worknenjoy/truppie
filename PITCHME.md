@@ -6,7 +6,7 @@
 
 ![Logo](https://truppie.com/assets/logo-flat-8815ef3639e143731f00922704c9fa09d5fc311e5433207cf6e8ca136d4edf32.png)
 
-Somos a Truppie, uma startup remota que coloca você conectado com diversas atividades e roteiros para facilitar sua aventura
+A [Truppie](http://www.truppie.com) é uma startup remota que coloca você conectado com diversas atividades e roteiros para facilitar sua aventura
 
 ---
 
@@ -14,9 +14,11 @@ Somos a Truppie, uma startup remota que coloca você conectado com diversas ativ
 
 **O que ela oferece?**
 
-A Truppie oferece um marketplace de trips, roteiros e afins, que chamamos de *truppies*. 
+Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*. 
 
 ---?image=https://user-images.githubusercontent.com/88840/36449074-f5036ffe-1689-11e8-84b3-a9d80f20c4f6.png
+
+---?image=https://user-images.githubusercontent.com/88840/37236539-f055077e-2408-11e8-90c1-f41396930906.png
 
 ---
 
