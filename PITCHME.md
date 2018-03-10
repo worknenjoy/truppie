@@ -24,7 +24,7 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 ---?image=https://user-images.githubusercontent.com/88840/36450164-551e5946-168d-11e8-8b63-ef16de9e27e3.JPG
 
-<span style="font-family: Helvetica Neue; font-weight: bold; color:white">Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e por quem elabora roteiros e oferece serviços de viagem, ajudando no seu planejamento e tudo que você precisa quando for planejar seu destino.
+<span style="font-family: Helvetica Neue; font-weight: bold; color:white">Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e por quem elabora roteiros e oferece serviços de viagem
 </span>
 ---
 
