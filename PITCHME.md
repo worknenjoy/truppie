@@ -30,7 +30,7 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 Começar a história
 
-Joana
+Joana, nossa primeira cliente, parceira e contato no Brasil
 
 ---
 
