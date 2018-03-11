@@ -30,6 +30,8 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 Começar a história
 
+Joana
+
 ---
 
 Nosso trello
@@ -115,7 +117,11 @@ Veja todos que contribuiram no [Truppie Devs](http://dev.truppie.com/contrib.htm
 
 ---
 
+*** Artigos já publicados a respeito ***
+
 **O que temos agora?**
+
+*** Como o sistema funciona (telas) ***
 
 ***Para os guias***
 
