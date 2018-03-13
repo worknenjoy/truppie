@@ -13,7 +13,11 @@
   	  	  <nav class="clearfix main-menu xs-spaced-bottom">
             <ul class="clearfix">
               <li><%= link_to t('how-it-works-main-menu'), user_welcome_path %></li>
+              <% if is_organizer_admin %>
               <li><%= link_to t('guides-main-menu'), organizer_welcome_path %></li>
+              <% else %>
+              <li><%= link_to t('guides-main-create'), organizer_welcome_path %></li>
+              <% end %>
               <li><%= link_to t('nomad-main-menu'), "http://dev.truppie.com" %></li>
               <li><%= link_to t('contact-main-menu'), contacts_index_path %></li>
             </ul>
