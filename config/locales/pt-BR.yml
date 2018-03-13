@@ -311,7 +311,8 @@ pt-BR:
   guidebook-reservation-action: Obter
   guidebooks-confirm-presence-message: A sua compra deste roteiro foi confirmada!
   guidebooks_view_index_h3: Roterios
-  guides-main-menu: "Oferecer serviço"
+  guides-main-menu: "Gerenciar negócio"
+  guides-main-create: "Cadastrar negócio"
   guides_partial_a_one: " Site"
   guides_partial_a_two: " Enviar um e-mail"
   guides_partial_h3_one: Guias
