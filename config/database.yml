@@ -21,11 +21,14 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  username: postgres
 
 development:
   <<: *default
   database: truppie_development
+  host: localhost
   #port: 5433
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -60,6 +63,7 @@ development:
 test:
   <<: *default
   database: truppie_test
+  host: localhost
   #port: 5433
 
 # As with config/secrets.yml, you never want to store sensitive information,
