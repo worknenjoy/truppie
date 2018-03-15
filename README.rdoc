@@ -12,7 +12,7 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
   
 == What is Truppie?
 
-  {https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png}
+https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
   
   Truppie is a platform that connects tour guides with explorers, nature-lovers.
   
@@ -21,7 +21,7 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
   
   Truppie is safe, we use SSL for all transactions.
   
-  {https://user-images.githubusercontent.com/88840/37486823-f97abd90-288f-11e8-9300-40225d12fb6c.png}
+https://user-images.githubusercontent.com/88840/37486823-f97abd90-288f-11e8-9300-40225d12fb6c.png
   
 == How it works
   
@@ -58,7 +58,7 @@ We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/mas
   
 == Installing
 
-{https://user-images.githubusercontent.com/88840/37486877-1c8dc84a-2890-11e8-8e1f-072cab599a84.jpeg}
+https://user-images.githubusercontent.com/88840/37486877-1c8dc84a-2890-11e8-8e1f-072cab599a84.jpeg
 
 === Env variables to secure our working
   
