@@ -110,6 +110,8 @@ Para entrar
 
 ---?image=https://user-images.githubusercontent.com/88840/36508634-83264828-175d-11e8-858f-de23d74648b2.png
 
+---
+
 ![if_94_1191665 1](https://user-images.githubusercontent.com/88840/37486902-2b8a17ae-2890-11e8-9dd1-77194e15f79e.png)
 
 **Usuários que passaram pela Truppie**
