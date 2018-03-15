@@ -74,7 +74,7 @@ Como?
 
 ---
 
-http://geradormemes.com/media/created/03iw66.jpg
+![Como](http://geradormemes.com/media/created/03iw66.jpg)
 
 ---
 
