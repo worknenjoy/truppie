@@ -66,7 +66,7 @@ O que queremos?
 
 ---
 
-http://geradormemes.com/media/created/jzslxc.jpg
+![Como](http://geradormemes.com/media/created/jzslxc.jpg)
 
 ---
 
