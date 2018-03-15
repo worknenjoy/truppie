@@ -174,7 +174,7 @@ R$ 9.000,00
 
 ---
 
-Fluxo de uma tarefa resolvida
+Como o projeto é gerenciado?
 
 ---
 
