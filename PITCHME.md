@@ -89,6 +89,8 @@ E agora queremos ser multiplicadores de viagens, como modelo de empresa de cultu
 
 ---
 
+---?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
+
 ---?image=https://user-images.githubusercontent.com/88840/36508614-7dd84d26-175d-11e8-9c4b-5dd76a499d3b.png
 
 ---
@@ -157,10 +159,6 @@ Organizamos as demandas no Trello
 
 Desenvolvimento
 ![pageshot of issues worknenjoy truppie 2018-03-04-2036 34](https://user-images.githubusercontent.com/88840/37487185-14d6a85a-2891-11e8-8533-35b95776304c.png)
-
----
-
----?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
 
 ---
 
