@@ -212,6 +212,8 @@ Mostrar como podemos ser parceiros a ajudá-los a promover atividades
 
 ---?image=https://user-images.githubusercontent.com/88840/36508627-80805b18-175d-11e8-80d7-4658a7972cbe.png
 
+---
+
 Marketing de conteúdo, Machine Learning, contato e parceria com guias, perfis e influenciadores
 
 ---
