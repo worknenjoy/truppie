@@ -18,19 +18,30 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 ---?image=https://user-images.githubusercontent.com/88840/36449074-f5036ffe-1689-11e8-84b3-a9d80f20c4f6.png
 
----?image=https://user-images.githubusercontent.com/88840/37236539-f055077e-2408-11e8-90c1-f41396930906.png
-
----
-
 ---?image=https://user-images.githubusercontent.com/88840/36450164-551e5946-168d-11e8-8b63-ef16de9e27e3.JPG
 
-<span style="font-family: Helvetica Neue; font-weight: bold; color:white">Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias locais e por quem elabora roteiros e oferece serviços de viagem
+<span style="font-family: Helvetica Neue; font-weight: bold; color:white">Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias e por quem elabora roteiros e oferece consultoria de viagem
 </span>
+
 ---
 
-Começar a história
+# obs: não esquecer de fazer referncia das fotos
 
 Joana, nossa primeira cliente, parceira e contato no Brasil
+
+O que rolou com a Joana
+
+A Joana teve medidaço
+A Joana teve trilhas
+A Joana teve novos amigos
+Veio o Guga, veio outros
+Veio a Laura com os roteiros
+
+E agora queremos ser referncia de viagem, com o modelo de empresa remoto
+
+---
+
+O que queremos?
 
 ---
 
@@ -46,9 +57,21 @@ Release Plan
 
 ---
 
+Future plans
+
+Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
+
+Integração e páginas inteligentes
+
+(print da do card da laura das vantagens e desvantagens dos lugares)
+
+---
+
 Fiverr
 
 ---
+
+
 
 ---?image=https://user-images.githubusercontent.com/88840/36508612-7d970424-175d-11e8-8b47-afb1a55c0abb.png
 ---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
