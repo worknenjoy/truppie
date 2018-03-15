@@ -70,7 +70,15 @@ http://geradormemes.com/media/created/jzslxc.jpg
 
 ---
 
-Então, teve Truppies do Utópicos
+Como?
+
+---
+
+http://geradormemes.com/media/created/03iw66.jpg
+
+---
+
+Então, surgiu a Truppie! E Truppie do Utópicos!
 ![screenshot-2017-07-10-19 19 33](https://user-images.githubusercontent.com/88840/37486871-1990c476-2890-11e8-863a-3a818643842e.png)
 
 ---
