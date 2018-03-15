@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  server:
+    command: ["./docker/scripts/wait-for-it.sh", "localhost:5432", "-t", "0", "--", "./docker/scripts/run-server.sh"]
+    env_file: .env
+    working_dir: $WORKDIR
+    build: .
+    volumes:
+      - type: bind
+        source: .
+        target: /truppie
+    tty: true
+    network_mode: "host"
+  db:
+    env_file: .env-db
+    image: postgres:9.4.5
+    network_mode: "host"
