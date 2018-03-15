@@ -54,7 +54,19 @@ Joana, fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
 
 ---
 
-Problema: Fazer com que atividades super legais promovidas pela Utópicos chegue nos aventureiros
+
+Problema:
+Fazer com que atividades super legais promovidas pela Utópicos chegue nos aventureiros
+
+---
+
+O que queremos?
+
+![Planejar viagem](http://geradormemes.com/media/created/xrq5dj.jpg)
+
+---
+
+http://geradormemes.com/media/created/jzslxc.jpg
 
 ---
 
