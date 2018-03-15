@@ -23,9 +23,14 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 <span style="font-family: Helvetica Neue; font-weight: bold; color:white">Seja uma atividade local ou uma viagem, vamos facilitar o acesso aos serviços oferecidos por guias e por quem elabora roteiros e oferece consultoria de viagem
 </span>
 
+
 ---
 
-# obs: não esquecer de fazer referncia das fotos
+---?image=https://user-images.githubusercontent.com/88840/36508635-83b7e3e6-175d-11e8-8c15-2dbaa02ce098.png
+
+<span style="font-family: Helvetica Neue; font-weight: bold; color:white">
+Para chegar lá, vamos um pouco no começo...
+</span>
 
 ---
 
@@ -34,6 +39,14 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 ---
 
 ![img_6223-e1482777045695](https://user-images.githubusercontent.com/88840/37486876-1b4766ee-2890-11e8-9fbb-388cb4fc2369.jpg)
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508619-7e685a2e-175d-11e8-96f6-abcb7fc8c045.png
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508621-7ea487c4-175d-11e8-9622-3d34871635d6.png
 
 ---
 
@@ -83,16 +96,32 @@ E agora queremos ser multiplicadores de viagens, como modelo de empresa de cultu
 
 ---
 
-# o que oferecemos para guias
 ---?image=https://user-images.githubusercontent.com/88840/36508614-7dd84d26-175d-11e8-9c4b-5dd76a499d3b.png
 
-Para entrar na Truppie
+---
+
+Para entrar
 ![pageshot of truppie 2018-03-02-2039 47](https://user-images.githubusercontent.com/88840/37486909-31027b40-2890-11e8-9a05-c33182e4fa85.png)
 
 ---
 
-# o que oferecemos para usuarios
+---?image=https://user-images.githubusercontent.com/88840/36508632-81fd53e2-175d-11e8-8b9d-9cd6f1ef960f.png
+
+---
+
 ---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508634-83264828-175d-11e8-858f-de23d74648b2.png
 
 ---
 
@@ -130,6 +159,10 @@ R$ 9.000,00
 
 ---
 
+---?image=https://user-images.githubusercontent.com/88840/36508624-7f6747fa-175d-11e8-9e62-908043f837d5.png
+
+---
+
 Fluxo de uma tarefa resolvida
 
 ---
@@ -144,9 +177,18 @@ Desenvolvimento
 
 ---
 
+---?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
+
+---
+
 Release Plan
 
 ---?image=https://user-images.githubusercontent.com/88840/36508616-7e186cee-175d-11e8-893a-068d6e2bc1e9.png
+
+---
+
+_v3.0  -
+_v2.0_ - 
 
 ---
 
@@ -155,38 +197,40 @@ Eventos no calendário
 
 ---
 
+---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
 Future plans
 
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
 Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
+---
 
 Integração e páginas inteligentes
 
+---
+
 (print da do card da laura das vantagens e desvantagens dos lugares)
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508625-7ff40852-175d-11e8-9918-4fb54eeee00e.png
+
+---
+
+Mostrar como podemos ser parceiros a ajudá-los a promover atividades
+
+---
+
+---?image=https://user-images.githubusercontent.com/88840/36508627-80805b18-175d-11e8-80d7-4658a7972cbe.png
+
+Marketing de conteúdo, Machine Learning, contato e parceria com guias, perfis e influenciadores
 
 ---
 
 Fiverr
 
 ![pageshot of fiverr search results for travel guide brazil 2018-03-04-1856 43](https://user-images.githubusercontent.com/88840/37486869-175f5d20-2890-11e8-8232-d10d18875e38.png)
-
----
----?image=https://user-images.githubusercontent.com/88840/36508616-7e186cee-175d-11e8-893a-068d6e2bc1e9.png
----?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
----?image=https://user-images.githubusercontent.com/88840/36508619-7e685a2e-175d-11e8-96f6-abcb7fc8c045.png
----?image=https://user-images.githubusercontent.com/88840/36508621-7ea487c4-175d-11e8-9622-3d34871635d6.png
----?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
----?image=https://user-images.githubusercontent.com/88840/36508624-7f6747fa-175d-11e8-9e62-908043f837d5.png
----?image=https://user-images.githubusercontent.com/88840/36508625-7ff40852-175d-11e8-9918-4fb54eeee00e.png
----?image=https://user-images.githubusercontent.com/88840/36508627-80805b18-175d-11e8-80d7-4658a7972cbe.png
----?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
----?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
----?image=https://user-images.githubusercontent.com/88840/36508632-81fd53e2-175d-11e8-8b9d-9cd6f1ef960f.png
----?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
----?image=https://user-images.githubusercontent.com/88840/36508634-83264828-175d-11e8-858f-de23d74648b2.png
----?image=https://user-images.githubusercontent.com/88840/36508635-83b7e3e6-175d-11e8-8c15-2dbaa02ce098.png
----?image=https://user-images.githubusercontent.com/88840/36508637-84491046-175d-11e8-92ef-852ecd875ee8.png
----?image=https://user-images.githubusercontent.com/88840/36508638-84db4254-175d-11e8-9b3a-f33bd6d288c5.png
-
 
 ---
 
