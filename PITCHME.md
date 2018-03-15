@@ -107,23 +107,13 @@ Para entrar
 
 ---?image=https://user-images.githubusercontent.com/88840/36508632-81fd53e2-175d-11e8-8b9d-9cd6f1ef960f.png
 
----
+---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
 
 ---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
 
----
-
----?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
-
----
-
 ---?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
 
----
-
 ---?image=https://user-images.githubusercontent.com/88840/36508634-83264828-175d-11e8-858f-de23d74648b2.png
-
----
 
 ![if_94_1191665 1](https://user-images.githubusercontent.com/88840/37486902-2b8a17ae-2890-11e8-9dd1-77194e15f79e.png)
 
