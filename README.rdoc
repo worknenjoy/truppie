@@ -11,6 +11,8 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
   Here you will know how to contribute to this project.
   
 == What is Truppie?
+
+  {https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png}
   
   Truppie is a platform that connects tour guides with explorers, nature-lovers.
   
@@ -18,6 +20,8 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
   Any developer from anywhere in the world can contribute with the platform and be assigned to do the issues.
   
   Truppie is safe, we use SSL for all transactions.
+  
+  {https://user-images.githubusercontent.com/88840/37486823-f97abd90-288f-11e8-9300-40225d12fb6c.png}
   
 == How it works
   
@@ -54,11 +58,15 @@ We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/mas
   
 == Installing
 
+{https://user-images.githubusercontent.com/88840/37486877-1c8dc84a-2890-11e8-8e1f-072cab599a84.jpeg}
+
 === Env variables to secure our working
   
   When you have the project installed, you can request the development env variables.
 
 === RELEASE NOTES
+
+=== v2.0 (April)
 
 === v2.0-beta
 
