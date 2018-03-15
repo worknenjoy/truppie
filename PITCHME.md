@@ -37,8 +37,6 @@ Para chegar lá, vamos um pouco no começo...
 
 ![Eu e Laura](https://user-images.githubusercontent.com/88840/37486876-1b4766ee-2890-11e8-9fbb-388cb4fc2369.jpg)
 
----
-
 ---?image=https://user-images.githubusercontent.com/88840/36508619-7e685a2e-175d-11e8-96f6-abcb7fc8c045.png
 
 ---?image=https://user-images.githubusercontent.com/88840/36508621-7ea487c4-175d-11e8-9622-3d34871635d6.png
@@ -146,8 +144,6 @@ Para entrar
 
 R$ 9.000,00
 
----
-
 ---?image=https://user-images.githubusercontent.com/88840/36508624-7f6747fa-175d-11e8-9e62-908043f837d5.png
 
 ---
@@ -156,12 +152,14 @@ Fluxo de uma tarefa resolvida
 
 ---
 
-![screen shot 2018-03-13 at 7 57 26 pm](https://user-images.githubusercontent.com/88840/37486825-fafbd21c-288f-11e8-9a59-125f103e2282.png)
 Organizamos as demandas no Trello
+
+![screen shot 2018-03-13 at 7 57 26 pm](https://user-images.githubusercontent.com/88840/37486825-fafbd21c-288f-11e8-9a59-125f103e2282.png)
 
 ---
 
 Desenvolvimento
+
 ![pageshot of issues worknenjoy truppie 2018-03-04-2036 34](https://user-images.githubusercontent.com/88840/37487185-14d6a85a-2891-11e8-8533-35b95776304c.png)
 
 ---
@@ -177,8 +175,9 @@ _v2.0_ -
 
 ---
 
-![screen shot 2018-03-14 at 7 26 37 pm](https://user-images.githubusercontent.com/88840/37486821-f8161e5e-288f-11e8-8bce-f69d98f9d8ea.png)
 Eventos no calendário
+
+![screen shot 2018-03-14 at 7 26 37 pm](https://user-images.githubusercontent.com/88840/37486821-f8161e5e-288f-11e8-8bce-f69d98f9d8ea.png)
 
 ---
 
@@ -189,6 +188,7 @@ Future plans
 
 ---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
 Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
+
 ---
 
 Integração e páginas inteligentes
