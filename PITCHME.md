@@ -27,17 +27,41 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 # obs: não esquecer de fazer referncia das fotos
 
+---
+
+***Como começou?***
+
+---
+
 Joana, nossa primeira cliente, parceira e contato no Brasil
 
-O que rolou com a Joana
+---
 
-A Joana teve medidaço
-A Joana teve trilhas
-A Joana teve novos amigos
-Veio o Guga, veio outros
-Veio a Laura com os roteiros
+Das Truppies com a Utópicos
 
-E agora queremos ser referncia de viagem, com o modelo de empresa remoto
+---
+
+teve medidaço
+
+---
+
+teve trilhas
+
+---
+
+teve amigos
+
+---
+
+Algo aconteceu neste meio
+
+---
+
+Aí veio a Laura com os roteiros
+
+---
+
+E agora queremos ser multiplicadores de viagens, como modelo de empresa de cultura remota e que quer agregar no mercado de turismo, e vice-versa...
 
 ---
 
@@ -68,6 +92,8 @@ Integração e páginas inteligentes
 ---
 
 Fiverr
+
+Mostrar resultados do Fiverr sobre viagens no Brasil e guias
 
 ---
 
