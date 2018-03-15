@@ -33,11 +33,13 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 ---
 
+![img_1962-e1485032393293](https://user-images.githubusercontent.com/88840/37486882-1f86081e-2890-11e8-893f-50684f0faa5b.jpg)
+
 Joana, fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
 
 ---
 
-Ela montou o site dela no Wix! (Warriors face)
+Problema: Fazer com que atividades super legais promovidas pela Utópicos chegue nos aventureiros
 
 ---
 
@@ -45,7 +47,7 @@ Então, teve Truppies do Utópicos
 
 ---
 
-teve medidaço
+teve meditação
 
 ---
 
@@ -146,8 +148,6 @@ Mostrar resultados do Fiverr sobre viagens no Brasil e guias
 ---
 ![logo_utopicos_color-01-1024x410](https://user-images.githubusercontent.com/88840/37486880-1df49a56-2890-11e8-9ccf-
 839fcc908633.png)
----
-![img_1962-e1485032393293](https://user-images.githubusercontent.com/88840/37486882-1f86081e-2890-11e8-893f-50684f0faa5b.jpg)
 ---
 ![pageshot_of__truppie__ _2018-03-00-1350_52 1](https://user-images.githubusercontent.com/88840/37486886-20f261de-2890-11e8-
 9caf-3b45d6c91004.png)
