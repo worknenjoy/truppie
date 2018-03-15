@@ -33,8 +33,6 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 ---
 
-
-
 Joana, fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
 
 ---
@@ -123,7 +121,52 @@ Mostrar resultados do Fiverr sobre viagens no Brasil e guias
 
 ---
 
+![screen shot 2018-03-14 at 7 26 37 pm](https://user-images.githubusercontent.com/88840/37486821-f8161e5e-288f-11e8-8bce-f69d98f9d8ea.png)
 
+---
+
+![screen shot 2018-03-13 at 8 10 31 pm](https://user-images.githubusercontent.com/88840/37486823-f97abd90-288f-11e8-9300-40225d12fb6c.png)
+
+---
+
+
+![screen shot 2018-03-13 at 7 57 26 pm](https://user-images.githubusercontent.com/88840/37486825-fafbd21c-288f-11e8-9a59-125f103e2282.png)
+
+---
+![screen shot 2018-03-13 at 7 57 26 pm](https://user-images.githubusercontent.com/88840/37486851-0bac203a-2890-11e8-8564-62533bac3574.png)
+
+---
+![pageshot of fiverr search results for travel guide brazil 2018-03-04-1856 43](https://user-images.githubusercontent.com/88840/37486869-175f5d20-2890-11e8-8232-d10d18875e38.png)
+---
+![screenshot-2017-07-10-19 19 33](https://user-images.githubusercontent.com/88840/37486871-1990c476-2890-11e8-863a-3a818643842e.png)
+---
+![img_6223-e1482777045695](https://user-images.githubusercontent.com/88840/37486876-1b4766ee-2890-11e8-9fbb-388cb4fc2369.jpg)
+---
+![images](https://user-images.githubusercontent.com/88840/37486877-1c8dc84a-2890-11e8-8e1f-072cab599a84.jpeg)
+---
+![logo_utopicos_color-01-1024x410](https://user-images.githubusercontent.com/88840/37486880-1df49a56-2890-11e8-9ccf-
+839fcc908633.png)
+---
+![img_1962-e1485032393293](https://user-images.githubusercontent.com/88840/37486882-1f86081e-2890-11e8-893f-50684f0faa5b.jpg)
+---
+![pageshot_of__truppie__ _2018-03-00-1350_52 1](https://user-images.githubusercontent.com/88840/37486886-20f261de-2890-11e8-
+9caf-3b45d6c91004.png)
+---
+![pageshot_of__truppie__ _2018-03-00-1350_52](https://user-images.githubusercontent.com/88840/37486887-2294c824-2890-11e8-8365-d60735dce06d.png)
+---
+![truppie-page](https://user-images.githubusercontent.com/88840/37486890-23ffe234-2890-11e8-8337-562772741491.png)
+---
+![if_leader_331680](https://user-images.githubusercontent.com/88840/37486897-29d677cc-2890-11e8-864c-d2a723c90f3b.png)
+---
+![if_94_1191665 1](https://user-images.githubusercontent.com/88840/37486902-2b8a17ae-2890-11e8-9dd1-77194e15f79e.png)
+---
+![if_travel_and_tourism_black-13_1211475](https://user-images.githubusercontent.com/88840/37486906-2db1d2ec-2890-11e8-8662-
+973d86dd9029.png)
+---
+![pageshot of truppie 2018-03-02-2039 47](https://user-images.githubusercontent.com/88840/37486909-31027b40-2890-11e8-9a05-c33182e4fa85.png)
+---
+![pageshot of issues worknenjoy truppie 2018-03-04-2036 34](https://user-images.githubusercontent.com/88840/37487185-14d6a85a-2891-11e8-8533-35b95776304c.png)
+---
 
 ---?image=https://user-images.githubusercontent.com/88840/36508612-7d970424-175d-11e8-8b47-afb1a55c0abb.png
 ---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
