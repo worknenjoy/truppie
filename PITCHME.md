@@ -33,11 +33,17 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 ---
 
-Joana, nossa primeira cliente, parceira e contato no Brasil
+
+
+Joana, fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
 
 ---
 
-Das Truppies com a Utópicos
+Ela montou o site dela no Wix! (Warriors face)
+
+---
+
+Então, teve Truppies do Utópicos
 
 ---
 
@@ -65,7 +71,27 @@ E agora queremos ser multiplicadores de viagens, como modelo de empresa de cultu
 
 ---
 
-O que queremos?
+**Usuários que passaram pela Truppie**
+
+@fa[users]
+
+125
+
+---
+
+**Guias cadastrados**
+
+@fa[user]
+
+14
+
+---
+
+**Valor processado em reservas**
+
+@fa[card]
+
+R$ 9.000,00
 
 ---
 
