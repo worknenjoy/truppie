@@ -87,8 +87,6 @@ Aí veio a Laura com os roteiros
 
 E agora queremos ser multiplicadores de viagens, como modelo de empresa de cultura remota e que quer agregar no mercado de turismo, e vice-versa...
 
----
-
 ---?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
 
 ---?image=https://user-images.githubusercontent.com/88840/36508614-7dd84d26-175d-11e8-9c4b-5dd76a499d3b.png
@@ -97,8 +95,6 @@ E agora queremos ser multiplicadores de viagens, como modelo de empresa de cultu
 
 Para entrar
 ![pageshot of truppie 2018-03-02-2039 47](https://user-images.githubusercontent.com/88840/37486909-31027b40-2890-11e8-9a05-c33182e4fa85.png)
-
----
 
 ---?image=https://user-images.githubusercontent.com/88840/36508632-81fd53e2-175d-11e8-8b9d-9cd6f1ef960f.png
 
@@ -179,12 +175,11 @@ Eventos no calendário
 
 ![screen shot 2018-03-14 at 7 26 37 pm](https://user-images.githubusercontent.com/88840/37486821-f8161e5e-288f-11e8-8bce-f69d98f9d8ea.png)
 
----
-
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
-Future plans
 
 ---
+
+Future plans
 
 ---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
 Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
