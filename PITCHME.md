@@ -41,6 +41,8 @@ Para chegar lá, vamos um pouco no começo...
 
 ---?image=https://user-images.githubusercontent.com/88840/36508621-7ea487c4-175d-11e8-9622-3d34871635d6.png
 
+---
+
 ![img_1962-e1485032393293](https://user-images.githubusercontent.com/88840/37486882-1f86081e-2890-11e8-893f-50684f0faa5b.jpg)
 
 Joana, fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
