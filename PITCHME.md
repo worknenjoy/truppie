@@ -141,8 +141,6 @@ Temos
 * Página do evento com possibilidade de reserva
 * Notificações para o cliente do status da reserva
 
----
-
 ---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
 
 ---?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
