@@ -112,29 +112,18 @@ Então, surgiu a Truppie! E Truppie do Utópicos!
 
 ---
 
-teve meditação
+![trilha dois irmãos](https://user-images.githubusercontent.com/88840/37556201-f080f704-29f2-11e8-891c-7b9347cea856.png)
 
 ---
 
-teve trilhas
+teve meditação, trilhas, amigos e roteiros
 
 ---
 
-teve amigos
+Como este:
 
----
-
-Algo aconteceu neste meio
-
----
-
-Aí veio a Laura com os roteiros
 ![pageshot_of__truppie__ _2018-03-00-1350_52 1](https://user-images.githubusercontent.com/88840/37486886-20f261de-2890-11e8-
 9caf-3b45d6c91004.png)
-
----
-
-E passamos a oferecer roteiros personalizados
 
 ---
 
