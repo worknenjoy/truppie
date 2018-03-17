@@ -56,7 +56,7 @@ Conhecemos a Joana, parceira e fundadora da [Utópicos mundo afora](https://www.
 
 ***O que a Joana quer?***
 Fazer com que atividades super legais promovidas pela [Utópicos mundo afora](https://www.utopicosmundoafora.com)
- chegue nos aventureiros
+ chegue aos aventureiros
 
 ---
 
@@ -80,7 +80,7 @@ O que queremos?
 
 ---
 
-mas como?
+Como queremos?
 
 ---
 
@@ -116,8 +116,7 @@ e assim foram dois anos com meditação, trilhas e amigos. E agora roteiros...
 
 Como este:
 
-![pageshot_of__truppie__ _2018-03-00-1350_52 1](https://user-images.githubusercontent.com/88840/37486886-20f261de-2890-11e8-
-9caf-3b45d6c91004.png)
+![pageshot_of__truppie__ _2018-03-00-1350_52 1](https://user-images.githubusercontent.com/88840/37560811-940bb98a-2a3f-11e8-83a7-f553437abf4a.png)
 
 ---
 
@@ -225,11 +224,11 @@ R$ 9.000,00
 
 ---
 
-Pouco significativo, pois nosso foco era validar a idéia e entender nossos clientes...
+Ainda é pouco, pois nosso foco era validar a idéia
 
 ---
 
-Como o projeto é gerenciado?
+Como gerenciar o projeto?
 
 ---
 
@@ -239,22 +238,39 @@ Organizamos as demandas no Trello
 
 ---
 
-Desenvolvimento
+***Enviamos para o desenvolvimento***
 
 ![pageshot of issues worknenjoy truppie 2018-03-04-2036 34](https://user-images.githubusercontent.com/88840/37487185-14d6a85a-2891-11e8-8533-35b95776304c.png)
 
 ---
 
+A [Truppie](http://truppie.com) é [Open Source](https://github.com/worknenjoy/truppie)
+
+---
+
 **Alguns dos colaboradores**
 
-![Collaborators](https://user-images.githubusercontent.com/88840/34281612-f4eaddee-e6a6-11e7-8f9e-7c6e102068a5.png)
+[Truppie Devs](http://dev.truppie.com)
+
+![Collaborators](https://user-images.githubusercontent.com/88840/37560944-564f75a2-2a42-11e8-8718-f888d4b366b9.png)
 
 Veja todos que contribuiram no [Truppie Devs](http://dev.truppie.com/contrib.html)
 
 ---
 
+Nossas tecnologias
+
+![Tecnologias](https://user-images.githubusercontent.com/88840/37560875-5a662a3e-2a40-11e8-8871-0d5cdcd99579.png)
+
+---
+
 *** Artigos já publicados a respeito ***
 
+* [Truppie, uma plataforma de aventuras diferente](https://superatualizado.com.br/truppie-plataforma-aventuras-diferente/)
+* [As melhores ferramentas para gerenciar sua startup e romper com as barreiras financeiras](https://superatualizado.com.br/as-melhores-ferramentas-para-gerenciar-sua-startup-e-romper-com-as-barreiras-financeiras/)
+* [Como abrir e gerenciar uma empresa nos EUA sem sair de casa](http://blog.alexandremagno.net/2018/03/como-abrir-e-gerenciar-uma-empresa-nos-eua-sem-sair-de-casa/)
+* [Usando o Git Workflow para trabalhar com times remotos](http://blog.alexandremagno.net/2017/04/usando-o-git-workflow-para-trabalhar-com-times-remotos/)
+* [Adaptando um sistema aos dispositivos móveis na prática, com CSS3 e Javascript](http://blog.alexandremagno.net/2017/02/adaptando-um-sistema-aos-dispositivos-moveis-na-pratica-com-css3-e-javascript/)
 
 ---
 
@@ -262,21 +278,27 @@ Release Plan
 
 ---?image=https://user-images.githubusercontent.com/88840/36508616-7e186cee-175d-11e8-893a-068d6e2bc1e9.png
 
-_v3.0  -
-_v2.0_ - 
+_v2.0_
+
+Goal: Consolidar guias e roteiros personalizados
+Experiência do guia na criação de roteiros personalizados
+E-mail marketing e envio de convites
+Melhorias de SEO
+
+_v3.0_
+
+Goal: Páginas sobre lugares 
+Truppie Places (modelo Airbnb de lugares)
+Importar dados de um blog cadastrado (segundo o Blog)
 
 
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
-
----
 
 Future plans
 
 ---
 
 AI-powered travel-as-a-service solution
-
----
 
 ---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
 Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
@@ -300,15 +322,9 @@ Modelo como o Fiverr para oferecer serviços de viagem e roteiros
 
 ![pageshot of fiverr search results for travel guide brazil 2018-03-04-1856 43](https://user-images.githubusercontent.com/88840/37486869-175f5d20-2890-11e8-8232-d10d18875e38.png)
 
----?image=https://user-images.githubusercontent.com/88840/36508625-7ff40852-175d-11e8-9918-4fb54eeee00e.png
-
----
-
-Mostrar como podemos ser parceiros a ajudá-los a promover atividades
-
 ---?image=https://user-images.githubusercontent.com/88840/36508627-80805b18-175d-11e8-80d7-4658a7972cbe.png
 
----
+---?image=https://user-images.githubusercontent.com/88840/36508625-7ff40852-175d-11e8-9918-4fb54eeee00e.png
 
 Marketing de conteúdo, Machine Learning, contato e parceria com guias, perfis e influenciadores
 
@@ -320,7 +336,7 @@ Queremos investimento para continuar o trabalho e investir no marketing para atr
 
 ---
 
-Redes sociais
+Investir nas redes sociais para divulgar guias e roteiros cadastrados, e conteúdos relevantes sobre dicas de viagem
 
 ![Nosso instagram](https://user-images.githubusercontent.com/88840/37557624-a9065382-2a07-11e8-9572-c1e42e841df7.png)
 
@@ -332,34 +348,32 @@ Transformar a Truppie numa experiência completa para guias e roteiros personali
 
 ---
 
+***Qual é a Jornada do Viajante?***
+
 Planejar datas, valores e escolher atividades de interesse, com guia ou por conta própria
 
 ---
 
 **Onde queremos investir?**
 
-Investir em robôes (BOT) para captar guias e atividades
+Investir em robôes (BOT) para captar guias e atividades de forma eficiente
 
 ---
 
 **Onde queremos investir?**
 
-Flexibilizar o pagamento
+**Flexibilizar o pagamento**
+
 Atualmente somos beta users do [Stripe](http://www.stripe.com) no Brasil (isento de taxas), e queremos usar o [Pagar.me](p agar.me) para oferecer pagamento parcelado
 
 ---
 
-**Onde queremos investir?**
-
----
-
 ***SEO***
+
+![sign](https://user-images.githubusercontent.com/88840/33044320-ca356ec8-ce48-11e7-8c90-3a2c7c65f8f5.png)
+
 Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgânica
 
 ---
 
-![sign](https://user-images.githubusercontent.com/88840/33044320-ca356ec8-ce48-11e7-8c90-3a2c7c65f8f5.png)
-
----
-
-Queremos fazer isto através de nosso site, canais nas redes sociais e com e-mail marketing para conectar usuários à guias
+![logo](https://user-images.githubusercontent.com/88840/37556019-985dae84-29f0-11e8-966d-d33c5d65a2da.png)
