@@ -145,6 +145,8 @@ Tenha sua truppie: [seunegocio.truppie.com](http://guia.truppie.com)
 
 ---
 
+[Guga expedições](http://gugaexpedicoes.truppie.com)
+
 ![Perfil do Guga Expedições](https://user-images.githubusercontent.com/88840/37556336-d444df0e-29f4-11e8-8449-e60fa83c8ecc.png)
 
 ---
