@@ -46,7 +46,7 @@ A Truppie foi construída por
 
 ![img_1962-e1485032393293](https://user-images.githubusercontent.com/88840/37486882-1f86081e-2890-11e8-893f-50684f0faa5b.jpg)
 
-Joana, fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
+Conhecemos a Joana, parceira e fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
 
 ---
 
@@ -69,7 +69,7 @@ Veja todos que contribuiram no [Truppie Devs](http://dev.truppie.com/contrib.htm
 ---
 
 
-Problema:
+***O que a Joana quer?***
 Fazer com que atividades super legais promovidas pela Utópicos chegue nos aventureiros
 
 ---
@@ -80,7 +80,8 @@ O que queremos?
 
 ---
 
-Oferecer experiências (foto)
+![Experiência] (https://user-images.githubusercontent.com/88840/37556012-9735f638-29f0-11e8-8df8-ec62d5efb2f8.gif)
+Oferecer experincias
 
 ---
 
@@ -88,15 +89,11 @@ Oferecer experiências (foto)
 
 ---
 
-Como?
-
----
-
 ![Como](http://geradormemes.com/media/created/03iw66.jpg)
 
 ---
 
-Com a Truppie!
+Chegamos então... na Truppie!
 ![screenshot-2017-07-10-19 19 33](https://user-images.githubusercontent.com/88840/37486871-1990c476-2890-11e8-863a-3a818643842e.png)
 
 ---
