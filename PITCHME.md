@@ -66,8 +66,8 @@ O que queremos?
 
 ---
 
-![Experiência] (https://user-images.githubusercontent.com/88840/37556012-9735f638-29f0-11e8-8df8-ec62d5efb2f8.gif)
-Oferecer experincias
+***Oferecer experiências***
+![Experiência](https://user-images.githubusercontent.com/88840/37556012-9735f638-29f0-11e8-8df8-ec62d5efb2f8.gif)
 
 ---
 
