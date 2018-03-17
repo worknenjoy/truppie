@@ -60,6 +60,10 @@ Fazer com que atividades super legais promovidas pela [Utópicos mundo afora](ht
 
 ---
 
+Os diversos guias de viagem estão muitas vezes deconectados, e precisam de ferramentas práticas para gerenciar o pré, durante e pós atividade
+
+--
+
 O que queremos?
 
 ![Planejar viagem](http://geradormemes.com/media/created/xrq5dj.jpg)
