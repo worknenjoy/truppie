@@ -62,7 +62,7 @@ Fazer com que atividades super legais promovidas pela [Utópicos mundo afora](ht
 
 Os diversos guias de viagem estão muitas vezes deconectados, e precisam de ferramentas práticas para gerenciar o pré, durante e pós atividade
 
---
+---
 
 O que queremos?
 
@@ -94,6 +94,12 @@ Chegamos então... na Truppie!
 ---
 
 ![trilha dois irmãos](https://user-images.githubusercontent.com/88840/37556201-f080f704-29f2-11e8-891c-7b9347cea856.png)
+
+---
+
+Notificar usuários e guias
+
+![E-mail](https://user-images.githubusercontent.com/88840/37557678-9b465d36-2a08-11e8-82ca-2cfdb4a02860.png)
 
 ---
 
@@ -200,6 +206,7 @@ Seguir um guia para saber de novos roteiros
 ---
 
 **Valor processado em reservas**
+
 
 @fa[card]
 
@@ -309,9 +316,19 @@ Queremos investimento para continuar o trabalho e investir no marketing para atr
 
 ---
 
+Redes sociais
+
+![Nosso instagram](https://user-images.githubusercontent.com/88840/37557624-a9065382-2a07-11e8-9572-c1e42e841df7.png)
+
+---
+
 **Onde queremos investir?**
 
-Transformar a Truppie numa experiência completa para guias e roteiros personalizados, para chegar nas atividades, ele precisa passar peloa jornada do viajante
+Transformar a Truppie numa experiência completa para guias e roteiros personalizados, pois para chegar nas atividades, o aventureiro precisa passar pela jornada do viajante
+
+---
+
+Planejar datas, valores e escolher atividades de interesse, com guia ou por conta própria
 
 ---
 
