@@ -76,6 +76,10 @@ O que queremos?
 
 ---
 
+mas como?
+
+---
+
 ![Como](http://geradormemes.com/media/created/03iw66.jpg)
 
 ---
