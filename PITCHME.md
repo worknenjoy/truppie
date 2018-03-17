@@ -53,21 +53,6 @@ Conhecemos a Joana, parceira e fundadora da [Utópicos mundo afora](https://www.
 ![logo_utopicos_color-01-1024x410](https://user-images.githubusercontent.com/88840/37486880-1df49a56-2890-11e8-9ccf-
 839fcc908633.png)
 
----
-
-**Alguns dos colaboradores**
-
-![Collaborators](https://user-images.githubusercontent.com/88840/34281612-f4eaddee-e6a6-11e7-8f9e-7c6e102068a5.png)
-
-Veja todos que contribuiram no [Truppie Devs](http://dev.truppie.com/contrib.html)
-
----
-
-*** Artigos já publicados a respeito ***
-
-
----
-
 
 ***O que a Joana quer?***
 Fazer com que atividades super legais promovidas pela [Utópicos mundo afora](https://www.utopicosmundoafora.com)
@@ -228,11 +213,22 @@ Desenvolvimento
 
 ---
 
+**Alguns dos colaboradores**
+
+![Collaborators](https://user-images.githubusercontent.com/88840/34281612-f4eaddee-e6a6-11e7-8f9e-7c6e102068a5.png)
+
+Veja todos que contribuiram no [Truppie Devs](http://dev.truppie.com/contrib.html)
+
+---
+
+*** Artigos já publicados a respeito ***
+
+
+---
+
 Release Plan
 
 ---?image=https://user-images.githubusercontent.com/88840/36508616-7e186cee-175d-11e8-893a-068d6e2bc1e9.png
-
----
 
 _v3.0  -
 _v2.0_ - 
