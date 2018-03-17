@@ -377,3 +377,4 @@ Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgâ
 ---
 
 ![logo](https://user-images.githubusercontent.com/88840/37556019-985dae84-29f0-11e8-966d-d33c5d65a2da.png)
+[Entre em contato](http://truppie.com/contato)
