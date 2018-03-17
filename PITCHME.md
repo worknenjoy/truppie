@@ -26,18 +26,15 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 ---?image=https://user-images.githubusercontent.com/88840/36508635-83b7e3e6-175d-11e8-8c15-2dbaa02ce098.png
 
 <span style="font-family: Helvetica Neue; font-weight: bold; color:white">
-Para chegar lá, vamos um pouco no começo...
+Como começou?
 </span>
-
----
-
-***Como começou?***
 
 ---
 
 ![Eu e Laura](https://user-images.githubusercontent.com/88840/37486876-1b4766ee-2890-11e8-9fbb-388cb4fc2369.jpg)
 
-A Truppie foi construída por [Laura Sette](http://7cantosdomundo.com.br) e [Alexandre Magno](http://www.alexandremagno.net)
+A Truppie foi construída por [Laura Sette](http://7cantosdomundo.com.br) <br />
+[Alexandre Magno](http://www.alexandremagno.net)
 
 ---
 
