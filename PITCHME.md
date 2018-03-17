@@ -74,17 +74,6 @@ Fazer com que atividades super legais promovidas pela Utópicos chegue nos avent
 
 ---
 
-***Para os guias***
-
-* Cadastro completo do perfil do guia
-* Página do perfil
-* Cadastro de eventos para guias
-* Importar eventos do facebook
-* Página do evento com possibilidade de reserva
-* Notificações para o cliente do status da reserva
-
----
-
 O que queremos?
 
 ![Planejar viagem](http://geradormemes.com/media/created/xrq5dj.jpg)
@@ -107,7 +96,7 @@ Como?
 
 ---
 
-Então, surgiu a Truppie! E Truppie do Utópicos!
+Com a Truppie!
 ![screenshot-2017-07-10-19 19 33](https://user-images.githubusercontent.com/88840/37486871-1990c476-2890-11e8-863a-3a818643842e.png)
 
 ---
@@ -144,7 +133,22 @@ Para entrar
 
 ---
 
-Tenha seu domínio: [seunegocio.truppie.com](http://guia.truppie.com)
+Tenha sua truppie: [seunegocio.truppie.com](http://guia.truppie.com)
+
+---
+
+![Perfil do Guga Expedições](https://user-images.githubusercontent.com/88840/37556336-d444df0e-29f4-11e8-8449-e60fa83c8ecc.png)
+
+---
+
+Temos
+
+* Cadastro completo do perfil do guia
+* Página do perfil
+* Cadastro de eventos para guias
+* Importar eventos do facebook
+* Página do evento com possibilidade de reserva
+* Notificações para o cliente do status da reserva
 
 ---
 
