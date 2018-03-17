@@ -205,6 +205,10 @@ R$ 9.000,00
 
 ---
 
+Pouco significativo, pois nosso foco era validar a idéia e entender nossos clientes...
+
+---
+
 Como o projeto é gerenciado?
 
 ---
@@ -277,9 +281,9 @@ Modelo Airbnb de locais
 
 ---
 
-(print da do card da laura das vantagens e desvantagens dos lugares)
+Modelo como o Fiverr para oferecer serviços de viagem e roteiros
 
----
+![pageshot of fiverr search results for travel guide brazil 2018-03-04-1856 43](https://user-images.githubusercontent.com/88840/37486869-175f5d20-2890-11e8-8232-d10d18875e38.png)
 
 ---?image=https://user-images.githubusercontent.com/88840/36508625-7ff40852-175d-11e8-9918-4fb54eeee00e.png
 
@@ -301,38 +305,31 @@ Queremos investimento para continuar o trabalho e investir no marketing para atr
 
 ---
 
-Estamos há mais de dois anos validando o negócio e descobrindo novas oportunidades
+**Onde queremos investir?**
+
+Transformar a Truppie numa experiência completa para guias e roteiros personalizados, para chegar nas atividades, ele precisa passar peloa jornada do viajante
 
 ---
 
 **Onde queremos investir?**
 
-Transformar a Truppie numa experiência completa para guias e roteiros personalizados
-
----
-
-**Onde queremos investir?**
-
-Investir em robôs para captar guias e automatizar convites e estímulo para usarem o site e de fato cadastrarem atividades
+Investir em robôes (BOT) para captar guias e atividades
 
 ---
 
 **Onde queremos investir?**
 
 Flexibilizar o pagamento
-Atualmente somos beta users do [Stripe](http://www.stripe.com) no Brasil (isento de taxas) e queremos usar o [Pagar.me](pagar.me) para oferecer pagamento parcelado
+Atualmente somos beta users do [Stripe](http://www.stripe.com) no Brasil (isento de taxas), e queremos usar o [Pagar.me](p agar.me) para oferecer pagamento parcelado
 
 ---
 
-
 **Onde queremos investir?**
+
+---
 
 ***SEO***
 Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgânica
-
-Fiverr
-
-![pageshot of fiverr search results for travel guide brazil 2018-03-04-1856 43](https://user-images.githubusercontent.com/88840/37486869-175f5d20-2890-11e8-8232-d10d18875e38.png)
 
 ---
 
@@ -341,13 +338,3 @@ Fiverr
 ---
 
 Queremos fazer isto através de nosso site, canais nas redes sociais e com e-mail marketing para conectar usuários à guias
-
----
-
-**O que construímos até agora?**
-
-Uma plataforma para os guias de viagem oferecerem suas atividades
-
----
-
-Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferramentas práticas para gerenciar o pré, durante e pós atividade
