@@ -105,7 +105,7 @@ Com a Truppie!
 
 ---
 
-teve meditação, trilhas, amigos e roteiros
+foram dois anos com meditação, trilhas, amigos e agora roteiros
 
 ---
 
