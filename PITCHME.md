@@ -37,6 +37,10 @@ Para chegar lá, vamos um pouco no começo...
 
 ![Eu e Laura](https://user-images.githubusercontent.com/88840/37486876-1b4766ee-2890-11e8-9fbb-388cb4fc2369.jpg)
 
+A Truppie foi construída por [Laura Sette](http://7cantosdomundo.com.br) e [Alexandre Magno](http://www.alexandremagno.net)
+
+---
+
 ---?image=https://user-images.githubusercontent.com/88840/36508619-7e685a2e-175d-11e8-96f6-abcb7fc8c045.png
 
 ---?image=https://user-images.githubusercontent.com/88840/36508621-7ea487c4-175d-11e8-9622-3d34871635d6.png
@@ -54,15 +58,43 @@ Joana, fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
 
 ---
 
+**Alguns dos colaboradores**
+
+![Collaborators](https://user-images.githubusercontent.com/88840/34281612-f4eaddee-e6a6-11e7-8f9e-7c6e102068a5.png)
+
+Veja todos que contribuiram no [Truppie Devs](http://dev.truppie.com/contrib.html)
+
+---
+
+*** Artigos já publicados a respeito ***
+
+
+---
+
 
 Problema:
 Fazer com que atividades super legais promovidas pela Utópicos chegue nos aventureiros
 
 ---
 
+***Para os guias***
+
+* Cadastro completo do perfil do guia
+* Página do perfil
+* Cadastro de eventos para guias
+* Importar eventos do facebook
+* Página do evento com possibilidade de reserva
+* Notificações para o cliente do status da reserva
+
+---
+
 O que queremos?
 
 ![Planejar viagem](http://geradormemes.com/media/created/xrq5dj.jpg)
+
+---
+
+Oferecer experiências (foto)
 
 ---
 
@@ -105,6 +137,12 @@ Aí veio a Laura com os roteiros
 
 ---
 
+E passamos a oferecer roteiros personalizados
+
+---
+
+Temos a plataforma ideal que dá toda autonomia para quem oferece o serviço poder gerenciar a parte de reserva, com transferência direta para sua conta e ainda conta com nossa divulgação
+
 E agora queremos ser multiplicadores de viagens, como modelo de empresa de cultura remota e que quer agregar no mercado de turismo, e vice-versa...
 
 ---?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
@@ -133,8 +171,16 @@ Tenha seu domínio: [seunegocio.truppie.com](http://guia.truppie.com)
 ---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
 
 ---?image=https://user-images.githubusercontent.com/88840/37493385-083e4878-28a5-11e8-9d96-f36ad4f4bc8c.jpg
+Reserva fácil de eventos pelo cartão de crédito
+
 ---?image=https://user-images.githubusercontent.com/88840/37493386-08627be4-28a5-11e8-92d3-e7c83a83ad85.jpg
+Possibilidade de devolução respeitando a política dos guias
+
+
 ---?image=https://user-images.githubusercontent.com/88840/37493387-087fd84c-28a5-11e8-8a31-984ce4c1c918.jpg
+Seguir um guia para saber de novos roteiros
+
+
 ---?image=https://user-images.githubusercontent.com/88840/37493388-089d1d1c-28a5-11e8-95d2-e6a1117c53b6.jpg
 ---?image=https://user-images.githubusercontent.com/88840/37493389-08ba9568-28a5-11e8-8480-ce91ee98f134.jpg
 ---?image=https://user-images.githubusercontent.com/88840/37493390-08d7d81c-28a5-11e8-9823-d5dda86e7b9a.jpg
@@ -228,7 +274,16 @@ Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
 
 ---
 
+Usando o [Amadeus](https://sandbox.amadeus.com/), queremos disponibilizar todo planejamento de viagem e oferecer passagens mais baratas e dicas de hospedagem, criando uma experiência completa.
+
+---
+
 Integração e páginas inteligentes
+
+---
+
+Modelo Airbnb de locais
+![airbnb](https://user-images.githubusercontent.com/88840/37556123-a40ea4a8-29f1-11e8-9a3b-868179935cf1.png)
 
 ---
 
@@ -247,180 +302,6 @@ Mostrar como podemos ser parceiros a ajudá-los a promover atividades
 ---
 
 Marketing de conteúdo, Machine Learning, contato e parceria com guias, perfis e influenciadores
-
----
-
-Fiverr
-
-![pageshot of fiverr search results for travel guide brazil 2018-03-04-1856 43](https://user-images.githubusercontent.com/88840/37486869-175f5d20-2890-11e8-8232-d10d18875e38.png)
-
----
-
-![sign](https://user-images.githubusercontent.com/88840/33044320-ca356ec8-ce48-11e7-8c90-3a2c7c65f8f5.png)
-
-**Como?**
-
-Conectamos usuários a guias e roteiros para que você conheça diversas atividades do seu interesse, seja na sua cidade ou onde você pretende viajar e esteja sempre conectado com novas aventuras de seu interesse.
-
----
-
-**Onde?**
-
-![Brazil](https://user-images.githubusercontent.com/88840/33442072-61f42b02-d5db-11e7-8cdb-1342ac7a1852.png)
-
-No momento queremos estimular o acesso as atividades no Brasil, e também fazer com que Brasileiros tenham acesso a roteiros no exterior, feito sob medida para você.
-
----
-
-**Quem faz a Truppie?**
-
-A Truppie foi construída por [Laura Sette](http://7cantosdomundo.com.br) e [Alexandre Magno](http://www.alexandremagno.net), e conta com uma equipe de colaboradores
-
----
-
-*Alexandre Magno*
-
-Engenheiro de software a mais de 10 anos, já trabalhou em várias startups e grandes empresas e tem bastante domínio no desenvolvimento de sistemas e aplicativos. Já passou pela Globo.com onde teve a oportunidade de conhecer o desenvolvimento ágil e dominar a maioria das tecnologias que conhece hoje, bem como realizar apresentações em eventos para compartilhar soluções e tecnologias para outros desenvolvedores. Atualmente está em Copenhagen trabalhando na [Trustpilot](http://trustpilot.com).
-
----
-
-*Laura Sette?*
-
-Fale de você (e mencione seu papel de produto e cliente)
-
----
-
-
-**Alguns dos colaboradores**
-
-![Collaborators](https://user-images.githubusercontent.com/88840/34281612-f4eaddee-e6a6-11e7-8f9e-7c6e102068a5.png)
-
-Veja todos que contribuiram no [Truppie Devs](http://dev.truppie.com/contrib.html)
-
----
-
-*** Artigos já publicados a respeito ***
-
-**O que temos agora?**
-
-*** Como o sistema funciona (telas) ***
-
-***Para os guias***
-
-* Cadastro completo do perfil do guia
-* Página do perfil
-* Cadastro de eventos para guias
-* Importar eventos do facebook
-* Página do evento com possibilidade de reserva
-* Notificações para o cliente do status da reserva
-
----
-
-**O que temos agora?**
-
-***Para os usuários***
-
-* Reserva fácil de eventos pelo cartão de crédito
-* Possibilidade de devolução respeitando a política dos guias
-* Seguir um guia para saber de novos roteiros
-
----
-
-*O que queremos fazer diferentes*
-
-A nossa visãoo vai além. Queremos virar refência em serviços de viagem!
-
----
-
-Usando o [Amadeus](https://sandbox.amadeus.com/), queremos disponibilizar todo planejamento de viagem e oferecer passagens mais baratas e dicas de hospedagem, criando uma experiência completa.
-
----
-
-Queremos fazer isto através de nosso site, canais nas redes sociais e com e-mail marketing para conectar usuários à guias
-
----
-
-**O que construímos até agora?**
-
-Uma plataforma para os guias de viagem oferecerem suas atividades
-
----
-
-Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferramentas práticas para gerenciar o pré, durante e pós atividade
-
----
-
-**E o que mais?**
-
-Uma plataforma para quem produz roteiros personalizados
-
----
-
-Com o tempo também percebemos que poderíamos atuar na venda de roteiros personalizados, e estamos testando este novo modelo
-
----
-
-Temos a plataforma ideal que dá toda autonomia para quem oferece o serviço poder gerenciar a parte de reserva, com transferência direta para sua conta e ainda conta com nossa divulgação
-
----
-
-**Desenvolvimento**
-
-@fa[code-fork]
-
-Temos uma estrutura de desenvolvimento remota. Todo o código da Truppie é Open Source e gerenciada pelo (Github)[http://www.github.com] 
-
----
-
-**Fluxo de trabalho**
-
-@fa[clone]
-
-O projeto é gerenciado pelos fundadores no Trello, escolhemos a prioridade e enviamos para os colaboradores, que então são atribuidos as tarefas, e recebem o pagamento por cada trabalho realizado
-
----
-
-**Desenvolvimento colaborativo**
-
-@fa[github]
-
-O projeto é gerenciado pelos fundadores no Trello, onde levantamos os requisitos, escolhemos a prioridade e enviamos para os colaboradores, que então são atribuidos as tarefas, e recebem o pagamento por cada trabalho realizado.
-
----
-
-Cada código passa por nossa revisão e vai para uma área de teste para validarmos ou solicitarmos ajustes
-
----
-
-**Tarefas realizadas**
-
-@fa[sitemap]
-
-70
-
----
-
-**Usuários que passaram pela Truppie**
-
-@fa[users]
-
-125
-
----
-
-**Guias cadastrados**
-
-@fa[user]
-
-14
-
----
-
-**Valor processado em reservas**
-
-@fa[card]
-
-R$ 9.000,00
 
 ---
 
@@ -459,66 +340,24 @@ Atualmente somos beta users do [Stripe](http://www.stripe.com) no Brasil (isento
 ***SEO***
 Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgânica
 
-## Presentations Using Charts
-## Feature Demonstration
+Fiverr
+
+![pageshot of fiverr search results for travel guide brazil 2018-03-04-1856 43](https://user-images.githubusercontent.com/88840/37486869-175f5d20-2890-11e8-8232-d10d18875e38.png)
 
 ---
 
-### Tips!
-
-- Powered by excellent <a href="https://github.com/rajgoel/reveal.js-plugins/tree/master/chart" target="_blank">Charts Plugin</a>
-- Simply enable `charts` property in your `PITCHME.yaml`
-- Press `F` to go fullscreen!
+![sign](https://user-images.githubusercontent.com/88840/33044320-ca356ec8-ce48-11e7-8c90-3a2c7c65f8f5.png)
 
 ---
 
-<canvas data-chart="line">
-<!-- 
-{
- "data": {
-  "labels": ["January"," February"," March"," April"," May"," June"," July"],
-  "datasets": [
-   {
-    "data":[65,59,80,81,56,55,40],
-    "label":"My first dataset","backgroundColor":"rgba(20,220,220,.8)"
-   },
-   {
-    "data":[28,48,40,19,86,27,90],
-    "label":"My second dataset","backgroundColor":"rgba(220,120,120,.8)"
-   }
-  ]
- }, 
- "options": { "responsive": "true" }
-}
--->
-</canvas>
+Queremos fazer isto através de nosso site, canais nas redes sociais e com e-mail marketing para conectar usuários à guias
 
 ---
 
-<canvas class="stretch" data-chart="bar">
-My first dataset, 65, 59, 80, 81, 56, 55, 40
-<!-- This is a comment that will be ignored -->
-My second dataset, 28, 48, 40, 19, 86, 27, 90
-<!-- 
-{ 
- "data" : {
-  "labels" : ["Enero", "Febrero", "Marzo", "Avril", "Mayo", "Junio", "Julio"], 
-  "datasets" : [{ "borderColor": "#0f0", "borderDash": ["5","10"] }, { "borderColor": "#0ff" } ]
- }
-}
--->
-</canvas>
+**O que construímos até agora?**
+
+Uma plataforma para os guias de viagem oferecerem suas atividades
 
 ---
 
-<canvas data-chart="bubble">
-Month, January, February, March, April, May, June, July
-My first dataset, 65, 59, 80, 81, 56, 55, 40
-My second dataset, 28, 48, 40, 19, 86, 27, 90
-</canvas>
-
----
-
-### Learn By Example
-#### View The <a target="_blank" href="https://github.com/gitpitch/feature-demo/blob/charts/PITCHME.md">Presentation Markdown</a>
-
+Os diversos guias de viagem estão muitas vezes deconectados, e precisa de ferramentas práticas para gerenciar o pré, durante e pós atividade
