@@ -97,13 +97,20 @@ Chegamos então... na Truppie!
 
 ---
 
-Notificar usuários e guias
+
+Evento marcado
+
+![screen shot 2018-03-14 at 7 26 37 pm](https://user-images.githubusercontent.com/88840/37486821-f8161e5e-288f-11e8-8bce-f69d98f9d8ea.png)
+
+---
+
+Reserva realizada
 
 ![E-mail](https://user-images.githubusercontent.com/88840/37557678-9b465d36-2a08-11e8-82ca-2cfdb4a02860.png)
 
 ---
 
-foram dois anos com meditação, trilhas, amigos e agora roteiros
+e assim foram dois anos com meditação, trilhas e amigos. E agora roteiros...
 
 ---
 
@@ -256,11 +263,6 @@ Release Plan
 _v3.0  -
 _v2.0_ - 
 
----
-
-Eventos no calendário
-
-![screen shot 2018-03-14 at 7 26 37 pm](https://user-images.githubusercontent.com/88840/37486821-f8161e5e-288f-11e8-8bce-f69d98f9d8ea.png)
 
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
 
