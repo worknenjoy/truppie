@@ -31,12 +31,12 @@ Como começou?
 
 ---
 
+A Truppie foi construída por
+
 ![Eu e Laura](https://user-images.githubusercontent.com/88840/37486876-1b4766ee-2890-11e8-9fbb-388cb4fc2369.jpg)
 
-A Truppie foi construída por [Laura Sette](http://7cantosdomundo.com.br) <br />
+[Laura Sette](http://7cantosdomundo.com.br) e
 [Alexandre Magno](http://www.alexandremagno.net)
-
----
 
 ---?image=https://user-images.githubusercontent.com/88840/36508619-7e685a2e-175d-11e8-96f6-abcb7fc8c045.png
 
