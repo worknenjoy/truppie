@@ -215,14 +215,9 @@ Seguir um guia para saber de novos roteiros
 
 **Valor processado em reservas**
 
-
-@fa[card]
-
 R$ 9.000,00
 
 ---?image=https://user-images.githubusercontent.com/88840/36508624-7f6747fa-175d-11e8-9e62-908043f837d5.png
-
----
 
 Ainda é pouco, pois nosso foco era validar a idéia
 
@@ -294,18 +289,16 @@ Importar dados de um blog cadastrado (segundo o Blog)
 
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
 
-Future plans
-
----
-
 AI-powered travel-as-a-service solution
 
 ---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
+
 Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
 
 ---
 
-Usando o [Amadeus](https://sandbox.amadeus.com/), queremos disponibilizar todo planejamento de viagem e oferecer passagens mais baratas e dicas de hospedagem, criando uma experiência completa.
+Usando o [Amadeus](https://sandbox.amadeus.com/), queremos disponibilizar todo planejamento de viagem e oferecer passagens 
+mais baratas e dicas de hospedagem, criando uma experiência completa.
 
 ---
 
