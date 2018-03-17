@@ -118,6 +118,12 @@ Para entrar
 
 ---?image=https://user-images.githubusercontent.com/88840/36508632-81fd53e2-175d-11e8-8b9d-9cd6f1ef960f.png
 
+---
+
+Tenha seu domínio: [seunegocio.truppie.com](http://guia.truppie.com)
+
+---
+
 ---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
 
 ---?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
@@ -210,6 +216,12 @@ Eventos no calendário
 ---
 
 Future plans
+
+---
+
+AI-powered travel-as-a-service solution
+
+---
 
 ---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
 Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
