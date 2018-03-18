@@ -320,7 +320,7 @@ mais baratas e dicas de hospedagem, criando uma experiência completa.
 
 ---
 
-Integração e páginas inteligentes
+Integração com API's e páginas inteligentes
 
 ---
 
