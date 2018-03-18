@@ -187,14 +187,11 @@ Saiba informações sobre os destinos
 Siga um guia para saber de novas atividades
 </span>
 
----?image=https://user-images.githubusercontent.com/88840/37493388-089d1d1c-28a5-11e8-95d2-e6a1117c53b6.jpg
 ---?image=https://user-images.githubusercontent.com/88840/37493389-08ba9568-28a5-11e8-8480-ce91ee98f134.jpg
----?image=https://user-images.githubusercontent.com/88840/37493390-08d7d81c-28a5-11e8-9823-d5dda86e7b9a.jpg
----?image=https://user-images.githubusercontent.com/88840/37493391-08f51828-28a5-11e8-8872-1668dd4edc14.jpg
----?image=https://user-images.githubusercontent.com/88840/37493392-091ed6ae-28a5-11e8-81e1-ec36074a63e4.jpg
----?image=https://user-images.githubusercontent.com/88840/37493393-09434ae8-28a5-11e8-8d2b-f3094069a2c6.jpg
----?image=https://user-images.githubusercontent.com/88840/37493394-097abcf8-28a5-11e8-80b7-c361b0c61f77.jpg
----?image=https://user-images.githubusercontent.com/88840/37493395-09bbe0a2-28a5-11e8-8aab-5f896adbaffc.jpg)
+<span style="font-family: Helvetica Neue; text-align: right; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white; position: absolute; bottom: -400px; right: -200px;">
+Receba inspirações de viagens
+</span>
+
 
 ![if_94_1191665 1](https://user-images.githubusercontent.com/88840/37486902-2b8a17ae-2890-11e8-9dd1-77194e15f79e.png)
 
