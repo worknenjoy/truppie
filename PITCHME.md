@@ -361,12 +361,12 @@ Transformar a Truppie numa experiência completa para guias e roteiros personali
 
 ---?image=https://user-images.githubusercontent.com/88840/37556011-96fc9d8e-29f0-11e8-8a8c-4db1d66b3281.png
 
-<p style="font-family: Helvetica Neue; text-align: center; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white;">
+<div style="font-family: Helvetica Neue; text-align: center; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white;">
 
 <p><strong>Qual é a Jornada do Viajante?</strong></p>
 
 <p>Planejar datas, valores e escolher atividades de interesse, com guia ou por conta própria</p>
-</span>
+</div>
 
 ---
 
