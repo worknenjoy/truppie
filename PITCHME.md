@@ -174,7 +174,7 @@ Temos
 ---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
 
 ---?image=https://user-images.githubusercontent.com/88840/37493385-083e4878-28a5-11e8-9d96-f36ad4f4bc8c.jpg
-<span style="font-family: Helvetica Neue; font-weight: bold; color:white; position: abolute; bottom: 0; right: 0;">Reserva fácil pelo carto de crédito</span>
+<span style="font-family: Helvetica Neue; font-weight: bold; color:white; position: absolute; bottom: 0; right: -200px;">Encontre atividades e reserve pelo cartão de crédito</span>
 
 ---?image=https://user-images.githubusercontent.com/88840/37493386-08627be4-28a5-11e8-92d3-e7c83a83ad85.jpg
 Possibilidade de devolução respeitando a política dos guias
