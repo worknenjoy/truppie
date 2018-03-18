@@ -324,12 +324,12 @@ Integração com API's e páginas inteligentes
 
 ---
 
-Modelo Airbnb de locais
+Modelo [Airbnb](http://www.airbnb.com) de locais
 ![airbnb](https://user-images.githubusercontent.com/88840/37556123-a40ea4a8-29f1-11e8-9a3b-868179935cf1.png)
 
 ---
 
-Modelo como o Fiverr para oferecer serviços de viagem e roteiros
+Modelo como o [Fiverr](http://www.fiverr.com) para oferecer serviços de viagem e roteiros
 
 ![pageshot of fiverr search results for travel guide brazil 2018-03-04-1856 43](https://user-images.githubusercontent.com/88840/37486869-175f5d20-2890-11e8-8232-d10d18875e38.png)
 
