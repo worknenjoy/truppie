@@ -196,11 +196,12 @@ Receba inspirações de viagens
 
 ![if_94_1191665 1](https://user-images.githubusercontent.com/88840/37486902-2b8a17ae-2890-11e8-9dd1-77194e15f79e.png)
 
-<span style="font-family: Helvetica Neue; display:inline-block; padding: 10px; font-weight: bold; color:#31BCB0;">
+<span style="font-family: Helvetica Neue; display:inline-block; padding: 10px; font-weight: bold; color:#42205F;">
 Usuários que passaram pela Truppie
-</span>
 
 125
+
+</span>
 
 ----?image=https://user-images.githubusercontent.com/88840/37493390-08d7d81c-28a5-11e8-9823-d5dda86e7b9a.jpg
 ![if_leader_331680](https://user-images.githubusercontent.com/88840/37486897-29d677cc-2890-11e8-864c-d2a723c90f3b.png)
