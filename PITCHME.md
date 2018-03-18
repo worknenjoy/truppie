@@ -222,11 +222,11 @@ Receba inspirações de viagens
 
 R$ 9.000,00
 
-----?image=https://user-images.githubusercontent.com/88840/37493393-09434ae8-28a5-11e8-8d2b-f3094069a2c6.jpg
-
 ---
 
 Ainda é pouco, pois nosso foco era validar a idéia
+
+----?image=https://user-images.githubusercontent.com/88840/37493393-09434ae8-28a5-11e8-8d2b-f3094069a2c6.jpg
 
 ---
 
