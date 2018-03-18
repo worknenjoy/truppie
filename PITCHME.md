@@ -97,6 +97,8 @@ Chegamos então... na Truppie!
 
 ---
 
+---?image=https://user-images.githubusercontent.com/88840/37556017-97ee3bc6-29f0-11e8-9aa4-97ab543e9c40.jpg
+
 Escolha sua truppie
 ![categorias](https://user-images.githubusercontent.com/88840/37556013-97597586-29f0-11e8-90be-5ba38aea5a67.png)
 
