@@ -388,7 +388,7 @@ Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgâ
 
 E o SEO beneficia os guias também...
 
----?image=https://user-images.githubusercontent.com/88840/37556010-96bc64e4-29f0-11e8-8c34-ba61b8e5ffdb.png?size=contain
+---?image=https://user-images.githubusercontent.com/88840/37556010-96bc64e4-29f0-11e8-8c34-ba61b8e5ffdb.png&size=contain
 
 ---
 
