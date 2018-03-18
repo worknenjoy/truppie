@@ -389,7 +389,7 @@ Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgâ
 E o SEO beneficia os guias também...
 
 ---?image=https://user-images.githubusercontent.com/88840/37556010-96bc64e4-29f0-11e8-8c34-ba61b8e5ffdb.png&size=contain
-<div style="position: absolute; left: 0, top: -8px; margin-top: -31%; font-size: 38px;">VAMOS FAZER PARTE?</div>
+<div style="position: absolute; left: 0; top: -8px; margin-top: -31%; font-size: 32px;">VAMOS FAZER PARTE?</div>
 
 ---
 
