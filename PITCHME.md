@@ -192,6 +192,7 @@ Siga um guia para saber de novas atividades
 Receba inspirações de viagens
 </span>
 
+---?image=https://user-images.githubusercontent.com/88840/37493389-08ba9568-28a5-11e8-8480-ce91ee98f134.jpg
 
 ![if_94_1191665 1](https://user-images.githubusercontent.com/88840/37486902-2b8a17ae-2890-11e8-9dd1-77194e15f79e.png)
 
@@ -199,24 +200,25 @@ Receba inspirações de viagens
 
 125
 
----
-
+----?image=https://user-images.githubusercontent.com/88840/37493390-08d7d81c-28a5-11e8-9823-d5dda86e7b9a.jpg
 ![if_leader_331680](https://user-images.githubusercontent.com/88840/37486897-29d677cc-2890-11e8-864c-d2a723c90f3b.png)
 
 **Guias cadastrados**
 
 14
 
----
+----?image=https://user-images.githubusercontent.com/88840/37493391-08f51828-28a5-11e8-8872-1668dd4edc14.jpg
 
 ![if_travel_and_tourism_black-13_1211475](https://user-images.githubusercontent.com/88840/37486906-2db1d2ec-2890-11e8-8662-
 973d86dd9029.png)
 
 ***Eventos realizados pela plataforma***
 
+----?image=https://user-images.githubusercontent.com/88840/37493392-091ed6ae-28a5-11e8-81e1-ec36074a63e4.jpg
+
 80 
 
----
+----?image=https://user-images.githubusercontent.com/88840/37493393-09434ae8-28a5-11e8-8d2b-f3094069a2c6.jpg
 
 **Valor processado em reservas**
 
