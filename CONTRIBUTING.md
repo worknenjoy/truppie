@@ -1,3 +1,41 @@
+### Requirements to run the project
+
+- Ruby
+- Postgres
+- Be adminstrator
+You need to create the `.env` file:
+
+```
+ ADMIN_EMAIL=youremail
+ ADMIN_EMAIL_ALT=othermail
+```
+
+### How to work on this task
+
+1. Make a comment here
+2. You will be invited and be assign to the task
+2. [Fork the project](https://help.github.com/articles/fork-a-repo/)
+3. Clone the repo with `git clone` and run `rails s` to start the project
+
+`rake test` (run tests and make sure is green)
+
+`rails db:migrate` (Run the `migrations` for the database)
+
+`rails s` (Rodar o projeto)
+
+4. Make the necessary changes to this issue
+5. [Send a pull request](https://help.github.com/articles/about-pull-requests/)
+6. Verify if your changes didn't break the [automated tests](http://guides.rubyonrails.org/testing.html)
+7. A new **application** will be created to be validated
+8. You will receive feedback from team members
+9. You will send changes until is approved
+10. You get a approve 👍 
+10. When the _Pull Request_ is merged, if is a paid task, the **payment is send**
+
+If you have any doubt or need help just comment and you will be supported
+
+***To make simple changes on files***
+
 
 _A Fork is a copy of a repository.Forking a repository allows you to freely experiment with changes without affecting the original project._ 
 
