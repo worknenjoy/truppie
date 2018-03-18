@@ -306,8 +306,9 @@ AI-powered travel-as-a-service solution
 
 ---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
 
+<p style="font-family: Helvetica Neue; text-align: center; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white;">
 Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
-
+</p>
 ---
 
 Usando o [Amadeus](https://sandbox.amadeus.com/), queremos disponibilizar todo planejamento de viagem e oferecer passagens 
