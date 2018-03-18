@@ -365,12 +365,6 @@ Planejar datas, valores e escolher atividades de interesse, com guia ou por cont
 
 **Onde queremos investir?**
 
-Investir em robôes (BOT) para captar guias e atividades de forma eficiente
-
----
-
-**Onde queremos investir?**
-
 **Flexibilizar o pagamento**
 
 Atualmente somos beta users do [Stripe](http://www.stripe.com) no Brasil (isento de taxas), e queremos usar o [Pagar.me](p agar.me) para oferecer pagamento parcelado
@@ -382,6 +376,10 @@ Atualmente somos beta users do [Stripe](http://www.stripe.com) no Brasil (isento
 ![sign](https://user-images.githubusercontent.com/88840/33044320-ca356ec8-ce48-11e7-8c90-3a2c7c65f8f5.png)
 
 Melhorar o SEO para que os usurários possam chegar na plataforma de forma orgânica
+
+---
+
+E o SEO beneficia os guias também...
 
 ---
 
