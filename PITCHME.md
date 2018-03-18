@@ -98,7 +98,9 @@ Chegamos então... na Truppie!
 ---?image=https://user-images.githubusercontent.com/88840/37566304-8599090c-2ab7-11e8-89da-b25086270044.jpg
 
 Escolha sua truppie
+
 ![categorias](https://user-images.githubusercontent.com/88840/37566343-003be080-2ab8-11e8-9f94-0cbfd9f96e72.png)
+
 ---
 
 Evento marcado
