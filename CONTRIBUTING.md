@@ -12,7 +12,7 @@ You need to create the `.env` file:
 
 ### How to work on this task
 
-1. Make a comment here
+1. Make a comment about your interest on the issue
 2. You will be invited and be assign to the task
 2. [Fork the project](https://help.github.com/articles/fork-a-repo/)
 3. Clone the repo with `git clone` and run `rails s` to start the project
