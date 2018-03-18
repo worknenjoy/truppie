@@ -251,7 +251,7 @@ A [Truppie](http://truppie.com) é [Open Source](https://github.com/worknenjoy/t
 
 ---
 
-**Uma comunidade com quase 300 desenvolvedores freelancer
+***Uma comunidade com quase 300 desenvolvedores freelancer***
 
 [Truppie Devs](http://dev.truppie.com)
 
@@ -328,6 +328,8 @@ Modelo como o Fiverr para oferecer serviços de viagem e roteiros
 ---?image=https://user-images.githubusercontent.com/88840/36508627-80805b18-175d-11e8-80d7-4658a7972cbe.png
 
 ---?image=https://user-images.githubusercontent.com/88840/36508625-7ff40852-175d-11e8-9918-4fb54eeee00e.png
+
+---
 
 Marketing de conteúdo, Machine Learning, contato e parceria com guias, perfis e influenciadores
 
