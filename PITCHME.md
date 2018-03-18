@@ -132,7 +132,7 @@ E agora seremos multiplicadores de viagens, um modelo de empresa de cultura remo
 
 ---
 
-Para entrar
+Criação de conta
 
 ![pageshot of truppie 2018-03-02-2039 47](https://user-images.githubusercontent.com/88840/37486909-31027b40-2890-11e8-9a05-c33182e4fa85.png)
 
@@ -141,6 +141,12 @@ Para entrar
 ---
 
 Tenha sua truppie: [seunegocio.truppie.com](http://guia.truppie.com)
+
+---
+
+***Gerencie seu perfil***
+
+![Perfil](https://user-images.githubusercontent.com/88840/37561258-8126dd9e-2a4a-11e8-9dbe-998e64f9a1ce.png)
 
 ---
 
