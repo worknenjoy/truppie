@@ -359,15 +359,13 @@ Investir nas redes sociais para divulgar guias e roteiros cadastrados, e conteú
 
 Transformar a Truppie numa experiência completa para guias e roteiros personalizados, pois para chegar nas atividades, o aventureiro precisa passar pela jornada do viajante
 
----
-
 ---?image=https://user-images.githubusercontent.com/88840/37556011-96fc9d8e-29f0-11e8-8a8c-4db1d66b3281.png
 
 <p style="font-family: Helvetica Neue; text-align: center; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white;">
 
-***Qual é a Jornada do Viajante?***
+<p><strong>Qual é a Jornada do Viajante?</strong></p>
 
-Planejar datas, valores e escolher atividades de interesse, com guia ou por conta própria
+<p>Planejar datas, valores e escolher atividades de interesse, com guia ou por conta própria</p>
 </span>
 
 ---
