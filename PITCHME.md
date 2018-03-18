@@ -183,8 +183,8 @@ Saiba informações sobre os destinos
 
 
 ---?image=https://user-images.githubusercontent.com/88840/37493387-087fd84c-28a5-11e8-8a31-984ce4c1c918.jpg
-<span style="font-family: Helvetica Neue; font-weight: bold; color:white; position: absolute; bottom: -400px; right: -200px;">
-Siga um guia para saber de novas atividades caso o evento tenha passado
+<span style="font-family: Helvetica Neue; text-align: right; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white; position: absolute; bottom: -400px; right: -200px;">
+Siga um guia para saber de novas atividades
 </span>
 
 ---?image=https://user-images.githubusercontent.com/88840/37493388-089d1d1c-28a5-11e8-95d2-e6a1117c53b6.jpg
