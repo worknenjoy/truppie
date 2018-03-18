@@ -197,7 +197,6 @@ Seguir um guia para saber de novos roteiros
 
 **Usuários que passaram pela Truppie**
 
-
 125
 
 ---
@@ -281,18 +280,20 @@ Release Plan
 
 ---?image=https://user-images.githubusercontent.com/88840/36508616-7e186cee-175d-11e8-893a-068d6e2bc1e9.png
 
-_v2.0_
+<span style="font-family: Helvetica Neue; display: inline-block; font-weight: bold; color:white; background-color:rgba(252,176,64); padding: 10px;">
+* _v2.0_
+  * Goal: Consolidar guias e roteiros personalizados
+  * Experiência do guia na criação de roteiros personalizados
+  * E-mail marketing e envio de convites
+  * Melhorias de SEO
 
-Goal: Consolidar guias e roteiros personalizados
-Experiência do guia na criação de roteiros personalizados
-E-mail marketing e envio de convites
-Melhorias de SEO
+* _v3.0_
 
-_v3.0_
+* Goal: Páginas sobre lugares 
+* Truppie Places (modelo Airbnb de lugares)
+* Importar dados de um blog cadastrado (segundo o Blog)
 
-Goal: Páginas sobre lugares 
-Truppie Places (modelo Airbnb de lugares)
-Importar dados de um blog cadastrado (segundo o Blog)
+</span>
 
 
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
