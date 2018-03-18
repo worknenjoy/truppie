@@ -177,12 +177,15 @@ Temos
 <span style="font-family: Helvetica Neue; font-weight: bold; color:white; position: absolute; bottom: 0; right: -200px;">Encontre atividades e reserve pelo cartão de crédito</span>
 
 ---?image=https://user-images.githubusercontent.com/88840/37493386-08627be4-28a5-11e8-92d3-e7c83a83ad85.jpg
-Possibilidade de devolução respeitando a política dos guias
+<span style="font-family: Helvetica Neue; font-weight: bold; color:white; position: absolute; bottom: -400px; right: -200px;">
+Saiba informações sobre os destinos
+</span>
 
 
 ---?image=https://user-images.githubusercontent.com/88840/37493387-087fd84c-28a5-11e8-8a31-984ce4c1c918.jpg
-Seguir um guia para saber de novos roteiros
-
+<span style="font-family: Helvetica Neue; font-weight: bold; color:white; position: absolute; bottom: -400px; right: -200px;">
+Siga um guia para saber de novas atividades caso o evento tenha passado
+</span>
 
 ---?image=https://user-images.githubusercontent.com/88840/37493388-089d1d1c-28a5-11e8-95d2-e6a1117c53b6.jpg
 ---?image=https://user-images.githubusercontent.com/88840/37493389-08ba9568-28a5-11e8-8480-ce91ee98f134.jpg
