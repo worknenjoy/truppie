@@ -218,7 +218,7 @@ Receba inspirações de viagens
 
 ----?image=https://user-images.githubusercontent.com/88840/37493392-091ed6ae-28a5-11e8-81e1-ec36074a63e4.jpg
 
-<div style="font-family: Helvetica Neue; text-align: right; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white;">
+<div style="font-family: Helvetica Neue; text-align: center; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white; margin-top: -60px">
 
 <p>Valor processado em reservas</p>
 
