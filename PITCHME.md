@@ -285,7 +285,7 @@ Release Plan
 
 ---
 
-* _v2.0_
+***v2.0***
   * Goal: Consolidar guias e roteiros personalizados
   * Experiência do guia na criação de roteiros personalizados
   * E-mail marketing e envio de convites
@@ -293,11 +293,10 @@ Release Plan
 
 ---
 
-* _v3.0_
-
-* Goal: Páginas sobre lugares 
-* Truppie Places (modelo Airbnb de lugares)
-* Importar dados de um blog cadastrado (segundo o Blog)
+***v3.0***
+ * Goal: Páginas sobre lugares 
+ * Truppie Places (modelo Airbnb de lugares)
+ * Importar dados de um blog cadastrado (segundo o Blog)
 
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
 
