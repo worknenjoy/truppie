@@ -95,9 +95,7 @@ Chegamos então... na Truppie!
 
 ![trilha dois irmãos](https://user-images.githubusercontent.com/88840/37556201-f080f704-29f2-11e8-891c-7b9347cea856.png)
 
----
-
----?image=https://user-images.githubusercontent.com/88840/37556017-97ee3bc6-29f0-11e8-9aa4-97ab543e9c40.jpg
+---?image=https://user-images.githubusercontent.com/88840/37566304-8599090c-2ab7-11e8-89da-b25086270044.jpg
 
 Escolha sua truppie
 ![categorias](https://user-images.githubusercontent.com/88840/37556013-97597586-29f0-11e8-90be-5ba38aea5a67.png)
