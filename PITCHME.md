@@ -251,7 +251,7 @@ A [Truppie](http://truppie.com) é [Open Source](https://github.com/worknenjoy/t
 
 ---
 
-**Alguns dos colaboradores**
+**Uma comunidade com quase 300 desenvolvedores freelancer
 
 [Truppie Devs](http://dev.truppie.com)
 
@@ -296,6 +296,8 @@ Importar dados de um blog cadastrado (segundo o Blog)
 
 
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
+
+---
 
 AI-powered travel-as-a-service solution
 
