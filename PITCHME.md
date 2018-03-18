@@ -25,7 +25,7 @@ Oferecemos um marketplace de trips, roteiros e afins, que chamamos de *truppies*
 
 ---?image=https://user-images.githubusercontent.com/88840/36508635-83b7e3e6-175d-11e8-8c15-2dbaa02ce098.png
 
-<span style="font-family: Helvetica Neue; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white; position: absolute; bottom: 0; right: -200px;">
+<span style="font-family: Helvetica Neue; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white; text-align: center;">
 Como começou?
 </span>
 
