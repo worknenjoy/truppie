@@ -89,7 +89,7 @@ Como queremos?
 ---
 
 Chegamos então... na Truppie!
-![screenshot-2017-07-10-19 19 33](https://user-images.githubusercontent.com/88840/37486871-1990c476-2890-11e8-863a-3a818643842e.png)
+![screenshot-2017-07-10-19 19 33](https://user-images.githubusercontent.com/88840/37556014-9783eb04-29f0-11e8-84e0-4e7ba5295eb1.png)
 
 ---
 
@@ -97,6 +97,10 @@ Chegamos então... na Truppie!
 
 ---
 
+Escolha sua truppie
+![categorias](https://user-images.githubusercontent.com/88840/37556013-97597586-29f0-11e8-90be-5ba38aea5a67.png)
+
+---
 
 Evento marcado
 
@@ -383,5 +387,5 @@ E o SEO beneficia os guias também...
 
 ---
 
-![logo](https://user-images.githubusercontent.com/88840/37556019-985dae84-29f0-11e8-966d-d33c5d65a2da.png)
+![logo](https://user-images.githubusercontent.com/88840/37556023-9a3a1350-29f0-11e8-80c2-75ee93441f72.png)
 [Entre em contato](https://truppie.com/contacts/index)
