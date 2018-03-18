@@ -361,6 +361,8 @@ Transformar a Truppie numa experiência completa para guias e roteiros personali
 
 ---
 
+---?image=https://user-images.githubusercontent.com/88840/37556011-96fc9d8e-29f0-11e8-8a8c-4db1d66b3281.png
+
 ***Qual é a Jornada do Viajante?***
 
 Planejar datas, valores e escolher atividades de interesse, com guia ou por conta própria
@@ -388,4 +390,5 @@ E o SEO beneficia os guias também...
 ---
 
 ![logo](https://user-images.githubusercontent.com/88840/37556023-9a3a1350-29f0-11e8-80c2-75ee93441f72.png)
+
 [Entre em contato](https://truppie.com/contacts/index)
