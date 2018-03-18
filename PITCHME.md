@@ -164,11 +164,11 @@ Tenha sua truppie: [seunegocio.truppie.com](http://guia.truppie.com)
 Temos
 
 * Cadastro completo do perfil do guia
-* Página do perfil
+* Página do perfil, com eventos e contatos
 * Cadastro de eventos para guias
 * Importar eventos do facebook
-* Página do evento com possibilidade de reserva
-* Notificações para o cliente do status da reserva
+* Página do evento com reserva em um passo
+* Notificações sobre o acompanhamento da reserva
 
 ---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
 
@@ -301,7 +301,7 @@ Release Plan
 ***v3.0***
  **_Goal_: Páginas sobre lugares**
  * Truppie Places (modelo Airbnb de lugares)
- * Importar dados de um blog cadastrado (segundo o Blog)
+ * Importar dados de um blog cadastrado
 
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
 
