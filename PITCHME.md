@@ -174,7 +174,7 @@ Temos
 ---?image=https://user-images.githubusercontent.com/88840/36508613-7db76f16-175d-11e8-9a6a-c554da54306e.png
 
 ---?image=https://user-images.githubusercontent.com/88840/37493385-083e4878-28a5-11e8-9d96-f36ad4f4bc8c.jpg
-Reserva fácil de eventos pelo cartão de crédito
+<span style="font-family: Helvetica Neue; font-weight: bold; color:white; position: abolute; bottom: 0; right: 0;">Reserva fácil pelo carto de crédito</span>
 
 ---?image=https://user-images.githubusercontent.com/88840/37493386-08627be4-28a5-11e8-92d3-e7c83a83ad85.jpg
 Possibilidade de devolução respeitando a política dos guias
@@ -278,23 +278,21 @@ Nossas tecnologias
 
 Release Plan
 
----?image=https://user-images.githubusercontent.com/88840/36508616-7e186cee-175d-11e8-893a-068d6e2bc1e9.png
+---
 
-<span style="font-family: Helvetica Neue; display: inline-block; font-weight: bold; color:white; background-color:rgba(252,176,64); padding: 10px;">
 * _v2.0_
   * Goal: Consolidar guias e roteiros personalizados
   * Experiência do guia na criação de roteiros personalizados
   * E-mail marketing e envio de convites
   * Melhorias de SEO
 
+---
+
 * _v3.0_
 
 * Goal: Páginas sobre lugares 
 * Truppie Places (modelo Airbnb de lugares)
 * Importar dados de um blog cadastrado (segundo o Blog)
-
-</span>
-
 
 ---?image=https://user-images.githubusercontent.com/88840/36508618-7e3dfda6-175d-11e8-8aa7-bba419076fee.png
 
