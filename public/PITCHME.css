@@ -69,4 +69,5 @@ h1, h2, h3, h4, h5, h6 {
 .reveal section img {
   border: 0;
   box-shadow: none;
+  background: none;
 }
