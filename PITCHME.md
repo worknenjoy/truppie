@@ -312,7 +312,7 @@ AI-powered travel-as-a-service solution
 ---?image=https://user-images.githubusercontent.com/88840/36508622-7ef5ce68-175d-11e8-810e-e0bc95c24ed2.png
 
 <p style="font-family: Helvetica Neue; text-align: center; display:inline-block; background-color: #00AEEF ; padding: 10px; font-weight: bold; color:white;">
-Você sabia que existem mais de 50 api's de viagem? E o que isto significa?
+Você sabia que existem mais de 50 API's de viagem? E o que isso significa?
 </p>
 ---
 
@@ -358,7 +358,7 @@ Investir nas redes sociais para divulgar guias e roteiros cadastrados, e conteú
 
 **Onde queremos investir?**
 
-Transformar a Truppie numa experiência completa para guias e roteiros personalizados, pois para chegar nas atividades, o aventureiro precisa passar pela jornada do viajante
+Transformar a Truppie numa experiência completa para guias e roteiros personalizados, pois para chegar às atividades, o aventureiro precisa passar pela jornada do viajante
 
 ---?image=https://user-images.githubusercontent.com/88840/37556011-96fc9d8e-29f0-11e8-8a8c-4db1d66b3281.png
 
@@ -366,7 +366,7 @@ Transformar a Truppie numa experiência completa para guias e roteiros personali
 
 <p><strong>Qual é a Jornada do Viajante?</strong></p>
 
-<p>Planejar datas, valores e escolher atividades de interesse, com guia ou por conta própria</p>
+<p>Escolher destino, definir datas, estimar valores e planejar atividades de interesse (com guia ou por conta própria)</p>
 </div>
 
 ---
