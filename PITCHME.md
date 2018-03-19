@@ -4,7 +4,7 @@
 
 ---
 
-<span style="padding: 20px; display: block; color: #42205F">O que é a Truppie</span>
+<span style="padding: 20px; display: block; color: #42205F">O que é a Truppie?</span>
 
 Somos uma startup 100% remota que coloca você conectado com diversas atividades e roteiros para facilitar sua aventura
 
@@ -46,7 +46,7 @@ Como começou?
 
 ![img_1962-e1485032393293](https://user-images.githubusercontent.com/88840/37486882-1f86081e-2890-11e8-893f-50684f0faa5b.jpg)
 
-Conhecemos a Joana, parceira e fundadora da [Utópicos mundo afora](https://www.utopicosmundoafora.com)
+Conhecemos a Joana, parceira e fundadora da agência [Utópicos Mundo Afora](https://www.utopicosmundoafora.com)
 
 ---
 
@@ -55,12 +55,12 @@ Conhecemos a Joana, parceira e fundadora da [Utópicos mundo afora](https://www.
 
 
 ***O que a Joana quer?***
-Fazer com que atividades super legais promovidas pela [Utópicos mundo afora](https://www.utopicosmundoafora.com)
- chegue aos aventureiros
+Fazer com que atividades super legais promovidas pela [Utópicos Mundo Afora](https://www.utopicosmundoafora.com)
+ cheguem aos aventureiros
 
 ---
 
-Os diversos guias de viagem estão muitas vezes deconectados, e precisam de ferramentas práticas para gerenciar o pré, durante e pós atividade
+Os guias de viagem estão muitas vezes desconectados, e precisam de ferramentas práticas para gerenciar suas atividades (antes, durante e depois)
 
 ---
 
@@ -115,7 +115,7 @@ Reserva realizada
 
 ---
 
-e assim foram dois anos com meditação, trilhas e amigos. E agora roteiros...
+e assim foram dois anos com trilhas, yoga e amigos. E agora, roteiros...
 
 ---
 
@@ -125,11 +125,11 @@ Como este:
 
 ---
 
-Temos a plataforma ideal que dá toda autonomia para quem oferece atividades, com transferência direta para conta
+Temos a plataforma ideal que dá toda autonomia para quem oferece atividades, com transferência direta para conta bancária
 
 ---
 
-E agora seremos multiplicadores de viagens, um modelo de empresa de cultura remota e que quer agregar no mercado de turismo, e vice-versa...
+Seremos multiplicadores de viagens! Um modelo de empresa remota que quer agregar no mercado de turismo - e vice-versa!
 
 ---?image=https://user-images.githubusercontent.com/88840/36508631-8167d3da-175d-11e8-8a2b-f43a7d71d2ef.png
 
@@ -161,14 +161,14 @@ Tenha sua truppie: [seunegocio.truppie.com](http://guia.truppie.com)
 
 ---
 
-Temos
+Por que é bom para o guia:
 
-* Cadastro completo do perfil do guia
-* Página do perfil, com eventos e contatos
-* Cadastro de eventos para guias
-* Importar eventos do facebook
+* Plataforma clean e fácil de usar
+* Página de perfil completo da empresa/pessoa física
+* Criação de eventos (truppies) completos
+* Importação de eventos do Facebook
 * Página do evento com reserva em um passo
-* Notificações sobre o acompanhamento da reserva
+* Notificações sobre novas reservas
 
 ---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
 
