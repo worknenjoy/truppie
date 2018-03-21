@@ -1,3 +1,6 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "wizard_steps.js", defer: true %>  
+<% end %>
 <% WizardStepsPresenter.steps(organizer) do |step| %>
 <div class="card">
   <div id="steps-container" class="row">
@@ -19,5 +22,5 @@
       </button>
     </p>
   </div>
-</div>  
+</div>
 <% end %>

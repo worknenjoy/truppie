@@ -15,7 +15,4 @@ function wizzardSteps(selector){
   }
 };
 
-$(document).ready(function() {
-  wizzardSteps('#wizard-steps-toggle');
-  trigger_elem = $('#wizard-steps-toggle');
-});
+wizzardSteps('#wizard-steps-toggle');
