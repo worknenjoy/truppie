@@ -47,14 +47,16 @@ class ToursController < ApplicationController
   end
 
   def products
-    repond_to do |format|
+    @products = RestClient.get "https://api.rezdy.com/latest/products/marketplace?language=pt_br&limit=10&automatedPayments=true&apiKey=11e94f2cad4c486888e16c37265a8917"
+    @products_json = JSON.load @products
+  end
 
-
-
-      format.js {
-        return {}
-      }
-    end
+  def product
+    @id = params[:id]
+    @product = RestClient.get "https://api.rezdy.com/latest/products/#{@id}/?apiKey=11e94f2cad4c486888e16c37265a8917"
+    puts @product.to_json
+    @product_json = JSON.load @product
+    @tour = Tour.last
   end
 
   def show_interest

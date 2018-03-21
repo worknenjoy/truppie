@@ -87,6 +87,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'tours/products', to: 'tours#products'
+  get 'tours/products/:id', to: 'tours#product'
+
   resources :tours do
     member do
       get 'confirm/(:packagename)', to: 'tours#confirm', as: 'confirm'
@@ -95,7 +98,6 @@ Rails.application.routes.draw do
       get 'confirm_presence_alt'
       post 'unconfirm_presence'
       get 'show_interest', to: 'tours#show_interest'
-      get 'products', to: 'tours#products'
     end
   end
 

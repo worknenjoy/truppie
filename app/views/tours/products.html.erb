@@ -1,0 +1,13 @@
+<%= render 'layouts/navbar' %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <% if @products_json.any? %>
+          <h3 class="light-heading" style="padding: 4px; margin-top: 30px;">Atividades</h3>
+          <% @products_json["products"].each do |p| %>
+            <%= render partial: 'layouts/product_list', locals: { p: p } %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
