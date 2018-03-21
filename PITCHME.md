@@ -172,7 +172,7 @@ Por que é bom para o guia:
 
 ---?image=https://user-images.githubusercontent.com/88840/36508629-811105be-175d-11e8-8989-85d203a89e82.png
 
----?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png?size=contain
+---?image=https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png&size=contain
 
 ---?image=https://user-images.githubusercontent.com/88840/36508634-83264828-175d-11e8-858f-de23d74648b2.png
 
