@@ -35,6 +35,5 @@
 //= require jquery.maskedinput
 //= require main-menu
 //= require dash
-//= require wizard_steps
 //= require progress_upload
 //= require whatsapp_chat
