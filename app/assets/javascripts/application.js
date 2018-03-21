@@ -34,6 +34,5 @@
 //= require bootstrap-number-input
 //= require jquery.maskedinput
 //= require main-menu
-//= require dash
 //= require progress_upload
 //= require whatsapp_chat
