@@ -46,6 +46,17 @@ class ToursController < ApplicationController
 
   end
 
+  def products
+    repond_to do |format|
+
+
+
+      format.js {
+        return {}
+      }
+    end
+  end
+
   def show_interest
     respond_to do |format|
       @tour = Tour.find(params[:id])
@@ -582,7 +593,7 @@ class ToursController < ApplicationController
         @own_id = "truppie_#{@tour.id}"
 
         payment = PagSeguro::PaymentRequest.new
-        payment.credentials = PagSeguro::ApplicationCredentials.new('truppie', 'CDEF210C5C5C6DFEE4E36FBE9DB6F509', @tour.organizer.marketplace.payment_types.first.token)
+        payment.credentials = PagSeguro::ApplicationCredentials.new('truppie', Rails.application.secrets[:pagseguro_secret], @tour.organizer.marketplace.payment_types.first.token)
 
         payment.reference = @own_id
         payment.notification_url = "http://www.truppie.com/webhook_external_payment"

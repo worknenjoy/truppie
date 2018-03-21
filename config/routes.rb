@@ -95,6 +95,7 @@ Rails.application.routes.draw do
       get 'confirm_presence_alt'
       post 'unconfirm_presence'
       get 'show_interest', to: 'tours#show_interest'
+      get 'products', to: 'tours#products'
     end
   end
 
