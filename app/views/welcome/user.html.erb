@@ -1,3 +1,6 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "places.js", defer: true %>
+<% end %>
 <%= render 'layouts/navbar' %>
 <div id="tours">
   <div class='container'>

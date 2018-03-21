@@ -1,3 +1,6 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "calendar-app.js", defer: true %>
+<% end %>
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
 <div class="container manage-entries">

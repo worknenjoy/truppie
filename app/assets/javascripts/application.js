@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require places
 //= require mma
 //= require modernizr-custom
 //= require classie
@@ -28,18 +27,14 @@
 //= require jquery.event.swipe
 //= require picturefill
 //= require tether
-//= require quill
 //= require bootstrap
+//= require quill
 //= require typeahead
 //= require bootstrap-tagsinput
 //= require bootstrap-number-input
 //= require jquery.maskedinput
 //= require main-menu
-//= require date-range
-//= require calendar-app
 //= require dash
-//= require mountain-form
 //= require wizard_steps
 //= require progress_upload
-//= require main
 //= require whatsapp_chat
