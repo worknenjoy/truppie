@@ -1,4 +1,8 @@
 <% content_for :body_class, "mountain-form" %>
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "mountain-form.js", defer: true %>
+  <%= javascript_include_tag "places.js", defer: true %>
+<% end %>
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
 <div class="container">
