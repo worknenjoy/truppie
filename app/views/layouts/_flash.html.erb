@@ -3,7 +3,7 @@
 	<% flash.each do |k| %>
       <% if k[0] == 'notice' or k[0] == 'error' or k[0] == 'alert' %>
         <div class="alert alert-success alert-<%= flash_status(k[0])[:className] %>" role="alert">
-          <button type="button" class="close" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" data-dismiss="alert">
             <span aria-hidden="true">&times;</span>
           </button>
           <strong><%= flash_status(k[0])[:label] %></strong> - <%= k[1] %>
