@@ -1,7 +1,6 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
 <% content_for :javascript_includes do %>
-    <%= javascript_include_tag "main.js", defer: true %>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript">
         Stripe.setPublishableKey('<%= Rails.configuration.stripe[:publishable_key] %>');

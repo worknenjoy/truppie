@@ -36,3 +36,4 @@
 //= require main-menu
 //= require progress_upload
 //= require whatsapp_chat
+//= require main
