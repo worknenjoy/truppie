@@ -153,11 +153,10 @@ function listenCheckToggle(inputCheckBox, toggableContainerElements){
 }
 
 function updateTotalFairPrice(event){
-  amount_elem = $('input.cc-amount-output');
-  amountValue = amount_elem.val() % amount_elem.attr('max');
-  fair_price_value = $('input.fair-price-value').val();
-  $('input.cc-final-fair-price,.cc-final-fair-price span').html(
-    amountValue * fair_price_value);
+  var amount_elem = $('input.cc-amount-output');
+  var amountValue = amount_elem.val() % amount_elem.attr('max');
+  var fair_price_value = $('input.fair-price-value').val();
+  $('input.cc-final-fair-price,.cc-final-fair-price span').html(amountValue * fair_price_value);
 };
 
 function closePopover(e){
@@ -170,7 +169,7 @@ function closePopover(e){
   })
 }
 
-$(function() {
+$(document).on("turbolinks:load", function() {
     // Initialize any popover element with data-toggle popover
     var popover_elements = $('[data-toggle="popover"]');
     popover_elements.popover();
@@ -593,7 +592,6 @@ $(function() {
 
   var final_fair_price_elem = $('input.cc-final-fair-price,.cc-final-fair-price span');
   if(final_fair_price_elem.length > 0){
-    console.log("Fair price update total bindings");
     $(document).bind('input change', 'input.cc-amount-output,input.fair-price-value', updateTotalFairPrice);
     $(document).bind('click', '.amount-input-group .input-group-btn', updateTotalFairPrice);
   }else{

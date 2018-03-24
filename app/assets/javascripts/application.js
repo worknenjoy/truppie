@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require mma
 //= require modernizr-custom
 //= require classie
@@ -35,4 +36,5 @@
 //= require main-menu
 //= require progress_upload
 //= require whatsapp_chat
+//= require places
 //= require main

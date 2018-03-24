@@ -27,6 +27,8 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&libraries=places&language=br"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, defer: true %>
+  <%= yield :javascript_includes %>
 </head>
 <body class="<%= yield (:body_class) %>">
 <%= render 'layouts/track_loading' %>
@@ -44,8 +46,6 @@
 
 </script>
 <% end %>
-<%= javascript_include_tag 'application' %>
-<%= content_for :javascript_includes %>
 <%= yield :scripts_bottom %>
 </body>
 </html>

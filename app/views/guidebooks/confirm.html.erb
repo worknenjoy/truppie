@@ -1,9 +1,11 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
 <% content_for :javascript_includes do %>
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/" defer></script>
     <script type="text/javascript">
-        Stripe.setPublishableKey('<%= Rails.configuration.stripe[:publishable_key] %>');
+        document.addEventListener("turbolinks:load", function () {
+            Stripe.setPublishableKey('<%= Rails.configuration.stripe[:publishable_key] %>');
+        });
     </script>
 <% end %>
 <div class="container">
@@ -162,7 +164,7 @@
                               <% else %>
                                   <% if @guidebook.packages.any? and !@guidebook.value %>
                                     <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_span_one') %></span>
-                                    <div class="cc-package-options">
+                                    <div class="b-package-options">
                                     <% @guidebook.packages.each_with_index do |p, i| %>
                                     <label class="radio package-item-confirm">
                                       <% if i == 0 %>
@@ -214,8 +216,8 @@
                                     <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
                                   </div>
                                   <div class="price mediafix">
-                                    <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
-                                    <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' %>
+                                    <h3 class="b-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
+                                    <%= hidden_field_tag :final_price, @final_price, id:'b-final-price' %>
                                     <%= hidden_field_tag :token, '', id:'token' %>
                                   </div>
                                 </div>

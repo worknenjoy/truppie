@@ -200,7 +200,7 @@
                                 <label><%= t('tours_view_confirm_label_twelve') %></label>
                                   <div class="input-group">
                                     <div class="form-group">
-                                      <%= number_field_tag :amount, 1, class: 'form-control full-width cc-amount-output bfh-number', min: 1, max: @tour.availability  %>
+                                      <%= number_field_tag :amount, 1, class: 'form-control full-width cc-amount-output bfh-number', min: 1, max: @tour.try(:availability) || 99  %>
                                     </div>
                                   </div>
                                 </div>

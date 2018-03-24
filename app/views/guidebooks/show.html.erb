@@ -1,7 +1,7 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
 <% if is_organizer_admin %>
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-warning" role="alert" style="overflow: hidden">
       <div class="text-md-center">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -31,7 +31,7 @@
         <% else %>
             <div class="placeholder-tour-image">
               <div class="placeholder-tour-container">
-                <%= form_for @guidebook, multipart: true, role: "form" do |f| %>
+                <%= form_for @guidebook, multipart: true, role: "form", data: {ajax_sync: true}  do |f| %>
                     <div class="file-upload">
                       <small style="display: inline-block; margin-bottom: 10px;" class="text-color-white"><%= t('no-photo-please-send-one') %></small>
                       <div class="file-upload-btn-preview-container">
