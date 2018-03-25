@@ -336,6 +336,19 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.1)
     rubyzip (1.2.1)
     sass (3.4.25)
     sass-rails (5.0.7)
@@ -450,6 +463,7 @@ DEPENDENCIES
   rails_12factor
   redis
   rest-client
+  rspec
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
