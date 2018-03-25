@@ -1,7 +1,6 @@
 <% content_for :body_class, "mountain-form" %>
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "mountain-form.js", defer: true %>
-  <%= javascript_include_tag "places.js", defer: true %>
 <% end %>
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
@@ -135,7 +134,7 @@
         </li>
       </ul>
       <div class="nav_link">
-        <a href="#" id="continue" style="float:right;"><%= t('label-organizer-continue') %></a>
+        <a href="#" id="continue" data-turbolinks="false" style="float:right;"><%= t('label-organizer-continue') %></a>
       </div>
       <% if flash[:errors].nil? %>
         <div class="required_fields_message">* <%= t('label-organizer-required-fields-messsage') %></div>
@@ -169,8 +168,8 @@
         </li>
       </ul>
       <div class="nav_link">
-        <a href="#" id="prev"><%= t('label-organizer-previous') %></a>
-        <a href="#" id="continue2" style="float:right;"><%= t('label-organizer-continue') %></a>
+        <a href="#" data-turbolinks="false" id="prev"><%= t('label-organizer-previous') %></a>
+        <a href="#" data-turbolinks="false" id="continue2" style="float:right;"><%= t('label-organizer-continue') %></a>
       </div>
     </div>
 
@@ -207,8 +206,8 @@
 
 
       <div class="nav_link">
-        <a href="#" id="prev2"><%= t('label-organizer-previous') %></a>
-        <a href="#" id="continue3" style="float:right;"><%= t('label-organizer-continue') %></a>
+        <a href="#" data-turbolinks="false" id="prev2"><%= t('label-organizer-previous') %></a>
+        <a href="#" data-turbolinks="false" id="continue3" style="float:right;"><%= t('label-organizer-continue') %></a>
       </div>
     </div>
 
@@ -238,7 +237,7 @@
 
       </div>
       <div class="nav_link">
-        <a href="#" id="prev4"><%= t('label-organizer-previous') %></a>
+        <a href="#" data-turbolinks="false" id="prev4"><%= t('label-organizer-previous') %></a>
       </div>
     </div>
   <% end %>
