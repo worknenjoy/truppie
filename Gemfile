@@ -33,6 +33,7 @@ gem 'stripe'
 # Image upload
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk-s3'
 gem 'paperclip-aws'
 
 # Utilities
@@ -57,7 +58,6 @@ end
 
 group :development, :test do
   gem 'cucumber-rails', :require => false
-  gem 'rspec'
   gem 'selenium-webdriver'
   gem 'byebug'
   gem 'i18n-tasks', '~> 0.9.18'
