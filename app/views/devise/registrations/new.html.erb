@@ -15,8 +15,8 @@
     					<%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm password', class: 'form-control' %>
 	                	<%= f.submit "Criar conta", class: 'btn btn-lg btn-primary btn-block' %>
 	                <% end %>
+                <%= render "devise/shared/links" %>
 	            </div>
-	            <%= render "devise/shared/links" %>
 	        </div>
 	    </div>
 	</div>

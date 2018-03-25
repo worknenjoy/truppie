@@ -77,7 +77,7 @@ class TourTest < ActiveSupport::TestCase
    end
 
    test "friendly duration" do
-      assert_equal "3 minutos", Tour.first.duration
+      assert_equal "aproximadamente 1 hora", Tour.first.duration
    end
 
    test "a friendly duration more accurated test" do
@@ -172,7 +172,7 @@ class TourTest < ActiveSupport::TestCase
 
      day = @tour.how_long
 
-     assert_equal day, 'Duração total de <strong>3 minutos</strong>'
+     assert_equal day, 'Duração total de <strong>aproximadamente 1 hora</strong>'
 
    end
 
@@ -185,7 +185,7 @@ class TourTest < ActiveSupport::TestCase
    test "day counter same day" do
      day = @tour.days
 
-     assert_equal '17', day
+     assert_equal '22', day
    end
 
    test "orders by truppie" do
