@@ -59,6 +59,7 @@ end
 group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'selenium-webdriver'
+  gem 'rspec'
   gem 'byebug'
   gem 'i18n-tasks', '~> 0.9.18'
   gem 'dotenv-rails'
