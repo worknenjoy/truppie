@@ -8,18 +8,6 @@ GIT
       multi_json (~> 1.0)
       stripe (~> 1.31)
 
-GIT
-  remote: https://github.com/thoughtbot/paperclip
-  revision: 523bd46c768226893f23889079a7aa9c73b57d68
-  ref: 523bd46c768226893f23889079a7aa9c73b57d68
-  specs:
-    paperclip (4.3.1)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (= 0.3.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -85,8 +73,6 @@ GEM
     byebug (10.0.1)
     chunky_png (1.3.10)
     climate_control (0.2.0)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -184,7 +170,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     liquid (4.0.0)
-    loofah (2.2.1)
+    loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -201,7 +187,7 @@ GEM
       smart_listing (~> 1.1.0)
     metaclass (0.0.4)
     mime-types (2.6.2)
-    mimemagic (0.3.0)
+    mimemagic (0.3.2)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
@@ -236,10 +222,16 @@ GEM
       i18n (~> 0.7)
       json (~> 1.8)
       nokogiri (~> 1.6)
+    paperclip (6.0.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      mime-types
+      mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     paperclip-aws (1.6.8)
       aws-sdk (>= 1.2.0)
       paperclip (>= 2.5.0)
-    parser (2.5.0.4)
+    parser (2.5.0.5)
       ast (~> 2.4.0)
     pg (0.21.0)
     puma (3.11.3)
@@ -265,8 +257,8 @@ GEM
       activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -278,7 +270,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (3.0.0)
-    rake (12.3.0)
+    rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -326,6 +318,8 @@ GEM
     temple (0.8.0)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -388,7 +382,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pagseguro-oficial (~> 2.5.0)
-  paperclip!
+  paperclip
   paperclip-aws
   pg (~> 0.20)
   puma
@@ -409,4 +403,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
