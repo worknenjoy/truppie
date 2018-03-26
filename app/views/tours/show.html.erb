@@ -64,7 +64,7 @@
     <% if @tour.value_chosen_by_user %>
       <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
         <small><%= t('no-price-defined-message') %></small>
-        <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block spaced-small' %>
+        <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block spaced-small', data: {turbolinks: false} %>
       </div>
     <% else %>
       <div class="ribbon base <%= "abs-top-middle" if is_organizer_admin %> <%= "abs-closest-top" if !@tour.picture.exists? %>" style="text-align: right">
@@ -72,7 +72,7 @@
         <% if @tour.past? %>
           <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: user_signed_in? %>
         <% else %>
-          <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block' %>
+          <%= link_to t('tours_view_show_link_one'), confirm_tour_path, class: 'btn btn-primary btn-sm btn-block', data: {turbolinks: false} %>
         <% end %>
       </div>
     <% end %>
@@ -197,7 +197,7 @@
             <% if @tour.past? %>
               <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: user_signed_in? %>
             <% else %>
-              <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
+              <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block', data: {turbolinks: false} %>
             <% end %>
           </div>
         </div>
@@ -261,7 +261,7 @@
         				    <% end %>
         				    </div>
         				    <div class="card-footer">
-        					     <%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
+        					     <%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary', data: {turbolinks: false} %>
         				    </div>
         				</div>
         		  	</div>
