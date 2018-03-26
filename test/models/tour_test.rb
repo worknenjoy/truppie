@@ -134,12 +134,15 @@ class TourTest < ActiveSupport::TestCase
 
     test "the next truppies in order" do
 
+      @gavea = tours(:gavea)
+      @morro_fair = tours(:morro_fair_price)
+
       actualtime = Time.new(2015, 4, 14, 14, 35, 0)
 
       Timecop.freeze(actualtime) do
-        assert_equal @tour, Tour.nexts.first
-        assert_equal @marins, Tour.nexts.last
-        assert_equal @tour_alt, Tour.nexts[1]
+        assert_equal @gavea, Tour.nexts.first
+        assert_equal @morro_fair, Tour.nexts.last
+        assert_equal @marins, Tour.nexts[1]
       end
     end
 
