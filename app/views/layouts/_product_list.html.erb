@@ -22,13 +22,13 @@
       <!-- Twitter Button -->
     </div>
 
-    <%= link_to('#', :class => 'twPc-avatarLink') do %>
-        <%= image_tag(p["images"][1]["mediumSizeUrl"], :alt => p["supplierName"], class: 'twPc-avatarImg') %><br />
+    <%= link_to('#', :class => 'twPc-avatarLink', data: {turbolinks: false}) do %>
+        <%= image_tag(p["images"][0]["mediumSizeUrl"], :alt => p["supplierName"], class: 'twPc-avatarImg') %><br />
     <% end %>
 
     <div class="twPc-divUser spaced-down">
       <div class="twPc-divName">
-        <%= link_to "/tours/products/#{p["productCode"]}" do %>
+        <%= link_to("/tours/products/#{p["productCode"]}", data: {turbolinks: false}) do %>
             <%= p["name"] %>
         <% end %>
       </div>

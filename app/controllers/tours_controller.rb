@@ -54,8 +54,10 @@ class ToursController < ApplicationController
   def product
     @id = params[:id]
     @product = RestClient.get "https://api.rezdy.com/latest/products/#{@id}/?apiKey=11e94f2cad4c486888e16c37265a8917"
-    puts @product.to_json
     @product_json = JSON.load @product
+    @availability = RestClient.get "https://api.rezdy.com/latest/availability/?productCode=#{@id}&startTime=2018-04-01T00:00:00%2B11:00&endTime=2018-05-31T00:00:00%2B11:00&apiKey=11e94f2cad4c486888e16c37265a8917"
+    @availability_json = JSON.load @availability
+
     @tour = Tour.last
   end
 
