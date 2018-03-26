@@ -58,7 +58,7 @@
     <% end %>
     <div class="ribbon base" style="text-align: right">
       <span><%= raw @guidebook.price %></span>
-      <%= link_to t('guidebook-reservation-action'), confirm_guidebook_path, class: 'btn btn-primary btn-sm btn-block' %>
+      <%= link_to t('guidebook-reservation-action'), confirm_guidebook_path, class: 'btn btn-primary btn-sm btn-block', data: {turbolinks: false} %>
     </div>
   </div>
   <div class="container">
@@ -102,7 +102,7 @@
             </ul>
           </div>
           <div class="card-footer">
-            <%= link_to t('guidebook-confirm-reservation-link'), confirm_guidebook_path, class: 'btn btn-primary btn-lg btn-block' %>
+            <%= link_to t('guidebook-confirm-reservation-link'), confirm_guidebook_path, class: 'btn btn-primary btn-lg btn-block', data: {turbolinks: false} %>
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@
                     <% end %>
                   </div>
                   <div class="card-footer">
-                    <%= link_to t("tours_view_show_link_four",name: p.name), confirm_guidebook_path(@guidebook.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
+                    <%= link_to t("tours_view_show_link_four",name: p.name), confirm_guidebook_path(@guidebook.id, p.name), class: 'btn btn-lg btn-block btn-primary', data: {turbolinks: false} %>
                   </div>
                 </div>
               </div>
