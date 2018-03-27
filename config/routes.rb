@@ -89,6 +89,7 @@ Rails.application.routes.draw do
 
   get 'tours/products', to: 'tours#products'
   get 'tours/products/:id', to: 'tours#product'
+  get 'tours/product_availability/:code', to: 'tours#product_availability'
 
   resources :tours do
     member do

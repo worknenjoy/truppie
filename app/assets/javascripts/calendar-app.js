@@ -24,8 +24,7 @@ function CalendarApp(date, apts, aptsDates) {
     ];
 
     this.aptDates = aptsDates || [new Date(2016, 4, 30).toString(),new Date(2016, 4, 1).toString()];
-    this.eles = {
-    };
+
     this.calDaySelected = null;
 
     this.calendar = document.getElementById("calendar-app");

@@ -3,16 +3,23 @@
     <script type="text/javascript">
         document.addEventListener("turbolinks:load", function(){
             if(document.getElementById("calendar-app")) {
-                var calendar = new CalendarApp(new Date(), [
-                    <% @availability_json["sessions"].each do |s| %>
-                    {
-                        name: "<%= s["productCode"] %>",
-                        startTime: "<%= s["startTime"].to_datetime %>",
-                        endTime: "<%= s["endTime"].to_datetime %>",
-                        day: "<%= s["startTime"].to_datetime %>"
-                    },
-                    <% end %>
-                ]);
+                $.get('/tours/product_availability/<%= @product_json["product"]["productCode"] %>', function(data){
+                  //console.log(data.sessions);
+                  var tour_sessions_info = [];
+                  var tour_sessions_date = [];
+
+                  for(var i=0; i < data.sessions.length; i++) {
+                      var startTime = new Date(data.sessions[i].startTime);
+                      tour_sessions_info.push({
+                          name: "<p>bla bla bla:</p> " + data.sessions[i].priceOptions[0].price,
+                          endTime: new Date(data.sessions[i].endTime),
+                          startTime: startTime,
+                          day: new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDay()).toString()
+                      });
+                      tour_sessions_date.push(new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDay()).toString())
+                  }
+                  var calendar = new CalendarApp(new Date(), tour_sessions_info, tour_sessions_date);
+                });
             }
         });
     </script>
@@ -49,94 +56,84 @@
     </div>
     <div class="row">
       <div class="col-xs-6">
-        <div class="calendar" id="calendar-app">
-          <div class="calendar--day-view" id="day-view">
-            <span class="day-view-exit" id="day-view-exit">&times;</span>
-            <span class="day-view-date" id="day-view-date">MAY 29 2016</span>
-            <div class="day-view-content">
-              <div class="day-highlight">
-                You <span class="day-events" id="day-events">had no events for today</span>. &nbsp; <span tabindex="0" onkeyup="if(event.keyCode != 13) return; this.click();" class="day-events-link" id="add-event" data-date>Add a new event?</span>
-              </div>
-              <div class="day-add-event" id="add-day-event-box" data-active="false">
-                <div class="row">
-                  <div class="half">
-                    <label class="add-event-label">
-                      Name of event
-                      <input type="text" class="add-event-edit add-event-edit--long" placeholder="New event" id="input-add-event-name">
-                    </label>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="spaced-smallest"><i class="fa fa-calendar-plus-o"></i> <strong>Disponibilidade</strong></h5>
+          </div>
+          <div class="card-block">
+            <div class="calendar" id="calendar-app">
+              <div class="calendar--day-view" id="day-view">
+                <span class="day-view-exit" id="day-view-exit">&times;</span>
+                <span class="day-view-date" id="day-view-date">MAY 29 2016</span>
+                <div class="day-view-content">
+                  <div class="day-highlight">
+                    You <span class="day-events" id="day-events">had no events for today</span>. &nbsp; <span tabindex="0" onkeyup="if(event.keyCode != 13) return; this.click();" class="day-events-link" id="add-event" data-date>Add a new event?</span>
                   </div>
-                  <div class="qtr">
-                    <label class="add-event-label">
-                      Start Time
-                      <input type="text" class="add-event-edit" placeholder="8:15" id="input-add-event-start-time" data-options="1,2,3,4,5,6,7,8,9,10,11,12" data-format="datetime">
-                      <input type="text" class="add-event-edit" placeholder="am" id="input-add-event-start-ampm" data-options="a,p,am,pm">
-                    </label>
+                  <div class="day-add-event" id="add-day-event-box" data-active="false">
+                    <div class="row">
+                      <div class="half">
+                        <label class="add-event-label">
+                          Name of event
+                          <input type="text" class="add-event-edit add-event-edit--long" placeholder="New event" id="input-add-event-name">
+                        </label>
+                      </div>
+                      <div class="qtr">
+                        <label class="add-event-label">
+                          Start Time
+                          <input type="text" class="add-event-edit" placeholder="8:15" id="input-add-event-start-time" data-options="1,2,3,4,5,6,7,8,9,10,11,12" data-format="datetime">
+                          <input type="text" class="add-event-edit" placeholder="am" id="input-add-event-start-ampm" data-options="a,p,am,pm">
+                        </label>
+                      </div>
+                      <div class="qtr">
+                        <label class="add-event-label">
+                          End Time
+                          <input type="text" class="add-event-edit" placeholder="9" id="input-add-event-end-time" data-options="1,2,3,4,5,6,7,8,9,10,11,12" data-format="datetime">
+                          <input type="text" class="add-event-edit" placeholder="am" id="input-add-event-end-ampm" data-options="a,p,am,pm">
+                        </label>
+                      </div>
+                      <div class="half">
+                        <a onkeyup="if(event.keyCode != 13) return; this.click();" tabindex="0" id="add-event-save" class="event-btn--save event-btn">save</a>
+                        <a tabindex="0" id="add-event-cancel" class="event-btn--cancel event-btn">cancel</a>
+                      </div>
+                    </div>
+
                   </div>
-                  <div class="qtr">
-                    <label class="add-event-label">
-                      End Time
-                      <input type="text" class="add-event-edit" placeholder="9" id="input-add-event-end-time" data-options="1,2,3,4,5,6,7,8,9,10,11,12" data-format="datetime">
-                      <input type="text" class="add-event-edit" placeholder="am" id="input-add-event-end-ampm" data-options="a,p,am,pm">
-                    </label>
+                  <div id="day-events-list" class="day-events-list">
+                    <ul class="day-event-list-ul"><li class="event-dates"><div class="event-dates"><span class="start-time">8:15 AM</span> <small>through</small> <span class="end-time">9:00 AM</span><span class="event-name">fadfaf</span><span class="event-delete" data-idx="2">delete</span></div></li></ul>
                   </div>
-                  <div class="half">
-                    <a onkeyup="if(event.keyCode != 13) return; this.click();" tabindex="0" id="add-event-save" class="event-btn--save event-btn">save</a>
-                    <a tabindex="0" id="add-event-cancel" class="event-btn--cancel event-btn">cancel</a>
+                  <div class="day-inspiration-quote" id="inspirational-quote">
+                    Every child is an artist.  The problem is how to remain an artist once he grows up. –Pablo Picasso
                   </div>
                 </div>
-
               </div>
-              <div id="day-events-list" class="day-events-list">
-                <ul class="day-event-list-ul"><li class="event-dates"><div class="event-dates"><span class="start-time">8:15 AM</span> <small>through</small> <span class="end-time">9:00 AM</span><span class="event-name">fadfaf</span><span class="event-delete" data-idx="2">delete</span></div></li></ul>
+              <div class="calendar--view" id="calendar-view">
+                <div class="cview__month">
+                  <span class="cview__month-last" id="calendar-month-last">Apr</span>
+                  <span class="cview__month-current" id="calendar-month">May</span>
+                  <span class="cview__month-next" id="calendar-month-next">Jun</span>
+                </div>
+                <div class="cview__header">Sun</div>
+                <div class="cview__header">Mon</div>
+                <div class="cview__header">Tue</div>
+                <div class="cview__header">Wed</div>
+                <div class="cview__header">Thu</div>
+                <div class="cview__header">Fri</div>
+                <div class="cview__header">Sat</div>
+                <div class="calendar--view" id="dates">
+                </div>
               </div>
-              <div class="day-inspiration-quote" id="inspirational-quote">
-                Every child is an artist.  The problem is how to remain an artist once he grows up. –Pablo Picasso
+              <div class="footer">
+                <span><span id="footer-date" class="footer__link">Today is May 30</span></span>
               </div>
             </div>
-          </div>
-          <div class="calendar--view" id="calendar-view">
-            <div class="cview__month">
-              <span class="cview__month-last" id="calendar-month-last">Apr</span>
-              <span class="cview__month-current" id="calendar-month">May</span>
-              <span class="cview__month-next" id="calendar-month-next">Jun</span>
-            </div>
-            <div class="cview__header">Sun</div>
-            <div class="cview__header">Mon</div>
-            <div class="cview__header">Tue</div>
-            <div class="cview__header">Wed</div>
-            <div class="cview__header">Thu</div>
-            <div class="cview__header">Fri</div>
-            <div class="cview__header">Sat</div>
-            <div class="calendar--view" id="dates">
-            </div>
-          </div>
-          <div class="footer">
-            <span><span id="footer-date" class="footer__link">Today is May 30</span></span>
           </div>
         </div>
       </div>
-      <div class="col-xs-6">
-        sidebar
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <h4><strong><%= t('tours_view_show_strong_four') %></strong></h4>
-        <code><%= @availability_json.inspect %></code>
-        <p><%= raw @product_json["product"]["description"] %></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <%= render partial: 'layouts/organizer_card', locals: {organizer: @tour.organizer} %>
-      </div>
-
       <div class="col-xs-12 col-md-6">
         <div class="card">
           <div class="card-header">
             <h5 class="spaced-smallest"><i class="fa fa-info-circle"></i> <strong><%= t('tours_view_show_strong_three') %></strong></h5>
           </div>
-
           <div class="card-block">
             <ul class="list-unstyled tour-info">
               <li>
@@ -199,7 +196,21 @@
         </div>
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <%= render partial: 'layouts/organizer_card', locals: {organizer: @tour.organizer} %>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="spaced-smallest"><i class="fa fa-suitcase"></i> <strong><%= t('tours_view_show_strong_four') %></strong></h5>
+          </div>
+          <div class="card-block">
+            <p><%= raw @product_json["product"]["description"] %></p>
+          </div>
+        </div>
+      </div>
+    </div>
     <% if @product_json["product"]["images"].any? %>
         <div class="row">
           <div class="col-xs-12">
@@ -219,190 +230,5 @@
           </div>
         </div>
     <% end %>
-
-    <% unless @tour.past? %>
-
-        <% if @tour.packages.any? and !@tour.value %>
-            <div class="row">
-              <div class="col-xs-12">
-                <h3 class="spaced-default">
-                  <a name="packages"><%= t('tours_view_show_a_two') %></a>
-                </h3>
-              </div>
-            </div>
-            <% @tour.packages.each_slice(2) do |part| %>
-                <div class="row text-xs-center">
-                  <% part.each do |p| %>
-                      <!-- item -->
-                      <div class="col-md-6">
-                        <div class="card panel-pricing">
-                          <div class="card-header card-info" style="color: white;">
-                            <h3><%= p.name %></h3>
-                          </div>
-                          <div>
-                            <div class="panel-body text-xs-center">
-                              <p><strong><%= raw p.price %></strong></p>
-                            </div>
-                            <div class="card-body text-xs-center" style="margin-top: 10px; margin-bottom: 10px;">
-                              <% if !p.description.nil? and !p.description.empty? %>
-                                  <p><%= raw p.description %></p>
-                              <% end %>
-                            </div>
-                            <% if p.included.any? %>
-                                <ul class="list-group text-xs-center" style="overflow-y: scroll; height: 150px">
-                                  <% p.included.each do |i| %>
-                                      <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
-                                  <% end %>
-                                </ul>
-                            <% end %>
-                          </div>
-                          <div class="card-footer">
-                            <%= link_to t("tours_view_show_link_four",name: p.name), confirm_tour_path(@tour.id, p.name), class: 'btn btn-lg btn-block btn-primary' %>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- /item -->
-                  <% end %>
-                </div>
-            <% end %>
-        <% end %>
-    <% end %>
-    <div class="row">
-      <% if !@tour.take.empty? %>
-          <div class="col-xs-12 col-md-6">
-            <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_five') %></strong></h4>
-            <ul class="list-group spaced-down">
-              <% @tour.take.each do |t| %>
-                  <li class="list-group-item"><i class="fa fa-hand-o-right"></i> <%= t %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-      <% if !@tour.goodtoknow.empty? %>
-          <div class="col-xs-12 col-md-6">
-            <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_six') %></strong></h4>
-            <ul class="list-group spaced-down">
-              <% @tour.goodtoknow.each do |t| %>
-                  <li class="list-group-item"><i class="fa fa-thumbs-o-up"></i> <%= t %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-    </div>
-
-    <div class="row">
-      <% if !@tour.included.empty? %>
-          <div class="col-xs-12 col-md-6">
-            <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_seven') %></strong></h4>
-            <ul class="list-group spaced-down">
-              <% @tour.included.each do |t| %>
-                  <li class="list-group-item"><i class="fa fa-check-circle-o"></i> <%= t %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-      <% if !@tour.nonincluded.empty? %>
-          <div class="col-xs-12 col-md-6">
-            <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_eight') %></strong></h4>
-            <ul class="list-group spaced-down">
-              <% @tour.nonincluded.each do |t| %>
-                  <li class="list-group-item"><i class="fa fa-ban"></i> <%= t %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-    </div>
-
-    <% if !@tour.meetingpoint.nil? %>
-        <div class="row">
-          <div class="col-xs-12">
-            <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_nine') %></strong></h4>
-            <p><%= @tour.meetingpoint %></p>
-          </div>
-        </div>
-    <% end %>
-
-    <div class="row">
-      <div class="col-xs-12">
-        <%= render partial: 'layouts/confirmeds_full', locals: {tour: @tour} %>
-      </div>
-    </div>
   </div><!-- end container -->
-
-  <% @tour.wheres.each do |w| %>
-      <div class="show-map" id="map"></div>
-      <script type="text/javascript">
-          window.addEventListener("turbolinks:load", function () {
-              function initMap() {
-                  var map_element = document.getElementById('map');
-
-                  if(!map_element){
-                      return;
-                  }
-
-                  var map = new google.maps.Map(map_element, {
-                      zoom: 8,
-                      center: {lat: 40.72, lng: -73.96}
-                  });
-
-                  var geocoder = new google.maps.Geocoder;
-                  var infowindow = new google.maps.InfoWindow;
-                  var placeId = "<%= w.place_id %>";
-
-                  <% if w.place_id.blank? %>
-                  var place_object = {location: {lat: <%= w.try(:lat) || '40.72' %>, lng: <%= w.try(:long) || '-73.96' %>}};
-                  <% else %>
-                  var place_object = {placeId: placeId };
-                  <% end %>
-
-                  geocoder.geocode(place_object, function (results, status) {
-                      if (status === 'OK') {
-                          if (results[0]) {
-                              map.setZoom(11);
-                              map.setCenter(results[0].geometry.location);
-
-                              var marker = new google.maps.Marker({
-                                  map: map,
-                                  position: results[0].geometry.location
-                              });
-
-                              infowindow.setContent(results[0].formatted_address);
-                              infowindow.open(map, marker);
-                          } else {
-                              window.alert('No results found');
-                          }
-                      } else {
-                          window.alert('Geocoder failed due to: ' + status);
-                      }
-                  });
-              }
-
-              initMap();
-          });
-      </script>
-  <% end %>
-
-  <% @tour.attractions.each do |attraction| %>
-      <div class="row">
-        <div class="col-xs-12">
-          <h4 class="spaced-smallest"><strong><%= t('tours_view_show_strong_ten') %></strong></h4>
-        </div>
-      </div>
-
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-block">
-            <h4 class="card-title"><%= attraction.name %></h4>
-          </div>
-
-          <img src="<%= attraction.photo %>" alt="Card image" class="img-fluid">
-
-          <div class="card-block">
-            <p class="card-text"><%= attraction.text %></p>
-          </div>
-        </div>
-      </div>
-  <% end %>
 </div>
