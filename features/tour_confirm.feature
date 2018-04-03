@@ -7,7 +7,7 @@ Feature: Confirm a tour by the user
     Given I have a registered tour
     When I go to the homepage
     Then I should see a tour
-    
+
   @javascript
   Scenario: Logged user confirm a tour
     Given I am a registered user
