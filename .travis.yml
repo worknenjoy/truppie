@@ -1,6 +1,7 @@
 before_script:
   - psql -c 'create database truppie_test;' -U postgres
   - bundle exec rake db:migrate
+  - sh -e /etc/init.d/xvfb start
 language: ruby
 rvm:
   - 2.2.3
@@ -9,3 +10,13 @@ services:
 notifications:
   email:
     - laurinha.sette@gmail.com
+
+os: linux
+env: DISPLAY=':99.0'
+dist: trusty
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
