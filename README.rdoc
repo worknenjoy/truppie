@@ -55,19 +55,22 @@ We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/mas
   2. What you would tried to do (action perfomed)
   2. Date and time
   3. Error message (if any)
-  
-== Installing
-
-https://user-images.githubusercontent.com/88840/37486877-1c8dc84a-2890-11e8-8e1f-072cab599a84.jpeg
 
 === Env variables to secure our working
-  
+
     - Postgres 9.4.5
     - When you have the project installed, you can request the development env variables.
 
 === RELEASE NOTES
 
-=== v2.0 (April)
+=== v2.0
+
+ - Better menu indication for guide admin
+ - Better support for turbolinks
+ - Update Rails
+ - Follow organizer
+ - Notify guide when user get interested in past tour
+ - Guidebooks created by a super admin
 
 === v2.0-beta
 
