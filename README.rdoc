@@ -71,6 +71,8 @@ We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/mas
  - Follow organizer
  - Notify guide when user get interested in past tour
  - Guidebooks created by a super admin
+ - Docker container in development (thanks [@lucianojfj](https://github.com/lucianojfj))
+ - Cucumber specs testing a basic user reservation flow
 
 === v2.0-beta
 
