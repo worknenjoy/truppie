@@ -2,8 +2,7 @@ version: '3.5'
 services:
   test:
     command: ["./docker/scripts/wait-for-it.sh", "localhost:5432", "-t", "0", "--", "./docker/scripts/run-test.sh"]
-    env_file: .env
-    working_dir: $WORKDIR
+    working_dir: /truppie
     build: .
     volumes:
       - type: bind
