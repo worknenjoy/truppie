@@ -88,7 +88,8 @@ class OrganizerTest < ActiveSupport::TestCase
      @tour.orders << @order_two
      @tour.save
 
-     assert_equal @tour.organizer.clients, [@order_one.user, @order_two.user]
+     assert_equal @tour.organizer.clients.size, 2
+     assert_equal @tour.organizer.clients[0], @order_one.user
 
    end
    
