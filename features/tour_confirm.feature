@@ -8,6 +8,7 @@ Feature: Confirm a tour by the user
     When I go to the homepage
     Then I should see a tour
 
+  @wip
   @javascript
   Scenario: Logged user confirm a tour
     Given I am a registered user
