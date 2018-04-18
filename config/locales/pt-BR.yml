@@ -974,3 +974,8 @@ Alexandre Magno, desenvolvedor web, nerd assumido, escritor, palestrante, autor 
   welcome_view_privacy_h5_two: Comunicação
   welcome_view_privacy_p_one: Ao se cadastrar na plataforma Truppie, o usuário será solicitado fornecer informações pessoais, tais como nome, e-mail, dentre outros. A Truppie não vende, compartilha ou distribui de qualquer forma estas informações. Na eventualidade de uma situação extraordinária em que este tipo de informação se faça necessária - como por exemplo uma promoção ou campanha publicitária - será solicitada autorização prévia do usuário.
   welcome_view_privacy_p_two: 'A Truppie e/ou  o guia podem entrar em contato por e-mail com o usuário para: confirmar seu endereço de e-mail após cadastro na plataforma; confirmar o pagamento e reserva de um evento; fornecer informações adicionais sobre determinado evento reservado pelo usuário; informar sobre o cancelamento de um evento reservado pelo usuário. <br /> A Truppie não envia e-mails promocionais sem autorização prévia do usuário. Não somos desses que enviam spam, fique tranquilo!'
+
+  active_admin:
+    dashboard: Dashboard
+    pages: Páginas
+    users: Usuários Admin
