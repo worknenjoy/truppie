@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
     cookies.permanent[:my_locale] = l
     redirect_to request.referer || root_url
   end
-  
+
   def index
     @tours = Tour.publisheds
     @next_tour = Tour.recents.first
@@ -16,7 +16,7 @@ class WelcomeController < ApplicationController
     @organizers = Organizer.publisheds.order(created_at: :asc)
     @guidebooks = Guidebook.publisheds
   end
-  
+
   def organizer
     if current_user
       @organizer = Organizer.find_by(user_id: current_user.id)
@@ -33,29 +33,33 @@ class WelcomeController < ApplicationController
   def user
     @backgrounds = Background.all
   end
-  
+
   def logos
-    
+
   end
-  
+
   def manifest
-    
+    locale = params[:locale].to_s
+    @page = AdminPage.where(lang: locale, namespace: 'manifest').first
   end
-  
+
   def how_it_works
-    
+    locale = params[:locale].to_s
+    @page = AdminPage.where(lang: locale, namespace: 'how_it_works').first
   end
-  
+
   def privacy
-    
+    locale = params[:locale].to_s
+    @page = AdminPage.where(lang: locale, namespace: 'privacy').first
   end
-  
+
   def defs
-    
+
   end
-  
+
   def faq
-    
+    locale = params[:locale].to_s
+    @page = AdminPage.where(lang: locale, namespace: 'faq').first
   end
-  
+
 end

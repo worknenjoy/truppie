@@ -944,3 +944,8 @@ en:
   welcome_view_privacy_h5_two: Communication
   welcome_view_privacy_p_one: When signing up at Truppie, the Explorer is asked to provide personal information, such as name, e-mail etc. Truppie doesn't share, sell or distribute these information in any manner. In any extraordinary situation where this type of information is needed, a previous authorization from the user will be requested.
   welcome_view_privacy_p_two: 'Truppie and/or the Guide may contact the Explorer by e-mail for: confirming their e-mail address after signing up in the platform; confirmaing the payment/booking of a tour; providing additional information about a tour booked by the Explorer; informing about the cancellation of a tour booked by the Explorer. <br /> Don''t worry, we don''t send spam!'
+
+  active_admin:
+    dashboard: Dashboard
+    pages: Pages
+    users: Users Admin

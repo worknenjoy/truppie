@@ -386,4 +386,9 @@
   status: 'P'
 }
 
-@tour_beijaflor = Tour.find_by_title('Música, Meditação e Beija-Flor') if Tour.find_by_title('Música, Meditação e Beija-Flor').try(:update,@tour_beijaflor_data) || Tour.create(@tour_beijaflor_data)
+@tour_beijaflor = Tour.find_by_title('Música, Meditação e Beija-Flor') if Tour.find_by_title('Música, Meditação e Beija-Flor').try(:update,@tour_beijaflor_data) || Tour.create(@tour_beijaflor_data) if Rails.env.development?
+
+@user = AdminUser.find_by(email: "admin@truppie.com") if Rails.env.development?
+if @user.nil? && Rails.env.development?
+  AdminUser.create!(email: 'admin@truppie.com', password: '#2018truppieadmin', password_confirmation: '#2018truppieadmin')
+end
