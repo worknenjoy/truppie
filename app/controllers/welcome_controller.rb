@@ -39,17 +39,17 @@ class WelcomeController < ApplicationController
   end
 
   def manifest
-    locale = params[:locale].to_s || 'pt-BR'
+    locale = I18n.locale || params[:locale].to_s
     @page = AdminPage.where(lang: locale, namespace: 'manifest').first
   end
 
   def how_it_works
-    locale = params[:locale].to_s || 'pt-BR'
+    locale = I18n.locale || params[:locale].to_s
     @page = AdminPage.where(lang: locale, namespace: 'how_it_works').first
   end
 
   def privacy
-    locale = params[:locale].to_s || 'pt-BR'
+    locale = I18n.locale || params[:locale].to_s
     @page = AdminPage.where(lang: locale, namespace: 'privacy').first
   end
 
@@ -58,7 +58,7 @@ class WelcomeController < ApplicationController
   end
 
   def faq
-    locale = params[:locale].to_s || 'pt-BR'
+    locale = I18n.locale || params[:locale].to_s
     @page = AdminPage.where(lang: locale, namespace: 'faq').first
   end
 
