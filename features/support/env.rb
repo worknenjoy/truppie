@@ -57,7 +57,13 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  if ENV['DOCKER_SELENIUM_URL'].present?
+    Capybara::Selenium::Driver.new(app,
+      :browser => :chrome,
+      :url => ENV['DOCKER_SELENIUM_URL'])
+  else
+    Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  end
 end
 
 Capybara.javascript_driver = :chrome
