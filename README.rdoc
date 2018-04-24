@@ -37,6 +37,10 @@ https://user-images.githubusercontent.com/88840/37486823-f97abd90-288f-11e8-9300
   2. Requesting a bug fix.
 
 We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/master/CONTRIBUTING.md] to guide you to how contribute with content and code.
+
+== Run tests on docker
+
+`docker-compose -f docker-compose-test-e2e.yml up`
   
 == Advantages
 
