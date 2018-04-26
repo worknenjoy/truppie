@@ -38,10 +38,14 @@ https://user-images.githubusercontent.com/88840/37486823-f97abd90-288f-11e8-9300
 
 We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/master/CONTRIBUTING.md] to guide you to how contribute with content and code.
 
-== Run tests on docker
+== Docker
+==== Run the Rails server for development
+ docker-compose -f docker-compose-dev.yml up
+==== Run the regular tests (unit and integration)
+ docker-compose -f docker-compose-test.yml up
+==== Run the Cucumber tests
+ docker-compose -f docker-compose-test-e2e.yml up
 
-`docker-compose -f docker-compose-test-e2e.yml up`
-  
 == Advantages
 
   As a developer, you can learn with a collaborative platform!
