@@ -1,7 +1,7 @@
 before_script:
   - psql -c 'create database truppie_test;' -U postgres
   - bundle exec rake db:migrate
-  - wget http://chromedriver.storage.googleapis.com/2.27/chromedriver_linux64.zip
+  - wget http://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip
   - unzip chromedriver_linux64.zip
   - sudo apt-get install libnss3
   - sudo apt-get --only-upgrade install google-chrome-stable
