@@ -41,204 +41,214 @@
     </div>
   </div>
 </div>
-<div class="container-mountain">
-  <div class="lbg">
-  </div>
-  <div class="lbg2">
-  </div>
-  <div class="lO">
-  </div>
-  <div class="lC">
-    <h1><%= t('title-organizer-join-truppie') %></h1>
-    <p></p>
-    <h3 style="margin-bottom: 20px;"><%= t('desc-organizer-why-truppie') %></h3>
-
-    <% if user_signed_in? %>
-        <div class="row py-2">
-          <div class="col-sm-3 hidden-md-down">
-            <%= image_tag current_user.image, class: "img-circle", width: "50" %>
+<div class="container container-mountain">
+  <div class="row no-gutters">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <div class="container container-moutain-join-truppie">
+        <div class="row">
+          <div class="lbg">
           </div>
-          <div class="col-sm-9">
-            <small><%= t('logged-as-label') %></small>
-            <p><%= current_user.name %></p>
-            <%= link_to t('logout-label'), destroy_user_session_url, class: "btn btn-primary btn-xs" %>
+          <div class="lbg2">
+          </div>
+          <div class="lO">
+          </div>
+          <div class="lC">
+            <h1><%= t('title-organizer-join-truppie') %></h1>
+            <p></p>
+            <h3 style="margin-bottom: 20px;"><%= t('desc-organizer-why-truppie') %></h3>
+
+            <% if user_signed_in? %>
+                <div class="row py-2">
+                  <div class="col-sm-3 hidden-md-down">
+                    <%= image_tag current_user.image, class: "img-circle", width: "50" %>
+                  </div>
+                  <div class="col-sm-9">
+                    <small><%= t('logged-as-label') %></small>
+                    <p><%= current_user.name %></p>
+                    <%= link_to t('logout-label'), destroy_user_session_url, class: "btn btn-primary btn-xs" %>
+                  </div>
+                </div>
+                <!-- row end -->
+            <% else %>
+                <%= link_to omniauth_authorize_path(:user, 'facebook'), class: 'btn btn-social btn-facebook' do %>
+                    <span class="fa fa-facebook"></span> <%= "Entrar com o #{OmniAuth::Utils.camelize('facebook')}" %>
+                <% end %>
+            <% end %>
+            <div style="position:absolute; bottom: 0; left: 120px;">
+              <div class="progress_state">
+                <div class="dot" id="dot1" style="opacity: 1;"></div>
+                <div class="dot" id="dot2" style="opacity: 0.3;"></div>
+                <div class="dot" id="dot3" style="opacity: 0.3;"></div>
+                <div class="dot" id="dot4" style="opacity: 0.3;"></div>
+                <div class="dot" id="dot5" style="opacity: 0.3;"></div>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- row end -->
-    <% else %>
-        <%= link_to omniauth_authorize_path(:user, 'facebook'), class: 'btn btn-social btn-facebook' do %>
-            <span class="fa fa-facebook"></span> <%= "Entrar com o #{OmniAuth::Utils.camelize('facebook')}" %>
-        <% end %>
-    <% end %>
-    <div style="position:absolute; bottom: 0; left: 120px;">
-      <div class="progress_state">
-        <div class="dot" id="dot1" style="opacity: 1;"></div>
-        <div class="dot" id="dot2" style="opacity: 0.3;"></div>
-        <div class="dot" id="dot3" style="opacity: 0.3;"></div>
-        <div class="dot" id="dot4" style="opacity: 0.3;"></div>
-        <div class="dot" id="dot5" style="opacity: 0.3;"></div>
       </div>
     </div>
-  </div>
-  <%= form_for @new_organizer, role: "form", multipart: true do |f| %>
-    <div class="rightSec" id="first">
-      <ul class="spaced-top">
-        <li>
-          <label>
-            <%= t('label-organizer-name') %>
-          </label>
-          <%= f.text_field :name %>
-          <% if flash[:errors] and flash[:errors].key?('name') %>
-            <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
-            <small class="text-danger"><%= error_message_text(flash[:errors], :name) %></small>
-          <% else%>
-            <span class="required">*</span>
-          <% end %>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <%= form_for @new_organizer, role: "form", multipart: true do |f| %>
+        <div class="rightSec" id="first">
+          <ul class="spaced-top">
+            <li>
+              <label>
+                <%= t('label-organizer-name') %>
+              </label>
+              <%= f.text_field :name %>
+              <% if flash[:errors] and flash[:errors].key?('name') %>
+                <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                <small class="text-danger"><%= error_message_text(flash[:errors], :name) %></small>
+              <% else%>
+                <span class="required">*</span>
+              <% end %>
 
-          <%= f.hidden_field :user_id, value: current_user.try(:id) %>
-          <%= f.hidden_field :welcome, value: true %>
-        </li>
-        <li>
-          <label>
-            <%= t('label-organizer-email') %>
-          </label>
-          <%= f.email_field :email %>
-          <% if flash[:errors] and flash[:errors].key?('email') %>
-              <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
-              <small class="text-danger"><%= error_message_text(flash[:errors], :email) %></small>
-          <% else%>
-              <span class="required">*</span>
+              <%= f.hidden_field :user_id, value: current_user.try(:id) %>
+              <%= f.hidden_field :welcome, value: true %>
+            </li>
+            <li>
+              <label>
+                <%= t('label-organizer-email') %>
+              </label>
+              <%= f.email_field :email %>
+              <% if flash[:errors] and flash[:errors].key?('email') %>
+                  <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                  <small class="text-danger"><%= error_message_text(flash[:errors], :email) %></small>
+              <% else%>
+                  <span class="required">*</span>
+              <% end %>
+            </li>
+            <li>
+              <label>
+                <%= t('label-organizer-website') %>
+              </label>
+              <%= f.text_field :website %>
+              <% if flash[:errors] and flash[:errors].key?('website') %>
+                  <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                  <small class="text-danger"><%= error_message_text(flash[:errors], :website) %></small>
+              <% else%>
+                  <span class="required">*</span>
+              <% end %>
+            </li>
+            <li>
+              <label><%= t('label-organizer-about') %></label>
+              <%= f.text_area :description, rows: 2 %>
+              <% if flash[:errors] and flash[:errors].key?('description') %>
+                  <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                  <small class="text-danger"><%= error_message_text(flash[:errors], :description) %></small>
+              <% else%>
+                  <span class="required">*</span>
+              <% end %>
+            </li>
+          </ul>
+          <div class="nav_link">
+            <a href="#" id="continue" data-turbolinks="false" style="float:right;"><%= t('label-organizer-continue') %></a>
+          </div>
+          <% if flash[:errors].nil? %>
+            <div class="required_fields_message">* <%= t('label-organizer-required-fields-messsage') %></div>
           <% end %>
-        </li>
-        <li>
-          <label>
-            <%= t('label-organizer-website') %>
-          </label>
-          <%= f.text_field :website %>
-          <% if flash[:errors] and flash[:errors].key?('website') %>
-              <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
-              <small class="text-danger"><%= error_message_text(flash[:errors], :website) %></small>
-          <% else%>
-              <span class="required">*</span>
-          <% end %>
-        </li>
-        <li>
-          <label><%= t('label-organizer-about') %></label>
-          <%= f.text_area :description, rows: 2 %>
-          <% if flash[:errors] and flash[:errors].key?('description') %>
-              <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
-              <small class="text-danger"><%= error_message_text(flash[:errors], :description) %></small>
-          <% else%>
-              <span class="required">*</span>
-          <% end %>
-        </li>
-      </ul>
-      <div class="nav_link">
-        <a href="#" id="continue" data-turbolinks="false" style="float:right;"><%= t('label-organizer-continue') %></a>
-      </div>
-      <% if flash[:errors].nil? %>
-        <div class="required_fields_message">* <%= t('label-organizer-required-fields-messsage') %></div>
+        </div>
+
+
+        <!-- Section 2 -->
+
+        <div class="rightSec" id="second" style="display:none">
+          <ul>
+            <li>
+              <label>
+                <%= t('label-organizer-address-city') %>
+              </label>
+              <input type="text" name="search" placeholder="<%= t('place') %>" class="places-input" />
+              <%= f.fields_for :wheres, (Array.new(1, @new_organizer.wheres.build) if @new_organizer.wheres.empty?) do |ff| %>
+                  <%= ff.hidden_field :name %>
+                  <%= ff.hidden_field :lat %>
+                  <%= ff.hidden_field :long %>
+                  <%= ff.hidden_field :city %>
+                  <%= ff.hidden_field :state %>
+                  <%= ff.hidden_field :country %>
+                  <%= ff.hidden_field :postal_code %>
+                  <%= ff.hidden_field :address %>
+                  <%= ff.hidden_field :url %>
+                  <%= ff.hidden_field :google_id %>
+                  <%= ff.hidden_field :place_id %>
+              <% end %>
+              <div id="map"></div>
+            </li>
+          </ul>
+          <div class="nav_link">
+            <a href="#" data-turbolinks="false" id="prev"><%= t('label-organizer-previous') %></a>
+            <a href="#" data-turbolinks="false" id="continue2" style="float:right;"><%= t('label-organizer-continue') %></a>
+          </div>
+        </div>
+
+        <!--- Secont 3 --->
+
+        <div class="rightSec" id="third" style="display:none">
+
+          <ul>
+            <li>
+              <label>
+                <%= t('label-organizer-phone') %>
+              </label>
+              <%= f.text_field :phone %>
+            </li>
+            <li>
+              <label>
+                <%= t('label-organizer-instagram') %>
+              </label>
+              <%= f.text_field :instagram %>
+            </li>
+            <li>
+              <label>
+                <%= t('label-organizer-facebook') %>
+              </label>
+              <%= f.text_field :facebook %>
+            </li>
+            <li>
+              <label>
+                <%= t('label-organizer-twitter') %>
+              </label>
+              <%= f.text_field :twitter %>
+            </li>
+          </ul>
+
+
+          <div class="nav_link">
+            <a href="#" data-turbolinks="false" id="prev2"><%= t('label-organizer-previous') %></a>
+            <a href="#" data-turbolinks="false" id="continue3" style="float:right;"><%= t('label-organizer-continue') %></a>
+          </div>
+        </div>
+
+
+        <!-- Section 4 -->
+
+        <div class="rightSec" id="fourth" style="display:none">
+          <ul>
+            <li>
+              <label>
+                <%= t('label-organizer-picture') %>
+              </label>
+              <%= f.file_field :picture %>
+            </li>
+          </ul>
+          <div class="nav_link">
+            <a href="#" id="prev3"><%= t('label-organizer-previous') %></a>
+            <a href="#" id="continue4" style="float:right;"><%= t('label-organizer-continue') %></a>
+          </div>
+        </div>
+        <div class="rightSec" id="fifth" style="display:none">
+          <div class="ty">
+            <h1><%= t('label-organizer-thanks') %></h1>
+            <h3><%= t('label-organizer-thanks-email') %></h3>
+            <h5><%= t('label-organizer-thanks-moderation') %></h5>
+            <button type="submit" value="submit"><%= t('label-organizer-finish') %></button>
+
+          </div>
+          <div class="nav_link">
+            <a href="#" data-turbolinks="false" id="prev4"><%= t('label-organizer-previous') %></a>
+          </div>
+        </div>
       <% end %>
     </div>
-
-
-    <!-- Section 2 -->
-
-    <div class="rightSec" id="second" style="display:none">
-      <ul>
-        <li>
-          <label>
-            <%= t('label-organizer-address-city') %>
-          </label>
-          <input type="text" name="search" placeholder="<%= t('place') %>" class="places-input" />
-          <%= f.fields_for :wheres, (Array.new(1, @new_organizer.wheres.build) if @new_organizer.wheres.empty?) do |ff| %>
-              <%= ff.hidden_field :name %>
-              <%= ff.hidden_field :lat %>
-              <%= ff.hidden_field :long %>
-              <%= ff.hidden_field :city %>
-              <%= ff.hidden_field :state %>
-              <%= ff.hidden_field :country %>
-              <%= ff.hidden_field :postal_code %>
-              <%= ff.hidden_field :address %>
-              <%= ff.hidden_field :url %>
-              <%= ff.hidden_field :google_id %>
-              <%= ff.hidden_field :place_id %>
-          <% end %>
-          <div id="map"></div>
-        </li>
-      </ul>
-      <div class="nav_link">
-        <a href="#" data-turbolinks="false" id="prev"><%= t('label-organizer-previous') %></a>
-        <a href="#" data-turbolinks="false" id="continue2" style="float:right;"><%= t('label-organizer-continue') %></a>
-      </div>
-    </div>
-
-    <!--- Secont 3 --->
-
-    <div class="rightSec" id="third" style="display:none">
-
-      <ul>
-        <li>
-          <label>
-            <%= t('label-organizer-phone') %>
-          </label>
-          <%= f.text_field :phone %>
-        </li>
-        <li>
-          <label>
-            <%= t('label-organizer-instagram') %>
-          </label>
-          <%= f.text_field :instagram %>
-        </li>
-        <li>
-          <label>
-            <%= t('label-organizer-facebook') %>
-          </label>
-          <%= f.text_field :facebook %>
-        </li>
-        <li>
-          <label>
-            <%= t('label-organizer-twitter') %>
-          </label>
-          <%= f.text_field :twitter %>
-        </li>
-      </ul>
-
-
-      <div class="nav_link">
-        <a href="#" data-turbolinks="false" id="prev2"><%= t('label-organizer-previous') %></a>
-        <a href="#" data-turbolinks="false" id="continue3" style="float:right;"><%= t('label-organizer-continue') %></a>
-      </div>
-    </div>
-
-
-    <!-- Section 4 -->
-
-    <div class="rightSec" id="fourth" style="display:none">
-      <ul>
-        <li>
-          <label>
-            <%= t('label-organizer-picture') %>
-          </label>
-          <%= f.file_field :picture %>
-        </li>
-      </ul>
-      <div class="nav_link">
-        <a href="#" id="prev3"><%= t('label-organizer-previous') %></a>
-        <a href="#" id="continue4" style="float:right;"><%= t('label-organizer-continue') %></a>
-      </div>
-    </div>
-    <div class="rightSec" id="fifth" style="display:none">
-      <div class="ty">
-        <h1><%= t('label-organizer-thanks') %></h1>
-        <h3><%= t('label-organizer-thanks-email') %></h3>
-        <h5><%= t('label-organizer-thanks-moderation') %></h5>
-        <button type="submit" value="submit"><%= t('label-organizer-finish') %></button>
-
-      </div>
-      <div class="nav_link">
-        <a href="#" data-turbolinks="false" id="prev4"><%= t('label-organizer-previous') %></a>
-      </div>
-    </div>
-  <% end %>
+  </div>
 </div>
