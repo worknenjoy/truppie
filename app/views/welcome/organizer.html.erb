@@ -43,7 +43,7 @@
 </div>
 <div class="container container-mountain">
   <div class="row no-gutters">
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="col-12 col-sm-6">
       <div class="container container-moutain-join-truppie">
         <div class="row">
           <div class="lbg">
@@ -74,7 +74,7 @@
                     <span class="fa fa-facebook"></span> <%= "Entrar com o #{OmniAuth::Utils.camelize('facebook')}" %>
                 <% end %>
             <% end %>
-            <div style="position:absolute; bottom: 0; left: 120px;">
+            <div class="progress-state-container" style="position:absolute; bottom: 0; left: 120px;">
               <div class="progress_state">
                 <div class="dot" id="dot1" style="opacity: 1;"></div>
                 <div class="dot" id="dot2" style="opacity: 0.3;"></div>
@@ -87,7 +87,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+    <div class="col-12 col-sm-6">
       <%= form_for @new_organizer, role: "form", multipart: true do |f| %>
         <div class="rightSec" id="first">
           <ul class="spaced-top">

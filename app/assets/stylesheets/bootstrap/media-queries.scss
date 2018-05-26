@@ -197,16 +197,34 @@
           bottom: 5%;
         }
       }
+      .container-mountain {
+        margin: 0 !important;
+        .lC {
+          text-align: center;
+        }
+        .progress-state-container {
+          width: 100%;
+          left: 0 !important;
+        }
+        .spaced-top {
+          width: 100%;
+        }
+      }
     }
   }
 }
 
 @include media-breakpoint-down(md) {
   html body {
-      .card-floating {
-        position: static;
-        width: 100%;
+    .card-floating {
+      position: static;
+      width: 100%;
+    }
+    .container-mountain {
+      .lC {
+        padding: 15% !important;
       }
+    }
   }
 }
 
