@@ -224,6 +224,12 @@
       .lC {
         padding: 15% !important;
       }
+      form#new_organizer {
+        #organizer_description {
+          max-width: 95%;
+          min-width: 95%;
+        }
+      }
     }
   }
 }
