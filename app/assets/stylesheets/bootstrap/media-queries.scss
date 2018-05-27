@@ -11,6 +11,7 @@
 @include media-breakpoint-down(sm) {
   html {
     body {
+      overflow-y: auto !important;
       &.no-scroll {
         overflow: hidden;
       }
