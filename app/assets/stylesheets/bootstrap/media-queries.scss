@@ -1,4 +1,13 @@
 
+@include media-breakpoint-down(xs) {
+  .container-mountain {
+    .lbg {
+      background-size: 235% !important;
+      min-width: 0px !important;
+    }
+  }
+}
+
 @include media-breakpoint-down(sm) {
   html {
     body {
@@ -208,6 +217,12 @@
         }
         .spaced-top {
           width: 100%;
+        }
+        .lbg {
+          min-width: 375px;
+        }
+        form {
+          padding: 0;
         }
       }
     }
