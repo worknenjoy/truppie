@@ -11,8 +11,6 @@ The trupe hippie chic exploring adventures platform: https://www.truppie.com
   Here you will know how to contribute to this project.
   
 == What is Truppie?
-
-https://user-images.githubusercontent.com/88840/36508633-8296cf72-175d-11e8-84ae-76370a19ec73.png
   
   Truppie is a platform that connects tour guides with explorers, nature-lovers.
   
