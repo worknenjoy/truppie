@@ -1,14 +1,12 @@
-Given("I have a registered organizer") do
-  #email = 'testing@man.net'
-  #password = 'secretpass'
-  #organizer = Organizer.new(:email => email, :password => password, :password_confirmation => password).save!
-  #Organizer.find(params[:id])
-  Organizer.new(email: 'teste1@teste.com', name: 'Teste Guia')
-  #visit '/users/sign_in'
-  #fill_in "user_email", :with => email
-  #fill_in "user_password", :with => password
-  #click_button "Log in"
-  #expect(page).to have_content("Morro dois irmaos")
+Given(/^I have a registered organizer$/) do
+  email = 'teste@teste.com'
+  password = 'teste'
+  user = User.new(:email => email, :password => password, :password_confirmation => password).save!
+  visit '/users/sign_in'
+  fill_in "user_email", :with => email
+  fill_in "user_password", :with => password
+  click_button "Log in"
+  expect(page).to have_content("Morro dois irmaos")
 end
 
 
@@ -41,5 +39,5 @@ Then(/^I see the guide profile page$/) do
 end
 
 Then(/^I should see an organizer$/) do
-  expect(page).to have_content("Meu perfil")
+  expect(page).to have_content("Minhas truppies")
 end
