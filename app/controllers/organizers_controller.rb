@@ -1,6 +1,6 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :guidebooks, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
   before_action :authenticate_user!, :except => [:show, :index]
   before_filter :check_if_organizer_admin, only: [:update, :manage, :transfer, :transfer_funds, :tos_acceptance, :tos_acceptance_confirm, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
   before_filter :check_if_super_admin, only: [:new, :edit, :invite, :send_invite]
@@ -75,6 +75,19 @@ class OrganizersController < ApplicationController
 
   def guided_tour
     @guided_tour = @organizer.tours.new
+    @opened = flash[:opened] || false
+    @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
+  end
+
+  def edit_guidebook
+    @guided_tour = Guidebook.find(params[:guidebook])
+    @organizer = Organizer.find(params[:id])
+    @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
+    @current_category_name = Category.find(@guided_tour.category_id).name rescue nil
+  end
+
+  def guidebooks
+    @guided_tour = @organizer.guidebooks.new
     @opened = flash[:opened] || false
     @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
   end
