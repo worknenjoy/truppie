@@ -22,7 +22,7 @@ class WizardStepsPresenter < BasePresenter
   # Wizard instance generator
   def self.steps(organizer)
     wizard_instance = new(organizer.verified?, personal_account_verified(organizer),
-      organizer.marketplace.try(:bank_account_verified), organizer.tours.any?)
+      organizer.marketplace.try(:bank_account_verified), organizer.tours.any? || organizer.guidebooks.any?)
     wizard_instance.completely_verified?? '' : yield(wizard_instance)
   end
 
