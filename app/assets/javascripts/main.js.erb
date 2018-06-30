@@ -372,8 +372,8 @@ $(document).on("turbolinks:load", function() {
   });
 
   $(".publish-truppie").on('click', function(){
-      $('.tour-status').val('P');
-      $('#new_tour, .edit_tour').trigger('submit');
+      $('.tour-status, .guidebook-status').val('P');
+      $('#new_tour, .edit_tour, #new_guidebook, .edit_guidebook').trigger('submit');
       return false;
   });
 
@@ -516,9 +516,9 @@ $(document).on("turbolinks:load", function() {
             placeholder: 'descreva seu evento...',
             theme: 'snow'  // or 'bubble'
         });
-        quill.container.firstChild.innerHTML = $('#tour_description').val();
+        quill.container.firstChild.innerHTML = $('#tour_description, #guidebook_description').val();
         quill.on('editor-change', function(eventName, args) {
-            $('#tour_description').val(quill.container.firstChild.innerHTML);
+            $('#tour_description, #guidebook_description').val(quill.container.firstChild.innerHTML);
         });
     }
 

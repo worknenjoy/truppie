@@ -75,11 +75,13 @@ Rails.application.routes.draw do
       get 'account_status', to: 'organizers#account_status', as: 'account_status'
       get 'confirm_account', to: 'organizers#confirm_account', as: 'confirm_account'
       get 'guided_tour', to: 'organizers#guided_tour', as: 'guided_tour'
+      get 'guidebooks', to: 'organizers#guidebooks', as: 'guidebooks'
       get 'schedule', to: 'organizers#schedule', as: 'schedule'
       get 'clients', to: 'organizers#clients', as: 'clients'
       get 'external_events', to: 'organizers#external_events', as: 'external_events'
       post 'import_events', to: 'organizers#import_events', as: 'import_events'
       get 'edit_guided_tour/(:tour)', to: 'organizers#edit_guided_tour', as: 'edit_guided_tour'
+      get 'edit_guidebook/(:guidebook)', to: 'organizers#edit_guidebook', as: 'edit_guidebook'
     end
   end
 
@@ -97,6 +99,7 @@ Rails.application.routes.draw do
   resources :guidebooks do
     member do
       get 'confirm/(:packagename)', to: 'guidebooks#confirm', as: 'confirm'
+      get 'copy_guidebook', to: 'guidebooks#copy_guidebook', as: 'copy_guidebook'
       post 'confirm_presence'
       get 'confirm_presence_alt'
       post 'unconfirm_presence'

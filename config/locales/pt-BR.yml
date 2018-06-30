@@ -1,7 +1,5 @@
 ---
 pt-BR:
-  track_loading_message: Carregando
-  where-to-go-title: Onde você gostaria de ir?
   account-label: Minha conta
   account-missing-legal-entity:
     verification:
@@ -12,11 +10,18 @@ pt-BR:
   account-not-verified-label: Não verificada
   account-verified-label: Verificada
   active-label: ativa
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      call_to_action: Ir para o dashboard
+      welcome: Bem vindo
+    pages: Páginas
+    users: Usuários Admin
   activerecord:
     attributes:
       organizer:
-        where.name: localização
         mail_notification: Notificar por e-mail?
+        where.name: localização
       where:
         name: localização
     errors:
@@ -30,6 +35,8 @@ pt-BR:
           where:
             name: localização
         where:
+          attributes:
+            name: Name
           name: localização
       wheres:
         name: localização
@@ -102,6 +109,12 @@ pt-BR:
   contact-main-menu: Entre em contato
   contact-title: Contato
   contact-us-action-step: Entre em contato com a gente informando que deseja ser guia
+  contact_organizer_message_label_body: Mensagem
+  contact_organizer_message_label_name: Nome
+  contact_organizer_message_modal_submit: Enviar
+  contact_organizer_message_modal_title: Mensagem
+  contact_organizer_message_placeholder_body: Sua mensagem
+  contact_organizer_message_placeholder_name: Seu nome
   contacts_controller_error: Faltou preencher o email e/ou a mensagem
   contacts_controller_error_two: Não foi possível enviar o seu e-mail. Tente novamente
   contacts_controller_succes: Sua mensagem foi enviada com sucesso, entraremos em contato em breve
@@ -132,7 +145,7 @@ pt-BR:
     - Sex
     - Sáb
     abbr_month_names:
-    -
+    - 
     - Jan
     - Fev
     - Mar
@@ -166,7 +179,7 @@ pt-BR:
       long: "%d de %B de %Y"
       short: "%d de %B"
     month_names:
-    -
+    - 
     - Janeiro
     - Fevereiro
     - Março
@@ -236,6 +249,7 @@ pt-BR:
       accepted: deve ser aceito
       blank: não pode ficar em branco
       confirmation: não é igual a %{attribute}
+      email_not_found: E-mail não encontrado
       empty: não pode ficar vazio
       equal_to: deve ser igual a %{count}
       even: deve ser par
@@ -268,7 +282,6 @@ pt-BR:
       header:
         one: 'Não foi possível gravar %{model}: 1 erro'
         other: 'Não foi possível gravar %{model}: %{count} erros'
-  nomad-main-menu: Trabalhe conosco
   event-add-image: Adicionar imagem
   event-call-end: Fim
   event-call-start: Início
@@ -281,6 +294,7 @@ pt-BR:
   event-remove-image-upload: remover imagem enviada
   event-title: Título da truppie
   events-next: Próximas truppies
+  explore-tagline: Procure por lugares e veja se tem truppies por lá!
   facebook-login: entrar com o facebook
   faq-link-label: Respostas a perguntas frequentes
   first-caption: CONECTE-SE À NATUREZA
@@ -310,9 +324,13 @@ pt-BR:
   guidebook-link-new: New
   guidebook-reservation-action: Obter
   guidebooks-confirm-presence-message: A sua compra deste roteiro foi confirmada!
+  guidebooks-name: Roteiros personalizados
+  guidebooks-title: Seus roteiros já criados
+  guidebooks_controller_copy_error: Não foi possível copiar seu roteiro
+  guidebooks_controller_copy_success: Seu roteiro foi copiado com sucesso!
   guidebooks_view_index_h3: Roterios
-  guides-main-menu: "Gerenciar negócio"
-  guides-main-create: "Cadastrar negócio"
+  guides-main-create: Cadastrar negócio
+  guides-main-menu: Gerenciar negócio
   guides_partial_a_one: " Site"
   guides_partial_a_two: " Enviar um e-mail"
   guides_partial_h3_one: Guias
@@ -349,7 +367,7 @@ pt-BR:
       update: Atualizar %{model}
   hey: Hey!
   how-it-works-link: Entenda melhor a Truppie
-  how-it-works-main-menu: "Explorar no mapa"
+  how-it-works-main-menu: Explorar no mapa
   how-it-works-title: Como funciona?
   import-event-action: Importar eventos
   import-event-desc: Escolha os eventos do facebook que deseja importar para a Truppie
@@ -359,6 +377,7 @@ pt-BR:
   import-event-notice-success: Os eventos foram importados com sucesso
   import-from-facebook-title: Importar evento do facebook
   incomplete_label: incompleto
+  intro-location-label: Diga um lugar, cidade, endereço ou país
   label-organizer-about: Fale um pouco de você e do seu negócio
   label-organizer-address-city: Cidade
   label-organizer-continue: Continuar
@@ -368,14 +387,14 @@ pt-BR:
   label-organizer-instagram: Instagram
   label-organizer-name: Nome do seu negócio
   label-organizer-phone: Telefone
-  label-organizer-picture: "Foto (se tiver um logo, melhor ainda!) :)"
+  label-organizer-picture: Foto (se tiver um logo, melhor ainda!) :)
   label-organizer-previous: Anterior
+  label-organizer-required-fields-messsage: campos obrigatórios
   label-organizer-thanks: Aee! \o/
   label-organizer-thanks-email: Obrigado por se cadastrar como nosso guia-parceiro! :D
   label-organizer-thanks-moderation: Finalize sua inscrição e comece a gerenciar suas reservas e pagamentos pela Truppie.
   label-organizer-twitter: Twitter
   label-organizer-website: Website
-  label-organizer-required-fields-messsage: campos obrigatórios
   lang-brazil: Português (BR)
   lang-eua: English
   laura-feature: Bióloga, blogueira, empreendedora criativa
@@ -389,13 +408,20 @@ pt-BR:
   mail-invite-guide-action-message: Criar sua conta
   mail-invite-guide-call-message: Clicando no botão abaixo você criará uma conta associada ao seu perfil
   mail-invite-guide-header-message: Você foi convidado para entrar na Truppie
+  mail-organizer-interest-body: Ele gostaria de realizar esta atividade que já passou. Você pode entrar em contato com ele para informá-lo dos próximos e saber se ele tem interesse em outra atividade que você oferece similar.
+  mail-organizer-interest-title: Alguem mostrou interesse em uma truppie já realizada!
+  mail-organizer-interest-who: O usuário %{username} (%{useremail}) mostrou interesse na truppie %{tourname}  \o/
+  mail-organizer-new-follower-body: Agora ele ficará sabendo quando você criar uma nova atividade e tiver qualquer nova atualização!
+  mail-organizer-new-follower-title: Você tem um novo seguidor!
+  mail-organizer-new-follower-who: O usuário %{username} (%{useremail}) começou a te seguir \o/
+  mail-organizer-notify-followers-title: Uma nova truppie foi criada para um guia que você está seguindo!
+  mail-organizer-profile-share-title: Divulgue seu perfil
   mail-organizer-see-profile: Ver perfil
   mail-organizer-see-tour: Saber mais
   mail-organizer-share-description: Nós também te ajudamos divulgando ele na nossa página do Facebook, onde há aventureiros nos seguindo!
   mail-organizer-share-intro: Compartilhe seu perfil com sua rede de contatos
   mail-organizer-share-more-description: Quem sabe eles também se interessem pela sua aventura!
   mail-organizer-share-title: Divulgue seu evento
-  mail-organizer-profile-share-title: Divulgue seu perfil
   mail-verify-account-description: Verificando sua conta você poderá realizar transferências
   mail-verify-account-intro: Verifique sua conta na truppie e comece a divulgar seus eventos!
   mail-verify-account-link: Verificar conta
@@ -403,15 +429,7 @@ pt-BR:
   mail-welcome-account-created-message: Agora você tem uma conta de guia para criar seus passeios
   mail-welcome-account-created-message-update: Seus dados foram atualizados na truppie
   mail-welcome-account-title: Sua conta como guia foi criada
-  mail-organizer-new-follower-title: Você tem um novo seguidor!
-  mail-organizer-interest-title: Alguem mostrou interesse em uma truppie já realizada!
   mail-welcome-account-title-update: Sua conta foi atualizada!
-  mail-organizer-notify-followers-title: Uma nova truppie foi criada para um guia que você está seguindo!
-  starts-in: Começa
-  mail-organizer-new-follower-who: O usuário %{username} (%{useremail}) começou a te seguir \o/
-  mail-organizer-new-follower-body: Agora ele ficará sabendo quando você criar uma nova atividade e tiver qualquer nova atualização!
-  mail-organizer-interest-who: O usuário %{username} (%{useremail}) mostrou interesse na truppie %{tourname}  \o/
-  mail-organizer-interest-body: Ele gostaria de realizar esta atividade que já passou. Você pode entrar em contato com ele para informá-lo dos próximos e saber se ele tem interesse em outra atividade que você oferece similar.
   manage-truppie-action: gerenciar
   manifesto-link-label: Em que acreditamos?
   marketplace-city-placeholder: 'ex: São Paulo'
@@ -464,6 +482,7 @@ pt-BR:
   navbar_partial_link_two: Minhas truppies
   new-bank-account-title: Nova conta para pagamento
   new-event-cancel: Cancelar
+  new-guidebook-label: Roteiros
   new-guided-tour-label: Criar nova truppie
   new-tour-label: Minhas truppies
   newsletter-text: Deixe seu e-mail para saber das novidades
@@ -475,13 +494,12 @@ pt-BR:
   no-places-action: Adicionar uma experiência deste local
   no-places-text: Este lugar não tem nenhum passeio cadastrado
   no-places-title: Não há truppies para este lugar
+  no-price-defined-message: O valor desta reserva é livre
   no-terms: não há termos
   no-transfer-possible: Não é possível realizar transferência sem uma conta verificada
   no-verified-label: Não verificado
+  nomad-main-menu: Trabalhe conosco
   not_verified_label: Não verificado
-  where-to-go-text: quero ir!
-  intro-location-label: Diga um lugar, cidade, endereço ou país
-  explore-tagline: Procure por lugares e veja se tem truppies por lá!
   number:
     currency:
       format:
@@ -562,11 +580,14 @@ pt-BR:
   organizer-clients-label: Clientes
   organizer-create-issue-message: Tivemos algum problema para criar seu cadastro. Verifique seus dados novamente
   organizer-create-success: Sua conta como guia foi criada com sucesso
-  organizer-dashboard-desc: "Você já configurou a sua conta (dados pessoais e bancários) para poder receber os pagamentos? Com a sua conta verificada, você pode começar a criar as suas truppies (seus passeios) e movimentar o seu negócio :)"
+  organizer-dashboard-desc: Para quem organiza tour guiado com datas definidas e geralmente em grupo
+  organizer-dashboard-guidebook-desc: Para quem produz roteiros personalizados, planos de viagem e consultoria
   organizer-desc-label: breve descrição do seu negócio
   organizer-email-label: E-mail do seu negócio
   organizer-external-refs-legend: Seus contatos
   organizer-facebook-label: endereço do facebook do seu negócio
+  organizer-guidebooks-side-menu-label: Roteiros
+  organizer-guided_tour-side-menu-label: Tour guiados
   organizer-instagram-label: endereço do instagram do seu negócio
   organizer-interest-submit-action: Quero saber mais!
   organizer-interested-text: Deixe seu e-mail que entraremos em contato para ajudá-lo
@@ -574,11 +595,11 @@ pt-BR:
   organizer-missing-account-info-solve: Fornecer dados para cadastro da conta
   organizer-missing-data-title: Dados incorretos ou incompletos para verificar sua conta
   organizer-name-label: nome do seu negócio
+  organizer-new-guidebook: Criar roteiro personalizado
   organizer-new-package: Criar pacotes
-  organizer-new-tour: Criar uma truppie agora!
-  organizer-panel-welcome: Este é o seu painel de controle dentro da Truppie.
+  organizer-new-tour: Criar um tour guiado
+  organizer-panel-welcome: Escolhe o tipo de atividade que você irá oferecer para seus clientes
   organizer-percent-label: Taxa (%)
-  no-price-defined-message: O valor desta reserva é livre
   organizer-phone-label: telefone para contato do seu negócio
   organizer-profile-account: Minha conta
   organizer-profile-account-action: Editar minha conta pessoal
@@ -588,10 +609,10 @@ pt-BR:
   organizer-profile-edit: Perfil
   organizer-profile-edit-desc: Você pode enviar uma foto do seu logo ou marca, ou uma foto sua para aparecer na página do seu perfil e ficar associada a seus passeios e para contato de interessados em saber mais sobre a atividade que você oferece.
   organizer-profile-intro: Meu perfil de guia
+  organizer-profile-share-desc: Aqui você pode interagir com ele enviando uma mensagem diretamente, acessar seu site e perfis nas redes sociais e segui-lo, e com isso ficar sabendo quando ele tiver uma nova atividade.
+  organizer-profile-share-intro: Bem vindo ao perfil do guia!
   organizer-profile-verify-action: verificar
   organizer-profile-welcome-account-edit-title: Aqui você pode atualizar os dados do seu perfil que aparece no site com seus passeios, e para que outros aventureiros possam te encontrar com facilidade.
-  organizer-profile-share-intro: Bem vindo ao perfil do guia!
-  organizer-profile-share-desc: Aqui você pode interagir com ele enviando uma mensagem diretamente, acessar seu site e perfis nas redes sociais e segui-lo, e com isso ficar sabendo quando ele tiver uma nova atividade.
   organizer-tours-label: Truppies
   organizer-twitter-label: endereço do twitter do seu negócio
   organizer-update-error: erro ao atualizar sua conta
@@ -602,25 +623,15 @@ pt-BR:
   organizer_views_show_follow: Seguir
   organizer_views_show_following: Deixar de Seguir
   organizer_views_show_send_message: Enviar Mensagem
-  contact_organizer_message_modal_title: Mensagem
-  contact_organizer_message_label_name: Nome
-  contact_organizer_message_placeholder_name: Seu nome
-  contact_organizer_message_label_body: Mensagem
-  contact_organizer_message_placeholder_body: Sua mensagem
-  contact_organizer_message_modal_submit: Enviar
-  wizard_steps_intro: Processo de cadastro
-  wizard_steps_profile: Perfil
-  wizard_steps_personal_account: Conta Pessoal
-  wizard_steps_bank_details: Dados Bancários
-  wizard_steps_create_truppie: Criar Truppie
-  wizard_steps_trigger_hide_text: Verificar mais tarde
-  wizard_steps_trigger_show_text: Verificar agora
   packages-description-label: Descrição do pacote
   panel-label: Truppies
   payment_type_partial_div_one: Modo de pagamento
   payment_type_partial_div_three: Boleto Bancário
   payment_type_partial_div_two: Cartão de Crédito
   place: Onde você está baseado?
+  places-experiences-label: Lugares
+  places-guidebooks-label: Roteiros
+  places-information-label: Info
   privacy-label: Termos de privacidade
   privacy-link: Privacidade
   profile-access: Acessar seu perfil
@@ -641,12 +652,11 @@ pt-BR:
   shoes-heading: Explore lugares
   shoes-text: Busque por lugares e encontre serviços
   side-note-edit-bar-message: Divulgue este link na divulgação do evento para que seu usuário possa reservar online
+  starts-in: Começa
   status_danger: danger
   status_success: success
   submit-external-payment: Parcelar no cartão de crédito
   subscribe_partial_small: Fique tranquilo, nós não enviamos spam
-  guidebooks-name: Roteiros personalizados
-  tours-title: Atividades
   support:
     array:
       last_word_connector: " e "
@@ -666,9 +676,11 @@ pt-BR:
     pm: ''
   title-introducing-accounts: Este é o seu perfil de guia registrado na Truppie
   title-organizer-join-truppie: Entre para a Truppie!
-  tour-category-label: E aí, qual é a dessa truppie?
+  tour-category-label: Categoria
   tour-edit-bar-message: Você está visualizando a truppie que você criou e pode gerenciá-la a qualquer momento.
   tour-edit-label: Editar truppie
+  tours-title: Atividades
+  tours-title-places-label: Guias
   tours_controller_confirm_headline_msg: Sua presença foi confirmada para a truppie
   tours_controller_confirm_headline_msg_two: Evento confirmado com sucesso
   tours_controller_confirm_status_msg: Obrigado por se inscrever neste evento
@@ -681,6 +693,8 @@ pt-BR:
   tours_controller_destroy_notice_fail: Não foi possível apagar a truppie
   tours_controller_errors_one: Hey, você já está confirmado neste evento, não é necessário reservar novamente!!
   tours_controller_headline_msg: Não foi possível confirmar sua reserva
+  tours_controller_interest_error: Não foi possível registrar seu interesse. Tente novamente
+  tours_controller_interest_succes: Seu interesse foi encaminhado para o Organizador
   tours_controller_mailer_notify_one: O usuário %{name} do email %{email} tentou o retorno foi %{inspect}
   tours_controller_mailer_notify_three: O usuário %{name} do email %{email} tentou efetuar o pagamento sem fornecer as informações
   tours_controller_mailer_notify_two: O usuário %{name} do email %{email} tentou efetuar o pagamento e houve um error %{inspect}
@@ -695,8 +709,6 @@ pt-BR:
   tours_controller_unconfirm_error: Houve um problema para confirmar sua desistência neste evento
   tours_controller_unconfirm_success: Você não está mais confirmardo neste evento
   tours_controller_update_notice: Truppie atualizada com sucesso
-  tours_controller_interest_error: Não foi possível registrar seu interesse. Tente novamente
-  tours_controller_interest_succes: Seu interesse foi encaminhado para o Organizador
   tours_send_picture: Enviar foto
   tours_view_confirm_h4_five: 'Total:'
   tours_view_confirm_h4_four: Dados para pagamento
@@ -719,7 +731,7 @@ pt-BR:
   tours_view_confirm_label_two: Data de nascimento
   tours_view_confirm_li_one: " Início"
   tours_view_confirm_li_two: Confirmação
-  tours_view_confirm_p_one: "Confira aqui os detalhes para ter certeza de que está tudo certinho:"
+  tours_view_confirm_p_one: 'Confira aqui os detalhes para ter certeza de que está tudo certinho:'
   tours_view_confirm_placeholder_four: Ano (dois dígitos)
   tours_view_confirm_placeholder_one: Mesmo do cartão de crédito
   tours_view_confirm_placeholder_three: Mês (dois dígitos)
@@ -814,6 +826,7 @@ pt-BR:
   tours_view_show_li_three: " pessoas no mínimo"
   tours_view_show_li_two: Não ha mais ticket disponiveis
   tours_view_show_link_four: Eu quero o %{name}
+  tours_view_show_link_interest: Tenho interesse
   tours_view_show_link_one: Reservar
   tours_view_show_link_three: Reservar agora
   tours_view_show_link_two: " Site"
@@ -828,8 +841,8 @@ pt-BR:
   tours_view_show_strong_ten: 'Atrações:'
   tours_view_show_strong_three: 'Informações:'
   tours_view_show_strong_two: 'Guia:'
-  tours_view_show_link_interest: 'Tenho interesse'
   tours_view_value_suggested_by_user: Valor sugerido pelo usuário no momento da reserva
+  track_loading_message: Carregando
   transfer-label: Transferências
   transfer-truppie-action: Transferir
   truppie-adventure-text: Mova seu corpo, oxigene sua mente, saia do óbvio
@@ -871,14 +884,14 @@ pt-BR:
   welcome_view_defs_small: With faded secondary text
   welcome_view_faq_h3: FAQ
   welcome_view_faq_p_eight: Entre em contato diretamente com o guia, e ele aplicará sua política de cancelamento e reembolso. Qualquer dúvida, mande um e-mail para ola@truppie.com.
-  welcome_view_faq_p_eleven: 'Não. Uma vez que você se compromete com um guia, ele está contando com a sua presença para o seu evento. Você não consegue estar em dois lugares ao mesmo tempo, certo? ;)'
+  welcome_view_faq_p_eleven: Não. Uma vez que você se compromete com um guia, ele está contando com a sua presença para o seu evento. Você não consegue estar em dois lugares ao mesmo tempo, certo? ;)
   welcome_view_faq_p_five: A Truppie é a plataforma que guias externos utilizam para criar suas próprias truppies. Os guias são os responsáveis pelas informações fornecidas, confirmações de reserva, pagamento, aviso do número de vaga, cancelamento, etc - tudo feito por meio do site da Truppie. A responsabilidade última pelo evento é do guia organizador.
   welcome_view_faq_p_four: Ainda não. Quem sabe um dia? Por ora, ela é meramente a plataforma que dá todo o suporte necessário para a realização de truppies organizadas por guias externos.
   welcome_view_faq_p_nine: 'O guia organizador é a pessoa que mais sabe sobre sua própria truppie, então recomendamos entrar em contato com eles pelo e-mail ou telefone fornecidos na página do evento em questão. Porém, havendo algum problema, a Truppie está disponível para ajudá-lo também. '
   welcome_view_faq_p_one: Não. Somos uma plataforma que conecta guias (autônomos ou de agências de viagem locais) a pessoas que buscam viagens e outros tipos de experiências.
   welcome_view_faq_p_seven: Na Truppie, você realiza o pagamento diretamente pelo site, com cartão de crédito. Uma vez confirmado o pagamento, a sua vaga já está automaticamente reservada.
   welcome_view_faq_p_six: Em diversos lugares do Brasil! Acesse explore.truppie.com e veja onde oferecemos truppies atualmente.
-  welcome_view_faq_p_ten: 'Se você exerce a atividade de guia turístico ou de aventura profissionalmente, você pode se cadastrar como guia na Truppie.'
+  welcome_view_faq_p_ten: Se você exerce a atividade de guia turístico ou de aventura profissionalmente, você pode se cadastrar como guia na Truppie.
   welcome_view_faq_p_three: Qualquer tipo de aventura/evento/passeio, seja uma trilha para uma cachoeira, um passeio no centro histórico de uma cidade, um roteiro gastronômico ou um acampamento de vários dias no meio do mato. É uma experiência única e engrandecedora na sua vida.
   welcome_view_faq_p_two: Trip + Hippie + Trupe = Truppie. Um novo conceito de filosofia de vida!
   welcome_view_faq_small: Tire suas dúvidas
@@ -913,14 +926,13 @@ pt-BR:
   welcome_view_how_p_fourteen: Após escolher sua truppie, o explorador realiza o pagamento de maneira fácil e segura, com cartão de crédito, pelo próprio site - nada de abrir outra página ou pedir logins extras em sistemas externos. Uma vez confirmado o pagamento, pronto! Sua truppie está reservada!
   welcome_view_how_p_nine: O explorador pode ser eu, você, qualquer pessoa em busca de uma nova aventura! Ele pode navegar pelos perfis dos guias ou pela página de lugares para encontrar o seu passeio (sua truppie) de preferência. Ele solicita reserva e faz o pagamento pelo próprio site.
   welcome_view_how_p_one: Entenda melhor o que é a Truppie e como ela funciona.
-  welcome_view_how_p_seven: "Truppie é um conceito que inventamos. Uma nova filosofia de vida! Trip + Hippie + Trupe = Truppie Na nossa plataforma, o guia oferece passeios/roteiros/tours/experiências - como queira chamar. Nós chamamos de truppies! :) truppie: s.f. qualquer tipo de aventura/evento/passeio, seja uma trilha para uma cachoeira, um passeio no centro histórico de uma cidade, um roteiro gastronômico ou um acampamento de vários dias no meio do mato. É uma experiência única e enriquecedora."
+  welcome_view_how_p_seven: 'Truppie é um conceito que inventamos. Uma nova filosofia de vida! Trip + Hippie + Trupe = Truppie Na nossa plataforma, o guia oferece passeios/roteiros/tours/experiências - como queira chamar. Nós chamamos de truppies! :) truppie: s.f. qualquer tipo de aventura/evento/passeio, seja uma trilha para uma cachoeira, um passeio no centro histórico de uma cidade, um roteiro gastronômico ou um acampamento de vários dias no meio do mato. É uma experiência única e enriquecedora.'
   welcome_view_how_p_seventeen: 'Resumindo: seja você guia ou explorador, a Truppie quer facilitar as coisas pra você, para que mais e mais pessoas possam ter as melhores experiências da suas vidas! :)'
-  welcome_view_how_p_six: "Facilitar a vida de guias de turismo e aventura, e incentivar pessoas a se aventurarem na natureza e mundo afora!"
+  welcome_view_how_p_six: Facilitar a vida de guias de turismo e aventura, e incentivar pessoas a se aventurarem na natureza e mundo afora!
   welcome_view_how_p_sixteen: A Truppie dá espaço aos guias criarem e administrarem seus próprios eventos; são eles eles os responsáveis pelas confirmações de reserva, pagamento, informação do número de vagas e cancelamento. Ainda que a responsabilidade última pelo evento seja do guia organizador, a Truppie ajudará no que for possível a fim de proporcionar a melhor experiência ao explorador.
   welcome_view_how_p_ten: A Truppie é a plataforma que conecta o explorador em busca de sua aventura ao guia que a oferece. O guia cria seus próprios eventos (as truppies) por meio do site, que dá ao explorador todo o suporte, informação e orientação de que precisar para realizar a reserva do seu passeio. E se ele quer dicas e sugestões de acordo com o seu perfil? Nós damos também.
   welcome_view_how_p_thirteen: Havendo dúvidas específicas àquele evento, o explorador pode entrar em contato com o guia. Se a dúvida for mais geral, como sobre várias truppies ou guias, a Truppie está sempre à disposição para atendê-lo.
-  welcome_view_how_p_three: 'Laura Sette, bióloga, viajante inveterada, nerd assumida, aprendiz de marketeira, apaixonada por trilhas e natureza, autora do blog 7 Cantos do Mundo.
-Alexandre Magno, desenvolvedor web, nerd assumido, escritor, palestrante, autor do blog Webpoint. Nós acreditamos que a vida é muito curta para ficarmos sentados no sofá e fazermos sempre as mesmas coisas. Amamos aventuras na natureza, experiências que nos tirem da nossa zona de conforto e nos ensinem mais sobre o mundo e sobre nós mesmos. E, claro, adoramos tecnologia! A vida fica tão mais fácil com ela, não é? Com ela, conseguimos ir mais longe! A Truppie é a junção de nossas duas paixões: aventuras e tecnologia!'
+  welcome_view_how_p_three: 'Laura Sette, bióloga, viajante inveterada, nerd assumida, aprendiz de marketeira, apaixonada por trilhas e natureza, autora do blog 7 Cantos do Mundo. Alexandre Magno, desenvolvedor web, nerd assumido, escritor, palestrante, autor do blog Webpoint. Nós acreditamos que a vida é muito curta para ficarmos sentados no sofá e fazermos sempre as mesmas coisas. Amamos aventuras na natureza, experiências que nos tirem da nossa zona de conforto e nos ensinem mais sobre o mundo e sobre nós mesmos. E, claro, adoramos tecnologia! A vida fica tão mais fácil com ela, não é? Com ela, conseguimos ir mais longe! A Truppie é a junção de nossas duas paixões: aventuras e tecnologia!'
   welcome_view_how_p_twelve: 'As truppies são oferecidas pelos guias cadastrados em nossa plataforma; eles disponibilizam todas as informações necessárias para que o explorador possa reservar o roteiro diretamente pelo site: data, local, duração, valor, pré-requisitos, dificuldade física, equipamentos necessários, número de vagas, dentre outros.'
   welcome_view_how_p_two: A Truppie é um novo marketplace de viagens e aventuras. É uma plataforma que conecta guias de turismo/aventura a aventureiros sedentos por uma nova experiência. Por meio dela, você pode oferecer os seus serviços de forma simples e divertida aos seus clientes!
   welcome_view_index_a_four: Alexandre Magno
@@ -974,8 +986,12 @@ Alexandre Magno, desenvolvedor web, nerd assumido, escritor, palestrante, autor 
   welcome_view_privacy_h5_two: Comunicação
   welcome_view_privacy_p_one: Ao se cadastrar na plataforma Truppie, o usuário será solicitado fornecer informações pessoais, tais como nome, e-mail, dentre outros. A Truppie não vende, compartilha ou distribui de qualquer forma estas informações. Na eventualidade de uma situação extraordinária em que este tipo de informação se faça necessária - como por exemplo uma promoção ou campanha publicitária - será solicitada autorização prévia do usuário.
   welcome_view_privacy_p_two: 'A Truppie e/ou  o guia podem entrar em contato por e-mail com o usuário para: confirmar seu endereço de e-mail após cadastro na plataforma; confirmar o pagamento e reserva de um evento; fornecer informações adicionais sobre determinado evento reservado pelo usuário; informar sobre o cancelamento de um evento reservado pelo usuário. <br /> A Truppie não envia e-mails promocionais sem autorização prévia do usuário. Não somos desses que enviam spam, fique tranquilo!'
-
-  active_admin:
-    dashboard: Dashboard
-    pages: Páginas
-    users: Usuários Admin
+  where-to-go-text: quero ir!
+  where-to-go-title: Onde você gostaria de ir?
+  wizard_steps_bank_details: Dados Bancários
+  wizard_steps_create_truppie: Criar Truppie
+  wizard_steps_intro: Processo de cadastro
+  wizard_steps_personal_account: Conta Pessoal
+  wizard_steps_profile: Perfil
+  wizard_steps_trigger_hide_text: Verificar mais tarde
+  wizard_steps_trigger_show_text: Verificar agora
