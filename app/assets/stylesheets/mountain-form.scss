@@ -52,11 +52,11 @@ body.mountain-form {
 
   .container-mountain {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 20px auto;
     background: white;
-    min-height: 500px;
+    min-height: 600px;
     /*position: relative;*/
-    top: 10%;
+    top: 5%;
     -webkit-box-shadow: 0px 12px 22px 0px rgba(0, 0, 0, 0.26);
     -moz-box-shadow: 0px 12px 22px 0px rgba(0, 0, 0, 0.26);
     box-shadow: 0px 12px 22px 0px rgba(0, 0, 0, 0.26);
@@ -76,7 +76,7 @@ body.mountain-form {
 
     .lbg {
       background: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-275727.jpg);
-      background-size: 200%;
+      background-size: 300%;
       width: 100%;
       float: left;
       animation: moveLeft 60s linear infinite;
@@ -101,7 +101,7 @@ body.mountain-form {
     .lC {
       position: absolute;
       width: 100%;
-      height: 500px;
+      min-height: 600px;
     }
 
     .lC {
@@ -127,7 +127,7 @@ body.mountain-form {
     .lO {
       padding: 25px;
       box-sizing: border-box;
-      height: 500px;
+      min-height: 600px;
     }
 
     .rightSec {
