@@ -28,6 +28,20 @@
        phone: "a phone",
        user_id: users(:alexandre).id
      }
+
+     @organizer_with_user = {
+         name: "Utópicos mundo afora",
+         description: "uma agencia utopica",
+         email: "utopicos@gmail.com",
+         website: "http://website",
+         facebook: "a facebook",
+         twitter: "a twitter",
+         instagram: "a instagram",
+         phone: "a phone",
+         type_of_user: "organizer",
+         password: "1234",
+         password_confirmation: "1234"
+     }
     
      @other_organizer = {
        name: "Utópicos mundo afora",
@@ -69,6 +83,15 @@
    test "should create organizer basic" do
      assert_difference('Organizer.count') do
        post :create, organizer: @organizer
+     end
+     assert_not ActionMailer::Base.deliveries.empty?
+     assert_equal flash[:notice], "Sua conta como guia foi criada com sucesso"
+     assert_redirected_to organizer_path(assigns(:organizer))
+   end
+
+   test "should create organizer with user" do
+     assert_difference('Organizer.count') do
+       post :create, organizer: @organizer_with_user
      end
      assert_not ActionMailer::Base.deliveries.empty?
      assert_equal flash[:notice], "Sua conta como guia foi criada com sucesso"
