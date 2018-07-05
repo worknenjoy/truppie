@@ -47,7 +47,7 @@ module ApplicationHelper
   end
 
   def error_message_text(errors, error_field)
-    if !errors.nil? && errors.key?(error_field.to_s)
+    if !errors.nil? && (errors.key?(error_field.to_s) || errors.key?(error_field))
       raw "#{errors[error_field.to_s][0]}"
     else
       ''

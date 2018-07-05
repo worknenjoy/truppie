@@ -88,7 +88,7 @@
       </div>
     </div>
     <div class="col-12 col-sm-6">
-      <%= form_for @new_organizer, role: "form", multipart: true do |f| %>
+      <%= form_for @new_organizer, role: "form", method: 'POST', multipart: true do |f| %>
         <div class="rightSec" id="first">
           <ul class="spaced-top">
             <li>
@@ -96,34 +96,56 @@
                 <%= t('label-organizer-name') %>
               </label>
               <%= f.text_field :name %>
-              <% if flash[:errors] and flash[:errors].key?('name') %>
+              <% if flash[:errors] and flash[:errors].key?(:name) %>
                 <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
                 <small class="text-danger"><%= error_message_text(flash[:errors], :name) %></small>
               <% else%>
                 <span class="required">*</span>
               <% end %>
-
-              <%= f.hidden_field :user_id, value: current_user.try(:id) %>
-              <%= f.hidden_field :welcome, value: true %>
             </li>
             <li>
               <label>
                 <%= t('label-organizer-email') %>
               </label>
               <%= f.email_field :email %>
-              <% if flash[:errors] and flash[:errors].key?('email') %>
+              <% if flash[:errors] and flash[:errors].key?(:email) %>
                   <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
                   <small class="text-danger"><%= error_message_text(flash[:errors], :email) %></small>
               <% else%>
                   <span class="required">*</span>
               <% end %>
+              <%= f.hidden_field :type_of_user, value: 'organizer' %>
             </li>
+            <% if current_user.try(:id) %>
+                <%= f.hidden_field :user_id, value: current_user.try(:id) %>
+            <% else %>
+            <li>
+              <label>Senha</label>
+              <%= f.password_field :password, autocomplete: "off" %>
+              <% if flash[:errors] and flash[:errors].key?(:password) %>
+                  <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                  <small class="text-danger"><%= error_message_text(flash[:errors], :password) %></small>
+              <% else%>
+                  <span class="required">*</span>
+              <% end %>
+            </li>
+            <li>
+              <label>Confirmar senha</label>
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              <% if flash[:errors] and flash[:errors].key?(:password_confirmation) %>
+                  <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+                  <small class="text-danger"><%= error_message_text(flash[:errors], :password_confirmation) %></small>
+              <% else%>
+                  <span class="required">*</span>
+              <% end %>
+            </li>
+            <% end %>
             <li>
               <label>
                 <%= t('label-organizer-website') %>
               </label>
               <%= f.text_field :website %>
-              <% if flash[:errors] and flash[:errors].key?('website') %>
+              <% if flash[:errors] and flash[:errors].key?(:website) %>
                   <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
                   <small class="text-danger"><%= error_message_text(flash[:errors], :website) %></small>
               <% else%>
@@ -133,7 +155,7 @@
             <li>
               <label><%= t('label-organizer-about') %></label>
               <%= f.text_area :description, rows: 2 %>
-              <% if flash[:errors] and flash[:errors].key?('description') %>
+              <% if flash[:errors] and flash[:errors].key?(:description) %>
                   <span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
                   <small class="text-danger"><%= error_message_text(flash[:errors], :description) %></small>
               <% else%>

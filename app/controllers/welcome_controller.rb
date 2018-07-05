@@ -26,7 +26,9 @@ class WelcomeController < ApplicationController
         @new_organizer = Organizer.new
       end
     else
-      @new_organizer = Organizer.new
+      if !@new_organizer
+        @new_organizer = Organizer.new
+      end
     end
   end
 

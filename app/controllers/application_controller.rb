@@ -12,19 +12,8 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
-  before_filter :store_current_location, :unless => :devise_controller?
+  #before_filter :store_current_location, :unless => :devise_controller?
   before_filter :set_locale
-
-  def store_current_location
-    unless request.format == :js
-      store_location_for(:user, request.url)
-      if request[:organizer] and request[:organizer]["welcome"] == "true" and !current_user
-        session[:organizer_welcome] = true
-        session[:organizer_welcome_params] = request[:organizer]
-        store_location_for(:user, '/organizers/create_from_auth')
-      end
-    end
-  end
 
   def check_if_super_admin
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]

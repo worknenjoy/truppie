@@ -1,7 +1,7 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
   before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :guidebooks, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
-  before_action :authenticate_user!, :except => [:show, :index]
+  before_action :authenticate_user!, :except => [:show, :index, :create]
   before_filter :check_if_organizer_admin, only: [:update, :manage, :transfer, :transfer_funds, :tos_acceptance, :tos_acceptance_confirm, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
   before_filter :check_if_super_admin, only: [:new, :edit, :invite, :send_invite]
 
@@ -111,15 +111,33 @@ class OrganizersController < ApplicationController
   # POST /organizers
   # POST /organizers.json
   def create
-    @organizer = Organizer.new(organizer_params.except!("welcome"))
-    puts 'new organizer'
-    puts @organizer.inspect
+
+    @organizer = Organizer.new(organizer_params.except! 'type_of_user', 'password', 'password_confirmation')
+
+    if !organizer_params[:user_id] && organizer_params[:type_of_user] === 'organizer'
+      sign_up_params = {
+          name: organizer_params[:name],
+          email: organizer_params[:email],
+          password: organizer_params[:password],
+          password_confirmation: organizer_params[:password_confirmation],
+          type_of_user: organizer_params[:type_of_user]
+      }
+
+      temp_user = User.new(sign_up_params)
+      if temp_user.save
+        sign_in temp_user, :bypass => true
+        @organizer.user = temp_user
+      else
+        puts temp_user.errors.inspect
+        flash[:errors] = temp_user.errors
+        redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
+        return
+      end
+    end
 
     respond_to do |format|
       if @organizer.save
         format.html {
-          session.delete(:organizer_welcome_params)
-          session.delete(:organizer_welcome)
           if @organizer.mail_notification
             ContactMailer.notify("Uma nova conta de guia foi criada").deliver_now
             OrganizerMailer.notify(@organizer, "activate").deliver_now
@@ -133,8 +151,6 @@ class OrganizersController < ApplicationController
         format.html {
           flash[:errors] = @organizer.errors
           puts @organizer.errors.inspect
-          session.delete(:organizer_welcome_params)
-          session.delete(:organizer_welcome)
           redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
         }
         format.json { render json: @organizer.errors, status: :unprocessable_entity }
@@ -144,25 +160,20 @@ class OrganizersController < ApplicationController
 
   def create_from_auth
     if session[:organizer_welcome]
-      params = session[:organizer_welcome_params].except!("welcome")
-      params["user_id"] = current_user.id
-      @organizer = Organizer.new(params)
+      session[:organizer_user_id] = current_user.id
 
-      if @organizer.save
-        session.delete(:organizer_welcome_params)
-        session.delete(:organizer_welcome)
+      @organizer = Organizer.find(session[:organizer_id])
+
+
+      if @organizer.update_attributes(user_id: session[:organizer_user_id])
         redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
       else
         flash[:errors] = @organizer.errors
         puts 'errors from organizer'
         puts @organizer.errors
-        session.delete(:organizer_welcome_params)
-        session.delete(:organizer_welcome)
         redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
       end
     else
-      session.delete(:organizer_welcome_params)
-      session.delete(:organizer_welcome)
       redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
     end
   end
