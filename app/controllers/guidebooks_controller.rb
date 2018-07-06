@@ -34,7 +34,12 @@ class GuidebooksController < ApplicationController
         format.html { redirect_to @guidebook, notice: 'Guidebook was successfully created.' }
         format.json { render :show, status: :created, location: @guidebook }
       else
-        format.html { render :new }
+        format.html {
+          flash[:errors] = @guidebook.errors
+          flash[:opened] = true
+          redirect_to guidebook_organizer_path(guidebook_params[:organizer] || guidebook_params[:organizer_id]),
+                      notice: t('tours_controller_create_notice_two')
+        }
         format.json { render json: @guidebook.errors, status: :unprocessable_entity }
       end
     end

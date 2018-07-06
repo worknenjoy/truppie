@@ -48,6 +48,20 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    if params[:controller] == "guidebooks"
+      if params[:guidebook]
+        organizer_id = params[:guidebook][:organizer_id]
+        if organizer_id
+          allowed_users.push Organizer.find(organizer_id).user
+        end
+      else
+        guidebook_id = params[:id]
+        if guidebook_id
+          allowed_users.push Guidebook.find(guidebook_id).user
+        end
+      end
+    end
+
     unless allowed_emails.include? current_user.email or allowed_users.include? current_user
       flash[:notice] = "Você não está autorizado a entrar nesta página"
       redirect_to new_user_session_path
@@ -86,6 +100,20 @@ class ApplicationController < ActionController::Base
           tour_id = params[:id]
           if tour_id
             allowed_users.push Tour.find(tour_id).user
+          end
+        end
+      end
+
+      if params[:controller] == "guidebooks"
+        if params[:guidebook]
+          organizer_id = params[:guidebook][:organizer_id]
+          if organizer_id
+            allowed_users.push Organizer.find(organizer_id).user
+          end
+        else
+          guidebook_id = params[:id]
+          if guidebook_id
+            allowed_users.push Guidebook.find(guidebook_id).user
           end
         end
       end
