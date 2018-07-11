@@ -6,7 +6,6 @@ class Guidebook < ActiveRecord::Base
   belongs_to :category
   has_one :destination
   has_and_belongs_to_many :languages
-  has_and_belongs_to_many :reviews
   has_and_belongs_to_many :packages, dependent: :destroy
   has_and_belongs_to_many :comments
   has_and_belongs_to_many :tags

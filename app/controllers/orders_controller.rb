@@ -269,7 +269,7 @@ class OrdersController < ApplicationController
             @subject = "Solicitação de um roteiro! :)"
             @guide_template = "status_change_guide_authorized"
             @mail_first_line = "Referente à solicitação de um roteiro da truppie <strong>#{guidebook.title}</strong> com o guia <strong>#{organizer.name}</strong>, <br />temos boas novas: o pagamento foi <strong>autorizado</strong> pela operadora de seu cartão e <strong>seu roteiro será enviado!</strong> Uhuul \o/ "
-            @mail_second_line = "Você está confirmado no evento. <br />Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>."
+            @mail_second_line = "O seu pedido de roteiro foi confirmado. <br />Qualquer dúvida, você pode entrar em contato diretamente pelo e-mail <a href='#{organizer.email}'>#{organizer.email}</a>."
           when "failed"
             @status_class = "alert-danger"
             @subject = "Ops, tivemos um probleminha na compra do seu roteiro na Truppie :/"

@@ -13,9 +13,9 @@
         </div>
         <div class="btn-toolbar pull-right" style="margin-right: 40px;">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a href="<%= edit_guidebook_path(@guidebook) %>" class="btn btn-secondary"><%= t('tour-edit-label') %></a>
-            <a href="<%= account_edit_organizer_path(@guidebook.organizer) %>" class="btn btn-secondary"><%= t('organizer-profile-account-action') %></a>
-            <a href="<%= guided_tour_organizer_path(@guidebook.organizer) %>" class="btn btn-secondary"><%= t('tours_view_edit_link') %></a>
+            <a href="<%= edit_guidebook_organizer_path(@guidebook.organizer, @guidebook) %>" class="btn btn-secondary" data-turbolinks="false"><%= t('tour-edit-label') %></a>
+            <a href="<%= account_edit_organizer_path(@guidebook.organizer) %>" class="btn btn-secondary" data-turbolinks="false"><%= t('organizer-profile-account-action') %></a>
+            <a href="<%= guidebooks_organizer_path(@guidebook.organizer) %>" class="btn btn-secondary" data-turbolinks="false"><%= t('tours_view_edit_link') %></a>
           </div>
         </div>
       </div>

@@ -12,19 +12,8 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
-  before_filter :store_current_location, :unless => :devise_controller?
+  #before_filter :store_current_location, :unless => :devise_controller?
   before_filter :set_locale
-
-  def store_current_location
-    unless request.format == :js
-      store_location_for(:user, request.url)
-      if request[:organizer] and request[:organizer]["welcome"] == "true" and !current_user
-        session[:organizer_welcome] = true
-        session[:organizer_welcome_params] = request[:organizer]
-        store_location_for(:user, '/organizers/create_from_auth')
-      end
-    end
-  end
 
   def check_if_super_admin
     allowed_emails = [Rails.application.secrets[:admin_email], Rails.application.secrets[:admin_email_alt]]
@@ -59,6 +48,20 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    if params[:controller] == "guidebooks"
+      if params[:guidebook]
+        organizer_id = params[:guidebook][:organizer_id]
+        if organizer_id
+          allowed_users.push Organizer.find(organizer_id).user
+        end
+      else
+        guidebook_id = params[:id]
+        if guidebook_id
+          allowed_users.push Guidebook.find(guidebook_id).user
+        end
+      end
+    end
+
     unless allowed_emails.include? current_user.email or allowed_users.include? current_user
       flash[:notice] = "Você não está autorizado a entrar nesta página"
       redirect_to new_user_session_path
@@ -67,8 +70,7 @@ class ApplicationController < ActionController::Base
 
   private
   def set_locale
-    @locale ||= params[:locale] || session[:locale] || I18n.default_locale
-    I18n.locale = session[:locale] = @locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   def default_url_options(options = {})
@@ -98,6 +100,20 @@ class ApplicationController < ActionController::Base
           tour_id = params[:id]
           if tour_id
             allowed_users.push Tour.find(tour_id).user
+          end
+        end
+      end
+
+      if params[:controller] == "guidebooks"
+        if params[:guidebook]
+          organizer_id = params[:guidebook][:organizer_id]
+          if organizer_id
+            allowed_users.push Organizer.find(organizer_id).user
+          end
+        else
+          guidebook_id = params[:id]
+          if guidebook_id
+            allowed_users.push Guidebook.find(guidebook_id).user
           end
         end
       end
