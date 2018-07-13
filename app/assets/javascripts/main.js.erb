@@ -119,7 +119,7 @@ function add_packages(type) {
   var count = $('.packages-set').length;
   $('.add-packages').on('click', function(e){
       $('<div />').load('/packages/new', function(data){
-          var new_data = $(data).find('input').each(function(e){
+          var new_data = $(data).find('input, textarea').each(function(e){
               $(this).attr('name', type + '[packages_attributes][' + count  +  '][' + this.id + ']');
               if(this.id == 'included') {
                   $(this).tagsinput({
