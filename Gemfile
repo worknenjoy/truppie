@@ -52,6 +52,9 @@ gem 'timecop'
 gem 'google_timezone'
 gem 'google_places'
 
+#Mailchimp
+gem 'gibbon'
+
 group :production do
   gem 'rails_12factor'
 end
