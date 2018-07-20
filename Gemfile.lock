@@ -183,6 +183,9 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     gherkin (5.0.0)
+    gibbon (3.2.0)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     google_places (1.1.0)
@@ -447,6 +450,7 @@ DEPENDENCIES
   dotenv-rails
   fakeredis
   fakeweb
+  gibbon
   google_places
   google_timezone
   i18n-tasks (~> 0.9.18)
