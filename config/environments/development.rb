@@ -59,9 +59,4 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # Set Key and List ID the MailChimp
-  ENV['MAILCHIMP_KEY'] = 'bfb6ab177d512a5353a0edc4284da115-us18'
-  ENV['MAILCHIMP_LIST_ID'] = '9d2cbb6eda'
-
-
 end

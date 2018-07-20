@@ -465,10 +465,10 @@ class OrganizersController < ApplicationController
 
     def sign_in_mailchimp email
       begin
-        gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_KEY'],
+        gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key],
                                      symbolize_keys: true)
         gibbon.timeout = 10
-        gibbon.lists(ENV['MAILCHIMP_LIST_ID']).members
+        gibbon.lists(Rails.application.secrets[:mailchimp_list_id]).members
               .create(body: { email_address: email,
                               status: 'subscribed' })
       rescue Gibbon::MailChimpError => e

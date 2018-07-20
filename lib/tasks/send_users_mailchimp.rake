@@ -25,14 +25,14 @@ namespace :send_users_mailchimp do
     puts 'Start send_users...'
     users = User.all
 
-    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_KEY'], symbolize_keys: true)
+    gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key], symbolize_keys: true)
     gibbon.timeout = 10
     gibbon.symbolize_keys = true
     gibbon.debug = false
     # 0 => EMAIL, 1 => FNAME, 2 => LNAME
     users.each do |user|
       begin
-        gibbon.lists(ENV['MAILCHIMP_LIST_ID'])
+        gibbon.lists(Rails.application.secrets[:mailchimp_list_id])
               .members
               .create(body: { email_address: user.email,
                               status: 'subscribed' })
@@ -47,14 +47,14 @@ namespace :send_users_mailchimp do
   def send_organizer_users
     puts 'Start send_organizer_users...'
     organizer_users = Organizer.all
-    gibbon = Gibbon::Request.new(api_key: ENV['MAILCHIMP_KEY'], symbolize_keys: true)
+    gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key], symbolize_keys: true)
     gibbon.timeout = 10
     gibbon.symbolize_keys = true
     gibbon.debug = false
     # 0 => EMAIL, 1 => FNAME, 2 => LNAME
     organizer_users.each do |organizer_user|
       begin
-        gibbon.lists(ENV['MAILCHIMP_LIST_ID'])
+        gibbon.lists(Rails.application.secrets[:mailchimp_list_id])
               .members
               .create(body: { email_address: organizer_user.email,
                               status: 'subscribed' })
