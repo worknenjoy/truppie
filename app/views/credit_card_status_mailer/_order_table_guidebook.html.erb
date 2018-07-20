@@ -37,17 +37,6 @@
         </tr>
         <% end %>
       </table>
-      <h2 class="align-center">Detalhes do evento</h2>
-      <table class="receipt" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td><h4><%= order.guidebook.title %></h4></td>
-          <td>
-            <strong>
-            <%= l(order.guidebook.updated_at, format: '%A') %> <br/> <%= l(order.guidebook.updated_at, format: '%d de %B de %Y às %Hh%M') %><br/ ><strong><%= friendly_when(order.guidebook.updated_at) %></strong>
-            </strong>
-            <%= order.guidebook.wheres.first.name %>
-        </tr>
-      </table>
       <p>Para conferir o andamento do status a qualquer hora, acesse: <a href="http://www.truppie.com/orders">http://www.truppie.com/orders</a></p>
       <p>Se tiver alguma dúvida, escreva pra gente: ola@truppie.com.</p> 
       <p>Até mais!</p>

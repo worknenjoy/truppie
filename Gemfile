@@ -52,6 +52,13 @@ gem 'timecop'
 gem 'google_timezone'
 gem 'google_places'
 
+# Admin and Depedences
+gem 'activeadmin'
+gem 'cancan'
+gem 'draper'
+gem 'pundit'
+gem 'active_admin_editor', github: 'ejholmes/active_admin_editor'
+
 #Mailchimp
 gem 'gibbon'
 
@@ -62,7 +69,6 @@ end
 group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
   gem 'rspec'
   gem 'byebug'
   gem 'i18n-tasks', '~> 0.9.18'

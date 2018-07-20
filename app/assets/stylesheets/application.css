@@ -62,6 +62,7 @@
  *= require wizard_steps
  *= require track_loading
  *= require text-change
+ //= require active_admin/editor/wysiwyg
  */
 
 .full-width {

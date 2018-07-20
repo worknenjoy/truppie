@@ -45,29 +45,46 @@ body.mountain-form {
     outline: none;
   }
 
+  .container-mountain.container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .container-mountain {
-    width: 800px;
-    margin: 40px auto;
+    max-width: 800px;
+    margin: 20px auto;
     background: white;
-    height: 500px;
-    position: relative;
-    top: 10%;
+    min-height: 600px;
+    /*position: relative;*/
+    top: 5%;
     -webkit-box-shadow: 0px 12px 22px 0px rgba(0, 0, 0, 0.26);
     -moz-box-shadow: 0px 12px 22px 0px rgba(0, 0, 0, 0.26);
     box-shadow: 0px 12px 22px 0px rgba(0, 0, 0, 0.26);
     animation: fadeIn 3s cubic-bezier(.46, -0.39, 1, 1), moveUp 2s cubic-bezier(.95, .02, .03, .96);
 
+    .no-gutters {
+      margin-right: 0;
+      margin-left: 0;
+    
+      > .col,
+      > [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+    
+
     .lbg {
       background: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-275727.jpg);
-      background-size: 800px;
-      width: 50%;
+      background-size: 300%;
+      width: 100%;
       float: left;
       animation: moveLeft 60s linear infinite;
     }
 
     .lbg2 {
       /*background: url(https://images.apple.com/v/your-verse/elevating-expedition/a/images/clouds_ascent_02.png);*/
-      background-size: 800px;
+      background-size: 200%;
       float: left;
       opacity: 0.9;
       animation: moveRight 60s linear infinite;
@@ -83,8 +100,8 @@ body.mountain-form {
     .lO,
     .lC {
       position: absolute;
-      width: 400px;
-      height: 500px;
+      width: 100%;
+      min-height: 600px;
     }
 
     .lC {
@@ -110,12 +127,12 @@ body.mountain-form {
     .lO {
       padding: 25px;
       box-sizing: border-box;
-      height: 500px;
+      min-height: 600px;
     }
 
     .rightSec {
       background: #fff;
-      width: 50%;
+      width: 100%;
       float: left;
 
     }

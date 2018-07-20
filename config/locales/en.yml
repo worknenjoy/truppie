@@ -1,6 +1,5 @@
 ---
 en:
-  track_loading_message: Loading
   account-label: My Account
   account-missing-legal-entity:
     verification:
@@ -11,10 +10,18 @@ en:
   account-not-verified-label: Not verified
   account-verified-label: Verified
   active-label: active
+  active_admin:
+    dashboard: Dashboard
+    dashboard_welcome:
+      call_to_action: Ir para o dashboard
+      welcome: Bem vindo
+    pages: Pages
+    users: Users Admin
   activerecord:
     attributes:
       organizer:
-        where.name: location
+        mail_notification: Notificar por e-mail?
+        where.name: localização
       where:
         name: location
     errors:
@@ -28,6 +35,8 @@ en:
           where:
             name: location
         where:
+          attributes:
+            name: Name
           name: location
       wheres:
         name: location
@@ -100,6 +109,12 @@ en:
   contact-main-menu: Contact Us
   contact-title: Contact
   contact-us-action-step: Contact us informing you want to be a guide
+  contact_organizer_message_label_body: Mensagem
+  contact_organizer_message_label_name: Nome
+  contact_organizer_message_modal_submit: Enviar
+  contact_organizer_message_modal_title: Mensagem
+  contact_organizer_message_placeholder_body: Sua mensagem
+  contact_organizer_message_placeholder_name: Seu nome
   contacts_controller_error: You are missing the e-mail address and/or the message
   contacts_controller_error_two: It wasn't possible to send your message. Please try again
   contacts_controller_succes: Your message was successfully sent. We'll be contacting you soon
@@ -130,7 +145,7 @@ en:
     - Fri
     - Sat
     abbr_month_names:
-    -
+    - 
     - Jan
     - Feb
     - Mar
@@ -164,7 +179,7 @@ en:
       long: "%d of %B of %Y"
       short: "%d of %B"
     month_names:
-    -
+    - 
     - January
     - February
     - March
@@ -234,6 +249,7 @@ en:
       accepted: must be accepted
       blank: can't be blank
       confirmation: its not equal to %{attribute}
+      email_not_found: E-mail não encontrado
       empty: empty field not allowed
       equal_to: should be equal to %{count}
       even: must be even
@@ -278,6 +294,7 @@ en:
   event-remove-image-upload: remove event image
   event-title: Truppie title
   events-next: Next truppies
+  explore-tagline: Search for places and see if it has truppies where you're heading
   facebook-login: Sign in with Facebook
   faq-link-label: Frequently asked questions
   first-caption: CONNECT TO THE NATURE
@@ -288,8 +305,6 @@ en:
   guide-invite-successfull: Guide-invite-successfull
   guide-manual-link: First steps to guides (Portuguese)
   guide-manual-title: Guide's manual
-  guides-main-menu: "Manage guides"
-  guides-main-create: "Register guide"
   guidebook-admin-confirm-delete: Guidebook-admin-confirm-delete
   guidebook-admin-edit-link: Guidebook-admin-edit-link
   guidebook-admin-edit-title: Guidebook-admin-edit-title
@@ -309,8 +324,13 @@ en:
   guidebook-link-new: New
   guidebook-reservation-action: Get
   guidebooks-confirm-presence-message: The purchase of this itinerary has been confirmed!
+  guidebooks-name: Roteiros personalizados
+  guidebooks-title: Seus roteiros já criados
+  guidebooks_controller_copy_error: Não foi possível copiar seu roteiro
+  guidebooks_controller_copy_success: Seu roteiro foi copiado com sucesso!
   guidebooks_view_index_h3: Itineraries
-  guides-main-menu: "Guide's area"
+  guides-main-create: Register guide
+  guides-main-menu: Guide's area
   guides_partial_a_one: " Site"
   guides_partial_a_two: " Send an e-mail"
   guides_partial_h3_one: Guide
@@ -332,7 +352,7 @@ en:
         city: City
         complement: Complement
         document_number: SSN
-        person_lastname: "Lastname"
+        person_lastname: Lastname
         person_name: Firstname
         state: State
         street: Street
@@ -347,7 +367,7 @@ en:
       update: Update %{model}
   hey: Hey!
   how-it-works-link: See how Truppie works
-  how-it-works-main-menu: "Explorer's area"
+  how-it-works-main-menu: Explorer's area
   how-it-works-title: How it works
   import-event-action: Import events
   import-event-desc: Choose Facebook events that you want import
@@ -357,6 +377,7 @@ en:
   import-event-notice-success: Events were successfully imported
   import-from-facebook-title: Import event from facebook
   incomplete_label: incomplete
+  intro-location-label: Type a place, city, address or country
   label-organizer-about: Say something about you and your business
   label-organizer-address-city: City
   label-organizer-continue: Continue
@@ -368,12 +389,12 @@ en:
   label-organizer-phone: Phone
   label-organizer-picture: Picture (if you have a logo, even better!) :)
   label-organizer-previous: Previous
+  label-organizer-required-fields-messsage: required fields
   label-organizer-thanks: Yeah! \o/
   label-organizer-thanks-email: Thanks for registering as partner guide :D
   label-organizer-thanks-moderation: Finish your registration and start managing your reservations and payments through Truppie.
   label-organizer-twitter: Twitter
   label-organizer-website: Website
-  label-organizer-required-fields-messsage: required fields
   lang-brazil: Portuguese (BR)
   lang-eua: English
   laura-feature: Biologist, blogger, creative entrepreneur
@@ -382,12 +403,21 @@ en:
   logged-as-label: logged as
   logout-label: logout
   mail-hello-message: Howdy, %{organizer}!
-  mail-hello-to-start: "To start using Truppie, offer your tours through our platform and receive your customers's reservations, you need to follow these steps:"
+  mail-hello-to-start: 'To start using Truppie, offer your tours through our platform and receive your customers''s reservations, you need to follow these steps:'
   mail-hello-to-start-update: Your account was updated. Check your profile to view if your account is verified to receive the payments of your truppies
   mail-invite-guide-action-message: Create your account
   mail-invite-guide-call-message: By clicking on the button below, you will create an account associated with your profile
   mail-invite-guide-header-message: You were invited to join Truppie!
+  mail-organizer-interest-body: Ele gostaria de realizar esta atividade que já passou. Você pode entrar em contato com ele para informá-lo dos próximos e saber se ele tem interesse em outra atividade que você oferece similar.
+  mail-organizer-interest-title: Alguem mostrou interesse em uma truppie já realizada!
+  mail-organizer-interest-who: O usuário %{username} (%{useremail}) mostrou interesse na truppie %{tourname}  \o/
+  mail-organizer-new-follower-body: Agora ele ficará sabendo quando você criar uma nova atividade e tiver qualquer nova atualização!
+  mail-organizer-new-follower-title: Você tem um novo seguidor!
+  mail-organizer-new-follower-who: O usuário %{username} (%{useremail}) começou a te seguir \o/
+  mail-organizer-notify-followers-title: Uma nova truppie foi criada para um guia que você está seguindo!
+  mail-organizer-profile-share-title: Divulgue seu perfil
   mail-organizer-see-profile: View profile
+  mail-organizer-see-tour: Saber mais
   mail-organizer-share-description: We also help you by sharing it in our Facebook page, where adventurers follow us!
   mail-organizer-share-intro: Share your profile with your contacts network
   mail-organizer-share-more-description: Who knows if they show interest in your adventure!
@@ -408,7 +438,7 @@ en:
   marketplace-controller-notice-update-fail: there was an error while updating your account. Verify the data and try again
   marketplace-data-incorrect: account data is incorrect
   marketplace-datebirth-placeholder: 'ex: birthdate (MM/DD/AAAA)'
-  marketplace-document-placeholder: 'no commas, dots or spaces'
+  marketplace-document-placeholder: no commas, dots or spaces
   marketplace-first-name-placeholder: 'ex: John'
   marketplace-missing: There are informations missing to complete your account
   marketplace-second-name-placeholder: 'ex: Doe'
@@ -452,6 +482,7 @@ en:
   navbar_partial_link_two: My truppies
   new-bank-account-title: New account for payment
   new-event-cancel: Cancel
+  new-guidebook-label: Roteiros
   new-guided-tour-label: Create new truppie
   new-tour-label: My truppies
   newsletter-text: Leave your e-mail to stay connected
@@ -463,13 +494,12 @@ en:
   no-places-action: Add a experience from this place
   no-places-text: This place doesn't have any tour registered
   no-places-title: No truppies for this place
+  no-price-defined-message: The price of this reservation is open
   no-terms: there's no terms
   no-transfer-possible: It isn't possible to make a transfer without a verified account
   no-verified-label: Not verified
+  nomad-main-menu: Trabalhe conosco
   not_verified_label: Not verified
-  where-to-go-text: Leave the couch!
-  intro-location-label: Type a place, city, address or country
-  explore-tagline: Search for places and see if it has truppies where you're heading
   number:
     currency:
       format:
@@ -551,10 +581,13 @@ en:
   organizer-create-issue-message: We had some problem while creating your profile. Check your data again
   organizer-create-success: Your guide account was created successfully
   organizer-dashboard-desc: Did you set up your account (profile and bank account) in order to receive payments? With your account verified, you can start creating truppies (tours) and roll your business :)
+  organizer-dashboard-guidebook-desc: Para quem produz roteiros personalizados, planos de viagem e consultoria
   organizer-desc-label: small description of your business
   organizer-email-label: Your business e-mail
   organizer-external-refs-legend: Your contacts
   organizer-facebook-label: facebook address of your business
+  organizer-guidebooks-side-menu-label: Roteiros
+  organizer-guided_tour-side-menu-label: Tour guiados
   organizer-instagram-label: instagram address of your business
   organizer-interest-submit-action: I want to know more!
   organizer-interested-text: Leave your e-mail that we will contact you
@@ -562,11 +595,11 @@ en:
   organizer-missing-account-info-solve: Provide data to register your account
   organizer-missing-data-title: Your data is missing or incorrect to verify your account
   organizer-name-label: name of your business
+  organizer-new-guidebook: Criar roteiro personalizado
   organizer-new-package: Create packages
   organizer-new-tour: Create a truppie now!
   organizer-panel-welcome: This is your control panel inside Truppie
   organizer-percent-label: Fee (%)
-  no-price-defined-message: The price of this reservation is open
   organizer-phone-label: phone of your business
   organizer-profile-account: My account
   organizer-profile-account-action: Edit my personal account
@@ -576,6 +609,8 @@ en:
   organizer-profile-edit: Profile
   organizer-profile-edit-desc: You can send a picture of yours or your logo to show up on your profile page, associated tours and in contact info
   organizer-profile-intro: My guide profile
+  organizer-profile-share-desc: Aqui você pode interagir com ele enviando uma mensagem diretamente, acessar seu site e perfis nas redes sociais e segui-lo, e com isso ficar sabendo quando ele tiver uma nova atividade.
+  organizer-profile-share-intro: Bem vindo ao perfil do guia!
   organizer-profile-verify-action: verify
   organizer-profile-welcome-account-edit-title: Here you can update your profile that shows up with your tours, so other adventurers can find you with ease
   organizer-tours-label: Truppies
@@ -585,19 +620,18 @@ en:
   organizer-website-label: web page for your business
   organizer-why-create-account-text: Truppie wants to help you create a platform that suits your needs
   organizer_tours_label: truppies
+  organizer_views_show_follow: Seguir
+  organizer_views_show_following: Deixar de Seguir
+  organizer_views_show_send_message: Enviar Mensagem
   packages-description-label: Package description
-  wizard_steps_intro: Registration Wizard
-  wizard_steps_profile: Profile
-  wizard_steps_personal_account: Personal Account
-  wizard_steps_bank_details: Bank Details
-  wizard_steps_create_truppie: Create Truppie
-  wizard_steps_trigger_hide_text: Check Later
-  wizard_steps_trigger_show_text: Check now
   panel-label: Truppies
   payment_type_partial_div_one: Method of payment
   payment_type_partial_div_three: Boleto Bancário
   payment_type_partial_div_two: Credit card
   place: Where are you based at?
+  places-experiences-label: Lugares
+  places-guidebooks-label: Roteiros
+  places-information-label: Info
   privacy-label: Privacy Terms
   privacy-link: Privacy
   profile-access: Access your profile
@@ -618,6 +652,7 @@ en:
   shoes-heading: Get ready
   shoes-text: There's nothing to worry about - just get ready and enjoy the ride!
   side-note-edit-bar-message: Share this link when promoting your event, so your customers can make reservations online
+  starts-in: Começa
   status_danger: danger
   status_success: success
   submit-external-payment: Split payment on credit card
@@ -644,6 +679,8 @@ en:
   tour-category-label: What's up with this Truppie?
   tour-edit-bar-message: You're viewing the truppie you created and can manage it at any time
   tour-edit-label: edit truppie
+  tours-title: Atividades
+  tours-title-places-label: Guias
   tours_controller_confirm_headline_msg: Your presence is confirmed in this truppie
   tours_controller_confirm_headline_msg_two: Event successfully confirmed
   tours_controller_confirm_status_msg: Thanks for booking this event
@@ -656,6 +693,8 @@ en:
   tours_controller_destroy_notice_fail: We couldn't delete this truppie
   tours_controller_errors_one: Hey, you are already confirmed in this event, there's no need to book it again!
   tours_controller_headline_msg: It was not possible to confirm your reservation
+  tours_controller_interest_error: Não foi possível registrar seu interesse. Tente novamente
+  tours_controller_interest_succes: Seu interesse foi encaminhado para o Organizador
   tours_controller_mailer_notify_one: The user %{name} whose e-mail is %{email} tried something, the return was %{inspect}
   tours_controller_mailer_notify_three: The user %{name} whose e-mail is %{email} tried to pay without providing the information
   tours_controller_mailer_notify_two: The user %{name} whose e-mail is %{email} tried to pay and there was an error %{inspect}
@@ -787,6 +826,7 @@ en:
   tours_view_show_li_three: " people at minimum"
   tours_view_show_li_two: There are no more vacancies
   tours_view_show_link_four: I want the %{name}
+  tours_view_show_link_interest: Tenho interesse
   tours_view_show_link_one: Book
   tours_view_show_link_three: Book now
   tours_view_show_link_two: Go to their website
@@ -802,6 +842,7 @@ en:
   tours_view_show_strong_three: 'Information:'
   tours_view_show_strong_two: 'Guide:'
   tours_view_value_suggested_by_user: Price suggested by user in reservation
+  track_loading_message: Loading
   transfer-label: Transfers
   transfer-truppie-action: Transfer
   truppie-adventure-text: Move your body, flow your mind, get out of the routine
@@ -903,6 +944,7 @@ en:
   welcome_view_index_div_three: Read more
   welcome_view_index_div_two: If you are a guide...
   welcome_view_index_h3_one: Next truppies
+  welcome_view_index_h3_past_tours: Truppies Passadas
   welcome_view_index_h4_one: Let's become partners?
   welcome_view_index_h4_two: Follow us on social media
   welcome_view_index_p_one: We facilitate the booking process with your clients and we announce your event, so you can focus on offering a remarkable experience!
@@ -944,3 +986,12 @@ en:
   welcome_view_privacy_h5_two: Communication
   welcome_view_privacy_p_one: When signing up at Truppie, the Explorer is asked to provide personal information, such as name, e-mail etc. Truppie doesn't share, sell or distribute these information in any manner. In any extraordinary situation where this type of information is needed, a previous authorization from the user will be requested.
   welcome_view_privacy_p_two: 'Truppie and/or the Guide may contact the Explorer by e-mail for: confirming their e-mail address after signing up in the platform; confirmaing the payment/booking of a tour; providing additional information about a tour booked by the Explorer; informing about the cancellation of a tour booked by the Explorer. <br /> Don''t worry, we don''t send spam!'
+  where-to-go-text: Leave the couch!
+  where-to-go-title: Onde você gostaria de ir?
+  wizard_steps_bank_details: Bank Details
+  wizard_steps_create_truppie: Create Truppie
+  wizard_steps_intro: Registration Wizard
+  wizard_steps_personal_account: Personal Account
+  wizard_steps_profile: Profile
+  wizard_steps_trigger_hide_text: Check Later
+  wizard_steps_trigger_show_text: Check now

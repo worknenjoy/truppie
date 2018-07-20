@@ -1,0 +1,204 @@
+<%= form_for @guided_tour, class: "form form-signup criar-truppie", multipart: true, role: "form", data: {ajax_sync: true} do |f| %>
+    <div id="newEventForm" class="<%= 'hide' if @guided_tour.new_record? and !@opened %>">
+      <div>
+        <div class="form-group <%= form_error(flash[:errors], :title) %>">
+          <label for="event-title"><%= t('event-title') %></label>
+          <%= f.hidden_field :organizer_id, value: @organizer.id %>
+          <%= f.hidden_field :user_id, value: @organizer.user.id %>
+          <%= f.hidden_field :status, class: 'guidebook-status' %>
+          <%= f.text_field :title, placeholder: t('tours_view_form_placeholder_one'), class: "form-control event-input default" %>
+          <%= error_message(flash[:errors], :title) %>
+        </div>
+        <h4 class="text-xs-center spaced-down"><%= t('tour-category-label') %></h4>
+        <div class="spaced-top" style="text-align: center">
+          <div class="row">
+            <div class="col-xs-12">
+              <% @cats.each do |c| %>
+              <label class="radio-inline">
+                <%= f.radio_button :category, c, checked: @current_category_name === c, class: "field-category-radio" %>
+                <%= image_tag("icons-truppie-fill/icones_truppie-#{c.parameterize}.svg", :alt => "Truppie", width: 80) %>
+              </label>
+              <% end %>
+            </div>
+            <% if !@cats.include?(@current_category_name) %>
+            <!--
+            <div class="col-xs-12">
+              <fieldset class="form-group">
+                <label for="exampleInputEmail1">Outra</label>
+                <%= f.text_field :category, value: @current_category_name, placeholder: t('tour-category-label'), class: "form-control field-category-text" %>
+                <small class="text-muted">diga uma categoria que não se encaixa nas demais e que mais se encaixa para sua truppie</small>
+              </fieldset>
+            </div>
+            -->
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div style="width: 100%; text-align: center;" class="spaced-small file-upload-previous-container">
+        <% if @guided_tour.picture.present? %>
+            <%= image_tag @guided_tour.picture.url, class: 'img-fluid' %>
+        <% end %>
+        </div>
+
+        <div class="file-upload">
+          <button class="file-upload-btn btn btn-info-outline btn-block" type="button" onclick="$('.file-upload-input').trigger( 'click' )"><%= t('event-add-image') %></button>
+          <div class="image-upload-wrap">
+            <%= f.file_field :picture, class: "file-upload-input", accept: "image/*" %>
+            <div class="drag-text">
+              <h3><%= t('event-drag-drop-file') %></h3>
+            </div>
+          </div>
+          <div class="file-upload-content">
+            <div class="image-title-wrap">
+              <button type="button" onclick="removeUpload()" class="remove-image btn btn-warning-outline"><%= t('event-remove-image-upload') %> <span class="image-title"><%= t('event-image-upload') %></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <label for="event-description"><%= t('event-desc-label') %></label>
+      <div class="spaced-down">
+        <div id="editor-container" class="spaced-down">
+        </div>
+      </div>
+      <%= f.text_area :description, placeholder: t('tours_view_form_placeholder_twelve'), class: "textarea hide" %>
+      <div class="form-group <%= form_error(flash[:errors], "wheres.name") %>">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-map-marker"></span></span>
+          <input type="text" name="search" placeholder="<%= t('tours_view_form_placeholder_two') %>" class="form-control places-input" />
+          <%= f.fields_for :wheres, (Array.new(1, @guided_tour.wheres.build) if @guided_tour.wheres.empty?) do |ff| %>
+              <%= ff.hidden_field :name %>
+              <%= ff.hidden_field :lat %>
+              <%= ff.hidden_field :long %>
+              <%= ff.hidden_field :city %>
+              <%= ff.hidden_field :state %>
+              <%= ff.hidden_field :country %>
+              <%= ff.hidden_field :postal_code %>
+              <%= ff.hidden_field :address %>
+              <%= ff.hidden_field :url %>
+              <%= ff.hidden_field :google_id %>
+              <%= ff.hidden_field :place_id %>
+              <%= ff.hidden_field :time_zone %>
+              <%= ff.hidden_field :utc_offset %>
+          <% end %>
+        </div>
+        <%= error_message(flash[:errors], "wheres.name") %>
+        <div id="map"></div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-thumbs-up"></span></span>
+          <%= f.text_field :included, value: (@guided_tour.included.join(';') if @guided_tour.included.present?), placeholder: t('tours_view_form_placeholder_thirteen'), class: "form-control tour-taggable" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-thumbs-down"></span></span>
+          <%= f.text_field :nonincluded, value: (@guided_tour.nonincluded.join(';') if @guided_tour.nonincluded.present?), placeholder: t('tours_view_form_placeholder_fourteen'), class: "form-control tour-taggable" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-tags"></span></span>
+          <%= f.text_field :tags, value: (@guided_tour.tags.map{ |t| t.name}.join(';') if @guided_tour.tags.present?), placeholder: t('tours_view_form_placeholder_nineteen'), class: "form-control tour-taggable" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><span class="fa fa-globe"></span></span>
+          <%= f.text_field :languages, value: (@guided_tour.languages.map{ |l| l.name}.join(';') if @guided_tour.languages.present?), placeholder: t('tours_view_form_placeholder_twenty'), class: "form-control" %>
+        </div>
+      </div>
+      <div class="field form-group">
+        <div class="input-group center-block">
+          <div class="checkbox-inline">
+            <%= f.check_box :value_chosen_by_user, checked: @guided_tour.value_chosen_by_user?, class: 'input-checkbox-toggle' %>
+            <%= f.label :value_chosen_by_user, t('tours_view_value_suggested_by_user') %>
+          </div>
+          <%= content_tag 'a', class: 'btn btn-sm btn-info', role: 'button', id: 'tour_tooltip', tabindex: 0,
+            data: { toggle: 'popover', trigger: 'focus', container: 'body', placement: 'top',
+                    template: render('popover_template'), html: true,
+                    content: t('tours_view_form_tooltip_content_one'),
+                    title: render('popover_template_title_content', trigger_elem_id: 'tour_tooltip') } do %>
+            <i class="fa fa-question"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group row container-checkbox-toggle">
+        <div class="input-group col-xs-6 <%= form_error(flash[:errors], :value) %>">
+          <div class="input-group-addon">R$</div>
+          <%= f.number_field :value, placeholder: 'valor unico', min: 1, class: "form-control text-xs-right" %>
+          <div class="input-group-addon">.00</div>
+        </div>
+        <span class="<%= form_error(flash[:errors], :value) %>">
+          <%= error_message(flash[:errors], :value) %>
+        </span>
+        <div class="input-group col-xs-6">
+          <small style="vertical-align: -webkit-baseline-middle;"><%= t('or-label') %></small>
+          <%= link_to '#new-packages-modal', class: 'btn btn-info-outline btn-sm pull-right', data: {toggle: 'modal', target: '#new-packages-modal'} do %>
+              <%= t('organizer-new-package') %> <i class="fa fa-plus"></i>
+          <% end %>
+        </div>
+        <div class="modal fade" id="new-packages-modal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"><%= t('modal-packages-title') %></h4>
+              </div>
+              <div class="modal-body">
+                <h3><%= t('add-packages-title') %></h3>
+                <p><%= t('add-packages-desc') %></p>
+                <%= f.fields_for :packages, (Array.new(1, @guided_tour.packages.build) if @guided_tour.packages.empty?) do |ff| %>
+                    <div class="new-packages-content">
+                      <fieldset class="form-group packages-set">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                            <%= ff.text_field :name, placeholder: t('tours_view_form_placeholder_twentytwo'), class: "form-control" %>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                            <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_twentythree'), class: "form-control", min: 1 %>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label><%= t('packages-description-label') %></label>
+                          <%= ff.text_area :description, class: "form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
+                            <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_twentyfour'), class: "form-control  package-value tour-taggable" %>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                <% end %>
+                <div class="form-group">
+                  <div class="input-group">
+                    <%= link_to t('tours_view_form_link_one'), new_package_path, class: 'add-packages' %>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" data-action="close clear-packages"><%= t('close') %></button>
+                <button type="button" data-dismiss="modal" data-action="save" class="btn btn-primary"><%= t('save-changes') %></button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+      </div>
+
+      <div class="form-group">
+        <%= link_to(t('save-and-publish'), "#", id: 'PublishEvent', class: "btn-event publish-truppie") %>
+        <%= link_to(t('tours_view_form_link_two'), "#", id: 'addEvent', class: "btn-event criar-truppie") %>
+        <a href="#" id="cancelAddEvent" class="btn-event"><%= t('new-event-cancel') %></a>
+      </div>
+    </div>
+<% end %>

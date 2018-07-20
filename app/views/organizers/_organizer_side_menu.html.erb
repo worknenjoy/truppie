@@ -5,7 +5,7 @@
         <%= render partial: 'layouts/organizer_picture', locals: { organizer: @organizer }%>
         <strong><%= @organizer.name %> </strong>
       </h4>
-      <div class="card-text spaced-down ellipsis">
+      <div class="card-text spaced-down">
         <%= @organizer.description %>
       </div>
       <% if !@organizer.website.nil? %>
@@ -23,7 +23,13 @@
   <li class="list-group-item">
     <a href="<%= guided_tour_organizer_path(@organizer) %>">
       <span class="label label-default label-pill pull-xs-right"><%= @organizer.tours.count %></span>
-      <%= t('organizer-tours-label') %>
+      <%= t('organizer-guided_tour-side-menu-label') %>
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a href="<%= guidebooks_organizer_path(@organizer) %>">
+      <span class="label label-default label-pill pull-xs-right"><%= @organizer.guidebooks.count %></span>
+      <%= t('organizer-guidebooks-side-menu-label') %>
     </a>
   </li>
   <li class="list-group-item">

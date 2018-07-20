@@ -1,0 +1,91 @@
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<div class="container manage-entries">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="manage-inspiration">
+        <%= render 'layouts/organizer_intro_block', locals: {organizer: @organizer} %>
+      </div>
+      <div class="manage-container">
+        <div class="manage-sidebar">
+          <%= render partial: 'organizer_side_menu' %>
+        </div>
+        <div class="manage-main">
+          <h4 class="spaced-down" style="overflow:hidden; padding-bottom: 10px;">
+            <div class="pull-left">
+            <%= t('new-guidebook-label') %>
+            </div>
+          </h4>
+          <div class="event-list">
+            <div id="newEventHolder">
+              <span><i class="fa fa-plus"></i> <%= t('new-guidebook-label') %></span>
+            </div>
+            <%= render 'form_guidebook' %>
+            <% if @organizer.guidebooks.count %>
+            <h4 class="spaced-top">
+              <%= t('guidebooks-title') %>
+              <small>(<%= @organizer.guidebooks.count %> roteiros)</small>
+            </h4>
+            <ul id="upcomingEvents">
+              <% @organizer.guidebooks.each do |t| %>
+              <li class="eventHolder">
+                <% if t.created_at %>
+                <div class="event-date-holder">
+                  <span class="dateNumber"><%= l(t.created_at, format: '%d') %></span>
+                  <span class="dateDay"><%= l(t.created_at, format: '%b') %></span>
+                </div>
+                <% else %>
+                    <div class="event-date-holder">
+                      Sem data
+                    </div>
+                <% end %>
+                <div class="event-details-holder">
+                  <% if t.status == 'P' %>
+                      <small><span class="label label-success">publicado</span></small>
+                  <% else %>
+                      <small><span class="label label-info">não publicado</span></small>
+                  <% end %>
+                  <h4>
+                    <%= link_to tour_path(t) do %>
+                        <%= t.title %>
+                    <% end %>
+                  </h4>
+
+                  <ul class="editTools">
+                    <li>
+                      <%= link_to guidebook_path(t) do %>
+                          <i class="fa fa-newspaper-o"></i>
+                          <small>visualizar</small>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to edit_guidebook_organizer_path(t.organizer, t), data: {turbolinks: false} do %>
+                      <i class="fa fa-pencil-square-o"></i>
+                      <small>editar</small>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to copy_guidebook_guidebook_path(t) do %>
+                          <i class="fa fa-bars"></i>
+                          <small>copiar</small>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to t, method: :delete, data: { confirm: 'Quer mesmo apagar seu evento?' } do %>
+                          <i class="fa fa-times" id="removeEvent"></i>
+                          <small>apagar</small>
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>

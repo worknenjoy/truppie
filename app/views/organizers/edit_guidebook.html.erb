@@ -1,0 +1,92 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "dash.js", defer: true %>
+<% end %>
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <svg id="icon-chevron" viewBox="0 0 1024 1024">
+      <title>Click to Show or Hide Menu</title>
+      <path class="path1" d="M316 334l196 196 196-196 60 60-256 256-256-256z"></path>
+
+    </svg>
+  </defs>
+</svg>
+<div class="container manage-entries">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="manage-inspiration">
+        <%= render 'layouts/organizer_intro_block', locals: {organizer: @organizer} %>
+      </div>
+      <div class="manage-container">
+        <div class="manage-sidebar">
+          <%= render partial: 'organizer_side_menu' %>
+        </div>
+        <div class="manage-main">
+          <div class="row">
+            <div class="col-xs-12">
+              <ul class="dash-list">
+                <li id="dash-item--1" class="dash-item dash-item--published">
+                  <div class="dash-item__header">
+                    <h3 class="dash-item__title" style="overflow: hidden;">
+                      <%= link_to @guided_tour.title, tour_path(@guided_tour), style: 'font-size: 24px;' %>
+                    </h3>
+                    <ul class="dash-item__nav">
+                      <li class="dash-item__nav__item">
+                        <%= link_to copy_guidebook_guidebook_path(@guided_tour) do %>
+                          copiar roteiro
+                        <% end %>
+                      </li>
+                      <li class="dash-item__nav__item">
+                        <%= link_to @guided_tour, method: :delete, data: { confirm: 'Quer mesmo apagar seu evento?' } do %>
+                          apagar roteiro
+                        <% end %>
+                      </li>
+                      <li class="dash-item__nav__item">
+                        <%= link_to @guided_tour do %>
+                          ver roteiro
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="dash-item__content">
+                    <ul class="quiz-results">
+                      <li class="quiz-results__item quiz-results__item--finishes">
+                        <span class="quiz-results__number quiz-results__number--finishes">
+                            <%= @guided_tour.orders.size %>
+                        </span>
+                        <div class="quiz-results__label">Reservas</div>
+                      </li>
+                      <li class="quiz-results__item quiz-results__item--average-score">
+                        <div class="quiz-results__label">criado há</div>
+                        <span class="quiz-results__number quiz-results__number--average-score" style="font-size: 14px;">
+                          <%= friendly_when(@guided_tour.created_at)%>
+                        </span>
+                      </li>
+                      <li class="quiz-results__item quiz-results__item--views">
+                        <span class="quiz-results__number quiz-results__number--views" style="font-size: 16px">
+                          <% if @guided_tour.status === 'P' %>
+                              <span class="label label-success">publicado</span>
+                          <% else %>
+                              <span class="label label-info">não publicado</span>
+                          <% end %>
+                        </span>
+                        <div class="quiz-results__label">status</div>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= render 'form_guidebook' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="fullscreen_bg" class="fullscreen_bg"></div>
+</div>
