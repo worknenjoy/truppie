@@ -59,6 +59,9 @@ gem 'draper'
 gem 'pundit'
 gem 'active_admin_editor', github: 'ejholmes/active_admin_editor'
 
+#Mailchimp
+gem 'gibbon'
+
 group :production do
   gem 'rails_12factor'
 end

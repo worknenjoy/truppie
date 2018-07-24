@@ -211,6 +211,9 @@ GEM
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
     gherkin (5.0.0)
+    gibbon (3.2.0)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     google_places (1.1.0)
@@ -497,6 +500,7 @@ DEPENDENCIES
   draper
   fakeredis
   fakeweb
+  gibbon
   google_places
   google_timezone
   i18n-tasks (~> 0.9.18)

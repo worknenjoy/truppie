@@ -137,16 +137,19 @@ class OrganizersController < ApplicationController
 
     respond_to do |format|
       if @organizer.save
+        if organizer_params[:email]
+          sign_in_mailchimp organizer_params[:email]
+        end
         format.html {
           if @organizer.mail_notification
             ContactMailer.notify("Uma nova conta de guia foi criada").deliver_now
             OrganizerMailer.notify(@organizer, "activate").deliver_now
-          end         
+          end
           redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
 
         }
         format.json { render :show, status: :created, location: @organizer }
-       
+
       else
         format.html {
           flash[:errors] = @organizer.errors
@@ -184,7 +187,7 @@ class OrganizersController < ApplicationController
   def update
     respond_to do |format|
       if @organizer.update(organizer_params)
-        format.html { 
+        format.html {
           #OrganizerMailer.notify(@organizer, "update").deliver_now
           redirect_to :back, notice: I18n.t('organizer-update-sucessfully')
         }
@@ -208,21 +211,21 @@ class OrganizersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def dashboard
     @organizer = Organizer.find(params[:id])
     @tours = @organizer.tours.order('created_at DESC')
-    if params[:tour].nil? 
+    if params[:tour].nil?
       @tour = @organizer.tours.order('created_at DESC').first
     else
       @tour = Tour.find(params[:tour])
     end
   end
-  
+
   def manage
     @organizer = Organizer.find(params[:id])
     @tours = @organizer.tours.order('created_at DESC')
-    if params[:tour].nil? 
+    if params[:tour].nil?
       @tour = @organizer.tours.order('created_at DESC').first
     else
       @tour = Tour.find(params[:tour])
@@ -339,32 +342,32 @@ class OrganizersController < ApplicationController
     #puts @response_json.inspect
     #https://www.facebook.com/v2.9/dialog/oauth?response_type=token&display=popup&client_id=1696671210617842&redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer%2Fcallback%3Fmethod%3DGET%26path%3D10154033067028556%252Fevents%253Ftype%253Dcreated%2526limit%253D2%26version%3Dv2.9&scope=rsvp_event%2Cuser_events
   end
-  
+
   def confirm_account
     @organizer = Organizer.find(params[:id])
     @marketplace = @organizer.marketplace
   end
-  
+
   def tos_acceptance
     @organizer = Organizer.find(params[:id])
   end
-  
+
   def tos_acceptance_confirm
     @organizer = Organizer.find(params[:id])
     if Rails.env.development?
       @ip = "127.0.0.1"
     else
       @ip = params[:ip]
-    end 
-    
+    end
+
     if request.post?
-      begin 
+      begin
         valid_ip = IPAddr.new(@ip)
       rescue
         @status = "danger"
         @status_message = e.message
       end
-      
+
      if valid_ip
         if @organizer.try(:marketplace)
           begin
@@ -393,9 +396,9 @@ class OrganizersController < ApplicationController
     @status = "danger"
     @status_message = "Não foi possível aceitar seus termos"
    end
-    
+
   end
-  
+
   def transfer
     @organizer = Organizer.find(params[:id])
     @bank_account = []
@@ -408,19 +411,19 @@ class OrganizersController < ApplicationController
       @balance = {}
     end
   end
-  
+
   #deprecated - convert to stripe manual transfer (the money is transfered automatically)
   def transfer_funds
     @organizer = Organizer.find(params[:id])
     @amount = raw_price(params[:amount])
     @current = raw_price(params[:current])
-    
+
     if params[:amount].nil?
       @status = "danger"
       @message_status = "Você não especificou um valor"
-      return 
+      return
     end
-    
+
     @bank_account_active_id = @organizer.marketplace.bank_account_active.own_id
     if @bank_account_active_id.nil?
       @status = "danger"
@@ -436,13 +439,13 @@ class OrganizersController < ApplicationController
                   }
               }
           }
-          response_transfer = RestClient.post("#{Rails.application.secrets[:moip_domain]}/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"){|response, request, result, &block| 
+          response_transfer = RestClient.post("#{Rails.application.secrets[:moip_domain]}/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"){|response, request, result, &block|
               case response.code
                 when 401
                   @status = "danger"
                   @message_status = "Você não está autorizado a realizar esta transação"
                   @response_transfer_json = JSON.load response
-                when 400 
+                when 400
                   @status = "danger"
                   @message_status = "Não foi possíel realizar a transferência"
                   @response_transfer_json = JSON.load response
@@ -466,15 +469,15 @@ class OrganizersController < ApplicationController
          @message_status = "Você não tem fundos suficientes para realizar esta transferência"
       end
     end
-    
+
   end
-  
+
   def marketplace
-    
+
   end
 
   private
-  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_organizer
       @organizer = Organizer.find(params[:id])
@@ -485,4 +488,18 @@ class OrganizersController < ApplicationController
       #params.fetch(:organizer, {}).permit(:welcome, :policy, :name, :marketplace_id, :description, :picture, :user_id, :percent, :members, {:members_attributes => []}, {:wheres_attributes => [:id, :name, :lat, :long, :city, :state, :country, :postal_code, :address, :url, :google_id, :place_id]}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
       params.fetch(:organizer, {}).permit!
     end
+
+    def sign_in_mailchimp email
+      begin
+        gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key],
+                                     symbolize_keys: true)
+        gibbon.timeout = 10
+        gibbon.lists(Rails.application.secrets[:mailchimp_list_id_organizer]).members
+              .create(body: { email_address: email,
+                              status: 'subscribed' })
+      rescue Gibbon::MailChimpError => e
+        puts "Email já cadastrado ou inválido: #{email}"
+      end
+    end
+
 end
