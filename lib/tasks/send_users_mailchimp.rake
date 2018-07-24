@@ -32,7 +32,7 @@ namespace :send_users_mailchimp do
     # 0 => EMAIL, 1 => FNAME, 2 => LNAME
     users.each do |user|
       begin
-        gibbon.lists(Rails.application.secrets[:mailchimp_list_id])
+        gibbon.lists(Rails.application.secrets[:mailchimp_list_id_user])
               .members
               .create(body: { email_address: user.email,
                               status: 'subscribed' })
@@ -54,7 +54,7 @@ namespace :send_users_mailchimp do
     # 0 => EMAIL, 1 => FNAME, 2 => LNAME
     organizer_users.each do |organizer_user|
       begin
-        gibbon.lists(Rails.application.secrets[:mailchimp_list_id])
+        gibbon.lists(Rails.application.secrets[:mailchimp_list_id_organizer])
               .members
               .create(body: { email_address: organizer_user.email,
                               status: 'subscribed' })
