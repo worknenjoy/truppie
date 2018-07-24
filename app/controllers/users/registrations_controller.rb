@@ -35,7 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key],
                                    symbolize_keys: true)
       gibbon.timeout = 10
-      gibbon.lists(Rails.application.secrets[:mailchimp_list_id]).members
+      gibbon.lists(Rails.application.secrets[:mailchimp_list_id_user]).members
             .create(body: { email_address: sign_up_params[:email],
                             status: 'subscribed' })
     rescue Gibbon::MailChimpError => e

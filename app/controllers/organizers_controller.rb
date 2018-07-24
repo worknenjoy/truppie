@@ -137,7 +137,9 @@ class OrganizersController < ApplicationController
 
     respond_to do |format|
       if @organizer.save
-        sign_in_mailchimp sign_up_params[:email]
+        if organizer_params[:email]
+          sign_in_mailchimp organizer_params[:email]
+        end
         format.html {
           if @organizer.mail_notification
             ContactMailer.notify("Uma nova conta de guia foi criada").deliver_now
@@ -485,14 +487,14 @@ class OrganizersController < ApplicationController
     def organizer_params
       #params.fetch(:organizer, {}).permit(:welcome, :policy, :name, :marketplace_id, :description, :picture, :user_id, :percent, :members, {:members_attributes => []}, {:wheres_attributes => [:id, :name, :lat, :long, :city, :state, :country, :postal_code, :address, :url, :google_id, :place_id]}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
       params.fetch(:organizer, {}).permit!
-    en
+    end
 
     def sign_in_mailchimp email
       begin
         gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key],
                                      symbolize_keys: true)
         gibbon.timeout = 10
-        gibbon.lists(Rails.application.secrets[:mailchimp_list_id]).members
+        gibbon.lists(Rails.application.secrets[:mailchimp_list_id_organizer]).members
               .create(body: { email_address: email,
                               status: 'subscribed' })
       rescue Gibbon::MailChimpError => e
