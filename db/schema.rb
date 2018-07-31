@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180705134458) do
+ActiveRecord::Schema.define(version: 20180731124025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -455,9 +455,11 @@ ActiveRecord::Schema.define(version: 20180705134458) do
     t.string   "destination"
     t.string   "source"
     t.integer  "guidebook_id"
+    t.integer  "package_id"
   end
 
   add_index "orders", ["guidebook_id"], name: "index_orders_on_guidebook_id", using: :btree
+  add_index "orders", ["package_id"], name: "index_orders_on_package_id", using: :btree
   add_index "orders", ["tour_id"], name: "index_orders_on_tour_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
@@ -761,6 +763,7 @@ ActiveRecord::Schema.define(version: 20180705134458) do
   add_foreign_key "marketplaces", "organizers"
   add_foreign_key "members", "users"
   add_foreign_key "orders", "guidebooks"
+  add_foreign_key "orders", "packages"
   add_foreign_key "orders", "tours"
   add_foreign_key "organizers", "marketplaces"
   add_foreign_key "organizers", "members"

@@ -204,8 +204,12 @@ class GuidebooksController < ApplicationController
             :final_price => @price_cents,
             :liquid => @fees[:liquid],
             :fee => @fees[:fee],
-            :payment_method => @payment_method
+            :payment_method => @payment_method,
+            :package => @package
         )
+
+        puts "### Order parameters ###"
+        puts @order.inspect
 
         begin
           @guidebook.save()
