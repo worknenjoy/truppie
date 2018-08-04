@@ -501,7 +501,7 @@ ActiveRecord::Schema.define(version: 20180705134458) do
     t.string   "policy",               default: [],                 array: true
     t.integer  "percent",              default: 3
     t.string   "invite_token"
-    t.boolean  "mail_notification",    default: true
+    t.boolean  "mail_notification"
   end
 
   add_index "organizers", ["marketplace_id"], name: "index_organizers_on_marketplace_id", using: :btree
