@@ -41,3 +41,20 @@ end
 Then(/^I should see an organizer$/) do
   expect(page).to have_content("Minhas truppies")
 end
+
+Given(/^I fill the guide information with a new user$/) do
+  fill_in "organizer[name]", :with => "Luisa Bastos"
+  fill_in "organizer[email]", :with => "amanda.lssc@gmail.com"
+  fill_in "organizer[password]", :with => "123456789"
+  fill_in "organizer[password_confirmation]", :with => "123456789"
+  fill_in "organizer[website]", :with => "www.teste.com"
+  fill_in "organizer[description]", :with => "Isso é um teste de novo guia"
+  click_link "Continuar"
+  fill_in "search", :with => "Minas Gerais, Brazil"
+  click_link "Continuar"
+  fill_in "organizer[phone]", :with => "15997168035"
+  fill_in "organizer[instagram]", :with => 'instagram.com'
+  click_link "Continuar"
+  attach_file('organizer[picture]', File.join(Rails.root, 'features', 'upload-files', 'image.jpg'))
+  click_link "Continuar"
+end
