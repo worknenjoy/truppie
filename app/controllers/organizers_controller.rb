@@ -490,15 +490,17 @@ class OrganizersController < ApplicationController
     end
 
     def sign_in_mailchimp email
-      begin
-        gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key],
-                                     symbolize_keys: true)
-        gibbon.timeout = 10
-        gibbon.lists(Rails.application.secrets[:mailchimp_list_id_organizer]).members
-              .create(body: { email_address: email,
-                              status: 'subscribed' })
-      rescue Gibbon::MailChimpError => e
-        puts "Email já cadastrado ou inválido: #{email}"
+      if Rails.application.secrets[:mailchimp_api_key]
+        begin
+          gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key],
+                                       symbolize_keys: true)
+          gibbon.timeout = 10
+          gibbon.lists(Rails.application.secrets[:mailchimp_list_id_organizer]).members
+                .create(body: { email_address: email,
+                                status: 'subscribed' })
+        rescue Gibbon::MailChimpError => e
+          puts "Email já cadastrado ou inválido: #{email}"
+        end
       end
     end
 
