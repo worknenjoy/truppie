@@ -4,7 +4,7 @@
   <% end %>
     <ul class="nav navbar-nav">
       <li class="nav-item <%= "active" if (current_page? action: 'dashboard' or current_page? action: 'guided_tour')  %>">
-        <%= link_to guided_tour_organizer_path(@organizer), class: 'nav-link' do %>
+        <%= link_to dashboard_organizer_path(@organizer), class: 'nav-link' do %>
             <%= t('panel-label') %>
         <% end %>
       </li>

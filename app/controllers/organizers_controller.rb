@@ -1,7 +1,7 @@
 class OrganizersController < ApplicationController
   include ApplicationHelper
-  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
-  before_action :authenticate_user!, :except => [:show, :index]
+  before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :guidebooks, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
+  before_action :authenticate_user!, :except => [:show, :index, :create]
   before_filter :check_if_organizer_admin, only: [:update, :manage, :transfer, :transfer_funds, :tos_acceptance, :tos_acceptance_confirm, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
   before_filter :check_if_super_admin, only: [:new, :edit, :invite, :send_invite]
 
@@ -79,6 +79,19 @@ class OrganizersController < ApplicationController
     @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
   end
 
+  def edit_guidebook
+    @guided_tour = Guidebook.find(params[:guidebook])
+    @organizer = Organizer.find(params[:id])
+    @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
+    @current_category_name = Category.find(@guided_tour.category_id).name rescue nil
+  end
+
+  def guidebooks
+    @guided_tour = @organizer.guidebooks.new
+    @opened = flash[:opened] || false
+    @cats = ["Esportes e aventura", "Trilhas e travessias", "Relax", "Família", "Geek", "Gastronomia", "Urbano", "Cultura"]
+  end
+
   def edit_guided_tour
     @guided_tour = Tour.find(params[:tour])
     @organizer = Organizer.find(params[:id])
@@ -98,30 +111,49 @@ class OrganizersController < ApplicationController
   # POST /organizers
   # POST /organizers.json
   def create
-    @organizer = Organizer.new(organizer_params.except!("welcome"))
-    puts 'new organizer'
-    puts @organizer.inspect
+
+    @organizer = Organizer.new(organizer_params.except! 'type_of_user', 'password', 'password_confirmation')
+
+    if !organizer_params[:user_id] && organizer_params[:type_of_user] === 'organizer'
+      sign_up_params = {
+          name: organizer_params[:name],
+          email: organizer_params[:email],
+          password: organizer_params[:password],
+          password_confirmation: organizer_params[:password_confirmation],
+          type_of_user: organizer_params[:type_of_user]
+      }
+
+      temp_user = User.new(sign_up_params)
+      if temp_user.save
+        sign_in temp_user, :bypass => true
+        @organizer.user = temp_user
+      else
+        puts temp_user.errors.inspect
+        flash[:errors] = temp_user.errors
+        redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
+        return
+      end
+    end
 
     respond_to do |format|
       if @organizer.save
+        if organizer_params[:email]
+          sign_in_mailchimp organizer_params[:email]
+        end
         format.html {
-          session.delete(:organizer_welcome_params)
-          session.delete(:organizer_welcome)
           if @organizer.mail_notification
             ContactMailer.notify("Uma nova conta de guia foi criada").deliver_now
             OrganizerMailer.notify(@organizer, "activate").deliver_now
-          end         
+          end
           redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
 
         }
         format.json { render :show, status: :created, location: @organizer }
-       
+
       else
         format.html {
           flash[:errors] = @organizer.errors
           puts @organizer.errors.inspect
-          session.delete(:organizer_welcome_params)
-          session.delete(:organizer_welcome)
           redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
         }
         format.json { render json: @organizer.errors, status: :unprocessable_entity }
@@ -131,25 +163,20 @@ class OrganizersController < ApplicationController
 
   def create_from_auth
     if session[:organizer_welcome]
-      params = session[:organizer_welcome_params].except!("welcome")
-      params["user_id"] = current_user.id
-      @organizer = Organizer.new(params)
+      session[:organizer_user_id] = current_user.id
 
-      if @organizer.save
-        session.delete(:organizer_welcome_params)
-        session.delete(:organizer_welcome)
+      @organizer = Organizer.find(session[:organizer_id])
+
+
+      if @organizer.update_attributes(user_id: session[:organizer_user_id])
         redirect_to organizer_path(@organizer), notice: I18n.t('organizer-create-success')
       else
         flash[:errors] = @organizer.errors
         puts 'errors from organizer'
         puts @organizer.errors
-        session.delete(:organizer_welcome_params)
-        session.delete(:organizer_welcome)
         redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
       end
     else
-      session.delete(:organizer_welcome_params)
-      session.delete(:organizer_welcome)
       redirect_to organizer_welcome_path, notice: I18n.t('organizer-create-issue-message')
     end
   end
@@ -160,7 +187,7 @@ class OrganizersController < ApplicationController
   def update
     respond_to do |format|
       if @organizer.update(organizer_params)
-        format.html { 
+        format.html {
           #OrganizerMailer.notify(@organizer, "update").deliver_now
           redirect_to :back, notice: I18n.t('organizer-update-sucessfully')
         }
@@ -184,21 +211,21 @@ class OrganizersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def dashboard
     @organizer = Organizer.find(params[:id])
     @tours = @organizer.tours.order('created_at DESC')
-    if params[:tour].nil? 
+    if params[:tour].nil?
       @tour = @organizer.tours.order('created_at DESC').first
     else
       @tour = Tour.find(params[:tour])
     end
   end
-  
+
   def manage
     @organizer = Organizer.find(params[:id])
     @tours = @organizer.tours.order('created_at DESC')
-    if params[:tour].nil? 
+    if params[:tour].nil?
       @tour = @organizer.tours.order('created_at DESC').first
     else
       @tour = Tour.find(params[:tour])
@@ -315,32 +342,32 @@ class OrganizersController < ApplicationController
     #puts @response_json.inspect
     #https://www.facebook.com/v2.9/dialog/oauth?response_type=token&display=popup&client_id=1696671210617842&redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer%2Fcallback%3Fmethod%3DGET%26path%3D10154033067028556%252Fevents%253Ftype%253Dcreated%2526limit%253D2%26version%3Dv2.9&scope=rsvp_event%2Cuser_events
   end
-  
+
   def confirm_account
     @organizer = Organizer.find(params[:id])
     @marketplace = @organizer.marketplace
   end
-  
+
   def tos_acceptance
     @organizer = Organizer.find(params[:id])
   end
-  
+
   def tos_acceptance_confirm
     @organizer = Organizer.find(params[:id])
     if Rails.env.development?
       @ip = "127.0.0.1"
     else
       @ip = params[:ip]
-    end 
-    
+    end
+
     if request.post?
-      begin 
+      begin
         valid_ip = IPAddr.new(@ip)
       rescue
         @status = "danger"
         @status_message = e.message
       end
-      
+
      if valid_ip
         if @organizer.try(:marketplace)
           begin
@@ -369,9 +396,9 @@ class OrganizersController < ApplicationController
     @status = "danger"
     @status_message = "Não foi possível aceitar seus termos"
    end
-    
+
   end
-  
+
   def transfer
     @organizer = Organizer.find(params[:id])
     @bank_account = []
@@ -384,19 +411,19 @@ class OrganizersController < ApplicationController
       @balance = {}
     end
   end
-  
+
   #deprecated - convert to stripe manual transfer (the money is transfered automatically)
   def transfer_funds
     @organizer = Organizer.find(params[:id])
     @amount = raw_price(params[:amount])
     @current = raw_price(params[:current])
-    
+
     if params[:amount].nil?
       @status = "danger"
       @message_status = "Você não especificou um valor"
-      return 
+      return
     end
-    
+
     @bank_account_active_id = @organizer.marketplace.bank_account_active.own_id
     if @bank_account_active_id.nil?
       @status = "danger"
@@ -412,13 +439,13 @@ class OrganizersController < ApplicationController
                   }
               }
           }
-          response_transfer = RestClient.post("#{Rails.application.secrets[:moip_domain]}/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"){|response, request, result, &block| 
+          response_transfer = RestClient.post("#{Rails.application.secrets[:moip_domain]}/transfers", bank_transfer_data.to_json, :content_type => :json, :accept => :json, :authorization => "OAuth #{@organizer.marketplace.token}"){|response, request, result, &block|
               case response.code
                 when 401
                   @status = "danger"
                   @message_status = "Você não está autorizado a realizar esta transação"
                   @response_transfer_json = JSON.load response
-                when 400 
+                when 400
                   @status = "danger"
                   @message_status = "Não foi possíel realizar a transferência"
                   @response_transfer_json = JSON.load response
@@ -442,15 +469,15 @@ class OrganizersController < ApplicationController
          @message_status = "Você não tem fundos suficientes para realizar esta transferência"
       end
     end
-    
+
   end
-  
+
   def marketplace
-    
+
   end
 
   private
-  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_organizer
       @organizer = Organizer.find(params[:id])
@@ -461,4 +488,18 @@ class OrganizersController < ApplicationController
       #params.fetch(:organizer, {}).permit(:welcome, :policy, :name, :marketplace_id, :description, :picture, :user_id, :percent, :members, {:members_attributes => []}, {:wheres_attributes => [:id, :name, :lat, :long, :city, :state, :country, :postal_code, :address, :url, :google_id, :place_id]}, :email, :website, :facebook, :twitter, :instagram, :phone, :status).merge(params[:organizer])
       params.fetch(:organizer, {}).permit!
     end
+
+    def sign_in_mailchimp email
+      begin
+        gibbon = Gibbon::Request.new(api_key: Rails.application.secrets[:mailchimp_api_key],
+                                     symbolize_keys: true)
+        gibbon.timeout = 10
+        gibbon.lists(Rails.application.secrets[:mailchimp_list_id_organizer]).members
+              .create(body: { email_address: email,
+                              status: 'subscribed' })
+      rescue Gibbon::MailChimpError => e
+        puts "Email já cadastrado ou inválido: #{email}"
+      end
+    end
+
 end

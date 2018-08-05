@@ -10,16 +10,12 @@
           <td>Valor</td>
           <td class="receipt-figure"><%= raw final_price_from_cents(order.price) %></td>
         </tr>
-        <% if order.tour.try(:packages) %>
-            <% order.tour.packages.each do |p| %>
-              <% if (p.value).to_i*100 == (order.price).to_i %>
-                <tr>
-                  <td>Pacote</td>
-                  <td class="receipt-figure"><%= p.name %></td>
-                </tr>
-              <% end %>                                                     
-            <% end %>
-         <% end %>
+        <% if order.try(:package) %>
+          <tr>
+            <td>Pacote</td>
+            <td class="receipt-figure"><%= order.package.name %></td>
+          </tr>
+        <% end %>
         <tr>
           <td>Reservas</td>
           <td class="receipt-figure"><%= order.amount %></td>

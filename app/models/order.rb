@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
   belongs_to :tour
   belongs_to :guidebook
   belongs_to :user
+  belongs_to :package
 
   scope :has_tours, lambda { where('tour_id >= ?', 0) }
   

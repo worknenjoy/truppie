@@ -42,7 +42,7 @@ Then(/^I should see an organizer$/) do
   expect(page).to have_content("Minhas truppies")
 end
 
-Given(/^I create an user account$/) do
+Given(/^I fill the guide information with a new user$/) do
   fill_in "organizer[name]", :with => "Luisa Bastos"
   fill_in "organizer[email]", :with => "amanda.lssc@gmail.com"
   fill_in "organizer[password]", :with => "123456789"

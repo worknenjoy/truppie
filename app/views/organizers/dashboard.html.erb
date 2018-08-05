@@ -10,20 +10,39 @@
             <%= render partial: 'organizer_side_menu' %>
           </div>
           <div class="manage-main">
-            <div class="">
-              <p class="text-xs-center"><strong><%= t('hello-organizer-welcome', organizer: @organizer.name) %></strong></p>
-              <p class="text-xs-center"><%= t('organizer-panel-welcome') %></p>
-              <p class="text-xs-center">
-                <%= image_tag("adventurer.svg", :alt => "new truppie", :width => 200, :class => 'img-fluid center-block') %>
-              </p>
-              <p class="text-xs-center">
-                <%= t('organizer-dashboard-desc') %>
-              </p>
-              <p class="text-xs-center">
-                <%= link_to guided_tour_organizer_path(@organizer), class: 'btn btn-primary btn-lg' do %>
-                    <%= t('organizer-new-tour') %> <i class="fa fa-plus"></i>
-                <% end %>
-              </p>
+            <div class="row">
+              <div class="col-xs-12">
+                <p class="text-xs-center"><strong><%= t('hello-organizer-welcome', organizer: @organizer.name) %></strong></p>
+                <p class="text-xs-center" style="overflow:hidden; padding-bottom: 40px;"><%= t('organizer-panel-welcome') %></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6">
+                <p class="text-xs-center">
+                  <%= image_tag("adventurer.svg", :alt => "new truppie", :width => 200, :class => 'img-fluid center-block') %>
+                </p>
+                <p class="text-xs-center">
+                  <%= link_to guided_tour_organizer_path(@organizer), class: 'btn btn-primary btn-lg', data: {turbolinks: false} do %>
+                      <%= t('organizer-new-tour') %> <i class="fa fa-plus"></i>
+                  <% end %>
+                </p>
+                <p class="text-xs-center">
+                  <%= t('organizer-dashboard-desc') %>
+                </p>
+              </div>
+              <div class="col-xs-6">
+                <p class="text-xs-center">
+                  <%= image_tag("guidebook-luggage.svg", :alt => "new truppie", :width => 200, :class => 'img-fluid center-block') %>
+                </p>
+                <p class="text-xs-center">
+                  <%= link_to guidebooks_organizer_path(@organizer), class: 'btn btn-primary btn-lg', data: {turbolinks: false} do %>
+                      <%= t('organizer-new-guidebook') %> <i class="fa fa-plus"></i>
+                  <% end %>
+                </p>
+                <p class="text-xs-center">
+                  <%= t('organizer-dashboard-guidebook-desc') %>
+                </p>
+              </div>
             </div>
           </div>
         </div>

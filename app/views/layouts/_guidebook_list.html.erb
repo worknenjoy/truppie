@@ -19,13 +19,13 @@
 </style>
 <div class="twPc-div spaced-down">
   <% if t.value_chosen_by_user %>
-      <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+      <%= link_to(guidebook_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
           <div class="ribbon base">
             <span><small><%= t('no-price-defined-message') %></small></span>
           </div>
       <% end %>
   <% else %>
-      <%= link_to(tour_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
+      <%= link_to(guidebook_path(t), :id => "twPc-bg-#{t.id}" ,:class => 'twPc-bg twPc-block') do %>
           <div class="ribbon base"><span><%= raw t.price %></span></div>
       <% end %>
   <% end %>
@@ -34,7 +34,7 @@
     <div class="twPc-button">
       <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
 
-      <%= link_to(tour_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
+      <%= link_to(guidebook_path(t), :class => 'twitter-follow-button btn btn-primary') do %>
           <i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
       <% end %>
       <!-- Twitter Button -->

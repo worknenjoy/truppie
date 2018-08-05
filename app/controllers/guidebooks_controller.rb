@@ -1,5 +1,5 @@
 class GuidebooksController < ApplicationController
-  before_action :set_guidebook, only: [:show, :edit, :update, :destroy]
+  before_action :set_guidebook, only: [:show, :edit, :update, :destroy, :copy_guidebook]
 
   before_action :authenticate_user!, :except => [:show, :index]
   before_filter :check_if_organizer_admin, only: [:create, :update, :destroy]
@@ -34,7 +34,12 @@ class GuidebooksController < ApplicationController
         format.html { redirect_to @guidebook, notice: 'Guidebook was successfully created.' }
         format.json { render :show, status: :created, location: @guidebook }
       else
-        format.html { render :new }
+        format.html {
+          flash[:errors] = @guidebook.errors
+          flash[:opened] = true
+          redirect_to guidebook_organizer_path(guidebook_params[:organizer] || guidebook_params[:organizer_id]),
+                      notice: t('tours_controller_create_notice_two')
+        }
         format.json { render json: @guidebook.errors, status: :unprocessable_entity }
       end
     end
@@ -199,8 +204,12 @@ class GuidebooksController < ApplicationController
             :final_price => @price_cents,
             :liquid => @fees[:liquid],
             :fee => @fees[:fee],
-            :payment_method => @payment_method
+            :payment_method => @payment_method,
+            :package => @package
         )
+
+        puts "### Order parameters ###"
+        puts @order.inspect
 
         begin
           @guidebook.save()
@@ -226,6 +235,38 @@ class GuidebooksController < ApplicationController
       ContactMailer.notify(t('tours_controller_mailer_notify_three', name: current_user.name, email: current_user.email )).deliver_now
     end
 
+  end
+
+  def copy_guidebook
+    organizer = @guidebook.organizer
+
+    old_wheres = @guidebook.wheres
+    old_packages = @guidebook.packages
+    old_tour = @guidebook
+
+    new_tour = Guidebook.new(old_tour.attributes.merge({:title => "#{@guidebook.title} - copiado", :status => '', :id => ''}))
+
+    new_tour.wheres << old_wheres
+
+    if old_packages.present?
+      new_tour.packages << old_packages
+    end
+
+    respond_to do |format|
+      if new_tour.save
+        format.html {
+          redirect_to "/organizers/#{organizer.to_param}/guidebooks", flash: {notice: t('guidebooks_controller_copy_success')}
+        }
+        format.json { render :copy_tour, status: :ok, location: @guidebook }
+      else
+        format.html {
+          puts 'copy guidebook error'
+          puts new_tour.errors.inspect
+          redirect_to "/organizers/#{organizer.to_param}/guidebooks", flash: {notice: t('guidebooks_controller_copy_error')}
+        }
+        format.json { render json: @guidebook.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

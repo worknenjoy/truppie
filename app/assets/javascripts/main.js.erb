@@ -119,7 +119,7 @@ function add_packages(type) {
   var count = $('.packages-set').length;
   $('.add-packages').on('click', function(e){
       $('<div />').load('/packages/new', function(data){
-          var new_data = $(data).find('input').each(function(e){
+          var new_data = $(data).find('input, textarea').each(function(e){
               $(this).attr('name', type + '[packages_attributes][' + count  +  '][' + this.id + ']');
               if(this.id == 'included') {
                   $(this).tagsinput({
@@ -372,8 +372,8 @@ $(document).on("turbolinks:load", function() {
   });
 
   $(".publish-truppie").on('click', function(){
-      $('.tour-status').val('P');
-      $('#new_tour, .edit_tour').trigger('submit');
+      $('.tour-status, .guidebook-status').val('P');
+      $('#new_tour, .edit_tour, #new_guidebook, .edit_guidebook').trigger('submit');
       return false;
   });
 
@@ -516,9 +516,9 @@ $(document).on("turbolinks:load", function() {
             placeholder: 'descreva seu evento...',
             theme: 'snow'  // or 'bubble'
         });
-        quill.container.firstChild.innerHTML = $('#tour_description').val();
+        quill.container.firstChild.innerHTML = $('#tour_description, #guidebook_description').val();
         quill.on('editor-change', function(eventName, args) {
-            $('#tour_description').val(quill.container.firstChild.innerHTML);
+            $('#tour_description, #guidebook_description').val(quill.container.firstChild.innerHTML);
         });
     }
 
