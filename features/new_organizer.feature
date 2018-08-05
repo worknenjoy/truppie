@@ -16,3 +16,11 @@ Feature: Create a new organizer
     And I fill the guide information
     And I click in finish 
     Then I see the guide profile page
+
+  @javascript
+  Scenario: Non logged user create a organizer
+    Given I go to the homepage
+    And I click in register guide
+    And I fill the guide information with a new user
+    And I click in finish 
+    Then I see the guide profile page
