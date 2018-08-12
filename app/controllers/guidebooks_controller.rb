@@ -13,6 +13,7 @@ class GuidebooksController < ApplicationController
   # GET /guidebooks/1
   # GET /guidebooks/1.json
   def show
+    @guidebook = Guidebook.find(params[:id])
   end
 
   # GET /guidebooks/new
@@ -37,7 +38,7 @@ class GuidebooksController < ApplicationController
         format.html {
           flash[:errors] = @guidebook.errors
           flash[:opened] = true
-          redirect_to guidebook_organizer_path(guidebook_params[:organizer] || guidebook_params[:organizer_id]),
+          redirect_to guidebooks_organizer_path(guidebook_params[:organizer] || guidebook_params[:organizer_id]),
                       notice: t('tours_controller_create_notice_two')
         }
         format.json { render json: @guidebook.errors, status: :unprocessable_entity }
