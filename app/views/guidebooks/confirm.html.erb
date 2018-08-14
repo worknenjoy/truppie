@@ -182,6 +182,20 @@
                                     <%= hidden_field_tag :value, @guidebook.value %>
                                   <% end %>
                                 <% end %>
+                                <% if @guidebook.services.any? %>
+                              <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_services') %></span>
+                              <div class="form-group guidebooks-services">
+                              <% @guidebook.services.each_with_index do |p, i| %>
+                                  <div class="col-md-2 service-item-confirm">
+                                  <%= check_box_tag "guidebook[services_attributes][#{i}][value]", p.value, nil, { id: "guidebook_services_attributes_#{i}_value" } %>
+                                  <%= p.name %>
+                                  <%= hidden_field_tag "guidebook[services_attributes][#{i}][id]", p.id %>
+                                  <h4><strong><%= raw p.price %></strong></h4>
+                                  </div>                             
+                                  <% end %>
+                                </div>
+                                <% end %>
+
                             </div>
                           </div>
                           <!--
@@ -210,14 +224,15 @@
                                   </div>
                                 </div> -->
                               </div>
-                              <div class="col-md-12">
+                              <div class="col-md-12">                              
                                 <div style="margin-top: 20px;">
                                   <div class="price mediafix">
                                     <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
                                   </div>
                                   <div class="price mediafix">
-                                    <h3 class="b-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
+                                    <h3 class="b-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>                                    
                                     <%= hidden_field_tag :final_price, @final_price, id:'b-final-price' %>
+                                    <%= hidden_field_tag :default_final_price, @final_price, id:'b-default-final-price'%>    
                                     <%= hidden_field_tag :token, '', id:'token' %>
                                   </div>
                                 </div>

@@ -134,6 +134,25 @@ function add_packages(type) {
   });
 }
 
+function add_services(type) {
+  var count = $('.services-set').length;
+  $('.add-services').on('click', function(e){
+      $('<div />').load('/services/new', function(data){
+          var new_data = $(data).find('input, textarea').each(function(e){
+              $(this).attr('name', type + '[services_attributes][' + count  +  '][' + this.id + ']');
+              if(this.id == 'included') {
+                  $(this).tagsinput({
+                      delimiter: ";"
+                  });
+              }
+          }).end();
+          count++;
+          $('.new-services-content:eq(0)').prepend(new_data);
+      });
+      return false;
+  });
+}
+
 function listenCheckToggle(inputCheckBox, toggableContainerElements){
   if(inputCheckBox.length > 0 && toggableContainerElements.length > 0){
     inputCheckBox.on('change', function(){
@@ -152,7 +171,7 @@ function listenCheckToggle(inputCheckBox, toggableContainerElements){
   }
 }
 
-function updateTotalFairPrice(event){
+function updateTotalFairPrice(event){    
   var amount_elem = $('input.cc-amount-output');
   var amountValue = amount_elem.val() % amount_elem.attr('max');
   var fair_price_value = $('input.fair-price-value').val();
@@ -219,6 +238,11 @@ $(document).on("turbolinks:load", function() {
         return false;
     });
 
+    $('#add-services').on('click', function () {
+        $('.services-set').clone().insertBefore(this);
+        return false;
+    });
+
     $('.activate-tooltip').tooltip();
 
     if($('.where-field').length) {
@@ -251,10 +275,12 @@ $(document).on("turbolinks:load", function() {
 
   if($('.edit_tour, .new_tour').length) {
       add_packages('tour');
+      add_services('tour');
   }
 
   if($('.edit_guidebook, .new_guidebook').length) {
       add_packages('guidebook');
+      add_services('guidebook');
   }
 
 	if($('#tour_tags, #guidebook_tags').length) {
@@ -463,13 +489,15 @@ $(document).on("turbolinks:load", function() {
  	new WOW().init();
 
  	if($('.cc-package-options').length) {
- 	  $('.cc-final-price span').text($('.cc-package-options').find(":checked").val());
- 	  $('#cc-final-price').val($('.cc-package-options').find(":checked").val());
+       $('.cc-final-price span').text($('.cc-package-options').find(":checked").val());
+       $('#cc-final-price').val($('.cc-package-options').find(":checked").val());
+       $('#cc-default-final-price').val($('.cc-package-options').find(":checked").val());
  	}
 
  	if($('.b-package-options').length) {
     $('.b-final-price span').text($('.b-package-options').find(":checked").val());
     $('#b-final-price').val($('.b-package-options').find(":checked").val());
+    $('#b-default-final-price').val($('.b-package-options').find(":checked").val());
   }
 
  	$('.cc-amount-output').bootstrapNumber({
@@ -539,6 +567,12 @@ $(document).on("turbolinks:load", function() {
         });
     });
 
+    $('.clear-service').on('click', function (event) {
+        $('#new-services-modal').find('input').each(function(e){
+            $(this).val('');
+        });
+    });
+
     if($('#import-from-facebook-action').length) {
         $.ajaxSetup({cache: true});
 
@@ -598,4 +632,50 @@ $(document).on("turbolinks:load", function() {
     $(document).unbind('input change', 'input.cc-amount-output,input.fair-price-value', updateTotalFairPrice);
     $(document).unbind('click', '.amount-input-group .input-group-btn', updateTotalFairPrice);
   }
+
+  $('.tours-services .service-item-confirm :checkbox').change(updateFinalPriceForTours);
+  $('.btn-cc-plus,.btn-cc-minus,.cc-amount-output').on('change paste keyup input click', updateFinalPriceForTours);
+  $('.guidebooks-services .service-item-confirm :checkbox').change(updateFinalPriceForGuidebooks);
+  $('.btn-cc-plus,.btn-cc-minus,.b-amount-output').on('change paste keyup input click', updateFinalPriceForGuidebooks);
+
+  
+  $('.cc-package-options input[type=radio]').change(function(){
+    $('#cc-default-final-price').val($(this).val());
+    updateFinalPriceForTours();
+  });
+  $('.b-package-options input[type=radio]').change(function(){
+    $('#b-default-final-price').val($(this).val());
+    updateFinalPriceForGuidebooks();
+  });
+  
+  
+
+  function updateFinalPriceForTours() {
+    updateFinalPrice.call(this, '#cc-final-price', '#cc-default-final-price', '.cc-final-price span', '.cc-amount-output');
+  }
+
+  function updateFinalPriceForGuidebooks() {    
+    updateFinalPrice.call(this, '#b-final-price', '#b-default-final-price', '.b-final-price span', '.b-amount-output');
+  }
+
+  function updateFinalPrice(hiddenFinalPriceId, hiddenDefaultFinalPriceId, spanFinalPriceClass, amountClass) {
+      setTimeout(()=> {
+        const amount = parseInt($(amountClass).val()) || 1;
+        const defaultFinalPrice = parseInt($(hiddenDefaultFinalPriceId).val());
+
+        const checkedValues = [];
+        $('.service-item-confirm input[type=checkbox]').each(function() {
+            const element = $(this);        
+            if(element.is(':checked')) {            
+                checkedValues.push(parseInt(element.val()));
+            }
+        });
+
+        const serviceValuesSum = checkedValues.reduce((sum, v) => sum + v, 0);
+        const newFinalPrice = (defaultFinalPrice + serviceValuesSum) * amount;
+        
+        $(spanFinalPriceClass).text(newFinalPrice);    
+        $(hiddenFinalPriceId).val(newFinalPrice);
+        }, 100);
+    }
 });
