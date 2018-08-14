@@ -144,7 +144,7 @@
 					<div class="card-block">
             <ul class="list-unstyled tour-info">
               <li>
-                <% if not @tour.soldout? or not @tour.available.empty? %>
+                <% if not @tour.soldout? or @tour.available %>
                   <i class="fa fa-ticket"></i>
                   <strong><%= @tour.available %></strong> <%= t('tours_view_show_li_one') %>
                 <% else %>
