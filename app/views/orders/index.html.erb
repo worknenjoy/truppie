@@ -4,60 +4,61 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<hr class="hr-primary" />
-	        <ol class="breadcrumb bread-primary ">
-	        	<li>
-	        		<%= link_to root_url do %>
-	        			<i class="fa fa-home"></i> Início
-	        		<% end %>
-	        	</li>
-	        	<li><%= link_to('Usuário', edit_user_registration_path) %></li>
-	            <li class="active">Minhas truppies</li>
-	        </ol>
+			<ol class="breadcrumb bread-primary ">
+				<li>
+					<%= link_to root_url do %>
+					<i class="fa fa-home"></i> Início
+					<% end %>
+				</li>
+				<li><%= link_to('Usuário', edit_user_registration_path) %></li>
+				<li class="active">Minhas truppies</li>
+			</ol>
 			<h4 class="spaced-smallest">Minhas truppies</h4>
 			<p>Acompanhe aqui o status das suas truppies.</p>
 			<% if !@orders.exists? @orders.has_tours.any? %>
-				<p class="lead">
-					<span class="label label-pill label-warning">
-						Não há reservas para você neste momento
-					</span>
-				</p>
+			<p class="lead">
+				<span class="label label-pill label-warning">
+					Não há reservas para você neste momento
+				</span>
+			</p> 
 			<% else %>
 			<div class="main-box no-header clearfix">
-                <div class="main-box-body clearfix">
-                    <div class="table-responsive">
-                        <table class="table user-list">
-                            <thead>
-                                <tr>
-                                <th><span>Truppie</span></th>
-                                <th><span>Reservada em</span></th>
-                                <th class="text-center"><span>Pagamento</span></th>
-                                <th><span>Código do pedido</span></th>
-                                <th>Valor</th>
-                                <th>Reservas</th>
-                                <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-								              <% @orders.each do |o| %>
-                                <% if o.try(:tour) %>
-                                  <%= render partial: 'layouts/order_row', locals: { o: o } %>
-                                <% end %>
-                              <% end %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <p>Verifique se o passeio e o valor informados correspondem à sua solicitação e o status do pagamento.</p>
-            <h4><strong>O que significa cada status do pagamento?</strong></h4>
-                <ul>
-					<li>Quando a reserva é solicitada e você envia os dados do seu cartão: <span class="label label-pill label-primary">Em análise</span></li>
-					<li>Quando a operadora do cartão aprova o seu pedido: <span class="label label-success label-success">Autorizado</span></li>
-					<li>Quando o valor pago por aquela truppie foi devolvido a você: <span class="label label-primary label-warning">Reembolsado</span></li>
-					<li>Quando por algum motivo o seu cartão não é autorizado pela operadora: <span class="label label-danger label-danger">Cancelado</span></li>
-				</ul>
-            <% end %>
-            <p>Em caso de dúvidas, anote o código do pedido e <%= link_to 'entre em contato com a gente', contacts_index_path %> em ola@truppie.com.</p>
+				<div class="main-box-body clearfix">
+					<div class="table-responsive">
+						<table class="table user-list">
+							<thead>
+								<tr>
+									<th><span>Truppie</span></th>
+									<th><span>Tipo</span></th>
+									<th><span>Reservada em</span></th>
+									<th class="text-center"><span>Pagamento</span></th>
+									<th><span>Código do pedido</span></th>
+									<th>Valor</th>
+									<th>Reservas</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% @orders.each do |order| %>
+									<% type = order.tour.present? ? 'Tour Guiado' : 'Roteiro' %>
+									<% url  = order.tour.present? ? tour_path(order.tour) : guidebook_path(order.guidebook) %>
+									<%= render partial: 'layouts/order_row', locals: { order: order, item: order.tour || order.guidebook, type: type, url: url } %>
+								<% end %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<p>Verifique se o passeio e o valor informados correspondem à sua solicitação e o status do pagamento.</p>
+			<h4><strong>O que significa cada status do pagamento?</strong></h4>
+			<ul>
+				<li>Quando a reserva é solicitada e você envia os dados do seu cartão: <span class="label label-pill label-primary">Em análise</span></li>
+				<li>Quando a operadora do cartão aprova o seu pedido: <span class="label label-success label-success">Autorizado</span></li>
+				<li>Quando o valor pago por aquela truppie foi devolvido a você: <span class="label label-primary label-warning">Reembolsado</span></li>
+				<li>Quando por algum motivo o seu cartão não é autorizado pela operadora: <span class="label label-danger label-danger">Cancelado</span></li>
+			</ul>
+			<% end %>
+			<p>Em caso de dúvidas, anote o código do pedido e <%= link_to 'entre em contato com a gente', contacts_index_path %> em ola@truppie.com.</p>
 		</div>
 	</div>
 </div>
