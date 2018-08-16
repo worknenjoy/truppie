@@ -112,16 +112,18 @@ class GuidebooksController < ApplicationController
     end
 
     @services = []
-    params[:guidebook][:services_attributes].each do |k, v|      
-      if v[:value]
-        @services << Service.find(v[:id])
-      end
-    end        
-    @sum_services = @services.reduce(0) do |sum, s|
-      sum + s.value
-    end    
-    @value += @sum_services
-
+    if params[:guidebook].try(:services_attributes)
+      params[:guidebook][:services_attributes].each do |k, v|      
+        if v[:value]
+          @services << Service.find(v[:id])
+        end
+      end        
+      @sum_services = @services.reduce(0) do |sum, s|
+        sum + s.value
+      end    
+      @value += @sum_services
+    end
+    
     if params[:final_price].nil? || params[:final_price].empty?
       @final_price = @value
     else
@@ -137,7 +139,6 @@ class GuidebooksController < ApplicationController
       @status = t('status_danger')
       return
     end
-
 
     if @tour.try(:description)
       @desc = @guidebook.try(:description).first(250)

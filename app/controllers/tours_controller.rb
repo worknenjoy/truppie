@@ -372,18 +372,19 @@ class ToursController < ApplicationController
       @amount = params[:amount].to_i
     end
 
-     @services = []
-     
-     params[:tour][:services_attributes].each do |k, v|      
-      if v[:value]        
-        @services << Service.find(v[:id])
+    @services = []
+    if params[:tour].try(:services_attributes)
+      params[:tour][:services_attributes].each do |k, v|      
+        if v[:value]        
+          @services << Service.find(v[:id])
+        end
       end
+      
+      @sum_services = @services.reduce(0) do |sum, s| 
+        sum + s.value
+      end    
+      @value += @sum_services
     end
-    
-    @sum_services = @services.reduce(0) do |sum, s| 
-      sum + s.value
-    end    
-    @value += @sum_services
 
     if @value && params[:value_chosen_by_user]
       @final_price = @amount * @value
