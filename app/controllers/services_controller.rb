@@ -26,11 +26,11 @@ class ServicesController < ApplicationController
   # POST /services
   # POST /services.json
   def create
-    @service = Package.new(service_params)
+    @service = Service.new(service_params)
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to @service, notice: 'Package was successfully created.' }
+        format.html { redirect_to @service, notice: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ServicesController < ApplicationController
   def update
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to @service, notice: 'Package was successfully updated.' }
+        format.html { redirect_to @service, notice: 'Service was successfully updated.' }
         format.json { render :show, status: :ok, location: @service }
       else
         format.html { render :edit }
@@ -66,7 +66,7 @@ class ServicesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service
-      @service = Package.find(params[:id])
+      @service = Service.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

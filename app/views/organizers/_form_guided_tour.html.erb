@@ -189,7 +189,7 @@
         <span class="<%= form_error(flash[:errors], :value) %>">
           <%= error_message(flash[:errors], :value) %>
         </span>
-        <div class="input-group col-xs-6">
+        <div class="input-group col-xs-6" style="margin-bottom: 10px">
           <small style="vertical-align: -webkit-baseline-middle;"><%= t('or-label') %></small>
           <div class="row" style="margin: 0;">
           <%= link_to '#new-packages-modal', class: 'btn btn-info-outline btn-sm', data: {toggle: 'modal', target: '#new-packages-modal'} do %>
@@ -198,8 +198,6 @@
           <%= link_to '#new-services-modal', class: 'btn btn-info-outline btn-sm', data: {toggle: 'modal', target: '#new-services-modal'} do %>
               <%= t('organizer-new-service') %> <i class="fa fa-plus"></i>
           <% end %>
-          </div>
-          
         </div>
 
         <div class="modal fade" id="new-packages-modal">
