@@ -176,9 +176,23 @@
                                 </label>
                                 <% end %>
                                 </div>
-                              <% elsif @tour.value && !@tour.value_chosen_by_user? %>
+                              <% elsif @tour.value && !@tour.value_chosen_by_user? %>                              
                                 <%= hidden_field_tag :value, @tour.value %>
                               <% end %>
+                              <% if @tour.services.any? %>
+                                <span class="label label-warning spaced-smallest"><%= t('tours_view_confirm_services') %></span>
+                                <div class="form-group tours-services">
+                                <% @tour.services.each_with_index do |p, i| %>                                
+                                    <div class="col-md-2 service-item-confirm">
+                                    <%= check_box_tag "tour[services_attributes][#{i}][value]", p.value, nil, { id: "tour_services_attributes_#{i}_value" } %>
+                                    <%= p.name %>
+                                    <%= hidden_field_tag "tour[services_attributes][#{i}][id]", p.id %>
+                                    <h4><strong><%= raw p.price %></strong></h4>
+                                    </div>
+                                <% end %>
+                                </div>
+                              <% end %>
+
                             <% end %>
                         </div>
                       </div>
@@ -241,6 +255,7 @@
                                 <div class="price mediafix">
                                   <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@final_price) %></h3>
                                   <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' unless @tour.value_chosen_by_user? %>
+                                  <%= hidden_field_tag :default_final_price, @final_price, id:'cc-default-final-price'%>
                                 </div>
                               </div>
                             <% end %>

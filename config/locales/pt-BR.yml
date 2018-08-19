@@ -41,7 +41,9 @@ pt-BR:
       wheres:
         name: localização
   add-packages-desc: Você pode adicionar mais de um preço por pacote, como alguns incluírem hospedagem, alimentação, etc
+  add-service-desc: Você pode adicionar mais de um preço por serviço, como alguns incluírem hospedagem, alimentação, etc
   add-packages-title: Adicionar pacote
+  add-service-title: Adicionar serviço
   admin-from-anywhere-content: Administre seus eventos e reservas de qualquer lugar, a Truppie funciona em qualquer dispositivo
   admin-from-anywhere-title: Somos mobile friendly
   admin-payment-with-us-conclusion: 'Ah, tem outras coisas importante de saber:'
@@ -290,7 +292,9 @@ pt-BR:
   event-drag-drop-file: Ou solte a imagem do seu computador aqui
   event-image-upload: Event-image-upload
   event-no-packages-message: Não há ainda nenhum pacote adicionado
+  event-no-services-message: Não há ainda nenhum serviço adicionado
   event-packages-title: Pacotes já incluídos
+  event-services-title: Serviços já incluídos
   event-remove-image-upload: remover imagem enviada
   event-title: Título da truppie
   events-next: Próximas truppies
@@ -475,6 +479,7 @@ pt-BR:
   metatag-summary: A Truppie é um marketplace de aventuras, viagens e roteiros
   metatag-topic: Viagens
   modal-packages-title: Gerenciamento de pacotes
+  modal-services-title: Gerenciamento de serviços
   navbar_partial_link_four: Sair
   navbar_partial_link_one: Entrar
   navbar_partial_link_organizer: Meu perfil de guia
@@ -597,6 +602,7 @@ pt-BR:
   organizer-name-label: nome do seu negócio
   organizer-new-guidebook: Criar roteiro personalizado
   organizer-new-package: Criar pacotes
+  organizer-new-service: Criar serviço
   organizer-new-tour: Criar um tour guiado
   organizer-panel-welcome: Escolhe o tipo de atividade que você irá oferecer para seus clientes
   organizer-percent-label: Taxa (%)
@@ -624,6 +630,7 @@ pt-BR:
   organizer_views_show_following: Deixar de Seguir
   organizer_views_show_send_message: Enviar Mensagem
   packages-description-label: Descrição do pacote
+  services-description-label: Descrição do serviço
   panel-label: Truppies
   payment_type_partial_div_one: Modo de pagamento
   payment_type_partial_div_three: Boleto Bancário
@@ -752,6 +759,7 @@ pt-BR:
   tours_view_confirm_small_two: "* Os dados do usuário precisam ser os mesmos do titular do cartão"
   tours_view_confirm_span_one: 'Escolha uma opção de pacote:'
   tours_view_confirm_span_two: 'Escolha uma opção de pacote:'
+  tours_view_confirm_services: 'Escolha os serviços:'
   tours_view_confirm_strong_four: 'Políticas do %{name}:'
   tours_view_confirm_strong_one: 'Organizado por:'
   tours_view_confirm_strong_three: 'Ponto de encontro:'
@@ -798,9 +806,12 @@ pt-BR:
   tours_view_form_placeholder_twelve: Descrição completa
   tours_view_form_placeholder_twenty: Idiomas falados?
   tours_view_form_placeholder_twentyfour: O que inclui no pacote
+  tours_view_form_placeholder_service_included: O que inclui no serviço
   tours_view_form_placeholder_twentyone: Organizador
   tours_view_form_placeholder_twentythree: Valor do pacote
+  tours_view_form_placeholder_service_price: Valor do serviço
   tours_view_form_placeholder_twentytwo: Nome do pacote
+  tours_view_form_placeholder_service_name: Nome do serviço
   tours_view_form_placeholder_two: Onde?
   tours_view_form_small: Para pacotes diferentes de preços, vá na aba "Pacotes"
   tours_view_form_span: 'Nova Categoria:'

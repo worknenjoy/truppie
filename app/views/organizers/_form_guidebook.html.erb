@@ -134,11 +134,15 @@
         <span class="<%= form_error(flash[:errors], :value) %>">
           <%= error_message(flash[:errors], :value) %>
         </span>
-        <div class="input-group col-xs-6">
+        <div class="input-group col-xs-6" style="margin-bottom: 10px">
           <small style="vertical-align: -webkit-baseline-middle;"><%= t('or-label') %></small>
-          <%= link_to '#new-packages-modal', class: 'btn btn-info-outline btn-sm pull-right', data: {toggle: 'modal', target: '#new-packages-modal'} do %>
+          <div class="row" style="margin: 0;">
+          <%= link_to '#new-packages-modal', class: 'btn btn-info-outline btn-sm', data: {toggle: 'modal', target: '#new-packages-modal'} do %>
               <%= t('organizer-new-package') %> <i class="fa fa-plus"></i>
           <% end %>
+          <%= link_to '#new-services-modal', class: 'btn btn-info-outline btn-sm', data: {toggle: 'modal', target: '#new-services-modal'} do %>
+              <%= t('organizer-new-service') %> <i class="fa fa-plus"></i>
+          <% end %>          
         </div>
         <div class="modal fade" id="new-packages-modal">
           <div class="modal-dialog" role="document">
@@ -201,4 +205,84 @@
         <a href="#" id="cancelAddEvent" class="btn-event"><%= t('new-event-cancel') %></a>
       </div>
     </div>
+
+    <div class="modal fade" id="new-services-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title"><%= t('modal-services-title') %></h4>
+        </div>
+        <div class="modal-body">
+          <h3><%= t('add-service-title') %></h3>
+          <p><%= t('add-service-desc') %></p>
+          <%= f.fields_for :services, (Array.new(1, @guided_tour.services.build) if @guided_tour.services.empty?) do |ff| %>
+              <div class="new-services-content">
+                <fieldset class="form-group services-set">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-sticky-note-o"></span></span>
+                      <%= ff.text_field :name, placeholder: t('tours_view_form_placeholder_service_name'), class: "form-control" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-money"></span></span>
+                      <%= ff.number_field :value, placeholder: t('tours_view_form_placeholder_service_price'), class: "form-control", min: 1 %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label><%= t('services-description-label') %></label>
+                    <%= ff.text_area :description, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <span class="input-group-addon"><span class="fa fa-thumb-tack"></span></span>
+                      <%= ff.text_field :included, value: (ff.object.included.join(';') if ff.object.included.any?), placeholder: t('tours_view_form_placeholder_service_included'), class: "form-control  service-value tour-taggable" %>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+          <% end %>
+          <div class="form-group">
+            <div class="input-group">
+              <%= link_to t('tours_view_form_link_one'), new_service_path, class: 'add-services' %>
+            </div>
+          </div>
+          <!--
+          <h3><%= t('event-services-title') %></h3>
+          <% if !@guided_tour.try(:services) %>
+              <div class="services-container" style="overflow:hidden;">
+                <ul class="services" style="overflow: hidden;">
+                  <% @guided_tour.services.each do |p| %>
+                      <li class="extras-item">
+                        <h3 class="extra-item_title"><%= p.name %></h3>
+                        <ul class="list-group text-xs-center" style="overflow: scroll; height: 250px">
+                          <% p.included.each do |i| %>
+                              <li class="list-group-item"><i class="fa fa-check"></i> <%= i %></li>
+                          <% end %>
+                        </ul>
+                        <h4 class="extra-item_price"><% p.price %></h4>
+                      </li>
+                  <% end %>
+                </ul>
+              </div>
+          <% else %>
+              <span class="label-info"><%= t('event-no-services-message') %></span>
+          <% end %>
+          -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" data-action="close clear-services"><%= t('close') %></button>
+          <button type="button" data-dismiss="modal" data-action="save" class="btn btn-primary"><%= t('save-changes') %></button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+
+
+</div>
 <% end %>
