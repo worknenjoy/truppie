@@ -7,6 +7,7 @@ class Guidebook < ActiveRecord::Base
   has_one :destination
   has_and_belongs_to_many :languages
   has_and_belongs_to_many :packages, dependent: :destroy
+  has_and_belongs_to_many :services, dependent: :destroy
   has_and_belongs_to_many :comments
   has_and_belongs_to_many :tags
 
@@ -15,6 +16,7 @@ class Guidebook < ActiveRecord::Base
   accepts_nested_attributes_for :category
   accepts_nested_attributes_for :languages
   accepts_nested_attributes_for :packages, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :services, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :wheres
 
   scope :publisheds, -> { where(status: 'P') }

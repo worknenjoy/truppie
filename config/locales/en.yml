@@ -41,7 +41,9 @@ en:
       wheres:
         name: location
   add-packages-desc: You can add several prices per package, allowing differentiation of accommodation, food, etc.
+  add-service-desc: You can add several prices per service, allowing differentiation of accommodation, food, etc.
   add-packages-title: Add package
+  add-service-title: Add service
   admin-from-anywhere-content: Manage your events and reservations from anywhere, Truppie works on any device
   admin-from-anywhere-title: We are mobile friendly
   admin-payment-with-us-conclusion: 'Ah, there is other important things to know:'
@@ -290,7 +292,9 @@ en:
   event-drag-drop-file: Or drop your a image from your computer here
   event-image-upload: upload your image
   event-no-packages-message: There's no package added at this moment
+  event-no-services-message: There's no service added at this moment
   event-packages-title: Packages included
+  event-services-title: Services included
   event-remove-image-upload: remove event image
   event-title: Truppie title
   events-next: Next truppies
@@ -475,6 +479,7 @@ en:
   metatag-summary: Truppie is a platform to connect guides, adventurers and itineraries
   metatag-topic: Travel
   modal-packages-title: Package Management
+  modal-services-title: Service Management
   navbar_partial_link_four: Log out
   navbar_partial_link_one: Sign in
   navbar_partial_link_organizer: Edit guide
@@ -597,6 +602,7 @@ en:
   organizer-name-label: name of your business
   organizer-new-guidebook: Criar roteiro personalizado
   organizer-new-package: Create packages
+  organizer-new-service: Create service
   organizer-new-tour: Create a truppie now!
   organizer-panel-welcome: This is your control panel inside Truppie
   organizer-percent-label: Fee (%)
@@ -624,6 +630,7 @@ en:
   organizer_views_show_following: Deixar de Seguir
   organizer_views_show_send_message: Enviar Mensagem
   packages-description-label: Package description
+  services-description-label: Service description
   panel-label: Truppies
   payment_type_partial_div_one: Method of payment
   payment_type_partial_div_three: Boleto Bancário
@@ -752,6 +759,7 @@ en:
   tours_view_confirm_small_two: "* The user information must be the same as the card holder"
   tours_view_confirm_span_one: 'Choose one package option:'
   tours_view_confirm_span_two: 'Choose one package option:'
+  tours_view_confirm_services: 'Select the services:'
   tours_view_confirm_strong_four: "%{name}'s policy:"
   tours_view_confirm_strong_one: 'Organized by:'
   tours_view_confirm_strong_three: 'Meeting point:'
@@ -798,9 +806,12 @@ en:
   tours_view_form_placeholder_twelve: Complete description
   tours_view_form_placeholder_twenty: Languages spoken
   tours_view_form_placeholder_twentyfour: What is included in this package?
+  tours_view_form_placeholder_service_included: What is included in this service?
   tours_view_form_placeholder_twentyone: Organizer
   tours_view_form_placeholder_twentythree: Package price
+  tours_view_form_placeholder_service_price: Service price
   tours_view_form_placeholder_twentytwo: Package name
+  tours_view_form_placeholder_service_name: Service name
   tours_view_form_placeholder_two: Where? (Place name)
   tours_view_form_small: For different packages, go to tab "Packages"
   tours_view_form_span: 'New category:'

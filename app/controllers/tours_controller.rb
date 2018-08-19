@@ -372,6 +372,20 @@ class ToursController < ApplicationController
       @amount = params[:amount].to_i
     end
 
+    @services = []
+    if params[:tour].try(:services_attributes)
+      params[:tour][:services_attributes].each do |k, v|      
+        if v[:value]        
+          @services << Service.find(v[:id])
+        end
+      end
+      
+      @sum_services = @services.reduce(0) do |sum, s| 
+        sum + s.value
+      end    
+      @value += @sum_services
+    end
+
     if @value && params[:value_chosen_by_user]
       @final_price = @amount * @value
     else
@@ -407,8 +421,8 @@ class ToursController < ApplicationController
         else
           @tour_collaborator_percent = 0
         end
-
-        if @package
+        
+        if @package.try(:percent)
           @tour_package_percent = @package.percent
           @tour_package_percent_factor = @tour_package_percent / 100.00
         else
@@ -489,7 +503,8 @@ class ToursController < ApplicationController
                 :liquid => @fees[:liquid],
                 :fee => @fees[:fee],
                 :payment_method => @payment_method,
-                :package => @package
+                :package => @package,
+                :services => @services
             )
 
             begin

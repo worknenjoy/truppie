@@ -2,13 +2,19 @@ $bgColor: #1d1f20;
 $mainColor: #2ba6cb;
 $secondaryColor: #e9e9e9;
 
-.packages-container {
+.extras-container {
   background-color: lighten($bgColor, 80%);
   border-radius: 1px;
   padding: 10px 0;
 }
 
-.packages {
+.extras-container {
+  background-color: lighten($bgColor, 80%);
+  border-radius: 1px;
+  padding: 10px 0;
+}
+
+.extras {
   list-style: none;
   margin: 0 auto;
   padding: 0;
@@ -16,7 +22,7 @@ $secondaryColor: #e9e9e9;
   top: 50%;
   width: 90%;
 }
-.packages-item {
+.extras-item {
   background-color: $secondaryColor;
   border-bottom: 1px solid $bgColor;
   color: #333;
@@ -77,14 +83,14 @@ $secondaryColor: #e9e9e9;
     }
   }
 }
-.package-item_title {
+.extra-item_title {
   font-size: 1.6em;
 }
-.package-item_desc {
+.extra-item_desc {
   font-size: .9em;
   max-width: 60%;
 }
-.package-item_price {
+.extra-item_price {
   font-size: 2em;
   position: absolute;
   right: 1rem;
