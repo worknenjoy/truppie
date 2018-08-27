@@ -230,6 +230,7 @@ class OrganizersController < ApplicationController
     else
       @tour = Tour.find(params[:tour])
     end
+    @guidebook = Guidebook.find(params[:id])
   end
 
   def schedule
