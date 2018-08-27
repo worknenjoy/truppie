@@ -61,7 +61,7 @@ Rails.application.routes.draw do
 
   resources :organizers do
     member do
-      get 'manage/(:tour)', to: 'organizers#manage', as: 'manage'
+      get 'manage/tour/(:tour)', to: 'organizers#manage', as: 'manage'
       get 'marketplace', to: 'organizers#marketplace', as: 'marketplace'
       get 'transfer', to: 'organizers#transfer', as: 'transfer'
       post 'transfer_funds', to: 'organizers#transfer_funds', as: 'transfer_funds'
@@ -103,6 +103,7 @@ Rails.application.routes.draw do
       post 'confirm_presence'
       get 'confirm_presence_alt'
       post 'unconfirm_presence'
+      get 'manage/guidebook/(:guidebook)', to: 'organizers#guidebook', as: 'manage'
     end
   end
 
