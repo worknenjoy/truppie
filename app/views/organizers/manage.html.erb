@@ -85,6 +85,8 @@
                 </p>
               </div>
           <% end %>
+          <%= render 'guidebooks/manage', locals: {guidebook: @guidebook} %>
+          <%= render 'tours/tour_orders', locals: {tour: @tour} %>
         </div>
       </div>
     </div>
