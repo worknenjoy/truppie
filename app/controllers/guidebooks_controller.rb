@@ -37,7 +37,7 @@ class GuidebooksController < ApplicationController
         format.html {
           flash[:errors] = @guidebook.errors
           flash[:opened] = true
-          redirect_to guidebook_organizer_path(guidebook_params[:organizer] || guidebook_params[:organizer_id]),
+          redirect_to guidebooks_organizer_path(guidebook_params[:organizer] || guidebook_params[:organizer_id]),
                       notice: t('tours_controller_create_notice_two')
         }
         format.json { render json: @guidebook.errors, status: :unprocessable_entity }
@@ -268,6 +268,18 @@ class GuidebooksController < ApplicationController
       end
     end
   end
+
+
+  def manage
+    @guidebook = Guidebook.find(params[:id])
+    @guidebooks = @guidebook.orders.order('created_at DESC')
+    if params[:guidebook].nil?
+      @guidebook = @guidebook.order.order('created_at DESC').first
+    else
+      @guidebook = Guidebook.find(params[:tour])
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
