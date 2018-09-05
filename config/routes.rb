@@ -61,7 +61,9 @@ Rails.application.routes.draw do
 
   resources :organizers do
     member do
-      get 'manage/tour/(:tour)', to: 'organizers#manage', as: 'manage'
+      #get 'manage/tour/(:tour)', to: 'organizers#manage', as: 'manage'
+      get 'manage/tours/(:tour)', to: 'organizers#manage_tours', as: 'manage_tours'
+      get 'manage/guidebooks/(:guidebook)', to: 'organizers#manage_guidebooks', as: 'manage_guidebooks'
       get 'marketplace', to: 'organizers#marketplace', as: 'marketplace'
       get 'transfer', to: 'organizers#transfer', as: 'transfer'
       post 'transfer_funds', to: 'organizers#transfer_funds', as: 'transfer_funds'
