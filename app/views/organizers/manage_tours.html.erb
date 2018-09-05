@@ -18,14 +18,14 @@
                 <li class="flex-nav-item">
                   <div class="manage-card <%= 'manage-selected' if t.id == @tour.id %>">
                     <div class="manage-card-visa">
-                      <%= link_to manage_organizer_path(@organizer, t) do %>
+                      <%= link_to manage_tours_organizer_path(@organizer, t) do %>
                         <% if t.try(:picture) %>
                           <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name, :class=> "image-fluid") %>
                         <% end %>
                       <% end %>
                     </div>
                     <div class="manage-card-number">
-                      <%= link_to t.title, manage_organizer_path(@organizer, t) %>
+                      <%= link_to t.title, manage_tours_organizer_path(@organizer, t) %>
                     </div>
                     <div class="manage-card-val">
                       começa em <%= l(t.start, format: '%d de %B de %Y às %Hh%M') %> <br />
@@ -57,7 +57,6 @@
                 <small>Feita em <%= l(o.created_at, format: '%d de %B de %Y às %Hh%M') %></small> 
               </div>
               <div class="manage-item-price">
-                <%= raw final_price_from_cents(o.final_price) %>
               </div>
             </div>
             <% end %>
@@ -85,6 +84,8 @@
                 </p>
               </div>
           <% end %>
+          <%= render 'guidebooks/manage_guidebooks', locals: {guidebook: @guidebook} %>
+          <%= render 'tours/manage_tours', locals: {tour: @tour} %>
         </div>
       </div>
     </div>

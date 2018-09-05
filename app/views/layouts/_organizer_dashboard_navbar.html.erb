@@ -8,8 +8,8 @@
             <%= t('panel-label') %>
         <% end %>
       </li>
-      <li class="nav-item <%= "active" if current_page? action: 'manage' %>">
-        <%= link_to manage_organizer_path(@organizer), class: 'nav-link' do %>
+      <li class="nav-item <%= "active" if current_page? action: 'manage_tours' %>">
+        <%= link_to manage_tours_organizer_path(@organizer), class: 'nav-link' do %>
             <%= t('balance-label') %>
         <% end %>
       </li>

@@ -17,6 +17,7 @@
      @organizer_ready = organizers(:utopicos)
      @mkt = organizers(:mkt)
      @guide_mkt_validated = organizers(:guide_mkt_validated)
+     @guidebook = guidebooks(:one)
      @organizer = {
        name: "Utópicos mundo afora",
        description: "uma agencia utopica",
@@ -55,6 +56,7 @@
        mail_notification: false,
        user_id: users(:alexandre).id
      }
+
    end
    
    teardown do
@@ -201,7 +203,7 @@
    end
    
    test "should admin organizer" do
-     get :manage, id: @organizer_ready.id
+     get :manage_tours, id: @organizer_ready.id
      assert_response :success
    end
 
@@ -228,7 +230,7 @@
    test "should not admin organizer if is not the organizer owner and no admin" do
      sign_out users(:alexandre)
      sign_in users(:fulano)
-     get :manage, id: @organizer_ready.id
+     get :manage_tours, id: @organizer_ready.id
      assert_equal flash[:notice], "Você não está autorizado a entrar nesta página"
      assert_redirected_to new_user_session_path
    end
@@ -236,7 +238,7 @@
    test "should admin organizer if is the organizer owner" do
      sign_out users(:alexandre)
      sign_in users(:joana)
-     get :manage, id: @organizer_ready.id
+     get :manage_tours, id: @organizer_ready.id
      assert_response :success
    end
    
@@ -354,7 +356,7 @@
    end
    
    test "should load successfully the organizer manage" do
-     get :manage, id: @mkt.id
+     get :manage_tours, id: @mkt.id, guidebook: @guidebook.id
      assert_response :success
    end
 

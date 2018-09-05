@@ -2,7 +2,7 @@ class OrganizersController < ApplicationController
   include ApplicationHelper
   before_action :set_organizer, only: [:show, :edit, :update, :destroy, :transfer, :guided_tour, :guidebooks, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
   before_action :authenticate_user!, :except => [:show, :index, :create]
-  before_filter :check_if_organizer_admin, only: [:update, :manage, :transfer, :transfer_funds, :tos_acceptance, :tos_acceptance_confirm, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
+  before_filter :check_if_organizer_admin, only: [:update, :manage_tours, :transfer, :transfer_funds, :tos_acceptance, :tos_acceptance_confirm, :external_events, :import_events, :profile_edit, :account, :account_edit, :bank_account_edit, :account_status, :guided_tour, :edit_guided_tour, :schedule, :clients, :confirm_account]
   before_filter :check_if_super_admin, only: [:new, :edit, :invite, :send_invite]
 
   # GET /organizers
@@ -222,13 +222,24 @@ class OrganizersController < ApplicationController
     end
   end
 
-  def manage
+  def manage_tours
     @organizer = Organizer.find(params[:id])
     @tours = @organizer.tours.order('created_at DESC')
     if params[:tour].nil?
       @tour = @organizer.tours.order('created_at DESC').first
     else
       @tour = Tour.find(params[:tour])
+    end
+    @guidebook = manage_guidebooks
+  end
+
+  def manage_guidebooks
+    @organizer = Organizer.find(params[:id])
+    @guidebooks = @organizer.guidebooks.order('created_at DESC')
+    if params[:guidebook].nil?
+      @guidebook = @organizer.guidebooks.order('created_at DESC').first
+    else
+      @guidebook = Guidebook.find(params[:guidebook])
     end
   end
 
