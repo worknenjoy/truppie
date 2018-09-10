@@ -8,18 +8,18 @@
             <%= t('panel-label') %>
         <% end %>
       </li>
-      <li class="nav-item <%= "active" if current_page? action: 'manage' %>">
-        <%= link_to manage_organizer_path(@organizer), class: 'nav-link' do %>
+      <li class="nav-item <%= "active" if current_page? action: 'manage_tours' %>">
+        <%= link_to manage_tours_organizer_path(@organizer), class: 'nav-link', data: {turbolinks: false} do %>
             <%= t('balance-label') %>
         <% end %>
       </li>
       <li class="nav-item <%= "active" if current_page? action: 'transfer' %>">
-        <%= link_to transfer_organizer_path(@organizer), class: 'nav-link' do %>
+        <%= link_to transfer_organizer_path(@organizer), class: 'nav-link', data: {turbolinks: false} do %>
             <%= t('transfer-label') %>
         <% end %>
       </li>
       <li class="nav-item <%= "active" if current_page? action: 'account' %>">
-        <%= link_to account_organizer_path(@organizer), class: 'nav-link' do %>
+        <%= link_to account_organizer_path(@organizer), class: 'nav-link', data: {turbolinks: false} do %>
             <%= t('account-label') %>
         <% end %>
       </li>
