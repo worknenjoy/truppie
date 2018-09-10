@@ -14,25 +14,21 @@
         <div class="manage-container">
           <div class="manage-sidebar overlay-effect overlay">
               <button type="button" class="close">Close</button>
-              <h2 class="spaced-down">Tour guiado</h2>
+              <h2 class="spaced-down">Roteiros</h2>
               <nav class="scroll">
                 <ul class="flex-scroll">
-                <% @tours.each do |t| %>
+                <% @guidebooks.each do |t| %>
                 <li class="flex-nav-item">
-                  <div class="manage-card <%= 'manage-selected' if t.id == @tour.id %>">
+                  <div class="manage-card <%= 'manage-selected' if t.id == @guidebook.id %>">
                     <div class="manage-card-visa">
-                      <%= link_to manage_tours_organizer_path(@organizer, t) do %>
+                      <%= link_to manage_guidebooks_organizer_path(@organizer, t) do %>
                         <% if t.try(:picture) %>
                           <%= image_tag(t.picture(:thumbnail), :alt => t.organizer.name, :class=> "image-fluid") %>
                         <% end %>
                       <% end %>
                     </div>
                     <div class="manage-card-number">
-                      <%= link_to t.title, manage_tours_organizer_path(@organizer, t) %>
-                    </div>
-                    <div class="manage-card-val">
-                      começa em <%= l(t.start, format: '%d de %B de %Y às %Hh%M') %> <br />
-                      <strong><%= friendly_when(t.start) %></strong>
+                      <%= link_to t.title, manage_guidebooks_organizer_path(@organizer, t) %>
                     </div>
                     <div class="manage-card-val">
                       Valor: <%= raw t.price %> <br />
@@ -43,14 +39,13 @@
                 </ul>
               </nav>
           </div>
-          <% if !@tour.nil? %>
+          <% if !@guidebook.nil? %>
           <div class="manage-main">
             <h2>
-              <%= link_to @tour.title, tour_path(@tour) %></p>
+              <%= link_to @guidebook.title, guidebook_path(@guidebook) %></p>
             </h2>
-            <%= render partial: 'layouts/dash' %>
-            <h3><%= @tour.orders.count %> reserva(s):</h3>
-            <% @tour.orders.each do |o| %>
+            <h3><%= @guidebook.orders.count %> reserva(s):</h3>
+            <% @guidebook.orders.each do |o| %>
             <div class="manage-item">
               <div class="manage-item-name"><%= raw(o.friendly_status(o.current_status)) %></div>
               <div class="manage-item-name"><%= o.user.name %></div>
