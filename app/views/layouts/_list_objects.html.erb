@@ -15,7 +15,7 @@
 			    <% @organizers.each do |o| %>
 			      <tr>
 			      	<td><%= o.name %></td>
-			      	<td><%= link_to 'Administrar', manage_organizer_path(o) %></td>
+			      	<td><%= link_to 'Administrar', manage_tours_organizer_path(o) %></td>
 			        <td><%= link_to 'Exibir', o %></td>
 			        <td><%= link_to 'Editar', edit_organizer_path(o) %></td>
 			        <td><%= link_to 'Apagar', o, method: :delete, data: { confirm: 'Tem certeza que deseja apagar?' } %></td>
