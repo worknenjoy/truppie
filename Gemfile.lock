@@ -383,6 +383,9 @@ GEM
     rdoc (4.3.0)
     recursive-open-struct (1.1.0)
     redis (4.0.1)
+    redis-session-store (0.11.0)
+      actionpack (>= 3, < 6)
+      redis (>= 3, < 5)
     request_store (1.4.1)
       rack (>= 1.4)
     responders (2.4.0)
@@ -524,6 +527,7 @@ DEPENDENCIES
   rails (= 4.2.7.1)
   rails_12factor
   redis
+  redis-session-store
   rest-client
   rspec
   sass-rails (~> 5.0)
