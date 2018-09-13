@@ -60,7 +60,6 @@ function CalendarApp(date, apts, aptsDates) {
     /* Start the app */
     this.showView(date);
     this.addEventListeners();
-    this.todayIsSpan.textContent = "Today is " + this.months[date.getMonth()] + " " + date.getDate();
 }
 
 CalendarApp.prototype.addEventListeners = function(){
@@ -221,11 +220,11 @@ CalendarApp.prototype.showEventsCreateElesView = function(events) {
         div.innerHTML = html;
 
         var deleteBtn = document.createElement("span");
-        var deleteText = document.createTextNode("delete");
+        var deleteText = document.createTextNode("Adicionar");
         deleteBtn.className = "event-delete";
         deleteBtn.setAttribute("data-idx", idx);
         deleteBtn.appendChild(deleteText);
-        deleteBtn.onclick = _this.deleteEvent.bind(_this);
+        deleteBtn.onclick = _this.addEvent.bind(_this);
 
         div.appendChild(deleteBtn);
 
@@ -234,7 +233,8 @@ CalendarApp.prototype.showEventsCreateElesView = function(events) {
     });
     return ul;
 };
-CalendarApp.prototype.deleteEvent = function(e) {
+CalendarApp.prototype.addEvent = function(e) {
+    console.log('event added');
     var deleted = this.apts.splice(e.currentTarget.getAttribute("data-idx"),1);
     var deletedDate = new Date(deleted[0].day);
     var anyDatesLeft = this.showEventsByDay(deletedDate);

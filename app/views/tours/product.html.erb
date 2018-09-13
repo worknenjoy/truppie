@@ -4,14 +4,19 @@
         document.addEventListener("turbolinks:load", function(){
             if(document.getElementById("calendar-app")) {
                 $.get('/tours/product_availability/<%= @product_json["product"]["productCode"] %>', function(data){
-                  //console.log(data.sessions);
+                  console.log(data.sessions);
                   var tour_sessions_info = [];
                   var tour_sessions_date = [];
 
                   for(var i=0; i < data.sessions.length; i++) {
                       var startTime = new Date(data.sessions[i].startTime);
+                      var price_options = "<ul>";
+                      for(var j=0; j < data.sessions[i].priceOptions.length; j++) {
+                          price_options += "<li>" + data.sessions[i].priceOptions[j].label + " $" + data.sessions[i].priceOptions[j].price + "</li>";
+                      }
+                      price_options+= "</ul>"
                       tour_sessions_info.push({
-                          name: "<p>bla bla bla:</p> " + data.sessions[i].priceOptions[0].price,
+                          name: price_options,
                           endTime: new Date(data.sessions[i].endTime),
                           startTime: startTime,
                           day: new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDay()).toString()
@@ -55,7 +60,17 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-6">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="spaced-smallest"><i class="fa fa-suitcase"></i> <strong><%= t('tours_view_show_strong_four') %></strong></h5>
+          </div>
+          <div class="card-block">
+            <p><%= raw @product_json["product"]["description"] %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
         <div class="card">
           <div class="card-header">
             <h5 class="spaced-smallest"><i class="fa fa-calendar-plus-o"></i> <strong>Disponibilidade</strong></h5>
@@ -123,90 +138,12 @@
                 </div>
               </div>
               <div class="footer">
-                <span><span id="footer-date" class="footer__link">Today is May 30</span></span>
+                <span><span id="footer-date" class="footer__link">Hoje é <%= l(Time.now, format: '%d de %B / %Y')  %></span></span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="spaced-smallest"><i class="fa fa-info-circle"></i> <strong><%= t('tours_view_show_strong_three') %></strong></h5>
-          </div>
-          <div class="card-block">
-            <ul class="list-unstyled tour-info">
-              <li>
-                <% if not @tour.soldout? or not @tour.available.empty? %>
-                    <i class="fa fa-ticket"></i>
-                    <strong><%= @tour.available %></strong> <%= t('tours_view_show_li_one') %>
-                <% else %>
-                    <i class="fa fa-ticket"></i>
-                    <%= t('tours_view_show_li_two') %>
-                <% end %>
-              </li>
-
-              <% if @tour.try(:minimum) %>
-                  <li><i class="fa fa-child"></i>  <strong><%= @tour.minimum %></strong> <%= t('tours_view_show_li_three') %></li>
-              <% end %>
-
-              <!--<li><i class="fa fa-calendar"></i>  Duração total de <strong><%= @tour.duration %></strong></li> -->
-              <li><i class="fa fa-calendar"></i> <%= @tour.how_long %> </li>
-              <li><i class="fa fa-clock-o"></i> <%= t('tours_view_show_li_four') %> <%= l(@tour.formatted_start, format: '%d de %B / %Y') %> às <%= l(@tour.formatted_start, format: '%Hh%M') %> </li>
-              <li><i class="fa fa-history"></i> <%= t('tours_view_show_li_finish') %> <%= l(@tour.formatted_end, format: '%d de %B / %Y') %> às <%= l(@tour.formatted_end, format: '%Hh%M') %> </li>
-
-              <% if @tour.try(:difficulty) %>
-                  <li><i class="fa fa-heartbeat"></i> <%= t('tours_view_show_li_five') %> <strong><%= @tour.level %></strong> </li>
-              <% end %>
-
-              <% if @tour.try(:address) and !@tour.address.empty? %>
-                  <li><i class="fa fa-map-marker"></i>  <strong> <%= @tour.address %></strong></li>
-              <% end %>
-
-              <% if @tour.languages.present? %>
-                  <li>
-                    <i class="fa fa-globe"></i>
-                    <%= t('tours_view_show_li_six') %>
-                    <strong><%= @tour.languages.map { |m| m.name }.join(', ') %></strong>
-                  </li>
-              <% end %>
-
-              <% if @tour.try(:link) %>
-                  <% if !@tour.link.empty? %>
-                      <li><a href="<%= @tour.link %>"><i class="fa fa-facebook-square"></i> <%= t('tours_view_show_li_seven') %></a></li>
-                  <% end %>
-              <% end %>
-            </ul>
-          </div>
-
           <div class="card-footer">
-            <!-- <div class="row">
-                  <div class="col-xs-12">
-                    <div class="text-xs-center">
-                      <p><small><span class="label label-default" style="background-color: #BBB;"> reserve agora e concorra a outro passeio do <%= @tour.organizer.name %>!</span></small></p>
-                    </div>
-                  </div>
-            </div> -->
-            <% if @tour.past? %>
-                <%= link_to t('tours_view_show_link_interest'), show_interest_tour_path, class: 'btn btn-primary btn-lg btn-block', remote: user_signed_in? %>
-            <% else %>
-                <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-6">
-        <%= render partial: 'layouts/organizer_card', locals: {organizer: @tour.organizer} %>
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="spaced-smallest"><i class="fa fa-suitcase"></i> <strong><%= t('tours_view_show_strong_four') %></strong></h5>
-          </div>
-          <div class="card-block">
-            <p><%= raw @product_json["product"]["description"] %></p>
+            <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
           </div>
         </div>
       </div>
@@ -223,7 +160,7 @@
             <div class="gallery">
               <% @product_json["product"]["images"].each do |i| %>
                   <div class="gallery-image">
-                    <%= image_tag i["largeSizeUrl"], :alt => "Truppie", class: "img-fluid" %>
+                    <%= image_tag i["largeSizeUrl"] || i["mediumSizeUrl"] || i["smallSizeUrl"], :alt => "Truppie", class: "img-fluid", width: 300 %>
                   </div>
               <% end %>
             </div>

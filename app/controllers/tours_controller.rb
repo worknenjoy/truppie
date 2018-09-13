@@ -1,7 +1,7 @@
 class ToursController < ApplicationController
   before_action :set_tour, only: [:show, :edit, :update, :destroy, :copy_tour]
 
-  before_action :authenticate_user!, :except => [:show]
+  before_action :authenticate_user!, :except => [:show, :products, :product, :product_availability]
   before_filter :check_if_super_admin, only: [:new, :edit, :index]
   before_filter :check_if_organizer_admin, only: [:create, :update, :destroy, :copy_tour]
 
@@ -47,22 +47,23 @@ class ToursController < ApplicationController
   end
 
   def products
-    @products = RestClient.get "https://api.rezdy.com/latest/products/marketplace?language=en&limit=10&automatedPayments=true&apiKey=11e94f2cad4c486888e16c37265a8917"
+    @products = RestClient.get "https://api.rezdy.com/latest/products/marketplace?language=en&limit=5&automatedPayments=true&apiKey=#{Rails.application.secrets[:rezdy_api]}"
     @products_json = JSON.load @products
   end
 
   def product
     @id = params[:id]
-    @product = RestClient.get "https://api.rezdy.com/latest/products/#{@id}/?apiKey=11e94f2cad4c486888e16c37265a8917"
+    @product = RestClient.get "https://api.rezdy.com/latest/products/#{@id}/?apiKey=#{Rails.application.secrets[:rezdy_api]}"
     @product_json = JSON.load @product
+    puts @product_json
     @tour = Tour.last
   end
 
   def product_availability
     @code = params[:code]
-    @availability = RestClient.get "https://api.rezdy.com/latest/availability/?productCode=#{@code}&startTime=2018-04-01T00:00:00%2B11:00&endTime=2018-12-31T00:00:00%2B11:00&apiKey=11e94f2cad4c486888e16c37265a8917"
+    @availability = RestClient.get "https://api.rezdy.com/latest/availability/?productCode=#{@code}&startTime=2018-03-09T00:00:00Z&endTime=2019-03-01T00:00:00Z&apiKey=#{Rails.application.secrets[:rezdy_api]}"
     @availability_json = JSON.load @availability
-
+    puts @availability_json
     render json: @availability_json
   end
 
