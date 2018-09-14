@@ -90,6 +90,8 @@ Rails.application.routes.draw do
   get 'tours/products', to: 'tours#products'
   get 'tours/products/:id', to: 'tours#product'
   get 'tours/product_availability/:code', to: 'tours#product_availability'
+  post 'tours/confirm_product', to: 'tours#confirm_product'
+  post 'tours/confirm_product_booking', to: 'tours#confirm_product_booking'
 
   resources :tours do
     member do

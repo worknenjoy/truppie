@@ -63,8 +63,26 @@ class ToursController < ApplicationController
     @code = params[:code]
     @availability = RestClient.get "https://api.rezdy.com/latest/availability/?productCode=#{@code}&startTime=2018-03-09T00:00:00Z&endTime=2019-03-01T00:00:00Z&apiKey=#{Rails.application.secrets[:rezdy_api]}"
     @availability_json = JSON.load @availability
-    puts @availability_json
     render json: @availability_json
+  end
+
+  def confirm_product
+    @product_id = params[:id]
+    @product_name = params[:name]
+    @product_prices = params[:prices]
+    @product_starts = params[:starts]
+    @product_labels = params[:labels]
+    @product_total_price = @product_prices.map(&:to_i).reduce(0, :+)
+    @product_reservations = params[:products]
+  end
+
+  def confirm_product_booking
+    @product_id = params[:id]
+    @product_reservations = params[:products]
+  end
+
+  def confirm_product_booking
+
   end
 
   def show_interest

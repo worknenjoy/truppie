@@ -709,4 +709,21 @@ class ToursControllerTest < ActionController::TestCase
 
   end
 
+  test "test a start confirmation of a external product from rezdy" do
+    post :confirm_product, {id: "PWQQVJ", name: "foo", prices: [1, 2, 3], starts: [343434, 123, 322], products: ["168282", "1809756", "168282"] }
+    assert_equal assigns(:product_id), "PWQQVJ"
+    assert_equal assigns(:product_name), "foo"
+    assert_equal assigns(:product_prices), ["1", "2", "3"]
+    assert_equal assigns(:product_total_price), 6
+    assert_equal assigns(:product_starts), ["343434", "123", "322"]
+    assert_equal assigns(:product_reservations), ["168282", "1809756", "168282"]
+  end
+
+  test "test a complete booking confirmation of a external product from rezdy" do
+    skip("for now")
+    post :confirm_product_booking, {id: "PWQQVJ", products: ["168282", "1809756", "168282", "1809756"] }
+    assert_equal assigns(:product_id), "PWQQVJ"
+    assert_equal assigns(:product_reservations), ["168282", "1809756", "168282", "1809756"]
+  end
+
 end

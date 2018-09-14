@@ -1,10 +1,30 @@
 <% content_for :javascript_includes do %>
     <%= javascript_include_tag "calendar-app.js", defer: true %>
     <script type="text/javascript">
+        function chooseAvailability(e) {
+            e = e || window.event;
+            var target = e.target || e.srcElement;
+            var item_id = target.getAttribute('data-id');
+            var item_price = target.getAttribute('data-price');
+            var item_start = target.getAttribute('data-start');
+            var item_label = target.getAttribute('data-label');
+            var input_container = $('#reservation-items');
+            var input_item = $("<div><input name=\"products[]\" type=\"hidden\" value=\"" +  item_id + "\" /></div>");
+            var input_item_price = $("<div><input name=\"prices[]\" type=\"hidden\" value=\"" +  item_price + "\" /></div>");
+            var input_item_time = $("<div><input name=\"starts[]\" type=\"hidden\" value=\"" +  item_start + "\" /></div>");
+            var input_item_label = $("<div><input name=\"labels[]\" type=\"hidden\" value=\"" +  item_label + "\" /></div>");
+            var text_item = $("<span>" + item_id + "</span>");
+            input_container.append(input_item);
+            input_container.append(input_item_price);
+            input_container.append(new Date(item_start).toISOString());
+            input_container.append(item_label);
+            input_container.append(input_item_time);
+            input_container.append(text_item);
+            return false;
+        }
         document.addEventListener("turbolinks:load", function(){
             if(document.getElementById("calendar-app")) {
                 $.get('/tours/product_availability/<%= @product_json["product"]["productCode"] %>', function(data){
-                  console.log(data.sessions);
                   var tour_sessions_info = [];
                   var tour_sessions_date = [];
 
@@ -12,9 +32,12 @@
                       var startTime = new Date(data.sessions[i].startTime);
                       var price_options = "<ul>";
                       for(var j=0; j < data.sessions[i].priceOptions.length; j++) {
-                          price_options += "<li>" + data.sessions[i].priceOptions[j].label + " $" + data.sessions[i].priceOptions[j].price + "</li>";
+                          price_options += "<li>";
+                          price_options += "<span>" + data.sessions[i].priceOptions[j].label + " $" + data.sessions[i].priceOptions[j].price + "</span> ";
+                          price_options += "<a data-label=\"" + data.sessions[i].priceOptions[j].label + "\" data-start=\"" +  startTime + "\" data-price=\"" + data.sessions[i].priceOptions[j].price + "\" data-id=\"" + data.sessions[i].priceOptions[j].id + "\" data-turbolinks=\"false\" href=\"#\" onClick=\"return chooseAvailability()\">Adicionar</a>";
+                          price_options += "</li>";
                       }
-                      price_options+= "</ul>"
+                      price_options += "</ul>";
                       tour_sessions_info.push({
                           name: price_options,
                           endTime: new Date(data.sessions[i].endTime),
@@ -143,7 +166,12 @@
             </div>
           </div>
           <div class="card-footer">
-            <%= link_to t('tours_view_show_link_three'), confirm_tour_path, class: 'btn btn-primary btn-lg btn-block' %>
+            <%= form_tag tours_confirm_product_path, method: "post", class: "form", multipart: true do %>
+              <input name="id" type="hidden" value="<%= @product_json["product"]["productCode"] %>" />
+              <input name="name" type="hidden" value="<%= @product_json["product"]["name"] %>" />
+              <div id="reservation-items"></div>
+              <%= submit_tag t('tours_view_show_link_three'), class: 'btn btn-primary btn-lg btn-block' %>
+            <% end %>
           </div>
         </div>
       </div>
