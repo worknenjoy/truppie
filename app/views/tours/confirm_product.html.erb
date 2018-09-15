@@ -3,7 +3,7 @@
 <% content_for :javascript_includes do %>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript">
-      Stripe.setPublishableKey('<%= Rails.application.secrets[:rezdy_stripe] %>');
+      Stripe.setPublishableKey('<%= Rails.configuration.stripe[:rezdy_stripe] %>');
   </script>
 <% end %>
 <div class="container">
@@ -56,9 +56,17 @@
                   </div>
                   <div class="form-group">
                     <%= hidden_field_tag :id, @product_id %>
+                    <%= hidden_field_tag :product_name, @product_name %>
+                    <%= hidden_field_tag :product_total_price, @product_total_price %>
+                    <%= hidden_field_tag :product_starts, @product_starts %>
+                    <%= hidden_field_tag :product_prices, @product_prices %>
                     <%= hidden_field_tag :method, "CREDIT_CARD" %>
-                    <label for="fullname"><%= t('tours_view_confirm_label_one') %></label>
-                    <%= text_field_tag :fullname, nil, placeholder: t('tours_view_confirm_placeholder_one'), required: true, class: "form-control" %>
+                    <label for="fullname">Primeiro nome</label>
+                    <%= text_field_tag :firstName, nil, placeholder: 'Primeiro nome', required: true, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <label for="fullname">Último nome</label>
+                    <%= text_field_tag :lastName, nil, placeholder: 'Último nome', required: true, class: "form-control" %>
                   </div>
                 </div>
                 <div class="col-xs-12">
@@ -142,11 +150,6 @@
                     <label for="cvCode"><%= t('tours_view_confirm_label_eleven') %></label>
                     <%= text_field_tag :cvc, nil, placeholder: "ex. 123", required: true, class: "form-control", data: { stripe: "cvc" } %>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <%= hidden_field_tag :token, '', id:'token' %>
-                <div class="col-xs-12 col-md-6">
                 </div>
               </div>
               <div class="row">

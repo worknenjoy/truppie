@@ -79,9 +79,86 @@ class ToursController < ApplicationController
   def confirm_product_booking
     @product_id = params[:id]
     @product_reservations = params[:products]
-  end
+    @product_name = params[:product_name]
+    @product_total_price = params[:product_total_price]
+    @product_prices = params[:product_prices]
+    @product_starts = params[:product_starts]
+    @token = params[:token]
 
-  def confirm_product_booking
+    @booking_post_params = {
+        customer: {
+            firstName: params[:firstName],
+            lastName: params[:lastName],
+            email: current_user.email,
+            phone: ""
+        },
+        items: [
+            {
+                productCode: @product_id,
+                startTimeLocal: @product_starts[0],
+                amount: @product_prices[0],
+                quantities: [
+                    {
+                        optionLabel: "Adult",
+                        value: 1
+                    }
+                ],
+                participants: [
+                    fields: [
+                        {
+                            label: "First Name",
+                            value: params[:firstName]
+                        },
+                        {
+                            label: "Last Name",
+                            value: params[:lastName]
+                        }
+                    ]
+                ]
+            }
+        ],
+        creditCard: {
+            cardToken: @token
+        }
+    }
+
+    @book_product = RestClient.post "https://api.rezdy.com/latest/bookings/?apiKey=#{Rails.application.secrets[:rezdy_api]}", @booking_post_params.to_json, :content_type => :json, :accept => :json
+    @book_product_json = JSON.load @book_product
+    puts "product_json"
+    puts @book_product_json.inspect
+
+
+    if @book_product_json["requestStatus"] and @book_product_json["requestStatus"]["success"]
+
+      @order_number = @book_product_json["booking"]["orderNumber"]
+
+      begin
+        @order = Order.create(
+          :source_id => @product_id,
+          :own_id => "truppie_product_#{@product_id}_#{current_user.id}_#{@order_number}",
+          :user => current_user,
+          :status => 'succeeded',
+          :payment => @order_number,
+          :price => 0,
+          :amount => 0,
+          :final_price => 0,
+          :liquid => 0,
+          :fee => 0,
+          :payment_method => @payment_method,
+        )
+        @confirm_headline_message = t('tours_controller_confirm_headline_msg')
+        @confirm_status_message = t('tours_controller_status_msg_four')
+        @status = t('status_success')
+      rescue => e
+        @confirm_headline_message = t('tours_controller_headline_msg')
+        @confirm_status_message = e.message
+        @status = t('status_danger')
+      end
+    else
+      @confirm_headline_message = t('tours_controller_headline_msg')
+      @confirm_status_message = "Não foi possível confirmar sua reserva com o agente de viagens"
+      @status = t('status_danger')
+    end
 
   end
 
