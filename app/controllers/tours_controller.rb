@@ -122,7 +122,13 @@ class ToursController < ApplicationController
         }
     }
 
-    @book_product = RestClient.post "https://api.rezdy.com/latest/bookings/?apiKey=#{Rails.application.secrets[:rezdy_api]}", @booking_post_params.to_json, :content_type => :json, :accept => :json
+    begin
+      @book_product = RestClient.post "https://api.rezdy.com/latest/bookings/?apiKey=#{Rails.application.secrets[:rezdy_api]}", @booking_post_params.to_json, :content_type => :json, :accept => :json
+    rescue => e
+      puts "error when request rezdy api"
+      puts e.inspect
+      @book_product = "{}"
+    end
     @book_product_json = JSON.load @book_product
     puts "product_json"
     puts @book_product_json.inspect
