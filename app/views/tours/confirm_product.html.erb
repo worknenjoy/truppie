@@ -1,0 +1,218 @@
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/flash' %>
+<% content_for :javascript_includes do %>
+  <script type="text/javascript" src="https://js.stripe.com/v2/" defer="true"></script>
+  <script type="text/javascript">
+      document.addEventListener("turbolinks:load", function() {
+          Stripe.setPublishableKey('<%= Rails.application.secrets[:rezdy_stripe] %>');
+      });
+  </script>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 spaced-smallest">
+      <hr class="hr-primary" />
+      <ol class="breadcrumb bread-primary ">
+        <li>
+          <%= link_to root_url do %>
+            <i class="fa fa-home"></i> <%= t('tours_view_confirm_li_one') %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '/tours/products' do %>
+            <i class="fa fa-calendar"></i>  Tours, passeios e atrações
+          <% end %>
+        </li>
+        <li>
+          <%= link_to("/tours/products/#{@product_id}", data: {turbolinks: false}) do %>
+            <%= @product_name %>
+          <% end %>
+        </li>
+        <li class="active"><%= t('tours_view_confirm_li_two') %></li>
+      </ol>
+      <h4 class="spaced-down"><%= t('tours_view_confirm_h4_one') %></h4>
+      <p><%= t('tours_view_confirm_p_one') %></p>
+      <div class="card">
+        <div class="card-header">
+          <h5 class="text-center">
+            <%= @product_id %> - <%= @product_name %> - $ <%= @product_total_price %>
+          </h5>
+        </div>
+      </div>
+    </div>
+    <%= form_tag tours_confirm_product_booking_path, :method => 'post', id: 'form-confirm-reservation' do %>
+      <div class="payment-tab" id="payment-creditcard">
+        <div class="container">
+          <h4 class="spaced-down"><%= t('tours_view_confirm_h4_two') %> <small><%= t('tours_view_confirm_small_one') %></small></h4>
+        </div>
+        <div class="col-md-4">
+          <div class="card font-card-small">
+            <div class="card-header">
+              <h4 class="panel-title"><%= t('tours_view_confirm_h4_three') %></h4>
+            </div>
+            <div class="card-block">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="spaced-down">
+                    <small><%= t('tours_view_confirm_small_two') %></small>
+                  </div>
+                  <div class="form-group">
+                    <%= hidden_field_tag :id, @product_id %>
+                    <%= hidden_field_tag :product_name, @product_name %>
+                    <%= hidden_field_tag :product_total_price, @product_total_price %>
+                    <%= hidden_field_tag :product_starts, @product_starts %>
+                    <%= hidden_field_tag :product_prices, @product_prices %>
+                    <%= hidden_field_tag :product_labels, @product_labels %>
+                    <%= hidden_field_tag :method, "CREDIT_CARD" %>
+                    <label for="fullname">Primeiro nome</label>
+                    <%= text_field_tag :firstName, nil, placeholder: 'Primeiro nome', required: true, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <label for="fullname">Último nome</label>
+                    <%= text_field_tag :lastName, nil, placeholder: 'Último nome', required: true, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="fullname"><%= t('tours_view_confirm_label_two') %></label>
+                    <%= text_field_tag :birthdate, nil, placeholder: "dd/mm/aaaa", required: true, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="street"><%= t('tours_view_confirm_label_three') %></label>
+                    <%= text_field_tag :street, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_line1" } %>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="zipcode"><%= t('tours_view_confirm_label_four') %></label>
+                    <%= text_field_tag :complement, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_line2" } %>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="zipcode"><%= t('tours_view_confirm_label_five') %></label>
+                    <%= text_field_tag :city, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_city" } %>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="zipcode"><%= t('tours_view_confirm_label_six') %></label>
+                    <%= text_field_tag :state, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_state" } %>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="zipcode"><%= t('tours_view_confirm_label_seven') %></label>
+                    <%= text_field_tag :country, nil, placeholder: "", required: true, class: "form-control", data: { stripe: "address_country" } %>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="zipcode"><%= t('tours_view_confirm_label_eight') %></label>
+                    <%= text_field_tag :zipcode, nil, placeholder: "xxxxx-xx", required: true, class: "form-control", data: { stripe: "address_zip" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card font-card-small">
+            <div class="card-header">
+              <h4><%= t('tours_view_confirm_h4_four') %></h4>
+              <img src="https://i76.imgup.net/accepted_c22e0.png">
+            </div>
+            <div class="card-block">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group form-card-number">
+                    <label for="cardNumber"><%= t('tours_view_confirm_label_nine') %></label>
+                    <div class="input-group">
+                      <%= text_field_tag :number, nil, placeholder: t('tours_view_confirm_placeholder_two'), required: true, class: "form-control", data: { stripe: "number" } %>
+                      <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-8">
+                  <label for="expMonth"><%= t('tours_view_confirm_label_ten') %></label>
+                  <div class="form-group">
+                    <div class="col-xs-12 col-md-7 pl-ziro">
+                      <%= text_field_tag :expiration_month, nil, placeholder: t('tours_view_confirm_placeholder_three'), required: true, class: "form-control", data: { stripe: "exp_month" } %>
+                    </div>
+                    <div class="col-xs-12 col-md-5 pl-ziro xs-spaced-top">
+                      <%= text_field_tag :expiration_year, nil, placeholder: t('tours_view_confirm_placeholder_four'), required: true, class: "form-control", data: { stripe: "exp_year" } %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-4 pull-right">
+                  <div class="form-group">
+                    <label for="cvCode"><%= t('tours_view_confirm_label_eleven') %></label>
+                    <%= text_field_tag :cvc, nil, placeholder: "ex. 123", required: true, class: "form-control", data: { stripe: "cvc" } %>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-8">
+                  <div class="spaced-smallest">
+                    <% @product_prices.each_with_index do |p, i| %>
+                      <div class="alert alert-success" role="alert">
+                        $ <%= p %> - <%= @product_starts %> - <%= @product_labels %>
+                      </div>
+                    <% end  %>
+                  </div>
+                </div>
+                <%= hidden_field_tag :token, '', id:'token' %>
+                <div class="col-xs-12 col-md-4">
+                  <% if !@product_total_price %>
+                    <div class="spaced-smallest">
+                      <div class="form-group">
+                        <label><%= t('tours_view_confirm_label_thirteen') %></label>
+                        <div class="input-group">
+                          <div class="input-group-addon">R$</div>
+                          <%= number_field_tag :value, 0, class: 'fair-price-value form-control', min: 1  %>
+                          <div class="input-group-addon">.00</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-md-offset-6 col-md-6">
+                      <div style="margin-top: 20px;">
+                        <div class="price mediafix">
+                          <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
+                        </div>
+                        <div class="price mediafix">
+                          <!-- It gets updated with js (assets/js/main.js.erb) -->
+                          <h3 class="cc-final-fair-price pull-right" style="font-size: 3em;"><%= raw final_price(0) %></h3>
+                          <%= hidden_field_tag :final_price, 0, id:'cc-final-fair-price' %>
+                        </div>
+                      </div>
+                    </div>
+                  <% else %>
+                    <div style="margin-top: 20px;">
+                      <div class="price mediafix">
+                        <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
+                      </div>
+                      <div class="price mediafix">
+                        <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@product_total_price) %></h3>
+                        <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' %>
+                        <%= hidden_field_tag :default_final_price, @final_price, id:'cc-default-final-price'%>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <%= submit_tag "Confirmar Reserva", class: 'btn btn-success btn-lg btn-block', id: "confirm-reservation-button" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

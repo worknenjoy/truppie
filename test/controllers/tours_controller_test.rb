@@ -709,4 +709,91 @@ class ToursControllerTest < ActionController::TestCase
 
   end
 
+  test "test a start confirmation of a external product from rezdy" do
+    post :confirm_product, {id: "PWQQVJ", name: "foo", prices: [1, 2, 3], starts: [343434, 123, 322], products: ["168282", "1809756", "168282"] }
+    assert_equal assigns(:product_id), "PWQQVJ"
+    assert_equal assigns(:product_name), "foo"
+    assert_equal assigns(:product_prices), ["1", "2", "3"]
+    assert_equal assigns(:product_total_price), 6
+    assert_equal assigns(:product_starts), ["343434", "123", "322"]
+    assert_equal assigns(:product_reservations), ["168282", "1809756", "168282"]
+  end
+
+  test "test a complete booking confirmation of a external product from rezdy" do
+    body = "{\"requestStatus\":{\"success\":true,\"version\":\"v1\"},\"booking\":{\"customer\":{\"id\":502281,\"firstName\":\"Hugo\",\"lastName\":\"Sterin\",\"name\":\"Hugo Sterin\",\"email\":\"noreply@rezdy.com\",\"phone\":\"0282443060\"},\"supplierId\":9606,\"supplierName\":\"Rezdy Demo\",\"resellerId\": 2404,\"resellerName\":\"Rezdy Agent Demo\",\"orderNumber\":\"RD7PA1I\",\"items\":[{\"productName\":\"DEMO - Single Flight\",\"productCode\":\"PF6B25\",\"startTime\":\"2014-11-02T22:00:00Z\",\"endTime\":\"2014-11-03T02:00:00Z\",\"startTimeLocal\":\"2014-11-03 09:00:00\",\"endTimeLocal\":\"2014-11-03 13:00:00\",\"quantities\":[{\"optionLabel\":\"Adult\",\"optionPrice\":100,\"value\":2}],\"totalQuantity\":2,\"amount\":200,\"extras\":[],\"participants\":[{\"fields\":[{\"label\":\"First Name\",\"value\":\"Hugo\",\"requiredPerParticipant\":false,\"requiredPerBooking\":false},{\"label\":\"Last Name\",\"value\":\"Sterin\",\"requiredPerParticipant\":false,\"requiredPerBooking\":false}]},{\"fields\":[{\"label\":\"First Name\",\"value\":\"Simon\",\"requiredPerParticipant\":false,\"requiredPerBooking\":false},{\"label\":\"Last Name\",\"value\":\"Lenoir\",\"requiredPerParticipant\":false,\"requiredPerBooking\":false}]}],\"subtotal\":200}],\"totalAmount\":200,\"totalCurrency\":\"USD\",\"totalPaid\":200,\"totalDue\":0,\"dateCreated\":\"2014-11-05T03:04:04.007Z\",\"datePaid\":\"2014-11-05T03:04:04.007Z\",\"status\":\"CONFIRMED\",\"comments\":\"Special requirements go herern\",\"internalNotes\":\"Internal notes go here\",\"payments\":[{\"type\":\"CREDITCARD\",\"amount\":200,\"currency\":\"USD\",\"date\":\"2014-11-11T10:26:00Z\",\"label\":\"Payment processed by Rezdy Agent Demo\"}],\"fields\":[{\"label\":\"Do you have any dietary requirements?\",\"value\":\"No, I have no requirements.\",\"requiredPerParticipant\":false,\"requiredPerBooking\":false}],\"source\":\"PARTNERS\",\"resellerSource\":\"API\",\"sourceChannel\":\"REZDYAGENTDEMO\",\"commission\":15,\"vouchers\":[]}}"
+    FakeWeb.register_uri(:post,"https://api.rezdy.com/latest/bookings/?apiKey=#{Rails.application.secrets[:rezdy_api]}", :body => body, :status => ["201", "Success"])
+    @sample_booking_request = {
+        customer: {
+            firstName: "Carlos",
+            lastName: "Silva",
+            email: "alexanmtz@gmail.com",
+            phone: ""
+        },
+        items: [
+            {
+                productCode: "PWQQVJ",
+                startTimeLocal: "343434",
+                amount: "10",
+                quantities: [
+                    {
+                        optionLabel: "Adult",
+                        value: 1
+                    }
+                ],
+                participants: [
+                    fields: [
+                        {
+                            label: "First Name",
+                            value: "Carlos"
+                        },
+                        {
+                            label: "Last Name",
+                            value: "Silva"
+                        }
+                    ]
+                ]
+            }
+        ],
+        creditCard: {
+            cardToken: "tok_visa"
+        }
+    }
+    post :confirm_product_booking, {
+        id: "PWQQVJ",
+        product_total_price: 50,
+        product_prices: [10, 20, 20],
+        product_name: "Sample name",
+        product_starts: 343434,
+        method: "CREDIT_CARD",
+        firstName: "Carlos",
+        lastName: "Silva",
+        birthdate: "06/10/1982",
+        street: "Alabama",
+        complement: "Alabama",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        country: "Brazil",
+        zipcode: "22222-123",
+        number: "4242424242424242",
+        expiration_month: "12",
+        expiration_year: "22",
+        cvc: "123",
+        token: "tok_visa",
+        final_price: 50,
+        default_final_price: 50
+    }
+    assert_equal assigns(:product_id), "PWQQVJ"
+    assert_equal assigns(:product_name), "Sample name"
+    assert_equal assigns(:product_total_price), "50"
+    assert_equal assigns(:product_prices), ["10", "20", "20"]
+    #assert_equal assigns(:product_starts), ["343434", "123", "322"]
+    #assert_equal assigns(:booking_post_params), @sample_booking_request
+    assert_equal assigns(:book_product_json)["requestStatus"], {"success"=>true, "version"=>"v1"}
+    assert_equal assigns(:order_number), "RD7PA1I"
+    assert_equal assigns(:order), Order.last
+    assert_equal assigns(:status), "success"
+    assert_equal assigns(:confirm_headline_message), "Sua presença foi confirmada para a truppie"
+    assert_equal assigns(:confirm_status_message), "Você receberá um e-mail sobre o processamento do seu pagamento"
+  end
+
 end

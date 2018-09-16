@@ -1,0 +1,52 @@
+<style>
+  .twPc-div {
+    overflow: hidden;
+    position: relative;
+  }
+  <%="#twPc-bg-#{p["productCode"]}" %> {
+    background-image: url('<%= p["images"][0]["largeSizeUrl"] %>');
+  }
+</style>
+<div class="twPc-div spaced-down">
+  <%= link_to('#', :id => "twPc-bg-#{p["productCode"]}" ,:class => 'twPc-bg twPc-block') do %>
+      <div class="ribbon base"><span><%= raw final_price(p["advertisedPrice"]) %></span></div>
+  <% end %>
+
+  <div>
+    <div class="twPc-button">
+      <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+
+      <%= link_to('#', :class => 'twitter-follow-button btn btn-primary') do %>
+          <i class="fa fa-ticket"></i> <%= t('welcome_view_index_div_three') %>
+      <% end %>
+      <!-- Twitter Button -->
+    </div>
+
+    <%= link_to('#', :class => 'twPc-avatarLink', data: {turbolinks: false}) do %>
+        <%= image_tag(p["images"][0]["mediumSizeUrl"], :alt => p["supplierName"], class: 'twPc-avatarImg') %><br />
+    <% end %>
+
+    <div class="twPc-divUser spaced-down">
+      <div class="twPc-divName">
+        <%= link_to("/tours/products/#{p["productCode"]}", data: {turbolinks: false}) do %>
+            <%= p["name"] %>
+        <% end %>
+      </div>
+      <span>
+        <%= link_to "#" do %>
+        <small><%= t('welcome_view_index_small_eight') %> </small><strong><%= p["supplierName"] %></strong>
+        <% end %>
+      </span>
+    </div>
+    <div class="twPc-divStats">
+      <ul class="twPc-Arrange">
+        <li class="twPc-ArrangeSizeFit">
+          <span class="twPc-StatLabel twPc-block">Atividade</span>
+          <span class="twPc-StatValue">
+              <%= p["productType"] %>
+            </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

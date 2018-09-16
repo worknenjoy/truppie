@@ -99,7 +99,11 @@ class ApplicationController < ActionController::Base
         else
           tour_id = params[:id]
           if tour_id
-            allowed_users.push Tour.find(tour_id).user
+            begin
+              allowed_users.push Tour.find(tour_id).user
+            rescue => e
+              allowed_users = []
+            end
           end
         end
       end
