@@ -87,6 +87,12 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'tours/products', to: 'tours#products'
+  get 'tours/products/:id', to: 'tours#product', as: 'tour_product'
+  get 'tours/product_availability/:code', to: 'tours#product_availability'
+  post 'tours/confirm_product', to: 'tours#confirm_product'
+  post 'tours/confirm_product_booking', to: 'tours#confirm_product_booking'
+
   resources :tours do
     member do
       get 'confirm/(:packagename)', to: 'tours#confirm', as: 'confirm'

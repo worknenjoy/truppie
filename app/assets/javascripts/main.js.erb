@@ -458,7 +458,6 @@ $(document).on("turbolinks:load", function() {
 
 	function stripeResponseHandler(status, response) {
 	  var $form = $('#form-confirm-reservation');
-
 	  if(response.error) {
 	    $form.find('.alert').remove();
 	    $form.find('#confirm-reservation-button').before('<div class="dialog-alert alert alert-danger animated bounceIn"><strong>' + response.error.param + '</strong><br />' + response.error.message +  ' </div>');

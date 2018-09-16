@@ -52,6 +52,7 @@ gem 'time_diff'
 gem 'timecop'
 gem 'google_timezone'
 gem 'google_places'
+gem 'sitemap'
 
 # Admin and Depedences
 gem 'activeadmin'

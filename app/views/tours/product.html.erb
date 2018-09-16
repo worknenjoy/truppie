@@ -1,0 +1,201 @@
+<% content_for :javascript_includes do %>
+    <%= javascript_include_tag "calendar-app.js", defer: true %>
+    <script type="text/javascript">
+        function chooseAvailability(e) {
+            e = e || window.event;
+            var target = e.target || e.srcElement;
+            var item_id = target.getAttribute('data-id');
+            var item_price = target.getAttribute('data-price');
+            var item_start = target.getAttribute('data-start');
+            var item_label = target.getAttribute('data-label');
+            var input_container = $('#reservation-items');
+            var input_item = $("<div><input name=\"products[]\" type=\"hidden\" value=\"" +  item_id + "\" /></div>");
+            var input_item_price = $("<div><input name=\"prices[]\" type=\"hidden\" value=\"" +  item_price + "\" /></div>");
+            var input_item_time = $("<div><input name=\"starts[]\" type=\"hidden\" value=\"" +  item_start + "\" /></div>");
+            var input_item_label = $("<div><input name=\"labels[]\" type=\"hidden\" value=\"" +  item_label + "\" /></div>");
+            var text_item = $("<span>" + item_id + "</span>");
+            input_container.append(input_item);
+            input_container.append(input_item_price);
+            input_container.append(item_start);
+            input_container.append(item_label);
+            input_container.append(input_item_time);
+            input_container.append(input_item_label);
+            input_container.append(text_item);
+            return false;
+        }
+        document.addEventListener("turbolinks:load", function(){
+            if(document.getElementById("calendar-app")) {
+                $.get('/tours/product_availability/<%= @product_json["product"]["productCode"] %>', function(data){
+                  var tour_sessions_info = [];
+                  var tour_sessions_date = [];
+
+                  for(var i=0; i < data.sessions.length; i++) {
+                      var startTimeDate = new Date(data.sessions[i].startTime);
+                      var startTime = moment(startTimeDate).tz("<%= @product_json["product"]["timezone"] %>");
+                      var price_options = "<ul>";
+                      for(var j=0; j < data.sessions[i].priceOptions.length; j++) {
+                          price_options += "<li>";
+                          price_options += "<span>" + data.sessions[i].priceOptions[j].label + " $" + data.sessions[i].priceOptions[j].price + "</span> ";
+                          price_options += "<a data-label=\"" + data.sessions[i].priceOptions[j].label + "\" data-start=\"" +  startTime.format("YYYY-MM-DD HH:mm:ss") + "\" data-price=\"" + data.sessions[i].priceOptions[j].price + "\" data-id=\"" + data.sessions[i].priceOptions[j].id + "\" data-turbolinks=\"false\" href=\"#\" onClick=\"return chooseAvailability()\">Adicionar</a>";
+                          price_options += "</li>";
+                      }
+                      price_options += "</ul>";
+                      tour_sessions_info.push({
+                          name: price_options,
+                          endTime: new Date(data.sessions[i].endTime),
+                          startTime: startTime,
+                          day: new Date(startTime.year(), startTime.month(), startTime.date()).toString()
+                      });
+                      tour_sessions_date.push(new Date(startTime.year(), startTime.month(), startTime.date()).toString())
+                  }
+                  var calendar = new CalendarApp(new Date(), tour_sessions_info, tour_sessions_date);
+                });
+            }
+        });
+    </script>
+<% end %>
+<%= render 'layouts/navbar' %>
+<div class="cover">
+  <div class="img-holder">
+    <%= image_tag(@product_json["product"]["images"][0]["largeSizeUrl"], :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
+    <div class="ribbon base" style="text-align: right">
+      <span><%= raw final_price(@product_json["product"]["advertisedPrice"]) %></span>
+      <%= link_to t('tours_view_show_link_one'), '#', class: 'btn btn-primary btn-sm btn-block' %>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row divider-default">
+      <div class="col-xs-12">
+        <%= render 'layouts/flash' %>
+        <div class="pull-xs-right tour-container">
+          <h4 class="tour-title spaced-smallest pull-xs-right"><strong><%= @product_json["product"]["name"] %></strong></h4>
+
+          <div class="pull-xs-right" style="clear:both">
+            <small  style="display:block; text-align: right"><%= t('tours_view_show_small_one') %><strong class="text-danger"><%= @tour.try(:category).try(:name) || t('tours_view_show_strong_one') %></strong></small>
+
+            <div class="spaced-smallest pull-xs-right" style="display:block; text-align: right">
+              <small>tags:</small>
+              <% @tour.tags.each do |tag| %>
+                  <span class="tags label label-info"><%= tag.name %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="spaced-smallest"><i class="fa fa-suitcase"></i> <strong><%= t('tours_view_show_strong_four') %></strong></h5>
+          </div>
+          <div class="card-block">
+            <p><%= raw @product_json["product"]["description"] %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="spaced-smallest"><i class="fa fa-calendar-plus-o"></i> <strong>Disponibilidade</strong></h5>
+          </div>
+          <div class="card-block">
+            <div class="calendar" id="calendar-app">
+              <div class="calendar--day-view" id="day-view">
+                <span class="day-view-exit" id="day-view-exit">&times;</span>
+                <span class="day-view-date" id="day-view-date">MAY 29 2016</span>
+                <div class="day-view-content">
+                  <div class="day-highlight">
+                    You <span class="day-events" id="day-events">had no events for today</span>. &nbsp; <span tabindex="0" onkeyup="if(event.keyCode != 13) return; this.click();" class="day-events-link" id="add-event" data-date>Add a new event?</span>
+                  </div>
+                  <div class="day-add-event" id="add-day-event-box" data-active="false">
+                    <div class="row">
+                      <div class="half">
+                        <label class="add-event-label">
+                          Name of event
+                          <input type="text" class="add-event-edit add-event-edit--long" placeholder="New event" id="input-add-event-name">
+                        </label>
+                      </div>
+                      <div class="qtr">
+                        <label class="add-event-label">
+                          Start Time
+                          <input type="text" class="add-event-edit" placeholder="8:15" id="input-add-event-start-time" data-options="1,2,3,4,5,6,7,8,9,10,11,12" data-format="datetime">
+                          <input type="text" class="add-event-edit" placeholder="am" id="input-add-event-start-ampm" data-options="a,p,am,pm">
+                        </label>
+                      </div>
+                      <div class="qtr">
+                        <label class="add-event-label">
+                          End Time
+                          <input type="text" class="add-event-edit" placeholder="9" id="input-add-event-end-time" data-options="1,2,3,4,5,6,7,8,9,10,11,12" data-format="datetime">
+                          <input type="text" class="add-event-edit" placeholder="am" id="input-add-event-end-ampm" data-options="a,p,am,pm">
+                        </label>
+                      </div>
+                      <div class="half">
+                        <a onkeyup="if(event.keyCode != 13) return; this.click();" tabindex="0" id="add-event-save" class="event-btn--save event-btn">save</a>
+                        <a tabindex="0" id="add-event-cancel" class="event-btn--cancel event-btn">cancel</a>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div id="day-events-list" class="day-events-list">
+                    <ul class="day-event-list-ul"><li class="event-dates"><div class="event-dates"><span class="start-time">8:15 AM</span> <small>through</small> <span class="end-time">9:00 AM</span><span class="event-name">fadfaf</span><span class="event-delete" data-idx="2">delete</span></div></li></ul>
+                  </div>
+                  <div class="day-inspiration-quote" id="inspirational-quote">
+                    Every child is an artist.  The problem is how to remain an artist once he grows up. –Pablo Picasso
+                  </div>
+                </div>
+              </div>
+              <div class="calendar--view" id="calendar-view">
+                <div class="cview__month">
+                  <span class="cview__month-last" id="calendar-month-last">Apr</span>
+                  <span class="cview__month-current" id="calendar-month">May</span>
+                  <span class="cview__month-next" id="calendar-month-next">Jun</span>
+                </div>
+                <div class="cview__header">Sun</div>
+                <div class="cview__header">Mon</div>
+                <div class="cview__header">Tue</div>
+                <div class="cview__header">Wed</div>
+                <div class="cview__header">Thu</div>
+                <div class="cview__header">Fri</div>
+                <div class="cview__header">Sat</div>
+                <div class="calendar--view" id="dates">
+                </div>
+              </div>
+              <div class="footer">
+                <span><span id="footer-date" class="footer__link">Hoje é <%= l(Time.now, format: '%d de %B / %Y')  %></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <%= form_tag tours_confirm_product_path, method: "post", class: "form", multipart: true do %>
+              <input name="id" type="hidden" value="<%= @product_json["product"]["productCode"] %>" />
+              <input name="name" type="hidden" value="<%= @product_json["product"]["name"] %>" />
+              <div id="reservation-items"></div>
+              <%= submit_tag t('tours_view_show_link_three'), class: 'btn btn-primary btn-lg btn-block' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if @product_json["product"]["images"].any? %>
+        <div class="row">
+          <div class="col-xs-12">
+            <h4 class="spaced-top">
+              <%= t('tours_view_show_h4') %>
+            </h4>
+          </div>
+
+          <div class="cols-xs-12">
+            <div class="gallery">
+              <% @product_json["product"]["images"].each do |i| %>
+                  <div class="gallery-image">
+                    <%= image_tag i["largeSizeUrl"] || i["mediumSizeUrl"] || i["smallSizeUrl"], :alt => "Truppie", class: "img-fluid", width: 300 %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div><!-- end container -->
+</div>

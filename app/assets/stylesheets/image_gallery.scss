@@ -2,14 +2,14 @@
 
 .gallery {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
   background: linear-gradient(to bottom, $list-group-hover-bg 0%, $gray-lightest 100%);
   margin: 1em 0;
   padding: 1em;
 }
 
 .gallery-image {
-  flex-grow: 0;
+  flex-grow: 1;
   margin: 10px 0.2em;
 }
 

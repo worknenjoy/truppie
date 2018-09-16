@@ -427,6 +427,7 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
+    sitemap (0.3.3)
     smart_listing (1.1.2)
       coffee-rails
       jquery-rails
@@ -533,6 +534,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
+  sitemap
   spring
   stripe
   stripe-ruby-mock!
