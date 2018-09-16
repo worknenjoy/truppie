@@ -16,9 +16,10 @@
             var text_item = $("<span>" + item_id + "</span>");
             input_container.append(input_item);
             input_container.append(input_item_price);
-            input_container.append(new Date(item_start).toISOString());
+            input_container.append(item_start);
             input_container.append(item_label);
             input_container.append(input_item_time);
+            input_container.append(input_item_label);
             input_container.append(text_item);
             return false;
         }
@@ -29,12 +30,13 @@
                   var tour_sessions_date = [];
 
                   for(var i=0; i < data.sessions.length; i++) {
-                      var startTime = new Date(data.sessions[i].startTime);
+                      var startTimeDate = new Date(data.sessions[i].startTime);
+                      var startTime = moment(startTimeDate).tz("<%= @product_json["product"]["timezone"] %>");
                       var price_options = "<ul>";
                       for(var j=0; j < data.sessions[i].priceOptions.length; j++) {
                           price_options += "<li>";
                           price_options += "<span>" + data.sessions[i].priceOptions[j].label + " $" + data.sessions[i].priceOptions[j].price + "</span> ";
-                          price_options += "<a data-label=\"" + data.sessions[i].priceOptions[j].label + "\" data-start=\"" +  startTime + "\" data-price=\"" + data.sessions[i].priceOptions[j].price + "\" data-id=\"" + data.sessions[i].priceOptions[j].id + "\" data-turbolinks=\"false\" href=\"#\" onClick=\"return chooseAvailability()\">Adicionar</a>";
+                          price_options += "<a data-label=\"" + data.sessions[i].priceOptions[j].label + "\" data-start=\"" +  startTime.format("YYYY-MM-DD HH:mm:ss") + "\" data-price=\"" + data.sessions[i].priceOptions[j].price + "\" data-id=\"" + data.sessions[i].priceOptions[j].id + "\" data-turbolinks=\"false\" href=\"#\" onClick=\"return chooseAvailability()\">Adicionar</a>";
                           price_options += "</li>";
                       }
                       price_options += "</ul>";
@@ -42,9 +44,9 @@
                           name: price_options,
                           endTime: new Date(data.sessions[i].endTime),
                           startTime: startTime,
-                          day: new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDay()).toString()
+                          day: new Date(startTime.year(), startTime.month(), startTime.date()).toString()
                       });
-                      tour_sessions_date.push(new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDay()).toString())
+                      tour_sessions_date.push(new Date(startTime.year(), startTime.month(), startTime.date()).toString())
                   }
                   var calendar = new CalendarApp(new Date(), tour_sessions_info, tour_sessions_date);
                 });

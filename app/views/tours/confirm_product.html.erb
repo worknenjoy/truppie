@@ -1,9 +1,11 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
 <% content_for :javascript_includes do %>
-  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/" defer="true"></script>
   <script type="text/javascript">
-      Stripe.setPublishableKey('<%= Rails.configuration.stripe[:rezdy_stripe] %>');
+      document.addEventListener("turbolinks:load", function() {
+          Stripe.setPublishableKey('<%= Rails.application.secrets[:rezdy_stripe] %>');
+      });
   </script>
 <% end %>
 <div class="container">
@@ -60,6 +62,7 @@
                     <%= hidden_field_tag :product_total_price, @product_total_price %>
                     <%= hidden_field_tag :product_starts, @product_starts %>
                     <%= hidden_field_tag :product_prices, @product_prices %>
+                    <%= hidden_field_tag :product_labels, @product_labels %>
                     <%= hidden_field_tag :method, "CREDIT_CARD" %>
                     <label for="fullname">Primeiro nome</label>
                     <%= text_field_tag :firstName, nil, placeholder: 'Primeiro nome', required: true, class: "form-control" %>

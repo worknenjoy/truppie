@@ -4,6 +4,32 @@
     <div class="col-xs-12 col-md-12">
       <% if @products_json.any? %>
           <h3 class="light-heading" style="padding: 4px; margin-top: 30px;">Atividades</h3>
+        <div id="tours">
+          <div class='container'>
+            <h2>
+              <%= t('where-to-go-title') %>
+            </h2>
+            <small class="text-gray-dark" style="display:block; text-align: center"><%= t('explore-tagline') %></small>
+            <form action="/tours/products" class="out-of-couch" id="go" method="get">
+              <input name="query" id="places-input-action" placeholder="<%= t('intro-location-label') %>" type="text">
+              <script type="text/javascript">
+                  window.addEventListener("turbolinks:load", function () {
+                      var autocomplete = document.getElementById('places-input-action');
+                      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                          var data = $("#go").serialize();
+                          console.log('blah')
+                          console.log(data);
+                      });
+
+                      initMap();
+                  });
+              </script>
+              <button class='button' type='submit'>
+                <%= t('where-to-go-text') %>
+              </button>
+            </form>
+          </div>
+        </div>
           <% @products_json["products"].each do |p| %>
             <%= render partial: 'layouts/product_list', locals: { p: p } %>
           <% end %>

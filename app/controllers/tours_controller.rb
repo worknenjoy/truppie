@@ -47,7 +47,8 @@ class ToursController < ApplicationController
   end
 
   def products
-    @products = RestClient.get "https://api.rezdy.com/latest/products/marketplace?language=en&limit=5&automatedPayments=true&apiKey=#{Rails.application.secrets[:rezdy_api]}"
+    @query = params[:query]
+    @products = RestClient.get "https://api.rezdy.com/latest/products/marketplace?search=#{@query}&limit=5&automatedPayments=true&apiKey=#{Rails.application.secrets[:rezdy_api]}"
     @products_json = JSON.load @products
   end
 
@@ -68,6 +69,7 @@ class ToursController < ApplicationController
 
   def confirm_product
     @product_id = params[:id]
+    @product_timezone = params[:timezone]
     @product_name = params[:name]
     @product_prices = params[:prices]
     @product_starts = params[:starts]
@@ -83,6 +85,7 @@ class ToursController < ApplicationController
     @product_total_price = params[:product_total_price]
     @product_prices = params[:product_prices]
     @product_starts = params[:product_starts]
+    @product_labels = params[:product_labels]
     @token = params[:token]
 
     @booking_post_params = {
@@ -95,11 +98,11 @@ class ToursController < ApplicationController
         items: [
             {
                 productCode: @product_id,
-                startTimeLocal: @product_starts[0],
-                amount: @product_prices[0],
+                startTimeLocal: @product_starts,
+                amount: @product_prices,
                 quantities: [
                     {
-                        optionLabel: "Adult",
+                        optionLabel: @product_labels,
                         value: 1
                     }
                 ],
@@ -121,7 +124,8 @@ class ToursController < ApplicationController
             cardToken: @token
         }
     }
-
+    puts "booking request"
+    puts @booking_post_params.to_json
     begin
       @book_product = RestClient.post "https://api.rezdy.com/latest/bookings/?apiKey=#{Rails.application.secrets[:rezdy_api]}", @booking_post_params.to_json, :content_type => :json, :accept => :json
     rescue => e

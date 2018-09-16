@@ -17,7 +17,7 @@
                 <% if @status == "success" %>
                 <p><%= t('tours_view_confirm_presence_p_one') %><%= link_to t('tours_view_confirm_presence_link_one'), orders_path %>. </p>
                 <% else %>
-                <p><%= link_to t('tours_view_confirm_presence_link_two'), "/tours/products/#{@product_id}" %></p>
+                <p><%= link_to t('tours_view_confirm_presence_link_two'), "/tours/products/#{@product_id}", data: {turbolinks: false} %></p>
                 <% end %>
               </footer>
             </blockquote>
