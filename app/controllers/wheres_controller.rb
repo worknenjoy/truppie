@@ -70,6 +70,9 @@ class WheresController < ApplicationController
     @client = GooglePlaces::Client.new('AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A')
     @place = @client.spot(@placeid)
     @where = Where.where({:place_id => @placeid}).first
+    puts @place.inspect
+    @products = RestClient.get "https://api.rezdy.com/latest/products/marketplace?&latitude=#{@place.lat}&longitude=#{@place.lng}&limit=25&automatedPayments=true&apiKey=#{Rails.application.secrets[:rezdy_api]}"
+    @products_json = JSON.load @products
     if @where.present?
       @tours = Tour.joins(:wheres).where(wheres: {place_id: @where.place_id})
       @guidebooks = Guidebook.joins(:wheres).where(wheres: {place_id: @where.place_id})

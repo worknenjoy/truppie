@@ -54,6 +54,11 @@
     </figure>
   </section>
   <section>
+    <% @products_json["products"].each do |p| %>
+      <%= render partial: 'layouts/product_list', locals: { p: p } %>
+    <% end %>
+  </section>
+  <section>
     <div>
       <header class="b-section-header">
         <h2><%= t('tours-title-places-label') %></h2>
