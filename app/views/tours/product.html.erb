@@ -13,11 +13,9 @@
             var input_item_price = $("<div><input name=\"prices[]\" type=\"hidden\" value=\"" +  item_price + "\" /></div>");
             var input_item_time = $("<div><input name=\"starts[]\" type=\"hidden\" value=\"" +  item_start + "\" /></div>");
             var input_item_label = $("<div><input name=\"labels[]\" type=\"hidden\" value=\"" +  item_label + "\" /></div>");
-            var text_item = $("<span>" + item_id + "</span>");
+            var text_item = $("<div class=\"alert alert-success\" style=\"overflow: hidden;\"><h4>" + item_label + "</h4><hr /><p>" + moment(item_start).format("DD-MM-YYYY HH:mm:ss") + "</p><h4 class=\"pull-right\"> $ " + item_price + "</h4></div>");
             input_container.append(input_item);
             input_container.append(input_item_price);
-            input_container.append(item_start);
-            input_container.append(item_label);
             input_container.append(input_item_time);
             input_container.append(input_item_label);
             input_container.append(text_item);
@@ -32,14 +30,17 @@
                   for(var i=0; i < data.sessions.length; i++) {
                       var startTimeDate = new Date(data.sessions[i].startTime);
                       var startTime = moment(startTimeDate).tz("<%= @product_json["product"]["timezone"] %>");
-                      var price_options = "<ul>";
+                      var price_options = "<div class=\"alert alert-info\">";
                       for(var j=0; j < data.sessions[i].priceOptions.length; j++) {
-                          price_options += "<li>";
-                          price_options += "<span>" + data.sessions[i].priceOptions[j].label + " $" + data.sessions[i].priceOptions[j].price + "</span> ";
+                          price_options += "<div>";
+                          price_options += "<h4>" + data.sessions[i].priceOptions[j].label + " <strong class=\"pull-right\"> <small>$</small>" + data.sessions[i].priceOptions[j].price + "</strong></h4> ";
                           price_options += "<a data-label=\"" + data.sessions[i].priceOptions[j].label + "\" data-start=\"" +  startTime.format("YYYY-MM-DD HH:mm:ss") + "\" data-price=\"" + data.sessions[i].priceOptions[j].price + "\" data-id=\"" + data.sessions[i].priceOptions[j].id + "\" data-turbolinks=\"false\" href=\"#\" onClick=\"return chooseAvailability()\">Adicionar</a>";
-                          price_options += "</li>";
+                          price_options += "<p class=\"mb-2\"> " + startTime.format("DD-MM-YYYY HH:mm:ss") + "</p>";
+                          price_options += "</div>";
+                          price_options += "<hr />";
                       }
-                      price_options += "</ul>";
+                      price_options += "</div>";
+
                       tour_sessions_info.push({
                           name: price_options,
                           endTime: new Date(data.sessions[i].endTime),
