@@ -66,7 +66,7 @@ class WheresController < ApplicationController
 
   def place
     @placeid = params[:place_id]
-    @client = GooglePlaces::Client.new('AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A')
+    @client = GooglePlaces::Client.new(Rails.application.secrets[:places_api])
     @place = @client.spot(@placeid)
     @where = Where.where({:place_id => @placeid}).first
     #puts @place.inspect
