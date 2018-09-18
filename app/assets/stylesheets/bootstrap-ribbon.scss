@@ -119,7 +119,8 @@
     border-bottom: 27px solid #ffd800;
 }
 .ribbon span {
-    display: block;
+    display: inline-block;
+    margin-left: 4px;
     font-size: 21px;
     font-weight: 600;
 }

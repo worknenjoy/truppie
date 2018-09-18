@@ -65,7 +65,6 @@ class WheresController < ApplicationController
   end
 
   def place
-    puts params[:place_id]
     @placeid = params[:place_id]
     @client = GooglePlaces::Client.new('AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A')
     @place = @client.spot(@placeid)
@@ -77,8 +76,9 @@ class WheresController < ApplicationController
       @tours = Tour.joins(:wheres).where(wheres: {place_id: @where.place_id})
       @guidebooks = Guidebook.joins(:wheres).where(wheres: {place_id: @where.place_id})
     else
-      Where.create({place_id: @place.place_id, name: @place.vicinity})
+      Where.create({place_id: @place.place_id, name: @place.vicinity, lat: @place.lat, long: @place.lng})
     end
+    ContactMailer.notify("Someone search for a place #{@place.id}, #{@place.inspect}").deliver_now
   end
 
   private

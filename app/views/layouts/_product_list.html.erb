@@ -8,8 +8,8 @@
   }
 </style>
 <div class="twPc-div spaced-down">
-  <%= link_to('#', :id => "twPc-bg-#{p["productCode"]}" ,:class => 'twPc-bg twPc-block') do %>
-      <div class="ribbon base"><span><%= raw final_price(p["advertisedPrice"]) %></span></div>
+  <%= link_to('#', :id => "twPc-bg-#{p["productCode"]}" ,:class => 'twPc-bg twPc-block', data: {turbolinks: false}) do %>
+      <div class="ribbon base"><span><%= raw final_price(p["advertisedPrice"], currency: p["currency"]) %></span></div>
   <% end %>
 
   <div>

@@ -69,12 +69,23 @@ module ApplicationHelper
     end
   end
 
-  def final_price(p)
+  def final_price(p, currency: 'brl')
+    choice = ''
     if p
-      return "<small>R$</small><span>#{p}</span>"
+      case currency
+      when 'usd'
+        choice = "<small>$</small><span>#{p}</span>"
+      when 'USD'
+        choice = "<small>$</small><span>#{p}</span>"
+      when 'brl'
+        choice = "<small>R$</small><span>#{p}</span>"
+      else
+        choice = "<small>R$</small><span>#{p}</span>"
+      end
     else
       "<small> não conseguimos obter o preço </span>"
     end
+    return choice
   end
 
   def final_price_from_cents(p)
