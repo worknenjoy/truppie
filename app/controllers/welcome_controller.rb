@@ -15,6 +15,7 @@ class WelcomeController < ApplicationController
     @past_tours = Tour.publisheds.past
     @organizers = Organizer.publisheds.order(created_at: :asc)
     @guidebooks = Guidebook.publisheds
+    @wheres = Where.last(4).reverse
   end
 
   def organizer

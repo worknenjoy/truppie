@@ -11,25 +11,24 @@
         <%= image_tag("truppie_logo_animated_noloop_mobile.gif", :alt => "Truppie") %>
         <p class="tagline emblem-font"><%= t('tagline') %></p>
       </div>
-      <div class="content" style="display:none;">
+      <div class="content">
         <div class="content__container">
           <p class="content__container__text">
             Quero ir para
           </p>
           <ul class="content__container__list">
-            <li class="content__container__list__item"><a href="#">Dinamarca</a></li>
-            <li class="content__container__list__item"><a href="#">Ilhabela</a></li>
-            <li class="content__container__list__item"><a href="#">Chapada Diamantina</a></li>
-            <li class="content__container__list__item"><a href="#">o Rio de Janeiro</a></li>
+            <% @wheres.each do |w| %>
+            <li class="content__container__list__item"><a data-turbolinks="false" href="<%= places_path({place_id: w.place_id}) %>"><%=h truncate(w.name, :length => 20) %></a></li>
+            <% end %>
           </ul>
         </div>
       </div>
-      <div id="tours" style="display: none; padding-top: 3em; position: relative; z-index: 10000;">
+      <div id="tours" style="padding-top: 3em; position: relative; z-index: 10000;">
         <div class='container'>
           <form action="<%= places_path %>" class="search-place">
             <input id="places-input-action" placeholder="<%= t('intro-location-label') %>" type="text">
             <input type="hidden" name="place_id" id="place_id" />
-            <button class='button' type='submit'>
+            <button class="button" type="submit">
               <%= t('where-to-go-text') %>
             </button>
           </form>

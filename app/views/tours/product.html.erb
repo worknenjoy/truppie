@@ -13,11 +13,9 @@
             var input_item_price = $("<div><input name=\"prices[]\" type=\"hidden\" value=\"" +  item_price + "\" /></div>");
             var input_item_time = $("<div><input name=\"starts[]\" type=\"hidden\" value=\"" +  item_start + "\" /></div>");
             var input_item_label = $("<div><input name=\"labels[]\" type=\"hidden\" value=\"" +  item_label + "\" /></div>");
-            var text_item = $("<span>" + item_id + "</span>");
+            var text_item = $("<div class=\"alert alert-success\" style=\"overflow: hidden;\"><h4>" + item_label + "</h4><hr /><p>" + moment(item_start).format("DD-MM-YYYY HH:mm:ss") + "</p><h4 class=\"pull-right\"> $ " + item_price + "</h4></div>");
             input_container.append(input_item);
             input_container.append(input_item_price);
-            input_container.append(item_start);
-            input_container.append(item_label);
             input_container.append(input_item_time);
             input_container.append(input_item_label);
             input_container.append(text_item);
@@ -29,17 +27,26 @@
                   var tour_sessions_info = [];
                   var tour_sessions_date = [];
 
+                  function friendly_label(l) {
+                      if(l === 'Quantity') {
+                          return 'Ticket'
+                      }
+                      return l
+                  }
+
                   for(var i=0; i < data.sessions.length; i++) {
                       var startTimeDate = new Date(data.sessions[i].startTime);
                       var startTime = moment(startTimeDate).tz("<%= @product_json["product"]["timezone"] %>");
-                      var price_options = "<ul>";
+                      var price_options = "<div class=\"alert alert-info\">";
                       for(var j=0; j < data.sessions[i].priceOptions.length; j++) {
-                          price_options += "<li>";
-                          price_options += "<span>" + data.sessions[i].priceOptions[j].label + " $" + data.sessions[i].priceOptions[j].price + "</span> ";
-                          price_options += "<a data-label=\"" + data.sessions[i].priceOptions[j].label + "\" data-start=\"" +  startTime.format("YYYY-MM-DD HH:mm:ss") + "\" data-price=\"" + data.sessions[i].priceOptions[j].price + "\" data-id=\"" + data.sessions[i].priceOptions[j].id + "\" data-turbolinks=\"false\" href=\"#\" onClick=\"return chooseAvailability()\">Adicionar</a>";
-                          price_options += "</li>";
+                          price_options += "<div>";
+                          price_options += "<h4>" + friendly_label(data.sessions[i].priceOptions[j].label) + " <strong class=\"pull-right\"> <small>$</small>" + data.sessions[i].priceOptions[j].price + "</strong></h4> ";
+                          price_options += "<a data-label=\"" + friendly_label(data.sessions[i].priceOptions[j].label) + "\" data-start=\"" +  startTime.format("YYYY-MM-DD HH:mm:ss") + "\" data-price=\"" + data.sessions[i].priceOptions[j].price + "\" data-id=\"" + data.sessions[i].priceOptions[j].id + "\" data-turbolinks=\"false\" href=\"#\" onClick=\"return chooseAvailability()\">Adicionar</a>";
+                          price_options += "<p class=\"mb-2\"> " + startTime.format("DD-MM-YYYY HH:mm:ss") + "</p>";
+                          price_options += "</div>";
+                          price_options += "<hr />";
                       }
-                      price_options += "</ul>";
+                      price_options += "</div>";
                       tour_sessions_info.push({
                           name: price_options,
                           endTime: new Date(data.sessions[i].endTime),
@@ -57,9 +64,24 @@
 <%= render 'layouts/navbar' %>
 <div class="cover">
   <div class="img-holder">
+    <ol class="breadcrumb bread-primary" style="position: absolute; top: 70px; left: 20px; z-index: 10000; background-color: rgba(255, 255 ,255, 0.8); padding: 10px">
+      <li>
+        <%= link_to root_url, data: {turbolinks: false} do %>
+          <i class="fa fa-home"></i> <%= t('tours_view_confirm_li_one') %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to '/tours/products', data: {turbolinks: false} do %>
+          <i class="fa fa-calendar"></i>  Tours, passeios e atrações
+        <% end %>
+      </li>
+      <li class="active">
+        <%= @product_json["product"]["name"] %>
+      </li>
+    </ol>
     <%= image_tag(@product_json["product"]["images"][0]["largeSizeUrl"], :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
     <div class="ribbon base" style="text-align: right">
-      <span><%= raw final_price(@product_json["product"]["advertisedPrice"]) %></span>
+      <span><%= raw final_price(@product_json["product"]["advertisedPrice"], currency: @product_json["product"]["currency"] || 'usd') %></span>
       <%= link_to t('tours_view_show_link_one'), '#', class: 'btn btn-primary btn-sm btn-block' %>
     </div>
   </div>
@@ -107,7 +129,7 @@
                 <span class="day-view-date" id="day-view-date">MAY 29 2016</span>
                 <div class="day-view-content">
                   <div class="day-highlight">
-                    You <span class="day-events" id="day-events">had no events for today</span>. &nbsp; <span tabindex="0" onkeyup="if(event.keyCode != 13) return; this.click();" class="day-events-link" id="add-event" data-date>Add a new event?</span>
+                    <!-- You <span class="day-events" id="day-events">had no events for today</span>. --> &nbsp; <span tabindex="0" onkeyup="if(event.keyCode != 13) return; this.click();" class="day-events-link" id="add-event" data-date><!-- Add a new event? --></span>Opções de reserva
                   </div>
                   <div class="day-add-event" id="add-day-event-box" data-active="false">
                     <div class="row">

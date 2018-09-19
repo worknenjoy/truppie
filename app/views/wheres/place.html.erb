@@ -1,29 +1,35 @@
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/flash' %>
+<div data-turbolinks="true" style="position: absolute; left: 20px; top: 20px; font-size: 18px;">
+  <a href="/">Voltar para busca</a>
+</div>
 <% if @where and @where.backgrounds.any? %>
 <header class="l-header" style="background-image: url('<%= @where.backgrounds.first.picture.url(:large) %>')">
 <% else %>
-<header class="l-header" style="background-size: cover; background-image: linear-gradient(
+<% if @place.photos.any? %>
+<header class="l-header" style="position: relative;background-size: cover; background-image: linear-gradient(
     rgba(0, 0, 0, 0.2),
         rgba(0, 0, 0, 0.8)
     ), url('https://maps.googleapis.com/maps/api/place/photo?sensor=false&maxwidth=3000&maxheight=3000&key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&photoreference=<%= @place.photos[0].photo_reference %>')">
 <% end %>
+  <% end %>
   <nav class="b-primary-nav l-container" role="navigation">
     <div class="b-logo">
       <h2 class="text-color-white"><%= @where.try(:name) or @place.name %></h2>
     </div>
+    <!--
     <ul class="b-primary-nav__list">
       <li class="b-primary-nav__list__item"><a href=""><%= t('places-experiences-label') %></a></li>
       <li class="b-primary-nav__list__item"><a href=""><%= t('places-guidebooks-label') %></a></li>
       <li class="b-primary-nav__list__item"><a href=""><%= t('places-information-label') %></a></li>
     </ul>
+    -->
   </nav>
 </header>
-
 <main role="main">
   <header class="b-post-header l-container">
     <time class="b-post-header__date" datetime="2017-02-21T13:18:13.595Z">
-      <%= @where.try(:name) or @place.name %> fica na <%= @place.try(:formatted_address) %>
+      <%= @where.try(:name) or @place.name %> fica em <%= @place.try(:formatted_address) %>
     </time>
     <% if @place.reviews.any? %>
     <h1 class="b-post-header__heading">
@@ -36,7 +42,18 @@
     </div>
     <% end %>
   </header>
+  <div class="container">
+    <div class="col-xs-12">
+      <h1 class="b-post-header__heading">
+        Atividades
+      </h1>
+      <% @products_json["products"].each do |p| %>
+        <%= render partial: 'layouts/product_list', locals: { p: p } %>
+      <% end %>
+    </div>
+  </div>
   <section class="b-post-main l-container">
+    <!--
     <div class="b-post-main__intro">
       <div class="b-post-main__col">
         <p>
@@ -47,18 +64,20 @@
         <blockquote class="b-post-main__blockquote">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </blockquote>
-      </div>
+      </div> -->
     </div>
+    <% if @place.photos.any? %>
     <figure class="b-post-main__figure">
       <img class="b-post-main__figure--full-width" src="https://maps.googleapis.com/maps/api/place/photo?sensor=false&maxwidth=1200&maxheight=400&key=AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A&photoreference=<%= @place.photos[1].photo_reference %>" alt="Beautiful Landscape">
     </figure>
+    <% end %>
   </section>
   <section>
     <div>
-      <header class="b-section-header">
-        <h2><%= t('tours-title-places-label') %></h2>
-      </header>
       <% if (@tours and @tours.publisheds.any?) || (@guidebooks and @guidebooks.publisheds.any?) %>
+          <header class="b-section-header">
+            <h2><%= t('tours-title-places-label') %></h2>
+          </header>
           <% @tours.publisheds.each do |t| %>
 
               <div class="b-teaser-articles">
@@ -128,7 +147,7 @@
             <div class="b-teaser-articles__article__content">
               <div class="b-teaser-articles__article__content__excerpt">
                 <p>
-                  <%= t('no-experience-here-label') %>
+                  Você oferece atividades?
                 </p>
                 <%= link_to organizer_welcome_path, class: "btn btn-primary" do %>
                     <%= t('create-experience-call-to-action') %>

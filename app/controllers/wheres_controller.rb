@@ -65,15 +65,20 @@ class WheresController < ApplicationController
   end
 
   def place
-    puts params[:place_id]
     @placeid = params[:place_id]
-    @client = GooglePlaces::Client.new('AIzaSyBd61mfgh_26mtP1GFqaakPAHaaNI84j-A')
+    @client = GooglePlaces::Client.new(Rails.application.secrets[:places_api])
     @place = @client.spot(@placeid)
     @where = Where.where({:place_id => @placeid}).first
-    if @where.present?
+    #puts @place.inspect
+    @products = RestClient.get "https://api.rezdy.com/latest/products/marketplace?&latitude=#{@place.lat}&longitude=#{@place.lng}&limit=25&automatedPayments=true&apiKey=#{Rails.application.secrets[:rezdy_api]}"
+    @products_json = JSON.load @products
+    if Where.where({place_id: @placeid}).any?
       @tours = Tour.joins(:wheres).where(wheres: {place_id: @where.place_id})
       @guidebooks = Guidebook.joins(:wheres).where(wheres: {place_id: @where.place_id})
+    else
+      Where.create({place_id: @place.place_id, name: @place.vicinity, lat: @place.lat, long: @place.lng})
     end
+    ContactMailer.notify("Someone search for a place #{@place.id}, #{@place.inspect}").deliver_now
   end
 
   private

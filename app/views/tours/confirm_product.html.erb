@@ -14,12 +14,12 @@
       <hr class="hr-primary" />
       <ol class="breadcrumb bread-primary ">
         <li>
-          <%= link_to root_url do %>
+          <%= link_to root_url, data: {turbolinks: false} do %>
             <i class="fa fa-home"></i> <%= t('tours_view_confirm_li_one') %>
           <% end %>
         </li>
         <li>
-          <%= link_to '/tours/products' do %>
+          <%= link_to '/tours/products', data: {turbolinks: false} do %>
             <i class="fa fa-calendar"></i>  Tours, passeios e atrações
           <% end %>
         </li>
@@ -160,7 +160,9 @@
                   <div class="spaced-smallest">
                     <% @product_prices.each_with_index do |p, i| %>
                       <div class="alert alert-success" role="alert">
-                        $ <%= p %> - <%= @product_starts %> - <%= @product_labels %>
+                        <h4>$ <%= p %></h4>
+                        <hr />
+                        <p><%= @product_starts[i] %> - <%= @product_labels[i] %></p>
                       </div>
                     <% end  %>
                   </div>
@@ -196,7 +198,7 @@
                         <h4 style="text-align: right"><%= t('tours_view_confirm_h4_five') %></h4>
                       </div>
                       <div class="price mediafix">
-                        <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@product_total_price) %></h3>
+                        <h3 class="cc-final-price pull-right" style="font-size: 3em;"><%= raw final_price(@product_total_price, currency: 'usd') %></h3>
                         <%= hidden_field_tag :final_price, @final_price, id:'cc-final-price' %>
                         <%= hidden_field_tag :default_final_price, @final_price, id:'cc-default-final-price'%>
                       </div>

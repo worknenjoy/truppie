@@ -1,9 +1,11 @@
 @import "bourbon";
-@import 'bootstrap/variables';
+@import "bootstrap/variables";
 
-$color1: $brand-primary-lighter; // tan
-$color2: $brand-primary; // blue
+$color1: $brand-danger; // tan
+$color2: $brand-danger; // blue
 $color3: $brand-danger; // gold
+$color4: $gray-lighter; // gold
+$color5: $gray-lightest; // gold
 
 /* =================================
   Base Styles
@@ -140,14 +142,14 @@ $color3: $brand-danger; // gold
     }
 
     input {
-      background-color: #fff;
+      background-color: $color5;
       margin-bottom: 1em;
-      border: 1px solid #ddd;
+      border: 1px solid $color4;
       border-radius: 3px;
       color: #494f4f;
       @include transition(border-color 0.4s);
       &:focus {
-        border-color: #879090;
+        border-color: $color3;
       }
 
       @media (min-width: 500px) {

@@ -209,7 +209,7 @@ CalendarApp.prototype.showEventsCreateElesView = function(events) {
         var li = document.createElement("li");
         li.className = "event-dates";
         // li.innerHtml
-        var html = "<span class='start-time'>" + _start.toLocaleTimeString(navigator.language,{hour: '2-digit', minute:'2-digit'}) + "</span> <small>through</small> ";
+        var html = "<span class='start-time'>" + _start.toLocaleTimeString(navigator.language,{hour: '2-digit', minute:'2-digit'}) + "</span> <small>até</small> ";
         html += "<span class='end-time'>" + _end.toLocaleTimeString(navigator.language,{hour: '2-digit', minute:'2-digit'}) + ( (_end.getDate() != _start.getDate()) ? ' <small>on ' + _end.toLocaleDateString() + "</small>" : '') +"</span>";
 
 
@@ -220,7 +220,7 @@ CalendarApp.prototype.showEventsCreateElesView = function(events) {
         div.innerHTML = html;
 
         var deleteBtn = document.createElement("span");
-        var deleteText = document.createTextNode("Adicionar");
+        var deleteText = document.createTextNode("");
         deleteBtn.className = "event-delete";
         deleteBtn.setAttribute("data-idx", idx);
         deleteBtn.appendChild(deleteText);

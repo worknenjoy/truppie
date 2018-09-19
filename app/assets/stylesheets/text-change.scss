@@ -2,14 +2,14 @@
 
 .content {
   position: absolute;
-  top: 35px;
+  top: 85px;
   left: 50%;
   transform: translate(-50%, 86%);
-  height: 160px;
+  height: 100px;
   overflow:hidden;
   width: 41%;
-  color: $brand-primary;
-  z-index: 10000;
+  color: $brand-danger;
+  z-index: 1000000;
 
   font-family: 'Lato', sans-serif;
   font-size: 24px;
