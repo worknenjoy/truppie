@@ -82,7 +82,7 @@
     </ol>
     <%= image_tag(@product_json["product"]["images"][0]["largeSizeUrl"], :alt => "Truppie", :class => "img-fluid img-fit symbol-big") %>
     <div class="ribbon base" style="text-align: right">
-      <span><%= raw final_price(@product_json["product"]["advertisedPrice"], currency: @product_json["product"]["currency"]) %></span>
+      <span><%= raw final_price(@product_json["product"]["advertisedPrice"], currency: @product_json["product"]["currency"] || 'usd') %></span>
       <%= link_to t('tours_view_show_link_one'), '#', class: 'btn btn-primary btn-sm btn-block' %>
     </div>
   </div>

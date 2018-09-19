@@ -77,6 +77,8 @@ module ApplicationHelper
         choice = "<small>$</small><span>#{p}</span>"
       when 'USD'
         choice = "<small>$</small><span>#{p}</span>"
+      when 'AUD'
+        choice = "<small>$</small><span>#{p}</span>"
       when 'brl'
         choice = "<small>R$</small><span>#{p}</span>"
       else
