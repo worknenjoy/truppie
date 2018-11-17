@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   server:
-    command: ["./docker/scripts/wait-for-it.sh", "localhost:5432", "-t", "0", "--", "./docker/scripts/run-server.sh"]
+    command: ["./docker/scripts/wait-for-it.sh", "db:5432", "-t", "0", "--", "./docker/scripts/run-server.sh"]
     working_dir: /truppie
     build: .
     volumes:
@@ -9,8 +9,8 @@ services:
         source: .
         target: /truppie
     tty: true
-    network_mode: "host"
+    ports:
+      - "3000:3000"
   db:
     env_file: .env-db
     image: postgres:9.4.5
-    network_mode: "host"
