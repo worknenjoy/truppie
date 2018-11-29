@@ -26,7 +26,7 @@ default: &default
 development:
   <<: *default
   database: truppie_development
-  host: db
+  host: localhost
   #port: 5433
 
 
