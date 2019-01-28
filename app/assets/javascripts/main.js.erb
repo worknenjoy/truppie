@@ -171,7 +171,7 @@ function listenCheckToggle(inputCheckBox, toggableContainerElements){
   }
 }
 
-function updateTotalFairPrice(event){    
+function updateTotalFairPrice(event){
   var amount_elem = $('input.cc-amount-output');
   var amountValue = amount_elem.val() % amount_elem.attr('max');
   var fair_price_value = $('input.fair-price-value').val();
@@ -308,6 +308,18 @@ $(document).on("turbolinks:load", function() {
             },
             delimiter: ';',
         });
+  }
+
+  if($('#tour_nonincluded, #tour_included').length) {
+    $('#tour_nonincluded, #tour_included').tagsinput({
+        typeaheadjs: {
+            name: 'tags',
+            displayKey: 'name',
+            valueKey: 'name',
+            source: tags.ttAdapter()
+        },
+        delimiter: ';',
+    });
   }
 
   if($('#tour_languages, #guidebook_languages').length) {
@@ -637,7 +649,7 @@ $(document).on("turbolinks:load", function() {
   $('.guidebooks-services .service-item-confirm :checkbox').change(updateFinalPriceForGuidebooks);
   $('.btn-cc-plus,.btn-cc-minus,.b-amount-output').on('change paste keyup input click', updateFinalPriceForGuidebooks);
 
-  
+
   $('.cc-package-options input[type=radio]').change(function(){
     $('#cc-default-final-price').val($(this).val());
     updateFinalPriceForTours();
@@ -646,14 +658,14 @@ $(document).on("turbolinks:load", function() {
     $('#b-default-final-price').val($(this).val());
     updateFinalPriceForGuidebooks();
   });
-  
-  
+
+
 
   function updateFinalPriceForTours() {
     updateFinalPrice.call(this, '#cc-final-price', '#cc-default-final-price', '.cc-final-price span', '.cc-amount-output');
   }
 
-  function updateFinalPriceForGuidebooks() {    
+  function updateFinalPriceForGuidebooks() {
     updateFinalPrice.call(this, '#b-final-price', '#b-default-final-price', '.b-final-price span', '.b-amount-output');
   }
 
@@ -664,16 +676,16 @@ $(document).on("turbolinks:load", function() {
 
         const checkedValues = [];
         $('.service-item-confirm input[type=checkbox]').each(function() {
-            const element = $(this);        
-            if(element.is(':checked')) {            
+            const element = $(this);
+            if(element.is(':checked')) {
                 checkedValues.push(parseInt(element.val()));
             }
         });
 
         const serviceValuesSum = checkedValues.reduce((sum, v) => sum + v, 0);
         const newFinalPrice = (defaultFinalPrice + serviceValuesSum) * amount;
-        
-        $(spanFinalPriceClass).text(newFinalPrice);    
+
+        $(spanFinalPriceClass).text(newFinalPrice);
         $(hiddenFinalPriceId).val(newFinalPrice);
         }, 100);
     }
