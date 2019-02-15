@@ -1,3 +1,17 @@
+- name: Receber email sobre registro de um novo guia
+  date: 15 de Fevereiro de 2019
+  url: https://github.com/worknenjoy/truppie/issues/143
+  description: Quando um novo guia se cadastra, enviar um email para os admins sobre o novo cadastro para que possa ser realizada a moderação
+  requirements: Rails
+  level: Fácil
+  technology: Rails, jQuery, Bootstrap
+  image: https://user-images.githubusercontent.com/88840/52871778-fbd96e00-3131-11e9-9522-df9d33978d23.png
+  imagealt: ""
+  validation: Pull Request aprovado
+  category: Melhoria
+  status: Prioritária
+  price: Contribuição open source
+  
 - name: Na página de adicionar truppie, os campos que aceitam tags submetem o formulário
   date: 02 de Novembro de 2017
   url: https://github.com/alexanmtz/truppie/issues/28
