@@ -21,7 +21,7 @@ gem 'maily_herald-webui'
 gem "intercom-rails"
 
 # Authentication
-gem 'devise', '~> 3.2'
+gem 'devise', '~> 4.7'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
