@@ -9,7 +9,7 @@ GIT
       stripe (~> 1.31)
 
 GIT
-  remote: git://github.com/ejholmes/active_admin_editor.git
+  remote: https://github.com/ejholmes/active_admin_editor.git
   revision: 86f964be3071cd938c3cd17ad00df94ece3a50c0
   specs:
     active_admin_editor (1.1.0)
@@ -229,7 +229,8 @@ GEM
     highline (1.7.10)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    httparty (0.16.1)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
@@ -281,7 +282,9 @@ GEM
       smart_listing (~> 1.1.0)
     metaclass (0.0.4)
     mime-types (2.6.2)
-    mimemagic (0.3.2)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
