@@ -59,8 +59,8 @@ We have a {Contribution Guideline}[https://github.com/alexanmtz/truppie/blob/mas
   With you want to give feedback about bugs, you can open a issue describing:
   1. Which URL the bug happens
   2. What you would tried to do (action perfomed)
-  2. Date and time
-  3. Error message (if any)
+  3. Date and time
+  4. Error message (if any)
 
 === Env variables to secure our working
 
